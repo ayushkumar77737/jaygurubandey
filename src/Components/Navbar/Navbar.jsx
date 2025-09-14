@@ -3,36 +3,20 @@ import './Navbar.css'
 import logo from '../../assets/logo.jpg.png'
 import circle from '../../assets/circle.png'
 import menu from '../../assets/menu.png'
-import { NavLink } from 'react-router-dom'
-
-// Reusable NavLink with refresh ability
-const RefreshNavLink = ({ to, children, className, onClick }) => {
-  const handleClick = (e) => {
-    if (window.location.pathname === to) {
-      e.preventDefault()
-      window.location.reload() // refresh if same route clicked again
-    }
-    if (onClick) onClick()
-  }
-
-  return (
-    <NavLink to={to} className={className} onClick={handleClick}>
-      {children}
-    </NavLink>
-  )
-}
-
-const linkClass = ({ isActive }) => 'btn' + (isActive ? ' active' : '')
+import { NavLink, useLocation } from 'react-router-dom'
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
+  const location = useLocation()
 
-  const toggleMenu = () => {
-    setMobileMenu(!mobileMenu)
-  }
+  const toggleMenu = () => setMobileMenu(!mobileMenu)
+  const closeMenu = () => setMobileMenu(false)
 
-  const closeMenu = () => {
-    setMobileMenu(false)
+  const linkClass = ({ isActive }) => 'btn' + (isActive ? ' active' : '')
+
+  const handleNavClick = () => {
+    closeMenu()
+    window.scrollTo({ top: 0, behavior: 'smooth' }) // scroll to top on same route
   }
 
   return (
@@ -40,14 +24,14 @@ const Navbar = () => {
       <img src={logo} alt='Logo' className='logo' />
 
       <ul className={mobileMenu ? 'nav-links' : 'nav-links hide-mobile-menu'}>
-        <li><RefreshNavLink onClick={closeMenu} className={linkClass} to='/'>Home</RefreshNavLink></li>
-        <li><RefreshNavLink onClick={closeMenu} className={linkClass} to='/about'>About</RefreshNavLink></li>
-        <li><RefreshNavLink onClick={closeMenu} className={linkClass} to='/satsang'>Amrit Wadi</RefreshNavLink></li>
-        <li><RefreshNavLink onClick={closeMenu} className={linkClass} to='/bhajan'>Bhajan</RefreshNavLink></li>
-        <li><RefreshNavLink onClick={closeMenu} className={linkClass} to='/program'>Program</RefreshNavLink></li>
-        <li><RefreshNavLink onClick={closeMenu} className={linkClass} to='/blog'>Blog</RefreshNavLink></li>
-        <li><RefreshNavLink onClick={closeMenu} className={linkClass} to='/gallery'>Gallery</RefreshNavLink></li>
-        <li><RefreshNavLink onClick={closeMenu} className={linkClass} to='/contact'>Contact Us</RefreshNavLink></li>
+        <li><NavLink onClick={handleNavClick} className={linkClass} to='/'>Home</NavLink></li>
+        <li><NavLink onClick={handleNavClick} className={linkClass} to='/about'>About</NavLink></li>
+        <li><NavLink onClick={handleNavClick} className={linkClass} to='/satsang'>Amrit Wadi</NavLink></li>
+        <li><NavLink onClick={handleNavClick} className={linkClass} to='/bhajan'>Bhajan</NavLink></li>
+        <li><NavLink onClick={handleNavClick} className={linkClass} to='/program'>Program</NavLink></li>
+        <li><NavLink onClick={handleNavClick} className={linkClass} to='/blog'>Blog</NavLink></li>
+        <li><NavLink onClick={handleNavClick} className={linkClass} to='/gallery'>Gallery</NavLink></li>
+        <li><NavLink onClick={handleNavClick} className={linkClass} to='/contact'>Contact Us</NavLink></li>
       </ul>
 
       <img src={circle} alt="Circle" className="circle-img" />
