@@ -1,0 +1,52 @@
+.footer {
+  background: #333;
+  color: #fff;
+  padding: 12px 0;           /* ↓ reduced from 20px */
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;                  /* ↓ reduced from 15px */
+}
+
+.social-links {
+  display: flex;
+  gap: 12px;                  /* ↓ reduced from 18px */
+  margin-top: 6px;            /* ↓ reduced from 10px */
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;                /* ↓ reduced from 45px */
+  height: 32px;               /* ↓ reduced from 45px */
+  border-radius: 50%;
+  font-size: 16px;             /* ↓ reduced from 22px */
+  color: #fff;
+  background: #444;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+}
+
+/* Brand backgrounds */
+.social-links a.facebook { background: #1877f2; }
+.social-links a.instagram {
+  background: linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
+}
+.social-links a.youtube { background: #ff0000; }
+.social-links a.whatsapp { background: #25d366; }
+
+.social-links a:hover {
+  transform: scale(1.15);
+  box-shadow: 0 5px 8px rgba(0,0,0,0.4);
+  filter: brightness(1.15);
+}
+
+.footer p {
+  font-size: 12px;             /* ↓ reduced from 14px */
+  margin: 0;
+}

@@ -1,0 +1,173 @@
+/* =========================
+   Global Reset
+========================= */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #333;
+  font-family: Arial, sans-serif;
+}
+
+/* =========================
+   Navbar Container
+========================= */
+nav {
+  width: 100%;
+  background: #333;
+  color: #fff;
+  padding: 6px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* ✅ keeps logo left, others spaced */
+  position: relative;
+  z-index: 10;
+  flex-wrap: wrap; /* ✅ responsive wrapping */
+}
+
+/* Logo - stays left */
+nav img.logo {
+  width: 100px;
+  height: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* =========================
+   Navigation Links (Desktop)
+========================= */
+nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;     /* ✅ center links */
+  flex: 1;                      /* ✅ take remaining space */
+  margin: 0;
+  padding: 0;
+  transition: right 0.5s ease;
+}
+
+nav ul li {
+  list-style: none;
+  margin: 4px 14px;
+  font-size: 15px;
+}
+
+/* Buttons */
+nav ul li a {
+  text-decoration: none;
+  color: #800000;
+  background: #fff;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+nav ul li a:hover {
+  background: #ff9800;
+  color: #fff;
+}
+
+/* =========================
+   Circle Image
+========================= */
+.circle-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  margin-left: 20px;
+  flex-shrink: 0;
+}
+
+/* =========================
+   Mobile Menu Icon
+========================= */
+.menu {
+  display: none;
+  width: 26px;
+  cursor: pointer;
+  position: relative;
+  z-index: 20;
+}
+
+/* =========================
+   Mobile View
+========================= */
+@media (max-width: 1286px) {
+  nav {
+    justify-content: space-between;
+  }
+
+  nav ul {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #333;
+    width: 220px;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    transition: right 0.5s ease;
+    z-index: 15;
+    flex: unset;
+  }
+
+  nav ul li {
+    margin: 0;
+    text-align: center;
+    width: auto;
+    display: block;
+  }
+
+  nav ul li a {
+    width: 160px;
+    height: 45px;
+    line-height: 45px;
+    margin: 0 auto;
+    padding: 0;
+    border-radius: 8px;
+    font-size: 16px;
+    display: block;
+  }
+
+  .menu {
+    display: block;
+  }
+
+  .hide-mobile-menu {
+    right: -240px;
+  }
+
+  /* ✅ Circle image smaller for mobile */
+  .circle-img {
+    width: 55px;
+    height: 55px;
+    margin-left: 10px;
+  }
+}
+
+/* =========================
+   Extra Small Screens
+========================= */
+@media (max-width: 600px) {
+  nav img.logo {
+    width: 80px; /* smaller logo */
+  }
+
+  .circle-img {
+    width: 50px;
+    height: 50px;
+  }
+
+  nav ul li a {
+    width: 140px;
+    font-size: 14px;
+  }
+}

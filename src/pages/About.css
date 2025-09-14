@@ -1,0 +1,170 @@
+/* ===== Page background with subtle animated gradient ===== */
+.about-page {
+  padding: 3rem 2rem;
+  line-height: 1.8;
+  color: #333;
+  background: linear-gradient(-45deg, #ffe6e6, #fff0f5, #fff5e6, #fafafa);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite, fadeIn 1s ease-in-out;
+  transition: background 0.5s ease;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* ===== Intro section with glow hover on heading ===== */
+.about-intro {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+  animation: fadeUp 0.8s ease-in-out forwards;
+  opacity: 0;
+}
+
+/* Fade up animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.about-intro h1 {
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  color: #b71c1c;
+  transition: color 0.5s ease, text-shadow 0.5s ease, transform 0.5s ease;
+}
+
+.about-intro h1:hover {
+  color: #d32f2f;
+  text-shadow: 0 0 20px #ff1744, 0 0 30px #f48fb1;
+  transform: scale(1.1);
+}
+
+.about-intro .subtext {
+  font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #555;
+  margin-top: 0.5rem;
+  transition: color 0.5s ease, letter-spacing 0.3s ease;
+}
+
+.about-intro .subtext:hover {
+  color: #b71c1c;
+  letter-spacing: 2px;
+}
+
+/* ===== Journey / Vision / Daily Sections ===== */
+.about-journey, .about-vision, .about-daily {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  flex-wrap: wrap;
+  transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
+  animation: float 6s ease-in-out infinite, fadeUp 0.8s ease-in-out forwards;
+  opacity: 0;
+}
+
+.about-journey:nth-child(1) { animation-delay: 0.2s, 0.2s; }
+.about-vision:nth-child(2) { animation-delay: 0.4s, 0.4s; }
+.about-daily:nth-child(3) { animation-delay: 0.6s, 0.6s; }
+
+.about-vision:hover, .about-daily:hover, .journey-text:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 0 25px #f48fb1, 0 0 50px #ff1744;
+  background: #fff0f5;
+}
+
+/* ===== Profile photo with glowing circular hover effect ===== */
+.journey-photo img, .vision-photo img, .daily-photo img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  object-fit: cover;
+  transition: transform 0.5s ease, box-shadow 0.5s ease, filter 0.5s ease;
+}
+
+.journey-photo img:hover, .vision-photo img:hover, .daily-photo img:hover {
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: 0 0 30px #ff1744, 0 0 50px #f48fb1;
+  filter: brightness(1.1);
+}
+
+/* ===== Text card styling ===== */
+.journey-text, .vision-text, .daily-text {
+  flex: 1 1 300px;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 20px;
+  font-size: clamp(0.95rem, 2.3vw, 1.1rem);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
+}
+
+/* ===== Floating animation for cards ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+/* ===== Responsive: stack image on small screens ===== */
+@media (max-width: 1024px) {
+  .about-journey, .about-vision, .about-daily {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .journey-photo img, .vision-photo img, .daily-photo img {
+    margin-bottom: 1.5rem;
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .journey-text, .vision-text, .daily-text {
+    padding: 1.5rem;
+  }
+  .journey-photo img, .vision-photo img, .daily-photo img {
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-page {
+    padding: 2rem 1rem;
+  }
+
+  .about-journey, .about-vision, .about-daily {
+    padding: 1rem;
+  }
+
+  .journey-photo img, .vision-photo img, .daily-photo img {
+    max-width: 150px;
+  }
+
+  .about-intro h1 {
+    font-size: clamp(1.6rem, 6vw, 2rem);
+  }
+
+  .about-intro .subtext {
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+  }
+}
