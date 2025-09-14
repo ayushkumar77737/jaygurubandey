@@ -3,21 +3,29 @@ import './Navbar.css'
 import logo from '../../assets/logo.jpg.png'
 import circle from '../../assets/circle.png'
 import menu from '../../assets/menu.png'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
 
   const toggleMenu = () => setMobileMenu(!mobileMenu)
   const closeMenu = () => setMobileMenu(false)
 
   const linkClass = ({ isActive }) => 'btn' + (isActive ? ' active' : '')
 
-  const handleNavClick = () => {
+  const handleNavClick = (path) => {
     closeMenu()
-    // Scroll to top if clicking same route
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+
+    if (location.pathname === path) {
+      // 🔄 If already on the same route, force refresh
+      window.location.reload()
+    } else {
+      // Navigate normally
+      navigate(path)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   }
 
   return (
@@ -25,14 +33,14 @@ const Navbar = () => {
       <img src={logo} alt='Logo' className='logo' />
 
       <ul className={mobileMenu ? 'nav-links' : 'nav-links hide-mobile-menu'}>
-        <li><NavLink onClick={handleNavClick} className={linkClass} to='/'>Home</NavLink></li>
-        <li><NavLink onClick={handleNavClick} className={linkClass} to='/about'>About</NavLink></li>
-        <li><NavLink onClick={handleNavClick} className={linkClass} to='/satsang'>Amrit Wadi</NavLink></li>
-        <li><NavLink onClick={handleNavClick} className={linkClass} to='/bhajan'>Bhajan</NavLink></li>
-        <li><NavLink onClick={handleNavClick} className={linkClass} to='/program'>Program</NavLink></li>
-        <li><NavLink onClick={handleNavClick} className={linkClass} to='/blog'>Blog</NavLink></li>
-        <li><NavLink onClick={handleNavClick} className={linkClass} to='/gallery'>Gallery</NavLink></li>
-        <li><NavLink onClick={handleNavClick} className={linkClass} to='/contact'>Contact Us</NavLink></li>
+        <li><button onClick={() => handleNavClick('/')} className={linkClass({isActive: location.pathname === '/'})}>Home</button></li>
+        <li><button onClick={() => handleNavClick('/about')} className={linkClass({isActive: location.pathname === '/about'})}>About</button></li>
+        <li><button onClick={() => handleNavClick('/satsang')} className={linkClass({isActive: location.pathname === '/satsang'})}>Amrit Wadi</button></li>
+        <li><button onClick={() => handleNavClick('/bhajan')} className={linkClass({isActive: location.pathname === '/bhajan'})}>Bhajan</button></li>
+        <li><button onClick={() => handleNavClick('/program')} className={linkClass({isActive: location.pathname === '/program'})}>Program</button></li>
+        <li><button onClick={() => handleNavClick('/blog')} className={linkClass({isActive: location.pathname === '/blog'})}>Blog</button></li>
+        <li><button onClick={() => handleNavClick('/gallery')} className={linkClass({isActive: location.pathname === '/gallery'})}>Gallery</button></li>
+        <li><button onClick={() => handleNavClick('/contact')} className={linkClass({isActive: location.pathname === '/contact'})}>Contact Us</button></li>
       </ul>
 
       <img src={circle} alt="Circle" className="circle-img" />
