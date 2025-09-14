@@ -33,7 +33,6 @@ const Navbar = () => {
         <li><NavLink onClick={handleNavClick} className={linkClass} to='/blog'>Blog</NavLink></li>
         <li><NavLink onClick={handleNavClick} className={linkClass} to='/gallery'>Gallery</NavLink></li>
         <li><NavLink onClick={handleNavClick} className={linkClass} to='/contact'>Contact Us</NavLink></li>
-        <li><NavLink onClick={handleNavClick} className={linkClass} to='/chat'>Chat</NavLink></li>
       </ul>
 
       <img src={circle} alt="Circle" className="circle-img" />
