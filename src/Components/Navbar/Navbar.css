@@ -19,13 +19,13 @@ nav {
   padding: 6px 16px;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* ✅ keeps logo left, others spaced */
+  justify-content: space-between;
   position: relative;
   z-index: 10;
-  flex-wrap: wrap; /* ✅ responsive wrapping */
+  flex-wrap: wrap;
 }
 
-/* Logo - stays left */
+/* Logo */
 nav img.logo {
   width: 100px;
   height: auto;
@@ -39,21 +39,20 @@ nav img.logo {
 nav ul {
   display: flex;
   align-items: center;
-  justify-content: center;  /* ✅ center links */
-  flex: 1;                   /* ✅ take remaining space */
+  justify-content: center;
+  flex: 1;
   margin: 0;
   padding: 0;
 }
 
-/* Menu Items */
 nav ul li {
   list-style: none;
   margin: 4px 14px;
   font-size: 15px;
 }
 
-/* Buttons */
-nav ul li a {
+nav ul li a,
+nav ul li button {
   text-decoration: none;
   color: #800000;
   background: #fff;
@@ -63,9 +62,12 @@ nav ul li a {
   transition: 0.3s ease;
   display: inline-block;
   text-align: center;
+  border: none;
+  cursor: pointer;
 }
 
-nav ul li a:hover {
+nav ul li a:hover,
+nav ul li button:hover {
   background: #ff9800;
   color: #fff;
 }
@@ -98,31 +100,28 @@ nav ul li a:hover {
    Mobile/Tablet View
 ========================= */
 @media (max-width: 1286px) {
-  nav {
-    justify-content: space-between;
-  }
-
   nav ul {
     position: fixed;
     top: 0;
-    right: 0;                 
+    right: 0;
     bottom: 0;
     background: #333;
     width: 220px;
     padding-top: 80px;
-    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 18px;
     z-index: 15;
-
-    /* ✅ hidden by default */
-    transform: translateX(100%);
     transition: transform 0.45s ease-in-out;
     will-change: transform;
   }
 
-  /* ✅ active state when menu is open */
+  /* hidden state */
+  .hide-mobile-menu {
+    transform: translateX(100%);
+  }
+
+  /* visible state */
   .nav-links {
     transform: translateX(0);
   }
@@ -134,7 +133,8 @@ nav ul li a:hover {
     display: block;
   }
 
-  nav ul li a {
+  nav ul li a,
+  nav ul li button {
     width: 160px;
     height: 45px;
     line-height: 45px;
@@ -149,7 +149,6 @@ nav ul li a:hover {
     display: block;
   }
 
-  /* ✅ Circle image smaller for mobile */
   .circle-img {
     width: 55px;
     height: 55px;
@@ -162,7 +161,7 @@ nav ul li a:hover {
 ========================= */
 @media (max-width: 600px) {
   nav img.logo {
-    width: 80px; /* smaller logo */
+    width: 80px;
   }
 
   .circle-img {
@@ -170,7 +169,8 @@ nav ul li a:hover {
     height: 50px;
   }
 
-  nav ul li a {
+  nav ul li a,
+  nav ul li button {
     width: 140px;
     font-size: 14px;
   }
