@@ -40,34 +40,36 @@ html, body {
   will-change: opacity;
 }
 
-/* Instead of background-position, we animate ::before with transform */
+/* Animate background using GPU */
 .hero-bg::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  width: 110%;              /* wider to avoid edges showing */
+  width: 110%;              
   height: 100%;
-  background-image: inherit; /* uses inline background-image set from JS/HTML */
+  background-image: inherit; 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   will-change: transform;
-  transform: translateX(0);
+  backface-visibility: hidden;       
+  transform: translate3d(0, 0, 0);   
 }
 
 .hero-bg.active {
   opacity: 1;
 }
 
+/* Default desktop/laptop speed */
 .hero-bg.active::before {
-  animation: panBackground 20s linear infinite;
+  animation: panBackground 50s linear infinite; /* 🐢 very slow on laptop */
 }
 
 @keyframes panBackground {
-  0%   { transform: translateX(0); }
-  50%  { transform: translateX(-5%); }
-  100% { transform: translateX(0); }
+  0%   { transform: translate3d(0, 0, 0); }
+  50%  { transform: translate3d(-25%, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
 
 /* Text Container */
@@ -140,7 +142,7 @@ html, body {
   transform: translateX(4px);
 }
 
-/* Fade + Slide Animation (runs only when .animate-once is added) */
+/* Fade + Slide Animation */
 @keyframes fadeSlideUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
@@ -183,14 +185,14 @@ html, body {
 /* ===== Responsive ===== */
 @media (max-width: 1024px) {
   .hero-text { max-width: 650px; }
+
+  .hero-bg.active::before {
+    animation: panBackground 35s linear infinite; /* 🐢 slower on tablet */
+  }
 }
 
 @media (max-width: 768px) {
   .hero { padding: 0 15px; }
-
-  .hero-bg.active::before {
-    animation: panBackground 30s linear infinite;
-  }
 
   .hero-text h2 { font-size: clamp(20px, 5vw, 32px); }
   .hero-text h1 { font-size: clamp(24px, 6vw, 36px); }
@@ -205,7 +207,7 @@ html, body {
   .hero-text { max-width: 90%; }
 
   .hero-bg.active::before {
-    animation: panBackground 40s linear infinite;
+    animation: panBackground 25s linear infinite; /* 🐢 slower on mobile */
   }
 
   .btn {
