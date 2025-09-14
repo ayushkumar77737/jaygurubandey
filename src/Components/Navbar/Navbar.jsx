@@ -16,7 +16,8 @@ const Navbar = () => {
 
   const handleNavClick = () => {
     closeMenu()
-    window.scrollTo({ top: 0, behavior: 'smooth' }) // scroll to top on same route
+    // Scroll to top if clicking same route
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
@@ -32,6 +33,7 @@ const Navbar = () => {
         <li><NavLink onClick={handleNavClick} className={linkClass} to='/blog'>Blog</NavLink></li>
         <li><NavLink onClick={handleNavClick} className={linkClass} to='/gallery'>Gallery</NavLink></li>
         <li><NavLink onClick={handleNavClick} className={linkClass} to='/contact'>Contact Us</NavLink></li>
+        <li><NavLink onClick={handleNavClick} className={linkClass} to='/chat'>Chat</NavLink></li>
       </ul>
 
       <img src={circle} alt="Circle" className="circle-img" />
