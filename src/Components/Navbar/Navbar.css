@@ -1,17 +1,14 @@
-/* =========================
-   Global Reset
-========================= */
-html, body {
+/* ========================= Global Reset ========================= */
+html,
+body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* prevent horizontal scroll */
+  overflow-x: hidden;
   background: #333;
   font-family: Arial, sans-serif;
 }
 
-/* =========================
-   Navbar Container
-========================= */
+/* ========================= Navbar Container ========================= */
 nav {
   width: 100%;
   background: #333;
@@ -19,10 +16,12 @@ nav {
   padding: 6px 16px;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* ✅ keeps logo left, others spaced */
+  justify-content: space-between;
+  /* ✅ keeps logo left, others spaced */
   position: relative;
   z-index: 10;
-  flex-wrap: wrap; /* ✅ responsive wrapping */
+  flex-wrap: wrap;
+  /* ✅ responsive wrapping */
 }
 
 /* Logo - stays left */
@@ -33,14 +32,14 @@ nav img.logo {
   flex-shrink: 0;
 }
 
-/* =========================
-   Navigation Links (Desktop)
-========================= */
+/* ========================= Navigation Links (Desktop) ========================= */
 nav ul {
   display: flex;
   align-items: center;
-  justify-content: center;  /* ✅ center links */
-  flex: 1;                   /* ✅ take remaining space */
+  justify-content: center;
+  /* ✅ center links */
+  flex: 1;
+  /* ✅ take remaining space */
   margin: 0;
   padding: 0;
 }
@@ -70,9 +69,7 @@ nav ul li a:hover {
   color: #fff;
 }
 
-/* =========================
-   Circle Image
-========================= */
+/* ========================= Circle Image ========================= */
 .circle-img {
   width: 70px;
   height: 70px;
@@ -83,9 +80,7 @@ nav ul li a:hover {
   flex-shrink: 0;
 }
 
-/* =========================
-   Mobile Menu Icon
-========================= */
+/* ========================= Mobile Menu Icon ========================= */
 .menu {
   display: none;
   width: 26px;
@@ -94,9 +89,7 @@ nav ul li a:hover {
   z-index: 20;
 }
 
-/* =========================
-   Mobile/Tablet View
-========================= */
+/* ========================= Mobile View ========================= */
 @media (max-width: 1286px) {
   nav {
     justify-content: space-between;
@@ -105,7 +98,8 @@ nav ul li a:hover {
   nav ul {
     position: fixed;
     top: 0;
-    right: 0;                 
+    right: 0;
+    /* stays on the right side */
     bottom: 0;
     background: #333;
     width: 220px;
@@ -115,16 +109,17 @@ nav ul li a:hover {
     align-items: center;
     gap: 18px;
     z-index: 15;
-
-    /* ✅ hidden by default */
-    transform: translateX(100%);
-    transition: transform 0.45s ease-in-out;
+    flex: unset;
+    /* ✅ use transform instead of right for smooth GPU animation */
+    transform: translateX(0);
+    transition: transform 0.45s ease;
     will-change: transform;
   }
 
-  /* ✅ active state when menu is open */
-  .nav-links {
-    transform: translateX(0);
+  .hide-mobile-menu {
+    /* ❌ old: right: -240px; */
+    transform: translateX(100%);
+    /* ✅ slide offscreen */
   }
 
   nav ul li {
@@ -157,12 +152,11 @@ nav ul li a:hover {
   }
 }
 
-/* =========================
-   Extra Small Screens
-========================= */
+/* ========================= Extra Small Screens ========================= */
 @media (max-width: 600px) {
   nav img.logo {
-    width: 80px; /* smaller logo */
+    width: 80px;
+    /* smaller logo */
   }
 
   .circle-img {
