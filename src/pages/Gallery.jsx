@@ -2,25 +2,25 @@ import React from "react";
 import "./Gallery.css";
 
 // Import images (exact file names with correct case)
-import photo6 from "../assets/photo6.JPG";
-import photo7 from "../assets/photo7.JPG";
-import photo8 from "../assets/photo8.JPG";
-import photo2 from "../assets/photo2.JPG";
-import photo9 from "../assets/photo9.JPG";
-import photo10 from "../assets/photo10.JPG";
-import photo11 from "../assets/photo11.JPG";
-import photo12 from "../assets/photo12.JPG";
-import photo13 from "../assets/photo13.JPG";
-import photo14 from "../assets/photo14.JPG";
-import photo15 from "../assets/photo15.JPG";
-import photo16 from "../assets/photo16.JPG";
-import photo17 from "../assets/photo17.JPG";
-import photo18 from "../assets/photo18.JPG";
-import photo19 from "../assets/photo19.JPG";
-import photo20 from "../assets/photo20.JPG";
-import photo21 from "../assets/photo21.JPG";
-import photo22 from "../assets/photo22.JPG";
-import photo23 from "../assets/photo23.JPG";
+import photo6 from "../assets/photo6.jpg";
+import photo7 from "../assets/photo7.jpg";
+import photo8 from "../assets/photo8.jpg";
+import photo2 from "../assets/photo2.jpg";
+import photo9 from "../assets/photo9.jpg";
+import photo10 from "../assets/photo10.jpg";
+import photo11 from "../assets/photo11.jpg";
+import photo12 from "../assets/photo12.jpg";
+import photo13 from "../assets/photo13.jpg";
+import photo14 from "../assets/photo14.jpg";
+import photo15 from "../assets/photo15.jpg";
+import photo16 from "../assets/photo16.jpg";
+import photo17 from "../assets/photo17.jpg";
+import photo18 from "../assets/photo18.jpg";
+import photo19 from "../assets/photo19.jpg";
+import photo20 from "../assets/photo20.jpg";
+import photo21 from "../assets/photo21.jpg";
+import photo22 from "../assets/photo22.jpg";
+import photo23 from "../assets/photo23.jpg";
 
 const photos = [
   { id: 1, src: photo23, alt: "Photo 23" },
