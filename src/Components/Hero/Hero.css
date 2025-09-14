@@ -26,7 +26,7 @@ html, body {
   text-align: center;
 }
 
-/* Background Layers - GPU Accelerated */
+/* Background Layers - Optimized for GPU */
 .hero-bg {
   position: absolute;
   top: 0;
@@ -40,18 +40,18 @@ html, body {
   will-change: opacity;
 }
 
-/* Use ::before to animate background smoothly */
+/* Instead of background-position, we animate ::before with transform */
 .hero-bg::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  width: 110%; /* a bit wider so edges don’t show */
+  width: 110%;              /* wider to avoid edges showing */
   height: 100%;
+  background-image: inherit; /* uses inline background-image set from JS/HTML */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: inherit; /* uses the inline background-image */
   will-change: transform;
   transform: translateX(0);
 }
@@ -142,17 +142,10 @@ html, body {
 
 /* Fade + Slide Animation (runs only when .animate-once is added) */
 @keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Default = visible immediately */
 .hero-text h2,
 .hero-text h1,
 .hero-text p,
@@ -160,7 +153,6 @@ html, body {
   opacity: 1;
 }
 
-/* Animate only when hero has .animate-once */
 .hero.animate-once h2,
 .hero.animate-once h1,
 .hero.animate-once p,
@@ -190,15 +182,11 @@ html, body {
 
 /* ===== Responsive ===== */
 @media (max-width: 1024px) {
-  .hero-text {
-    max-width: 650px;
-  }
+  .hero-text { max-width: 650px; }
 }
 
 @media (max-width: 768px) {
-  .hero {
-    padding: 0 15px;
-  }
+  .hero { padding: 0 15px; }
 
   .hero-bg.active::before {
     animation: panBackground 30s linear infinite;
@@ -214,9 +202,7 @@ html, body {
 }
 
 @media (max-width: 480px) {
-  .hero-text {
-    max-width: 90%;
-  }
+  .hero-text { max-width: 90%; }
 
   .hero-bg.active::before {
     animation: panBackground 40s linear infinite;
@@ -249,24 +235,14 @@ html, body {
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeOut {
-  to {
-    opacity: 0;
-    transform: translateY(30px);
-  }
+  to { opacity: 0; transform: translateY(30px); }
 }
 
-/* ✅ Mobile screens */
 @media (max-width: 768px) {
   .announcement-popup {
     bottom: 20px;
@@ -278,7 +254,6 @@ html, body {
   }
 }
 
-/* ✅ Very small phones */
 @media (max-width: 480px) {
   .announcement-popup {
     bottom: 15px;
