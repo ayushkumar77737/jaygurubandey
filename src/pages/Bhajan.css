@@ -7,9 +7,9 @@
 
   /* 🌈 Light, lag-free background */
   background:
-    radial-gradient(circle at 20% 20%, #fffaf0, transparent 60%),
-    radial-gradient(circle at 80% 30%, #f9f0e6, transparent 70%),
-    radial-gradient(circle at 50% 80%, #fffaf0, #ffffff 80%);
+    radial-gradient(circle at 20% 20%, #ffe0b2, transparent 60%),
+    radial-gradient(circle at 80% 30%, #fceabb, transparent 70%),
+    radial-gradient(circle at 50% 80%, #fff3e0, #ffffff 80%);
   background-attachment: fixed;
 
   overflow-x: hidden;
