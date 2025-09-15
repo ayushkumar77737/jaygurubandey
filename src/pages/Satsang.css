@@ -4,7 +4,14 @@
   min-height: 100vh;
   padding: 30px 20px 80px; /* bottom space to reach footer */
   text-align: center;
-  background: linear-gradient(180deg, #fffaf2, #f8f3eb);
+
+  /* 🌈 Light, lag-free background */
+  background:
+    radial-gradient(circle at 20% 20%, #ffe0b2, transparent 60%),
+    radial-gradient(circle at 80% 30%, #fceabb, transparent 70%),
+    radial-gradient(circle at 50% 80%, #fff3e0, #ffffff 80%);
+  background-attachment: fixed;
+
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
@@ -40,7 +47,6 @@
   background: rgba(255, 255, 255, 0.9);
   border-radius: 18px;
   border: 1px solid rgba(243, 156, 18, 0.15);
-  backdrop-filter: blur(4px);
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   padding: 20px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -119,7 +125,7 @@
   .satsang-buttons {
     flex-direction: column;
     gap: 14px;
-    align-items: center; /* ✅ center horizontally on mobile */
+    align-items: center;
   }
 
   .satsang-buttons .btn {
@@ -135,7 +141,7 @@
   .video-card a { font-size: 0.9rem; padding: 9px 18px; }
 
   .satsang-buttons {
-    align-items: center; /* ✅ ensure still centered on very small screens */
+    align-items: center;
   }
 
   .satsang-buttons .btn {
