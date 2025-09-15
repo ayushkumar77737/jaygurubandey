@@ -1,19 +1,12 @@
-html, body {
-  scroll-padding-top: 70px; /* equal to navbar height */
-}
 /* ===== Page background ===== */
 .about-page {
   padding: 3rem 2rem;
-  padding-bottom: 8rem; /* ✅ ensures space above footer */
   line-height: 1.8;
   color: #333;
   background: linear-gradient(135deg, #fff5f5, #fff0fa, #f5faff);
   scroll-behavior: smooth;
-  min-height: 100vh;   /* ✅ ensures full-page height */
-  box-sizing: border-box;
+  min-height: 100vh;
 }
-
-
 
 /* ===== Intro Section ===== */
 .about-intro {
