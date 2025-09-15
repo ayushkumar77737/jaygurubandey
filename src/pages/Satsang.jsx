@@ -60,8 +60,8 @@ const Satsang = () => {
     {
       id: 10,
       title: "Satsang Video 10",
-      embedUrl: "https://www.youtube.com/watch?v=WalaJzM6pfY",
-      linkUrl: "https://www.youtube.com/embed/WalaJzM6pfY",
+      embedUrl: "https://www.youtube.com/embed/WalaJzM6pfY",
+      linkUrl: "https://www.youtube.com/watch?v=WalaJzM6pfY",
     },
   ];
 
