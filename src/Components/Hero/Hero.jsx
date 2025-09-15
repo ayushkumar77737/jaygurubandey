@@ -16,17 +16,6 @@ const Hero = () => {
   const images = [bio, hero1, hero2, photo1, photo6, photo7, photo8];
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Track if hero has already been displayed
-  const [hasAnimated, setHasAnimated] = useState(false);
-  useEffect(() => {
-    if (sessionStorage.getItem("heroDisplayed")) {
-      setHasAnimated(true);
-    } else {
-      sessionStorage.setItem("heroDisplayed", "true");
-    }
-  }, []);
-
-  // Preload images
   useEffect(() => {
     images.forEach((src) => {
       const img = new Image();
@@ -34,7 +23,11 @@ const Hero = () => {
     });
   }, []);
 
-  // Background slideshow (runs always)
+  const fullText = `Param Sant Swami Jai Gurubande Ji Maharaj\nLet’s move towards God and Understand Sanatan Dharma.\nIt’s a spiritual and philosophical message encouraging people to seek divine connection and explore the essence of Sanatan Dharma.`;
+
+  const [displayedText, setDisplayedText] = useState("");
+  const [charIndex, setCharIndex] = useState(0);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -42,18 +35,35 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, [images.length]);
 
-  const fullText = `Param Sant Swami Jai Gurubande Ji Maharaj
-Let’s move towards God and Understand Sanatan Dharma.
-It’s a spiritual and philosophical message encouraging people to seek divine connection and explore the essence of Sanatan Dharma.`;
+  useEffect(() => {
+    const typingSpeed = 50;
+    const timeout = setTimeout(() => {
+      if (charIndex < fullText.length) {
+        setDisplayedText((prev) => prev + fullText[charIndex]);
+        setCharIndex((prev) => prev + 1);
+      } else {
+        setTimeout(() => {
+          setDisplayedText("");
+          setCharIndex(0);
+        }, 2000);
+      }
+    }, typingSpeed);
+    return () => clearTimeout(timeout);
+  }, [charIndex, fullText]);
 
-  // Announcement popup
-  const [showAnnouncement, setShowAnnouncement] = useState(false);
-  const handleAnnouncementClick = () => {
-    setShowAnnouncement(true);
-    setTimeout(() => setShowAnnouncement(false), 4000);
+  const handleChatClick = () => {
+    navigate("/chat");
   };
 
-  const textLines = fullText.split("\n");
+  // ✅ New state for popup
+  const [showAnnouncement, setShowAnnouncement] = useState(false);
+
+  const handleAnnouncementClick = () => {
+    setShowAnnouncement(true);
+    setTimeout(() => setShowAnnouncement(false), 4000); // auto-hide after 4s
+  };
+
+  const textLines = displayedText.split("\n");
 
   return (
     <div>
@@ -64,17 +74,16 @@ It’s a spiritual and philosophical message encouraging people to seek divine c
             className={`hero-bg ${index === currentIndex ? "active" : ""}`}
             style={{
               backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url(${img})`,
-              transition: "none" // ⚡ remove fade delay
             }}
           ></div>
         ))}
 
         <div className="hero-text">
-          {textLines[0] && <h2>{textLines[0]}</h2>}
-          {textLines[1] && <h1>{textLines[1]}</h1>}
-          {textLines[2] && <p>{textLines[2]}</p>}
+          {textLines[0] && <h2>{textLines[0]}<span className="cursor"></span></h2>}
+          {textLines[1] && <h1>{textLines[1]}<span className="cursor"></span></h1>}
+          {textLines[2] && <p>{textLines[2]}<span className="cursor"></span></p>}
 
-          <button className="btn" onClick={() => navigate("/chat")}>
+          <button className="btn" onClick={handleChatClick}>
             Chat With Us <span className="arrow">→</span>
           </button>
 
@@ -86,6 +95,7 @@ It’s a spiritual and philosophical message encouraging people to seek divine c
 
       <ScrollingText />
 
+      {/* ✅ Popup message */}
       {showAnnouncement && (
         <div className="announcement-popup">
           📢 Important Announcement: <strong>Tomorrow is a special satsang at 7 PM.</strong>
