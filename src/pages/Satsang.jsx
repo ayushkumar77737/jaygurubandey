@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Satsang.css";
 
 const Satsang = () => {
+  const [activeVideo, setActiveVideo] = useState(null);
+
   const videos = [
     {
       id: 1,
@@ -33,36 +35,6 @@ const Satsang = () => {
       embedUrl: "https://www.youtube.com/embed/_RfgvDG0oHA",
       linkUrl: "https://www.youtube.com/live/_RfgvDG0oHA?si=alZWuIwh1oyfc9mM",
     },
-    {
-      id: 6,
-      title: "Satsang Video 6",
-      embedUrl: "https://www.youtube.com/embed/MqJaPpO7yek?si=PQ0satWzucqIpi_8",
-      linkUrl: "https://www.youtube.com/live/MqJaPpO7yek?si=PQ0satWzucqIpi_8",
-    },
-    {
-      id: 7,
-      title: "Satsang Video 7",
-      embedUrl: "https://www.youtube.com/embed/ukHXW8T_8z4",
-      linkUrl: "https://youtu.be/ukHXW8T_8z4",
-    },
-    {
-      id: 8,
-      title: "Satsang Video 8",
-      embedUrl: "https://www.youtube.com/embed/gxKxXbX4NiY?si=gfn67CoV2aSXk696",
-      linkUrl: "https://www.youtube.com/live/gxKxXbX4NiY?si=gfn67CoV2aSXk696",
-    },
-    {
-      id: 9,
-      title: "Satsang Video 9",
-      embedUrl: "https://www.youtube.com/embed/Bm03O_ViuMY?si=3-gt6Ok8-4-GOjWA",
-      linkUrl: "https://www.youtube.com/watch?v=Bm03O_ViuMY&si=3-gt6Ok8-4-GOjWA",
-    },
-    {
-      id: 10,
-      title: "Satsang Video 10",
-      embedUrl: "https://www.youtube.com/embed/WalaJzM6pfY",
-      linkUrl: "https://www.youtube.com/watch?v=WalaJzM6pfY",
-    },
   ];
 
   return (
@@ -73,45 +45,23 @@ const Satsang = () => {
       <div className="video-grid">
         {videos.map((video) => (
           <div key={video.id} className="video-card">
-            <iframe
-              src={video.embedUrl}
-              title={video.title}
-              allowFullScreen
-            ></iframe>
+            {activeVideo === video.id ? (
+              <iframe
+                src={video.embedUrl + "?autoplay=1"}
+                title={video.title}
+                allowFullScreen
+              ></iframe>
+            ) : (
+              <div className="thumbnail" onClick={() => setActiveVideo(video.id)}>
+                <p>{video.title}</p>
+                <button>▶ Play</button>
+              </div>
+            )}
             <a href={video.linkUrl} target="_blank" rel="noopener noreferrer">
               Watch {video.title}
             </a>
           </div>
         ))}
-      </div>
-
-      {/* Buttons Section */}
-      <div className="satsang-buttons">
-        <a
-          href="https://drive.google.com/file/d/your-anmol-rakhi-link/view?usp=sharing"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn"
-        >
-          Anmol Rakhi <span className="arrow">→</span>
-        </a>
-
-        <a
-          href="https://drive.google.com/file/d/your-hari-pagh-link/view?usp=sharing"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn"
-        >
-          Hari Pagh <span className="arrow">→</span>
-        </a>
-        <a
-          href="https://drive.google.com/file/d/your-anmol-wadi-link/view?usp=sharing"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn"
-        >
-          Anmol Wadi <span className="arrow">→</span>
-        </a>
       </div>
     </div>
   );
