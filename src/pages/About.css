@@ -8,8 +8,12 @@ html, body {
   color: #333;
   background: linear-gradient(135deg, #fff5f5, #fff0fa, #f5faff);
   scroll-behavior: smooth;
-  min-height: auto;
+
+  /* 🩹 Ensure it fills the screen so footer is pushed down */
+  min-height: calc(100vh - 60px); /* 60px ≈ your footer height */
+  box-sizing: border-box;
 }
+
 
 /* ===== Intro Section ===== */
 .about-intro {
