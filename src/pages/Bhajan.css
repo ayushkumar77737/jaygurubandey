@@ -1,38 +1,19 @@
 /* ===== Global Container ===== */
 .bhajan-container {
   font-family: 'Poppins', sans-serif;
-  position: relative;
   min-height: 100vh;
-  padding: 30px 20px;
+  padding: 30px 20px 80px;
   text-align: center;
+
+  /* 🌈 Light, lag-free background */
+  background:
+    radial-gradient(circle at 20% 20%, #fffaf0, transparent 60%),
+    radial-gradient(circle at 80% 30%, #f9f0e6, transparent 70%),
+    radial-gradient(circle at 50% 80%, #fffaf0, #ffffff 80%);
+  background-attachment: fixed;
+
   overflow-x: hidden;
-  background: radial-gradient(circle at top, #fffaf0, #f9f0e6);
-  animation: fadeIn 0.8s ease-in-out forwards;
-  scroll-behavior: smooth; /* fast smooth scrolling */
-}
-
-/* Animated background (optimized) */
-.bhajan-container::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, #f39c12, #e74c3c, #f1c40f, #e67e22);
-  background-size: 400% 400%;
-  opacity: 0.1; /* reduce opacity to lighten GPU load */
-  z-index: -2;
-  animation: bgGradient 20s ease infinite; /* slower and smoother */
-  border-radius: 20px;
-}
-
-@keyframes bgGradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(15px); }
-  100% { opacity: 1; transform: translateY(0); }
+  scroll-behavior: smooth;
 }
 
 /* ===== Title ===== */
@@ -42,22 +23,13 @@
   font-weight: 900;
   background: linear-gradient(120deg, #f39c12, #d35400, #e74c3c);
   -webkit-background-clip: text;
-  background-clip: text;
   color: transparent;
   letter-spacing: 1.5px;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.05);
-  animation: titlePop 0.9s ease forwards;
-  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .bhajan-title:hover {
-  transform: scale(1.03) rotate(-0.5deg);
-  text-shadow: 3px 3px 12px rgba(0,0,0,0.12);
-}
-
-@keyframes titlePop {
-  0% { opacity: 0; transform: scale(0.85) translateY(-15px); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
+  transform: scale(1.03);
 }
 
 /* ===== Bhajan Grid ===== */
@@ -65,32 +37,32 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
   padding: 0 10px;
-  position: relative;
-  z-index: 1;
 }
 
 /* ===== Bhajan Card ===== */
 .bhajan-card {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 18px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  padding: 15px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(243,156,18,0.15);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  padding: 18px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   cursor: pointer;
-  overflow: hidden;
 }
 
 .bhajan-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 10px 28px rgba(0,0,0,0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
 .bhajan-card iframe,
 .bhajan-card audio {
   width: 100%;
   height: 180px;
-  border-radius: 12px;
+  border-radius: 14px;
   border: none;
   margin-bottom: 12px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -98,8 +70,8 @@
 
 .bhajan-card iframe:hover,
 .bhajan-card audio:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+  transform: scale(1.015);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
 /* ===== Bhajan Button ===== */
@@ -108,52 +80,35 @@
   text-decoration: none;
   font-weight: 700;
   font-size: 0.9rem;
-  background: linear-gradient(90deg, #f39c12, #e67e22, #d35400);
+  background: linear-gradient(90deg, #f39c12, #e67e22);
   color: #fff;
-  padding: 10px 20px;
+  padding: 10px 22px;
   border-radius: 30px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.25s ease, background 0.25s ease;
 }
 
 .bhajan-card a:hover {
-  background: linear-gradient(90deg, #f1c40f, #e67e22, #e74c3c);
+  background: #d35400;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
-.bhajan-card a::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255,255,255,0.2);
-  transition: left 0.4s ease;
-}
-
-.bhajan-card a:hover::after {
-  left: 100%;
-}
-
-/* ===== Extra Bhajan Buttons ===== */
+/* ===== Extra Buttons ===== */
 .bhajan-buttons {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin-top: 25px;
+  gap: 18px;
+  margin-top: 30px;
   flex-wrap: wrap;
 }
 
 .bhajan-buttons .btn {
   text-decoration: none;
-  padding: 10px 22px;
+  padding: 11px 26px;
   border-radius: 8px;
   background: #f39c12;
-  color: white;
-  font-weight: bold;
-  transition: 0.25s ease;
+  color: #fff;
+  font-weight: 600;
+  transition: transform 0.25s ease, background 0.25s ease;
 }
 
 .bhajan-buttons .btn:hover {
@@ -161,14 +116,7 @@
   transform: translateY(-2px);
 }
 
-/* ===== Gradient Animation ===== */
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* ===== Responsive Tweaks ===== */
+/* ===== Responsive ===== */
 @media (max-width: 1024px) {
   .bhajan-grid { gap: 18px; }
   .bhajan-card iframe,
@@ -180,17 +128,22 @@
   .bhajan-grid { grid-template-columns: 1fr 1fr; }
   .bhajan-card iframe,
   .bhajan-card audio { height: 140px; }
-}
 
-@media (max-width: 600px) {
-  .bhajan-grid { grid-template-columns: 1fr; }
+  .bhajan-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .bhajan-buttons .btn { width: 70%; }
 }
 
 @media (max-width: 480px) {
-  .bhajan-title { font-size: 1.8rem; margin-bottom: 20px; }
-  .bhajan-card a { padding: 8px 18px; font-size: 0.85rem; }
-  .bhajan-buttons { flex-direction: column; align-items: center; }
-  .bhajan-buttons .btn { width: 85%; text-align: center; }
+  .bhajan-title { font-size: 1.8rem; margin-bottom: 25px; }
+  .bhajan-grid { gap: 15px; }
   .bhajan-card iframe,
   .bhajan-card audio { height: 120px; }
+  .bhajan-card a { font-size: 0.85rem; padding: 9px 18px; }
+
+  .bhajan-buttons .btn { width: 90%; }
 }
