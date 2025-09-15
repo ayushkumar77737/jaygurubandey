@@ -14,11 +14,18 @@
   margin-bottom: 35px;
   font-size: 2.6rem;
   font-weight: 800;
-  background: linear-gradient(90deg, #f39c12, #d35400);
+  background: linear-gradient(90deg, #f39c12, #d35400, #f39c12);
+  background-size: 200% auto;           /* 👈 animated gradient */
   -webkit-background-clip: text;
   color: transparent;
   letter-spacing: 1px;
   transition: transform 0.3s ease;
+  animation: shine 4s linear infinite;  /* 👈 smooth shine effect */
+}
+
+@keyframes shine {
+  from { background-position: 0% center; }
+  to   { background-position: 200% center; }
 }
 
 .satsang-title:hover {
@@ -41,15 +48,25 @@
   border-radius: 18px;
   border: 1px solid rgba(243, 156, 18, 0.15);
   backdrop-filter: blur(4px);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
   padding: 20px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease;
   cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards; /* 👈 smooth appear */
 }
 
 .video-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 16px rgba(0,0,0,0.1);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .video-card iframe {
@@ -74,12 +91,13 @@
   color: #fff;
   padding: 10px 22px;
   border-radius: 30px;
-  transition: transform 0.25s ease, background 0.25s ease;
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .video-card a:hover {
   background: #d35400;
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 4px 10px rgba(243,156,18,0.3);
 }
 
 /* ===== Extra Buttons ===== */
@@ -98,12 +116,13 @@
   background: #f39c12;
   color: #fff;
   font-weight: 600;
-  transition: transform 0.25s ease, background 0.25s ease;
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .satsang-buttons .btn:hover {
   background: #e67e22;
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(243,156,18,0.3);
 }
 
 /* ===== Responsive ===== */
