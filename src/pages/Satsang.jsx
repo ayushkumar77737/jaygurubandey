@@ -39,6 +39,12 @@ const Satsang = () => {
       embedUrl: "https://www.youtube.com/embed/MqJaPpO7yek?si=PQ0satWzucqIpi_8",
       linkUrl: "https://www.youtube.com/live/MqJaPpO7yek?si=PQ0satWzucqIpi_8",
     },
+    {
+      id: 7,
+      title: "Satsang Video 5",
+      embedUrl: "https://www.youtube.com/embed/ukHXW8T_8z4",
+      linkUrl: "https://youtu.be/ukHXW8T_8z4",
+    },
   ];
 
   return (
