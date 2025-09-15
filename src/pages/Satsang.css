@@ -236,6 +236,12 @@
     padding: 10px 20px;
   }
 
+  .satsang-buttons {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;   /* ✅ Add this to center horizontally */
+  }
+
   .satsang-buttons .btn {
     width: 90%;
   }
