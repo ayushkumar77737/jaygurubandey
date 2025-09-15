@@ -16,13 +16,13 @@ const Hero = () => {
   const images = [bio, hero1, hero2, photo1, photo6, photo7, photo8];
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // ✅ Remember if hero animation has already run
+  // Track if hero has already been displayed
   const [hasAnimated, setHasAnimated] = useState(false);
   useEffect(() => {
-    if (sessionStorage.getItem("heroAnimated")) {
+    if (sessionStorage.getItem("heroDisplayed")) {
       setHasAnimated(true);
     } else {
-      sessionStorage.setItem("heroAnimated", "true");
+      sessionStorage.setItem("heroDisplayed", "true");
     }
   }, []);
 
@@ -34,12 +34,7 @@ const Hero = () => {
     });
   }, []);
 
-  const fullText = `Param Sant Swami Jai Gurubande Ji Maharaj\nLet’s move towards God and Understand Sanatan Dharma.\nIt’s a spiritual and philosophical message encouraging people to seek divine connection and explore the essence of Sanatan Dharma.`;
-
-  const [displayedText, setDisplayedText] = useState("");
-  const [charIndex, setCharIndex] = useState(0);
-
-  // Background slideshow
+  // Background slideshow (runs always)
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -47,25 +42,9 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, [images.length]);
 
-  // Typing effect
-  useEffect(() => {
-    if (hasAnimated) {
-      setDisplayedText(fullText); // immediately show full text if already animated
-      return;
-    }
-
-    const typingSpeed = 50;
-    const timeout = setTimeout(() => {
-      if (charIndex < fullText.length) {
-        setDisplayedText((prev) => prev + fullText[charIndex]);
-        setCharIndex((prev) => prev + 1);
-      }
-    }, typingSpeed);
-
-    return () => clearTimeout(timeout);
-  }, [charIndex, fullText, hasAnimated]);
-
-  const handleChatClick = () => navigate("/chat");
+  const fullText = `Param Sant Swami Jai Gurubande Ji Maharaj
+Let’s move towards God and Understand Sanatan Dharma.
+It’s a spiritual and philosophical message encouraging people to seek divine connection and explore the essence of Sanatan Dharma.`;
 
   // Announcement popup
   const [showAnnouncement, setShowAnnouncement] = useState(false);
@@ -74,7 +53,7 @@ const Hero = () => {
     setTimeout(() => setShowAnnouncement(false), 4000);
   };
 
-  const textLines = displayedText.split("\n");
+  const textLines = fullText.split("\n");
 
   return (
     <div>
@@ -85,16 +64,17 @@ const Hero = () => {
             className={`hero-bg ${index === currentIndex ? "active" : ""}`}
             style={{
               backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url(${img})`,
+              transition: "none" // ⚡ remove fade delay
             }}
           ></div>
         ))}
 
-        <div className={`hero-text ${!hasAnimated ? "animate-once" : ""}`}>
-          {textLines[0] && <h2>{textLines[0]}<span className="cursor"></span></h2>}
-          {textLines[1] && <h1>{textLines[1]}<span className="cursor"></span></h1>}
-          {textLines[2] && <p>{textLines[2]}<span className="cursor"></span></p>}
+        <div className="hero-text">
+          {textLines[0] && <h2>{textLines[0]}</h2>}
+          {textLines[1] && <h1>{textLines[1]}</h1>}
+          {textLines[2] && <p>{textLines[2]}</p>}
 
-          <button className="btn" onClick={handleChatClick}>
+          <button className="btn" onClick={() => navigate("/chat")}>
             Chat With Us <span className="arrow">→</span>
           </button>
 
