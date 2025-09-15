@@ -1,151 +1,128 @@
 /* ===== Global Container ===== */
 .satsang-container {
   font-family: 'Poppins', sans-serif;
-  position: relative;
   min-height: 100vh;
-  padding: 30px 20px 80px; /* bottom space to scroll to footer */
+  padding: 30px 20px 80px; /* bottom space to reach footer */
   text-align: center;
+  background: linear-gradient(180deg, #fffaf2, #f8f3eb);
   overflow-x: hidden;
   scroll-behavior: smooth;
-  background: radial-gradient(circle at top, #fffdf7, #f0e6da);
-}
-
-/* Subtle animated overlay */
-.satsang-container::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #f39c12, #e74c3c, #f1c40f, #e67e22);
-  background-size: 300% 300%;
-  opacity: 0.1;
-  z-index: -1;
-  animation: bgGradient 18s linear infinite;
-}
-
-@keyframes bgGradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 /* ===== Title ===== */
 .satsang-title {
-  margin-bottom: 40px;
-  font-size: 2.8rem;
-  font-weight: 900;
-  background: linear-gradient(120deg, #f39c12, #d35400, #e74c3c);
+  margin-bottom: 35px;
+  font-size: 2.6rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #f39c12, #d35400);
   -webkit-background-clip: text;
   color: transparent;
-  letter-spacing: 1.2px;
-  transition: transform 0.4s ease, text-shadow 0.4s ease;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease;
 }
 
 .satsang-title:hover {
-  transform: scale(1.04);
-  text-shadow: 0 4px 15px rgba(243,156,18,0.4);
+  transform: scale(1.03);
 }
 
 /* ===== Video Grid ===== */
 .video-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  max-width: 1200px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 10px;
 }
 
 /* ===== Video Card ===== */
 .video-card {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 18px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  border: 1px solid rgba(243, 156, 18, 0.15);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   cursor: pointer;
-  text-align: center;
 }
 
 .video-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 16px rgba(0,0,0,0.1);
 }
 
 .video-card iframe {
   width: 100%;
-  height: 220px;
+  height: 200px;
   border-radius: 14px;
   border: none;
-  margin-bottom: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transition: transform 0.3s ease, filter 0.3s ease;
+  margin-bottom: 14px;
+  transition: transform 0.25s ease;
 }
 
 .video-card iframe:hover {
-  transform: scale(1.02);
-  filter: brightness(1.05);
+  transform: scale(1.015);
 }
 
 .video-card a {
   display: inline-block;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.95rem;
-  background: linear-gradient(90deg, #f39c12, #e67e22, #d35400);
+  background: linear-gradient(90deg, #f39c12, #e67e22);
   color: #fff;
-  padding: 12px 26px;
+  padding: 10px 22px;
   border-radius: 30px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.25s ease, background 0.25s ease;
 }
 
 .video-card a:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  background: #d35400;
+  transform: translateY(-2px);
 }
 
-/* ===== Extra Buttons Section ===== */
+/* ===== Extra Buttons ===== */
 .satsang-buttons {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 18px;
   margin-top: 35px;
   flex-wrap: wrap;
 }
 
 .satsang-buttons .btn {
   text-decoration: none;
-  padding: 12px 28px;
+  padding: 11px 26px;
   border-radius: 8px;
   background: #f39c12;
-  color: white;
-  font-weight: bold;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #fff;
+  font-weight: 600;
+  transition: transform 0.25s ease, background 0.25s ease;
 }
 
 .satsang-buttons .btn:hover {
   background: #e67e22;
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transform: translateY(-2px);
 }
 
 /* ===== Responsive ===== */
 @media (max-width: 1024px) {
-  .satsang-title { font-size: 2.4rem; }
-  .video-card iframe { height: 200px; }
+  .satsang-title { font-size: 2.3rem; }
+  .video-card iframe { height: 180px; }
 }
 
 @media (max-width: 768px) {
-  .satsang-title { font-size: 2.2rem; }
-  .video-card iframe { height: 180px; }
-  .satsang-buttons { flex-direction: column; gap: 15px; }
+  .satsang-title { font-size: 2rem; }
+  .video-card iframe { height: 170px; }
+  .satsang-buttons { flex-direction: column; gap: 14px; }
   .satsang-buttons .btn { width: 70%; text-align: center; }
 }
 
 @media (max-width: 480px) {
   .satsang-title { font-size: 1.8rem; margin-bottom: 25px; }
   .video-grid { gap: 15px; }
-  .video-card iframe { height: 160px; }
-  .video-card a { font-size: 0.9rem; padding: 10px 20px; }
-  .satsang-buttons { align-items: center; }
+  .video-card iframe { height: 150px; }
+  .video-card a { font-size: 0.9rem; padding: 9px 18px; }
   .satsang-buttons .btn { width: 90%; }
 }
