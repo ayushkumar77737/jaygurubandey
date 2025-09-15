@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Satsang.css";
 
 const Satsang = () => {
-  const [activeVideo, setActiveVideo] = useState(null);
-
   const videos = [
     {
       id: 1,
@@ -23,14 +21,49 @@ const Satsang = () => {
       embedUrl: "https://www.youtube.com/embed/X5LPFy50VdY",
       linkUrl: "https://www.youtube.com/live/X5LPFy50VdY?si=C-Rozj2xmj_YDsH7",
     },
-    // ... rest of videos
+    {
+      id: 4,
+      title: "Satsang Video 4",
+      embedUrl: "https://www.youtube.com/embed/InNsbUsqhns",
+      linkUrl: "https://www.youtube.com/live/InNsbUsqhns?si=fUgfjkVIgswBWght",
+    },
+    {
+      id: 5,
+      title: "Satsang Video 5",
+      embedUrl: "https://www.youtube.com/embed/_RfgvDG0oHA",
+      linkUrl: "https://www.youtube.com/live/_RfgvDG0oHA?si=alZWuIwh1oyfc9mM",
+    },
+    {
+      id: 6,
+      title: "Satsang Video 6",
+      embedUrl: "https://www.youtube.com/embed/MqJaPpO7yek?si=PQ0satWzucqIpi_8",
+      linkUrl: "https://www.youtube.com/live/MqJaPpO7yek?si=PQ0satWzucqIpi_8",
+    },
+    {
+      id: 7,
+      title: "Satsang Video 7",
+      embedUrl: "https://www.youtube.com/embed/ukHXW8T_8z4",
+      linkUrl: "https://youtu.be/ukHXW8T_8z4",
+    },
+    {
+      id: 8,
+      title: "Satsang Video 8",
+      embedUrl: "https://www.youtube.com/embed/gxKxXbX4NiY?si=gfn67CoV2aSXk696",
+      linkUrl: "https://www.youtube.com/live/gxKxXbX4NiY?si=gfn67CoV2aSXk696",
+    },
+    {
+      id: 9,
+      title: "Satsang Video 9",
+      embedUrl: "https://www.youtube.com/embed/Bm03O_ViuMY?si=3-gt6Ok8-4-GOjWA",
+      linkUrl: "https://www.youtube.com/watch?v=Bm03O_ViuMY&si=3-gt6Ok8-4-GOjWA",
+    },
+    {
+      id: 10,
+      title: "Satsang Video 10",
+      embedUrl: "https://www.youtube.com/embed/WalaJzM6pfY",
+      linkUrl: "https://www.youtube.com/watch?v=WalaJzM6pfY",
+    },
   ];
-
-  // Function to extract videoId from embedUrl
-  const getVideoId = (url) => {
-    const parts = url.split("/");
-    return parts[parts.length - 1].split("?")[0]; // e.g. su7VYdVdn-M
-  };
 
   return (
     <div className="satsang-container">
@@ -38,43 +71,18 @@ const Satsang = () => {
 
       {/* Video Grid */}
       <div className="video-grid">
-        {videos.map((video) => {
-          const videoId = getVideoId(video.embedUrl);
-          const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-
-          return (
-            <div
-              key={video.id}
-              className="video-card"
-              onClick={() => setActiveVideo(video.id)}
-            >
-              {activeVideo === video.id ? (
-                <iframe
-                  src={`${video.embedUrl}?autoplay=1`}
-                  title={video.title}
-                  allow="autoplay; encrypted-media"
-                  allowFullScreen
-                ></iframe>
-              ) : (
-                <div className="thumbnail">
-                  <img
-                    src={thumbnailUrl}
-                    alt={video.title}
-                    className="thumbnail-img"
-                  />
-                  <button className="play-btn">▶ Play</button>
-                </div>
-              )}
-              <a
-                href={video.linkUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Watch {video.title}
-              </a>
-            </div>
-          );
-        })}
+        {videos.map((video) => (
+          <div key={video.id} className="video-card">
+            <iframe
+              src={video.embedUrl}
+              title={video.title}
+              allowFullScreen
+            ></iframe>
+            <a href={video.linkUrl} target="_blank" rel="noopener noreferrer">
+              Watch {video.title}
+            </a>
+          </div>
+        ))}
       </div>
 
       {/* Buttons Section */}
