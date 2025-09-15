@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Satsang.css";
 
 const Satsang = () => {
+  const [activeVideo, setActiveVideo] = useState(null); // ✅ Track active video
+
   const videos = [
     {
       id: 1,
@@ -36,7 +38,7 @@ const Satsang = () => {
     {
       id: 6,
       title: "Satsang Video 6",
-      embedUrl: "https://www.youtube.com/embed/MqJaPpO7yek?si=PQ0satWzucqIpi_8",
+      embedUrl: "https://www.youtube.com/embed/MqJaPpO7yek",
       linkUrl: "https://www.youtube.com/live/MqJaPpO7yek?si=PQ0satWzucqIpi_8",
     },
     {
@@ -48,13 +50,13 @@ const Satsang = () => {
     {
       id: 8,
       title: "Satsang Video 8",
-      embedUrl: "https://www.youtube.com/embed/gxKxXbX4NiY?si=gfn67CoV2aSXk696",
+      embedUrl: "https://www.youtube.com/embed/gxKxXbX4NiY",
       linkUrl: "https://www.youtube.com/live/gxKxXbX4NiY?si=gfn67CoV2aSXk696",
     },
     {
       id: 9,
       title: "Satsang Video 9",
-      embedUrl: "https://www.youtube.com/embed/Bm03O_ViuMY?si=3-gt6Ok8-4-GOjWA",
+      embedUrl: "https://www.youtube.com/embed/Bm03O_ViuMY",
       linkUrl: "https://www.youtube.com/watch?v=Bm03O_ViuMY&si=3-gt6Ok8-4-GOjWA",
     },
     {
@@ -72,13 +74,29 @@ const Satsang = () => {
       {/* Video Grid */}
       <div className="video-grid">
         {videos.map((video) => (
-          <div key={video.id} className="video-card">
-            <iframe
-              src={video.embedUrl}
-              title={video.title}
-              allowFullScreen
-            ></iframe>
-            <a href={video.linkUrl} target="_blank" rel="noopener noreferrer">
+          <div
+            key={video.id}
+            className="video-card"
+            onClick={() => setActiveVideo(video.id)} // ✅ set active video
+          >
+            {activeVideo === video.id ? (
+              <iframe
+                src={`${video.embedUrl}?autoplay=1`} // ✅ autoplay only active one
+                title={video.title}
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+              ></iframe>
+            ) : (
+              <div className="thumbnail">
+                <p>{video.title}</p>
+                <button className="play-btn">▶ Play</button>
+              </div>
+            )}
+            <a
+              href={video.linkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Watch {video.title}
             </a>
           </div>
