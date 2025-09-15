@@ -16,6 +16,17 @@ const Hero = () => {
   const images = [bio, hero1, hero2, photo1, photo6, photo7, photo8];
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // ✅ Remember if hero animation has already run
+  const [hasAnimated, setHasAnimated] = useState(false);
+  useEffect(() => {
+    if (sessionStorage.getItem("heroAnimated")) {
+      setHasAnimated(true);
+    } else {
+      sessionStorage.setItem("heroAnimated", "true");
+    }
+  }, []);
+
+  // Preload images
   useEffect(() => {
     images.forEach((src) => {
       const img = new Image();
@@ -28,14 +39,18 @@ const Hero = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
 
+  // Background slideshow
   useEffect(() => {
+    if (hasAnimated) return; // prevent reset
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [images.length]);
+  }, [images.length, hasAnimated]);
 
+  // Typing effect
   useEffect(() => {
+    if (hasAnimated) return; // prevent restart
     const typingSpeed = 50;
     const timeout = setTimeout(() => {
       if (charIndex < fullText.length) {
@@ -49,18 +64,15 @@ const Hero = () => {
       }
     }, typingSpeed);
     return () => clearTimeout(timeout);
-  }, [charIndex, fullText]);
+  }, [charIndex, fullText, hasAnimated]);
 
-  const handleChatClick = () => {
-    navigate("/chat");
-  };
+  const handleChatClick = () => navigate("/chat");
 
-  // ✅ New state for popup
+  // Announcement popup
   const [showAnnouncement, setShowAnnouncement] = useState(false);
-
   const handleAnnouncementClick = () => {
     setShowAnnouncement(true);
-    setTimeout(() => setShowAnnouncement(false), 4000); // auto-hide after 4s
+    setTimeout(() => setShowAnnouncement(false), 4000);
   };
 
   const textLines = displayedText.split("\n");
@@ -78,7 +90,7 @@ const Hero = () => {
           ></div>
         ))}
 
-        <div className="hero-text">
+        <div className={`hero-text ${!hasAnimated ? "animate-once" : ""}`}>
           {textLines[0] && <h2>{textLines[0]}<span className="cursor"></span></h2>}
           {textLines[1] && <h1>{textLines[1]}<span className="cursor"></span></h1>}
           {textLines[2] && <p>{textLines[2]}<span className="cursor"></span></p>}
@@ -95,7 +107,6 @@ const Hero = () => {
 
       <ScrollingText />
 
-      {/* ✅ Popup message */}
       {showAnnouncement && (
         <div className="announcement-popup">
           📢 Important Announcement: <strong>Tomorrow is a special satsang at 7 PM.</strong>
