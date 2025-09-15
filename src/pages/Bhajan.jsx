@@ -45,6 +45,12 @@ const Bhajan = () => {
       embedUrl: "https://www.youtube.com/embed/tKc0pbP0aSc",
       linkUrl: "https://youtu.be/tKc0pbP0aSc",
     },
+    {
+      id: 8,
+      title: "Bhajan Video 8",
+      embedUrl: "https://www.youtube.com/embed/MjVr70JW2gA",
+      linkUrl: "https://youtu.be/MjVr70JW2gA",
+    },
   ];
 
   return (
