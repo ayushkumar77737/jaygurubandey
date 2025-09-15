@@ -1,11 +1,11 @@
 /* ===== Page background ===== */
 .about-page {
-  padding: 3rem 2rem;
+  padding: 3rem 2rem 6rem;
   line-height: 1.8;
   color: #333;
   background: linear-gradient(135deg, #fff5f5, #fff0fa, #f5faff);
   scroll-behavior: smooth;
-  min-height: 100vh;
+  min-height: auto;
 }
 
 /* ===== Intro Section ===== */
