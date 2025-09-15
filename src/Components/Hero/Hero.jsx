@@ -41,28 +41,27 @@ const Hero = () => {
 
   // Background slideshow
   useEffect(() => {
-    if (hasAnimated) return; // prevent reset
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [images.length, hasAnimated]);
+  }, [images.length]);
 
   // Typing effect
   useEffect(() => {
-    if (hasAnimated) return; // prevent restart
+    if (hasAnimated) {
+      setDisplayedText(fullText); // immediately show full text if already animated
+      return;
+    }
+
     const typingSpeed = 50;
     const timeout = setTimeout(() => {
       if (charIndex < fullText.length) {
         setDisplayedText((prev) => prev + fullText[charIndex]);
         setCharIndex((prev) => prev + 1);
-      } else {
-        setTimeout(() => {
-          setDisplayedText("");
-          setCharIndex(0);
-        }, 2000);
       }
     }, typingSpeed);
+
     return () => clearTimeout(timeout);
   }, [charIndex, fullText, hasAnimated]);
 
