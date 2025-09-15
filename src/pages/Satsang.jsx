@@ -74,11 +74,16 @@ const Satsang = () => {
         {videos.map((video) => (
           <div key={video.id} className="video-card">
             <iframe
-              src={video.embedUrl}
+              src={activeVideo === video.id ? video.embedUrl : ""}
               title={video.title}
               allowFullScreen
+              onClick={() => setActiveVideo(video.id)}
             ></iframe>
-            <a href={video.linkUrl} target="_blank" rel="noopener noreferrer">
+            <a
+              href={video.linkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Watch {video.title}
             </a>
           </div>
@@ -104,6 +109,7 @@ const Satsang = () => {
         >
           Hari Pagh <span className="arrow">→</span>
         </a>
+
         <a
           href="https://drive.google.com/file/d/your-anmol-wadi-link/view?usp=sharing"
           target="_blank"
