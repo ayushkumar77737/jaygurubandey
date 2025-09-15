@@ -115,8 +115,17 @@
 @media (max-width: 768px) {
   .satsang-title { font-size: 2rem; }
   .video-card iframe { height: 170px; }
-  .satsang-buttons { flex-direction: column; gap: 14px; }
-  .satsang-buttons .btn { width: 70%; text-align: center; }
+
+  .satsang-buttons {
+    flex-direction: column;
+    gap: 14px;
+    align-items: center; /* ✅ center horizontally on mobile */
+  }
+
+  .satsang-buttons .btn {
+    width: 70%;
+    text-align: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -124,5 +133,12 @@
   .video-grid { gap: 15px; }
   .video-card iframe { height: 150px; }
   .video-card a { font-size: 0.9rem; padding: 9px 18px; }
-  .satsang-buttons .btn { width: 90%; }
+
+  .satsang-buttons {
+    align-items: center; /* ✅ ensure still centered on very small screens */
+  }
+
+  .satsang-buttons .btn {
+    width: 90%;
+  }
 }
