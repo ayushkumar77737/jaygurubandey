@@ -67,7 +67,7 @@ const Satsang = () => {
 
   return (
     <div className="satsang-container">
-      <h1 className="satsang-title">Amrit Wadi</h1>
+      <h1 className="satsang-title">Amritvani</h1>
 
       {/* Video Grid */}
       <div className="video-grid">
