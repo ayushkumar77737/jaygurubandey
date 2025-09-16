@@ -5,12 +5,8 @@
   padding: 30px 20px 80px; /* bottom space to reach footer */
   text-align: center;
 
-  /* 🌈 Light, lag-free background */
-  background:
-    radial-gradient(circle at 20% 20%, #ffe0b2, transparent 60%),
-    radial-gradient(circle at 80% 30%, #fceabb, transparent 70%),
-    radial-gradient(circle at 50% 80%, #fff3e0, #ffffff 80%);
-  background-attachment: fixed;
+  /* 🌈 Background updated to match about.css */
+  background: linear-gradient(135deg, #fff5f5, #fff0fa, #f5faff);
 
   overflow-x: hidden;
   scroll-behavior: smooth;
