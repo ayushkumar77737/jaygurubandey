@@ -30,7 +30,6 @@ const router = createBrowserRouter([
       { path: 'contact', element: <Contact/> },
       { path: 'chat', element: <ChatWithUs /> },
       { path: 'important-dates', element: <ImportantDates /> }, // ✅ Add route
-      { path: '*', element: <NotFound/> },
     ]
   }
 ])
