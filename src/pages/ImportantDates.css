@@ -88,18 +88,27 @@
     padding: 40px 20px;
   }
 
-  /* Order change for mobile */
-  .content-section {
-    order: 1; /* Dates first */
+  /* Dates first (top section) */
+  .content-section.top {
+    order: 1;
     max-width: 90%;
   }
 
+  /* Photo in the middle */
   .image-section {
-    order: 2; /* Photo second */
+    order: 2;
   }
 
   .image-section img {
     width: 80%;
-    margin-bottom: 30px;
+    margin: 20px auto;
+    display: block;
+  }
+
+  /* Dates after photo */
+  .content-section.bottom {
+    order: 3;
+    max-width: 90%;
+    margin-top: 20px;
   }
 }
