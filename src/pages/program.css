@@ -1,9 +1,10 @@
 /* ===== Global Container ===== */
 .program-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: clamp(15px, 2vw, 30px);
-  padding: clamp(20px, 5vw, 50px);
+  /* bigger cards → min 320px instead of 250px */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(20px, 2.5vw, 40px);
+  padding: clamp(30px, 6vw, 60px);
   background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
   min-height: 100vh;
   font-family: "Poppins", sans-serif;
@@ -14,13 +15,13 @@
 .program-card {
   position: relative;
   background: #1a1a2e;
-  border-radius: 25px;
-  padding: clamp(15px, 2vw, 30px) clamp(15px, 2vw, 20px);
+  border-radius: 28px;
+  padding: clamp(25px, 3vw, 40px) clamp(20px, 3vw, 30px);
   text-align: center;
   cursor: pointer;
   overflow: hidden;
   transition: transform 0.6s ease, box-shadow 0.6s ease;
-  box-shadow: 0 0 20px rgba(106, 17, 203, 0.5), 0 0 40px rgba(37, 117, 252, 0.3);
+  box-shadow: 0 0 25px rgba(106, 17, 203, 0.5), 0 0 50px rgba(37, 117, 252, 0.3);
 }
 
 /* ===== Neon Glow Border via pseudo-element ===== */
@@ -28,7 +29,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 25px;
+  border-radius: 28px;
   padding: 4px;
   background: linear-gradient(45deg, #6a11cb, #2575fc, #ff0099, #ff6a00, #6a11cb);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -47,7 +48,7 @@
 /* Card hover effect */
 .program-card:hover {
   transform: translateY(-15px) rotateX(4deg) scale(1.05);
-  box-shadow: 0 0 50px rgba(106, 17, 203, 0.9), 0 0 80px rgba(37, 117, 252, 0.6);
+  box-shadow: 0 0 60px rgba(106, 17, 203, 0.9), 0 0 90px rgba(37, 117, 252, 0.6);
 }
 
 /* Decorative glowing background */
@@ -71,19 +72,19 @@
 
 /* ===== Image Styling ===== */
 .program-image {
-  width: clamp(100px, 15vw, 150px);
-  height: clamp(100px, 15vw, 150px);
-  margin: 0 auto 20px auto;
+  width: clamp(140px, 18vw, 180px);
+  height: clamp(140px, 18vw, 180px);
+  margin: 0 auto 25px auto;
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid #fff;
-  box-shadow: 0 0 30px rgba(106, 17, 203, 0.5), 0 0 40px rgba(37, 117, 252, 0.4);
+  box-shadow: 0 0 35px rgba(106, 17, 203, 0.5), 0 0 45px rgba(37, 117, 252, 0.4);
   transition: all 0.6s ease;
 }
 
 .program-card:hover .program-image {
   transform: scale(1.2) rotate(15deg);
-  box-shadow: 0 0 60px rgba(106, 17, 203, 1), 0 0 80px rgba(37, 117, 252, 0.8);
+  box-shadow: 0 0 70px rgba(106, 17, 203, 1), 0 0 90px rgba(37, 117, 252, 0.8);
 }
 
 .program-image img {
@@ -95,28 +96,28 @@
 
 /* ===== Title ===== */
 .program-title {
-  font-size: clamp(1.3rem, 2.5vw, 2rem);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
   color: #fff;
-  text-shadow: 0 0 8px #6a11cb, 0 0 15px #2575fc, 0 0 20px #ff0099;
+  text-shadow: 0 0 8px #6a11cb, 0 0 18px #2575fc, 0 0 25px #ff0099;
   transition: all 0.4s ease;
 }
 
 .program-card:hover .program-title {
   letter-spacing: 3px;
-  text-shadow: 0 0 12px #ff0099, 0 0 25px #ff6a00, 0 0 35px #2575fc;
+  text-shadow: 0 0 15px #ff0099, 0 0 28px #ff6a00, 0 0 40px #2575fc;
 }
 
 /* ===== Text Info ===== */
 .program-time,
 .program-date,
 .program-location {
-  font-size: clamp(0.8rem, 2vw, 1rem);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
   color: #b0b0c0;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   transition: all 0.5s ease;
 }
 
@@ -136,10 +137,10 @@
 
 /* ===== Description ===== */
 .program-description {
-  font-size: clamp(0.8rem, 2vw, 1rem);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
   color: #dcdcdc;
-  margin-bottom: 15px;
-  line-height: 1.5;
+  margin-bottom: 20px;
+  line-height: 1.6;
   transition: color 0.4s ease;
 }
 
@@ -149,81 +150,81 @@
 
 /* ===== Year Selector ===== */
 .year-select {
-  margin-bottom: clamp(15px, 2vw, 30px);
+  margin-bottom: clamp(20px, 2.5vw, 40px);
   text-align: center;
 }
 
 .year-select label {
   color: #fff;
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  margin-right: 10px;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  margin-right: 12px;
 }
 
 .year-select select {
-  padding: clamp(6px, 1vw, 8px) clamp(10px, 2vw, 12px);
+  padding: clamp(8px, 1vw, 10px) clamp(12px, 2vw, 15px);
   border-radius: 8px;
   border: none;
-  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
   outline: none;
 }
 
 /* ===== Mobile / Tablet Fixes ===== */
 @media (max-width: 1024px) {
   .program-container {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
 }
 
 @media (max-width: 768px) {
   .program-container {
     grid-template-columns: 1fr;
-    padding: 20px 15px;
-    gap: 20px;
+    padding: 25px 18px;
+    gap: 25px;
   }
 
   .program-card {
-    padding: 20px 15px;
-    border-radius: 20px;
+    padding: 22px 18px;
+    border-radius: 22px;
   }
 
   .program-title {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
   .program-image {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
   }
 }
 
 @media (max-width: 480px) {
   .program-card {
-    padding: 15px 10px;
-    border-radius: 18px;
+    padding: 18px 12px;
+    border-radius: 20px;
   }
 
   .program-title {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
 
   .program-description,
   .program-time,
   .program-date,
   .program-location {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .program-image {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
   }
 
   .year-select label {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .year-select select {
-    font-size: 0.9rem;
-    padding: 5px 8px;
+    font-size: 1rem;
+    padding: 6px 10px;
   }
 }
