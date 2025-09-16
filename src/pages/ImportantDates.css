@@ -87,7 +87,7 @@
   color: #b22222;
 }
 
-/* Responsive */
+/* Tablet (<=1024px) */
 @media (max-width: 1024px) {
   .important-dates-container {
     flex-direction: column;
@@ -117,5 +117,47 @@
     order: 3; /* Dates last */
     max-width: 90%;
     margin-top: 20px;
+  }
+}
+
+/* Mobile (<=768px) */
+@media (max-width: 768px) {
+  .important-dates-container {
+    padding: 30px 15px;
+    gap: 30px;
+  }
+
+  .content-section h2 {
+    font-size: 26px;
+  }
+
+  .dates-box {
+    padding: 20px;
+  }
+
+  .dates-box p {
+    font-size: 16px;
+    padding: 10px;
+  }
+}
+
+/* Small Mobile (<=480px) */
+@media (max-width: 480px) {
+  .image-section img {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .content-section h2 {
+    font-size: 22px;
+  }
+
+  .dates-box {
+    padding: 15px;
+  }
+
+  .dates-box p {
+    font-size: 14px;
+    margin: 10px 0;
   }
 }
