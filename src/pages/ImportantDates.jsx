@@ -1,6 +1,6 @@
 import React from "react";
 import "./ImportantDates.css";
-import satsangImg from "../assets/photo7.jpg"; // ✅ Replace with your image
+import satsangImg from "../assets/photo24.jpg"; // ✅ Replace with your image
 
 const ImportantDates = () => {
   return (
