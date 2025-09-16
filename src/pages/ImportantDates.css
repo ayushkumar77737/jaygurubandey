@@ -88,12 +88,18 @@
     padding: 40px 20px;
   }
 
+  /* Order change for mobile */
+  .content-section {
+    order: 1; /* Dates first */
+    max-width: 90%;
+  }
+
+  .image-section {
+    order: 2; /* Photo second */
+  }
+
   .image-section img {
     width: 80%;
     margin-bottom: 30px;
-  }
-
-  .content-section {
-    max-width: 90%;
   }
 }
