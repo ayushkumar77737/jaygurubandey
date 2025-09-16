@@ -56,7 +56,7 @@ const Hero = () => {
   };
 
   const handleAnnouncementClick = () => {
-    navigate("/important dates"); // ✅ Redirect to Important dates page
+    navigate("/important-dates"); // ✅ Redirect to Important dates page
   };
 
   const textLines = displayedText.split("\n");
