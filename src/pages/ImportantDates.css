@@ -96,13 +96,13 @@
 
   /* Dates first (top section) */
   .content-section.top {
-    order: 1;
+    order: 2;
     max-width: 90%;
   }
 
   /* Photo in the middle */
   .image-section {
-    order: 2;
+    order: 1;
     width: 100%;
     display: flex;
     justify-content: center;
