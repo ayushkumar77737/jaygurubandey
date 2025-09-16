@@ -12,6 +12,12 @@
 }
 
 /* Left Side Image */
+.image-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .image-section img {
   width: 420px;
   height: auto;
@@ -97,12 +103,15 @@
   /* Photo in the middle */
   .image-section {
     order: 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   .image-section img {
-    width: 80%;
+    width: 70%;
+    max-width: 350px;
     margin: 20px auto;
-    display: block;
   }
 
   /* Dates after photo */
