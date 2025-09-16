@@ -12,8 +12,8 @@ import Blog from './pages/Blog.jsx'
 import Gallery from './pages/Gallery.jsx'
 import Contact from './pages/Contact.jsx'
 import NotFound from './pages/NotFound.jsx'
-import ChatWithUs from './pages/Chatwithus.jsx';
-
+import ChatWithUs from './pages/Chatwithus.jsx'
+import ImportantDates from './pages/ImportantDates.jsx'   // ✅ Add import
 
 const router = createBrowserRouter([
   {
@@ -28,8 +28,9 @@ const router = createBrowserRouter([
       { path: 'blog', element: <Blog/> },
       { path: 'gallery', element: <Gallery/> },
       { path: 'contact', element: <Contact/> },
-      { path: '*', element: <NotFound/> },
       { path: 'chat', element: <ChatWithUs /> },
+      { path: 'important-dates', element: <ImportantDates /> }, // ✅ Add route
+      { path: '*', element: <NotFound/> },
     ]
   }
 ])
