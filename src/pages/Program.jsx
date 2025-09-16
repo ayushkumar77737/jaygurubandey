@@ -8,7 +8,7 @@ const Program = () => {
     {
       id: 1,
       year: 2025,
-      title: "Upcoming Satsang",
+      title: "Completed Satsang",
       description: `Jai Gurubande Swara Yoga Sadhana 🌺
 
 🌹 Satsang & Bhandara Program 🌹
@@ -60,8 +60,33 @@ Contact: 7080224214, 7080224215, 7080224216
 🙏🙏 Saheb belongs to everyone 🙏🙏`,
       image: gurujiImage,
       time: "🕛 Time: From 12:00 PM onwards",
-      date: "📅 Date: 01 September 2024, Monday",
+      date: "📅 Date: 01 September 2025, Monday",
       location: "📍 Venue: Jai Gurubande Ashram, Chitouna, Jalhupur, Varanasi",
+    },
+    {
+      id: 4,
+      year: 2025,
+      title: "Upcoming Satsang",
+      description: `🌺 Jai Gurubande Swara Yoga Sadhana 🌺
+
+🌹 Satsang & Bhandara Program 🌹
+
+📅 Date: 17th September 2025  
+📖 Day: Wednesday  
+🕖 Time: From 7:00 PM onwards  
+
+📍 Venue: Village Silhata, Post Saraybharti, District Ballia  
+
+🙏 Organizer: Shri Kalpnath Yadav Ji  
+📞 Contact Number: 9756302073  
+
+👉 We warmly invite all Satsang devotees to kindly attend this program with your family and receive the divine darshan and blessings of Satguru Sahib Ji.  
+
+🙏🙏 Saheb belongs to everyone 🙏🙏`,
+      image: gurujiImage,
+      time: "🕖 Time: From 7:00 PM onwards",
+      date: "📅 Date: 17th September 2025, Wednesday",
+      location: "📍 Venue: Village Silhata, Post Saraybharti, District Ballia",
     },
   ];
 
@@ -103,7 +128,10 @@ Contact: 7080224214, 7080224215, 7080224216
               <img src={item.image} alt={item.title} />
             </div>
             <h2 className="program-title">{item.title}</h2>
-            <p className="program-description" style={{ whiteSpace: "pre-line" }}>
+            <p
+              className="program-description"
+              style={{ whiteSpace: "pre-line" }}
+            >
               {item.description}
             </p>
             <p className="program-time">{item.time}</p>
@@ -112,7 +140,11 @@ Contact: 7080224214, 7080224215, 7080224216
           </div>
         ))
       ) : (
-        selectedYear && <p style={{ color: "#fff", marginTop: "20px" }}>No programs for this year.</p>
+        selectedYear && (
+          <p style={{ color: "#fff", marginTop: "20px" }}>
+            No programs for this year.
+          </p>
+        )
       )}
     </div>
   );
