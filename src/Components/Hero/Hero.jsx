@@ -55,12 +55,8 @@ const Hero = () => {
     navigate("/chat");
   };
 
-  // ✅ New state for popup
-  const [showAnnouncement, setShowAnnouncement] = useState(false);
-
   const handleAnnouncementClick = () => {
-    setShowAnnouncement(true);
-    setTimeout(() => setShowAnnouncement(false), 4000); // auto-hide after 4s
+    navigate("/announcement"); // ✅ Redirect to Important Announcement page
   };
 
   const textLines = displayedText.split("\n");
@@ -94,13 +90,6 @@ const Hero = () => {
       </div>
 
       <ScrollingText />
-
-      {/* ✅ Popup message */}
-      {showAnnouncement && (
-        <div className="announcement-popup">
-          📢 Important Announcement: <strong>Tomorrow is a special satsang at 7 PM.</strong>
-        </div>
-      )}
     </div>
   );
 };
