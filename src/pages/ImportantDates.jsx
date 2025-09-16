@@ -14,10 +14,35 @@ const ImportantDates = () => {
       <div className="content-section">
         <h2>📅 Important Dates</h2>
         <div className="dates-box">
-          <p>🔔 <strong>17th September 2025</strong> - Special Satsang at 7 PM</p>
-          <p>📅 <strong>24th September 2025</strong> - Guru Bhakti Program</p>
-          <p>📅 <strong>2nd October 2025</strong> - Meditation Camp</p>
-          <p>📅 <strong>15th October 2025</strong> - Spiritual Discourse</p>
+          <p>
+            🔔 <strong>Chitauna Dham, Varanasi (Headquarters)</strong> – Every month on <strong>1, 2, 15, 16, 25 and 26</strong><br />
+            📞 Contact: 7080224214, 7080224215, 7080224216
+          </p>
+
+          <p>
+            📅 <strong>Jai Gurubande Jan Kalyan Ashram (Ballia)</strong> – Every month on <strong>5</strong><br />
+            📞 Contact: 8858437503, 6388001542
+          </p>
+
+          <p>
+            📅 <strong>Nagawa Ashram (Ghazipur)</strong> – Every month on <strong>4 and 19</strong><br />
+            📞 Contact: 7080224203
+          </p>
+
+          <p>
+            📅 <strong>Mirzapur Ashram</strong> – Every month on <strong>3</strong><br />
+            📞 Contact: 7651881816
+          </p>
+
+          <p>
+            📅 <strong>Shivramapur (At the residence of Shri Girja Prasad Yadav Ji)</strong> – Every month on <strong>27</strong><br />
+            📞 Contact: 8738868292
+          </p>
+
+          <p>
+            📅 <strong>Sidhagar Ghat Ashram (Ghazipur)</strong> – Every month on <strong>23</strong><br />
+            📞 Contact: 8808305735, 9793900455
+          </p>
         </div>
       </div>
     </div>
