@@ -12,7 +12,7 @@ const ImportantDates = () => {
 
       {/* Right Side Content */}
       <div className="content-section">
-        <h2>📅 Important Dates</h2>
+        <h2>Important Dates</h2>
         <div className="dates-box">
           <p>
             🔔 <strong>Chitauna Dham, Varanasi (Headquarters)</strong> – Every month on <strong>1, 2, 15, 16, 25 and 26</strong><br />
