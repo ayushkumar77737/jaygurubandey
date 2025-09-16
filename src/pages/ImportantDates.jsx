@@ -5,14 +5,18 @@ import satsangImg from "../assets/photo24.jpg"; // ✅ Replace with your image
 const ImportantDates = () => {
   return (
     <div className="important-dates-container">
-      {/* Left Side Image */}
+      {/* Heading at top */}
+      <div className="content-section top">
+        <h2>Important Dates</h2>
+      </div>
+
+      {/* Photo in the middle */}
       <div className="image-section">
         <img src={satsangImg} alt="Important Event" />
       </div>
 
-      {/* Right Side Content */}
-      <div className="content-section">
-        <h2>Important Dates</h2>
+      {/* Dates after photo */}
+      <div className="content-section bottom">
         <div className="dates-box">
           <p>
             🔔 <strong>Chitauna Dham, Varanasi (Headquarters)</strong> – Every month on <strong>1, 2, 15, 16, 25 and 26</strong><br />

@@ -94,15 +94,14 @@
     padding: 40px 20px;
   }
 
-  /* Dates first (top section) */
   .content-section.top {
-    order: 1;
+    order: 1; /* Heading first */
     max-width: 90%;
+    text-align: center;
   }
 
-  /* Photo in the middle */
   .image-section {
-    order: 2;
+    order: 2; /* Image second */
     width: 100%;
     display: flex;
     justify-content: center;
@@ -114,9 +113,8 @@
     margin: 20px auto;
   }
 
-  /* Dates after photo */
   .content-section.bottom {
-    order: 3;
+    order: 3; /* Dates last */
     max-width: 90%;
     margin-top: 20px;
   }
