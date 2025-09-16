@@ -28,16 +28,20 @@ const Program = () => {
       title: "Travel Information",
       description: `Jai Gurubande Swara Yoga Sadhana
 
-📢 Important Notice
+Notice: Arrival at Varanasi
 
-Monthly Program: Mumbai Ashram
+We hereby inform you that Satguru Sahib will arrive at Babatpur Airport, Varanasi today after the International Satsang Program.
 
-This is to inform you all that Satguru Sahib will depart from Babatpur Airport, Varanasi to Village Nangle Basai, Thane, Maharashtra (Mumbai Ashram).
+Date: 15th September 2025, Monday
+
+Darshan of Satguru Sahib: 5:30 PM
+
+Venue: Babatpur Airport, Varanasi
 
 👏👏 Saheb belongs to all 👏👏`,
       image: gurujiImage,
-      time: "🕣 Darshan of Satguru Sahib: 8:30 AM (Morning)",
-      date: "📅 Date: 6th September 2025, Saturday",
+      time: "🕠 Darshan of Satguru Sahib: 5:30 PM",
+      date: "📅 Date: 15th September 2025, Monday",
       location: "📍 Venue: Babatpur Airport, Varanasi",
     },
     {
