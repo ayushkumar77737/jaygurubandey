@@ -7,7 +7,7 @@ const Program = () => {
   const data = [
     {
       id: 1,
-      year: 2025,
+      year: 2024,
       title: "Completed Satsang",
       description: `Jai Gurubande Swara Yoga Sadhana 🌺
 
