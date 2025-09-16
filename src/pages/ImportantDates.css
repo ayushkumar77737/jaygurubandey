@@ -1,0 +1,48 @@
+.important-dates-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px;
+  min-height: 100vh;
+  background: linear-gradient(to right, #fdfbfb, #ebedee);
+  font-family: "Poppins", sans-serif;
+}
+
+/* Left Side Image */
+.image-section img {
+  width: 420px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+}
+
+/* Right Side Content */
+.content-section {
+  flex: 1;
+  max-width: 500px;
+}
+
+.content-section h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.dates-box {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 20px 25px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dates-box p {
+  font-size: 18px;
+  margin: 12px 0;
+  color: #444;
+}
+
+.dates-box strong {
+  color: #b22222;
+}
