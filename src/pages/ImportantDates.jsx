@@ -43,6 +43,16 @@ const ImportantDates = () => {
             📅 <strong>Sidhagar Ghat Ashram (Ghazipur)</strong> – Every month on <strong>23</strong><br />
             📞 Contact: 8808305735, 9793900455
           </p>
+
+          <p>
+            📅 <strong>Gorakhpur Ashram</strong> – Every month on <strong>21 and 22</strong><br />
+            📞 Contact: 9935908011
+          </p>
+
+          <p>
+            📅 <strong>Jai Gurubande Ashram, Nagle (Mumbai)</strong> – Every month from <strong>6 to 10</strong><br />
+            📞 Contact: 9819560938
+          </p>
         </div>
       </div>
     </div>
