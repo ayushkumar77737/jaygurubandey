@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Blog.css";
 import blog1a from "../assets/photo4.jpg"; // first image
-import blog1b from "../assets/photo6.jpg"; // second image for slideshow
+import blog1b from "../assets/photo25.jpg"; // second image for slideshow
 import blog2 from "../assets/photo3.jpg";
 import blog3 from "../assets/photo5.jpg";
 
