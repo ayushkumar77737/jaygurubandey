@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Blog.css";
-import blog1 from "../assets/photo4.jpg";
+import blog1a from "../assets/photo4.jpg"; // first image
+import blog1b from "../assets/photo6.jpg"; // second image for slideshow
 import blog2 from "../assets/photo3.jpg";
 import blog3 from "../assets/photo5.jpg";
 
@@ -9,11 +10,12 @@ const Blog = () => {
   const [selectedPost, setSelectedPost] = useState(null);
   const [review, setReview] = useState({ name: "", message: "", rating: 0 });
   const [reviews, setReviews] = useState({}); // Store reviews for each blog post
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); // slideshow index
 
   const posts = [
     {
       id: 1,
-      image: blog1,
+      images: [blog1a, blog1b], // multiple images for slideshow
       title: "Guru Purnima 2025",
       date: "6 July 2025",
       author: "Ashram Team",
@@ -22,7 +24,7 @@ const Blog = () => {
     },
     {
       id: 2,
-      image: blog2,
+      images: [blog2],
       title: "Satsang At Ashram",
       date: "10 Aug 2025",
       author: "Ashram Team",
@@ -31,7 +33,7 @@ const Blog = () => {
     },
     {
       id: 3,
-      image: blog3,
+      images: [blog3],
       title: "Bhajan",
       date: "26 Jan 2025",
       author: "Devotees",
@@ -40,24 +42,30 @@ const Blog = () => {
     },
   ];
 
+  // Slideshow for first blog post
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev === 0 ? 1 : 0));
+    }, 3000); // switch every 3 seconds
+    return () => clearInterval(interval);
+  }, []);
+
   // Open modal
   const handleReadMore = (post) => {
     setSelectedPost(post);
     setIsModalOpen(true);
   };
 
-  // Handle review form input
+  // Handle review input
   const handleChange = (e) => {
     const { name, value } = e.target;
     setReview((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle star click
   const handleStarClick = (rating) => {
     setReview((prev) => ({ ...prev, rating }));
   };
 
-  // Submit review
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!review.name || !review.message || review.rating === 0) return;
@@ -71,12 +79,10 @@ const Blog = () => {
     setIsModalOpen(false);
   };
 
-  // Helper to display stars
-  const renderStars = (count) => {
-    return Array.from({ length: 5 }, (_, i) => (
+  const renderStars = (count) =>
+    Array.from({ length: 5 }, (_, i) => (
       <span key={i} style={{ color: i < count ? "#FFD700" : "#ccc" }}>★</span>
     ));
-  };
 
   return (
     <div className="blog-container">
@@ -88,15 +94,15 @@ const Blog = () => {
       <div className="blog-grid">
         {posts.map((post) => (
           <div key={post.id} className="blog-card">
-            <img src={post.image} alt={post.title} />
+            <img
+              src={post.id === 1 ? post.images[currentImageIndex] : post.images[0]}
+              alt={post.title}
+            />
             <div className="blog-content">
               <h3>{post.title}</h3>
-              <p className="blog-meta">
-                📅 {post.date} | 👤 {post.author}
-              </p>
+              <p className="blog-meta">📅 {post.date} | 👤 {post.author}</p>
               <p className="blog-desc">{post.description}</p>
 
-              {/* Show reviews */}
               {reviews[post.id] && reviews[post.id].length > 0 && (
                 <div className="review-list">
                   <h4>Devotees' Reviews:</h4>
@@ -134,7 +140,6 @@ const Blog = () => {
                 onChange={handleChange}
                 required
               />
-              {/* Star Rating */}
               <div style={{ marginBottom: "10px" }}>
                 <strong>Rating: </strong>
                 {[1, 2, 3, 4, 5].map((i) => (
