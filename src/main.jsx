@@ -11,7 +11,6 @@ import Program from './pages/Program.jsx'
 import Blog from './pages/Blog.jsx'
 import Gallery from './pages/Gallery.jsx'
 import Contact from './pages/Contact.jsx'
-import NotFound from './pages/NotFound.jsx'
 import ChatWithUs from './pages/Chatwithus.jsx'
 import ImportantDates from './pages/ImportantDates.jsx'   // ✅ Add import
 
