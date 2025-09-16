@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from "react";
 import "./Blog.css";
-import blog1a from "../assets/photo4.jpg"; // first image
-import blog1b from "../assets/photo25.jpg"; // second image for slideshow
-import blog2 from "../assets/photo3.jpg";
-import blog3 from "../assets/photo5.jpg";
+import blog1a from "../assets/photo4.jpg"; // first blog1 image
+import blog1b from "../assets/photo25.jpg"; // second blog1 image
+import blog2a from "../assets/photo3.jpg";  // first blog2 image
+import blog2b from "../assets/photo27.jpg"; // second blog2 image
+import blog2c from "../assets/photo28.jpg"; // third blog2 image
+import blog2d from "../assets/photo29.jpg"; // fourth blog2 image
+import blog3 from "../assets/photo5.jpg";   // blog3 image
 
 const Blog = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
   const [review, setReview] = useState({ name: "", message: "", rating: 0 });
-  const [reviews, setReviews] = useState({}); // Store reviews for each blog post
-  const [currentImageIndex, setCurrentImageIndex] = useState(0); // slideshow index
+  const [reviews, setReviews] = useState({});
+  const [currentImages, setCurrentImages] = useState({
+    1: 0, // current index for blog1
+    2: 0, // current index for blog2
+  });
 
   const posts = [
     {
       id: 1,
-      images: [blog1a, blog1b], // multiple images for slideshow
+      images: [blog1a, blog1b],
       title: "Guru Purnima 2025",
       date: "6 July 2025",
       author: "Ashram Team",
@@ -24,7 +30,7 @@ const Blog = () => {
     },
     {
       id: 2,
-      images: [blog2],
+      images: [blog2a, blog2b, blog2c, blog2d],
       title: "Satsang At Ashram",
       date: "10 Aug 2025",
       author: "Ashram Team",
@@ -42,21 +48,23 @@ const Blog = () => {
     },
   ];
 
-  // Slideshow for first blog post
+  // Slideshow effect for posts 1 and 2
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev === 0 ? 1 : 0));
-    }, 3000); // switch every 3 seconds
+      setCurrentImages((prev) => ({
+        1: (prev[1] + 1) % posts[0].images.length,
+        2: (prev[2] + 1) % posts[1].images.length,
+      }));
+    }, 3000);
+
     return () => clearInterval(interval);
   }, []);
 
-  // Open modal
   const handleReadMore = (post) => {
     setSelectedPost(post);
     setIsModalOpen(true);
   };
 
-  // Handle review input
   const handleChange = (e) => {
     const { name, value } = e.target;
     setReview((prev) => ({ ...prev, [name]: value }));
@@ -95,7 +103,7 @@ const Blog = () => {
         {posts.map((post) => (
           <div key={post.id} className="blog-card">
             <img
-              src={post.id === 1 ? post.images[currentImageIndex] : post.images[0]}
+              src={currentImages[post.id] !== undefined ? post.images[currentImages[post.id]] : post.images[0]}
               alt={post.title}
             />
             <div className="blog-content">
