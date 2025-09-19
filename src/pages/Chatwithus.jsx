@@ -13,13 +13,13 @@ const ChatWithUs = () => {
     e.preventDefault();
 
     const formURL =
-      "https://docs.google.com/forms/d/e/1FAIpQLScTzgswGbp-ylI_J_V0yExEHhrssIqi77ilCowh2EIw7HBVAw/formResponse";
+      "https://docs.google.com/forms/d/e/1FAIpQLSeuxiyEAvdTkwzSJUKYhx6BKkqR1bQvyUV2GOELQacWwBAA-g/formResponse";
 
     const formData = new FormData();
-    formData.append("entry.1710688909", name);     // Name
-    formData.append("entry.567612839", email);      // Email (replace with actual ID)
-    formData.append("entry.800412442", phone);      // Phone (replace with actual ID)
-    formData.append("entry.83099658", question); // Question
+    formData.append("entry.189061439", name);     // Name
+    formData.append("entry.1391401379", email);      // Email (replace with actual ID)
+    formData.append("entry.1240440170", phone);      // Phone (replace with actual ID)
+    formData.append("entry.747611041", question); // Question
 
     try {
       await fetch(formURL, {
