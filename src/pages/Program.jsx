@@ -3,20 +3,21 @@ import "./program.css";
 import gurujiImage from "../assets/guruji.jpg";
 
 const Program = () => {
-  // Program data with year property
   const data = [
     {
       id: 1,
       year: 2025,
+      status: "Completed",
+      type: "Satsang",
       title: "Completed Satsang",
-      description: `Jai Gurubande Swara Yoga Sadhana 🌺
+      description: `🌺 Jai Gurubande Swara Yoga Sadhana 🌺
 
-🌹 Satsang & Bhandara Program 🌹
+🌹 Satsang & Bhandara 🌹
 
-🙏 Organizer: Shri Om Prakash Yadav & Family
-📞 Contact Numbers: 8448337202, 7589076439
+Organizers: Shri Om Prakash Yadav & Family  
+Contact: 8448337202, 7589076439
 
-👉 We warmly invite all Satsang devotees to kindly attend this program with your family and receive the divine darshan and blessings of Satguru Sahib Ji.`,
+👉 We warmly invite all Satsang devotees to attend and receive the divine darshan and blessings of Satguru Sahib Ji.`,
       image: gurujiImage,
       time: "🕔 Time: From 5:00 PM onwards",
       date: "📅 Date: 15th June 2025, Sunday",
@@ -25,100 +26,128 @@ const Program = () => {
     {
       id: 2,
       year: 2025,
-      title: "Travel Information",
+      status: "Upcoming",
+      type: "Satsang",
+      title: "Upcoming Satsang",
+      description: `🌺 Jai Gurubande Swara Yoga Sadhana 🌺
+
+🌹 Satsang & Bhandara 🌹
+
+Date: 17th September 2025  
+Time: From 7:00 PM onwards  
+Venue: Village Silhata, Post Saraybharti, District Ballia
+
+Organizers: Shri Kalpnath Yadav Ji  
+Contact: 9756302073
+
+👉 All devotees are requested to attend and receive blessings.`,
+      image: gurujiImage,
+      time: "🕖 Time: From 7:00 PM onwards",
+      date: "📅 Date: 17th September 2025, Wednesday",
+      location: "📍 Venue: Village Silhata, Post Saraybharti, District Ballia",
+    },
+    {
+      id: 3,
+      year: 2025,
+      status: "Completed",
+      type: "Travel Information",
+      title: "Completed Travel Information",
       description: `Jai Gurubande Swara Yoga Sadhana
 
-Notice: Arrival at Varanasi
+Satguru Sahib arrived at Babatpur Airport, Varanasi after the International Satsang Program.
 
-We hereby inform you that Satguru Sahib will arrive at Babatpur Airport, Varanasi today after the International Satsang Program.
-
-Date: 15th September 2025, Monday
-
-Darshan of Satguru Sahib: 5:30 PM
-
-Venue: Babatpur Airport, Varanasi
-
-👏👏 Saheb belongs to all 👏👏`,
+Darshan Time: 5:30 PM  
+Venue: Babatpur Airport, Varanasi`,
       image: gurujiImage,
       time: "🕠 Darshan of Satguru Sahib: 5:30 PM",
       date: "📅 Date: 15th September 2025, Monday",
       location: "📍 Venue: Babatpur Airport, Varanasi",
     },
     {
-      id: 3,
+      id: 4,
       year: 2025,
-      title: "Ashram Event",
-      description: `🙏🙏 Jai Gurubande Swara Yoga Sadhana 🙏🙏
+      status: "Upcoming",
+      type: "Travel Information",
+      title: "Upcoming Travel Information",
+      description: `Notice: Satguru Sahib will arrive at Babatpur Airport, Varanasi.
 
-🌹 Regular Satsang Program Notification 🌹
+Darshan Time: 5:30 PM  
+Venue: Babatpur Airport, Varanasi`,
+      image: gurujiImage,
+      time: "🕠 Darshan of Satguru Sahib: 5:30 PM",
+      date: "📅 Date: 15th September 2025, Monday",
+      location: "📍 Venue: Babatpur Airport, Varanasi",
+    },
+    {
+      id: 5,
+      year: 2025,
+      status: "Completed",
+      type: "Ashram Event",
+      title: "Completed Ashram Event",
+      description: `🙏 Jai Gurubande Swara Yoga Sadhana 🙏
 
-Date: 01 September 2025
-Day: Monday
-Time: From 12:00 PM onwards
+Date: 01 September 2025  
+Time: From 12:00 PM onwards  
 Venue: Jai Gurubande Ashram, Chitouna, Jalhupur, Varanasi
-
-👉 We kindly request all Satsang devotees to attend this program with family and receive the divine darshan and blessings of Satguru Sahib Ji.
 
 Contact: 7080224214, 7080224215, 7080224216
 
-🙏🙏 Saheb belongs to everyone 🙏🙏`,
+👉 All devotees attended and received blessings.`,
       image: gurujiImage,
       time: "🕛 Time: From 12:00 PM onwards",
       date: "📅 Date: 01 September 2025, Monday",
       location: "📍 Venue: Jai Gurubande Ashram, Chitouna, Jalhupur, Varanasi",
     },
     {
-      id: 4,
+      id: 6,
       year: 2025,
-      title: "Upcoming Satsang",
+      status: "Upcoming",
+      type: "Ashram Event",
+      title: "Upcoming Ashram Event",
       description: `🌺 Jai Gurubande Swara Yoga Sadhana 🌺
 
-🌹 Satsang & Bhandara Program 🌹
+Date: 17th September 2025  
+Time: From 12:00 PM onwards  
+Venue: Auto Tech Maruti Workshop, Nadesar Ghausabad, Varanasi
 
-📅 Date: 17th September 2025  
-📖 Day: Wednesday  
-🕖 Time: From 7:00 PM onwards  
+Organizers: Shri Mahendra Mistri, Shri Pradeep Yadav, Shri Manoj Kumar  
+Contact: 6393271872, 9451890721
 
-📍 Venue: Village Silhata, Post Saraybharti, District Ballia  
-
-🙏 Organizer: Shri Kalpnath Yadav Ji  
-📞 Contact Number: 9756302073  
-
-👉 We warmly invite all Satsang devotees to kindly attend this program with your family and receive the divine darshan and blessings of Satguru Sahib Ji.  
-
-🙏🙏 Saheb belongs to everyone 🙏🙏`,
+👉 All devotees are invited to attend on the occasion of Vishwakarma Puja and receive blessings.`,
       image: gurujiImage,
-      time: "🕖 Time: From 7:00 PM onwards",
+      time: "🕛 Time: From 12:00 PM onwards",
       date: "📅 Date: 17th September 2025, Wednesday",
-      location: "📍 Venue: Village Silhata, Post Saraybharti, District Ballia",
+      location: "📍 Venue: Auto Tech Maruti Workshop, Nadesar Ghausabad, Varanasi",
     },
   ];
 
-  // State to store selected year
-  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedProgram, setSelectedProgram] = useState("");
 
-  // Get unique years for dropdown
-  const years = [...new Set(data.map((item) => item.year))];
+  const programOptions = data.map(
+    (item) => `${item.year} ${item.status} ${item.type}`
+  );
 
-  // Filter data based on selected year
-  const filteredData = selectedYear
-    ? data.filter((item) => item.year === parseInt(selectedYear))
+  const filteredData = selectedProgram
+    ? data.filter(
+        (item) =>
+          `${item.year} ${item.status} ${item.type}` === selectedProgram
+      )
     : [];
 
   return (
     <div className="program-container">
-      {/* Year Selection Dropdown */}
-      <div className="year-select">
-        <label htmlFor="year">Select Year: </label>
+      {/* Program Dropdown */}
+      <div className="dropdown-group">
+        <label htmlFor="program">Select Program :</label>
         <select
-          id="year"
-          value={selectedYear}
-          onChange={(e) => setSelectedYear(e.target.value)}
+          id="program"
+          value={selectedProgram}
+          onChange={(e) => setSelectedProgram(e.target.value)}
         >
-          <option value="">-- Select Year --</option>
-          {years.map((year) => (
-            <option key={year} value={year}>
-              {year}
+          <option value="">-- Select Program --</option>
+          {programOptions.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
             </option>
           ))}
         </select>
@@ -144,9 +173,9 @@ Contact: 7080224214, 7080224215, 7080224216
           </div>
         ))
       ) : (
-        selectedYear && (
+        selectedProgram && (
           <p style={{ color: "#fff", marginTop: "20px" }}>
-            No programs for this year.
+            No programs found for this selection.
           </p>
         )
       )}

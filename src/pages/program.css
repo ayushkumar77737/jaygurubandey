@@ -1,7 +1,6 @@
 /* ===== Global Container ===== */
 .program-container {
   display: grid;
-  /* bigger cards → min 320px instead of 250px */
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: clamp(20px, 2.5vw, 40px);
   padding: clamp(30px, 6vw, 60px);
@@ -9,6 +8,42 @@
   min-height: 100vh;
   font-family: "Poppins", sans-serif;
   perspective: 1200px;
+
+  /* ✅ Items stay at top, centered horizontally */
+  align-content: start;
+  justify-items: center;
+}
+
+/* ===== Dropdown Styling (Reusable) ===== */
+.dropdown-group {
+  margin-bottom: clamp(20px, 2.5vw, 40px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  flex-wrap: wrap; /* ✅ prevent overflow on smaller screens */
+}
+
+.dropdown-group label {
+  color: #fff;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  white-space: nowrap; /* ✅ prevents text breaking */
+}
+
+.dropdown-group select {
+  padding: clamp(8px, 1vw, 10px) clamp(12px, 2vw, 15px);
+  border-radius: 8px;
+  border: none;
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  outline: none;
+  cursor: pointer;
+
+  /* ✅ Center text inside select */
+  text-align: center;
+  text-align-last: center;
+  min-width: 200px; /* ✅ ensures dropdown is not too small */
+  max-width: 100%;
 }
 
 /* ===== Individual Card ===== */
@@ -21,10 +56,11 @@
   cursor: pointer;
   overflow: hidden;
   transition: transform 0.6s ease, box-shadow 0.6s ease;
-  box-shadow: 0 0 25px rgba(106, 17, 203, 0.5), 0 0 50px rgba(37, 117, 252, 0.3);
+  box-shadow: 0 0 25px rgba(106, 17, 203, 0.5),
+              0 0 50px rgba(37, 117, 252, 0.3);
 }
 
-/* ===== Neon Glow Border via pseudo-element ===== */
+/* Neon Glow Border */
 .program-card::after {
   content: "";
   position: absolute;
@@ -45,13 +81,14 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Card hover effect */
+/* Hover Effect */
 .program-card:hover {
   transform: translateY(-15px) rotateX(4deg) scale(1.05);
-  box-shadow: 0 0 60px rgba(106, 17, 203, 0.9), 0 0 90px rgba(37, 117, 252, 0.6);
+  box-shadow: 0 0 60px rgba(106, 17, 203, 0.9),
+              0 0 90px rgba(37, 117, 252, 0.6);
 }
 
-/* Decorative glowing background */
+/* Decorative Glow */
 .program-card::before {
   content: "";
   position: absolute;
@@ -70,7 +107,7 @@
   100% { transform: scale(1.05); opacity: 0.15; }
 }
 
-/* ===== Image Styling ===== */
+/* Image Styling */
 .program-image {
   width: clamp(140px, 18vw, 180px);
   height: clamp(140px, 18vw, 180px);
@@ -78,13 +115,15 @@
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid #fff;
-  box-shadow: 0 0 35px rgba(106, 17, 203, 0.5), 0 0 45px rgba(37, 117, 252, 0.4);
+  box-shadow: 0 0 35px rgba(106, 17, 203, 0.5),
+              0 0 45px rgba(37, 117, 252, 0.4);
   transition: all 0.6s ease;
 }
 
 .program-card:hover .program-image {
   transform: scale(1.2) rotate(15deg);
-  box-shadow: 0 0 70px rgba(106, 17, 203, 1), 0 0 90px rgba(37, 117, 252, 0.8);
+  box-shadow: 0 0 70px rgba(106, 17, 203, 1),
+              0 0 90px rgba(37, 117, 252, 0.8);
 }
 
 .program-image img {
@@ -94,7 +133,7 @@
   transition: transform 0.6s ease;
 }
 
-/* ===== Title ===== */
+/* Title */
 .program-title {
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 900;
@@ -102,16 +141,20 @@
   letter-spacing: 1.5px;
   margin-bottom: 15px;
   color: #fff;
-  text-shadow: 0 0 8px #6a11cb, 0 0 18px #2575fc, 0 0 25px #ff0099;
+  text-shadow: 0 0 8px #6a11cb,
+               0 0 18px #2575fc,
+               0 0 25px #ff0099;
   transition: all 0.4s ease;
 }
 
 .program-card:hover .program-title {
   letter-spacing: 3px;
-  text-shadow: 0 0 15px #ff0099, 0 0 28px #ff6a00, 0 0 40px #2575fc;
+  text-shadow: 0 0 15px #ff0099,
+               0 0 28px #ff6a00,
+               0 0 40px #2575fc;
 }
 
-/* ===== Text Info ===== */
+/* Info Text */
 .program-time,
 .program-date,
 .program-location {
@@ -132,10 +175,11 @@
 .program-card:hover .program-location {
   color: #6a11cb;
   letter-spacing: 1px;
-  text-shadow: 0 0 6px #6a11cb, 0 0 12px #2575fc;
+  text-shadow: 0 0 6px #6a11cb,
+               0 0 12px #2575fc;
 }
 
-/* ===== Description ===== */
+/* Description */
 .program-description {
   font-size: clamp(0.9rem, 2vw, 1.1rem);
   color: #dcdcdc;
@@ -145,30 +189,10 @@
 }
 
 .program-card:hover .program-description {
-  color: #ff6a00; /* neon accent on hover */
+  color: #ff6a00;
 }
 
-/* ===== Year Selector ===== */
-.year-select {
-  margin-bottom: clamp(20px, 2.5vw, 40px);
-  text-align: center;
-}
-
-.year-select label {
-  color: #fff;
-  font-size: clamp(1.1rem, 2vw, 1.3rem);
-  margin-right: 12px;
-}
-
-.year-select select {
-  padding: clamp(8px, 1vw, 10px) clamp(12px, 2vw, 15px);
-  border-radius: 8px;
-  border: none;
-  font-size: clamp(1rem, 1.5vw, 1.1rem);
-  outline: none;
-}
-
-/* ===== Mobile / Tablet Fixes ===== */
+/* ===== Responsive Fixes ===== */
 @media (max-width: 1024px) {
   .program-container {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -195,6 +219,17 @@
     width: 130px;
     height: 130px;
   }
+
+  /* ✅ stack label + dropdown */
+  .dropdown-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .dropdown-group select {
+    width: 100%;
+    max-width: 320px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -219,12 +254,13 @@
     height: 110px;
   }
 
-  .year-select label {
-    font-size: 1.1rem;
+  .dropdown-group label {
+    font-size: 1rem;
   }
 
-  .year-select select {
-    font-size: 1rem;
+  .dropdown-group select {
+    font-size: 0.95rem;
     padding: 6px 10px;
+    min-width: 180px;
   }
 }
