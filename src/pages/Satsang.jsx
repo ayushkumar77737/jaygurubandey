@@ -88,7 +88,7 @@ const Satsang = () => {
       {/* Buttons Section */}
       <div className="satsang-buttons">
         <a
-          href="https://drive.google.com/file/d/your-anmol-rakhi-link/view?usp=sharing"
+          href="https://drive.google.com/file/d/1jEzeXzcdI7qOkSmWoRUn4sJcfwgmykQk/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="btn"
