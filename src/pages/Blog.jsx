@@ -6,17 +6,16 @@ import blog2a from "../assets/photo3.jpg";  // first blog2 image
 import blog2b from "../assets/photo27.jpg"; // second blog2 image
 import blog2c from "../assets/photo28.jpg"; // third blog2 image
 import blog2d from "../assets/photo29.jpg"; // fourth blog2 image
-import blog3 from "../assets/photo5.jpg";   // blog3 image
+import blog3a from "../assets/photo5.jpg";   // blog3 image
+import blog3b from "../assets/photo26.jpg";  // blog3 image
+import blog3c from "../assets/photo30.jpg";  // blog3 image
 
 const Blog = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
   const [review, setReview] = useState({ name: "", message: "", rating: 0 });
   const [reviews, setReviews] = useState({});
-  const [currentImages, setCurrentImages] = useState({
-    1: 0, // current index for blog1
-    2: 0, // current index for blog2
-  });
+  const [currentImages, setCurrentImages] = useState({});
 
   const posts = [
     {
@@ -39,7 +38,7 @@ const Blog = () => {
     },
     {
       id: 3,
-      images: [blog3],
+      images: [blog3a, blog3b, blog3c],
       title: "Bhajan",
       date: "26 Jan 2025",
       author: "Devotees",
@@ -48,17 +47,20 @@ const Blog = () => {
     },
   ];
 
-  // Slideshow effect for posts 1 and 2
+  // Slideshow effect for ALL posts dynamically
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImages((prev) => ({
-        1: (prev[1] + 1) % posts[0].images.length,
-        2: (prev[2] + 1) % posts[1].images.length,
-      }));
+      setCurrentImages((prev) => {
+        const updated = { ...prev };
+        posts.forEach((post) => {
+          updated[post.id] = ((prev[post.id] || 0) + 1) % post.images.length;
+        });
+        return updated;
+      });
     }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [posts]);
 
   const handleReadMore = (post) => {
     setSelectedPost(post);
@@ -103,7 +105,7 @@ const Blog = () => {
         {posts.map((post) => (
           <div key={post.id} className="blog-card">
             <img
-              src={currentImages[post.id] !== undefined ? post.images[currentImages[post.id]] : post.images[0]}
+              src={post.images[currentImages[post.id] || 0]}
               alt={post.title}
             />
             <div className="blog-content">
