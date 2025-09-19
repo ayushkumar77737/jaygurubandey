@@ -23,7 +23,7 @@ const Hero = () => {
     });
   }, []);
 
-  const fullText = `Param Sant Swami Jai Gurubande Ji Maharaj\nLet’s move towards God and Understand Sanatan Dharma.\nIt’s a spiritual and philosophical message encouraging people to seek divine connection and explore the essence of Sanatan Dharma.`;
+  const fullText = `Param Sant Swami Jai Gurubande Ji Maharaj\nLet’s Move Towards God And Understand Sanatan Dharma.\nIt’s a spiritual and philosophical message encouraging people to seek divine connection and explore the essence of Sanatan Dharma.`;
 
   const [displayedText, setDisplayedText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
