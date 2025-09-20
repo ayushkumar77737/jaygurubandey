@@ -19,18 +19,28 @@ const Navbar = () => {
     closeMenu()
 
     if (location.pathname === path) {
-      // 🔄 If already on the same route, force refresh
       window.location.reload()
     } else {
-      // Navigate normally
       navigate(path)
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 
+  // 🔄 Refresh page when clicking on logo or circle
+  const handleRefresh = () => {
+    window.location.reload()
+  }
+
   return (
     <nav className='container'>
-      <img src={logo} alt='Logo' className='logo' />
+      {/* Left side logo */}
+      <img
+        src={logo}
+        alt='Logo'
+        className='logo'
+        onClick={handleRefresh}
+        style={{ cursor: 'pointer' }}
+      />
 
       <ul className={mobileMenu ? 'nav-links' : 'nav-links hide-mobile-menu'}>
         <li><button onClick={() => handleNavClick('/')} className={linkClass({isActive: location.pathname === '/'})}>Home</button></li>
@@ -43,8 +53,22 @@ const Navbar = () => {
         <li><button onClick={() => handleNavClick('/contact')} className={linkClass({isActive: location.pathname === '/contact'})}>Contact Us</button></li>
       </ul>
 
-      <img src={circle} alt="Circle" className="circle-img" />
-      <img src={menu} alt="menu" className='menu' onClick={toggleMenu}/>
+      {/* Right side circle (refresh on click) */}
+      <img
+        src={circle}
+        alt="Circle"
+        className="circle-img"
+        onClick={handleRefresh}
+        style={{ cursor: 'pointer' }}
+      />
+
+      {/* Mobile menu icon */}
+      <img
+        src={menu}
+        alt="menu"
+        className='menu'
+        onClick={toggleMenu}
+      />
     </nav>
   )
 }
