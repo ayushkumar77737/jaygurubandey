@@ -79,7 +79,7 @@ const Bhajan = () => {
               allowFullScreen
             ></iframe>
             <a href={video.linkUrl} target="_blank" rel="noopener noreferrer">
-              Listen {video.title}
+              Watch {video.title}
             </a>
           </div>
         ))}
