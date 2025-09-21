@@ -5,7 +5,7 @@ const Satsang = () => {
   const videos = [
     {
       id: 1,
-      title: " Amritvani Video 1",
+      title: "Satsang Video 1",
       embedUrl: "https://www.youtube.com/embed/su7VYdVdn-M",
       linkUrl: "https://www.youtube.com/live/su7VYdVdn-M?si=Hf4L8v5t1X3GjmLv",
     },
