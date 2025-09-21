@@ -11,7 +11,7 @@ body {
 /* ========================= Navbar Container ========================= */
 nav {
   width: 100%;
-  background: #333;
+  background: linear-gradient(90deg, #333, #000);
   color: #fff;
   padding: 6px 16px;
   display: flex;
@@ -101,7 +101,7 @@ nav ul li a:hover {
     right: 0;
     /* stays on the right side */
     bottom: 0;
-    background: #333;
+    background: linear-gradient(90deg, #333, #000);
     width: 220px;
     padding-top: 80px;
     display: flex;
