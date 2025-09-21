@@ -144,7 +144,9 @@ Contact: 6393271872, 9451890721
           value={selectedProgram}
           onChange={(e) => setSelectedProgram(e.target.value)}
         >
-          <option value="">-- Select Program --</option>
+          <option value="" hidden>
+            -- Select Program --
+          </option>
           {programOptions.map((option, index) => (
             <option key={index} value={option}>
               {option}
