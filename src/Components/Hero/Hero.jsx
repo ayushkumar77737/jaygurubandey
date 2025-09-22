@@ -56,7 +56,12 @@ const Hero = () => {
   };
 
   const handleAnnouncementClick = () => {
-    navigate("/important-dates"); // ✅ Redirect to Important dates page
+    navigate("/important-dates");
+  };
+
+  const handleDonationClick = () => {
+    // Replace this with your actual Google Form link
+    window.open("https://docs.google.com/forms/d/e/1FAIpQLScl9B28MghidBoAVudjmJMTSx-gwLr8v4GRvolulomcznxdxg/viewform?usp=header", "_blank");
   };
 
   const textLines = displayedText.split("\n");
@@ -85,6 +90,11 @@ const Hero = () => {
 
           <button className="btn announcement-btn" onClick={handleAnnouncementClick}>
             Important Dates <span className="arrow">→</span>
+          </button>
+
+          {/* ✅ Donation Button */}
+          <button className="btn donation-btn" onClick={handleDonationClick}>
+            Contribute <span className="arrow">→</span>
           </button>
         </div>
       </div>
