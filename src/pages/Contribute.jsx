@@ -42,31 +42,38 @@ const Contribute = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ✅ Validation before submitting
+    let errors = [];
+
+    // Name validation
+    if (!formData.name.trim()) {
+      errors.push("❌ Name is required.");
+    }
+
+    // Phone validation
     if (formData.phone.length !== 10) {
-      setMessage("❌ Phone number must be exactly 10 digits.");
-      setTimeout(() => setMessage(""), 3000);
-      return;
+      errors.push("❌ Phone number must be exactly 10 digits.");
     }
 
-    if (formData.transactionId.length !== 12) {
-      setMessage("❌ Transaction ID must be exactly 12 digits.");
-      setTimeout(() => setMessage(""), 3000);
-      return;
-    }
-
+    // Amount validation
     if (!formData.amount || parseInt(formData.amount, 10) <= 0) {
-      setMessage("❌ Amount must be greater than 0.");
-      setTimeout(() => setMessage(""), 3000);
+      errors.push("❌ Amount must be greater than 0.");
+    } else if (parseInt(formData.amount, 10) > 100000) {
+      errors.push("❌ Amount cannot exceed ₹1,00,000.");
+    }
+
+    // Transaction ID validation
+    if (formData.transactionId.length !== 12) {
+      errors.push("❌ Transaction ID must be exactly 12 digits.");
+    }
+
+    // If there are errors, show all at once
+    if (errors.length > 0) {
+      setMessage(errors.join("\n")); // multiple lines
+      setTimeout(() => setMessage(""), 5000);
       return;
     }
 
-    if (parseInt(formData.amount, 10) > 100000) {
-      setMessage("❌ Amount cannot exceed ₹1,00,000.");
-      setTimeout(() => setMessage(""), 3000);
-      return;
-    }
-
+    // ✅ Send data to Google Form
     const formDataToSend = new FormData();
     formDataToSend.append(FORM_FIELDS.name, formData.name);
     formDataToSend.append(FORM_FIELDS.phone, formData.phone);
@@ -86,8 +93,6 @@ const Contribute = () => {
       setTimeout(() => setMessage(""), 3000);
     } catch (error) {
       setMessage("❌ Failed to send. Please try again.");
-
-      // Clear message after 3 seconds
       setTimeout(() => setMessage(""), 3000);
     }
   };
@@ -141,9 +146,16 @@ const Contribute = () => {
 
       {/* Success or error message */}
       {message && (
-        <p style={{ color: "#00ff9d", marginTop: "20px", transition: "opacity 0.5s" }}>
+        <div
+          style={{
+            color: message.startsWith("✅") ? "#00ff9d" : "#ff6b6b",
+            marginTop: "20px",
+            whiteSpace: "pre-line", // keeps line breaks
+            fontWeight: "bold",
+          }}
+        >
           {message}
-        </p>
+        </div>
       )}
     </div>
   );
