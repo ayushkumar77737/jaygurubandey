@@ -163,7 +163,7 @@ nav ul li a:hover {
   .menu {
     display: flex;
     align-self: center;
-    margin-top: -30px; /* ⬆️ move hamburger slightly upwards */
+    margin-top: -12px; /* ⬆️ move hamburger slightly upwards */
   }
 
   .circle-img {
