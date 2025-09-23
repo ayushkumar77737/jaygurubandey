@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import './Navbar.css'
 import logo from '../../assets/logo.jpg.png'
 import circle from '../../assets/circle.png'
-import menu from '../../assets/menu.png'
-import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
@@ -17,7 +16,6 @@ const Navbar = () => {
 
   const handleNavClick = (path) => {
     closeMenu()
-
     if (location.pathname === path) {
       window.location.reload()
     } else {
@@ -26,7 +24,6 @@ const Navbar = () => {
     }
   }
 
-  // 🔄 Refresh page when clicking on logo or circle
   const handleRefresh = () => {
     window.location.reload()
   }
@@ -42,6 +39,7 @@ const Navbar = () => {
         style={{ cursor: 'pointer' }}
       />
 
+      {/* Navigation links */}
       <ul className={mobileMenu ? 'nav-links' : 'nav-links hide-mobile-menu'}>
         <li><button onClick={() => handleNavClick('/')} className={linkClass({isActive: location.pathname === '/'})}>Home</button></li>
         <li><button onClick={() => handleNavClick('/about')} className={linkClass({isActive: location.pathname === '/about'})}>About</button></li>
@@ -51,12 +49,10 @@ const Navbar = () => {
         <li><button onClick={() => handleNavClick('/blog')} className={linkClass({isActive: location.pathname === '/blog'})}>Blog</button></li>
         <li><button onClick={() => handleNavClick('/gallery')} className={linkClass({isActive: location.pathname === '/gallery'})}>Gallery</button></li>
         <li><button onClick={() => handleNavClick('/contact')} className={linkClass({isActive: location.pathname === '/contact'})}>Contact Us</button></li>
-        
-        {/* 🆕 New Contribute Button */}
         <li><button onClick={() => handleNavClick('/contribute')} className={linkClass({isActive: location.pathname === '/contribute'})}>Contribute</button></li>
       </ul>
 
-      {/* Right side circle (refresh on click) */}
+      {/* Right side circle (refresh) */}
       <img
         src={circle}
         alt="Circle"
@@ -65,13 +61,12 @@ const Navbar = () => {
         style={{ cursor: 'pointer' }}
       />
 
-      {/* Mobile menu icon */}
-      <img
-        src={menu}
-        alt="menu"
-        className='menu'
-        onClick={toggleMenu}
-      />
+      {/* Mobile hamburger menu */}
+      <div className={`menu ${mobileMenu ? 'open' : ''}`} onClick={toggleMenu}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </nav>
   )
 }
