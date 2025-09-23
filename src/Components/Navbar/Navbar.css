@@ -132,6 +132,9 @@ nav ul li a:hover {
     transform: translateX(0);
     transition: transform 0.45s ease;
     will-change: transform;
+
+    /* ✅ Enable vertical scrolling */
+    overflow-y: auto;
   }
 
   .hide-mobile-menu {
