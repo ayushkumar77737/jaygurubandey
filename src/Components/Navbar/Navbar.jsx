@@ -51,6 +51,9 @@ const Navbar = () => {
         <li><button onClick={() => handleNavClick('/blog')} className={linkClass({isActive: location.pathname === '/blog'})}>Blog</button></li>
         <li><button onClick={() => handleNavClick('/gallery')} className={linkClass({isActive: location.pathname === '/gallery'})}>Gallery</button></li>
         <li><button onClick={() => handleNavClick('/contact')} className={linkClass({isActive: location.pathname === '/contact'})}>Contact Us</button></li>
+        
+        {/* 🆕 New Contribute Button */}
+        <li><button onClick={() => handleNavClick('/contribute')} className={linkClass({isActive: location.pathname === '/contribute'})}>Contribute</button></li>
       </ul>
 
       {/* Right side circle (refresh on click) */}

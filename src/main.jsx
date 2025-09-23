@@ -13,6 +13,7 @@ import Gallery from './pages/Gallery.jsx'
 import Contact from './pages/Contact.jsx'
 import ChatWithUs from './pages/Chatwithus.jsx'
 import ImportantDates from './pages/ImportantDates.jsx'   // ✅ Add import
+import Contribute from './pages/Contribute.jsx'
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
       { path: 'contact', element: <Contact/> },
       { path: 'chat', element: <ChatWithUs /> },
       { path: 'important-dates', element: <ImportantDates /> }, // ✅ Add route
+      { path: 'contribute', element: <Contribute /> }
     ]
   }
 ])

@@ -1,0 +1,14 @@
+.contribute-page {
+  text-align: center;
+  padding: 50px;
+}
+
+.contribute-page h1 {
+  font-size: 2.5rem;
+  color: #d35400;
+}
+
+.contribute-page p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
