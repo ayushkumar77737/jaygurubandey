@@ -16,9 +16,9 @@ const ChatWithUs = () => {
       "https://docs.google.com/forms/d/e/1FAIpQLSeuxiyEAvdTkwzSJUKYhx6BKkqR1bQvyUV2GOELQacWwBAA-g/formResponse";
 
     const formData = new FormData();
-    formData.append("entry.189061439", name);     // Name
-    formData.append("entry.1391401379", email);      // Email (replace with actual ID)
-    formData.append("entry.1240440170", phone);      // Phone (replace with actual ID)
+    formData.append("entry.189061439", name); // Name
+    formData.append("entry.1391401379", email); // Email
+    formData.append("entry.1240440170", phone); // Phone
     formData.append("entry.747611041", question); // Question
 
     try {
@@ -52,29 +52,40 @@ const ChatWithUs = () => {
       <div className="chat-container">
         <h2 className="chat-title">Chat With Us</h2>
         <form className="chat-form" onSubmit={handleSubmit}>
+          {/* Name Field - only letters & spaces */}
           <input
             type="text"
             placeholder="Enter your Name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              const onlyLetters = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+              setName(onlyLetters);
+            }}
             required
           />
+
+          {/* Email Field - standard email safe chars */}
           <input
             type="email"
             placeholder="Enter your Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              const filtered = e.target.value.replace(/[^a-zA-Z0-9@._-]/g, "");
+              setEmail(filtered);
+            }}
             required
           />
+
+          {/* Phone Field - only digits */}
           <input
             type="tel"
             placeholder="Enter your Phone Number"
             value={phone}
             onChange={(e) => {
-              const onlyNums = e.target.value.replace(/\D/g, ""); // remove non-digits
+              const onlyNums = e.target.value.replace(/\D/g, "");
               setPhone(onlyNums);
             }}
-            pattern="\d{10}"         // only digits, exactly 10 if you want
+            pattern="\d{10}" // only digits, exactly 10
             maxLength={10}
             required
           />
