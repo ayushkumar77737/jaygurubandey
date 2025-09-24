@@ -145,18 +145,17 @@
   }
 }
 
-
-
-/* ===== Pagination ===== */
 /* ===== Satsang Pagination ===== */
 .satsang-container .pagination {
   margin: 30px 0;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* allows items to wrap on smaller screens */
 }
 
+/* Pagination Buttons */
 .satsang-container .pagination button {
   padding: 8px 14px;
   border: none;
@@ -166,6 +165,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: background 0.25s ease, transform 0.2s ease;
+  min-width: 80px; /* ensures buttons don't get too small */
 }
 
 .satsang-container .pagination button:hover {
@@ -176,4 +176,58 @@
 .satsang-container .pagination button.active {
   background: #d35400; /* active page satsang color */
   transform: scale(1.05);
+}
+
+/* Page Circle */
+.page-circle {
+  display: inline-block;
+  padding: 14px 20px; /* adjust size */
+  border-radius: 50%;
+  background-color: #f39c12; /* circle color */
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 15px;
+  font-size: 16px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  min-width: 60px; /* ensure circle does not shrink too much */
+  min-height: 60px;
+  line-height: 1.2;
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 768px) {
+  .satsang-container .pagination button {
+    padding: 6px 10px;
+    font-size: 14px;
+    min-width: 60px;
+  }
+
+  .page-circle {
+    padding: 12px 16px;
+    font-size: 14px;
+    min-width: 50px;
+    min-height: 50px;
+    margin: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .satsang-container .pagination {
+    gap: 5px;
+  }
+
+  .satsang-container .pagination button {
+    padding: 5px 8px;
+    font-size: 13px;
+    min-width: 50px;
+  }
+
+  .page-circle {
+    padding: 10px 12px;
+    font-size: 12px;
+    min-width: 45px;
+    min-height: 45px;
+    margin: 4px;
+  }
 }
