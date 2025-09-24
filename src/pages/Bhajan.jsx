@@ -82,11 +82,7 @@ const Bhajan = () => {
       <div className="video-grid">
         {currentVideos.map((video) => (
           <div key={video.id} className="video-card">
-            <iframe
-              src={video.embedUrl}
-              title={video.title}
-              allowFullScreen
-            ></iframe>
+            <iframe src={video.embedUrl} title={video.title} allowFullScreen></iframe>
             <a href={video.linkUrl} target="_blank" rel="noopener noreferrer">
               Watch {video.title}
             </a>
@@ -96,15 +92,21 @@ const Bhajan = () => {
 
       {/* Pagination */}
       <div className="pagination">
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index + 1}
-            onClick={() => setCurrentPage(index + 1)}
-            className={currentPage === index + 1 ? "active" : ""}
-          >
-            {index + 1}
-          </button>
-        ))}
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          ← Prev
+        </button>
+        <span className="page-circle">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          disabled={currentPage === totalPages}
+        >
+          Next →
+        </button>
       </div>
 
       {/* Buttons Section */}
