@@ -144,3 +144,35 @@
     width: 90%;
   }
 }
+
+
+
+/* ===== Pagination ===== */
+.pagination {
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pagination button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #f39c12;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.pagination button:hover {
+  background: #e67e22;
+  transform: translateY(-2px);
+}
+
+.pagination button.active {
+  background: #d35400;
+  transform: scale(1.05);
+}

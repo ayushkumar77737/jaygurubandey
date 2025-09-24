@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Satsang.css";
 
 const Satsang = () => {
@@ -65,13 +65,22 @@ const Satsang = () => {
     },
   ];
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const videosPerPage = 6;
+
+  const indexOfLastVideo = currentPage * videosPerPage;
+  const indexOfFirstVideo = indexOfLastVideo - videosPerPage;
+  const currentVideos = videos.slice(indexOfFirstVideo, indexOfLastVideo);
+
+  const totalPages = Math.ceil(videos.length / videosPerPage);
+
   return (
     <div className="satsang-container">
       <h1 className="satsang-title">Amritvani</h1>
 
       {/* Video Grid */}
       <div className="video-grid">
-        {videos.map((video) => (
+        {currentVideos.map((video) => (
           <div key={video.id} className="video-card">
             <iframe
               src={video.embedUrl}
@@ -82,6 +91,19 @@ const Satsang = () => {
               Watch {video.title}
             </a>
           </div>
+        ))}
+      </div>
+
+      {/* Pagination */}
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => setCurrentPage(index + 1)}
+            className={currentPage === index + 1 ? "active" : ""}
+          >
+            {index + 1}
+          </button>
         ))}
       </div>
 
