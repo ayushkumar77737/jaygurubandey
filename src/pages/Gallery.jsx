@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Gallery.css";
 
-// Import images (exact file names with correct case)
+// Import images
 import photo6 from "../assets/photo6.jpg";
 import photo7 from "../assets/photo7.jpg";
 import photo8 from "../assets/photo8.jpg";
@@ -45,11 +45,22 @@ const photos = [
 ];
 
 const Gallery = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const photosPerPage = 10;
+
+  // Calculate page photos
+  const indexOfLastPhoto = currentPage * photosPerPage;
+  const indexOfFirstPhoto = indexOfLastPhoto - photosPerPage;
+  const currentPhotos = photos.slice(indexOfFirstPhoto, indexOfLastPhoto);
+
+  const totalPages = Math.ceil(photos.length / photosPerPage);
+
   return (
     <div className="gallery-container">
       <h2 className="gallery-title">Gallery</h2>
+
       <div className="gallery-grid">
-        {photos.map((photo) => (
+        {currentPhotos.map((photo) => (
           <div key={photo.id} className="gallery-item">
             <img src={photo.src} alt={photo.alt} className="gallery-photo" />
             <a href={photo.src} download className="download-btn">
@@ -57,6 +68,29 @@ const Gallery = () => {
             </a>
           </div>
         ))}
+      </div>
+
+      {/* Pagination */}
+      <div className="pagination">
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          ← Prev
+        </button>
+
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+
+        <button
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+          }
+          disabled={currentPage === totalPages}
+        >
+          Next →
+        </button>
       </div>
     </div>
   );

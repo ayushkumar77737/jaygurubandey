@@ -136,3 +136,50 @@
   .gallery-photo { height: 180px; border-radius: 10px; }
   .download-btn { padding: 10px 18px; font-size: 14px; }
 }
+
+
+/* ===================== Pagination ===================== */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s ease-in-out;
+}
+
+.pagination button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b, #ffcc70);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.pagination button:hover:not(:disabled) {
+  transform: translateY(-4px) scale(1.07);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.pagination button:disabled {
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Page Indicator */
+.pagination span {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
