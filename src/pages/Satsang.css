@@ -148,7 +148,8 @@
 
 
 /* ===== Pagination ===== */
-.pagination {
+/* ===== Satsang Pagination ===== */
+.satsang-container .pagination {
   margin: 30px 0;
   display: flex;
   justify-content: center;
@@ -156,23 +157,23 @@
   flex-wrap: wrap;
 }
 
-.pagination button {
+.satsang-container .pagination button {
   padding: 8px 14px;
   border: none;
   border-radius: 6px;
-  background: #f39c12;
+  background: #f39c12; /* main satsang theme color */
   color: #fff;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.25s ease, transform 0.2s ease;
 }
 
-.pagination button:hover {
-  background: #e67e22;
+.satsang-container .pagination button:hover {
+  background: #e67e22; /* hover satsang color */
   transform: translateY(-2px);
 }
 
-.pagination button.active {
-  background: #d35400;
+.satsang-container .pagination button.active {
+  background: #d35400; /* active page satsang color */
   transform: scale(1.05);
 }
