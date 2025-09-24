@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Bhajan.css";
 
 const Bhajan = () => {
@@ -65,13 +65,22 @@ const Bhajan = () => {
     },
   ];
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const videosPerPage = 6;
+
+  const indexOfLastVideo = currentPage * videosPerPage;
+  const indexOfFirstVideo = indexOfLastVideo - videosPerPage;
+  const currentVideos = videos.slice(indexOfFirstVideo, indexOfLastVideo);
+
+  const totalPages = Math.ceil(videos.length / videosPerPage);
+
   return (
     <div className="bhajan-container">
       <h1 className="bhajan-title">Bhajan Moments</h1>
 
       {/* Video Grid */}
       <div className="video-grid">
-        {videos.map((video) => (
+        {currentVideos.map((video) => (
           <div key={video.id} className="video-card">
             <iframe
               src={video.embedUrl}
@@ -82,6 +91,19 @@ const Bhajan = () => {
               Watch {video.title}
             </a>
           </div>
+        ))}
+      </div>
+
+      {/* Pagination */}
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => setCurrentPage(index + 1)}
+            className={currentPage === index + 1 ? "active" : ""}
+          >
+            {index + 1}
+          </button>
         ))}
       </div>
 
@@ -105,14 +127,13 @@ const Bhajan = () => {
           Satguru Arti <span className="arrow">→</span>
         </a>
 
-        {/* New Bhajan Sangrah Button */}
         <a
           href="https://drive.google.com/file/d/your-bhajan-sangrah-link/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="btn"
         >
-          Bhajan Sangrah<span className="arrow">→</span>
+          Bhajan Sangrah <span className="arrow">→</span>
         </a>
       </div>
     </div>
