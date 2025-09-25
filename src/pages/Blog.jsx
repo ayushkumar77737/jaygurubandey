@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./Blog.css";
-import blog1a from "../assets/photo4.jpg"; // first blog1 image
-import blog1b from "../assets/photo25.jpg"; // second blog1 image
-import blog2a from "../assets/photo3.jpg";  // first blog2 image
-import blog2b from "../assets/photo27.jpg"; // second blog2 image
-import blog2c from "../assets/photo28.jpg"; // third blog2 image
-import blog2d from "../assets/photo29.jpg"; // fourth blog2 image
-import blog3a from "../assets/photo5.jpg";   // blog3 image
-import blog3b from "../assets/photo26.jpg";  // blog3 image
-import blog3c from "../assets/photo30.jpg";  // blog3 image
+import blog1a from "../assets/photo4.jpg"; 
+import blog1b from "../assets/photo25.jpg"; 
+import blog2a from "../assets/photo3.jpg";  
+import blog2b from "../assets/photo27.jpg"; 
+import blog2c from "../assets/photo28.jpg"; 
+import blog2d from "../assets/photo29.jpg"; 
+import blog3a from "../assets/photo5.jpg";   
+import blog3b from "../assets/photo26.jpg";  
+import blog3c from "../assets/photo30.jpg";  
 
 const Blog = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,38 +16,18 @@ const Blog = () => {
   const [review, setReview] = useState({ name: "", message: "", rating: 0 });
   const [reviews, setReviews] = useState({});
   const [currentImages, setCurrentImages] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
 
   const posts = [
-    {
-      id: 1,
-      images: [blog1a, blog1b],
-      title: "Guru Purnima 2025",
-      date: "6 July 2025",
-      author: "Ashram Team",
-      description:
-        "A sacred gathering was held where devotees wholeheartedly expressed their gratitude to Guruji. The atmosphere was filled with devotion as everyone participated in satsang, sang soulful bhajans, and engaged in seva with deep reverence and joy.",
-    },
-    {
-      id: 2,
-      images: [blog2a, blog2b, blog2c, blog2d],
-      title: "Satsang At Ashram",
-      date: "10 Aug 2025",
-      author: "Ashram Team",
-      description:
-        "An immersive retreat was organized in the serene ashram environment, offering participants an opportunity to deepen their practice of yoga and meditation. The retreat emphasized self-reflection, inner peace, and spiritual growth, allowing devotees to reconnect with their true selves amidst the tranquil surroundings.",
-    },
-    {
-      id: 3,
-      images: [blog3a, blog3b, blog3c],
-      title: "Bhajan",
-      date: "26 Jan 2025",
-      author: "Devotees",
-      description:
-        "This was a soulful evening of bhajan and satsang where family, friends, and neighbors came together in devotion, singing with joy and clapping in rhythm to the beats of traditional instruments. The simple decorations, heartfelt prayers, and collective voices created an atmosphere filled with positivity, peace, and divine energy, reminding everyone of the power of togetherness, faith, and inner harmony.",
-    },
+    { id: 1, images: [blog1a, blog1b], title: "Guru Purnima 2025", date: "6 July 2025", author: "Ashram Team", description: "A sacred gathering was held where devotees wholeheartedly expressed their gratitude to Guruji..." },
+    { id: 2, images: [blog2a, blog2b, blog2c, blog2d], title: "Satsang At Ashram", date: "10 Aug 2025", author: "Ashram Team", description: "An immersive retreat was organized in the serene ashram environment..." },
+    { id: 3, images: [blog3a, blog3b, blog3c], title: "Bhajan", date: "26 Jan 2025", author: "Devotees", description: "This was a soulful evening of bhajan and satsang where family, friends, and neighbors..." },
+    { id: 4, images: [blog1a, blog1b], title: "Seva and Service", date: "15 Feb 2025", author: "Ashram Volunteers", description: "Devotees engaged in seva activities including cleanliness drives, food distribution..." },
+    { id: 5, images: [blog2a, blog2b, blog2c, blog2d], title: "Meditation Retreat", date: "20 Mar 2025", author: "Ashram Team", description: "A three-day meditation retreat was held to help seekers dive deep into silence..." },
+    { id: 6, images: [blog3a, blog3b, blog3c], title: "Festival of Lights", date: "12 Nov 2025", author: "Community", description: "The ashram was decorated beautifully with diyas and flowers as devotees gathered..." },
   ];
 
-  // Slideshow effect for ALL posts dynamically
+  // Slideshow effect
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImages((prev) => {
@@ -58,13 +38,24 @@ const Blog = () => {
         return updated;
       });
     }, 3000);
-
     return () => clearInterval(interval);
   }, [posts]);
 
-  const handleReadMore = (post) => {
-    setSelectedPost(post);
-    setIsModalOpen(true);
+  // Pagination logic
+  const postsPerPage = 3;
+  const totalPages = Math.ceil(posts.length / postsPerPage);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const handlePrev = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleChange = (e) => {
@@ -102,7 +93,7 @@ const Blog = () => {
       </p>
 
       <div className="blog-grid">
-        {posts.map((post) => (
+        {currentPosts.map((post) => (
           <div key={post.id} className="blog-card">
             <img
               src={post.images[currentImages[post.id] || 0]}
@@ -129,6 +120,13 @@ const Blog = () => {
         ))}
       </div>
 
+      {/* Previous / Next Pagination */}
+      <div className="pagination">
+        <button onClick={handlePrev} disabled={currentPage === 1}>⬅ Previous</button>
+        <span className="page-info">Page {currentPage} of {totalPages}</span>
+        <button onClick={handleNext} disabled={currentPage === totalPages}>Next ➡</button>
+      </div>
+
       {/* Modal for review */}
       {isModalOpen && selectedPost && (
         <div className="modal-overlay">
@@ -152,7 +150,7 @@ const Blog = () => {
               />
               <div style={{ marginBottom: "10px" }}>
                 <strong>Rating: </strong>
-                {[1, 2, 3, 4, 5].map((i) => (
+                {[1,2,3,4,5].map((i) => (
                   <span
                     key={i}
                     onClick={() => handleStarClick(i)}
@@ -162,20 +160,12 @@ const Blog = () => {
                       color: i <= review.rating ? "#FFD700" : "#ccc",
                       marginRight: "5px",
                     }}
-                  >
-                    ★
-                  </span>
+                  >★</span>
                 ))}
               </div>
               <div className="modal-buttons">
                 <button type="submit" className="submit-btn">Submit</button>
-                <button
-                  type="button"
-                  className="cancel-btn"
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  Cancel
-                </button>
+                <button type="button" className="cancel-btn" onClick={() => setIsModalOpen(false)}>Cancel</button>
               </div>
             </form>
           </div>
