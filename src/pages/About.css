@@ -108,3 +108,141 @@
   .journey-photo img, .vision-photo img, .daily-photo img { max-width: 130px; }
   .about-intro h1 { font-size: 1.8rem; }
 }
+
+
+/* ===== New Sections ===== */
+.about-teachings, .about-seva, .about-festivals {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, #ffffff, #fdf6f9);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.7s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-teachings { animation-delay: 0.3s; }
+.about-seva { animation-delay: 0.4s; }
+.about-festivals { animation-delay: 0.5s; }
+
+.about-teachings:hover, .about-seva:hover, .about-festivals:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(243, 90, 123, 0.15);
+}
+
+/* ===== Photos for New Sections ===== */
+.teachings-photo img, .seva-photo img, .festivals-photo img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.teachings-photo img:hover, .seva-photo img:hover, .festivals-photo img:hover {
+  transform: scale(1.06);
+  box-shadow: 0 4px 14px rgba(243, 90, 123, 0.25);
+}
+
+/* ===== Text Styling ===== */
+.teachings-text, .seva-text, .festivals-text {
+  flex: 1 1 300px;
+  font-size: clamp(0.95rem, 2.3vw, 1.1rem);
+  line-height: 1.7;
+  color: #444;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .about-teachings, .about-seva, .about-festivals {
+    flex-direction: column;
+    text-align: center;
+  }
+  .teachings-photo img, .seva-photo img, .festivals-photo img {
+    margin-bottom: 1.2rem;
+    max-width: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .teachings-photo img, .seva-photo img, .festivals-photo img { max-width: 130px; }
+}
+
+
+
+/* ===== Pagination (scoped to About page) ===== */
+.about-page .pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap; /* allows wrapping on small screens */
+}
+
+.about-page .pagination button {
+  background: #b71c1c;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.about-page .pagination button:hover:not(:disabled) {
+  background: #d32f2f;
+}
+
+.about-page .pagination button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.about-page .pagination span {
+  font-weight: 600;
+  color: #444;
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 768px) {
+  .about-page .pagination {
+    gap: 0.6rem;
+  }
+
+  .about-page .pagination button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .about-page .pagination span {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-page .pagination {
+    flex-direction: column; /* stack buttons + text */
+    gap: 0.8rem;
+  }
+
+  .about-page .pagination button {
+    width: 100%; /* full width buttons for mobile */
+    max-width: 250px;
+    text-align: center;
+  }
+
+  .about-page .pagination span {
+    font-size: 0.85rem;
+    text-align: center;
+  }
+}
