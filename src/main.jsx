@@ -14,6 +14,8 @@ import Contact from './pages/Contact.jsx'
 import ChatWithUs from './pages/Chatwithus.jsx'
 import ImportantDates from './pages/ImportantDates.jsx'   // ✅ Add import
 import Contribute from './pages/Contribute.jsx'
+import PrivacyPolicy from './pages/PrivacyPolicy.jsx'   // ✅ Import page
+
 
 const router = createBrowserRouter([
   {
@@ -30,7 +32,8 @@ const router = createBrowserRouter([
       { path: 'contact', element: <Contact/> },
       { path: 'chat', element: <ChatWithUs /> },
       { path: 'important-dates', element: <ImportantDates /> }, // ✅ Add route
-      { path: 'contribute', element: <Contribute /> }
+      { path: 'contribute', element: <Contribute /> },
+      { path: 'privacy-policy', element: <PrivacyPolicy /> },
     ]
   }
 ])

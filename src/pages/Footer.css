@@ -1,52 +1,183 @@
+/* ================= FOOTER BASE ================= */
 .footer {
   background: linear-gradient(90deg, #333, #000);
   color: #fff;
-  padding: 12px 0;           /* ↓ reduced from 20px */
+  padding: 16px 0;
   text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .footer-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;                  /* ↓ reduced from 15px */
+  gap: 12px;
+  padding: 0 16px;
 }
 
+/* ================= FOOTER BOTTOM ================= */
+.footer-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap; /* Wrap on smaller screens */
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.footer-bottom .privacy-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.3s;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-bottom .privacy-link::before {
+  content: "|";
+  margin: 0 8px;
+  color: #aaa;
+}
+
+.footer-bottom .privacy-link:hover {
+  color: #b71c1c;
+}
+
+/* ================= SOCIAL LINKS ================= */
 .social-links {
   display: flex;
-  gap: 12px;                  /* ↓ reduced from 18px */
-  margin-top: 6px;            /* ↓ reduced from 10px */
+  justify-content: center;
+  gap: 16px;
+  margin-top: 8px;
+  flex-wrap: wrap;
 }
 
 .social-links a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;                /* ↓ reduced from 45px */
-  height: 32px;               /* ↓ reduced from 45px */
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  font-size: 16px;             /* ↓ reduced from 22px */
+  font-size: 20px;
   color: #fff;
   background: #444;
   transition: all 0.3s ease;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
-/* Brand backgrounds */
-.social-links a.facebook { background: #1877f2; }
-.social-links a.instagram {
-  background: linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
+/* Social brand colors */
+.social-links a.facebook {
+  background: #1877f2;
 }
-.social-links a.youtube { background: #ff0000; }
-.social-links a.whatsapp { background: #25d366; }
+
+.social-links a.instagram {
+  background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+}
+
+.social-links a.youtube {
+  background: #ff0000;
+}
+
+.social-links a.whatsapp {
+  background: #25d366;
+}
 
 .social-links a:hover {
-  transform: scale(1.15);
-  box-shadow: 0 5px 8px rgba(0,0,0,0.4);
+  transform: scale(1.2);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.45);
   filter: brightness(1.15);
 }
 
-.footer p {
-  font-size: 12px;             /* ↓ reduced from 14px */
-  margin: 0;
+/* ================= RESPONSIVE DESIGN ================= */
+
+/* Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+  .footer-content {
+    padding: 0 12px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer-bottom p {
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .footer-bottom .privacy-link {
+    font-size: 14px;
+  }
+
+  .social-links {
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .social-links a {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+}
+
+/* Mobile phones (max-width: 480px) */
+@media (max-width: 480px) {
+  .footer-content {
+    gap: 10px;
+  }
+
+  .footer-bottom {
+    gap: 6px;
+  }
+
+  .footer-bottom p {
+    font-size: 12px;
+  }
+
+  .footer-bottom .privacy-link {
+    font-size: 13px;
+  }
+
+  .footer-bottom .privacy-link::before {
+    margin: 0 6px;
+  }
+
+  .social-links {
+    gap: 10px;
+  }
+
+  .social-links a {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+}
+
+/* Extra small devices (max-width: 320px) */
+@media (max-width: 320px) {
+  .footer-bottom p {
+    font-size: 11px;
+  }
+
+  .footer-bottom .privacy-link {
+    font-size: 12px;
+  }
+
+  .social-links a {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+  }
 }

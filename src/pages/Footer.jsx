@@ -1,12 +1,20 @@
 import React from 'react'
 import './Footer.css'
 import { FaFacebook, FaInstagram, FaYoutube, FaWhatsapp } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="container footer-content">
-        <p>© {new Date().getFullYear()} Jay Guru Bandey. All rights reserved.</p>
+
+        {/* ✅ Text + Privacy Policy side by side */}
+        <div className="footer-bottom">
+          <p>© {new Date().getFullYear()} Jay Guru Bandey . All rights reserved .</p>
+          <Link to="/privacy-policy" className="privacy-link">
+            Privacy Policy
+          </Link>
+        </div>
 
         <div className="social-links">
           <a href="https://www.facebook.com/share/g/1AZvFisxcs/" 
