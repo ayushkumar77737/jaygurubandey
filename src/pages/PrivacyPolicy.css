@@ -5,16 +5,23 @@
   align-items: center;
   min-height: 100vh; /* Full screen */
   background: linear-gradient(135deg, #f7f7f7, #ececec);
-  padding: 40px 20px;
-  animation: fadeInBackground 1.5s ease-in-out;
+  padding: 5vw 4vw; /* Fluid padding */
+  animation: fadeInBackground 2s ease-in-out infinite alternate;
   box-sizing: border-box;
+}
+
+/* Animated gradient background */
+@keyframes fadeInBackground {
+  0% { background: linear-gradient(135deg, #f7f7f7, #ececec); }
+  50% { background: linear-gradient(135deg, #ececec, #f7f7f7); }
+  100% { background: linear-gradient(135deg, #f7f7f7, #ececec); }
 }
 
 .privacy-container {
   background: #fff;
   max-width: 800px;
   width: 100%;
-  padding: 30px 40px;
+  padding: 3vw 4vw;
   border-radius: 16px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   text-align: center;
@@ -22,24 +29,33 @@
   line-height: 1.7;
   transform: translateY(20px);
   animation: slideUp 1s ease forwards;
-  transition: padding 0.3s ease, max-width 0.3s ease;
+  transition: padding 0.3s ease, max-width 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Card hover effect */
+.privacy-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
 /* ===== Headings ===== */
 .privacy-container h1 {
   color: #b71c1c;
-  margin-bottom: 15px;
-  font-size: 2.5rem;
+  margin-bottom: 1vw;
+  font-size: clamp(1.5rem, 4vw, 2.5rem); /* Fluid font size */
   font-weight: 700;
   line-height: 1.2;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  animation: fadeInUp 1s ease forwards;
 }
 
 .privacy-container h2 {
-  margin-top: 25px;
+  margin-top: 2vw;
   color: #333;
-  font-size: 1.5rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
   position: relative;
   line-height: 1.3;
+  animation: fadeInUp 1s ease forwards;
 }
 
 /* Decorative underline effect */
@@ -51,25 +67,39 @@
   background: #b71c1c;
   margin: 8px auto 0;
   border-radius: 2px;
-  transition: width 0.3s ease;
+  transition: width 0.3s ease, background 0.3s ease;
 }
 
 .privacy-container h2:hover::after {
   width: 100px;
+  background: #ff4b4b;
 }
 
 /* ===== Text Styling ===== */
 .privacy-container p {
   color: #555;
-  font-size: 1rem;
-  margin-top: 10px;
+  font-size: clamp(0.85rem, 2vw, 1rem); /* Fluid font size */
+  margin-top: 0.8vw;
   text-align: justify;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect for paragraphs */
+.privacy-container p:hover {
+  color: #b71c1c;
+  transform: translateX(3px);
 }
 
 .highlight {
   color: #b71c1c;
   font-weight: 600;
   word-wrap: break-word;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.highlight:hover {
+  color: #ff4b4b;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
 /* ===== Fade-in Animations ===== */
@@ -87,8 +117,11 @@
 
 /* ===== Section Spacing ===== */
 .policy-section {
-  margin-top: 20px;
+  margin-top: 1.5vw;
   text-align: left;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
 }
 
 /* ===== Animations ===== */
@@ -99,84 +132,30 @@
   }
 }
 
-@keyframes fadeInBackground {
-  from {
-    background: #fff;
-  }
-  to {
-    background: linear-gradient(135deg, #f7f7f7, #ececec);
-  }
-}
-
 @keyframes slideUp {
   to {
     transform: translateY(0);
   }
 }
 
-/* ===== Responsive Design ===== */
-
-/* ----- For tablets (481px - 768px) ----- */
-@media (max-width: 768px) {
-  .privacy-container {
-    padding: 20px;
-    max-width: 90%;
-  }
-
-  .privacy-container h1 {
-    font-size: 2rem;
-  }
-
-  .privacy-container h2 {
-    font-size: 1.3rem;
-  }
-
-  .privacy-container p {
-    font-size: 0.95rem;
-  }
-}
-
-/* ----- For small phones (up to 480px) ----- */
+/* ===== Additional Media Queries for Very Small Screens ===== */
 @media (max-width: 480px) {
+  .privacy-policy {
+    padding: 6vw 4vw;
+  }
   .privacy-container {
-    padding: 15px;
-    max-width: 95%;
+    padding: 5vw 4vw;
     border-radius: 12px;
   }
-
-  .privacy-container h1 {
-    font-size: 1.7rem;
-  }
-
-  .privacy-container h2 {
-    font-size: 1.1rem;
-  }
-
-  .privacy-container p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-
-  .privacy-container h2::after {
-    width: 40px;
-  }
+  .privacy-container h1 { font-size: 1.7rem; }
+  .privacy-container h2 { font-size: 1.1rem; }
+  .privacy-container p { font-size: 0.9rem; line-height: 1.5; }
+  .privacy-container h2::after { width: 40px; }
 }
 
-/* ----- For very small screens (320px and below) ----- */
 @media (max-width: 320px) {
-  .privacy-container {
-    padding: 12px;
-  }
-
-  .privacy-container h1 {
-    font-size: 1.5rem;
-  }
-
-  .privacy-container h2 {
-    font-size: 1rem;
-  }
-
-  .privacy-container p {
-    font-size: 0.85rem;
-  }
+  .privacy-container { padding: 4vw 3vw; }
+  .privacy-container h1 { font-size: 1.5rem; }
+  .privacy-container h2 { font-size: 1rem; }
+  .privacy-container p { font-size: 0.85rem; }
 }
