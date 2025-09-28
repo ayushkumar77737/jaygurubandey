@@ -4,19 +4,13 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh; /* Full screen */
-  background: linear-gradient(135deg, #f7f7f7, #ececec);
+  /* Fixed gradient background */
+  background: linear-gradient(135deg, #ffefba, #ffffff); /* warm soft gradient */
   padding: 5vw 4vw; /* Fluid padding */
-  animation: fadeInBackground 2s ease-in-out infinite alternate;
   box-sizing: border-box;
 }
 
-/* Animated gradient background */
-@keyframes fadeInBackground {
-  0% { background: linear-gradient(135deg, #f7f7f7, #ececec); }
-  50% { background: linear-gradient(135deg, #ececec, #f7f7f7); }
-  100% { background: linear-gradient(135deg, #f7f7f7, #ececec); }
-}
-
+/* ===== Privacy Container ===== */
 .privacy-container {
   background: #fff;
   max-width: 800px;
@@ -29,7 +23,9 @@
   line-height: 1.7;
   transform: translateY(20px);
   animation: slideUp 1s ease forwards;
-  transition: padding 0.3s ease, max-width 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: padding 0.3s ease, max-width 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+  opacity: 0; /* start hidden for fade-in */
+  animation: fadeIn 1s ease forwards, slideUp 1s ease forwards; /* fade-in + slide-up */
 }
 
 /* Card hover effect */
@@ -135,6 +131,12 @@
 @keyframes slideUp {
   to {
     transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
   }
 }
 
