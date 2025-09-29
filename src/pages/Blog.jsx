@@ -11,13 +11,9 @@ import blog3b from "../assets/photo26.jpg";
 import blog3c from "../assets/photo30.jpg";  
 
 const Blog = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedPost, setSelectedPost] = useState(null);
-  const [review, setReview] = useState({ name: "", message: "", rating: 0 });
-  const [reviews, setReviews] = useState({});
   const [currentImages, setCurrentImages] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-  const [expandedPosts, setExpandedPosts] = useState({}); // 👈 track expanded posts
+  const [expandedPosts, setExpandedPosts] = useState({}); // Track expanded state
 
   const posts = [
     { id: 1, images: [blog1a, blog1b], title: "Guru Purnima 2025", date: "6 July 2025", author: "Ashram Team", description: "A sacred gathering was held where devotees wholeheartedly expressed their gratitude to Guruji for guiding them on their spiritual journey with wisdom, compassion, and blessings..." },
@@ -49,6 +45,17 @@ const Blog = () => {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
+  // Initialize expandedPosts for current page to avoid first card issues
+  useEffect(() => {
+    setExpandedPosts((prev) => {
+      const updated = { ...prev };
+      currentPosts.forEach((post) => {
+        if (updated[post.id] === undefined) updated[post.id] = false;
+      });
+      return updated;
+    });
+  }, [currentPage]);
+
   const handlePrev = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -58,33 +65,6 @@ const Blog = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setReview((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleStarClick = (rating) => {
-    setReview((prev) => ({ ...prev, rating }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!review.name || !review.message || review.rating === 0) return;
-
-    setReviews((prev) => ({
-      ...prev,
-      [selectedPost.id]: [...(prev[selectedPost.id] || []), { ...review }],
-    }));
-
-    setReview({ name: "", message: "", rating: 0 });
-    setIsModalOpen(false);
-  };
-
-  const renderStars = (count) =>
-    Array.from({ length: 5 }, (_, i) => (
-      <span key={i} style={{ color: i < count ? "#FFD700" : "#ccc" }}>★</span>
-    ));
 
   const toggleReadMore = (id) => {
     setExpandedPosts((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -121,18 +101,6 @@ const Blog = () => {
                   {expandedPosts[post.id] ? "Read Less" : "Read More"}
                 </button>
               )}
-
-              {reviews[post.id] && reviews[post.id].length > 0 && (
-                <div className="review-list">
-                  <h4>Devotees' Reviews:</h4>
-                  {reviews[post.id].map((r, index) => (
-                    <div key={index} className="review-item">
-                      <strong>{r.name}</strong> {renderStars(r.rating)}
-                      <p>{r.message}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
           </div>
         ))}
@@ -144,51 +112,6 @@ const Blog = () => {
         <span className="page-info">Page {currentPage} of {totalPages}</span>
         <button onClick={handleNext} disabled={currentPage === totalPages}>Next ➡</button>
       </div>
-
-      {/* Modal for review */}
-      {isModalOpen && selectedPost && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <h3>Share Your Review for "{selectedPost.title}"</h3>
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                value={review.name}
-                onChange={handleChange}
-                required
-              />
-              <textarea
-                name="message"
-                placeholder="Write your review..."
-                value={review.message}
-                onChange={handleChange}
-                required
-              />
-              <div style={{ marginBottom: "10px" }}>
-                <strong>Rating: </strong>
-                {[1,2,3,4,5].map((i) => (
-                  <span
-                    key={i}
-                    onClick={() => handleStarClick(i)}
-                    style={{
-                      fontSize: "24px",
-                      cursor: "pointer",
-                      color: i <= review.rating ? "#FFD700" : "#ccc",
-                      marginRight: "5px",
-                    }}
-                  >★</span>
-                ))}
-              </div>
-              <div className="modal-buttons">
-                <button type="submit" className="submit-btn">Submit</button>
-                <button type="button" className="cancel-btn" onClick={() => setIsModalOpen(false)}>Cancel</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
