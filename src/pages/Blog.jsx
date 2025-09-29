@@ -13,7 +13,7 @@ import blog3c from "../assets/photo30.jpg";
 const Blog = () => {
   const [currentImages, setCurrentImages] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-  const [expandedPosts, setExpandedPosts] = useState({}); // Track expanded state
+  const [expandedPosts, setExpandedPosts] = useState({}); 
 
   const posts = [
     { id: 1, images: [blog1a, blog1b], title: "Guru Purnima 2025", date: "6 July 2025", author: "Ashram Team", description: "A sacred gathering was held where devotees wholeheartedly expressed their gratitude to Guruji for guiding them on their spiritual journey with wisdom, compassion, and blessings..." },
@@ -45,17 +45,6 @@ const Blog = () => {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
-  // Initialize expandedPosts for current page to avoid first card issues
-  useEffect(() => {
-    setExpandedPosts((prev) => {
-      const updated = { ...prev };
-      currentPosts.forEach((post) => {
-        if (updated[post.id] === undefined) updated[post.id] = false;
-      });
-      return updated;
-    });
-  }, [currentPage]);
-
   const handlePrev = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -67,7 +56,10 @@ const Blog = () => {
   };
 
   const toggleReadMore = (id) => {
-    setExpandedPosts((prev) => ({ ...prev, [id]: !prev[id] }));
+    setExpandedPosts((prev) => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
   };
 
   return (
@@ -78,35 +70,39 @@ const Blog = () => {
       </p>
 
       <div className="blog-grid">
-        {currentPosts.map((post) => (
-          <div key={post.id} className="blog-card">
-            <img
-              src={post.images[currentImages[post.id] || 0]}
-              alt={post.title}
-            />
-            <div className="blog-content">
-              <h3>{post.title}</h3>
-              <p className="blog-meta">📅 {post.date} | 👤 {post.author}</p>
-              
-              <p className="blog-desc">
-                {expandedPosts[post.id]
-                  ? post.description
-                  : post.description.slice(0, 100) + (post.description.length > 100 ? "..." : "")}
-              </p>
-              {post.description.length > 100 && (
-                <button 
-                  className="read-more-btn" 
-                  onClick={() => toggleReadMore(post.id)}
-                >
-                  {expandedPosts[post.id] ? "Read Less" : "Read More"}
-                </button>
-              )}
+        {currentPosts.map((post) => {
+          // Ensure each post has a defined expanded state
+          if (expandedPosts[post.id] === undefined) expandedPosts[post.id] = false;
+
+          return (
+            <div key={post.id} className="blog-card">
+              <img
+                src={post.images[currentImages[post.id] || 0]}
+                alt={post.title}
+              />
+              <div className="blog-content">
+                <h3>{post.title}</h3>
+                <p className="blog-meta">📅 {post.date} | 👤 {post.author}</p>
+                
+                <p className="blog-desc">
+                  {expandedPosts[post.id]
+                    ? post.description
+                    : post.description.slice(0, 100) + (post.description.length > 100 ? "..." : "")}
+                </p>
+                {post.description.length > 100 && (
+                  <button 
+                    className="read-more-btn" 
+                    onClick={() => toggleReadMore(post.id)}
+                  >
+                    {expandedPosts[post.id] ? "Read Less" : "Read More"}
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
-      {/* Previous / Next Pagination */}
       <div className="pagination">
         <button onClick={handlePrev} disabled={currentPage === 1}>⬅ Previous</button>
         <span className="page-info">Page {currentPage} of {totalPages}</span>
