@@ -243,7 +243,6 @@
   }
 }
 
-
 /* ===== Blog Pagination (scoped only to Blog page) ===== */
 .blog-container .pagination {
   display: flex;
@@ -310,7 +309,6 @@
   }
 }
 
-
 /* ===== Read More Button ===== */
 .read-more-btn {
   display: inline-block;
@@ -334,4 +332,19 @@
 .read-more-btn:active {
   transform: scale(0.96);
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* ===== Fix for Read More Button Clicks ===== */
+.blog-card,
+.blog-content,
+.read-more-btn {
+  position: relative; /* ensure stacking context */
+  z-index: 1;         /* make button clickable above card layers */
+}
+
+@media (max-width: 480px) {
+  .blog-card {
+    animation: none !important; /* prevent animation from blocking clicks */
+    opacity: 1 !important;      /* ensure visible and clickable */
+  }
 }
