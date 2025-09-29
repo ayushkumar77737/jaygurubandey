@@ -348,3 +348,171 @@
     opacity: 1 !important;      /* ensure visible and clickable */
   }
 }
+
+
+/* ===== Blog Details Page ===== */
+.blog-details-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f9f9f9;
+}
+
+.blog-details-container {
+  flex: 1;
+  max-width: 900px;
+  width: 95%;
+  margin: 40px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.6s ease-in-out;
+  position: relative;
+  z-index: 1; /* Ensure container has stacking context */
+}
+
+/* Title */
+.blog-details-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+  text-align: center;
+  color: #222;
+}
+
+/* Meta Info */
+.blog-meta {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+/* Images Grid */
+.blog-details-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+  margin: 25px 0;
+  position: relative; /* Prevent overlapping Back button */
+  z-index: 0; /* Ensure images stay below button */
+}
+
+.blog-details-images img {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 10px;
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.blog-details-images img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Description */
+.blog-details-desc {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-top: 15px;
+  text-align: justify;
+}
+
+/* Back Button */
+.back-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  width: 100%;
+  position: relative; /* Ensure it is above images */
+  z-index: 10; /* Make sure button stays clickable */
+}
+
+.back-btn {
+  padding: 12px 22px;
+  background: #333;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.back-btn:hover {
+  background: #555;
+  transform: translateY(-2px);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .blog-details-container {
+    padding: 20px;
+  }
+
+  .blog-details-title {
+    font-size: 1.8rem;
+  }
+
+  .blog-details-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .blog-details-images img {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-details-container {
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  .blog-details-title {
+    font-size: 1.5rem;
+  }
+
+  .blog-meta {
+    font-size: 0.85rem;
+  }
+
+  .blog-details-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .blog-details-images {
+    gap: 10px;
+  }
+
+  .blog-details-images img {
+    max-width: 100%;
+  }
+
+  .back-btn-container {
+    margin-top: 25px;
+    width: 100%;
+    position: relative;
+    z-index: 10; /* Fix overlapping issue */
+  }
+
+  .back-btn {
+    padding: 10px 16px;
+    font-size: 0.95rem;
+  }
+}

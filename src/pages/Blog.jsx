@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";   // ✅ Import Link
 import "./Blog.css";
 import blog1a from "../assets/photo4.jpg"; 
 import blog1b from "../assets/photo25.jpg"; 
@@ -13,7 +14,6 @@ import blog3c from "../assets/photo30.jpg";
 const Blog = () => {
   const [currentImages, setCurrentImages] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-  const [expandedPosts, setExpandedPosts] = useState({}); // Track expanded state
 
   const posts = [
     { id: 1, images: [blog1a, blog1b], title: "Guru Purnima 2025", date: "6 July 2025", author: "Ashram Team", description: "A sacred gathering was held where devotees wholeheartedly expressed their gratitude to Guruji for guiding them on their spiritual journey with wisdom, compassion, and blessings..." },
@@ -45,15 +45,6 @@ const Blog = () => {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
-  // Initialize expandedPosts for current page
-  useEffect(() => {
-    const newExpanded = {};
-    currentPosts.forEach(post => {
-      newExpanded[post.id] = expandedPosts[post.id] || false;
-    });
-    setExpandedPosts(newExpanded);
-  }, [currentPage]);
-
   const handlePrev = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -62,13 +53,6 @@ const Blog = () => {
   const handleNext = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const toggleReadMore = (id) => {
-    setExpandedPosts(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
   };
 
   return (
@@ -90,18 +74,12 @@ const Blog = () => {
               <p className="blog-meta">📅 {post.date} | 👤 {post.author}</p>
               
               <p className="blog-desc">
-                {expandedPosts[post.id]
-                  ? post.description
-                  : post.description.slice(0, 100) + (post.description.length > 100 ? "..." : "")}
+                {post.description.slice(0, 100)}...
               </p>
-              {post.description.length > 100 && (
-                <button 
-                  className="read-more-btn" 
-                  onClick={() => toggleReadMore(post.id)}
-                >
-                  {expandedPosts[post.id] ? "Read Less" : "Read More"}
-                </button>
-              )}
+              
+              <Link to={`/blog/${post.id}`} className="read-more-btn">
+                Know More
+              </Link>
             </div>
           </div>
         ))}
