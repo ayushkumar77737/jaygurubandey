@@ -5,11 +5,12 @@ import './index.css'
 import App from './App.jsx'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
+import AboutDetails from './pages/AboutDetails.jsx'   // ✅ Import AboutDetails
 import Satsang from './pages/Satsang.jsx'
 import Bhajan from './pages/Bhajan.jsx'
 import Program from './pages/Program.jsx'
 import Blog from './pages/Blog.jsx'
-import BlogDetails from './pages/BlogDetails.jsx'   // ✅ Import BlogDetails
+import BlogDetails from './pages/BlogDetails.jsx'
 import Gallery from './pages/Gallery.jsx'
 import Contact from './pages/Contact.jsx'
 import ChatWithUs from './pages/Chatwithus.jsx'
@@ -24,11 +25,12 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: 'about', element: <About /> },
+      { path: 'about/:id', element: <AboutDetails /> },   // ✅ Details route for About
       { path: 'satsang', element: <Satsang /> },
       { path: 'bhajan', element: <Bhajan /> },
       { path: 'program', element: <Program /> },
       { path: 'blog', element: <Blog /> },
-      { path: 'blog/:id', element: <BlogDetails /> },   // ✅ Details route
+      { path: 'blog/:id', element: <BlogDetails /> },
       { path: 'gallery', element: <Gallery /> },
       { path: 'contact', element: <Contact /> },
       { path: 'chat', element: <ChatWithUs /> },

@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./About.css";
 import guruji from "../assets/guruji.jpg";
 import vision from "../assets/vision.jpg";
 import daily from "../assets/journey.jpg";
 
 const About = () => {
-  // Pagination State
-  const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Restore currentPage from location state if available
+  const initialPage = location.state?.currentPage || 1;
+  const [currentPage, setCurrentPage] = useState(initialPage);
+
   const sectionsPerPage = 3;
 
-  // All sections data in an array for easier pagination
   const sections = [
     {
       id: 1,
@@ -79,21 +84,23 @@ const About = () => {
     },
   ];
 
-  // Pagination Logic
   const indexOfLast = currentPage * sectionsPerPage;
   const indexOfFirst = indexOfLast - sectionsPerPage;
   const currentSections = sections.slice(indexOfFirst, indexOfLast);
   const totalPages = Math.ceil(sections.length / sectionsPerPage);
 
+  // Scroll to top when page changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
+
   return (
     <div className="about-page">
-      {/* Intro */}
       <section className="about-intro">
         <h1>In the Light of Guruji’s Grace</h1>
         <p className="subtext">“This ashram is not just a place—it is a presence.”</p>
       </section>
 
-      {/* Render Paginated Sections */}
       {currentSections.map((sec) => (
         <section key={sec.id} className={sec.className}>
           <div className={`${sec.className.split("-")[1]}-photo`}>
@@ -101,14 +108,22 @@ const About = () => {
           </div>
           <div className={`${sec.className.split("-")[1]}-text`}>
             <h2>{sec.title}</h2>
-            {sec.text.map((p, i) => (
+            {sec.text.slice(0, 1).map((p, i) => (
               <p key={i}>{p}</p>
             ))}
+
+            <button
+              className="know-more-btn"
+              onClick={() =>
+                navigate(`/about/${sec.id}`, { state: { section: sec, currentPage } })
+              }
+            >
+              Know More
+            </button>
           </div>
         </section>
       ))}
 
-      {/* Pagination Controls */}
       <div className="pagination">
         <button
           onClick={() => setCurrentPage((prev) => prev - 1)}

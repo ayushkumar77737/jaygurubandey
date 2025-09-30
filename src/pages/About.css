@@ -246,3 +246,80 @@
     text-align: center;
   }
 }
+
+
+/* ===== Know More Button (Clickable & Responsive) ===== */
+.know-more-btn {
+  display: block;
+  margin: 20px auto 0 auto;
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #ffeff5, #fbeaff, #eaf5ff);
+  color: #b71c1c;
+  border: 2px solid #b71c1c;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(183, 28, 28, 0.15);
+  text-align: center;
+  max-width: 250px;
+  width: 100%;
+  position: relative; /* create stacking context */
+  z-index: 10;        /* make button above images/text */
+}
+
+/* ===== Hover & Active States ===== */
+.know-more-btn:hover {
+  background: linear-gradient(135deg, #fbe0e5, #f5d9f0, #d6edff);
+  color: #d32f2f;
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px rgba(183, 28, 28, 0.25);
+}
+
+.know-more-btn:active {
+  transform: scale(0.95);
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 1024px) {
+  .about-journey, .about-vision, .about-daily,
+  .about-teachings, .about-seva, .about-festivals {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .journey-photo img, .vision-photo img, .daily-photo img,
+  .teachings-photo img, .seva-photo img, .festivals-photo img {
+    margin-bottom: 1.5rem;
+    max-width: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .know-more-btn {
+    padding: 10px 25px;
+    font-size: 15px;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .know-more-btn {
+    padding: 8px 20px;
+    font-size: 14px;
+    max-width: 180px;
+  }
+
+  /* Fix overlapping issues on small screens */
+  .about-journey, .about-vision, .about-daily,
+  .about-teachings, .about-seva, .about-festivals {
+    position: relative;  /* stacking context */
+    z-index: 1;          /* make sure button is above content */
+  }
+
+  .know-more-btn {
+    position: relative;
+    z-index: 10;
+  }
+}
