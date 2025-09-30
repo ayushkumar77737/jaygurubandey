@@ -1,0 +1,64 @@
+/* 🌸 Flowers */
+.petal {
+  position: absolute;
+  top: -2vh; /* start slightly above the screen */
+  pointer-events: none;
+  z-index: 6;
+  animation: fall linear forwards;
+  font-size: 2vw; /* responsive font size */
+}
+
+/* ✨ Glow particles */
+.glow {
+  position: absolute;
+  top: -2vh;
+  width: 0.8vw;
+  height: 0.8vw;
+  background: radial-gradient(circle, rgba(255,255,200,1) 40%, rgba(255,255,200,0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 5;
+  animation: fall linear forwards, twinkle 1.5s infinite alternate;
+}
+
+/* 🦋 Butterflies / Doves */
+.butterfly {
+  position: absolute;
+  top: -2vh;
+  font-size: 4vw; /* responsive */
+  z-index: 7;
+  animation: fly linear forwards;
+}
+
+/* Falling motion for all */
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg); /* adapt to screen height */
+  }
+}
+
+/* Fluttering motion for butterflies */
+@keyframes fly {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(50vw, 100vh) rotate(30deg); /* adapt to screen width/height */
+  }
+}
+
+/* Glow twinkle */
+@keyframes twinkle {
+  from { opacity: 0.3; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1.2); }
+}
+
+/* Optional: adjust font sizes for very small screens */
+@media (max-width: 480px) {
+  .petal { font-size: 4vw; }
+  .butterfly { font-size: 6vw; }
+  .glow { width: 1vw; height: 1vw; }
+}

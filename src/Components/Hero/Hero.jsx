@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ScrollingText from "../../pages/ScrollingText";
+import FlowerSprinkler from "../../pages/FlowerSprinkler"; // ✅ added
 import "./Hero.css";
 
 import bio from "../../assets/bio.jpg";
@@ -64,6 +65,8 @@ const Hero = () => {
   return (
     <div>
       <div className="hero container">
+        <FlowerSprinkler /> {/* 🌸 sprinklers inside hero */}
+        
         {images.map((img, index) => (
           <div
             key={index}
