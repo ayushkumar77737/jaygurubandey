@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import "./Blog.css";
 
 import blog1a from "../assets/photo4.jpg"; 
@@ -12,7 +12,7 @@ import blog3b from "../assets/photo26.jpg";
 import blog3c from "../assets/photo30.jpg";  
 
 const posts = [
-   {
+  {
     id: 1,
     images: [blog1a, blog1b],
     title: "Guru Purnima 2025",
@@ -64,6 +64,9 @@ const posts = [
 
 const BlogDetails = () => {
   const { id } = useParams();
+  const location = useLocation();
+  const { currentPage = 1 } = location.state || {};   // ✅ read page state
+
   const post = posts.find((p) => p.id === parseInt(id));
 
   if (!post) return <h2>Blog not found</h2>;
@@ -82,9 +85,11 @@ const BlogDetails = () => {
 
         <p className="blog-details-desc">{post.description}</p>
 
-        {/* Centered button */}
+        {/* ✅ Back with page state */}
         <div className="back-btn-container">
-          <Link to="/blog" className="back-btn">⬅ Back to Blog</Link>
+          <Link to="/blog" state={{ currentPage }} className="back-btn">
+            ⬅ Back to Blog
+          </Link>
         </div>
       </div>
     </div>
