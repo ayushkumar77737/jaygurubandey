@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ScrollingText from "../../pages/ScrollingText";
+import AnnouncementBar from "../../pages/AnnouncementBar";  // ✅ new name
 import FlowerSprinkler from "../../pages/FlowerSprinkler"; // ✅ added
 import "./Hero.css";
 
@@ -91,7 +92,7 @@ const Hero = () => {
           </button>
         </div>
       </div>
-
+      <AnnouncementBar />
       <ScrollingText />
     </div>
   );
