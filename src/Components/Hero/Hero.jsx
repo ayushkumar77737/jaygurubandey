@@ -65,6 +65,7 @@ const Hero = () => {
 
   return (
     <div>
+      <AnnouncementBar />
       <div className="hero container">
         <FlowerSprinkler /> {/* 🌸 sprinklers inside hero */}
         
@@ -92,7 +93,6 @@ const Hero = () => {
           </button>
         </div>
       </div>
-      <AnnouncementBar />
       <ScrollingText />
     </div>
   );
