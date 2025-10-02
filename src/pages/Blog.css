@@ -344,8 +344,9 @@
 
 @media (max-width: 480px) {
   .blog-card {
-    animation: none !important; /* prevent animation from blocking clicks */
-    opacity: 1 !important;      /* ensure visible and clickable */
+    animation: fadeUp 0.8s ease-in-out forwards; /* keep animation */
+    opacity: 0; /* start hidden */
+    pointer-events: auto; /* ensure clicks still work */
   }
 }
 
