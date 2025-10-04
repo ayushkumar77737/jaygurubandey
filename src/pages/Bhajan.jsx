@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Bhajan.css";
 
 const Bhajan = () => {
@@ -120,14 +121,10 @@ const Bhajan = () => {
           Satguru Chalisa <span className="arrow">→</span>
         </a>
 
-        <a
-          href="https://drive.google.com/file/d/1cC-yBNHHyyvnal3NNsQdmc1iQcaOiAp6/view?usp=sharing"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn"
-        >
+        {/* Changed to open new page */}
+        <Link to="/satguru-arti" className="btn">
           Satguru Arti <span className="arrow">→</span>
-        </a>
+        </Link>
 
         <a
           href="https://drive.google.com/file/d/your-bhajan-sangrah-link/view?usp=sharing"
