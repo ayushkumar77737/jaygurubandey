@@ -7,11 +7,11 @@
   justify-content: center;
   min-height: 100vh;
   padding: 4vw 6vw;
-  background: linear-gradient(135deg, #fffdf7, #f9f5f0); /* ✅ static gradient */
+  background: linear-gradient(135deg, #fffdf7, #f9f5f0); /* ✅ always gradient */
   text-align: center;
   overflow-x: hidden;
   font-family: 'Poppins', sans-serif;
-  /* remove fadeIn on container to prevent initial lag */
+  animation: fadeIn 1.2s ease-in-out;  /* ✅ fade only, no white flash */
 }
 
 /* ===== Title ===== */
@@ -21,9 +21,7 @@
   text-align: center;
   color: #8b0000;
   margin-bottom: 1.5rem;
-  opacity: 0;
-  animation: fadeInDown 0.8s ease-out forwards;
-  will-change: opacity, transform;
+  animation: fadeInDown 1s ease-out;
 }
 
 /* ===== Layout ===== */
@@ -36,9 +34,7 @@
   width: 100%;
   text-align: center;
   flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeInUp 1s ease-out forwards;
-  will-change: opacity, transform;
+  animation: fadeInUp 1.2s ease-out;
 }
 
 /* ===== Image Box ===== */
@@ -53,20 +49,18 @@
   border: 1px solid #e5cfcf;
   width: 100%;
   max-width: 350px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  will-change: transform, box-shadow;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .arti-image-box:hover {
-  transform: translateY(-4px);
-  box-shadow: 0px 6px 12px rgba(0,0,0,0.1); /* lighter shadow for smoother hover */
+  transform: translateY(-6px);
+  box-shadow: 0px 10px 22px rgba(0,0,0,0.15);
 }
 
 .arti-image {
   width: 100%;
   height: auto;
   border-radius: 8px;
-  will-change: transform;
 }
 
 /* ===== Text Box ===== */
@@ -81,13 +75,12 @@
   border: 1px solid #e5cfcf;
   width: 100%;
   text-align: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  will-change: transform, box-shadow;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .arti-text-box:hover {
-  transform: translateY(-4px) scale(1.01);
-  box-shadow: 0px 6px 12px rgba(0,0,0,0.08);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0px 10px 22px rgba(0,0,0,0.12);
 }
 
 .arti-text-box b {
@@ -102,9 +95,7 @@
   color: #666;
   font-weight: 500;
   text-align: center;
-  opacity: 0;
-  animation: fadeIn 1s ease forwards;
-  will-change: opacity;
+  animation: fadeIn 1.5s ease;
 }
 
 /* ===== Pagination Buttons ===== */
@@ -126,12 +117,12 @@
   color: #fff;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition: transform 0.25s ease, background 0.25s ease;
 }
 
 .arti-pagination button:hover:not(:disabled) {
   background: #600000;
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 .arti-pagination button:disabled {
@@ -140,14 +131,14 @@
   cursor: not-allowed;
 }
 
-/* ===== Animations (GPU friendly, lightweight) ===== */
+/* ===== Animations (GPU friendly, no lag) ===== */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-12px); }
+  from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -158,7 +149,9 @@
 
 /* ===== Responsive Breakpoints ===== */
 @media (max-width: 1024px) {
-  .arti-content { gap: 1rem; }
+  .arti-content {
+    gap: 1rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -166,17 +159,32 @@
     flex-direction: column;
     align-items: center;
   }
-  .arti-title { font-size: 2rem; }
-  .arti-text-box { font-size: 1rem; padding: 1.2rem; }
-  .arti-image { max-width: 90%; }
+  .arti-title {
+    font-size: 2rem;
+  }
+  .arti-text-box {
+    font-size: 1rem;
+    padding: 1.2rem;
+  }
+  .arti-image {
+    max-width: 90%;
+  }
 }
 
 @media (max-width: 480px) {
-  .arti-title { font-size: 1.6rem; }
-  .arti-text-box { font-size: 0.95rem; padding: 1rem; }
+  .arti-title {
+    font-size: 1.6rem;
+  }
+  .arti-text-box {
+    font-size: 0.95rem;
+    padding: 1rem;
+  }
   .arti-pagination {
     flex-direction: column;
     gap: 0.5rem;
   }
-  .arti-pagination button { width: 100%; font-size: 0.9rem; }
+  .arti-pagination button {
+    width: 100%;
+    font-size: 0.9rem;
+  }
 }
