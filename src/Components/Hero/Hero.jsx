@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ScrollingText from "../../pages/ScrollingText";
-import AnnouncementBar from "../../pages/AnnouncementBar";  // ✅ new name
-import FlowerSprinkler from "../../pages/FlowerSprinkler"; // ✅ added
+import AnnouncementBar from "../../pages/AnnouncementBar";
+import FlowerSprinkler from "../../pages/FlowerSprinkler";
+import LoadingPage from "../../pages/LoadingPage";
 import "./Hero.css";
 
 import bio from "../../assets/bio.jpg";
-import hero1 from "../../assets/hero1.jpg"; 
+import hero1 from "../../assets/hero1.jpg";
 import hero2 from "../../assets/hero2.png";
 import photo1 from "../../assets/photo1.jpg";
 import photo6 from "../../assets/photo6.jpg";
@@ -18,13 +19,30 @@ const Hero = () => {
   const images = [bio, hero1, hero2, photo1, photo6, photo7, photo8];
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // ✅ Check sessionStorage before rendering (prevents flash)
+  const alreadyShown = sessionStorage.getItem("hasShownLoader");
+  const [loading, setLoading] = useState(!alreadyShown);
+
+  useEffect(() => {
+    if (!alreadyShown) {
+      const timer = setTimeout(() => {
+        setLoading(false);
+        sessionStorage.setItem("hasShownLoader", "true");
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [alreadyShown]);
+
+  // ✅ Preload background images
   useEffect(() => {
     images.forEach((src) => {
       const img = new Image();
       img.src = src;
     });
-  }, []);
+  }, [images]);
 
+  // ✅ Typing text effect
   const fullText = `Param Sant Swami Jai Gurubande Ji Maharaj\nLet’s Move Towards God And Understand Sanatan Dharma.\nIt’s a spiritual and philosophical message encouraging people to seek divine connection and explore the essence of Sanatan Dharma.`;
 
   const [displayedText, setDisplayedText] = useState("");
@@ -53,22 +71,22 @@ const Hero = () => {
     return () => clearTimeout(timeout);
   }, [charIndex, fullText]);
 
-  const handleChatClick = () => {
-    navigate("/chat");
-  };
-
-  const handleAnnouncementClick = () => {
-    navigate("/important-dates");
-  };
+  const handleChatClick = () => navigate("/chat");
+  const handleAnnouncementClick = () => navigate("/important-dates");
 
   const textLines = displayedText.split("\n");
+
+  // ✅ Show loading screen only when page first opens in this tab
+  if (loading) {
+    return <LoadingPage />;
+  }
 
   return (
     <div>
       <AnnouncementBar />
       <div className="hero container">
-        <FlowerSprinkler /> {/* 🌸 sprinklers inside hero */}
-        
+        <FlowerSprinkler />
+
         {images.map((img, index) => (
           <div
             key={index}
@@ -80,9 +98,21 @@ const Hero = () => {
         ))}
 
         <div className="hero-text">
-          {textLines[0] && <h2>{textLines[0]}<span className="cursor"></span></h2>}
-          {textLines[1] && <h1>{textLines[1]}<span className="cursor"></span></h1>}
-          {textLines[2] && <p>{textLines[2]}<span className="cursor"></span></p>}
+          {textLines[0] && (
+            <h2>
+              {textLines[0]} <span className="cursor"></span>
+            </h2>
+          )}
+          {textLines[1] && (
+            <h1>
+              {textLines[1]} <span className="cursor"></span>
+            </h1>
+          )}
+          {textLines[2] && (
+            <p>
+              {textLines[2]} <span className="cursor"></span>
+            </p>
+          )}
 
           <button className="btn" onClick={handleChatClick}>
             Chat With Us <span className="arrow">→</span>
