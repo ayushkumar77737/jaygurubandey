@@ -1,4 +1,4 @@
-/* ============================== LOADING PAGE — Spiritual Gold Aura Edition (Responsive) ============================== */
+/* ============================== LOADING PAGE — Spiritual Gold Aura Edition (Responsive + Enhanced) ============================== */
 .loading-page {
   position: fixed;
   top: 0;
@@ -22,7 +22,7 @@
   border-radius: 50%;
   object-fit: cover;
   opacity: 0;
-  animation: fadeIn 2s ease-in-out forwards, floatCircle 4s ease-in-out infinite, pulse 3.2s ease-in-out infinite;
+  animation: fadeIn 2s ease-in-out forwards, floatCircle 4s ease-in-out infinite, pulse 3.2s ease-in-out infinite, auraExpand 5s ease-in-out infinite;
   border: 4px solid rgba(255, 220, 120, 0.6);
   filter: drop-shadow(0 0 40px rgba(255, 220, 120, 0.9));
 }
@@ -33,7 +33,7 @@
   border-radius: 50%;
   border: 2px solid rgba(255, 210, 100, 0.3);
   box-shadow: 0 0 30px rgba(255, 190, 80, 0.25), inset 0 0 20px rgba(255, 180, 60, 0.15);
-  animation: ripple 5s ease-in-out infinite;
+  animation: ripple 5s ease-in-out infinite, rotateRing 20s linear infinite;
   transform-origin: center;
 }
 
@@ -85,6 +85,17 @@
   animation-delay: 3s;
 }
 
+/* ============================== SPARKLE PARTICLES ============================== */
+.loading-page .sparkles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,255,200,0.25) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: sparkle 6s linear infinite;
+  pointer-events: none;
+}
+
 /* ============================== ANIMATIONS ============================== */
 @keyframes fadeIn {
   0% {
@@ -105,6 +116,15 @@
   50% {
     transform: scale(1.08);
     filter: drop-shadow(0 0 55px rgba(255, 220, 100, 1));
+  }
+}
+
+@keyframes auraExpand {
+  0%, 100% {
+    box-shadow: 0 0 40px rgba(255, 220, 120, 0.7), 0 0 80px rgba(255, 210, 100, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 70px rgba(255, 230, 150, 0.9), 0 0 130px rgba(255, 220, 120, 0.6);
   }
 }
 
@@ -132,6 +152,11 @@
   }
 }
 
+@keyframes rotateRing {
+  0% { transform: rotate(0deg) scale(0.95); }
+  100% { transform: rotate(360deg) scale(0.95); }
+}
+
 @keyframes floatGlow {
   0% {
     transform: translate(-10%, -10%) scale(1);
@@ -139,6 +164,11 @@
   100% {
     transform: translate(10%, 10%) scale(1.15);
   }
+}
+
+@keyframes sparkle {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
 }
 
 @keyframes bgPulse {
@@ -153,6 +183,7 @@
 @keyframes fadeOut {
   to {
     opacity: 0;
+    transform: scale(0.8);
     visibility: hidden;
   }
 }
