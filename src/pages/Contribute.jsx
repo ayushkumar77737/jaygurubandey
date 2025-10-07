@@ -66,6 +66,12 @@ const Contribute = () => {
       errors.push("❌ Transaction ID must be exactly 12 digits.");
     }
 
+    // Check for duplicate Transaction ID in localStorage
+    const storedTransactions = JSON.parse(localStorage.getItem("transactions")) || [];
+    if (storedTransactions.includes(formData.transactionId)) {
+      errors.push("❌ This Transaction ID has already been submitted.");
+    }
+
     // If there are errors, show all at once
     if (errors.length > 0) {
       setMessage(errors.join("\n")); // multiple lines
@@ -84,8 +90,13 @@ const Contribute = () => {
       await fetch(GOOGLE_FORM_ACTION, {
         method: "POST",
         body: formDataToSend,
-        mode: "no-cors", // Google Forms doesn’t allow CORS
+        mode: "no-cors",
       });
+
+      // Save transaction ID to localStorage to prevent duplicates
+      storedTransactions.push(formData.transactionId);
+      localStorage.setItem("transactions", JSON.stringify(storedTransactions));
+
       setMessage("✅ Message sent successfully!");
       setFormData({ name: "", phone: "", amount: "", transactionId: "" });
 
@@ -150,7 +161,7 @@ const Contribute = () => {
           style={{
             color: message.startsWith("✅") ? "#00ff9d" : "#ff6b6b",
             marginTop: "20px",
-            whiteSpace: "pre-line", // keeps line breaks
+            whiteSpace: "pre-line",
             fontWeight: "bold",
           }}
         >
