@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CommitteeMembers.css';
 import member1Image from '../assets/photo5.jpg';
 import member2Image from '../assets/photo6.jpg';
@@ -18,10 +18,10 @@ const members = [
 
 const CommitteeMembers = () => {
     const [currentPage, setCurrentPage] = useState(1);
+    const [animate, setAnimate] = useState(false);
     const cardsPerPage = 4;
 
     const totalPages = Math.ceil(members.length / cardsPerPage);
-
     const indexOfLastCard = currentPage * cardsPerPage;
     const indexOfFirstCard = indexOfLastCard - cardsPerPage;
     const currentMembers = members.slice(indexOfFirstCard, indexOfLastCard);
@@ -34,12 +34,19 @@ const CommitteeMembers = () => {
         if (currentPage > 1) setCurrentPage(currentPage - 1);
     };
 
+    // Trigger fade animation on page change
+    useEffect(() => {
+        setAnimate(true);
+        const timer = setTimeout(() => setAnimate(false), 500); // matches CSS animation duration
+        return () => clearTimeout(timer);
+    }, [currentPage]);
+
     return (
         <div className="committee-container">
             <h1 className="committee-title">Committee Members</h1>
             <p className="committee-subtitle">🪔 Dedicated to Seva and Samarpan 🪔</p>
 
-            <div className="members-wrapper">
+            <div className={`members-wrapper ${animate ? 'fade-page' : ''}`}>
                 {currentMembers.map((member, index) => (
                     <div className="member-card" key={index}>
                         <img src={member.image} alt={member.name} className="member-photo" />
