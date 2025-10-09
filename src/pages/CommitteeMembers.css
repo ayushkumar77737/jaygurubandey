@@ -1,3 +1,4 @@
+/* ========================= Committee Container ========================= */
 .committee-container {
   text-align: center;
   padding: 60px 20px;
@@ -36,16 +37,18 @@
   opacity: 0.9;
 }
 
-/* Flex container */
+/* ========================= Members Wrapper ========================= */
 .members-wrapper {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
   padding: 0 10px;
+  position: relative;  /* ensures z-index stacking */
+  z-index: 1;
 }
 
-/* Card */
+/* ========================= Member Card ========================= */
 .member-card {
   background: #fff;
   padding: 25px 15px;
@@ -81,7 +84,7 @@
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Image styling */
+/* ========================= Member Photo ========================= */
 .member-photo {
   width: 150px;
   height: 150px;
@@ -98,7 +101,7 @@
   box-shadow: 0 0 25px rgba(255, 174, 0, 0.6);
 }
 
-/* Text */
+/* ========================= Text ========================= */
 .member-name {
   font-size: 1.4rem;
   font-weight: 600;
@@ -116,136 +119,91 @@
   margin-top: 5px;
 }
 
-/* ===== Responsive Styling ===== */
+/* ========================= Responsive ========================= */
 @media (max-width: 1024px) {
-  .committee-title {
-    font-size: 2.2rem;
-  }
-  .committee-subtitle {
-    font-size: 1rem;
-  }
+  .committee-title { font-size: 2.2rem; }
+  .committee-subtitle { font-size: 1rem; }
 }
 
 @media (max-width: 768px) {
-  .members-wrapper {
-    gap: 20px;
-  }
-  .member-card {
-    width: 45%;
-    padding: 20px 15px;
-  }
-  .member-photo {
-    width: 130px;
-    height: 130px;
-  }
+  .members-wrapper { gap: 20px; }
+  .member-card { width: 45%; padding: 20px 15px; }
+  .member-photo { width: 130px; height: 130px; }
 }
 
 @media (max-width: 480px) {
-  .members-wrapper {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-  .member-card {
-    width: 90%;
-    padding: 18px 12px;
-  }
-  .member-photo {
-    width: 120px;
-    height: 120px;
-  }
-  .committee-title {
-    font-size: 1.8rem;
-  }
-  .committee-subtitle {
-    font-size: 0.95rem;
-  }
-  .member-name {
-    font-size: 1.2rem;
-  }
-  .member-role {
-    font-size: 0.9rem;
-  }
+  .members-wrapper { flex-direction: column; align-items: center; gap: 15px; }
+  .member-card { width: 90%; padding: 18px 12px; }
+  .member-photo { width: 120px; height: 120px; }
+  .committee-title { font-size: 1.8rem; }
+  .committee-subtitle { font-size: 0.95rem; }
+  .member-name { font-size: 1.2rem; }
+  .member-role { font-size: 0.9rem; }
 }
 
-
-/* Pagination container */
+/* ========================= Pagination ========================= */
 .pagination {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap; /* allow wrapping on smaller screens */
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  position: relative;  /* ensures buttons are clickable */
+  z-index: 10;
 }
 
-/* Scoped buttons inside pagination */
 .pagination .page-btn {
-    padding: 10px 18px;
-    border: none;
-    border-radius: 50px;
-    background: linear-gradient(135deg, #ffb84d, #ff6a00);
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(255, 106, 0, 0.4);
-    font-size: 1rem;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #ffb84d, #ff6a00);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 106, 0, 0.4);
+  font-size: 1rem;
 }
 
 .pagination .page-btn:hover:not(:disabled) {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 6px 18px rgba(255, 106, 0, 0.5);
-    background: linear-gradient(135deg, #ffcc70, #ff8500);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 18px rgba(255, 106, 0, 0.5);
+  background: linear-gradient(135deg, #ffcc70, #ff8500);
 }
 
 .pagination .page-btn:disabled {
-    background: #f0e1d0;
-    color: #b08b55;
-    cursor: not-allowed;
-    box-shadow: none;
+  background: #f0e1d0;
+  color: #b08b55;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
-/* Scoped page info */
 .pagination .page-info {
-    font-weight: 600;
-    color: #6b2600;
-    font-size: 1rem;
+  font-weight: 600;
+  color: #6b2600;
+  font-size: 1rem;
 }
 
-/* ===== RESPONSIVE STYLES ===== */
-
-/* For tablets */
+/* ========================= Responsive Pagination ========================= */
 @media (max-width: 900px) {
-    .pagination .page-btn {
-        padding: 8px 14px;
-        font-size: 0.95rem;
-        gap: 4px;
-    }
-
-    .pagination .page-info {
-        font-size: 0.95rem;
-    }
+  .pagination .page-btn { padding: 8px 14px; font-size: 0.95rem; gap: 4px; }
+  .pagination .page-info { font-size: 0.95rem; }
 }
 
-/* For mobile devices */
 @media (max-width: 600px) {
-    .pagination {
-        flex-direction: column; /* stack buttons vertically */
-        gap: 10px;
-    }
-
-    .pagination .page-btn {
-        width: 80%;
-        justify-content: center;
-        padding: 10px 0;
-        font-size: 0.9rem;
-    }
-
-    .pagination .page-info {
-        font-size: 0.9rem;
-    }
+  .pagination {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .pagination .page-btn {
+    width: 80%;
+    justify-content: center;
+    padding: 12px 0;  /* bigger tap area */
+    font-size: 0.9rem;
+  }
+  .pagination .page-info { font-size: 0.9rem; }
 }
