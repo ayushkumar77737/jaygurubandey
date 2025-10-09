@@ -71,6 +71,7 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  will-change: transform, opacity; /* smoother GPU transition */
 }
 
 .member-card::before {

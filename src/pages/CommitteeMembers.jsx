@@ -34,11 +34,15 @@ const CommitteeMembers = () => {
         if (currentPage > 1) setCurrentPage(currentPage - 1);
     };
 
-    // Trigger fade animation on page change
+    // ✅ Fix Option 3 – Add lightweight delay for smoother transition
     useEffect(() => {
-        setAnimate(true);
-        const timer = setTimeout(() => setAnimate(false), 500); // matches CSS animation duration
-        return () => clearTimeout(timer);
+        const delay = setTimeout(() => {
+            setAnimate(true);
+            const timer = setTimeout(() => setAnimate(false), 500); // matches CSS animation duration
+            return () => clearTimeout(timer);
+        }, 200); // 0.2s delay to let container fade first
+
+        return () => clearTimeout(delay);
     }, [currentPage]);
 
     return (
@@ -58,7 +62,7 @@ const CommitteeMembers = () => {
                 ))}
             </div>
 
-            {/* Prev / Next Pagination with Arrows */}
+            {/* Prev / Next Pagination */}
             <div className="pagination">
                 <button className="page-btn" onClick={goToPrev} disabled={currentPage === 1}>
                     ← Prev
