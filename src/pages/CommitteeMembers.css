@@ -1,197 +1,194 @@
-/* ========================= Committee Container ========================= */
+/* ========================= COMMITTEE CONTAINER ========================= */
 .committee-container {
   text-align: center;
-  padding: 60px 20px;
-  background: linear-gradient(135deg, #fff6f0, #ffeef7);
+  padding: 80px 20px;
+  background: radial-gradient(circle at top left, #fff6f0 0%, #ffeef7 40%, #fff 100%);
   min-height: 100vh;
-  animation: fadeIn 0.8s ease-in-out;
-  will-change: opacity, transform;
+  overflow-x: hidden;
+  animation: fadeInUp 0.8s ease-in-out;
+  perspective: 1000px;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+/* ========================= TITLES ========================= */
 .committee-title {
-  font-size: 2.4rem;
-  color: #6b2600;
-  font-weight: 700;
-  margin-bottom: 10px;
+  font-size: 2.6rem;
+  color: #5a1d00;
+  font-weight: 800;
+  margin-bottom: 14px;
   position: relative;
+  letter-spacing: 1px;
+  text-transform: none;
+  background: linear-gradient(90deg, #ff8c00, #ff2d55);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .committee-title::after {
   content: '';
   display: block;
-  margin: 10px auto 0;
-  width: 70px;
-  height: 3px;
-  background: linear-gradient(90deg, #ffb84d, #ff6a00);
-  border-radius: 3px;
+  margin: 12px auto 0;
+  width: 90px;
+  height: 4px;
+  background: linear-gradient(90deg, #ff8c00, #ff2d55, #ff8c00);
+  border-radius: 4px;
+  animation: gradient-slide 2.5s infinite linear;
+}
+
+@keyframes gradient-slide {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
 .committee-subtitle {
-  font-size: 1.05rem;
-  margin-bottom: 35px;
-  color: #855000;
-  opacity: 0.9;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+  color: #804000;
+  opacity: 0.85;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
 }
 
-/* ========================= Members Wrapper ========================= */
+.committee-subtitle:hover {
+  color: #ff6a00;
+}
+
+/* ========================= MEMBERS WRAPPER ========================= */
 .members-wrapper {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 25px;
-  padding: 0 10px;
-  position: relative;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  gap: 30px;
+  padding: 0 20px;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .members-wrapper.fade-page {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(20px);
 }
 
-/* ========================= Member Card ========================= */
+/* ========================= MEMBER CARD ========================= */
 .member-card {
-  background: #fff;
-  padding: 20px 15px;
-  border-radius: 14px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 200, 150, 0.4);
+  padding: 25px 18px;
+  border-radius: 18px;
   width: 260px;
-  max-width: 100%;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
   text-align: center;
-  cursor: pointer;
   position: relative;
-  overflow: hidden;
-  will-change: transform;
-  backface-visibility: hidden;
+  transition: all 0.35s ease;
+  box-shadow: 0 6px 20px rgba(255, 106, 0, 0.15);
+  transform-style: preserve-3d;
 }
 
 .member-card:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+  transform: translateY(-10px) rotateX(6deg) rotateY(-3deg);
+  box-shadow: 0 12px 25px rgba(255, 106, 0, 0.3);
 }
 
-/* ========================= Member Photo ========================= */
+/* ========================= MEMBER PHOTO ========================= */
 .member-photo {
   width: 130px;
   height: 130px;
-  object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 12px;
-  border: 3px solid #d17b00;
-  box-shadow: 0 0 8px rgba(209, 123, 0, 0.35);
-  transition: transform 0.3s ease;
+  border: 3px solid #ff8c00;
+  object-fit: cover;
+  margin-bottom: 14px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
 }
 
 .member-card:hover .member-photo {
-  transform: scale(1.05);
+  transform: scale(1.08) rotate(2deg);
+  box-shadow: 0 0 25px rgba(255, 106, 0, 0.55);
 }
 
-/* ========================= Text ========================= */
+/* ========================= MEMBER TEXT ========================= */
 .member-name {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #6b2600;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #5a1d00;
   transition: color 0.3s ease;
 }
 
 .member-card:hover .member-name {
   color: #ff6a00;
+  text-shadow: 0 0 8px rgba(255, 106, 0, 0.3);
 }
 
 .member-role {
-  font-size: 0.95rem;
-  color: #555;
-  margin-top: 4px;
+  font-size: 1rem;
+  color: #444;
+  margin-top: 5px;
+  opacity: 0.9;
 }
 
-/* ========================= Pagination ========================= */
+/* ========================= PAGINATION ========================= */
 .pagination {
-  margin-top: 30px;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
   flex-wrap: wrap;
-  position: relative;
-  z-index: 10;
 }
 
 .pagination .page-btn {
-  padding: 8px 16px;
+  padding: 10px 20px;
+  border-radius: 30px;
   border: none;
-  border-radius: 40px;
-  background: linear-gradient(135deg, #ffb84d, #ff6a00);
+  background: linear-gradient(135deg, #ff8c00, #ff2d55);
   color: #fff;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: transform 0.25s ease, background 0.25s ease;
-  box-shadow: 0 3px 10px rgba(255, 106, 0, 0.35);
-  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 106, 0, 0.35);
 }
 
 .pagination .page-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  background: linear-gradient(135deg, #ffcc70, #ff8500);
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #ffb84d, #ff6a00);
+  box-shadow: 0 8px 16px rgba(255, 106, 0, 0.45);
 }
 
 .pagination .page-btn:disabled {
-  background: #f0e1d0;
+  background: #f5e5d0;
   color: #b08b55;
-  cursor: not-allowed;
   box-shadow: none;
+  cursor: not-allowed;
 }
 
 .pagination .page-info {
   font-weight: 600;
   color: #6b2600;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
-/* ========================= Responsive ========================= */
-@media (max-width: 1024px) {
-  .committee-title { font-size: 2rem; }
-  .committee-subtitle { font-size: 1rem; }
+/* ========================= FLOATING ANIMATION (SUBTLE EFFECT) ========================= */
+.member-card:nth-child(odd) { animation: floaty 5s ease-in-out infinite; }
+.member-card:nth-child(even) { animation: floaty 6s ease-in-out infinite reverse; }
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
+/* ========================= RESPONSIVE ========================= */
 @media (max-width: 768px) {
-  .members-wrapper { gap: 20px; }
-  .member-card { width: 45%; padding: 18px 12px; }
+  .member-card { width: 45%; padding: 20px 14px; }
   .member-photo { width: 110px; height: 110px; }
 }
 
 @media (max-width: 480px) {
-  .members-wrapper { flex-direction: column; align-items: center; gap: 15px; }
-  .member-card { width: 90%; padding: 16px 12px; }
-  .member-photo { width: 100px; height: 100px; }
-  .committee-title { font-size: 1.7rem; }
-  .committee-subtitle { font-size: 0.9rem; }
-  .member-name { font-size: 1.1rem; }
+  .member-card { width: 90%; padding: 18px 12px; }
+  .committee-title { font-size: 1.9rem; }
+  .member-name { font-size: 1.2rem; }
   .member-role { font-size: 0.9rem; }
-}
-
-@media (max-width: 900px) {
-  .pagination .page-btn { padding: 8px 12px; font-size: 0.9rem; }
-  .pagination .page-info { font-size: 0.9rem; }
-}
-
-@media (max-width: 600px) {
-  .pagination {
-    flex-direction: column;
-    gap: 10px;
-  }
-  .pagination .page-btn {
-    width: 80%;
-    justify-content: center;
-    padding: 10px 0;
-    font-size: 0.9rem;
-  }
+  .pagination .page-btn { width: 80%; }
 }
