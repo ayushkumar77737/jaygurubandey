@@ -7,7 +7,8 @@
   overflow-x: hidden;
   animation: fadeInUp 0.8s ease-in-out;
   perspective: 1000px;
-  position: relative; /* Ensure children z-index works */
+  position: relative; /* Ensure z-index contexts apply */
+  z-index: 1;
 }
 
 @keyframes fadeInUp {
@@ -26,6 +27,7 @@
   background: linear-gradient(90deg, #ff8c00, #ff2d55);
   -webkit-background-clip: text;
   color: transparent;
+  z-index: 5;
 }
 
 .committee-title::after {
@@ -51,6 +53,8 @@
   opacity: 0.85;
   letter-spacing: 0.5px;
   transition: color 0.3s ease;
+  position: relative;
+  z-index: 5;
 }
 
 .committee-subtitle:hover {
@@ -65,9 +69,9 @@
   gap: 30px;
   padding: 0 20px;
   transition: opacity 0.5s ease, transform 0.5s ease;
-  pointer-events: auto; /* ensure children are clickable */
+  pointer-events: auto;
   position: relative;
-  z-index: 1; /* prevent overlay blocking */
+  z-index: 1; /* Below pagination */
 }
 
 .members-wrapper.fade-page {
@@ -89,6 +93,7 @@
   box-shadow: 0 6px 20px rgba(255, 106, 0, 0.15);
   transform-style: preserve-3d;
   pointer-events: auto;
+  z-index: 2;
 }
 
 .member-card:hover {
@@ -106,6 +111,7 @@
   margin-bottom: 14px;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
   box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
+  pointer-events: none; /* 🧩 Prevents overlap blocking pagination clicks */
 }
 
 .member-card:hover .member-photo {
@@ -142,7 +148,8 @@
   gap: 15px;
   flex-wrap: wrap;
   position: relative;
-  z-index: 10; /* always above members */
+  z-index: 50; /* 🧱 Force pagination ABOVE everything */
+  pointer-events: auto;
 }
 
 .pagination .page-btn {
@@ -155,6 +162,8 @@
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(255, 106, 0, 0.35);
+  position: relative;
+  z-index: 55; /* 🧱 Button on top of everything */
 }
 
 .pagination .page-btn:hover:not(:disabled) {
@@ -174,6 +183,8 @@
   font-weight: 600;
   color: #6b2600;
   font-size: 1rem;
+  position: relative;
+  z-index: 55;
 }
 
 /* ========================= RESPONSIVE ========================= */
