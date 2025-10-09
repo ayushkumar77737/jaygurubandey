@@ -14,12 +14,17 @@ const members = [
     { name: "Shri Member 4", role: "Treasurer", phone: "+91 90123 45678", email: "member4@example.com", image: member4Image },
     { name: "Shri Member 5", role: "Event Coordinator", phone: "+91 92345 67890", email: "member5@example.com", image: member5Image },
     { name: "Shri Member 6", role: "Volunteer Head", phone: "+91 93456 78901", email: "member6@example.com", image: member6Image },
+    { name: "Shri Member 7", role: "Community Outreach", phone: "+91 94567 89012", email: "member7@example.com", image: member1Image },
+    { name: "Shri Member 8", role: "Cultural Coordinator", phone: "+91 95678 90123", email: "member8@example.com", image: member2Image },
+    { name: "Shri Member 9", role: "Technical Support", phone: "+91 96789 01234", email: "member9@example.com", image: member3Image },
+    { name: "Shri Member 10", role: "Public Relations", phone: "+91 97890 12345", email: "member10@example.com", image: member4Image },
+
 ];
 
 const CommitteeMembers = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [animate, setAnimate] = useState(false);
-    const cardsPerPage = 4;
+    const cardsPerPage = 6;
 
     const totalPages = Math.ceil(members.length / cardsPerPage);
     const indexOfLastCard = currentPage * cardsPerPage;
@@ -54,10 +59,10 @@ const CommitteeMembers = () => {
                 {currentMembers.map((member, index) => (
                     <div className="member-card" key={index}>
                         <img src={member.image} alt={member.name} className="member-photo" />
-                        <h2 className="member-name">{member.name}</h2>
-                        <p className="member-role">{member.role}</p>
-                        <p className="member-phone">{member.phone}</p>
-                        <p className="member-email">{member.email}</p>
+                        <h2 className="member-name"><strong>Name :</strong> {member.name}</h2>
+                        <p className="member-role"><strong>Role :</strong> {member.role}</p>
+                        <p className="member-phone"><strong>Phone :</strong> {member.phone}</p>
+                        <p className="member-email"><strong>Email :</strong> {member.email}</p>
                     </div>
                 ))}
             </div>

@@ -7,8 +7,9 @@
   overflow-x: hidden;
   animation: fadeInUp 0.8s ease-in-out;
   perspective: 1000px;
-  position: relative; /* Ensure z-index contexts apply */
+  position: relative;
   z-index: 1;
+  font-family: 'Poppins', sans-serif;
 }
 
 @keyframes fadeInUp {
@@ -61,17 +62,20 @@
   color: #ff6a00;
 }
 
-/* ========================= MEMBERS WRAPPER ========================= */
+/* ========================= MEMBERS WRAPPER (GRID LAYOUT) ========================= */
 .members-wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: start;
   gap: 30px;
+  max-width: 1150px;
+  margin: 0 auto;
   padding: 0 20px;
   transition: opacity 0.5s ease, transform 0.5s ease;
   pointer-events: auto;
   position: relative;
-  z-index: 1; /* Below pagination */
+  z-index: 1;
 }
 
 .members-wrapper.fade-page {
@@ -86,9 +90,7 @@
   border: 1px solid rgba(255, 200, 150, 0.4);
   padding: 25px 18px;
   border-radius: 18px;
-  width: 260px;
   text-align: center;
-  position: relative;
   transition: all 0.35s ease;
   box-shadow: 0 6px 20px rgba(255, 106, 0, 0.15);
   transform-style: preserve-3d;
@@ -111,7 +113,7 @@
   margin-bottom: 14px;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
   box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
-  pointer-events: none; /* 🧩 Prevents overlap blocking pagination clicks */
+  pointer-events: none;
 }
 
 .member-card:hover .member-photo {
@@ -132,7 +134,9 @@
   text-shadow: 0 0 8px rgba(255, 106, 0, 0.3);
 }
 
-.member-role {
+.member-role,
+.member-phone,
+.member-email {
   font-size: 1rem;
   color: #444;
   margin-top: 5px;
@@ -148,7 +152,7 @@
   gap: 15px;
   flex-wrap: wrap;
   position: relative;
-  z-index: 50; /* 🧱 Force pagination ABOVE everything */
+  z-index: 50;
   pointer-events: auto;
 }
 
@@ -163,7 +167,7 @@
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(255, 106, 0, 0.35);
   position: relative;
-  z-index: 55; /* 🧱 Button on top of everything */
+  z-index: 55;
 }
 
 .pagination .page-btn:hover:not(:disabled) {
@@ -188,14 +192,22 @@
 }
 
 /* ========================= RESPONSIVE ========================= */
+@media (max-width: 992px) {
+  .members-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+  }
+}
+
 @media (max-width: 768px) {
-  .member-card { width: 45%; padding: 20px 14px; }
+  .committee-title { font-size: 2.1rem; }
+  .member-card { padding: 20px 15px; }
   .member-photo { width: 110px; height: 110px; }
 }
 
 @media (max-width: 480px) {
-  .member-card { width: 90%; padding: 18px 12px; }
   .committee-title { font-size: 1.9rem; }
+  .member-card { width: 100%; padding: 18px 12px; }
   .member-name { font-size: 1.2rem; }
   .member-role { font-size: 0.9rem; }
   .pagination .page-btn { width: 80%; }
