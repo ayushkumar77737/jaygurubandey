@@ -170,15 +170,6 @@
   font-size: 1rem;
 }
 
-/* ========================= FLOATING ANIMATION (SUBTLE EFFECT) ========================= */
-.member-card:nth-child(odd) { animation: floaty 5s ease-in-out infinite; }
-.member-card:nth-child(even) { animation: floaty 6s ease-in-out infinite reverse; }
-
-@keyframes floaty {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
 /* ========================= RESPONSIVE ========================= */
 @media (max-width: 768px) {
   .member-card { width: 45%; padding: 20px 14px; }
