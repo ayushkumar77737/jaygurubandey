@@ -1,28 +1,193 @@
+/* ===== Satguru Chalisa Page Styles (Elegant, Responsive & Smooth) ===== */
+
 .chalisa-container {
-  text-align: center;
-  padding: 80px 20px;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #fffdf7, #f8e9f0, #fcefe9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   min-height: 100vh;
-  animation: fadeIn 1s ease-in-out;
+  padding: 4vw 6vw;
+  background: linear-gradient(135deg, #fffdf7, #f9f5f0);
+  text-align: center;
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+  animation: fadeIn 1.2s ease-in-out;
 }
 
+/* ===== Title ===== */
 .chalisa-title {
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
   font-weight: 700;
-  margin-bottom: 20px;
-  color: #8b2f0b;
+  text-align: center;
+  color: #8b0000;
+  margin-bottom: 1.5rem;
+  animation: fadeInDown 1s ease-out;
 }
 
-.chalisa-text {
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.8;
-  font-size: 1.1rem;
+/* ===== Layout ===== */
+.chalisa-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 1000px;
+  width: 100%;
+  text-align: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+/* ===== Image Box ===== */
+.chalisa-image-box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 0.8rem;
+  border: 1px solid #e5cfcf;
+  width: 100%;
+  max-width: 350px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chalisa-image-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 10px 22px rgba(0, 0, 0, 0.15);
+}
+
+.chalisa-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* ===== Text Box ===== */
+.chalisa-text-box {
+  flex: 2;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  line-height: 1.7;
+  font-size: 1.05rem;
   color: #333;
+  border: 1px solid #e5cfcf;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  white-space: pre-wrap;
+}
+
+.chalisa-text-box:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0px 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+.chalisa-text-box b {
+  color: #8b0000;
+  font-weight: 600;
+}
+
+/* ===== Pagination Buttons ===== */
+.chalisa-pagination {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.chalisa-pagination button {
+  background: #8b0000;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.chalisa-pagination button:hover:not(:disabled) {
+  background: #600000;
+  transform: scale(1.05);
+}
+
+.chalisa-pagination button:disabled {
+  background: #ccc;
+  color: #555;
+  cursor: not-allowed;
+}
+
+/* ===== Footer ===== */
+.chalisa-footer {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: #666;
+  font-weight: 500;
+  text-align: center;
+  animation: fadeIn 1.5s ease;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+/* ===== Responsive Breakpoints ===== */
+@media (max-width: 1024px) {
+  .chalisa-content {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .chalisa-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .chalisa-title {
+    font-size: 2rem;
+  }
+  .chalisa-text-box {
+    font-size: 1rem;
+    padding: 1.2rem;
+  }
+  .chalisa-image {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .chalisa-title {
+    font-size: 1.6rem;
+  }
+  .chalisa-text-box {
+    font-size: 0.95rem;
+    padding: 1rem;
+  }
+  .chalisa-pagination {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .chalisa-pagination button {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+}
+
+
