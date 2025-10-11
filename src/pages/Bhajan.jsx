@@ -112,16 +112,11 @@ const Bhajan = () => {
 
       {/* Buttons Section */}
       <div className="bhajan-buttons">
-        <a
-          href="https://drive.google.com/file/d/1OGK0CvhcMuOLFovRhHJUB8y6ew8VmnRX/view?usp=sharing"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn"
-        >
+        {/* ✅ Changed to Link for new page */}
+        <Link to="/satguru-chalisa" className="btn">
           Satguru Chalisa <span className="arrow">→</span>
-        </a>
+        </Link>
 
-        {/* Changed to open new page */}
         <Link to="/satguru-arti" className="btn">
           Satguru Arti <span className="arrow">→</span>
         </Link>

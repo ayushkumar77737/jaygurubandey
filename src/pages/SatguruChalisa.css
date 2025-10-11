@@ -1,0 +1,28 @@
+.chalisa-container {
+  text-align: center;
+  padding: 80px 20px;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #fffdf7, #f8e9f0, #fcefe9);
+  min-height: 100vh;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.chalisa-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #8b2f0b;
+}
+
+.chalisa-text {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
