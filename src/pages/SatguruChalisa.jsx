@@ -14,7 +14,7 @@ const SatguruChalisa = () => {
 
   return (
     <div className="arti-container">
-      <h1 className="arti-title">🕉️ Satguru Chalisa 🕉️</h1>
+      <h1 className="arti-title">🙏 Satguru Chalisa 🙏</h1>
 
       <div className="arti-content">
         {/* Left: Image */}
