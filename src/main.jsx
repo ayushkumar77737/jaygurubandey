@@ -42,7 +42,7 @@ const router = createBrowserRouter([
       { path: 'contribute', element: <Contribute /> },
       { path: 'privacy-policy', element: <PrivacyPolicy /> },
       { path: 'satguru-arti', element: <SatguruArti /> },
-       { path: 'satguru-chalisa', element: <SatguruChalisa /> },
+      { path: 'satguru-chalisa', element: <SatguruChalisa /> },
       { path: 'committee-members', element: <CommitteeMembers /> },
     ],
   },
