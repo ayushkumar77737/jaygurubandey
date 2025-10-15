@@ -145,59 +145,61 @@
   }
 }
 
-/* ===== Satsang Pagination ===== */
-.satsang-container .pagination {
+/* ===== Pagination ===== */
+.pagination {
   margin: 30px 0;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  flex-wrap: wrap; /* allows items to wrap on smaller screens */
+  flex-wrap: wrap;
 }
 
-/* Pagination Buttons */
-.satsang-container .pagination button {
+.pagination button {
   padding: 8px 14px;
   border: none;
   border-radius: 6px;
-  background: #f39c12; /* main satsang theme color */
+  background: #f39c12;
   color: #fff;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.25s ease, transform 0.2s ease;
-  min-width: 80px; /* ensures buttons don't get too small */
+  min-width: 80px;
 }
 
-.satsang-container .pagination button:hover {
-  background: #e67e22; /* hover satsang color */
+.pagination button:hover {
+  background: #e67e22;
   transform: translateY(-2px);
 }
 
-.satsang-container .pagination button.active {
-  background: #d35400; /* active page satsang color */
-  transform: scale(1.05);
+.pagination button:disabled {
+  background: #d3d3d3;
+  color: #666;
+  cursor: not-allowed;
+  transform: none;
+  opacity: 0.8;
 }
 
 /* Page Circle */
 .page-circle {
   display: inline-block;
-  padding: 14px 20px; /* adjust size */
+  padding: 14px 20px;
   border-radius: 50%;
-  background-color: #f39c12; /* circle color */
+  background-color: #f39c12;
   color: white;
   font-weight: bold;
   text-align: center;
   margin: 0 15px;
   font-size: 16px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  min-width: 60px; /* ensure circle does not shrink too much */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  min-width: 60px;
   min-height: 60px;
   line-height: 1.2;
 }
 
-/* ===== Responsive Adjustments ===== */
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
-  .satsang-container .pagination button {
+  .pagination button {
     padding: 6px 10px;
     font-size: 14px;
     min-width: 60px;
@@ -213,11 +215,11 @@
 }
 
 @media (max-width: 480px) {
-  .satsang-container .pagination {
+  .pagination {
     gap: 5px;
   }
 
-  .satsang-container .pagination button {
+  .pagination button {
     padding: 5px 8px;
     font-size: 13px;
     min-width: 50px;
