@@ -4,10 +4,7 @@
   min-height: 100vh;
   padding: 30px 20px 80px;
   text-align: center;
-
-  /* 🌈 Background same as satsang.css (from about.css) */
   background: linear-gradient(135deg, #fff5f5, #fff0fa, #f5faff);
-
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
@@ -42,8 +39,8 @@
 .bhajan-card {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 18px;
-  border: 1px solid rgba(243,156,18,0.15);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  border: 1px solid rgba(243, 156, 18, 0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   padding: 18px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   cursor: pointer;
@@ -51,11 +48,10 @@
 
 .bhajan-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
-.bhajan-card iframe,
-.bhajan-card audio {
+.bhajan-card iframe {
   width: 100%;
   height: 180px;
   border-radius: 14px;
@@ -64,10 +60,9 @@
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.bhajan-card iframe:hover,
-.bhajan-card audio:hover {
+.bhajan-card iframe:hover {
   transform: scale(1.015);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* ===== Bhajan Button ===== */
@@ -112,92 +107,73 @@
   transform: translateY(-2px);
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 1024px) {
-  .bhajan-grid { gap: 18px; }
-  .bhajan-card iframe,
-  .bhajan-card audio { height: 160px; }
-}
-
-@media (max-width: 768px) {
-  .bhajan-title { font-size: 2.2rem; }
-  .bhajan-grid { grid-template-columns: 1fr 1fr; }
-  .bhajan-card iframe,
-  .bhajan-card audio { height: 140px; }
-
-  .bhajan-buttons {
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .bhajan-buttons .btn { width: 70%; }
-}
-
-@media (max-width: 480px) {
-  .bhajan-title { font-size: 1.8rem; margin-bottom: 25px; }
-  .bhajan-grid { gap: 15px; }
-  .bhajan-card iframe,
-  .bhajan-card audio { height: 120px; }
-  .bhajan-card a { font-size: 0.85rem; padding: 9px 18px; }
-
-  .bhajan-buttons .btn { width: 90%; }
-}
-
-
 /* ===== Pagination ===== */
-/* ===== Bhajan Pagination ===== */
-.bhajan-container .pagination {
+.pagination {
   margin: 30px 0;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  flex-wrap: wrap; /* allows items to wrap on smaller screens */
+  flex-wrap: wrap;
 }
 
-.bhajan-container .pagination button {
+.pagination button {
   padding: 8px 14px;
   border: none;
   border-radius: 6px;
-  background: #f39c12; /* main bhajan theme color */
+  background: #f39c12;
   color: #fff;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.25s ease, transform 0.2s ease;
-  min-width: 80px; /* ensures buttons don't get too small */
+  min-width: 80px;
 }
 
-.bhajan-container .pagination button:hover {
-  background: #e67e22; /* hover color */
+.pagination button:hover {
+  background: #e67e22;
   transform: translateY(-2px);
 }
 
-.bhajan-container .pagination button.active {
-  background: #d35400; /* active page color */
-  transform: scale(1.05);
+.pagination button:disabled {
+  background: #d3d3d3;
+  color: #666;
+  cursor: not-allowed;
+  transform: none;
+  opacity: 0.8;
 }
 
 /* Page Circle */
 .page-circle {
   display: inline-block;
-  padding: 14px 20px; /* adjust size */
+  padding: 14px 20px;
   border-radius: 50%;
-  background-color: #f39c12; /* circle color */
+  background-color: #f39c12;
   color: white;
   font-weight: bold;
   text-align: center;
   margin: 0 15px;
   font-size: 16px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  min-width: 60px; /* ensure circle does not shrink too much */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  min-width: 60px;
   min-height: 60px;
   line-height: 1.2;
 }
 
-/* ===== Responsive Adjustments ===== */
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
-  .bhajan-container .pagination button {
+  .bhajan-title {
+    font-size: 2.2rem;
+  }
+
+  .bhajan-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .bhajan-card iframe {
+    height: 140px;
+  }
+
+  .pagination button {
     padding: 6px 10px;
     font-size: 14px;
     min-width: 60px;
@@ -213,11 +189,30 @@
 }
 
 @media (max-width: 480px) {
-  .bhajan-container .pagination {
+  .bhajan-title {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+  }
+
+  .bhajan-grid {
+    gap: 15px;
+    grid-template-columns: 1fr;
+  }
+
+  .bhajan-card iframe {
+    height: 120px;
+  }
+
+  .bhajan-card a {
+    font-size: 0.85rem;
+    padding: 9px 18px;
+  }
+
+  .pagination {
     gap: 5px;
   }
 
-  .bhajan-container .pagination button {
+  .pagination button {
     padding: 5px 8px;
     font-size: 13px;
     min-width: 50px;
@@ -229,5 +224,9 @@
     min-width: 45px;
     min-height: 45px;
     margin: 4px;
+  }
+
+  .bhajan-buttons .btn {
+    width: 90%;
   }
 }
