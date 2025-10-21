@@ -220,3 +220,32 @@ nav ul li a:hover {
     font-size: 14px;
   }
 }
+
+/* ========================= Full 3D Moderate-Speed Flip ========================= */
+@keyframes fullFlipModerate {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg) scaleX(-1);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+/* Logo Animation */
+nav img.logo {
+  animation: fullFlipModerate 9s ease-in-out infinite; /* 9 seconds per full flip */
+  transform-style: preserve-3d;
+  border-radius: 50%;
+  backface-visibility: visible;
+}
+
+/* Circle Animation */
+.circle-img {
+  animation: fullFlipModerate 9s ease-in-out infinite; /* matches logo perfectly */
+  transform-style: preserve-3d;
+  border-radius: 50%;
+  backface-visibility: visible;
+}
