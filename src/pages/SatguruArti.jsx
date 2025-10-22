@@ -28,43 +28,43 @@ const SatguruArti = () => {
           {page === 1 && (
             <p>
               <b>(1)</b> <br />
-              Aarti daas sada karein Prabhu ji, Satguru daar tumharo, <br />
-              Bina thaal kapoor deep ke, gagan dekh ujiyaaro. ॥ <br /><br />
-              Virah se vyakulat jaay wahan par, premee prem sahaari, <br />
-              Shabd dhvani suneen surati sudha ras, man-man sudhi bisaree. ॥ <br /><br />
-              Kar se kripaa karo Swami ji, mile premtam pyaare, <br />
-              Nij sukh pag tale charanaagat, man maaya sab haare. ॥ <br /><br />
-              Naam desh jahaan toor nirantar, aatho pahar nihaaro, <br />
-              Gyaan kee Ganga bhakti ka saagar, jaaye hans milaaree. ॥ <br /><br />
-              Jai Gurubande Param Purush Prabhu, santan ko gahi toro, <br />
-              Alakh anaamee agam agochar, Jai Gurubande hamaare. ॥ <br />
+              Aarti daas sada karen Prabhu ji,Satguru dwar tumhare || <br />
+              Bina thaal kapoor deep ke,gagan dekh ujiyare || <br /><br />
+              Virah se vyakul jaay wahan par,premi prem sahare || <br />
+              Shabd dhvani sune soorati sudha ras,tan-man sudhi bisaare || <br /><br />
+              Kar se kripa karen Swami ji,mile priyatam pyare || <br />
+              Nij sukh wahan mile charanamut,man maya sab haare || <br /><br />
+              Naam desh jahan noor nirantar,aatho pahar nihaare || <br />
+              Gyaan ki Ganga bhakti ka saagar,jaaye hans milore || <br /><br />
+              Jai Gurubande param purush Prabhu,santan ko gahi taare || <br />
+              Alakh Anami Agam Agochar,Jai Gurubande hamaare || <br />
             </p>
           )}
 
           {page === 2 && (
             <p>
               <b>(2)</b> <br />
-              Aarti Satgurudev Prabhu kee, hoye baarambaar re manvaa — chal saache darbaara. ॥ <br /><br />
-              Kaal akaal se mukti mile, Jai Gurubande paar re manvaa... ॥ <br /><br />
-              Brahma Vishnu Maheshvar, kar seva karta re manvaa... ॥ <br /><br />
-              Koti-koti sooraj chandra jahaan, bhoomi pahaad hazaar re manvaa... ॥ <br /><br />
-              Noor desh jahaan naam nirantar, bahata amrit dhaar re manvaa... ॥ <br /><br />
-              Paarbrahm jahaan Manasarovar, hanson kaa sansaar re manvaa... ॥ <br /><br />
-              Bhavar gupha kee gupt gali mein, banshee kee jhankaar re manvaa... ॥ <br /><br />
-              Satlok ke prem nagar mein, hanson kaa sanskaar re manvaa... ॥ <br /><br />
-              Jai Gurubande Satguru Saahib, karte sabse pyaar re manvaa... ॥ <br />
+              Aarti Satgurudev Prabhu ki, hoye barambar re manva Chal sache darbara | <br /><br />
+              Kaal akaal se mukti mile, Jai Gurubande paar re manva... <br /><br />
+              Brahma Vishnu Maheshwar, kar seva Kartaar re manva... <br /><br />
+              Kotin suraj chandra jahan, bhoomi pahaad hajaar re manva... <br /><br />
+              Noor desh jahan naam nirantar, bahta amrit dhaar re manva... <br /><br />
+              Parbrahm jahan Manasarovar, hanson ka sansaar re manva... <br /><br />
+              Bhavar gufa ki gupt gali mein, banshi ki jhankaar re manva... <br /><br />
+              Satlok ke prem nagar mein, hanson ki sarkar re manva... <br /><br />
+              Jai Gurubande Satguru Saheb, karte sabse pyaar re manva... <br />
             </p>
           )}
 
           {page === 3 && (
             <p>
               <b>(3)</b> <br />
-              Akhand mandalakar jyoti, sam rahi Satlok, <br />
-              Jeev dekhi Jai Gurubande, mile jagat ka shok. ॥ <br /><br />
-              Satguru bad Govind nahi, nam liye or kahaya, <br />
-              Peedhi-peedhi Jai Gurubande, bir milne ki bataya. ॥ <br /><br />
-              Sant samaanan sabse uttam, mann bhakton mann laya, <br />
-              Bhajon-bhajon Jai Gurubande, Hari darshan ka paaya. ॥ <br />
+              Akhand mandalakar jyoti, sam rahi Satlok | <br />
+              Jeev dekhi Jai Gurubande, mite jagat ka shok. ॥ <br /><br />
+              Satguru bad Govind nahi nabh se pare kahaya | <br />
+              Peechhe-peechhe Jai Gurubande, Hari milne ko bataya. ॥ <br /><br />
+              Sant samagam sabse achha mat bhatko manlaya | <br />
+              Bhajate-bhajate Jai Gurubande, Hari darshan ko paaya. ॥ <br />
             </p>
           )}
         </div>
