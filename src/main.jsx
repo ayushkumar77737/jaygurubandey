@@ -20,7 +20,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
 import SatguruArti from './pages/SatguruArti.jsx'
 import CommitteeMembers from './pages/CommitteeMembers.jsx'
 import SatguruChalisa from './pages/SatguruChalisa.jsx'
-
+import PublishedBooks from './pages/PublishedBooks.jsx'
 
 const router = createBrowserRouter([
   {
@@ -44,6 +44,7 @@ const router = createBrowserRouter([
       { path: 'satguru-arti', element: <SatguruArti /> },
       { path: 'satguru-chalisa', element: <SatguruChalisa /> },
       { path: 'committee-members', element: <CommitteeMembers /> },
+      { path: 'published-books', element: <PublishedBooks /> },
     ],
   },
 ])
