@@ -41,6 +41,8 @@
   transition: color 0.3s;
   position: relative;
   display: inline-block;
+  /* ✅ Added pointer cursor */
+  cursor: pointer;
 }
 
 .footer-bottom .privacy-link::before {
