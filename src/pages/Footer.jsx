@@ -1,52 +1,42 @@
-import React from 'react'
-import './Footer.css'
-import { FaFacebook, FaInstagram, FaYoutube, FaWhatsapp } from 'react-icons/fa'
+import React from "react";
+import "./Footer.css";
+import { FaFacebook, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
   const handlePrivacyClick = () => {
-    window.location.href = '/privacy-policy'; // Always go to top
+    window.location.href = "/privacy-policy";
   };
 
   const handleCommitteeClick = () => {
-    window.location.href = '/committee-members'; // Navigate to committee members page
+    window.location.href = "/committee-members";
   };
 
   const handleBooksClick = () => {
-    window.location.href = '/published-books'; // Navigate to published books page
+    window.location.href = "/published-books";
   };
 
   return (
     <footer className="footer">
       <div className="container footer-content">
-
+        {/* Copyright Section */}
         <div className="footer-bottom">
-          <p>© {new Date().getFullYear()} Jay Guru Bandey . All rights reserved .</p>
+          <p>© {new Date().getFullYear()} Jay Guru Bandey. All rights reserved.</p>
 
-          <span
-            className="privacy-link"
-            onClick={handlePrivacyClick}
-            style={{ cursor: 'pointer', marginRight: '15px' }}
-          >
-            Privacy Policy
-          </span>
-
-          <span
-            className="privacy-link"
-            onClick={handleCommitteeClick}
-            style={{ cursor: 'pointer', marginRight: '15px' }}
-          >
-            Committee Members
-          </span>
-
-          <span
-            className="privacy-link"
-            onClick={handleBooksClick}
-            style={{ cursor: 'pointer' }}
-          >
-            Published Books
-          </span>
+          {/* Button Links (Centered) */}
+          <div className="footer-links">
+            <span className="privacy-link" onClick={handlePrivacyClick}>
+              Privacy Policy
+            </span>
+            <span className="privacy-link" onClick={handleCommitteeClick}>
+              Committee Members
+            </span>
+            <span className="privacy-link" onClick={handleBooksClick}>
+              Published Books
+            </span>
+          </div>
         </div>
 
+        {/* Social Icons */}
         <div className="social-links">
           <a
             href="https://www.facebook.com/share/g/1AZvFisxcs/"
@@ -83,7 +73,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
