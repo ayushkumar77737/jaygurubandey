@@ -143,8 +143,8 @@
   opacity: 0.9;
 }
 
-/* ========================= PAGINATION ========================= */
-.pagination {
+/* ========================= PAGINATION (SCOPED) ========================= */
+.committee-container .pagination {
   margin-top: 40px;
   display: flex;
   justify-content: center;
@@ -156,7 +156,7 @@
   pointer-events: auto;
 }
 
-.pagination .page-btn {
+.committee-container .pagination .page-btn {
   padding: 10px 20px;
   border-radius: 30px;
   border: none;
@@ -170,20 +170,20 @@
   z-index: 55;
 }
 
-.pagination .page-btn:hover:not(:disabled) {
+.committee-container .pagination .page-btn:hover:not(:disabled) {
   transform: translateY(-3px);
   background: linear-gradient(135deg, #ffb84d, #ff6a00);
   box-shadow: 0 8px 16px rgba(255, 106, 0, 0.45);
 }
 
-.pagination .page-btn:disabled {
+.committee-container .pagination .page-btn:disabled {
   background: #f5e5d0;
   color: #b08b55;
   box-shadow: none;
   cursor: not-allowed;
 }
 
-.pagination .page-info {
+.committee-container .pagination .page-info {
   font-weight: 600;
   color: #6b2600;
   font-size: 1rem;
@@ -210,5 +210,5 @@
   .member-card { width: 100%; padding: 18px 12px; }
   .member-name { font-size: 1.2rem; }
   .member-role { font-size: 0.9rem; }
-  .pagination .page-btn { width: 80%; }
+  .committee-container .pagination .page-btn { width: 80%; }
 }
