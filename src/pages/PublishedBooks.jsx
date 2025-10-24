@@ -108,7 +108,7 @@ const PublishedBooks = () => {
             <img src={book.image} alt={book.title} className="book-image" />
             <p className="book-name"><strong>Name:</strong> {book.title}</p>
             <p className="book-author"><strong>Author:</strong> {book.author}</p>
-            <button className="book-link" onClick={() => setSelectedBook(book)}>Read More</button>
+            <button className="book-link" onClick={() => setSelectedBook(book)}>Open</button>
           </div>
         ))}
       </div>
