@@ -1,17 +1,15 @@
-/* ===== Published Books Page Styles ===== */
-
+/* ===== Published Books Page (Lightweight + Animated) ===== */
 .books-page {
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
-  padding: 60px 20px 80px;
-  background: linear-gradient(135deg, #fff7fa, #f9f9ff, #fffdf7);
+  padding: 50px 15px 60px;
+  background: #fffdfc;
   text-align: center;
-  overflow-x: hidden;
-  animation: fadeInPage 1s ease-out; /* 🌟 Page fade-in */
+  animation: fadeIn 0.8s ease-out; /* 🌟 Page fade-in */
 }
 
-/* 🌟 Page fade-in */
-@keyframes fadeInPage {
+/* 🌟 Page Fade-in Animation */
+@keyframes fadeIn {
   from {
     opacity: 0;
   }
@@ -21,30 +19,28 @@
 }
 
 /* ===== Heading Section ===== */
-
 .books-title {
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #b30059;
-  margin-bottom: 10px;
-  opacity: 0;
-  animation: slideDown 1s ease forwards;
+  margin-bottom: 8px;
+  animation: slideDown 0.8s ease-out;
 }
 
 .books-subtitle {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #555;
   max-width: 600px;
-  margin: 0 auto 40px;
-  opacity: 0;
-  animation: slideUp 1s ease forwards;
-  animation-delay: 0.3s;
+  margin: 0 auto 35px;
+  animation: slideUp 0.8s ease-out;
+  animation-delay: 0.1s;
+  animation-fill-mode: both;
 }
 
-/* 🌟 Animations for title/subtitle */
+/* 🌟 Title Animations */
 @keyframes slideDown {
   from {
-    transform: translateY(-20px);
+    transform: translateY(-15px);
     opacity: 0;
   }
   to {
@@ -55,7 +51,7 @@
 
 @keyframes slideUp {
   from {
-    transform: translateY(20px);
+    transform: translateY(15px);
     opacity: 0;
   }
   to {
@@ -65,35 +61,31 @@
 }
 
 /* ===== Books Grid ===== */
-
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
   justify-content: center;
   align-items: start;
-  padding: 0 20px;
 }
 
 /* ===== Book Card ===== */
-
 .book-card {
   background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  padding: 15px;
   opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUpCard 0.8s ease forwards;
-  animation-delay: calc(var(--delay, 0) * 0.2s);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: translateY(20px);
+  animation: fadeUp 0.7s ease forwards;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* 🌟 Book entry animation */
-@keyframes fadeUpCard {
+/* ✨ Fade-up animation for cards */
+@keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -101,26 +93,30 @@
   }
 }
 
-/* Hover effect */
+/* 🎵 Staggered animation delay for each card */
+.book-card:nth-child(1) { animation-delay: 0.2s; }
+.book-card:nth-child(2) { animation-delay: 0.4s; }
+.book-card:nth-child(3) { animation-delay: 0.6s; }
+.book-card:nth-child(4) { animation-delay: 0.8s; }
+.book-card:nth-child(5) { animation-delay: 1s; }
+
 .book-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* ===== Book Image ===== */
-
 .book-image-wrapper {
   display: flex;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .book-image {
-  width: 160px;
-  height: 220px;
+  width: 140px;
+  height: 200px;
   object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
   transition: transform 0.4s ease;
 }
 
@@ -129,112 +125,56 @@
 }
 
 /* ===== Book Info ===== */
-
 .book-title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: #333;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .book-description {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #666;
-  margin-bottom: 15px;
-  line-height: 1.5;
+  margin-bottom: 12px;
+  line-height: 1.4;
 }
 
 /* ===== Button ===== */
-
 .book-link {
   display: inline-block;
-  padding: 8px 18px;
-  background: linear-gradient(90deg, #ff6699, #cc33cc);
-  color: white;
-  border-radius: 25px;
+  padding: 7px 16px;
+  background: #d63384;
+  color: #fff;
+  border-radius: 20px;
   text-decoration: none;
-  font-weight: 500;
-  transition: background 0.3s ease, transform 0.3s ease;
+  font-size: 0.9rem;
+  transition: background 0.25s ease, transform 0.25s ease;
 }
 
 .book-link:hover {
-  background: linear-gradient(90deg, #cc33cc, #ff6699);
+  background: #b30059;
   transform: scale(1.05);
 }
 
-/* ===== 🌈 RESPONSIVE DESIGN ===== */
-
-/* Tablets (max-width: 992px) */
-@media (max-width: 992px) {
-  .books-title {
-    font-size: 2rem;
-  }
-
-  .books-subtitle {
-    font-size: 0.95rem;
-    margin-bottom: 30px;
-  }
-
-  .book-image {
-    width: 140px;
-    height: 200px;
-  }
-}
-
-/* Mobile Devices (max-width: 768px) */
+/* ===== Responsive Design ===== */
 @media (max-width: 768px) {
-  .books-page {
-    padding: 50px 15px 60px;
-  }
-
   .books-title {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 
   .books-subtitle {
     font-size: 0.9rem;
-    padding: 0 10px;
-  }
-
-  .books-grid {
-    gap: 25px;
-  }
-
-  .book-card {
-    padding: 15px;
-  }
-
-  .book-title {
-    font-size: 1.1rem;
-  }
-
-  .book-description {
-    font-size: 0.9rem;
-  }
-
-  .book-image {
-    width: 130px;
-    height: 190px;
-  }
-}
-
-/* Extra Small (max-width: 480px) */
-@media (max-width: 480px) {
-  .books-title {
-    font-size: 1.6rem;
-  }
-
-  .books-subtitle {
-    font-size: 0.85rem;
   }
 
   .book-image {
     width: 120px;
     height: 170px;
   }
+}
 
-  .book-card {
-    padding: 12px;
+@media (max-width: 480px) {
+  .books-title {
+    font-size: 1.5rem;
   }
 
   .book-description {
@@ -242,7 +182,7 @@
   }
 
   .book-link {
-    padding: 7px 14px;
+    padding: 6px 12px;
     font-size: 0.85rem;
   }
 }
