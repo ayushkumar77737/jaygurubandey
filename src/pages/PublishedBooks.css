@@ -55,6 +55,8 @@
   justify-content: space-between;
   align-items: center;
   height: 380px;
+  position: relative; /* added for stacking */
+  z-index: 1;
 }
 
 .book-card:hover {
@@ -71,6 +73,7 @@
   border: 2px solid #b30059;
   margin-bottom: 12px;
   transition: transform 0.3s ease;
+  z-index: 1;
 }
 
 .book-card:hover .book-image {
@@ -105,6 +108,10 @@
   transition: background 0.25s ease, transform 0.25s ease;
   cursor: pointer;
   border: none;
+
+  /* Fix clickable issue */
+  position: relative;
+  z-index: 5;
 }
 
 .book-link:hover {
@@ -126,6 +133,8 @@
   justify-content: center;
   z-index: 999;
   animation: fadeIn 0.3s ease;
+
+  pointer-events: auto; /* ensure overlay can receive clicks */
 }
 
 /* Popup box */
@@ -139,6 +148,10 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   transform: rotateY(90deg);
   animation: flipIn 0.5s forwards;
+
+  position: relative;
+  z-index: 10; /* keep modal above everything */
+  pointer-events: auto; /* ensure content is clickable */
 }
 
 /* Flip animation */
@@ -193,6 +206,10 @@
   text-decoration: none;
   font-size: 0.9rem;
   transition: background 0.3s ease, transform 0.2s ease;
+
+  /* Fix clickable issue */
+  position: relative;
+  z-index: 15; /* higher than modal content */
 }
 
 .read-btn:hover {
