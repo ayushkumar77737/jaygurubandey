@@ -143,9 +143,9 @@ const PublishedBooks = () => {
           currentBooks.map((book) => (
             <div className="book-card" key={book.id}>
               <img src={book.image} alt={book.title} className="book-image" />
-              <p className="book-name"><strong>Name:</strong> {book.title}</p>
-              <p className="book-author"><strong>Author:</strong> {book.author}</p>
-              <p className="book-category"><strong>Category:</strong> {book.category}</p>
+              <p className="book-name"><strong>Name :</strong> {book.title}</p>
+              <p className="book-author"><strong>Author :</strong> {book.author}</p>
+              <p className="book-category"><strong>Category :</strong> {book.category}</p>
               <button className="book-link" onClick={() => setSelectedBook(book)}>Open</button>
             </div>
           ))
