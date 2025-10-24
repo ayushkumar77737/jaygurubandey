@@ -7,6 +7,7 @@ import book3 from "../assets/guruji.jpg";
 const PublishedBooks = () => {
   const [selectedBook, setSelectedBook] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const booksPerPage = 6;
 
   useEffect(() => {
@@ -23,6 +24,7 @@ const PublishedBooks = () => {
       year: 2021,
       image: book1,
       link: "https://drive.google.com/file/d/1EXAMPLE_ID/view?usp=sharing",
+      category: "Spirituality",
     },
     {
       id: 2,
@@ -33,6 +35,7 @@ const PublishedBooks = () => {
       year: 2020,
       image: book2,
       link: "https://drive.google.com/file/d/2EXAMPLE_ID/view?usp=sharing",
+      category: "Devotion",
     },
     {
       id: 3,
@@ -43,6 +46,7 @@ const PublishedBooks = () => {
       year: 2019,
       image: book3,
       link: "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing",
+      category: "Meditation",
     },
     {
       id: 4,
@@ -53,6 +57,7 @@ const PublishedBooks = () => {
       year: 2022,
       image: book1,
       link: "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing",
+      category: "Wisdom",
     },
     {
       id: 5,
@@ -63,6 +68,7 @@ const PublishedBooks = () => {
       year: 2023,
       image: book2,
       link: "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing",
+      category: "Self-Realization",
     },
     {
       id: 6,
@@ -73,6 +79,7 @@ const PublishedBooks = () => {
       year: 2021,
       image: book3,
       link: "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing",
+      category: "Philosophy",
     },
     {
       id: 7,
@@ -83,14 +90,21 @@ const PublishedBooks = () => {
       year: 2024,
       image: book1,
       link: "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing",
+      category: "Wisdom",
     },
   ];
 
-  // Pagination Logic
+  // ✅ Filter logic
+  const filteredBooks =
+    selectedCategory === "All"
+      ? books
+      : books.filter((book) => book.category === selectedCategory);
+
+  // ✅ Pagination logic
   const indexOfLastBook = currentPage * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
-  const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
-  const totalPages = Math.ceil(books.length / booksPerPage);
+  const currentBooks = filteredBooks.slice(indexOfFirstBook, indexOfLastBook);
+  const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
 
   const handlePageChange = (pageNumber) => {
     if (pageNumber < 1 || pageNumber > totalPages) return;
@@ -98,27 +112,56 @@ const PublishedBooks = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // ✅ Extract unique categories for dropdown
+  const categories = ["All", ...new Set(books.map((b) => b.category))];
+
   return (
     <div className="books-page">
       <h1 className="books-title">📚 Published Books</h1>
 
-      <div className="books-row">
-        {currentBooks.map((book) => (
-          <div className="book-card" key={book.id}>
-            <img src={book.image} alt={book.title} className="book-image" />
-            <p className="book-name"><strong>Name:</strong> {book.title}</p>
-            <p className="book-author"><strong>Author:</strong> {book.author}</p>
-            <button className="book-link" onClick={() => setSelectedBook(book)}>Open</button>
-          </div>
-        ))}
+      {/* Category Filter */}
+      <div className="category-filter">
+        <label htmlFor="categorySelect"><strong>Filter by Category:</strong> </label>
+        <select
+          id="categorySelect"
+          value={selectedCategory}
+          onChange={(e) => {
+            setSelectedCategory(e.target.value);
+            setCurrentPage(1);
+          }}
+          className="category-dropdown"
+        >
+          {categories.map((cat, index) => (
+            <option key={index} value={cat}>{cat}</option>
+          ))}
+        </select>
       </div>
 
-      {/* Pagination: Prev Page X of Y Next */}
-      <div className="pagination">
-        <button className="page-btn" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>⬅ Prev</button>
-        <span className="page-info">Page {currentPage} of {totalPages}</span>
-        <button className="page-btn" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>Next ➡</button>
+      {/* Books Grid */}
+      <div className="books-row">
+        {currentBooks.length > 0 ? (
+          currentBooks.map((book) => (
+            <div className="book-card" key={book.id}>
+              <img src={book.image} alt={book.title} className="book-image" />
+              <p className="book-name"><strong>Name:</strong> {book.title}</p>
+              <p className="book-author"><strong>Author:</strong> {book.author}</p>
+              <p className="book-category"><strong>Category:</strong> {book.category}</p>
+              <button className="book-link" onClick={() => setSelectedBook(book)}>Open</button>
+            </div>
+          ))
+        ) : (
+          <p className="no-books">No books found for this category.</p>
+        )}
       </div>
+
+      {/* Pagination */}
+      {filteredBooks.length > booksPerPage && (
+        <div className="pagination">
+          <button className="page-btn" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>⬅ Prev</button>
+          <span className="page-info">Page {currentPage} of {totalPages}</span>
+          <button className="page-btn" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>Next ➡</button>
+        </div>
+      )}
 
       {/* Popup Modal */}
       {selectedBook && (
@@ -133,6 +176,7 @@ const PublishedBooks = () => {
               <p><strong>Publisher:</strong> {selectedBook.publisher}</p>
               <p><strong>Total Pages:</strong> {selectedBook.pages}</p>
               <p><strong>Year:</strong> {selectedBook.year}</p>
+              <p><strong>Category:</strong> {selectedBook.category}</p>
               <a href={selectedBook.link} target="_blank" rel="noopener noreferrer" className="read-btn">📖 Read Book</a>
             </div>
           </div>
