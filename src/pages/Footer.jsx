@@ -15,6 +15,10 @@ const Footer = () => {
     window.location.href = "/published-books";
   };
 
+  const handleUpdatesClick = () => {
+    window.location.href = "/latest-updates";
+  };
+
   return (
     <footer className="footer">
       <div className="container footer-content">
@@ -32,6 +36,9 @@ const Footer = () => {
             </span>
             <span className="privacy-link" onClick={handleBooksClick}>
               Published Books
+            </span>
+            <span className="privacy-link" onClick={handleUpdatesClick}>
+              Latest Updates
             </span>
           </div>
         </div>

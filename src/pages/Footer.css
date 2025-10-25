@@ -20,10 +20,10 @@
 /* ================= FOOTER BOTTOM ================= */
 .footer-bottom {
   display: flex;
+  flex-direction: column; /* stack copyright and buttons vertically */
   justify-content: center;
   align-items: center;
-  gap: 12px;
-  flex-wrap: wrap; /* Wrap on smaller screens */
+  gap: 8px; /* vertical space between copyright and buttons */
   text-align: center;
 }
 
@@ -45,7 +45,7 @@
   cursor: pointer;
 }
 
-.footer-bottom .privacy-link::before {
+.footer-bottom .privacy-link:not(:first-child)::before {
   content: "|";
   margin: 0 8px;
   color: #aaa;
