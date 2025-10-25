@@ -10,6 +10,7 @@
   padding: 60px 20px;
   text-align: center;
   animation: fadeIn 0.8s ease-out;
+  background: linear-gradient(135deg, #ffe6f0, #fff0f5);
 }
 
 /* ===== Fade In Animation ===== */
@@ -162,7 +163,7 @@
 }
 
 .modal-content {
-  background: #fff;
+  background: linear-gradient(135deg, #ffe6f0, #fff0f5);
   border-radius: 15px;
   display: flex;
   width: 700px;
