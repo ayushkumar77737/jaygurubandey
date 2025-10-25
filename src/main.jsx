@@ -21,6 +21,7 @@ import SatguruArti from './pages/SatguruArti.jsx'
 import CommitteeMembers from './pages/CommitteeMembers.jsx'
 import SatguruChalisa from './pages/SatguruChalisa.jsx'
 import PublishedBooks from './pages/PublishedBooks.jsx'
+import LatestUpdates from './pages/LatestUpdates.jsx'  
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
       { path: 'satguru-chalisa', element: <SatguruChalisa /> },
       { path: 'committee-members', element: <CommitteeMembers /> },
       { path: 'published-books', element: <PublishedBooks /> },
+      { path: 'latest-updates', element: <LatestUpdates /> },
     ],
   },
 ])
