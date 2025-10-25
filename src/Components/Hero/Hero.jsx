@@ -119,7 +119,7 @@ const Hero = () => {
           </button>
 
           <button className="btn announcement-btn" onClick={handleAnnouncementClick}>
-            Important Dates <span className="arrow">→</span>
+            important Dates <span className="arrow">→</span>
           </button>
         </div>
       </div>
