@@ -7,7 +7,7 @@ import book3 from "../assets/guruji.jpg";
 const PublishedBooks = () => {
   const [selectedBook, setSelectedBook] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState(""); // initially blank
   const booksPerPage = 6;
 
   useEffect(() => {
@@ -94,13 +94,13 @@ const PublishedBooks = () => {
     },
   ];
 
-  // ✅ Filter logic
+  const categories = ["All", ...new Set(books.map((b) => b.category))];
+
   const filteredBooks =
     selectedCategory === "All"
       ? books
       : books.filter((book) => book.category === selectedCategory);
 
-  // ✅ Pagination logic
   const indexOfLastBook = currentPage * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
   const currentBooks = filteredBooks.slice(indexOfFirstBook, indexOfLastBook);
@@ -112,16 +112,15 @@ const PublishedBooks = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // ✅ Extract unique categories for dropdown
-  const categories = ["All", ...new Set(books.map((b) => b.category))];
-
   return (
     <div className="books-page">
       <h1 className="books-title">📚 Published Books</h1>
 
       {/* Category Filter */}
       <div className="category-filter">
-        <label htmlFor="categorySelect"><strong>Filter by Category:</strong> </label>
+        <label htmlFor="categorySelect">
+          <strong>Filter by Category:</strong>{" "}
+        </label>
         <select
           id="categorySelect"
           value={selectedCategory}
@@ -131,35 +130,60 @@ const PublishedBooks = () => {
           }}
           className="category-dropdown"
         >
+          {selectedCategory === "" && (
+            <option value="" disabled hidden>
+              Select a Category
+            </option>
+          )}
           {categories.map((cat, index) => (
-            <option key={index} value={cat}>{cat}</option>
+            <option key={index} value={cat}>
+              {cat}
+            </option>
           ))}
         </select>
       </div>
 
       {/* Books Grid */}
       <div className="books-row">
-        {currentBooks.length > 0 ? (
-          currentBooks.map((book) => (
-            <div className="book-card" key={book.id}>
-              <img src={book.image} alt={book.title} className="book-image" />
-              <p className="book-name"><strong>Name :</strong> {book.title}</p>
-              <p className="book-author"><strong>Author :</strong> {book.author}</p>
-              <p className="book-category"><strong>Category :</strong> {book.category}</p>
-              <button className="book-link" onClick={() => setSelectedBook(book)}>Open</button>
-            </div>
-          ))
-        ) : (
-          <p className="no-books">No books found for this category.</p>
-        )}
+        {currentBooks.map((book) => (
+          <div className="book-card" key={book.id}>
+            <img src={book.image} alt={book.title} className="book-image" />
+            <p className="book-name">
+              <strong>Name :</strong> {book.title}
+            </p>
+            <p className="book-author">
+              <strong>Author :</strong> {book.author}
+            </p>
+            <p className="book-category">
+              <strong>Category :</strong> {book.category}
+            </p>
+            <button className="book-link" onClick={() => setSelectedBook(book)}>
+              Open
+            </button>
+          </div>
+        ))}
       </div>
 
       {/* Pagination */}
-      {filteredBooks.length > booksPerPage && (
+      {selectedCategory !== "" && filteredBooks.length > booksPerPage && (
         <div className="pagination">
-          <button className="page-btn" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>⬅ Prev</button>
-          <span className="page-info">Page {currentPage} of {totalPages}</span>
-          <button className="page-btn" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>Next ➡</button>
+          <button
+            className="page-btn"
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            ⬅ Prev
+          </button>
+          <span className="page-info">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            className="page-btn"
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Next ➡
+          </button>
         </div>
       )}
 
@@ -168,16 +192,37 @@ const PublishedBooks = () => {
         <div className="modal-overlay" onClick={() => setSelectedBook(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-left">
-              <img src={selectedBook.image} alt={selectedBook.title} className="modal-image" />
+              <img
+                src={selectedBook.image}
+                alt={selectedBook.title}
+                className="modal-image"
+              />
             </div>
             <div className="modal-right">
               <h2>{selectedBook.title}</h2>
-              <p><strong>Author:</strong> {selectedBook.author}</p>
-              <p><strong>Publisher:</strong> {selectedBook.publisher}</p>
-              <p><strong>Total Pages:</strong> {selectedBook.pages}</p>
-              <p><strong>Year:</strong> {selectedBook.year}</p>
-              <p><strong>Category:</strong> {selectedBook.category}</p>
-              <a href={selectedBook.link} target="_blank" rel="noopener noreferrer" className="read-btn">📖 Read Book</a>
+              <p>
+                <strong>Author:</strong> {selectedBook.author}
+              </p>
+              <p>
+                <strong>Publisher:</strong> {selectedBook.publisher}
+              </p>
+              <p>
+                <strong>Total Pages:</strong> {selectedBook.pages}
+              </p>
+              <p>
+                <strong>Year:</strong> {selectedBook.year}
+              </p>
+              <p>
+                <strong>Category:</strong> {selectedBook.category}
+              </p>
+              <a
+                href={selectedBook.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="read-btn"
+              >
+                📖 Read Book
+              </a>
             </div>
           </div>
         </div>
