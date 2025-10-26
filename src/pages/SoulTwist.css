@@ -1,0 +1,99 @@
+/* ===========================
+   SOULTWIST PAGE DESIGN
+   =========================== */
+
+.soul-page {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fdf6f0, #faf0f4, #fef8f8);
+  padding: 70px 20px;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Main Container */
+.soul-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Title */
+.soul-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #b30059;
+  margin-bottom: 12px;
+}
+
+/* Subtitle */
+.soul-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+/* Content Cards */
+.soul-content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+/* Each Card */
+.soul-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 25px 20px;
+  width: 300px;
+  transition: all 0.4s ease;
+}
+
+.soul-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 20px rgba(179, 0, 89, 0.3);
+}
+
+/* Card Title */
+.soul-card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #b30059;
+  margin-bottom: 10px;
+}
+
+/* Card Text */
+.soul-card-text {
+  color: #444;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .soul-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .soul-card {
+    width: 90%;
+  }
+
+  .soul-title {
+    font-size: 2rem;
+  }
+}
