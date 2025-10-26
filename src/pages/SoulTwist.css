@@ -43,15 +43,11 @@
   -moz-appearance: none;
   padding: 10px 40px 10px 20px;
   border-radius: 30px;
-  
-  /* === FIX === */
-  /* Replaced the gradient border with a standard, solid border */
-  border: 2px solid #333; 
-  background-color: #fff;
-  /* === END FIX === */
-  
+  border: 2px solid transparent;
   font-size: 0.95rem;
   font-weight: 500;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(90deg, #b30059, #ff4081) border-box;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   color: #333;
   cursor: pointer;
@@ -98,7 +94,7 @@
   flex-wrap: wrap;
   gap: 30px;
   padding: 0 10px;
-position: relative; /* ensure buttons inside are clickable */
+  position: relative; /* ensure buttons inside are clickable */
   z-index: 1;
 }
 
