@@ -1,21 +1,180 @@
-/* ===========================
-   SOULTWIST PAGE DESIGN
-   =========================== */
-
+/* ===== SoulTwist Page Base ===== */
 .soul-page {
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
-  background: linear-gradient(135deg, #fdf6f0, #faf0f4, #fef8f8);
-  padding: 70px 20px;
+  background: linear-gradient(145deg, #fffdfc, #f3f6fb);
+  padding: 60px 20px;
   text-align: center;
-  animation: fadeIn 1s ease-in-out;
+  animation: fadeIn 0.8s ease-out;
+  color: #333;
 }
 
-/* Fade-in Animation */
+/* ===== Title ===== */
+.soul-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #b30059;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.soul-line {
+  width: 140px;
+  height: 4px;
+  background: linear-gradient(90deg, #b30059, #ff4081);
+  margin: 0 auto 40px;
+  border-radius: 2px;
+}
+
+/* ===== Filters ===== */
+.soul-filters {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 0; /* lowered so buttons remain clickable */
+}
+
+.soul-filters select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 10px 40px 10px 20px;
+  border-radius: 30px;
+  border: 2px solid transparent;
+  font-size: 0.95rem;
+  font-weight: 500;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(90deg, #b30059, #ff4081) border-box;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 160px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Custom dropdown arrow */
+.soul-filters select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23b30059' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 12px;
+}
+
+/* Hover + Focus */
+.soul-filters select:hover,
+.soul-filters select:focus {
+  box-shadow: 0 6px 14px rgba(179, 0, 89, 0.25);
+  outline: none;
+  transform: translateY(-1px);
+  color: #b30059;
+}
+
+/* Options styling */
+.soul-filters option {
+  background: #fff;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Hide disabled placeholder when dropdown is open */
+.soul-filters select option[disabled] {
+  display: none;
+}
+
+/* ===== Gallery Layout ===== */
+.soul-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 0 10px;
+}
+
+/* ===== Card Style ===== */
+.soul-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  width: 280px;
+  text-align: center;
+}
+
+.soul-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+/* ===== Image ===== */
+.soul-image-container {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-bottom: 2px solid #f0f0f0;
+  border-radius: 20px 20px 0 0;
+}
+
+.soul-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.soul-card:hover .soul-image {
+  transform: scale(1.05);
+}
+
+/* ===== Date ===== */
+.soul-date {
+  padding: 12px 10px;
+  font-size: 1rem;
+  color: #555;
+  font-weight: 500;
+}
+
+.soul-date strong {
+  color: #b30059;
+}
+
+/* ===== Download Button ===== */
+.download-button {
+  display: inline-block;
+  margin: 10px 0 15px;
+  padding: 8px 18px;
+  background: linear-gradient(90deg, #b30059, #ff4081);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 2;
+  
+  /* Force GPU acceleration to prevent flicker */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform, box-shadow, opacity;
+}
+
+.download-button:hover {
+  transform: translateY(-2px) translateZ(0); /* keep GPU active */
+  box-shadow: 0 6px 12px rgba(255, 64, 129, 0.35);
+}
+
+/* ===== Animation ===== */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -23,77 +182,60 @@
   }
 }
 
-/* Main Container */
-.soul-container {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-/* Title */
-.soul-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #b30059;
-  margin-bottom: 12px;
-}
-
-/* Subtitle */
-.soul-subtitle {
+/* ===== No Images Prompt ===== */
+.no-images {
   font-size: 1.1rem;
-  color: #555;
-  margin-bottom: 40px;
+  font-weight: 500;
+  color: #999;
+  margin-top: 40px;
 }
 
-/* Content Cards */
-.soul-content {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 24px;
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .soul-card {
+    width: 240px;
+  }
 }
 
-/* Each Card */
-.soul-card {
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  padding: 25px 20px;
-  width: 300px;
-  transition: all 0.4s ease;
-}
-
-.soul-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 6px 20px rgba(179, 0, 89, 0.3);
-}
-
-/* Card Title */
-.soul-card-title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #b30059;
-  margin-bottom: 10px;
-}
-
-/* Card Text */
-.soul-card-text {
-  color: #444;
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-/* Responsive */
 @media (max-width: 768px) {
-  .soul-content {
+  .soul-gallery {
+    gap: 20px;
+  }
+  .soul-card {
+    width: 220px;
+  }
+}
+
+@media (max-width: 576px) {
+  .soul-filters {
     flex-direction: column;
+    gap: 12px;
     align-items: center;
   }
-
   .soul-card {
     width: 90%;
   }
-
   .soul-title {
     font-size: 2rem;
+  }
+  .soul-date {
+    font-size: 0.95rem;
+  }
+  .download-button {
+    padding: 6px 14px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .soul-title {
+    font-size: 1.8rem;
+  }
+  .soul-card {
+    width: 100%;
+  }
+  .download-button {
+    padding: 5px 12px;
+    font-size: 0.85rem;
   }
 }
