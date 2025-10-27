@@ -23,6 +23,10 @@ const Footer = () => {
     window.location.href = "/soultwist";
   };
 
+  const handleFAQClick = () => {
+    window.location.href = "/faq";
+  };
+
   return (
     <footer className="footer">
       <div className="container footer-content">
@@ -46,6 +50,9 @@ const Footer = () => {
             </span>
             <span className="privacy-link" onClick={handleSoulTwistClick}>
               SoulTwist
+            </span>
+            <span className="privacy-link" onClick={handleFAQClick}>
+              FAQ
             </span>
           </div>
         </div>
