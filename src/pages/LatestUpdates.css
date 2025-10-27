@@ -202,3 +202,10 @@
   .update-item p { font-size: 0.85rem; }
   .update-date { font-size: 0.75rem; }
 }
+
+.fade-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: opacity 1s ease-in-out;
+}

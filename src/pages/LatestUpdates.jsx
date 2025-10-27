@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./LatestUpdates.css";
-import updatesImage from "../assets/guruji.jpg"; // Left-side image
+import guruji1 from "../assets/guruji.jpg";
+import photo16 from "../assets/photo16.jpg";
+import photo19 from "../assets/photo19.jpg";
 
 const updates = [
   {
@@ -23,13 +25,30 @@ const updates = [
   },
 ];
 
+// 🔄 List of images to rotate
+const updateImages = [guruji1, photo16, photo19];
+
 const LatestUpdates = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+
+  // Change image every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % updateImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="latest-updates-page">
       <h1 className="page-title">Latest Updates</h1>
       <div className="updates-layout">
         <div className="updates-left">
-          <img src={updatesImage} alt="Updates Banner" />
+          <img
+            src={updateImages[currentImage]}
+            alt="Updates Banner"
+            className="fade-image"
+          />
         </div>
         <div className="updates-right">
           {updates.map((update) => (
