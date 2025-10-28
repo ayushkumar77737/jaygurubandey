@@ -6,8 +6,10 @@
   padding: 40px 15px;
   text-align: center;
   overflow-x: hidden;
+  overflow-y: visible; /* ✅ ensure footer visibility */
   background-size: 400% 400%;
   animation: bgPulse 15s ease-in-out infinite;
+  position: relative; /* ✅ create proper stacking context */
 }
 
 /* Background animation */
@@ -48,6 +50,8 @@
   flex-wrap: wrap;
   animation: fadeIn 1s ease forwards;
   text-align: center;
+  position: relative;
+  z-index: 2; /* ✅ ensure layout stays above background */
 }
 
 /* ===== Left Image ===== */
@@ -60,6 +64,7 @@
   align-items: center;
   position: relative;
   perspective: 1000px;
+  z-index: 1; /* ✅ keep image below text & footer */
 }
 
 .updates-left img {
@@ -68,9 +73,11 @@
   border-radius: 18px;
   display: block;
   object-fit: cover;
-  transition: transform 0.6s ease, box-shadow 0.4s ease, filter 0.4s ease;
+  transition: transform 0.6s ease, box-shadow 0.4s ease, filter 0.4s ease, opacity 1s ease-in-out;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+  position: relative;
+  z-index: 0; /* ✅ image stays underneath */
 }
 
 .updates-left img:hover {
@@ -86,11 +93,13 @@
   display: flex;
   flex-direction: column;
   gap: 25px;
+  position: relative;
+  z-index: 2;
 }
 
 /* ===== Individual Update Item (Animated Gradient) ===== */
 .update-item {
-  background: linear-gradient(135deg, #4a90e2, #50e3c2, #b8e986); /* match page gradient but softer */
+  background: linear-gradient(135deg, #4a90e2, #50e3c2, #b8e986);
   background-size: 400% 400%;
   animation: cardPulse 8s ease-in-out infinite;
   padding: 20px 25px;
@@ -102,7 +111,7 @@
   animation: fadeSlide 0.7s ease forwards, cardPulse 8s ease-in-out infinite;
   transition: transform 0.4s ease, box-shadow 0.3s ease;
   border-left: 4px solid #fff;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.12); /* softer shadow */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.12);
   z-index: 10;
   pointer-events: auto;
   color: #fff;
@@ -203,9 +212,18 @@
   .update-date { font-size: 0.75rem; }
 }
 
+/* ===== Fade Image (Smooth Transition + Fixed Layer) ===== */
 .fade-image {
   width: 100%;
   height: auto;
   border-radius: 10px;
   transition: opacity 1s ease-in-out;
+  position: relative;
+  z-index: 0; /* ✅ keeps fade below other layers */
+}
+
+/* ===== Footer Visibility Fix ===== */
+footer {
+  position: relative;
+  z-index: 9999; /* ✅ ensures footer always visible */
 }
