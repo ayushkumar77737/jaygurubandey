@@ -67,7 +67,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   justify-content: center;
-  align-items: stretch; /* ✅ Ensures equal height across each row */
+  align-items: start;
   gap: 30px;
   max-width: 1150px;
   margin: 0 auto;
@@ -85,10 +85,6 @@
 
 /* ========================= MEMBER CARD ========================= */
 .member-card {
-  display: flex;              /* ✅ Make cards flexible */
-  flex-direction: column;     /* ✅ Stack content vertically */
-  justify-content: space-between; /* ✅ Keep spacing consistent */
-  height: 100%;               /* ✅ Stretch to fill the grid cell */
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 200, 150, 0.4);
