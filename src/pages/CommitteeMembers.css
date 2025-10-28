@@ -85,6 +85,11 @@
 
 /* ========================= MEMBER CARD ========================= */
 .member-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; /* ✅ keeps the photo and text centered horizontally */
+  height: 100%;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 200, 150, 0.4);
@@ -97,6 +102,7 @@
   pointer-events: auto;
   z-index: 2;
 }
+
 
 .member-card:hover {
   transform: translateY(-10px) rotateX(6deg) rotateY(-3deg);
