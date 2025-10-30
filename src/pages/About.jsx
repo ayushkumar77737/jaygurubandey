@@ -148,7 +148,7 @@ const About = () => {
           className="know-more-btn"
           onClick={() => navigate("/intlcenters")}
         >
-          🌏 International Centers / Followers Map
+          🌏 Spiritual Network
         </button>
       </div>
     </div>
