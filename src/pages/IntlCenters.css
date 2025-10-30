@@ -1,48 +1,262 @@
-/* ========================= IntlCenters Page ========================= */
-.intlcenters-page {
-  font-family: "Poppins", sans-serif;
-  min-height: 100vh;
-  background: linear-gradient(145deg, #101010, #1e1e1e);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* ===== Overall Page ===== */
+.centers-page {
+  background: linear-gradient(135deg, #fff5f8, #f9faff);
+  color: #333;
   text-align: center;
   padding: 60px 20px;
+  font-family: "Outfit", sans-serif;
+  overflow-x: hidden;
+  animation: fadeInPage 0.8s ease-in;
 }
 
-.intlcenters-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #ffb84d;
-  margin-bottom: 20px;
-  text-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+/* ===== Intro Section ===== */
+.centers-intro {
+  max-width: 800px;
+  margin: 0 auto 60px auto;
+  animation: fadeInUp 1s ease-in-out;
 }
 
-.intlcenters-description {
+.centers-intro h1 {
+  font-size: 2.4rem;
+  color: #b61e5b;
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+  animation: slideInDown 1s ease-in-out;
+}
+
+/* Elegant underline for first title */
+.centers-intro h1::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #b61e5b, #ff89b2);
+  border-radius: 2px;
+}
+
+/* Paragraph under intro */
+.centers-intro p {
   font-size: 1.1rem;
-  color: #e0e0e0;
-  max-width: 700px;
-  margin-bottom: 40px;
-  line-height: 1.6;
+  line-height: 1.8;
+  color: #444;
+  animation: fadeIn 1.4s ease-in-out;
 }
 
-.intlcenters-btn {
-  background: linear-gradient(135deg, #ff9800, #ffb84d);
-  color: #fff;
-  font-size: 1.1rem;
-  font-weight: 600;
-  padding: 14px 36px;
-  border: none;
+/* ===== Map Section ===== */
+.centers-map-section {
+  margin: 80px auto;
+  position: relative;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.centers-map-section h2 {
+  color: #b61e5b;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  position: relative;
+  display: inline-block;
+  animation: slideInDown 1s ease-in-out;
+}
+
+/* Line under map heading */
+.centers-map-section h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 3px;
+  background: linear-gradient(90deg, #b61e5b, #ff89b2);
+  border-radius: 2px;
+}
+
+/* ===== Map Container ===== */
+.map-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  animation: zoomIn 1.2s ease;
+}
+
+.world-map {
+  width: 90%;
+  max-width: 650px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease;
+}
+
+.world-map:hover {
+  transform: scale(1.03);
+}
+
+/* ===== Map Pins ===== */
+.map-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: #b61e5b;
+  color: white;
+  padding: 5px 10px;
   border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 500;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(255, 152, 0, 0.4);
   transition: all 0.3s ease;
+  animation: pulse 2s infinite;
 }
 
-.intlcenters-btn:hover {
-  transform: translateY(-3px);
-  background: linear-gradient(135deg, #ffa726, #ffcc80);
-  box-shadow: 0 10px 25px rgba(255, 152, 0, 0.6);
+.map-pin:hover {
+  background: #ff89b2;
+  transform: translate(-50%, -50%) scale(1.1);
 }
+
+.map-pin span {
+  white-space: nowrap;
+}
+
+/* ===== Global Stats Section ===== */
+.centers-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 60px;
+  animation: fadeInUp 1.5s ease;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 16px;
+  padding: 30px 40px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  width: 220px;
+  animation: popIn 1s ease-in-out;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.stat-card h3 {
+  color: #b61e5b;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.stat-card p {
+  color: #555;
+  font-size: 1rem;
+}
+
+/* ===== Keyframe Animations ===== */
+@keyframes fadeInPage {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(182, 30, 91, 0.5); }
+  70% { box-shadow: 0 0 0 10px rgba(182, 30, 91, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(182, 30, 91, 0); }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 992px) {
+  .world-map {
+    max-width: 550px;
+  }
+  .centers-map-section h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .centers-intro h1 {
+    font-size: 1.8rem;
+  }
+
+  .centers-intro p {
+    font-size: 1rem;
+  }
+
+  .stat-card {
+    width: 160px;
+    padding: 25px 30px;
+  }
+
+  .centers-map-section h2 {
+    font-size: 1.6rem;
+  }
+
+  .world-map {
+    width: 95%;
+    max-width: 450px;
+  }
+
+  .map-pin {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .centers-page {
+    padding: 40px 10px;
+  }
+
+  .centers-intro h1 {
+    font-size: 1.5rem;
+  }
+
+  .centers-intro p {
+    font-size: 0.95rem;
+  }
+
+  .world-map {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .stat-card {
+    width: 140px;
+    padding: 20px 25px;
+  }
+
+  .map-pin {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+  }
+}
+
