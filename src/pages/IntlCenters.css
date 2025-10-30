@@ -1,0 +1,48 @@
+/* ========================= IntlCenters Page ========================= */
+.intlcenters-page {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(145deg, #101010, #1e1e1e);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.intlcenters-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffb84d;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+}
+
+.intlcenters-description {
+  font-size: 1.1rem;
+  color: #e0e0e0;
+  max-width: 700px;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.intlcenters-btn {
+  background: linear-gradient(135deg, #ff9800, #ffb84d);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 14px 36px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(255, 152, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.intlcenters-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #ffa726, #ffcc80);
+  box-shadow: 0 10px 25px rgba(255, 152, 0, 0.6);
+}

@@ -146,7 +146,7 @@ const About = () => {
       <div className="map-button-container fade-in-up">
         <button
           className="know-more-btn"
-          onClick={() => navigate("/map")}
+          onClick={() => navigate("/intlcenters")}
         >
           🌏 International Centers / Followers Map
         </button>
