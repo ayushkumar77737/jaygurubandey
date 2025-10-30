@@ -142,13 +142,20 @@ const About = () => {
         </button>
       </div>
 
-      {/* ✅ New Button with same color & animation effect */}
-      <div className="map-button-container fade-in-up">
+      {/* ✅ Two Buttons side by side with same style */}
+      <div className="map-button-container fade-in-up" style={{ display: "flex", justifyContent: "center", gap: "15px" }}>
         <button
           className="know-more-btn"
           onClick={() => navigate("/intlcenters")}
         >
           🌏 Spiritual Network
+        </button>
+
+        <button
+          className="know-more-btn"
+          onClick={() => navigate("/spotlight")}
+        >
+          🔦 Spotlight
         </button>
       </div>
     </div>
