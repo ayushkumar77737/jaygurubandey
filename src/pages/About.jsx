@@ -141,6 +141,16 @@ const About = () => {
           Next ➡
         </button>
       </div>
+
+      {/* ✅ New Button with same color & animation effect */}
+      <div className="map-button-container fade-in-up">
+        <button
+          className="know-more-btn"
+          onClick={() => navigate("/map")}
+        >
+          🌏 International Centers / Followers Map
+        </button>
+      </div>
     </div>
   );
 };
