@@ -25,6 +25,7 @@ import LatestUpdates from './pages/LatestUpdates.jsx'
 import SoulTwist from './pages/SoulTwist.jsx'
 import FAQ from './pages/FAQ.jsx'
 import IntlCenters from './pages/IntlCenters.jsx'
+import Spotlight from './pages/Spotlight.jsx';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,7 @@ const router = createBrowserRouter([
       { path: 'soultwist', element: <SoulTwist /> },
       { path: 'faq', element: <FAQ /> },
       { path: 'intlcenters', element: <IntlCenters /> },
+      { path: 'spotlight', element: <Spotlight /> },
     ],
   },
 ])
