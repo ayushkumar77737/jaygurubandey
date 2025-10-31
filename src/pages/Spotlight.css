@@ -1,121 +1,264 @@
-/* ===== Spotlight Page Base ===== */
+/* ===== Page Background ===== */
 .spotlight-page {
-  font-family: "Poppins", sans-serif;
-  background: #f8f9fc;
-  min-height: 100vh;
-  padding: 60px 20px;
+  background: linear-gradient(135deg, #fff7fa, #f8faff);
+  color: #333;
   text-align: center;
-  color: #1a1a2e;
+  padding: 60px 20px;
+  font-family: "Outfit", sans-serif;
+  animation: fadeIn 0.8s ease-in;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* ===== Title & Description ===== */
-.spotlight-title {
-  font-size: 2.5rem;
+/* ===== Header Section ===== */
+.spotlight-header h1 {
+  font-size: 2.6rem;
+  color: #b60049;
   margin-bottom: 10px;
-  color: #1a1a2e;
+  letter-spacing: 1px;
+  font-weight: 700;
 }
 
-.spotlight-description {
-  max-width: 750px;
-  margin: 0 auto 50px;
-  font-size: 1.1rem;
-  color: #555;
-}
-
-/* ===== Section Titles ===== */
-.section-title {
-  font-size: 2rem;
-  color: #2e2e48;
-  margin-bottom: 30px;
-  position: relative;
-}
-
-.section-title::after {
-  content: "";
-  width: 60px;
+.spotlight-header .underline {
+  width: 100px;
   height: 3px;
-  background: #0077ff;
-  display: block;
-  margin: 10px auto 0;
-  border-radius: 3px;
+  background: linear-gradient(90deg, #b60049, #ff5fa2);
+  margin: 0 auto 20px;
+  border-radius: 10px;
 }
 
-/* ===== Card Grid ===== */
-.spotlight-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-  margin-bottom: 60px;
+.spotlight-header p {
+  color: #666;
+  font-size: 1.05rem;
+  max-width: 620px;
+  margin: 0 auto 45px;
+  line-height: 1.6;
 }
 
-/* ===== Card Styles ===== */
-.spotlight-card {
+/* ===== Dropdown Container (Centered) ===== */
+.dropdown-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
+  position: relative;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ===== Refined Dropdown Style (Inspired by SoulTwist) ===== */
+.spotlight-dropdown {
+  width: 250px;
+  max-width: 90%;
+  padding: 10px 14px;
+  border-radius: 25px;
+  border: 1.8px solid #b60049;
+  font-size: 0.95rem;
   background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: #333;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(179, 0, 89, 0.15);
+  transition: all 0.3s ease;
+  appearance: none;
+  position: relative;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23b30059' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 12px;
+}
+
+.spotlight-dropdown:hover {
+  border-color: #ff4081;
+  background-color: #fff8fb;
+  box-shadow: 0 3px 8px rgba(179, 0, 89, 0.25);
+  transform: translateY(-1px);
+}
+
+.spotlight-dropdown:focus {
+  outline: none;
+  border-color: #ff4081;
+  box-shadow: 0 0 6px rgba(255, 64, 129, 0.4);
+}
+
+.spotlight-dropdown option {
+  background: #fff;
+  color: #333;
+  font-weight: 500;
+}
+
+/* ===== Selection Message ===== */
+.select-message {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 1.1rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* ===== Grid Layout ===== */
+.spotlight-grid {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 35px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== Card ===== */
+.spotlight-card {
+  background: linear-gradient(145deg, #ffffff, #fdf6fa);
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(182, 0, 73, 0.08);
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 44%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s ease;
 }
 
 .spotlight-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(182, 0, 73, 0.18);
 }
 
-/* ===== Media Elements ===== */
-.spotlight-image,
-.spotlight-video {
+/* ===== Image ===== */
+.spotlight-img {
   width: 100%;
-  height: 220px;
+  height: 250px;
   object-fit: cover;
+  transition: transform 0.4s ease;
 }
 
-/* ===== Card Content ===== */
+.spotlight-card:hover .spotlight-img {
+  transform: scale(1.04);
+}
+
+/* ===== Content ===== */
 .spotlight-content {
-  padding: 20px;
-  text-align: left;
+  padding: 28px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
 }
 
-.spotlight-heading {
-  font-size: 1.3rem;
+.spotlight-content h2 {
+  font-size: 1.4rem;
+  color: #b60049;
   margin-bottom: 10px;
-  color: #1a1a2e;
+  font-weight: 600;
 }
 
 .spotlight-date {
-  font-size: 0.9rem;
-  color: #777;
-  margin-bottom: 10px;
-}
-
-.spotlight-text {
-  font-size: 1rem;
-  color: #555;
+  display: block;
+  font-size: 0.95rem;
+  color: #888;
   margin-bottom: 15px;
+  font-style: italic;
 }
 
-.spotlight-link {
-  font-weight: 600;
-  color: #0077ff;
+.spotlight-content p {
+  color: #555;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+/* ===== Button ===== */
+.read-btn {
+  display: inline-block;
+  padding: 11px 24px;
+  background: linear-gradient(135deg, #b60049, #ff007f);
+  color: #fff;
   text-decoration: none;
-  transition: color 0.3s;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 12px rgba(182, 0, 73, 0.2);
 }
 
-.spotlight-link:hover {
-  color: #0056b3;
+.read-btn:hover {
+  background: linear-gradient(135deg, #ff007f, #b60049);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 18px rgba(182, 0, 73, 0.3);
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 600px) {
-  .spotlight-title {
-    font-size: 2rem;
-  }
+/* ===== Video Styling ===== */
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  overflow: hidden;
+  background: #000;
+  border-radius: 20px 20px 0 0;
+}
 
-  .section-title {
-    font-size: 1.6rem;
-  }
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px 20px 0 0;
+}
 
-  .spotlight-grid {
-    gap: 20px;
+/* ===== Responsive Design ===== */
+@media (max-width: 1100px) {
+  .spotlight-card {
+    width: 48%;
+  }
+}
+
+@media (max-width: 900px) {
+  .spotlight-card {
+    width: 85%;
+  }
+  .spotlight-header h1 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .spotlight-page {
+    padding: 50px 15px;
+  }
+  .spotlight-card {
+    width: 95%;
+  }
+  .spotlight-img {
+    height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .spotlight-page {
+    padding: 35px 12px;
+  }
+  .spotlight-header h1 {
+    font-size: 1.9rem;
+  }
+  .spotlight-card {
+    width: 100%;
+  }
+  .spotlight-img {
+    height: 200px;
+  }
+}
+
+/* ===== Animation ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

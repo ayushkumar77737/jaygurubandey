@@ -1,120 +1,153 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Spotlight.css";
-import { useNavigate } from "react-router-dom";
 
-const articles = [
-  {
-    id: 1,
-    title: "The Times – Spreading Light Through Peace",
-    date: "July 2025",
-    description:
-      "A featured article in The Times highlighting our mission of compassion and unity across the world.",
-    image: "https://via.placeholder.com/400x250", // replace with real image
-    link: "#",
-  },
-  {
-    id: 2,
-    title: "The Daily Herald – Journey of Spiritual Awakening",
-    date: "June 2025",
-    description:
-      "An inspiring article showcasing the global reach of our peace and mindfulness programs.",
-    image: "https://via.placeholder.com/400x250",
-    link: "#",
-  },
-];
-
-const interviews = [
-  {
-    id: 1,
-    title: "Podcast – The Inner Path to Peace",
-    date: "March 2025",
-    description:
-      "A deep and reflective conversation on mindfulness and how spiritual awakening transforms daily life.",
-    video: "https://www.w3schools.com/html/mov_bbb.mp4", // sample video
-    link: "#",
-  },
-  {
-    id: 2,
-    title: "Global Talk – Finding Balance in Modern Times",
-    date: "April 2025",
-    description:
-      "An enlightening interview with Guruji about maintaining peace and balance amidst daily challenges.",
-    video: "https://www.w3schools.com/html/movie.mp4", // sample video
-    link: "#",
-  },
-];
+// ===== Import all article images =====
+import articleImage1 from "../assets/article1.jpg";
+import articleImage2 from "../assets/article2.jpg";
+import articleImage3 from "../assets/article3.jpg";
+import articleImage4 from "../assets/article4.jpg";
 
 const Spotlight = () => {
-  const navigate = useNavigate();
+  const [selectedType, setSelectedType] = useState("");
 
   return (
     <div className="spotlight-page">
-      <h1 className="spotlight-title">🌟 Media Spotlight</h1>
-      <p className="spotlight-description">
-        Explore our most impactful articles and interviews that share our message
-        of peace, spirituality, and compassion with the world.
-      </p>
+      {/* ===== Header Section ===== */}
+      <div className="spotlight-header">
+        <h1>📰 Spotlight</h1>
+        <div className="underline"></div>
+        <p>
+          Featured newspaper articles and interviews highlighting Guruji’s divine work and message.
+        </p>
+
+        {/* ===== Dropdown ===== */}
+        <div className="dropdown-container">
+          <select
+            value={selectedType}
+            onChange={(e) => setSelectedType(e.target.value)}
+            className="spotlight-dropdown"
+          >
+            <option value="" disabled hidden>
+              -- Select Type --
+            </option>
+            <option value="article">Articles</option>
+            <option value="interview">Interviews</option>
+          </select>
+        </div>
+      </div>
+
+      {/* ===== Prompt Message ===== */}
+      {selectedType === "" && (
+        <p className="select-message">
+          Please select an option from the dropdown above to view Guruji’s articles or interviews.
+        </p>
+      )}
 
       {/* ===== Articles Section ===== */}
-      <section className="spotlight-section">
-        <h2 className="section-title">📰 Articles</h2>
+      {selectedType === "article" && (
         <div className="spotlight-grid">
-          {articles.map((item) => (
-            <div key={item.id} className="spotlight-card">
-              <img
-                src={item.image}
-                alt={item.title}
-                className="spotlight-image"
-              />
-              <div className="spotlight-content">
-                <h3 className="spotlight-heading">{item.title}</h3>
-                <p className="spotlight-date">{item.date}</p>
-                <p className="spotlight-text">{item.description}</p>
-                <a
-                  href={item.link}
-                  className="spotlight-link"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Read More →
-                </a>
-              </div>
+          {/* ==== Article 1 ==== */}
+          <div className="spotlight-card">
+            <img src={articleImage1} alt="Guruji Newspaper Article" className="spotlight-img" />
+            <div className="spotlight-content">
+              <h2>Guruji’s Teachings Featured in The Spiritual Times</h2>
+              <span className="spotlight-date">Published on: October 28, 2025</span>
+              <p>
+                This article beautifully covers Guruji’s spiritual journey, his mission
+                of spreading love, devotion, and peace, and how his divine guidance
+                continues to transform countless lives across the globe.
+              </p>
+              <a href={articleImage1} download="Guruji_Article_Image_1.jpg" className="read-btn">
+                Download Full Article
+              </a>
             </div>
-          ))}
+          </div>
+
+          {/* ==== Article 2 ==== */}
+          <div className="spotlight-card">
+            <img src={articleImage2} alt="Guruji Newspaper Article" className="spotlight-img" />
+            <div className="spotlight-content">
+              <h2>Guruji’s Wisdom Shines in The Divine Herald</h2>
+              <span className="spotlight-date">Published on: October 15, 2025</span>
+              <p>
+                A deep exploration of Guruji’s spiritual philosophy, this article shares
+                his teachings on inner peace, compassion, and self-realization that have
+                touched the hearts of devotees worldwide.
+              </p>
+              <a href={articleImage2} download="Guruji_Article_Image_2.jpg" className="read-btn">
+                Download Full Article
+              </a>
+            </div>
+          </div>
+
+          {/* ==== Article 3 ==== */}
+          <div className="spotlight-card">
+            <img src={articleImage3} alt="Guruji Newspaper Article" className="spotlight-img" />
+            <div className="spotlight-content">
+              <h2>Guruji’s Message of Love Reaches New Heights</h2>
+              <span className="spotlight-date">Published on: September 30, 2025</span>
+              <p>
+                The article highlights Guruji’s efforts in spreading divine love through
+                his global outreach and his teachings that unify people beyond religion and boundaries.
+              </p>
+              <a href={articleImage3} download="Guruji_Article_Image_3.jpg" className="read-btn">
+                Download Full Article
+              </a>
+            </div>
+          </div>
+
+          {/* ==== Article 4 ==== */}
+          <div className="spotlight-card">
+            <img src={articleImage4} alt="Guruji Newspaper Article" className="spotlight-img" />
+            <div className="spotlight-content">
+              <h2>The Path of Devotion: Guruji’s Inspiring Story</h2>
+              <span className="spotlight-date">Published on: September 18, 2025</span>
+              <p>
+                A touching story describing Guruji’s divine journey and how his guidance
+                has brought transformation and light into the lives of many.
+              </p>
+              <a href={articleImage4} download="Guruji_Article_Image_4.jpg" className="read-btn">
+                Download Full Article
+              </a>
+            </div>
+          </div>
         </div>
-      </section>
+      )}
 
       {/* ===== Interviews Section ===== */}
-      <section className="spotlight-section">
-        <h2 className="section-title">🎙️ Interviews</h2>
+      {selectedType === "interview" && (
         <div className="spotlight-grid">
-          {interviews.map((item) => (
-            <div key={item.id} className="spotlight-card">
-              <video
-                controls
-                className="spotlight-video"
-                poster="https://via.placeholder.com/400x250"
-              >
-                <source src={item.video} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="spotlight-content">
-                <h3 className="spotlight-heading">{item.title}</h3>
-                <p className="spotlight-date">{item.date}</p>
-                <p className="spotlight-text">{item.description}</p>
-                <a
-                  href={item.link}
-                  className="spotlight-link"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Watch / Listen →
-                </a>
-              </div>
+          <div className="spotlight-card">
+            <div className="video-container">
+              <iframe
+                src="https://www.youtube.com/embed/bWdtyhYGKJU"
+                title="Guruji Interview Video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
             </div>
-          ))}
+
+            <div className="spotlight-content">
+              <h2>Exclusive Interview with Guruji on Divine Vision</h2>
+              <span className="spotlight-date">Published on: October 10, 2025</span>
+              <p>
+                In this inspiring interview, Guruji shares insights on devotion,
+                compassion, and the spiritual path, guiding devotees toward peace and
+                self-realization.
+              </p>
+              <a
+                href="https://youtu.be/bWdtyhYGKJU?si=xKJzkiFcR7CSXWEu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="read-btn"
+              >
+                Watch Full Interview
+              </a>
+            </div>
+          </div>
         </div>
-      </section>
+      )}
     </div>
   );
 };
