@@ -262,3 +262,67 @@
     transform: translateY(0);
   }
 }
+/* ===== Scoped Pagination ===== */
+.spotlight-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+  gap: 10px;
+  font-family: "Outfit", sans-serif;
+}
+
+/* Common pagination button */
+.spotlight-pagination .spotlight-page-btn {
+  background: #f3f3ff;
+  border: 1px solid #ccc;
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+/* Hover */
+.spotlight-pagination .spotlight-page-btn:hover {
+  background: #e3e3ff;
+}
+
+/* Active (current page) */
+.spotlight-pagination .spotlight-page-btn.active {
+  background: #6c63ff;
+  color: white;
+  border-color: #6c63ff;
+}
+
+/* Disabled (greyed-out) */
+.spotlight-pagination .spotlight-page-btn:disabled {
+  background: #e0dede;
+  color: #777;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Prev & Next button base style */
+.spotlight-pagination .spotlight-page-btn.prev,
+.spotlight-pagination .spotlight-page-btn.next {
+  background: #b71c1c;
+  color: white;
+  border: 1px solid #b71c1c;
+}
+
+/* Hover for Prev & Next */
+.spotlight-pagination .spotlight-page-btn.prev:hover:not(:disabled),
+.spotlight-pagination .spotlight-page-btn.next:hover:not(:disabled) {
+  background: #9a1414;
+}
+
+/* Disabled Prev & Next (greyed-out look) */
+.spotlight-pagination .spotlight-page-btn.prev:disabled,
+.spotlight-pagination .spotlight-page-btn.next:disabled {
+  background: #e0dede;
+  color: #777;
+  border-color: #ccc;
+}
+
+
