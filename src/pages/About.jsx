@@ -143,7 +143,10 @@ const About = () => {
       </div>
 
       {/* ✅ Two Buttons side by side with same style */}
-      <div className="map-button-container fade-in-up" style={{ display: "flex", justifyContent: "center", gap: "15px" }}>
+      <div
+        className="map-button-container fade-in-up"
+        style={{ display: "flex", justifyContent: "center", gap: "15px", flexWrap: "wrap" }}
+      >
         <button
           className="know-more-btn"
           onClick={() => navigate("/intlcenters")}
@@ -156,6 +159,13 @@ const About = () => {
           onClick={() => navigate("/spotlight")}
         >
           🔦 Spotlight
+        </button>
+
+        <button
+          className="know-more-btn"
+          onClick={() => navigate("/dailyschedule")}
+        >
+          📅 Daily Schedule
         </button>
       </div>
     </div>
