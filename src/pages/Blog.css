@@ -248,7 +248,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1rem;
   margin-top: 2rem;
   flex-wrap: wrap;
 }
@@ -260,12 +260,12 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: 0.3s ease;
   font-size: 1rem;
+  transition: background 0.3s ease;
 }
 
 .blog-container .pagination button:hover:not(:disabled) {
-  background: #8b0000;
+  background: #d32f2f;
 }
 
 .blog-container .pagination button:disabled {
@@ -274,20 +274,22 @@
 }
 
 .blog-container .pagination .page-info {
-  font-weight: bold;
-  color: #333;
+  font-weight: 600;
+  color: #444;
   font-size: 1rem;
 }
 
-/* ===== Responsive Tweaks ===== */
+/* ===== Responsive Adjustments ===== */
 @media (max-width: 768px) {
   .blog-container .pagination {
-    gap: 0.8rem;
+    gap: 0.6rem;
   }
+
   .blog-container .pagination button {
     padding: 0.5rem 1rem;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
+
   .blog-container .pagination .page-info {
     font-size: 0.9rem;
   }
@@ -295,17 +297,19 @@
 
 @media (max-width: 480px) {
   .blog-container .pagination {
-    gap: 0.5rem;
     flex-direction: column;
+    gap: 0.8rem;
   }
+
   .blog-container .pagination button {
     width: 100%;
-    padding: 0.6rem 0;
-    font-size: 0.9rem;
+    max-width: 250px;
+    text-align: center;
   }
+
   .blog-container .pagination .page-info {
     font-size: 0.85rem;
-    margin-top: 0.5rem;
+    text-align: center;
   }
 }
 
