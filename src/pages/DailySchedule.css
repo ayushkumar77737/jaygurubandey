@@ -1,0 +1,190 @@
+/* ===== Daily Schedule Page ===== */
+.schedule-page {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffffff, #f3f6fd);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+  animation: fadeIn 0.8s ease-in;
+  color: #333;
+}
+
+/* ===== Main Title ===== */
+.main-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #3b2f5c;
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+  letter-spacing: 0.5px;
+}
+
+.main-title::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #9c6ade, #7b57d1, #ff8dcf);
+  margin: 10px auto 0;
+  border-radius: 2px;
+  opacity: 0.9;
+}
+
+/* ===== Container ===== */
+.schedule-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  max-width: 950px;
+}
+
+/* ===== Section Cards ===== */
+.schedule-section {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 25px 22px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid rgba(200, 200, 255, 0.2);
+}
+
+.schedule-section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Section Title ===== */
+.schedule-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #6043b6;
+  padding-left: 12px;
+  margin-bottom: 18px;
+  border-left: 4px solid #9b6bdf;
+  letter-spacing: 0.3px;
+}
+
+/* ===== List Styling ===== */
+.schedule-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.schedule-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fafaff;
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(220, 220, 255, 0.5);
+  transition: all 0.25s ease;
+}
+
+.schedule-item:hover {
+  background: #f2edff;
+  border-color: #cfc4ff;
+}
+
+.schedule-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  flex: 1;
+}
+
+.schedule-time {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #6a4acd;
+  white-space: nowrap;
+}
+
+/* ===== Animation ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 992px) {
+  .main-title {
+    font-size: 2.1rem;
+  }
+
+  .main-title::after {
+    width: 80px;
+  }
+
+  .schedule-section {
+    padding: 22px 18px;
+  }
+
+  .schedule-title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .schedule-page {
+    padding: 40px 15px;
+  }
+
+  .main-title {
+    font-size: 2rem;
+  }
+
+  .main-title::after {
+    width: 70px;
+  }
+
+  .schedule-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 12px 14px;
+  }
+
+  .schedule-text {
+    font-size: 0.95rem;
+  }
+
+  .schedule-time {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 1.7rem;
+  }
+
+  .main-title::after {
+    width: 55px;
+  }
+
+  .schedule-section {
+    padding: 18px 14px;
+  }
+
+  .schedule-title {
+    font-size: 1.15rem;
+  }
+
+  .schedule-text,
+  .schedule-time {
+    font-size: 0.9rem;
+  }
+}
