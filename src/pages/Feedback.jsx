@@ -8,31 +8,39 @@ const Feedback = () => {
     rating: "",
     feedback: "",
     issues: "",
-    issueDescription: "",
     contact: "",
   });
+  const [successMsg, setSuccessMsg] = useState("");
 
-  // ✅ Function to handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // ✅ Validation for fullName (only letters and spaces)
+    // Validation rules
     if (name === "fullName") {
-      const regex = /^[A-Za-z\s]*$/; // only alphabets and spaces
-      if (!regex.test(value)) return; // ignore invalid input
+      const valid = /^[A-Za-z\s]*$/;
+      if (!valid.test(value)) return;
     }
 
-    // ✅ Validation for email (allow letters, numbers, @, ., _ only)
     if (name === "email") {
-      const regex = /^[A-Za-z0-9@._]*$/; 
-      if (!regex.test(value)) return; // ignore invalid input
+      const valid = /^[A-Za-z0-9@._]*$/;
+      if (!valid.test(value)) return;
+    }
+
+    if (name === "feedback") {
+      const valid = /^[A-Za-z0-9\s.,!?'"()-]*$/;
+      if (!valid.test(value)) return;
+    }
+
+    // If "issues" is changed to "Yes", reset contact field
+    if (name === "issues" && value === "Yes") {
+      setFormData({ ...formData, [name]: value, contact: "Yes" });
+      return;
     }
 
     setFormData({ ...formData, [name]: value });
   };
 
-  // ✅ Form validation before submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (
@@ -43,52 +51,77 @@ const Feedback = () => {
       !formData.issues ||
       !formData.contact
     ) {
-      alert("Please fill out all required fields before submitting.");
+      alert("Please fill all required fields");
       return;
     }
 
-    alert("Thank you for your feedback!");
-    console.log(formData);
+    const formURL =
+      "https://docs.google.com/forms/d/e/1FAIpQLSfJPwUXzqt_USScLrDAquYYrjijAbg3kIuKixkvSkVMuBGQEA/formResponse";
+
+    const data = new FormData();
+    data.append("entry.1385578647", formData.fullName); // Full Name
+    data.append("entry.331457870", formData.email); // Email
+    data.append("entry.984911187", formData.rating); // Rating
+    data.append("entry.118230991", formData.feedback); // Feedback
+    data.append("entry.1904533888", formData.issues); // Issues
+    data.append("entry.408974374", formData.contact); // Contact
+
+    try {
+      await fetch(formURL, {
+        method: "POST",
+        body: data,
+        mode: "no-cors",
+      });
+
+      setSuccessMsg("✅ Thank you for your feedback!");
+      setFormData({
+        fullName: "",
+        email: "",
+        rating: "",
+        feedback: "",
+        issues: "",
+        contact: "",
+      });
+
+      setTimeout(() => setSuccessMsg(""), 4000);
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      setSuccessMsg("❌ Submission failed. Please try again.");
+    }
   };
 
   return (
     <div className="feedback-page">
       <div className="feedback-container">
         <h1 className="feedback-title">🙏 Devotee Feedback Form</h1>
-        <p className="feedback-subtitle">
-          We value your thoughts and experiences. Please take a moment to share your feedback below.
-        </p>
 
         <form className="feedback-form" onSubmit={handleSubmit}>
-          {/* Full Name */}
           <label>
-            Full Name <span className="required">*</span>
+            Full Name <span style={{ color: "red" }}>*</span>
           </label>
           <input
             type="text"
             name="fullName"
-            placeholder="Enter your full name"
             value={formData.fullName}
             onChange={handleChange}
-            maxLength={50}
+            required
+            placeholder="Enter only letters"
           />
 
-          {/* Email */}
           <label>
-            Email Address <span className="required">*</span>
+            Email Address <span style={{ color: "red" }}>*</span>
           </label>
           <input
-            type="email"
+            type="text"
             name="email"
-            placeholder="Enter your email"
-            required
             value={formData.email}
             onChange={handleChange}
+            required
+            placeholder="example@gmail.com"
           />
 
-          {/* Rating */}
           <label>
-            Overall Experience Rating <span className="required">*</span>
+            Overall Rating <span style={{ color: "red" }}>*</span>
           </label>
           <div className="rating-group">
             {[1, 2, 3, 4, 5].map((star) => (
@@ -105,21 +138,19 @@ const Feedback = () => {
             ))}
           </div>
 
-          {/* Feedback Comments */}
           <label>
-            Feedback / Comments <span className="required">*</span>
+            Feedback <span style={{ color: "red" }}>*</span>
           </label>
           <textarea
             name="feedback"
-            placeholder="Share your experience or suggestions..."
             value={formData.feedback}
             onChange={handleChange}
+            required
+            placeholder="Write your feedback here..."
           ></textarea>
 
-          {/* Issues */}
           <label>
-            Did you face any issues while using the website?
-            <span className="required">*</span>
+            Did you face any issues? <span style={{ color: "red" }}>*</span>
           </label>
           <div className="radio-group">
             <label>
@@ -129,7 +160,7 @@ const Feedback = () => {
                 value="Yes"
                 checked={formData.issues === "Yes"}
                 onChange={handleChange}
-              />
+              />{" "}
               Yes
             </label>
             <label>
@@ -139,29 +170,14 @@ const Feedback = () => {
                 value="No"
                 checked={formData.issues === "No"}
                 onChange={handleChange}
-              />
+              />{" "}
               No
             </label>
           </div>
 
-          {formData.issues === "Yes" && (
-            <>
-              <label>
-                Please describe the issue <span className="required">*</span>
-              </label>
-              <textarea
-                name="issueDescription"
-                placeholder="Describe the issue you faced..."
-                value={formData.issueDescription}
-                onChange={handleChange}
-              ></textarea>
-            </>
-          )}
-
-          {/* Contact permission */}
           <label>
-            Would you like us to contact you about your feedback?
-            <span className="required">*</span>
+            Would you like us to contact you?{" "}
+            <span style={{ color: "red" }}>*</span>
           </label>
           <div className="radio-group">
             <label>
@@ -171,25 +187,30 @@ const Feedback = () => {
                 value="Yes"
                 checked={formData.contact === "Yes"}
                 onChange={handleChange}
-              />
+              />{" "}
               Yes
             </label>
-            <label>
-              <input
-                type="radio"
-                name="contact"
-                value="No"
-                checked={formData.contact === "No"}
-                onChange={handleChange}
-              />
-              No
-            </label>
+
+            {/* 👇 Only show "No" if user didn't face issues */}
+            {formData.issues !== "Yes" && (
+              <label>
+                <input
+                  type="radio"
+                  name="contact"
+                  value="No"
+                  checked={formData.contact === "No"}
+                  onChange={handleChange}
+                />{" "}
+                No
+              </label>
+            )}
           </div>
 
-          {/* Submit */}
           <button type="submit" className="submit-btn">
             Submit Feedback
           </button>
+
+          {successMsg && <p className="success-msg">{successMsg}</p>}
         </form>
       </div>
     </div>
