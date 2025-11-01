@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./FAQ.css";
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -59,6 +61,16 @@ const FAQ = () => {
             <div className="faq-answer">{faq.answer}</div>
           </div>
         ))}
+      </div>
+
+      {/* ===== Feedback Button ===== */}
+      <div className="feedback-button-container">
+        <button
+          className="feedback-button"
+          onClick={() => navigate("/feedback")}
+        >
+          Devotees Feedback
+        </button>
       </div>
     </div>
   );

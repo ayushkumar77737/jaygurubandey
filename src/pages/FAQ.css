@@ -171,3 +171,68 @@
   .faq-icon { font-size: 1.1rem; }
   .faq-answer { font-size: 0.88rem; }
 }
+
+.feedback-button-container {
+  text-align: center;
+  margin-top: 45px;
+}
+
+/* ===== Main Button Style ===== */
+.feedback-button {
+  background: linear-gradient(90deg, #b30059, #ff5f9e);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  padding: 12px 34px;
+  border-radius: 30px;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 12px rgba(179, 0, 89, 0.15);
+  transition: all 0.3s ease;
+}
+
+.feedback-button:hover {
+  background: linear-gradient(90deg, #ff5f9e, #ffb6d0);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(179, 0, 89, 0.25);
+}
+
+/* ===== Responsive Breakpoints ===== */
+
+/* Tablet screens */
+@media (max-width: 900px) {
+  .feedback-button {
+    font-size: 1rem;
+    padding: 11px 28px;
+    border-radius: 28px;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 600px) {
+  .feedback-button {
+    font-size: 0.95rem;
+    padding: 10px 26px;
+    border-radius: 25px;
+  }
+}
+
+/* Small mobile (under 400px) */
+@media (max-width: 400px) {
+  .feedback-button {
+    font-size: 0.9rem;
+    padding: 9px 22px;
+    border-radius: 22px;
+  }
+}
+
+/* ===== Fix for unclickable feedback button ===== */
+.feedback-button-container {
+  position: relative;
+  z-index: 10; /* ensures it's above FAQ items */
+}
+
+.feedback-button {
+  pointer-events: auto; /* makes sure the button itself receives clicks */
+}
