@@ -1,0 +1,260 @@
+/* ===== Cookie Popup ===== */
+.cookie-popup {
+  position: fixed;
+  bottom: 20px;
+  left: 20px; /* 👈 anchored to left */
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-start; /* 👈 align items to left */
+  animation: slideUp 0.6s ease-out;
+  padding: 0;
+}
+
+
+.cookie-content {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  padding: 25px 30px;
+  max-width: 400px;
+  width: 100%;
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  transform: scale(0.98);
+  opacity: 0;
+  animation: fadeInPop 0.6s ease forwards;
+}
+
+.cookie-content h3 {
+  margin-bottom: 10px;
+  font-size: 1.25rem;
+  color: #000;
+  animation: fadeSlideIn 0.7s ease-out;
+}
+
+.cookie-content p {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  animation: fadeSlideIn 0.8s ease-out;
+}
+
+.cookie-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.cookie-buttons button {
+  border: 1px solid #1a73e8;
+  background: white;
+  color: #1a73e8;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.cookie-buttons .accept-btn {
+  background: #1a73e8;
+  color: white;
+}
+
+.cookie-buttons button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.25);
+}
+
+/* ===== Customise Modal ===== */
+.cookie-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  animation: fadeInOverlay 0.4s ease-in;
+  padding: 15px;
+}
+
+.cookie-modal {
+  background: white;
+  border-radius: 12px;
+  padding: 30px 35px;
+  max-width: 450px;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transform: translateY(40px) scale(0.95);
+  opacity: 0;
+  animation: modalPopUp 0.6s ease-out forwards;
+}
+
+.cookie-modal h3 {
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.cookie-modal p {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.cookie-option {
+  margin-bottom: 15px;
+  animation: fadeSlideIn 0.8s ease-out;
+}
+
+.cookie-option label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  color: #333;
+}
+
+.cookie-option input[type="checkbox"] {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.cookie-option .desc {
+  font-size: 0.85rem;
+  color: #666;
+  margin-left: 26px;
+  margin-top: 3px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.modal-buttons button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  border: none;
+}
+
+.save-btn {
+  background: #1a73e8;
+  color: white;
+}
+
+.cancel-btn {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.save-btn:hover {
+  background: #155dc0;
+  transform: translateY(-2px);
+}
+
+.cancel-btn:hover {
+  background: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+/* ===== Animations ===== */
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInPop {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes modalPopUp {
+  from { opacity: 0; transform: translateY(40px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Responsive Design ===== */
+
+/* 📱 Small screens (phones) */
+@media (max-width: 600px) {
+  .cookie-content {
+    padding: 18px 20px;
+    max-width: 95%;
+  }
+
+  .cookie-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .cookie-content p {
+    font-size: 0.9rem;
+  }
+
+  .cookie-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .cookie-buttons button {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .cookie-modal {
+    padding: 20px;
+    max-width: 95%;
+  }
+
+  .cookie-option label {
+    font-size: 0.9rem;
+  }
+
+  .cookie-option .desc {
+    font-size: 0.8rem;
+  }
+
+  .modal-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .modal-buttons button {
+    width: 100%;
+  }
+}
+
+/* 💻 Medium screens (tablets) */
+@media (max-width: 900px) {
+  .cookie-content {
+    max-width: 90%;
+  }
+
+  .cookie-modal {
+    max-width: 80%;
+  }
+}
