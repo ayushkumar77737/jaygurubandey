@@ -17,7 +17,7 @@ const LoadingPage = () => {
       <div className="loading-text">
         <h1 className="main-text">🌸 Surrender to Guruji’s Grace 🌸</h1>
         <p className="sub-text">
-          In surrender, there is peace; in peace, there is the Divine.
+          In surrender, there is peace, there is the Divine.
         </p>
         <div className="dots">...</div>
       </div>
