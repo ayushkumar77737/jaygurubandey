@@ -1,0 +1,212 @@
+/* ===== Feedback Page Container ===== */
+.feedback-page {
+  background: linear-gradient(135deg, #fff5f5, #fff0fa, #f5faff);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px;
+  color: #333;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ===== Feedback Card ===== */
+.feedback-container {
+  background: #fff;
+  width: 100%;
+  max-width: 700px;
+  padding: 40px 50px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.6s ease;
+}
+
+.feedback-title {
+  text-align: center;
+  color: #b30059;
+  margin-bottom: 8px;
+  font-size: 2rem;
+}
+
+.feedback-subtitle {
+  text-align: center;
+  color: #555;
+  margin-bottom: 30px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* ===== Form Styles ===== */
+.feedback-form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.feedback-form input[type="text"],
+.feedback-form input[type="email"],
+.feedback-form select,
+.feedback-form textarea {
+  width: 100%;
+  padding: 10px 14px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.feedback-form input:focus,
+.feedback-form textarea:focus,
+.feedback-form select:focus {
+  border-color: #b30059;
+  outline: none;
+}
+
+/* ===== Rating Section ===== */
+.rating-group {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.rating-group input {
+  display: none;
+}
+
+.rating-group .star {
+  font-size: 25px;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.2s ease;
+}
+
+.rating-group input:checked + .star,
+.rating-group .star:hover {
+  color: #ff5f9e;
+}
+
+/* ===== Radio Buttons ===== */
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.radio-group label {
+  font-weight: 500;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.radio-group input {
+  margin-right: 6px;
+}
+
+/* ===== Textarea ===== */
+.feedback-form textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+/* ===== Submit Button ===== */
+.submit-btn {
+  margin-top: 30px;
+  background: linear-gradient(90deg, #b30059, #ff5f9e);
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(179, 0, 89, 0.4);
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Required Mark ===== */
+.required {
+  color: red;
+  font-weight: 700;
+}
+
+/* ===== Tablet Responsive ===== */
+@media (max-width: 768px) {
+  .feedback-container {
+    padding: 30px 25px;
+  }
+
+  .feedback-title {
+    font-size: 1.7rem;
+  }
+
+  .feedback-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+  }
+
+  .feedback-form input,
+  .feedback-form textarea {
+    font-size: 0.95rem;
+  }
+
+  .submit-btn {
+    font-size: 1rem;
+    padding: 12px 25px;
+  }
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 480px) {
+  .feedback-page {
+    padding: 40px 15px;
+  }
+
+  .feedback-container {
+    padding: 20px 18px;
+    border-radius: 15px;
+  }
+
+  .feedback-title {
+    font-size: 1.4rem;
+  }
+
+  .feedback-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .rating-group .star {
+    font-size: 22px;
+  }
+
+  .radio-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .submit-btn {
+    font-size: 0.95rem;
+    padding: 10px 20px;
+  }
+}
