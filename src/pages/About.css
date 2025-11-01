@@ -323,3 +323,24 @@
     z-index: 10;
   }
 }
+
+/* ===== Fix: Ensure navbar overlay always stays above About content ===== */
+.about-page,
+.about-journey,
+.about-vision,
+.about-daily,
+.about-teachings,
+.about-seva,
+.about-festivals,
+.know-more-btn {
+  position: relative;
+  z-index: 0 !important;
+}
+
+.navbar,
+.sidebar,
+.mobile-menu,
+.menu-overlay {
+  position: relative;
+  z-index: 9999 !important;
+}
