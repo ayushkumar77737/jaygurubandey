@@ -258,8 +258,8 @@
   max-width: 250px;
   width: 100%;
   position: relative;
-  z-index: 100; /* keeps button on top */
-  pointer-events: auto; /* ensures it’s clickable */
+  z-index: 100;
+  pointer-events: auto;
 }
 
 /* ===== Hover & Active States ===== */
@@ -316,4 +316,15 @@
 .menu-overlay {
   position: relative;
   z-index: 9999 !important;
+}
+
+/* ===== Make heading stay on one line and resize dynamically ===== */
+@media (max-width: 516px) {
+  .about-intro h1 {
+    white-space: nowrap;
+    font-size: clamp(1rem, 4.5vw, 1.6rem);
+    overflow: visible;
+    text-overflow: unset;
+    word-break: keep-all;
+  }
 }
