@@ -109,6 +109,7 @@
   .about-intro h1 { font-size: 1.8rem; }
 }
 
+
 /* ===== New Sections ===== */
 .about-teachings, .about-seva, .about-festivals {
   display: flex;
@@ -175,6 +176,8 @@
   .teachings-photo img, .seva-photo img, .festivals-photo img { max-width: 130px; }
 }
 
+
+
 /* ===== Pagination (scoped to About page) ===== */
 .about-page .pagination {
   display: flex;
@@ -182,7 +185,7 @@
   align-items: center;
   gap: 1rem;
   margin-top: 2rem;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* allows wrapping on small screens */
 }
 
 .about-page .pagination button {
@@ -215,10 +218,12 @@
   .about-page .pagination {
     gap: 0.6rem;
   }
+
   .about-page .pagination button {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
   }
+
   .about-page .pagination span {
     font-size: 0.9rem;
   }
@@ -226,19 +231,22 @@
 
 @media (max-width: 480px) {
   .about-page .pagination {
-    flex-direction: column;
+    flex-direction: column; /* stack buttons + text */
     gap: 0.8rem;
   }
+
   .about-page .pagination button {
-    width: 100%;
+    width: 100%; /* full width buttons for mobile */
     max-width: 250px;
     text-align: center;
   }
+
   .about-page .pagination span {
     font-size: 0.85rem;
     text-align: center;
   }
 }
+
 
 /* ===== Know More Button (Clickable & Responsive) ===== */
 .know-more-btn {
@@ -257,9 +265,8 @@
   text-align: center;
   max-width: 250px;
   width: 100%;
-  position: relative;
-  z-index: 100;
-  pointer-events: auto;
+  position: relative; /* create stacking context */
+  z-index: 10;        /* make button above images/text */
 }
 
 /* ===== Hover & Active States ===== */
@@ -281,6 +288,7 @@
     flex-direction: column;
     text-align: center;
   }
+
   .journey-photo img, .vision-photo img, .daily-photo img,
   .teachings-photo img, .seva-photo img, .festivals-photo img {
     margin-bottom: 1.5rem;
@@ -302,29 +310,37 @@
     font-size: 14px;
     max-width: 180px;
   }
+
+  /* Fix overlapping issues on small screens */
   .about-journey, .about-vision, .about-daily,
   .about-teachings, .about-seva, .about-festivals {
+    position: relative;  /* stacking context */
+    z-index: 1;          /* make sure button is above content */
+  }
+
+  .know-more-btn {
     position: relative;
-    z-index: 1;
+    z-index: 10;
   }
 }
 
-/* ===== Navbar always above all About content ===== */
+/* ===== Fix: Ensure navbar overlay always stays above About content ===== */
+.about-page,
+.about-journey,
+.about-vision,
+.about-daily,
+.about-teachings,
+.about-seva,
+.about-festivals,
+.know-more-btn {
+  position: relative;
+  z-index: 0 !important;
+}
+
 .navbar,
 .sidebar,
 .mobile-menu,
 .menu-overlay {
   position: relative;
   z-index: 9999 !important;
-}
-
-/* ===== Make heading stay on one line and resize dynamically ===== */
-@media (max-width: 516px) {
-  .about-intro h1 {
-    white-space: nowrap;
-    font-size: clamp(1rem, 4.5vw, 1.6rem);
-    overflow: visible;
-    text-overflow: unset;
-    word-break: keep-all;
-  }
 }
