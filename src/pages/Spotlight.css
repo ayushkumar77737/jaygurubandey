@@ -324,5 +324,22 @@
   color: #777;
   border-color: #ccc;
 }
+/* ===== Fix: Ensure navbar overlay always stays above Spotlight content ===== */
+.spotlight-page,
+.spotlight-card,
+.spotlight-content,
+.read-btn,
+.spotlight-pagination {
+  position: relative;
+  z-index: 0 !important;
+}
+
+.navbar,
+.sidebar,
+.mobile-menu,
+.menu-overlay {
+  position: relative;
+  z-index: 9999 !important;
+}
 
 
