@@ -42,6 +42,9 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
+
+  /* replayable entrance animation on page change */
+  animation: fadeUp 0.8s ease-in-out;
 }
 
 /* Card */
