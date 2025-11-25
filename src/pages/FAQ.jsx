@@ -12,9 +12,9 @@ const FAQ = () => {
 
   const faqs = [
     {
-      question: "Who is Guruji and what is Jay Guru Bandey?",
+      question: "Who is Guruji and what is Jai Gurubande?",
       answer:
-        "Guruji is our divine guide and spiritual inspiration. Jay Guru Bandey is a community dedicated to spreading his teachings, positivity, and devotion through seva, love, and spiritual practices.",
+        "Guruji is our divine guide and spiritual inspiration. Jai Gurubande is a community dedicated to spreading his teachings, positivity, and devotion through seva, love, and spiritual practices.",
     },
     {
       question: "How can I become part of this community?",
@@ -29,7 +29,7 @@ const FAQ = () => {
     {
       question: "Is there any fee or membership required?",
       answer:
-        "No, joining Jay Guru Bandey is completely free. All you need is devotion and willingness to participate in community activities.",
+        "No, joining Jai Gurubande is completely free. All you need is devotion and willingness to participate in community activities.",
     },
     {
       question: "How can I contact the organizing committee?",
