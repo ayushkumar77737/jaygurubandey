@@ -32,7 +32,7 @@ const Footer = () => {
       <div className="container footer-content">
         {/* Copyright Section */}
         <div className="footer-bottom">
-          <p>© {new Date().getFullYear()} Jay Guru Bandey. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Jai GuruBande. All rights reserved.</p>
 
           {/* Button Links (Centered) */}
           <div className="footer-links">
