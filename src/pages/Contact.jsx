@@ -36,7 +36,8 @@ const ContactUs = () => {
     <div className="contact-container">
       <h1 className="contact-title">Contact Us</h1>
 
-      <div className="contact-card">
+      {/* key makes the card re-mount on page change → animation restarts */}
+      <div className="contact-card" key={page}>
         <img src={currentContact.image} alt="Ashram" className="contact-image" />
 
         <div className="contact-details">
