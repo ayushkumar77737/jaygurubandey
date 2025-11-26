@@ -1,5 +1,6 @@
 // src/pages/Testimonies.jsx
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Testimonies.css";
 
 const testimoniesData = [
@@ -51,7 +52,7 @@ const testimoniesData = [
 
 const Testimonies = () => {
   const [openId, setOpenId] = useState(1); // default open: Story of the Week
-
+  const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -139,7 +140,10 @@ const Testimonies = () => {
           inspired and hopeful.
         </p>
         {/* Later you can link this to a Google Form */}
-        <button className="share-story-btn">
+        <button
+          className="share-story-btn"
+          onClick={() => navigate("/submit-testimony")}
+        >
           Submit Your Testimony
         </button>
       </section>
