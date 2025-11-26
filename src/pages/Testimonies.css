@@ -6,6 +6,7 @@
   font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
   color: #333;
+  box-sizing: border-box;
 }
 
 /* ===== Intro ===== */
@@ -31,6 +32,9 @@
   font-size: clamp(1.9rem, 4vw, 2.6rem);
   color: #b71c1c;
   margin-bottom: 0.7rem;
+  white-space: nowrap;       /* 🔥 forces same line */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .testimonies-subtitle {
@@ -53,6 +57,7 @@
 .featured-section {
   max-width: 960px;
   margin: 0 auto 3.5rem;
+  padding: 0 0.5rem;
 }
 
 .featured-card {
@@ -120,16 +125,20 @@
   font-size: 1.3rem;
 }
 
-/* ===== Grid Section ===== */
+/* ===== Grid Section (using flex so cards don't stretch each other) ===== */
 .grid-section {
   max-width: 1100px;
   margin: 0 auto 3.5rem;
+  padding: 0 0.5rem;
 }
 
+/* Flexbox container – fully responsive & independent heights */
 .testimonies-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1.8rem;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 /* Cards */
@@ -144,6 +153,11 @@
   justify-content: space-between;
   transition: transform 0.25s ease, box-shadow 0.25s ease,
     border-color 0.25s ease;
+  box-sizing: border-box;
+
+  /* responsive width */
+  flex: 1 1 280px;   /* min width per card */
+  max-width: 340px; /* prevents over-stretch on big screens */
 }
 
 .testimony-card:hover {
@@ -191,7 +205,6 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease,
     background 0.2s ease;
 }
-
 
 .card-button:hover {
   transform: translateY(-2px);
@@ -241,30 +254,67 @@
 }
 
 /* ===== Responsive ===== */
+
+/* Large desktops – give more breathing space */
+@media (min-width: 1200px) {
+  .testimonies-page {
+    padding: 4.5rem 4rem 5rem;
+  }
+}
+
+/* Tablets */
 @media (max-width: 900px) {
   .testimonies-page {
-    padding: 3rem 1rem 4rem;
-  }
-
-  .testimonies-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 3rem 1.2rem 4rem;
   }
 
   .featured-card {
     padding: 1.5rem 1.4rem;
   }
+
+  .testimony-card {
+    flex: 1 1 260px;
+    max-width: 100%;
+  }
 }
 
-@media (max-width: 600px) {
-  .testimonies-grid {
-    grid-template-columns: 1fr;
-  }
-
+/* Small tablets & big phones */
+@media (max-width: 700px) {
   .featured-left {
     align-items: flex-start;
   }
 
+  .featured-card {
+    padding: 1.4rem 1.2rem;
+  }
+
+  .testimony-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .testimonies-page {
+    padding: 2.8rem 1rem 3.5rem;
+  }
+
+  .testimonies-intro h1 {
+    font-size: 1.3rem;     /* 🔥 Makes it fit in 1 line */
+    white-space: nowrap;
+  }
+
+  .featured-card {
+    border-radius: 18px;
+  }
+
   .share-story-section {
-    padding: 1.8rem 1.3rem;
+    padding: 1.8rem 1.2rem;
+  }
+}
+@media (max-width: 360px) {
+  .testimonies-intro h1 {
+    font-size: 1.15rem;   /* 🔥 For very narrow screens */
   }
 }
