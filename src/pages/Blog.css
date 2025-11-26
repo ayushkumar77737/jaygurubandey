@@ -521,3 +521,26 @@
     font-size: 0.95rem;
   }
 }
+
+.testimonies-btn-container {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.testimonies-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #8b0000;    /* Deep Spiritual Red */
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.testimonies-btn:hover {
+  background: #b30000;    /* Slightly brighter red on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}

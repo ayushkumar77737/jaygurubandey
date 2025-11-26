@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";   
+import { Link, useLocation } from "react-router-dom";
 import "./Blog.css";
-import blog1a from "../assets/photo4.jpg"; 
-import blog1b from "../assets/photo25.jpg"; 
-import blog2a from "../assets/photo3.jpg";  
-import blog2b from "../assets/photo27.jpg"; 
-import blog2c from "../assets/photo28.jpg"; 
-import blog2d from "../assets/photo29.jpg"; 
-import blog3a from "../assets/photo5.jpg";   
-import blog3b from "../assets/photo26.jpg";  
-import blog3c from "../assets/photo30.jpg";  
+import blog1a from "../assets/photo4.jpg";
+import blog1b from "../assets/photo25.jpg";
+import blog2a from "../assets/photo3.jpg";
+import blog2b from "../assets/photo27.jpg";
+import blog2c from "../assets/photo28.jpg";
+import blog2d from "../assets/photo29.jpg";
+import blog3a from "../assets/photo5.jpg";
+import blog3b from "../assets/photo26.jpg";
+import blog3c from "../assets/photo30.jpg";
 
 const Blog = () => {
   const location = useLocation();
@@ -138,9 +138,9 @@ const Blog = () => {
                 {post.description[0].slice(0, 100)}...
               </p>
 
-              <Link 
-                to={`/blog/${post.id}`} 
-                state={{ currentPage }} 
+              <Link
+                to={`/blog/${post.id}`}
+                state={{ currentPage }}
                 className="read-more-btn"
               >
                 Know More
@@ -155,6 +155,12 @@ const Blog = () => {
         <span className="page-info">Page {currentPage} of {totalPages}</span>
         <button onClick={handleNext} disabled={currentPage === totalPages}>Next ➡</button>
       </div>
+      <div className="testimonies-btn-container">
+        <Link to="/testimonies" className="testimonies-btn">
+           🔱 Testimonies
+        </Link>
+      </div>
+
     </div>
   );
 };
