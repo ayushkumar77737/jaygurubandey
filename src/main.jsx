@@ -29,6 +29,8 @@ import Spotlight from './pages/Spotlight.jsx';
 import DailySchedule from './pages/DailySchedule.jsx';
 import Feedback from './pages/Feedback.jsx';
 import Testimonies from './pages/Testimonies.jsx'
+import SubmitTestimony from './pages/SubmitTestimony.jsx'
+
 
 
 const router = createBrowserRouter([
@@ -62,6 +64,7 @@ const router = createBrowserRouter([
       { path: 'dailyschedule', element: <DailySchedule /> },
       { path: 'feedback', element: <Feedback /> },
       { path: 'testimonies', element: <Testimonies /> },
+      { path: 'submit-testimony', element: <SubmitTestimony /> },
 
     ],
   },
