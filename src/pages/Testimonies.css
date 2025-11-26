@@ -7,6 +7,9 @@
     "Segoe UI", sans-serif;
   color: #333;
   box-sizing: border-box;
+
+  /* 🔥 Page fade-in like blog */
+  animation: fadeIn 1s ease-in-out;
 }
 
 /* ===== Intro ===== */
@@ -32,7 +35,7 @@
   font-size: clamp(1.9rem, 4vw, 2.6rem);
   color: #b71c1c;
   margin-bottom: 0.7rem;
-  white-space: nowrap;       /* 🔥 forces same line */
+  white-space: nowrap;       /* forces same line */
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -69,6 +72,11 @@
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+
+  /* 🔥 Animate featured card coming up */
+  opacity: 0;
+  animation: fadeUp 0.8s ease-in-out forwards;
+  animation-delay: 0.15s;
 }
 
 .featured-left {
@@ -158,7 +166,20 @@
   /* responsive width */
   flex: 1 1 280px;   /* min width per card */
   max-width: 340px; /* prevents over-stretch on big screens */
+
+  /* 🔥 Card fade + slide up like blog cards */
+  opacity: 0;
+  animation: fadeUp 0.8s ease-in-out forwards;
 }
+
+/* 🔥 Staggered animation delays for cards */
+.testimony-card:nth-child(1) { animation-delay: 0.25s; }
+.testimony-card:nth-child(2) { animation-delay: 0.35s; }
+.testimony-card:nth-child(3) { animation-delay: 0.45s; }
+.testimony-card:nth-child(4) { animation-delay: 0.55s; }
+.testimony-card:nth-child(5) { animation-delay: 0.65s; }
+.testimony-card:nth-child(6) { animation-delay: 0.75s; }
+/* You can extend nth-child if you have more cards */
 
 .testimony-card:hover {
   transform: translateY(-6px);
@@ -221,6 +242,11 @@
   background: #ffffffcc;
   border-radius: 24px;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+
+  /* 🔥 Optional: fade up CTA too */
+  opacity: 0;
+  animation: fadeUp 0.8s ease-in-out forwards;
+  animation-delay: 0.85s;
 }
 
 .share-story-section h2 {
@@ -301,7 +327,7 @@
   }
 
   .testimonies-intro h1 {
-    font-size: 1.3rem;     /* 🔥 Makes it fit in 1 line */
+    font-size: 1.3rem;     /* Makes it fit in 1 line */
     white-space: nowrap;
   }
 
@@ -313,8 +339,20 @@
     padding: 1.8rem 1.2rem;
   }
 }
+
 @media (max-width: 360px) {
   .testimonies-intro h1 {
-    font-size: 1.15rem;   /* 🔥 For very narrow screens */
+    font-size: 1.15rem;   /* For very narrow screens */
   }
+}
+
+/* ===== Animations (same style as blog.css) ===== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
