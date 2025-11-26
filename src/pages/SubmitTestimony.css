@@ -1,3 +1,6 @@
+/* =========================
+   Layout & Background
+========================= */
 .submit-testimony-page {
   min-height: 100vh;
   padding: 50px 20px 80px;
@@ -6,13 +9,30 @@
   align-items: center;
   background: linear-gradient(180deg, #fff3f9 0%, #ffffff 50%, #f4edff 100%);
   text-align: center;
+  animation: pageFadeIn 0.7s ease-out;
 }
 
+/* Page fade-in */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   Heading & Subtitle
+========================= */
 .submit-testimony-page h1 {
   font-size: 2rem;
   font-weight: 700;
   color: #a53591;
   margin-bottom: 6px;
+  animation: fadeUp 0.8s ease-out;
 }
 
 .submit-testimony-page p {
@@ -21,8 +41,24 @@
   margin-bottom: 28px;
   max-width: 640px;
   line-height: 1.6;
+  animation: fadeUp 0.95s ease-out;
 }
 
+/* Generic fade-up used for multiple elements */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   Form Card
+========================= */
 .submit-form {
   width: 100%;
   max-width: 700px;
@@ -34,6 +70,7 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
+  animation: fadeUp 1.1s ease-out;
 }
 
 .submit-form label {
@@ -53,7 +90,8 @@
   font-size: 0.95rem;
   font-family: inherit;
   outline: none;
-  transition: 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease,
+    transform 0.1s ease;
 }
 
 .submit-form input:focus,
@@ -61,8 +99,12 @@
   border-color: #af6ed9;
   box-shadow: 0 0 0 2px rgba(175, 110, 217, 0.18);
   background: #ffffff;
+  transform: translateY(-1px);
 }
 
+/* =========================
+   Submit Button
+========================= */
 .submit-btn {
   margin-top: 6px;
   padding: 12px;
@@ -74,31 +116,112 @@
   background: linear-gradient(135deg, #e452af, #a75be7);
   color: white;
   box-shadow: 0 8px 20px rgba(167, 91, 231, 0.35);
-  transition: 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
 
 .submit-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow: 0 10px 26px rgba(167, 91, 231, 0.45);
 }
 
 .submit-btn:active {
-  transform: scale(0.98);
+  transform: scale(0.96);
+  box-shadow: 0 6px 18px rgba(167, 91, 231, 0.35);
 }
 
-/* Mobile responsiveness */
-@media (max-width: 480px) {
-  .submit-testimony-page h1 {
-    font-size: 1.6rem;
-  }
-  .submit-form {
-    padding: 20px;
-  }
-}
+/* =========================
+   Success Message
+========================= */
 .success-message {
   margin-top: 12px;
   font-size: 1rem;
   font-weight: 600;
   color: #1d8a40;
   text-align: center;
+  animation: successPop 0.5s ease-out;
+}
+
+@keyframes successPop {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0) scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================
+   Responsiveness
+========================= */
+
+/* Tablets (portrait & small laptops) */
+@media (max-width: 1024px) {
+  .submit-testimony-page {
+    padding: 40px 18px 60px;
+  }
+
+  .submit-form {
+    max-width: 600px;
+  }
+}
+
+/* Large phones / small tablets */
+@media (max-width: 768px) {
+  .submit-testimony-page h1 {
+    font-size: 1.8rem;
+  }
+
+  .submit-testimony-page p {
+    font-size: 0.95rem;
+  }
+
+  .submit-form {
+    padding: 22px 18px;
+    max-width: 500px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .submit-testimony-page {
+    padding: 32px 14px 50px;
+  }
+
+  .submit-testimony-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .submit-form {
+    padding: 18px 14px;
+    border-radius: 14px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+  }
+
+  .submit-form input,
+  .submit-form textarea {
+    font-size: 0.9rem;
+    padding: 10px 12px;
+  }
+
+  .submit-btn {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+}
+
+/* Very large screens */
+@media (min-width: 1400px) {
+  .submit-testimony-page h1 {
+    font-size: 2.2rem;
+  }
+
+  .submit-form {
+    max-width: 760px;
+  }
 }
