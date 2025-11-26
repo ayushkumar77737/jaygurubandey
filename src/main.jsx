@@ -28,6 +28,8 @@ import IntlCenters from './pages/IntlCenters.jsx'
 import Spotlight from './pages/Spotlight.jsx';
 import DailySchedule from './pages/DailySchedule.jsx';
 import Feedback from './pages/Feedback.jsx';
+import Testimonies from './pages/Testimonies.jsx'
+
 
 const router = createBrowserRouter([
   {
@@ -59,6 +61,8 @@ const router = createBrowserRouter([
       { path: 'spotlight', element: <Spotlight /> },
       { path: 'dailyschedule', element: <DailySchedule /> },
       { path: 'feedback', element: <Feedback /> },
+      { path: 'testimonies', element: <Testimonies /> },
+
     ],
   },
 ])
