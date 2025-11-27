@@ -105,7 +105,7 @@
 /* =========================
    Submit Button
 ========================= */
-.submit-btn {
+.submit-testimony-btn {
   margin-top: 6px;
   padding: 12px;
   border-radius: 999px;
@@ -119,12 +119,12 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
 
-.submit-btn:hover {
+.submit-testimony-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 26px rgba(167, 91, 231, 0.45);
 }
 
-.submit-btn:active {
+.submit-testimony-btn:active {
   transform: scale(0.96);
   box-shadow: 0 6px 18px rgba(167, 91, 231, 0.35);
 }

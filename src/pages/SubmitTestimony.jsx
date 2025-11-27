@@ -98,7 +98,7 @@ const SubmitTestimony = () => {
           placeholder="Write your testimony..."
         />
 
-        <button type="submit" className="submit-btn">Submit</button>
+        <button type="submit" className="submit-testimony-btn">Submit</button>
 
         {submitted && (
           <p className="success-message">
