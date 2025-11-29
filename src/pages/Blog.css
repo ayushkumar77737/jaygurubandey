@@ -550,11 +550,16 @@
 
 .blog-bottom-buttons {
   display: flex;
-  justify-content: center;
+  justify-content: center;      /* center them */
+  align-items: center;
   gap: 30px;
   margin-top: 30px;
-  flex-wrap: wrap;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;              /* ✅ allow wrapping */
 }
+
 
 .blog-pill-btn {
   display: inline-flex;

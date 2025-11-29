@@ -163,6 +163,10 @@ const Blog = () => {
         <Link to="/testimonies" className="blog-pill-btn">
           🔱 Testimonies
         </Link>
+
+        <Link to="/dailysatsang" className="blog-pill-btn">
+          🔅 Daily Satsang
+        </Link>
       </div>
 
 
