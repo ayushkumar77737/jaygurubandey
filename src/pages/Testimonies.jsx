@@ -64,7 +64,6 @@ const Testimonies = () => {
     <div className="testimonies-page">
       {/* Intro */}
       <section className="testimonies-intro">
-        <p className="testimonies-badge">Devotee Voices</p>
         <h1>🌸 Testimonies of Grace 🌸</h1>
         <p className="testimonies-subtitle">
           Real stories from devotees whose lives were touched by Guruji&apos;s
