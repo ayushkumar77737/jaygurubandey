@@ -45,6 +45,7 @@
   gap: 2rem;
   max-width: 1150px;
   margin: auto;
+  position: relative;        /* ✅ create stacking context */
 }
 
 /* ===== Map Card ===== */
@@ -57,6 +58,8 @@
   transform: translateY(24px);
   animation: exploreFadeUp 0.7s ease forwards;
   animation-delay: 0.15s;   /* map + info appear together */
+  position: relative;       /* ✅ allow z-index */
+  z-index: 3;               /* ✅ above info card */
 }
 
 .explore-map-card h2 {
@@ -84,6 +87,8 @@
   padding: 1rem;
   border-radius: 18px;
   border: 1px solid #f8d7da;
+  position: relative;       /* ✅ ensure map content is clickable */
+  pointer-events: auto;
 }
 
 .map-box {
@@ -96,6 +101,8 @@
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease,
     background 0.2s ease, border-color 0.2s ease;
+  position: relative;       /* ✅ avoid weird hitbox issues */
+  pointer-events: auto;
 }
 
 .map-box:hover {
@@ -122,6 +129,8 @@
   transform: translateY(24px);
   animation: exploreFadeUp 0.7s ease forwards;
   animation-delay: 0.15s;   /* same as map card to avoid lag issue */
+  position: relative;
+  z-index: 1;               /* ✅ below map card */
 }
 
 /* Tabs */
@@ -179,7 +188,7 @@
   border-radius: 12px;
   border: 1px dashed #ffb6c1;
   margin-bottom: 0.7rem;
-  text-align: center;   /* ✅ now About & Tip text will be centered */
+  text-align: center;   /* About & Tip text centered */
 }
 
 .zone-card h4 {
