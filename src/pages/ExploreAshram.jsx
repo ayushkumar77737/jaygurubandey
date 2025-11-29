@@ -59,8 +59,10 @@ const ZONES = [
 ];
 
 const ExploreAshram = () => {
-  const [activeZoneId, setActiveZoneId] = useState(ZONES[0].id);
-  const activeZone = ZONES.find((z) => z.id === activeZoneId);
+  // ❌ old: useState(ZONES[0].id)
+  // ✅ new: start with no selection
+  const [activeZoneId, setActiveZoneId] = useState(null);
+  const activeZone = ZONES.find((z) => z.id === activeZoneId) || null;
 
   return (
     <div className="explore-page">
@@ -75,7 +77,6 @@ const ExploreAshram = () => {
       </section>
 
       <section className="explore-layout">
-        
         {/* Visual Map */}
         <div className="explore-map-card">
           <h2>Ashram Layout</h2>
@@ -115,24 +116,33 @@ const ExploreAshram = () => {
             ))}
           </div>
 
-          <div className="zone-details">
-            <h3>{activeZone.name}</h3>
-            <p className="zone-type-chip">{activeZone.type}</p>
-
-            <p className="zone-short">{activeZone.short}</p>
-
-            <div className="zone-card">
-              <h4>About</h4>
-              <p>{activeZone.details}</p>
+          {/* Show message when nothing selected */}
+          {!activeZone && (
+            <div className="zone-placeholder">
+              <p>👆 Please select a zone from the map or tabs to view details.</p>
             </div>
+          )}
 
-            <div className="zone-card zone-tip">
-              <h4>Tip</h4>
-              <p>{activeZone.tip}</p>
+          {/* Show details only after selection */}
+          {activeZone && (
+            <div className="zone-details">
+              <h3>{activeZone.name}</h3>
+              <p className="zone-type-chip">{activeZone.type}</p>
+
+              <p className="zone-short">{activeZone.short}</p>
+
+              <div className="zone-card">
+                <h4>About</h4>
+                <p>{activeZone.details}</p>
+              </div>
+
+              <div className="zone-card zone-tip">
+                <h4>Tip</h4>
+                <p>{activeZone.tip}</p>
+              </div>
             </div>
-          </div>
+          )}
         </div>
-
       </section>
     </div>
   );
