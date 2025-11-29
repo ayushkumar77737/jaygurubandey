@@ -155,11 +155,16 @@ const Blog = () => {
         <span className="page-info">Page {currentPage} of {totalPages}</span>
         <button onClick={handleNext} disabled={currentPage === totalPages}>Next ➡</button>
       </div>
-      <div className="testimonies-btn-container">
-        <Link to="/testimonies" className="testimonies-btn">
-           🔱 Testimonies
+      <div className="blog-bottom-buttons">
+        <Link to="/explore" className="blog-pill-btn">
+          🔍 Explore Ashram
+        </Link>
+
+        <Link to="/testimonies" className="blog-pill-btn">
+          🔱 Testimonies
         </Link>
       </div>
+
 
     </div>
   );
