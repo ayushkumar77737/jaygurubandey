@@ -11,6 +11,9 @@
   text-align: center;
   max-width: 760px;
   margin: 0 auto 3rem;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: exploreFadeUp 0.7s ease forwards;
 }
 
 .explore-badge {
@@ -50,12 +53,16 @@
   padding: 1.5rem;
   border-radius: 20px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+  opacity: 0;
+  transform: translateY(24px);
+  animation: exploreFadeUp 0.7s ease forwards;
+  animation-delay: 0.15s;   /* map + info appear together */
 }
 
 .explore-map-card h2 {
   color: #b71c1c;
   margin-bottom: 0.4rem;
-  text-align: center;      /* Center Title */
+  text-align: center;
   width: 100%;
 }
 
@@ -87,11 +94,14 @@
   font-size: 0.9rem;
   cursor: pointer;
   text-align: center;
-  transition: all 0.25s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    background 0.2s ease, border-color 0.2s ease;
 }
 
 .map-box:hover {
   background: #ffd9e2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(229, 57, 53, 0.15);
 }
 
 .map-box-active {
@@ -106,14 +116,19 @@
   padding: 1.5rem;
   border-radius: 20px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
-  text-align: center;   /* ✅ centers "Zone Details" */
+  text-align: center;
   width: 100%;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: exploreFadeUp 0.7s ease forwards;
+  animation-delay: 0.15s;   /* same as map card to avoid lag issue */
 }
 
 /* Tabs */
 .zone-tabs {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
   margin-bottom: 1rem;
 }
@@ -125,6 +140,12 @@
   border: 1px solid #ffd1dc;
   cursor: pointer;
   font-size: 0.85rem;
+  transition: background 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.zone-tab:hover {
+  transform: translateY(-1px);
 }
 
 .zone-tab-active {
@@ -158,6 +179,7 @@
   border-radius: 12px;
   border: 1px dashed #ffb6c1;
   margin-bottom: 0.7rem;
+  text-align: center;   /* ✅ now About & Tip text will be centered */
 }
 
 .zone-card h4 {
@@ -171,9 +193,100 @@
   border-color: #ffeb99;
 }
 
-/* Responsive */
+/* ===== Animations ===== */
+@keyframes exploreFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Responsive ===== */
+
+/* Tablets and small laptops */
 @media (max-width: 900px) {
   .explore-layout {
     grid-template-columns: 1fr;
+  }
+
+  .explore-map-card,
+  .explore-info-card {
+    max-width: 620px;
+    margin: 0 auto;
+  }
+}
+
+/* Large phones / small tablets */
+@media (max-width: 700px) {
+  .explore-page {
+    padding: 3rem 1.2rem;
+  }
+
+  .explore-intro h1 {
+    font-size: 1.9rem;
+  }
+
+  .simple-map {
+    grid-template-areas:
+      "z1 z1"
+      "z2 z2"
+      "z3 z4"
+      "z5 z6";
+  }
+
+  .map-box {
+    padding: 12px;
+    font-size: 0.85rem;
+  }
+
+  .zone-card {
+    font-size: 0.9rem;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .explore-page {
+    padding: 3rem 1rem 3.5rem;
+  }
+
+  .explore-intro {
+    margin-bottom: 2.2rem;
+  }
+
+  .explore-intro h1 {
+    font-size: 1.6rem;
+  }
+
+  .explore-badge {
+    font-size: 0.78rem;
+    padding: 5px 12px;
+  }
+
+  .simple-map {
+    padding: 0.8rem;
+    gap: 8px;
+  }
+
+  .map-box {
+    padding: 10px;
+    font-size: 0.8rem;
+  }
+
+  .zone-tabs {
+    justify-content: flex-start;
+  }
+
+  .zone-tab {
+    font-size: 0.78rem;
+    padding: 6px 10px;
+  }
+
+  .zone-card {
+    font-size: 0.85rem;
   }
 }
