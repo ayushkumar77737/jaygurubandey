@@ -31,6 +31,7 @@ import Feedback from './pages/Feedback.jsx';
 import Testimonies from './pages/Testimonies.jsx'
 import SubmitTestimony from './pages/SubmitTestimony.jsx'
 import ExploreAshram from './pages/ExploreAshram.jsx'
+import DailySatsang from './pages/DailySatsang.jsx'
 
 
 
@@ -68,7 +69,7 @@ const router = createBrowserRouter([
       { path: 'testimonies', element: <Testimonies /> },
       { path: 'submit-testimony', element: <SubmitTestimony /> },
       { path: 'explore', element: <ExploreAshram /> },
-
+      { path: 'dailysatsang', element: <DailySatsang /> },
     ],
   },
 ])
