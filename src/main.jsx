@@ -25,9 +25,9 @@ import LatestUpdates from './pages/LatestUpdates.jsx'
 import SoulTwist from './pages/SoulTwist.jsx'
 import FAQ from './pages/FAQ.jsx'
 import IntlCenters from './pages/IntlCenters.jsx'
-import Spotlight from './pages/Spotlight.jsx';
-import DailySchedule from './pages/DailySchedule.jsx';
-import Feedback from './pages/Feedback.jsx';
+import Spotlight from './pages/Spotlight.jsx'
+import DailySchedule from './pages/DailySchedule.jsx'
+import Feedback from './pages/Feedback.jsx'
 import Testimonies from './pages/Testimonies.jsx'
 import SubmitTestimony from './pages/SubmitTestimony.jsx'
 import ExploreAshram from './pages/ExploreAshram.jsx'
