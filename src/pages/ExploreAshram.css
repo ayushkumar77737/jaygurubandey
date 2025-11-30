@@ -287,7 +287,8 @@
   }
 
   .zone-tabs {
-    justify-content: flex-start;
+    justify-content: center !important;   /* Force center */
+    width: 100%;
   }
 
   .zone-tab {
