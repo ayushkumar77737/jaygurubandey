@@ -155,21 +155,22 @@ const Blog = () => {
         <span className="page-info">Page {currentPage} of {totalPages}</span>
         <button onClick={handleNext} disabled={currentPage === totalPages}>Next ➡</button>
       </div>
-      <div className="blog-bottom-buttons">
-        <Link to="/explore" className="blog-pill-btn">
+      <div
+        className="map-button-container fade-in-up"
+        style={{ display: "flex", justifyContent: "center", gap: "15px", flexWrap: "wrap" }}
+      >
+        <Link to="/explore" className="know-more-btn">
           🔍 Explore Ashram
         </Link>
 
-        <Link to="/testimonies" className="blog-pill-btn">
+        <Link to="/testimonies" className="know-more-btn">
           🔱 Testimonies
         </Link>
 
-        <Link to="/dailysatsang" className="blog-pill-btn">
+        <Link to="/dailysatsang" className="know-more-btn">
           🔅 Daily Satsang
         </Link>
       </div>
-
-
     </div>
   );
 };
