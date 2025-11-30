@@ -407,23 +407,53 @@
   }
 }
 
-/* Mobiles */
+/* ===== MOBILES (Lag-Free Version) ===== */
 @media (max-width: 600px) {
+
+  /* 🟡 Remove heavy background animation */
   .daily-satsang-page {
     padding: 2.8rem 1rem 4rem;
+    animation: none !important;      /* stop bgShift */
+    background-size: 100% 100%;
+    background-attachment: scroll;
   }
 
+  /* 🟡 Disable all entrance animations on mobile */
+  .daily-hero,
+  .channel-card,
+  .video-card,
+  .no-videos {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* 🟡 Stop infinite animations (heavy for mobile GPU) */
+  .channel-avatar {
+    animation: none !important;
+  }
+
+  .daily-hero-decor .star {
+    animation: none !important;
+  }
+
+  /* 🟡 Lighten the card for mobile (backdrop blur is heavy) */
   .channel-card {
     grid-template-columns: 1fr;
     text-align: left;
     padding: 1.7rem 1.3rem;
+
+    backdrop-filter: none !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   }
 
+  /* 🟡 Make avatar smaller */
   .channel-avatar {
     width: 75px;
     height: 75px;
   }
 
+  /* 🟡 One video per row */
   .video-grid {
     grid-template-columns: 1fr;
   }
@@ -432,3 +462,4 @@
     font-size: 0.82rem;
   }
 }
+
