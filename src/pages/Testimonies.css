@@ -1,4 +1,4 @@
-/* ===== Page Background ===== */
+/* ===== Page Background (SCOPED) ===== */
 .testimonies-page {
   min-height: 100vh;
   padding: 4rem 1.5rem 5rem;
@@ -9,17 +9,17 @@
   box-sizing: border-box;
 
   /* 🔥 Page fade-in like blog */
-  animation: fadeIn 1s ease-in-out;
+  animation: testimoniesFadeIn 1s ease-in-out;
 }
 
 /* ===== Intro ===== */
-.testimonies-intro {
+.testimonies-page .testimonies-intro {
   text-align: center;
   max-width: 720px;
   margin: 0 auto 3rem;
 }
 
-.testimonies-badge {
+.testimonies-page .testimonies-badge {
   display: inline-block;
   padding: 6px 14px;
   border-radius: 999px;
@@ -31,7 +31,7 @@
   margin-bottom: 0.8rem;
 }
 
-.testimonies-intro h1 {
+.testimonies-page .testimonies-intro h1 {
   font-size: clamp(1.9rem, 4vw, 2.6rem);
   color: #b71c1c;
   margin-bottom: 0.7rem;
@@ -40,14 +40,14 @@
   text-overflow: ellipsis;
 }
 
-.testimonies-subtitle {
+.testimonies-page .testimonies-subtitle {
   font-size: 0.98rem;
   color: #555;
   line-height: 1.7;
 }
 
 /* ===== Section labels ===== */
-.section-label {
+.testimonies-page .section-label {
   font-size: 0.9rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -57,13 +57,13 @@
 }
 
 /* ===== Featured Story (Story of the Week) ===== */
-.featured-section {
+.testimonies-page .featured-section {
   max-width: 960px;
   margin: 0 auto 3.5rem;
   padding: 0 0.5rem;
 }
 
-.featured-card {
+.testimonies-page .featured-card {
   background: #ffffff;
   border-radius: 24px;
   padding: 1.8rem 2rem;
@@ -75,28 +75,28 @@
 
   /* 🔥 Animate featured card coming up */
   opacity: 0;
-  animation: fadeUp 0.8s ease-in-out forwards;
+  animation: testimoniesFadeUp 0.8s ease-in-out forwards;
   animation-delay: 0.15s;
 }
 
-.featured-left {
+.testimonies-page .featured-left {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.featured-left h2 {
+.testimonies-page .featured-left h2 {
   font-size: 1.3rem;
   margin-bottom: 0.1rem;
   color: #a0003c;
 }
 
-.meta {
+.testimonies-page .meta {
   font-size: 0.82rem;
   color: #777;
 }
 
-.tag-pill {
+.testimonies-page .tag-pill {
   display: inline-block;
   padding: 3px 10px;
   border-radius: 999px;
@@ -106,14 +106,14 @@
   margin-top: 5px;
 }
 
-.featured-text {
+.testimonies-page .featured-text {
   font-size: 0.96rem;
   line-height: 1.8;
   color: #444;
 }
 
 /* ===== Avatar Circle (no real images needed) ===== */
-.avatar-circle {
+.testimonies-page .avatar-circle {
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -127,21 +127,21 @@
   flex-shrink: 0;
 }
 
-.big-avatar {
+.testimonies-page .big-avatar {
   width: 56px;
   height: 56px;
   font-size: 1.3rem;
 }
 
 /* ===== Grid Section (using flex so cards don't stretch each other) ===== */
-.grid-section {
+.testimonies-page .grid-section {
   max-width: 1100px;
   margin: 0 auto 3.5rem;
   padding: 0 0.5rem;
 }
 
 /* Flexbox container – fully responsive & independent heights */
-.testimonies-grid {
+.testimonies-page .testimonies-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 1.8rem;
@@ -150,7 +150,7 @@
 }
 
 /* Cards */
-.testimony-card {
+.testimonies-page .testimony-card {
   background: #ffffff;
   border-radius: 20px;
   padding: 1.3rem 1.4rem 1.5rem;
@@ -169,41 +169,41 @@
 
   /* 🔥 Card fade + slide up like blog cards */
   opacity: 0;
-  animation: fadeUp 0.8s ease-in-out forwards;
+  animation: testimoniesFadeUp 0.8s ease-in-out forwards;
 }
 
 /* 🔥 Staggered animation delays for cards */
-.testimony-card:nth-child(1) { animation-delay: 0.25s; }
-.testimony-card:nth-child(2) { animation-delay: 0.35s; }
-.testimony-card:nth-child(3) { animation-delay: 0.45s; }
-.testimony-card:nth-child(4) { animation-delay: 0.55s; }
-.testimony-card:nth-child(5) { animation-delay: 0.65s; }
-.testimony-card:nth-child(6) { animation-delay: 0.75s; }
-/* You can extend nth-child if you have more cards */
+.testimonies-page .testimony-card:nth-child(1) { animation-delay: 0.25s; }
+.testimonies-page .testimony-card:nth-child(2) { animation-delay: 0.35s; }
+.testimonies-page .testimony-card:nth-child(3) { animation-delay: 0.45s; }
+.testimonies-page .testimony-card:nth-child(4) { animation-delay: 0.55s; }
+.testimonies-page .testimony-card:nth-child(5) { animation-delay: 0.65s; }
+.testimonies-page .testimony-card:nth-child(6) { animation-delay: 0.75s; }
+/* Extend nth-child if you have more cards */
 
-.testimony-card:hover {
+.testimonies-page .testimony-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
   border-color: rgba(255, 105, 135, 0.4);
 }
 
-.testimony-card.open {
+.testimonies-page .testimony-card.open {
   border-color: rgba(255, 105, 135, 0.7);
 }
 
-.card-header {
+.testimonies-page .card-header {
   display: flex;
   align-items: center;
   gap: 0.85rem;
   margin-bottom: 0.8rem;
 }
 
-.card-header h3 {
+.testimonies-page .card-header h3 {
   font-size: 1.05rem;
   color: #a0003c;
 }
 
-.card-text {
+.testimonies-page .card-text {
   font-size: 0.9rem;
   color: #444;
   line-height: 1.7;
@@ -211,7 +211,7 @@
 }
 
 /* Button */
-.card-button {
+.testimonies-page .card-button {
   margin: 0 auto;             /* Centers the button */
   display: block;             /* Allows margin auto to work */
   padding: 8px 18px;
@@ -227,14 +227,14 @@
     background 0.2s ease;
 }
 
-.card-button:hover {
+.testimonies-page .card-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(179, 0, 89, 0.35);
   background: linear-gradient(90deg, #ff5f9e, #ffb6d0);
 }
 
 /* ===== Call to Action Section ===== */
-.share-story-section {
+.testimonies-page .share-story-section {
   max-width: 700px;
   margin: 0 auto;
   text-align: center;
@@ -245,23 +245,23 @@
 
   /* 🔥 Optional: fade up CTA too */
   opacity: 0;
-  animation: fadeUp 0.8s ease-in-out forwards;
+  animation: testimoniesFadeUp 0.8s ease-in-out forwards;
   animation-delay: 0.85s;
 }
 
-.share-story-section h2 {
+.testimonies-page .share-story-section h2 {
   color: #a0003c;
   margin-bottom: 0.5rem;
 }
 
-.share-story-section p {
+.testimonies-page .share-story-section p {
   font-size: 0.94rem;
   color: #555;
   margin-bottom: 1.3rem;
   line-height: 1.7;
 }
 
-.share-story-btn {
+.testimonies-page .share-story-btn {
   padding: 10px 24px;
   border-radius: 999px;
   border: none;
@@ -274,7 +274,7 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.share-story-btn:hover {
+.testimonies-page .share-story-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 7px 18px rgba(255, 105, 135, 0.45);
 }
@@ -294,11 +294,11 @@
     padding: 3rem 1.2rem 4rem;
   }
 
-  .featured-card {
+  .testimonies-page .featured-card {
     padding: 1.5rem 1.4rem;
   }
 
-  .testimony-card {
+  .testimonies-page .testimony-card {
     flex: 1 1 260px;
     max-width: 100%;
   }
@@ -306,15 +306,15 @@
 
 /* Small tablets & big phones */
 @media (max-width: 700px) {
-  .featured-left {
+  .testimonies-page .featured-left {
     align-items: flex-start;
   }
 
-  .featured-card {
+  .testimonies-page .featured-card {
     padding: 1.4rem 1.2rem;
   }
 
-  .testimony-card {
+  .testimonies-page .testimony-card {
     flex: 1 1 100%;
     max-width: 100%;
   }
@@ -326,33 +326,33 @@
     padding: 2.8rem 1rem 3.5rem;
   }
 
-  .testimonies-intro h1 {
+  .testimonies-page .testimonies-intro h1 {
     font-size: 1.3rem;     /* Makes it fit in 1 line */
     white-space: nowrap;
   }
 
-  .featured-card {
+  .testimonies-page .featured-card {
     border-radius: 18px;
   }
 
-  .share-story-section {
+  .testimonies-page .share-story-section {
     padding: 1.8rem 1.2rem;
   }
 }
 
 @media (max-width: 360px) {
-  .testimonies-intro h1 {
+  .testimonies-page .testimonies-intro h1 {
     font-size: 1.15rem;   /* For very narrow screens */
   }
 }
 
-/* ===== Animations (same style as blog.css) ===== */
-@keyframes fadeIn {
+/* ===== Animations (SCOPED NAMES) ===== */
+@keyframes testimoniesFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-@keyframes fadeUp {
+@keyframes testimoniesFadeUp {
   from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
 }
