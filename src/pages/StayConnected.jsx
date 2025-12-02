@@ -1,30 +1,31 @@
 import React, { useState } from "react";
 import "./StayConnected.css";
+import { FaFacebook, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa";
 
 const SOCIAL_LINKS = [
   {
     id: "facebook",
     label: "Facebook",
     url: "https://www.facebook.com/share/g/1AZvFisxcs/",
-    icon: "📘",
+    icon: <FaFacebook />,
   },
   {
     id: "instagram",
     label: "Instagram",
     url: "https://www.instagram.com/jaigurubande__official?igsh=NnIwdnI5cGMxemYy",
-    icon: "📸",
+    icon: <FaInstagram />,
   },
   {
     id: "youtube",
     label: "YouTube",
     url: "https://youtube.com/@jaigurubande?feature=shared",
-    icon: "▶️",
+    icon: <FaYoutube />,
   },
   {
     id: "whatsapp",
     label: "WhatsApp Group",
     url: "https://chat.whatsapp.com/GwdDS530clKJsNc4zkPCyD",
-    icon: "💬",
+    icon: <FaWhatsapp />,
   },
 ];
 

@@ -408,3 +408,8 @@
   pointer-events: auto;
   -webkit-tap-highlight-color: transparent; /* nicer on mobile */
 }
+
+.social-icon svg {
+  font-size: 26px;
+  color: #00d9ff; /* change color */
+}
