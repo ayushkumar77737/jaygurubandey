@@ -1,0 +1,410 @@
+/* ===== PAGE LAYOUT ===== */
+.stay-page {
+  min-height: 100vh;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #141e30, #243b55);
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.stay-inner {
+  width: 100%;
+  max-width: 960px;
+  text-align: center;
+  color: #f5f5f5;
+  opacity: 0;
+  animation: stayDropFade 0.9s ease forwards;
+}
+
+/* ===== BADGE / TITLE / SUBTITLE ===== */
+.stay-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(0, 217, 255, 0.12);
+  border: 1px solid rgba(0, 217, 255, 0.4);
+  color: #00d9ff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+}
+
+.stay-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #ffffff;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+.stay-subtitle {
+  font-size: 1rem;
+  color: #cfd8ff;
+  max-width: 620px;
+  margin: 0 auto 28px;
+  line-height: 1.7;
+}
+
+/* ===== CARD ===== */
+.stay-card {
+  background: #1f2a40;
+  border-radius: 18px;
+  padding: 28px 22px 32px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  margin: 0 auto;
+  max-width: 720px;
+  text-align: left;
+  opacity: 0;
+  animation: stayDropFade 0.9s ease forwards;
+  animation-delay: 0.25s;
+}
+
+/* ===== SOCIAL LIST ===== */
+.social-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.social-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(15, 25, 45, 0.9);
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 217, 255, 0.18);
+}
+
+.social-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.social-icon {
+  font-size: 1.4rem;
+}
+
+.social-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e8f3ff;
+}
+
+/* individual open button (fallback) */
+.social-view-btn {
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: none;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(90deg, #00d9ff, #6a11cb);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease;
+}
+
+.social-view-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  opacity: 0.96;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.55);
+}
+
+/* ===== MAIN CTA BUTTON ===== */
+.open-all-btn {
+  width: 100%;
+  margin-top: 6px;
+  padding: 13px 26px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(120deg, #243b55, #00d9ff, #6a11cb);
+  border-radius: 999px;
+  border: 1px solid rgba(0, 217, 255, 0.7);
+  cursor: pointer;
+  text-align: center;
+  letter-spacing: 0.5px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.55);
+  transition: transform 0.25s ease,
+              opacity 0.25s ease,
+              box-shadow 0.25s ease,
+              background 0.25s ease;
+}
+
+.open-all-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  opacity: 0.98;
+  background: linear-gradient(120deg, #243b55, #00e6ff, #7a27e0);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
+}
+
+.open-all-btn:active {
+  transform: translateY(0) scale(0.99);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+}
+
+/* small note text */
+.stay-note {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: #a8b6df;
+  text-align: center;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes stayDropFade {
+  from {
+    opacity: 0;
+    transform: translateY(-36px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .stay-title {
+    font-size: 1.9rem;
+  }
+
+  .stay-card {
+    padding: 22px 16px 26px;
+  }
+
+  .social-item {
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stay-page {
+    padding: 50px 14px;
+  }
+
+  .stay-title {
+    font-size: 1.6rem;
+  }
+
+  .stay-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .social-label {
+    font-size: 0.95rem;
+  }
+
+  .open-all-btn {
+    font-size: 0.95rem;
+    padding: 11px 20px;
+  }
+}
+
+/* ===== POPUP OVERLAY ===== */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(4, 7, 15, 0.78); /* dark neutral overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999; /* 🔼 ensure it's above navbar/footer etc */
+  backdrop-filter: blur(6px);
+}
+
+/* ===== POPUP BOX ===== */
+.popup-box {
+  /* slightly lighter + glassy blue so it stands apart from page bg + cards */
+  background: linear-gradient(145deg, rgba(23, 36, 70, 0.96), rgba(18, 30, 58, 0.96));
+  padding: 26px 22px;
+  border-radius: 18px;
+  width: 90%;
+  max-width: 420px;
+  max-height: 90vh;            /* 🔼 prevent overflow on small screens */
+  overflow-y: auto;            /* 🔼 allow scroll inside popup */
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(0, 217, 255, 0.35);
+  animation: fadeIn 0.3s ease;
+  color: #f4fbff;
+  border: 1px solid rgba(0, 217, 255, 0.65); /* cyan accent border */
+}
+
+.popup-box h2 {
+  text-align: center;
+  margin-bottom: 18px;
+  color: #8be9ff; /* lighter cyan text */
+  font-size: 1.22rem;
+  letter-spacing: 0.5px;
+}
+
+/* ===== OPTIONS ===== */
+.popup-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.popup-option {
+  padding: 11px 14px;
+  border-radius: 12px;
+  background: rgba(10, 18, 40, 0.9); /* deeper than popup box */
+  cursor: pointer;
+  border: 1px solid rgba(0, 217, 255, 0.25);
+  font-size: 0.98rem;
+  transition: background 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
+}
+
+.popup-option:hover {
+  background: rgba(19, 33, 70, 0.95);
+  transform: translateY(-1px);
+  border-color: rgba(0, 217, 255, 0.5);
+}
+
+.popup-option.selected {
+  background: linear-gradient(120deg, #00d9ff, #6a11cb);
+  color: #ffffff;
+  font-weight: 600;
+  border-color: rgba(0, 217, 255, 0.85);
+}
+
+/* ===== ACTION BUTTONS ===== */
+.popup-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.popup-btn {
+  flex: 1;
+  padding: 11px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-weight: 600;
+  font-size: 0.96rem;
+  touch-action: manipulation; /* 🔼 helps on some mobile browsers */
+}
+
+.popup-btn.cancel {
+  background: rgba(26, 34, 60, 0.95);
+  color: #e0f2ff;
+}
+
+.popup-btn.cancel:hover {
+  background: rgba(35, 45, 78, 1);
+}
+
+.popup-btn.open {
+  background: linear-gradient(120deg, #00d9ff, #6a11cb);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+}
+
+.popup-btn.open:disabled {
+  background: #555;
+  color: #ddd;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.popup-btn.open:hover:not(:disabled) {
+  opacity: 0.96;
+  transform: translateY(-1px);
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .popup-box {
+    max-width: 380px;
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+
+  .popup-box h2 {
+    font-size: 1.12rem;
+    margin-bottom: 16px;
+  }
+
+  .popup-option {
+    padding: 10px 13px;
+    font-size: 0.94rem;
+  }
+
+  .popup-btn {
+    padding: 9px;
+    font-size: 0.94rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .popup-box {
+    width: 92%;
+    padding: 18px 14px;
+    border-radius: 14px;
+  }
+
+  .popup-box h2 {
+    font-size: 1.05rem;
+  }
+
+  .popup-options {
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .popup-option {
+    padding: 9px 12px;
+    font-size: 0.9rem;
+  }
+
+  .popup-actions {
+    flex-direction: column;
+  }
+
+  .popup-btn {
+    font-size: 0.9rem;
+    padding: 9px 10px;
+  }
+}
+
+/* ==== FORCE BUTTONS TO BE CLICKABLE (MOBILE FIX) ==== */
+
+/* make the page & card their own stacking context */
+.stay-page {
+  position: relative;
+  z-index: 1;
+}
+
+.stay-card {
+  position: relative;
+  z-index: 2;
+}
+
+/* make sure these are above any overlay/effects and clickable */
+.social-view-btn,
+.open-all-btn {
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent; /* nicer on mobile */
+}
