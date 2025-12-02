@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";   // ⭐ ADD THIS
 import "./Contact.css";
 import ashramImg from "../assets/vision.jpg";
 import gurujiImg from "../assets/guruji.jpg";
 
 const ContactUs = () => {
+  const navigate = useNavigate();   // ⭐ ADD THIS
+
   const contacts = [
     {
       id: 1,
@@ -70,14 +73,11 @@ const ContactUs = () => {
         </button>
       </div>
 
-      {/* ⭐ NEW BUTTON ADDED HERE ⭐ */}
+      {/* ⭐ NEW BUTTON — opens new page ⭐ */}
       <div className="stay-connected-wrapper">
         <button
           className="stay-connected-btn"
-          onClick={() => {
-            // later you tell me what to open
-            console.log("Stay Connected Clicked");
-          }}
+          onClick={() => navigate("/stayconnected")}   // ⭐ THIS OPENS NEW PAGE
         >
           🙏 Stay Connected
         </button>
