@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import "./Contact.css";
-import ashramImg from "../assets/vision.jpg"; 
-import gurujiImg from "../assets/guruji.jpg"; // 2nd card image
+import ashramImg from "../assets/vision.jpg";
+import gurujiImg from "../assets/guruji.jpg";
 
 const ContactUs = () => {
-  // Array of contact cards
   const contacts = [
     {
       id: 1,
@@ -26,7 +25,6 @@ const ContactUs = () => {
     }
   ];
 
-  // Pagination
   const [page, setPage] = useState(1);
   const totalPages = contacts.length;
 
@@ -36,7 +34,6 @@ const ContactUs = () => {
     <div className="contact-container">
       <h1 className="contact-title">Contact Us</h1>
 
-      {/* key makes the card re-mount on page change → animation restarts */}
       <div className="contact-card" key={page}>
         <img src={currentContact.image} alt="Ashram" className="contact-image" />
 
@@ -72,6 +69,20 @@ const ContactUs = () => {
           Next ➡
         </button>
       </div>
+
+      {/* ⭐ NEW BUTTON ADDED HERE ⭐ */}
+      <div className="stay-connected-wrapper">
+        <button
+          className="stay-connected-btn"
+          onClick={() => {
+            // later you tell me what to open
+            console.log("Stay Connected Clicked");
+          }}
+        >
+          🙏 Stay Connected
+        </button>
+      </div>
+
     </div>
   );
 };
