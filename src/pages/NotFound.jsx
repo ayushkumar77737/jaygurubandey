@@ -1,4 +1,10 @@
 import React from 'react'
+
 export default function NotFound(){
-  return (<div className='container'><h1>404</h1><p>Page not found.</p></div>)
+  return (
+    <div className='container'>
+      <h1>🚧 Under Maintenance</h1>
+      <p>This page is under maintenance. Kindly try after some time.</p>
+    </div>
+  )
 }
