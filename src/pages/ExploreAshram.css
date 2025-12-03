@@ -28,9 +28,19 @@
 
 .explore-page .explore-intro h1 {
   color: #b71c1c;
-  font-size: 2.2rem;
+  /* auto-resize with screen width */
+  font-size: clamp(1.3rem, 5vw, 2.2rem);
   margin-top: 0.6rem;
+
+  /* keep the whole title on a single line */
+  white-space: nowrap;
+
+  /* keep emojis + text nicely aligned */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
+
 
 .explore-page .explore-intro p {
   color: #555;
@@ -235,10 +245,6 @@
     padding: 3rem 1.2rem;
   }
 
-  .explore-page .explore-intro h1 {
-    font-size: 1.9rem;
-  }
-
   .explore-page .simple-map {
     grid-template-areas:
       "z1 z1"
@@ -265,10 +271,6 @@
 
   .explore-page .explore-intro {
     margin-bottom: 2.2rem;
-  }
-
-  .explore-page .explore-intro h1 {
-    font-size: 1.6rem;
   }
 
   .explore-page .explore-badge {
