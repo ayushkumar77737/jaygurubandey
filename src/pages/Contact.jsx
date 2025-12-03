@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";   // ⭐ ADD THIS
+import { useNavigate } from "react-router-dom"; 
 import "./Contact.css";
 import ashramImg from "../assets/vision.jpg";
 import gurujiImg from "../assets/guruji.jpg";
 
 const ContactUs = () => {
-  const navigate = useNavigate();   // ⭐ ADD THIS
+  const navigate = useNavigate();
 
   const contacts = [
     {
@@ -73,16 +73,22 @@ const ContactUs = () => {
         </button>
       </div>
 
-      {/* ⭐ NEW BUTTON — opens new page ⭐ */}
-      <div className="stay-connected-wrapper">
+      {/* ⭐ TWO BIG BUTTONS SIDE BY SIDE ⭐ */}
+      <div className="stay-buttons-row">
         <button
           className="stay-connected-btn"
-          onClick={() => navigate("/stayconnected")}   // ⭐ THIS OPENS NEW PAGE
+          onClick={() => navigate("/stayconnected")}
         >
           🙏 Stay Connected
         </button>
-      </div>
 
+        <button
+          className="stay-connected-btn"
+          onClick={() => navigate("/beforeyouvisit")}
+        >
+          📘 Before You Visit
+        </button>
+      </div>
     </div>
   );
 };

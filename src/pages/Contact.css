@@ -282,15 +282,6 @@
 
 
 /* ===== STAY CONNECTED BUTTON ===== */
-.stay-connected-wrapper {
-  margin-top: 30px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  opacity: 0;
-  animation: dropFade 1s ease forwards;
-  animation-delay: 2s;
-}
 
 .stay-connected-btn {
   padding: 12px 30px;
@@ -348,4 +339,18 @@
     width: 100%;
     max-width: 260px;
   }
+}
+
+/* ===== TWO BUTTONS SIDE BY SIDE ===== */
+.stay-buttons-row {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap; 
+  opacity: 0;
+  animation: dropFade 1s ease forwards;
+  animation-delay: 2s;
 }
