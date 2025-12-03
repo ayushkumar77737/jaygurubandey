@@ -41,9 +41,21 @@
 }
 
 .rules-hero h1 {
-  font-size: clamp(2.1rem, 4vw, 2.8rem);
-  margin-bottom: 0.6rem;
   color: #8b0000;
+
+  /* Auto shrink on small screens */
+  font-size: clamp(1.4rem, 6vw, 2.8rem);
+
+  margin-bottom: 0.6rem;
+
+  /* Prevent text from breaking */
+  white-space: nowrap;
+
+  /* Keep emoji + text aligned */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+
   text-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
@@ -394,10 +406,6 @@
     padding: 3.4rem 1.1rem 4rem;
   }
 
-  .rules-hero h1 {
-    font-size: 1.8rem;
-  }
-
   .rules-hero p {
     font-size: 0.9rem;
   }
@@ -426,10 +434,6 @@
 @media (max-width: 480px) {
   .rules-page {
     padding: 3rem 0.9rem 3.4rem;
-  }
-
-  .rules-hero h1 {
-    font-size: 1.6rem;
   }
 
   .rules-hero p {
