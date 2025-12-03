@@ -4,17 +4,20 @@
 
 .rules-page {
   min-height: 100vh;
-  padding: 4rem 1.5rem 5rem;
+  padding: 80px 20px; /* match blog container spacing */
   font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
-  background:
-    radial-gradient(circle at top left, rgba(255, 213, 128, 0.35), transparent 55%),
-    radial-gradient(circle at bottom right, rgba(199, 135, 255, 0.3), transparent 55%),
-    linear-gradient(135deg, #fffdf7, #fbe9f5, #f4f4ff);
-  background-size: 220% 220%;
-  animation: rulesBgShift 18s ease-in-out infinite alternate;
+
+  /* 🎨 same gradient style as Blog.css */
+  background: linear-gradient(135deg, #fffdf7, #f8e9f0, #fcefe9);
+
   color: #2c1810;
   box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+
+  /* smooth fade like blog */
+  animation: fadeIn 1s ease-in-out;
 }
 
 /* =========================
@@ -25,9 +28,7 @@
   max-width: 820px;
   margin: 0 auto 2.5rem;
   text-align: center;
-  /* ✅ use fadeDown from latest.css */
-  animation: fadeDown 0.8s ease;
-  animation-fill-mode: both;
+  animation: fadeUpRules 0.7s ease-out;
 }
 
 .rules-badge {
@@ -35,7 +36,7 @@
   padding: 6px 14px;
   border-radius: 999px;
   background: rgba(255, 192, 203, 0.4);
-  color: #b30059;
+  color: #8b0000; /* blog red */
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -43,20 +44,28 @@
 }
 
 .rules-hero h1 {
-  color: #8b0000;
-  font-size: clamp(1.4rem, 6vw, 2.8rem);
+  color: #8b0000; /* same heading red as blog */
+
+  /* Auto shrink on small screens */
+  font-size: clamp(1.4rem, 6vw, 2.6rem);
+
   margin-bottom: 0.6rem;
+
+  /* Prevent text from breaking */
   white-space: nowrap;
+
+  /* Keep emoji + text aligned */
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15); /* match blog feel */
 }
 
 .rules-hero p {
   font-size: 0.98rem;
   line-height: 1.7;
-  color: #5a4540;
+  color: #555; /* match blog subtitle colour */
 }
 
 /* =========================
@@ -66,10 +75,9 @@
 .rules-quick-links {
   max-width: 960px;
   margin: 0 auto 2.8rem;
-  /* ✅ subtle fade-in, like latest.css layout */
-  animation: fadeIn 0.8s ease;
-  animation-fill-mode: both;
+  animation: fadeUpRules 0.7s ease-out;
   animation-delay: 0.1s;
+  animation-fill-mode: both;
 }
 
 .quick-links-label {
@@ -90,25 +98,25 @@
   outline: none;
   border-radius: 999px;
   padding: 0.4rem 0.9rem;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* like blog cards */
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   font-size: 0.85rem;
   cursor: pointer;
   transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    background 0.15s ease,
-    opacity 0.15s ease;
-  opacity: 0.95;
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    opacity 0.2s ease;
+  opacity: 0.96;
 }
 
 .quick-link-chip:hover {
-  transform: translateY(-1px) scale(1.02);
-  background: #ffe4f0;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+  background: #ffe5e9;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
   opacity: 1;
 }
 
@@ -131,37 +139,34 @@
   grid-template-columns: minmax(0, 340px) minmax(0, 1.3fr);
   gap: 1.8rem;
   align-items: flex-start;
-
-  /* ✅ overall layout fade-in */
-  animation: fadeIn 0.8s ease;
-  animation-fill-mode: both;
-  animation-delay: 0.15s;
 }
 
-/* LEFT SUMMARY CARD */
+/* =========================
+   LEFT SUMMARY CARD
+========================= */
 
 .rules-summary-card {
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
+  border-radius: 18px;
   padding: 1.5rem 1.4rem;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 182, 193, 0.5);
+
+  /* same border + shadow style as blog-card */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(139, 0, 0, 0.15);
+
   position: sticky;
   top: 5.5rem;
 
-  opacity: 1;
-  transform: translateY(0);
-
-  /* ✅ own fadeDown entry */
-  animation: fadeDown 0.8s ease;
-  animation-fill-mode: both;
-  animation-delay: 0.2s;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUpRules 0.8s ease-out forwards;
+  animation-delay: 0.15s;
 }
 
 .rules-summary-card h2 {
   font-size: 1.15rem;
   margin-bottom: 0.6rem;
-  color: #0d7a32;
+  color: #8b0000;
 }
 
 .summary-subheading {
@@ -208,7 +213,9 @@
   border: 1px dashed rgba(255, 193, 7, 0.7);
 }
 
-/* RIGHT DETAILED SECTIONS */
+/* =========================
+   RIGHT DETAILED SECTIONS
+========================= */
 
 .rules-sections {
   display: flex;
@@ -217,30 +224,37 @@
 }
 
 .rules-section-card {
-  background: rgba(255, 255, 255, 0.96);
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
   padding: 1.3rem 1.4rem 1.1rem;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.07);
-  border: 1px solid rgba(255, 228, 225, 0.9);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(139, 0, 0, 0.15);
   backdrop-filter: blur(4px);
 
-  transform: translateY(0);
-  opacity: 1;
-
-  /* ✅ use fadeIn (like update cards) + stagger */
-  animation: fadeIn 0.75s ease;
-  animation-fill-mode: both;
+  transform: translateY(40px);
+  opacity: 0;
+  animation: fadeUpRules 0.8s ease-out forwards;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
 }
 
-/* simple stagger using nth-child */
-.rules-section-card:nth-child(1) { animation-delay: 0.22s; }
-.rules-section-card:nth-child(2) { animation-delay: 0.28s; }
-.rules-section-card:nth-child(3) { animation-delay: 0.34s; }
-.rules-section-card:nth-child(4) { animation-delay: 0.4s; }
+/* Staggered animation for cards */
+.rules-section-card:nth-child(1) { animation-delay: 0.1s; }
+.rules-section-card:nth-child(2) { animation-delay: 0.18s; }
+.rules-section-card:nth-child(3) { animation-delay: 0.26s; }
+.rules-section-card:nth-child(4) { animation-delay: 0.34s; }
+.rules-section-card:nth-child(5) { animation-delay: 0.42s; }
+.rules-section-card:nth-child(6) { animation-delay: 0.5s; }
+.rules-section-card:nth-child(7) { animation-delay: 0.58s; }
+.rules-section-card:nth-child(8) { animation-delay: 0.66s; }
+.rules-section-card:nth-child(9) { animation-delay: 0.74s; }
 
 .rules-section-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
   background: #ffffff;
 }
 
@@ -258,7 +272,7 @@
 .section-header h3 {
   font-size: 1.1rem;
   margin: 0;
-  color: #7b1f1f;
+  color: #8b0000;
 }
 
 .rules-list {
@@ -282,7 +296,7 @@
   left: 0;
   top: 0;
   font-size: 1rem;
-  color: #e57373;
+  color: #b71c1c;
 }
 
 /* =========================
@@ -294,15 +308,13 @@
   margin: 0 auto;
   text-align: center;
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 22px;
+  border-radius: 18px;
   padding: 1.6rem 1.3rem 1.8rem;
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.09);
-  border: 1px solid rgba(255, 205, 210, 0.9);
-
-  /* ✅ fadeIn same as updates-layout */
-  animation: fadeIn 0.8s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(139, 0, 0, 0.15);
+  animation: fadeUpRules 0.7s ease-out;
+  animation-delay: 0.4s;
   animation-fill-mode: both;
-  animation-delay: 0.45s;
 }
 
 .rules-footer-note h2 {
@@ -326,41 +338,46 @@
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.4px;
-  background: linear-gradient(135deg, #ff9800, #ff5722);
+
+  /* match blog read-more / spiritual red */
+  background: #b71c1c;
   color: #fff;
   cursor: pointer;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
   transition:
     transform 0.18s ease,
     box-shadow 0.18s ease,
-    opacity 0.18s ease;
+    opacity 0.18s ease,
+    background 0.18s ease;
 }
 
 .rules-cta-btn:hover {
-  transform: translateY(-1px) scale(1.01);
+  transform: translateY(-2px);
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
   opacity: 0.95;
+  background: #8b0000;
 }
 
 /* =========================
    ANIMATIONS
 ========================= */
 
-@keyframes rulesBgShift {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
+/* same feel as blog's fadeUp */
+@keyframes fadeUpRules {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* 🔁 Reusing from latest.css */
-
+/* if you want local fadeIn (in case Blog.css not loaded) */
 @keyframes fadeIn {
   from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-15px); }
-  to   { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; }
 }
 
 /* =========================
@@ -381,7 +398,7 @@
 
 @media (max-width: 600px) {
   .rules-page {
-    padding: 3.4rem 1.1rem 4rem;
+    padding: 60px 15px 60px;
   }
 
   .rules-hero p {
@@ -410,7 +427,12 @@
 
 @media (max-width: 480px) {
   .rules-page {
-    padding: 3rem 0.9rem 3.4rem;
+    padding: 50px 10px 50px;
+  }
+
+  .rules-hero h1 {
+    font-size: clamp(1.2rem, 6vw, 1.6rem);
+    transform: scale(0.97);
   }
 
   .rules-hero p {
