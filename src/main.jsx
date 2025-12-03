@@ -34,6 +34,7 @@ import ExploreAshram from './pages/ExploreAshram.jsx'
 import DailySatsang from './pages/DailySatsang.jsx'
 import StayConnected from './pages/StayConnected.jsx'
 import NotFound from './pages/NotFound.jsx'
+import AshramRules from './pages/Beforeyouvisit.jsx'
 
 
 const router = createBrowserRouter([
@@ -71,6 +72,7 @@ const router = createBrowserRouter([
       { path: 'explore', element: <ExploreAshram /> },
       { path: 'dailysatsang', element: <DailySatsang /> },
       { path: 'stayconnected', element: <StayConnected /> },
+      { path: 'beforeyouvisit', element: <AshramRules /> },
     ],
   },
   { path: '*', element: <NotFound /> },
