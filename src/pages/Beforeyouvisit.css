@@ -151,12 +151,15 @@
   position: sticky;
   top: 5.5rem;
 
-  /* 🔥 fade-in + slide-up on page load */
-  opacity: 0;
-  transform: translateY(18px);
+  /* ✅ default visible state */
+  opacity: 1;
+  transform: translateY(0);
+
+  /* animation still works on first load */
   animation: fadeUpRules 0.7s ease-out forwards;
-  animation-delay: 0.15s; /* small delay so it comes after hero */
+  animation-delay: 0.15s;
 }
+
 
 
 .rules-summary-card h2 {
@@ -224,14 +227,18 @@
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.07);
   border: 1px solid rgba(255, 228, 225, 0.9);
   backdrop-filter: blur(4px);
-  transform: translateY(10px);
-  opacity: 0;
+
+  /* ✅ default visible state */
+  transform: translateY(0);
+  opacity: 1;
+
   animation: fadeUpRules 0.7s ease-out forwards;
   transition:
     transform 0.18s ease,
     box-shadow 0.18s ease,
     background 0.18s ease;
 }
+
 
 /* Staggered animation for cards */
 .rules-section-card:nth-child(1) { animation-delay: 0.1s; }
