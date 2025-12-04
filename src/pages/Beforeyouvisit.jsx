@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; // ✅ added
 import "./Beforeyouvisit.css";
 
 const SECTIONS = [
@@ -104,6 +105,8 @@ const SECTIONS = [
 ];
 
 const AshramRules = () => {
+  const navigate = useNavigate(); // ✅ hook for navigation
+
   const handleScroll = (id) => {
     const el = document.getElementById(id);
     if (el) {
@@ -198,7 +201,7 @@ const AshramRules = () => {
         </p>
         <button
           className="rules-cta-btn"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={() => navigate("/explore")} // ✅ now goes to Explore Ashram page
         >
           I have read &amp; understood the guidelines
         </button>
