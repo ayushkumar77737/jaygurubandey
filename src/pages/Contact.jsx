@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import "./Contact.css";
 import ashramImg from "../assets/vision.jpg";
 import gurujiImg from "../assets/guruji.jpg";
@@ -87,6 +87,13 @@ const ContactUs = () => {
           onClick={() => navigate("/beforeyouvisit")}
         >
           📘 Before You Visit
+        </button>
+
+        <button
+          className="stay-connected-btn"
+          onClick={() => navigate("/events")}
+        >
+          📅 Event Calendar
         </button>
       </div>
     </div>
