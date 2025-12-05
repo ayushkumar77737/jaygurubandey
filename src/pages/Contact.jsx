@@ -91,9 +91,9 @@ const ContactUs = () => {
 
         <button
           className="stay-connected-btn"
-          onClick={() => navigate("/events")}
+          onClick={() => navigate("/divine")}
         >
-          📅 Event Calendar
+          ✨ Divine Moments
         </button>
       </div>
     </div>
