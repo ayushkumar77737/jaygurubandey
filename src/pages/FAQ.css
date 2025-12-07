@@ -47,7 +47,7 @@
   to { width: 90px; opacity: 1; }
 }
 
-/* ===== Container ===== */
+/* ===== FAQ Container ===== */
 .faq-container {
   max-width: 800px;
   margin: 0 auto;
@@ -75,7 +75,7 @@
   box-shadow: 0 6px 18px rgba(179, 0, 89, 0.1);
 }
 
-/* Gradient bar when open */
+/* Gradient bar animation */
 .faq-item.open::before {
   content: "";
   position: absolute;
@@ -94,27 +94,26 @@
   to { height: 100%; }
 }
 
-/* ===== Question Section (Flex alignment fix) ===== */
+/* ===== Question ===== */
 .faq-question {
   font-weight: 600;
   font-size: clamp(1rem, 1.2vw, 1.15rem);
   color: #222;
   display: flex;
   justify-content: space-between;
-  align-items: center; /* ✅ perfect vertical centering */
+  align-items: center;
   gap: 12px;
   z-index: 2;
   position: relative;
 }
 
-/* ===== Plus/Minus Icon inside Question (instead of ::after) ===== */
+/* ===== Icon ===== */
 .faq-icon {
   font-weight: 700;
   color: #b30059;
   font-size: 1.4rem;
-  flex-shrink: 0;
-  transition: transform 0.3s ease, color 0.3s ease;
-  pointer-events: none; /* ✅ prevents blocking clicks */
+  transition: 0.3s ease;
+  pointer-events: none;
 }
 
 .faq-item.open .faq-icon {
@@ -122,7 +121,7 @@
   color: #ff5f9e;
 }
 
-/* ===== Answer Section ===== */
+/* ===== Answer ===== */
 .faq-answer {
   max-height: 0;
   overflow: hidden;
@@ -139,46 +138,22 @@
   opacity: 1;
 }
 
-/* ===== Hover Glow ===== */
-.faq-item.open {
-  background: #fff8fb;
-  border-color: rgba(179, 0, 89, 0.3);
-}
-
-/* ===== Responsive Breakpoints ===== */
-
-@media (max-width: 900px) {
-  .faq-page { padding: 50px 25px; }
-  .faq-container { max-width: 90%; }
-  .faq-item { padding: 18px 20px; }
-  .faq-icon { font-size: 1.3rem; }
-}
-
-@media (max-width: 600px) {
-  .faq-page { padding: 40px 16px; }
-  .faq-title { font-size: 1.8rem; margin-bottom: 30px; }
-  .faq-title::after { width: 70px; height: 3px; }
-  .faq-item { padding: 16px 18px; margin-bottom: 15px; }
-  .faq-question { font-size: 1rem; gap: 10px; }
-  .faq-icon { font-size: 1.2rem; }
-  .faq-answer { font-size: 0.9rem; }
-}
-
-@media (max-width: 400px) {
-  .faq-title { font-size: 1.6rem; }
-  .faq-item { padding: 14px 16px; }
-  .faq-question { font-size: 0.95rem; }
-  .faq-icon { font-size: 1.1rem; }
-  .faq-answer { font-size: 0.88rem; }
-}
+/* ===========================
+   BUTTONS — LEFT & RIGHT
+   =========================== */
 
 .feedback-button-container {
-  text-align: center;
-  margin-top: 45px;
+  display: flex;
+  justify-content: space-between; /* left + right */
+  align-items: center;
+  width: 100%;
+  max-width: 700px;
+  margin: 45px auto 0;
+  padding: 0 10px;
 }
 
-/* ===== Main Button Style ===== */
-.feedback-button {
+.feedback-button,
+.quickstart-button {
   background: linear-gradient(90deg, #b30059, #ff5f9e);
   color: #fff;
   font-size: 1.05rem;
@@ -187,52 +162,69 @@
   padding: 12px 34px;
   border-radius: 30px;
   cursor: pointer;
+  min-width: 200px;
   letter-spacing: 0.3px;
   box-shadow: 0 4px 12px rgba(179, 0, 89, 0.15);
   transition: all 0.3s ease;
 }
 
-.feedback-button:hover {
+.feedback-button:hover,
+.quickstart-button:hover {
   background: linear-gradient(90deg, #ff5f9e, #ffb6d0);
   transform: translateY(-3px);
   box-shadow: 0 6px 16px rgba(179, 0, 89, 0.25);
 }
 
-/* ===== Responsive Breakpoints ===== */
+/* ===========================
+   🔥 UPDATED RESPONSIVE BUTTON SIZES
+   =========================== */
 
-/* Tablet screens */
+/* Tablets */
 @media (max-width: 900px) {
-  .feedback-button {
-    font-size: 1rem;
-    padding: 11px 28px;
-    border-radius: 28px;
-  }
-}
-
-/* Mobile screens */
-@media (max-width: 600px) {
-  .feedback-button {
+  .feedback-button,
+  .quickstart-button {
     font-size: 0.95rem;
-    padding: 10px 26px;
-    border-radius: 25px;
+    padding: 10px 24px;
+    border-radius: 26px;
+    min-width: 150px; /* smaller */
   }
 }
 
-/* Small mobile (under 400px) */
-@media (max-width: 400px) {
-  .feedback-button {
+/* Mobile */
+@media (max-width: 600px) {
+  .feedback-button-container {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .feedback-button,
+  .quickstart-button {
+    width: 85%;      /* no full width */
     font-size: 0.9rem;
-    padding: 9px 22px;
+    padding: 9px 20px;
     border-radius: 22px;
+    min-width: 0;
   }
 }
 
-/* ===== Fix for unclickable feedback button ===== */
+/* Extra Small Mobile */
+@media (max-width: 400px) {
+  .feedback-button,
+  .quickstart-button {
+    width: 69%;
+    font-size: 0.85rem;
+    padding: 10px 18px;
+    border-radius: 20px;
+  }
+}
+
+/* Fix Clickability */
 .feedback-button-container {
   position: relative;
-  z-index: 1; /* ensures it's above FAQ items */
+  z-index: 1;
 }
 
-.feedback-button {
-  pointer-events: auto; /* makes sure the button itself receives clicks */
+.feedback-button,
+.quickstart-button {
+  pointer-events: auto;
 }
