@@ -11,6 +11,10 @@
   position: relative;
   overflow-x: hidden;
   z-index: 1;
+
+  /* ✨ Smooth animated background */
+  background-size: 220% 220%;
+  animation: feedbackBgShift 18s ease-in-out infinite alternate;
 }
 
 /* ===== Feedback Card ===== */
@@ -20,10 +24,15 @@
   max-width: 700px;
   padding: 40px 50px;
   border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  animation: fadeIn 0.6s ease;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
+
+  /* ✨ Drop-in + gentle float */
+  animation: fadeIn 0.6s ease-out, cardFloat 8s ease-in-out infinite alternate;
   position: relative;
   z-index: 2; /* Keeps card above background */
+
+  /* subtle border glow */
+  border: 1px solid rgba(255, 95, 158, 0.18);
 }
 
 /* ===== Title and Subtitle ===== */
@@ -34,6 +43,11 @@
   font-size: 2rem;
   position: relative;
   z-index: 3;
+
+  /* ✨ slight slide-down */
+  opacity: 0;
+  transform: translateY(-8px);
+  animation: titleDrop 0.7s ease-out 0.1s forwards;
 }
 
 .feedback-subtitle {
@@ -44,12 +58,21 @@
   line-height: 1.5;
   position: relative;
   z-index: 3;
+
+  /* ✨ fade-in with delay */
+  opacity: 0;
+  transform: translateY(-4px);
+  animation: subtitleFade 0.7s ease-out 0.25s forwards;
 }
 
 /* ===== Form Styles ===== */
 .feedback-form {
   position: relative;
   z-index: 4; /* Ensures full clickability */
+
+  /* ✨ slight fade-in for the form block */
+  opacity: 0;
+  animation: formFade 0.6s ease-out 0.35s forwards;
 }
 
 .feedback-form label {
@@ -72,10 +95,10 @@
   border: 1px solid #ccc;
   border-radius: 10px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.18s ease;
   background: #fff;
   position: relative;
-  z-index: 4; /* Keeps input above any background or pseudo elements */
+  z-index: 4;
 }
 
 .feedback-form input:focus,
@@ -83,6 +106,8 @@
 .feedback-form select:focus {
   border-color: #b30059;
   outline: none;
+  box-shadow: 0 0 0 3px rgba(179, 0, 89, 0.16);
+  transform: translateY(-1px);
 }
 
 /* ===== Rating Section ===== */
@@ -103,14 +128,17 @@
   font-size: 25px;
   cursor: pointer;
   color: #ccc;
-  transition: color 0.2s ease;
+  transition: color 0.18s ease, transform 0.18s ease, text-shadow 0.18s ease;
   position: relative;
   z-index: 4;
 }
 
+/* ✨ star hover + active bounce */
 .rating-group input:checked + .star,
 .rating-group .star:hover {
   color: #ff5f9e;
+  transform: translateY(-2px) scale(1.08);
+  text-shadow: 0 0 10px rgba(255, 95, 158, 0.6);
 }
 
 /* ===== Radio Buttons ===== */
@@ -155,14 +183,42 @@
   border-radius: 30px;
   cursor: pointer;
   width: 100%;
-  transition: all 0.3s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease;
   position: relative;
-  z-index: 5; /* 🔑 Ensures button is fully clickable */
+  z-index: 5;
+
+  /* ✨ delayed pop-in */
+  opacity: 0;
+  transform: translateY(12px) scale(0.96);
+  animation: buttonPop 0.6s ease-out 0.55s forwards;
+}
+
+/* 🔥 glowing ring using pseudo-element */
+.submit-btn::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 95, 158, 0.7);
+  opacity: 0;
+  filter: blur(2px);
+  transition: opacity 0.25s ease;
+  z-index: -1;
 }
 
 .submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(179, 0, 89, 0.4);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 22px rgba(179, 0, 89, 0.55);
+  background: linear-gradient(90deg, #ff5f9e, #ff8fb8);
+}
+
+.submit-btn:hover::before {
+  opacity: 1;
+}
+
+/* ✨ soft pulse while idle (after appearing) */
+.submit-btn {
+  animation: buttonPop 0.6s ease-out 0.55s forwards, buttonPulse 2.3s ease-in-out 1.3s infinite;
 }
 
 /* ===== Animations ===== */
@@ -174,6 +230,87 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* background movement */
+@keyframes feedbackBgShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+/* card gentle float */
+@keyframes cardFloat {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-6px);
+  }
+}
+
+/* title drop */
+@keyframes titleDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* subtitle fade */
+@keyframes subtitleFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* form fade */
+@keyframes formFade {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* button pop */
+@keyframes buttonPop {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* button breathing pulse */
+@keyframes buttonPulse {
+  0% {
+    box-shadow: 0 0 0 rgba(179, 0, 89, 0.0);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(179, 0, 89, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(179, 0, 89, 0.0);
   }
 }
 
