@@ -69,7 +69,7 @@ const FAQ = () => {
           className="feedback-button"
           onClick={() => navigate("/feedback")}
         >
-          Devotees Feedback
+          🙏💬 Devotees Feedback
         </button>
       </div>
     </div>
