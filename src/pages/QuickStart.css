@@ -30,6 +30,7 @@
   margin: 0 auto;
   text-align: center;
   animation: quickFadeUp 0.7s ease-out;
+  padding: 0 0.5rem; /* extra safety on small screens */
 }
 
 @keyframes quickFadeUp {
@@ -59,6 +60,7 @@
   text-transform: uppercase;
   color: #b4004e;
   margin-bottom: 1.1rem;
+  white-space: nowrap;
 }
 
 .quick-title {
@@ -77,26 +79,37 @@
   max-width: 640px;
   margin: 0 auto 2.5rem;
   line-height: 1.7;
+  word-wrap: break-word;
 }
 
 /* ============================
-   GRID
+   GRID – FULLY RESPONSIVE
 ============================ */
 
 .quick-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* auto-fit lets it adapt from 1 → 4 columns smoothly */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
   margin-top: 1rem;
 }
 
-/* For 5 cards layout, let last row auto-wrap nicely */
+/* Extra control for very large screens */
+@media (min-width: 1280px) {
+  .quick-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.8rem;
+  }
+}
+
+/* Tablets: 2 columns */
 @media (max-width: 992px) {
   .quick-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
+/* Small phones: 1 column */
 @media (max-width: 640px) {
   .quick-grid {
     grid-template-columns: 1fr;
@@ -176,6 +189,7 @@
 
 .quick-emoji {
   font-size: 1.7rem;
+  flex-shrink: 0;
 }
 
 .quick-tag {
@@ -200,6 +214,7 @@
   font-size: 0.93rem;
   line-height: 1.6;
   color: #6a4a5f;
+  word-wrap: break-word;
 }
 
 /* footer inside card */
@@ -245,15 +260,10 @@
   .quick-card {
     padding: 1.4rem 1.4rem;
   }
-}
-
-@media (max-width: 480px) {
-  .quick-page {
-    padding: 3rem 1rem 3.6rem;
-  }
 
   .quick-badge {
     font-size: 0.8rem;
+    padding: 5px 14px;
   }
 
   .quick-card-title {
@@ -262,5 +272,56 @@
 
   .quick-card-text {
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .quick-page {
+    padding: 3rem 0.85rem 3.6rem;
+  }
+
+  .quick-inner {
+    padding: 0; /* make full use of 320–380 width */
+  }
+
+  .quick-card {
+    padding: 1.25rem 1.2rem;
+  }
+
+  .quick-emoji {
+    font-size: 1.5rem;
+  }
+
+  .quick-tag {
+    font-size: 0.72rem;
+    padding: 3px 9px;
+  }
+
+  .quick-card-title {
+    font-size: 1rem;
+  }
+
+  .quick-card-text {
+    font-size: 0.88rem;
+  }
+}
+
+/* Super small screens (like 320–360px) */
+@media (max-width: 360px) {
+  .quick-page {
+    padding: 2.6rem 0.75rem 3rem;
+  }
+
+  .quick-card {
+    padding: 1.1rem 1rem;
+  }
+
+  .quick-badge {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .quick-card-header {
+    align-items: flex-start;
   }
 }

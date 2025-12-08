@@ -8,48 +8,48 @@ const QuickStart = () => {
   const quickLinks = [
     {
       id: 1,
-      label: "Daily Satsang",
-      emoji: "🕉️",
+      label: "Home",
+      emoji: "🏠",
       description:
-        "Know satsang timings, format, and how to join the daily divine sessions.",
-      path: "/satsang",
+        "Enter the divine space of Guruji’s blessings and ashram updates.",
+      path: "/",
       tag: "Most visited",
     },
     {
       id: 2,
-      label: "Explore Ashram",
-      emoji: "🏞️",
+      label: "About Guruji",
+      emoji: "ℹ️",
       description:
-        "See all zones of the Ashram, main temple, and important places to visit first.",
-      path: "/explore-ashram",
-      tag: "On-campus help",
+        "Guruji’s teachings illuminate the path of peace, devotion, and purposeful living.",
+      path: "/about",
+      tag: "Divine Guidance",
     },
     {
       id: 3,
-      label: "Event Calendar",
-      emoji: "🗓️",
+      label: "Daily Satsang",
+      emoji: "🔅",
       description:
-        "Check all upcoming programs, poornimas, special events and seva opportunities.",
-      path: "/important-dates",
-      tag: "Plan your visit",
+        "Daily satsang offering guidance, peace, and spiritual connection with Guruji.",
+      path: "/dailysatsang",
+      tag: "Most visited",
     },
     {
       id: 4,
-      label: "Ask for Accommodation",
-      emoji: "🏨",
+      label: "Important Dates",
+      emoji: "📅",
       description:
-        "Request room help for festival days, poornima, long-distance travel and stays.",
-      path: "/accommodation",
-      tag: "Must check",
+        "Stay updated with all upcoming and important Ashram schedules.",
+      path: "/important-dates",
+      tag: "Key dates",
     },
     {
       id: 5,
-      label: "Contact & Stay Connected",
+      label: "Contact Us",
       emoji: "📞",
       description:
-        "Get phone/email support and follow official Facebook, Instagram, YouTube & WhatsApp.",
+        "We’re here to help you with all inquiries and support needs.",
       path: "/contact",
-      tag: "Support & updates",
+      tag: "Support",
     },
   ];
 
