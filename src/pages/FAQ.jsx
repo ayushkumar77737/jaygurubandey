@@ -76,7 +76,7 @@ const FAQ = () => {
 
         <button
           className="quickstart-button"
-          onClick={() => navigate("/about")}
+          onClick={() => navigate("/quickstart")}
         >
           🚀 Quick Start
         </button>
