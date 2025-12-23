@@ -65,7 +65,7 @@ const Navbar = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <li><button onClick={() => handleNavClick('/about')}>About Guruji</button></li>
-              <li><button onClick={() => handleNavClick('/about-ashram')}>About Ashram</button></li>
+              <li><button onClick={() => handleNavClick('/ashram-vision')}>Ashram Vision</button></li>
               <li><button onClick={() => handleNavClick('/committee')}>Committee Members</button></li>
             </ul>
           )}
