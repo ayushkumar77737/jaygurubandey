@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Navbar.css'
 import logo from '../../assets/logo.jpg.png'
 import circle from '../../assets/circle.png'
@@ -6,11 +6,17 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
+  const [aboutOpen, setAboutOpen] = useState(false)
+
   const location = useLocation()
   const navigate = useNavigate()
 
   const toggleMenu = () => setMobileMenu(!mobileMenu)
-  const closeMenu = () => setMobileMenu(false)
+
+  const closeMenu = () => {
+    setMobileMenu(false)
+    setAboutOpen(false)
+  }
 
   const linkClass = ({ isActive }) => 'btn' + (isActive ? ' active' : '')
 
@@ -28,9 +34,16 @@ const Navbar = () => {
     window.location.reload()
   }
 
+  /* ✅ Close dropdown when clicking outside */
+  useEffect(() => {
+    const closeDropdown = () => setAboutOpen(false)
+    window.addEventListener('click', closeDropdown)
+    return () => window.removeEventListener('click', closeDropdown)
+  }, [])
+
   return (
     <nav className='container'>
-      {/* Left side logo */}
+      {/* Logo */}
       <img
         src={logo}
         alt='Logo'
@@ -39,29 +52,126 @@ const Navbar = () => {
         style={{ cursor: 'pointer' }}
       />
 
-      {/* Navigation links */}
+      {/* Nav Links */}
       <ul className={mobileMenu ? 'nav-links' : 'nav-links hide-mobile-menu'}>
-        <li><button onClick={() => handleNavClick('/')} className={linkClass({isActive: location.pathname === '/'})}>Home</button></li>
-        <li><button onClick={() => handleNavClick('/about')} className={linkClass({isActive: location.pathname === '/about'})}>About</button></li>
-        <li><button onClick={() => handleNavClick('/satsang')} className={linkClass({isActive: location.pathname === '/satsang'})}>Amritvani</button></li>
-        <li><button onClick={() => handleNavClick('/bhajan')} className={linkClass({isActive: location.pathname === '/bhajan'})}>Bhajan</button></li>
-        <li><button onClick={() => handleNavClick('/program')} className={linkClass({isActive: location.pathname === '/program'})}>Program</button></li>
-        <li><button onClick={() => handleNavClick('/blog')} className={linkClass({isActive: location.pathname === '/blog'})}>Blog</button></li>
-        <li><button onClick={() => handleNavClick('/gallery')} className={linkClass({isActive: location.pathname === '/gallery'})}>Gallery</button></li>
-        <li><button onClick={() => handleNavClick('/contact')} className={linkClass({isActive: location.pathname === '/contact'})}>Contact Us</button></li>
-        <li><button onClick={() => handleNavClick('/contribute')} className={linkClass({isActive: location.pathname === '/contribute'})}>Contribute</button></li>
+        <li>
+          <button
+            onClick={() => handleNavClick('/')}
+            className={linkClass({ isActive: location.pathname === '/' })}
+          >
+            Home
+          </button>
+        </li>
+
+        {/* ✅ ABOUT DROPDOWN (CLICK BASED) */}
+        <li className='dropdown'>
+          <button
+            className={linkClass({
+              isActive: location.pathname.startsWith('/about')
+            })}
+            onClick={(e) => {
+              e.stopPropagation()
+              setAboutOpen(!aboutOpen)
+            }}
+          >
+            About ▾
+          </button>
+
+          {aboutOpen && (
+            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
+              <li>
+                <button onClick={() => handleNavClick('/about')}>
+                  About Guruji
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/about-ashram')}>
+                  About Ashram
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/committee')}>
+                  Committee Members
+                </button>
+              </li>
+            </ul>
+          )}
+        </li>
+
+        <li>
+          <button
+            onClick={() => handleNavClick('/satsang')}
+            className={linkClass({ isActive: location.pathname === '/satsang' })}
+          >
+            Amritvani
+          </button>
+        </li>
+
+        <li>
+          <button
+            onClick={() => handleNavClick('/bhajan')}
+            className={linkClass({ isActive: location.pathname === '/bhajan' })}
+          >
+            Bhajan
+          </button>
+        </li>
+
+        <li>
+          <button
+            onClick={() => handleNavClick('/program')}
+            className={linkClass({ isActive: location.pathname === '/program' })}
+          >
+            Program
+          </button>
+        </li>
+
+        <li>
+          <button
+            onClick={() => handleNavClick('/blog')}
+            className={linkClass({ isActive: location.pathname === '/blog' })}
+          >
+            Blog
+          </button>
+        </li>
+
+        <li>
+          <button
+            onClick={() => handleNavClick('/gallery')}
+            className={linkClass({ isActive: location.pathname === '/gallery' })}
+          >
+            Gallery
+          </button>
+        </li>
+
+        <li>
+          <button
+            onClick={() => handleNavClick('/contact')}
+            className={linkClass({ isActive: location.pathname === '/contact' })}
+          >
+            Contact Us
+          </button>
+        </li>
+
+        <li>
+          <button
+            onClick={() => handleNavClick('/contribute')}
+            className={linkClass({ isActive: location.pathname === '/contribute' })}
+          >
+            Contribute
+          </button>
+        </li>
       </ul>
 
-      {/* Right side circle (refresh) */}
+      {/* Circle */}
       <img
         src={circle}
-        alt="Circle"
-        className="circle-img"
+        alt='Circle'
+        className='circle-img'
         onClick={handleRefresh}
         style={{ cursor: 'pointer' }}
       />
 
-      {/* Mobile hamburger menu */}
+      {/* Mobile Menu */}
       <div className={`menu ${mobileMenu ? 'open' : ''}`} onClick={toggleMenu}>
         <span></span>
         <span></span>
