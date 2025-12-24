@@ -1,65 +1,49 @@
 /* ===============================
    ASHRAM VISION – PREMIUM PAGE
-   (SCROLL-SAFE, LIGHTWEIGHT)
+   (LIGHTWEIGHT & ISOLATED)
 ================================ */
 
-/* ===============================
-   PAGE BASE
-================================ */
 .av-page {
   min-height: 100vh;
   font-family: "Poppins", sans-serif;
   color: #2b1630;
 
-  /* Static base background (NO animation here) */
-  background: linear-gradient(135deg, #fffdf7, #f4f8ff, #fdeff6);
-
-  position: relative;
-  z-index: 1;
-  overflow: hidden; /* important for pseudo animation */
-}
-
-/* ===============================
-   LIGHTWEIGHT BACKGROUND ANIMATION
-   (GPU SAFE – FIXES DISAPPEAR ISSUE)
-================================ */
-.av-page::before {
-  content: "";
-  position: absolute;
-  inset: -20%;
-  z-index: -1;
-
+  /* 🎨 Isolated premium background */
   background:
-    radial-gradient(circle at top left, rgba(255, 210, 170, 0.45), transparent 55%),
-    radial-gradient(circle at bottom right, rgba(190, 220, 255, 0.45), transparent 55%);
+    radial-gradient(circle at top left, rgba(255, 210, 170, 0.35), transparent 60%),
+    radial-gradient(circle at bottom right, rgba(190, 220, 255, 0.35), transparent 60%),
+    linear-gradient(135deg, #fffdf7, #f6f9ff, #fdeff6);
 
-  animation: avBgFloat 45s linear infinite;
-  transform: translate3d(0, 0, 0);
-  pointer-events: none;
+  background-size: 200% 200%;
+
+  /* 🪶 Ultra-light animation */
+  animation: avBgDrift 45s linear infinite;
+
+  /* 🔒 Prevent overlap with other pages */
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
 }
 
-@keyframes avBgFloat {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(4%, 4%, 0);
-  }
+/* Very slow background movement (GPU friendly) */
+@keyframes avBgDrift {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
 }
 
-/* ===============================
-   HERO
-================================ */
+/* ===== HERO ===== */
 .av-hero {
   padding: 5rem 1.5rem 3rem;
   text-align: center;
-  animation: fadeSoft 0.6s ease-out both;
+
+  /* One-time entrance only */
+  animation: fadeDown 0.6s ease-out both;
 }
 
-@keyframes fadeSoft {
+@keyframes fadeDown {
   from {
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateY(-14px);
   }
   to {
     opacity: 1;
@@ -71,8 +55,8 @@
   display: inline-block;
   padding: 6px 16px;
   border-radius: 999px;
-  background: rgba(255, 160, 210, 0.25);
-  border: 1px solid rgba(180, 70, 130, 0.35);
+  background: rgba(255, 160, 210, 0.22);
+  border: 1px solid rgba(180, 70, 130, 0.3);
   color: #a14a7b;
   font-weight: 600;
   font-size: 0.9rem;
@@ -94,13 +78,11 @@
   opacity: 0.9;
 }
 
-/* ===============================
-   GURUJI SECTION
-================================ */
+/* ===== GURUJI IMAGE ===== */
 .av-guruji {
   text-align: center;
   margin-bottom: 55px;
-  animation: fadeSoftUp 0.7s ease-out both;
+  animation: fadeUp 0.7s ease-out both;
 }
 
 .av-guruji-frame {
@@ -110,8 +92,10 @@
   padding: 6px;
   border-radius: 50%;
   background: linear-gradient(135deg, #ff9acb, #b30059);
+
+  /* Softer glow (no repaint loops) */
   box-shadow:
-    0 0 18px rgba(255, 120, 180, 0.4),
+    0 0 18px rgba(255, 120, 180, 0.35),
     0 0 40px rgba(180, 0, 90, 0.2);
 }
 
@@ -128,35 +112,34 @@
   font-size: 0.95rem;
   font-style: italic;
   color: #7a3f5c;
+  opacity: 0.9;
 }
 
-/* ===============================
-   CONTENT
-================================ */
+/* ===== CONTENT ===== */
 .av-container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 1.5rem 5rem;
 }
 
-/* ===============================
-   MAIN CARD
-================================ */
+/* ===== MAIN CARD ===== */
 .av-card {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
   border-radius: 26px;
   padding: 42px 46px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 200, 230, 0.6);
 
-  animation: fadeSoftUp 0.7s ease-out both;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.09);
+  border: 1px solid rgba(255, 200, 230, 0.55);
+
+  /* One-time animation only */
+  animation: fadeUp 0.6s ease-out both;
 }
 
-@keyframes fadeSoftUp {
+@keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -171,9 +154,7 @@
   margin-bottom: 20px;
 }
 
-/* ===============================
-   VALUES GRID
-================================ */
+/* ===== VALUES ===== */
 .av-values {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -182,18 +163,20 @@
 }
 
 .av-value-card {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   border-radius: 22px;
   padding: 28px 24px;
   text-align: center;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(230, 190, 220, 0.6);
+
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(230, 190, 220, 0.55);
+
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .av-value-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px);
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.13);
 }
 
 .av-value-card span {
@@ -213,41 +196,11 @@
   color: #4a3452;
 }
 
-/* ===============================
-   QUOTE
-================================ */
+/* ===== QUOTE ===== */
 .av-quote {
   margin-top: 60px;
   text-align: center;
   font-style: italic;
   font-size: 1.15rem;
   color: #7a3f5c;
-}
-
-/* ===============================
-   RESPONSIVE
-================================ */
-@media (max-width: 767px) {
-  .av-hero { padding: 4rem 1.25rem 2.5rem; }
-  .av-guruji-frame { width: 150px; height: 150px; }
-  .av-card { padding: 30px 26px; }
-}
-
-@media (max-width: 599px) {
-  .av-title { font-size: 1.8rem; }
-  .av-subtitle { font-size: 0.95rem; }
-  .av-guruji-frame { width: 130px; height: 130px; }
-  .av-card { padding: 26px 20px; border-radius: 20px; }
-  .av-values { grid-template-columns: 1fr; }
-  .av-quote { font-size: 0.95rem; }
-}
-
-/* ===============================
-   ACCESSIBILITY
-================================ */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
 }
