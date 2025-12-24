@@ -70,20 +70,6 @@ nav ul li a {
   overflow: hidden;
 }
 
-/* Buttons (for React <button> elements) */
-nav ul li button {
-  text-decoration: none;
-  color: #fff;
-  background: transparent;
-  padding: 6px 16px;
-  border-radius: 25px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-  cursor: pointer;
-}
-
-
 /* Glow Hover Effect */
 nav ul li a:hover {
   background: linear-gradient(90deg, #ff9800, #ff5722);
@@ -262,94 +248,4 @@ nav img.logo {
   transform-style: preserve-3d;
   border-radius: 50%;
   backface-visibility: visible;
-}
-
-/* ================= FIX DROPDOWN CLICK ISSUE ================= */
-
-.dropdown {
-  position: relative;
-  z-index: 9998;
-}
-
-.dropdown-menu {
-  z-index: 9999;
-  pointer-events: auto;
-}
-
-.dropdown,
-.dropdown-menu,
-.dropdown-menu * {
-  pointer-events: auto;
-}
-
-/* Prevent animated images from stealing clicks */
-nav img.logo,
-.circle-img {
-  pointer-events: none;
-}
-
-/* ========================= DROPDOWN (FINAL FIX) ========================= */
-
-nav {
-  overflow: visible;
-}
-
-.dropdown {
-  position: relative;
-  z-index: 999;
-}
-
-/* Dropdown box */
-.dropdown-menu {
-  position: absolute;
-  top: 120%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg, #111, #000);
-  border: 2px solid #ff9800;
-  border-radius: 14px;
-  min-width: 210px;
-  padding: 10px 0;
-
-  /* IMPORTANT */
-  display: flex;              /* React controls visibility */
-  flex-direction: column;
-  z-index: 9999;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
-}
-
-/* Dropdown items */
-.dropdown-menu li {
-  list-style: none;
-  width: 100%;
-  text-align: center;
-}
-
-/* Dropdown buttons */
-.dropdown-menu button {
-  width: 100%;
-  padding: 12px 18px;
-  background: transparent;
-  color: #fff;
-  border: none;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-/* Hover effect */
-.dropdown-menu button:hover {
-  background: linear-gradient(90deg, #ff9800, #ff5722);
-}
-
-/* ========================= MOBILE DROPDOWN ========================= */
-@media (max-width: 1286px) {
-  .dropdown-menu {
-    position: static;
-    transform: none;
-    width: 100%;
-    margin-top: 6px;
-    border-radius: 12px;
-  }
 }
