@@ -6,8 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
-  const [aboutOpen, setAboutOpen] = useState(false)
-  const [amritvaniOpen, setAmritvaniOpen] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState(null)
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -16,8 +15,11 @@ const Navbar = () => {
 
   const closeMenu = () => {
     setMobileMenu(false)
-    setAboutOpen(false)
-    setAmritvaniOpen(false)
+    setOpenDropdown(null)
+  }
+
+  const toggleDropdown = (name) => {
+    setOpenDropdown(openDropdown === name ? null : name)
   }
 
   const linkClass = ({ isActive }) => 'btn' + (isActive ? ' active' : '')
@@ -32,16 +34,11 @@ const Navbar = () => {
     }
   }
 
-  const handleRefresh = () => {
-    window.location.reload()
-  }
+  const handleRefresh = () => window.location.reload()
 
   /* ✅ Close dropdowns when clicking outside */
   useEffect(() => {
-    const closeDropdowns = () => {
-      setAboutOpen(false)
-      setAmritvaniOpen(false)
-    }
+    const closeDropdowns = () => setOpenDropdown(null)
     window.addEventListener('click', closeDropdowns)
     return () => window.removeEventListener('click', closeDropdowns)
   }, [])
@@ -76,13 +73,13 @@ const Navbar = () => {
             })}
             onClick={(e) => {
               e.stopPropagation()
-              setAboutOpen(!aboutOpen)
+              toggleDropdown('about')
             }}
           >
             About ▾
           </button>
 
-          {aboutOpen && (
+          {openDropdown === 'about' && (
             <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
               <li>
                 <button onClick={() => handleNavClick('/about')}>
@@ -111,13 +108,13 @@ const Navbar = () => {
             })}
             onClick={(e) => {
               e.stopPropagation()
-              setAmritvaniOpen(!amritvaniOpen)
+              toggleDropdown('amritvani')
             }}
           >
             Amritvani ▾
           </button>
 
-          {amritvaniOpen && (
+          {openDropdown === 'amritvani' && (
             <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
               <li>
                 <button onClick={() => handleNavClick('/satsang')}>
