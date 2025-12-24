@@ -171,14 +171,46 @@ const Navbar = () => {
         </li>
 
 
-        <li>
+        {/* ✅ PROGRAM DROPDOWN */}
+        <li className='dropdown'>
           <button
-            onClick={() => handleNavClick('/program')}
-            className={linkClass({ isActive: location.pathname === '/program' })}
+            className={linkClass({
+              isActive: location.pathname.startsWith('/program')
+            })}
+            onClick={(e) => {
+              e.stopPropagation()
+              toggleDropdown('program')
+            }}
           >
-            Program
+            Program ▾
           </button>
+
+          {openDropdown === 'program' && (
+            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
+              <li>
+                <button onClick={() => handleNavClick('/program')}>
+                  All Programs
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/program/upcoming')}>
+                  Upcoming Programs
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/program/past')}>
+                  Past Programs
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/program/special')}>
+                  Special Events
+                </button>
+              </li>
+            </ul>
+          )}
         </li>
+
 
         <li>
           <button
