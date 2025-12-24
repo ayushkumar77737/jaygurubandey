@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
   const [aboutOpen, setAboutOpen] = useState(false)
+  const [amritvaniOpen, setAmritvaniOpen] = useState(false)
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -16,6 +17,7 @@ const Navbar = () => {
   const closeMenu = () => {
     setMobileMenu(false)
     setAboutOpen(false)
+    setAmritvaniOpen(false)
   }
 
   const linkClass = ({ isActive }) => 'btn' + (isActive ? ' active' : '')
@@ -34,11 +36,14 @@ const Navbar = () => {
     window.location.reload()
   }
 
-  /* ✅ Close dropdown when clicking outside */
+  /* ✅ Close dropdowns when clicking outside */
   useEffect(() => {
-    const closeDropdown = () => setAboutOpen(false)
-    window.addEventListener('click', closeDropdown)
-    return () => window.removeEventListener('click', closeDropdown)
+    const closeDropdowns = () => {
+      setAboutOpen(false)
+      setAmritvaniOpen(false)
+    }
+    window.addEventListener('click', closeDropdowns)
+    return () => window.removeEventListener('click', closeDropdowns)
   }, [])
 
   return (
@@ -63,7 +68,7 @@ const Navbar = () => {
           </button>
         </li>
 
-        {/* ✅ ABOUT DROPDOWN (CLICK BASED) */}
+        {/* ✅ ABOUT DROPDOWN */}
         <li className='dropdown'>
           <button
             className={linkClass({
@@ -98,13 +103,39 @@ const Navbar = () => {
           )}
         </li>
 
-        <li>
+        {/* ✅ AMRITVANI DROPDOWN */}
+        <li className='dropdown'>
           <button
-            onClick={() => handleNavClick('/satsang')}
-            className={linkClass({ isActive: location.pathname === '/satsang' })}
+            className={linkClass({
+              isActive: location.pathname.startsWith('/satsang')
+            })}
+            onClick={(e) => {
+              e.stopPropagation()
+              setAmritvaniOpen(!amritvaniOpen)
+            }}
           >
-            Amritvani
+            Amritvani ▾
           </button>
+
+          {amritvaniOpen && (
+            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
+              <li>
+                <button onClick={() => handleNavClick('/satsang')}>
+                  Daily Amritvani
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/satsang/audio')}>
+                  Audio Amritvani
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/satsang/video')}>
+                  Video Amritvani
+                </button>
+              </li>
+            </ul>
+          )}
         </li>
 
         <li>

@@ -329,3 +329,24 @@ nav {
     border-radius: 12px;
   }
 }
+
+/* ===== FIX ABOUT & AMRITVANI BUTTON SIZE ===== */
+.dropdown > button {
+  height: 43px;                 /* same height as other buttons */
+  padding: 6px 14px;            /* controls size */
+  border-radius: 8px;
+
+  display: inline-flex;         /* center content */
+  flex-direction: column;       /* text on top, arrow below */
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  line-height: 1.1;
+  gap: 2px;                     /* space between text & arrow */
+}
+
+/* Arrow size fix */
+.dropdown > button span,
+.dropdown > button::after {
+  font-size: 10px;
+}
