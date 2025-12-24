@@ -66,7 +66,7 @@ const Navbar = () => {
             >
               <li><button onClick={() => handleNavClick('/about')}>About Guruji</button></li>
               <li><button onClick={() => handleNavClick('/ashram-vision')}>Ashram Vision</button></li>
-              <li><button onClick={() => handleNavClick('/committee')}>Committee Members</button></li>
+              <li><button onClick={() => handleNavClick('/committee-members')}>Committee Members</button></li>
             </ul>
           )}
         </li>
