@@ -135,14 +135,41 @@ const Navbar = () => {
           )}
         </li>
 
-        <li>
+        {/* ✅ BHAJAN DROPDOWN */}
+        <li className='dropdown'>
           <button
-            onClick={() => handleNavClick('/bhajan')}
-            className={linkClass({ isActive: location.pathname === '/bhajan' })}
+            className={linkClass({
+              isActive: location.pathname.startsWith('/bhajan')
+            })}
+            onClick={(e) => {
+              e.stopPropagation()
+              toggleDropdown('bhajan')
+            }}
           >
-            Bhajan
+            Bhajan ▾
           </button>
+
+          {openDropdown === 'bhajan' && (
+            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
+              <li>
+                <button onClick={() => handleNavClick('/bhajan')}>
+                  Bhajan List
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/bhajan/audio')}>
+                  Audio Bhajan
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/bhajan/video')}>
+                  Video Bhajan
+                </button>
+              </li>
+            </ul>
+          )}
         </li>
+
 
         <li>
           <button
