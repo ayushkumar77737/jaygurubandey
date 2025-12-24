@@ -1,36 +1,50 @@
 /* ===============================
    ASHRAM VISION – PREMIUM PAGE
-   (LIGHTWEIGHT ANIMATION VERSION)
+   (SCROLL-SAFE, LIGHTWEIGHT)
 ================================ */
 
-/* ===== PAGE BASE ===== */
+/* ===============================
+   PAGE BASE
+================================ */
 .av-page {
   min-height: 100vh;
   font-family: "Poppins", sans-serif;
   color: #2b1630;
 
-  /* Soft premium background */
-  background:
-    radial-gradient(circle at top left, rgba(255, 210, 170, 0.45), transparent 55%),
-    radial-gradient(circle at bottom right, rgba(190, 220, 255, 0.45), transparent 55%),
-    linear-gradient(135deg, #fffdf7, #f4f8ff, #fdeff6);
+  /* Static base background (NO animation here) */
+  background: linear-gradient(135deg, #fffdf7, #f4f8ff, #fdeff6);
 
-  background-size: 220% 220%;
-
-  /* LIGHTWEIGHT slow animation */
-  animation: avBgMove 40s linear infinite;
-  will-change: background-position;
-
-  /* stacking safety */
   position: relative;
   z-index: 1;
-  isolation: isolate;
+  overflow: hidden; /* important for pseudo animation */
 }
 
-/* Smooth background drift */
-@keyframes avBgMove {
-  0%   { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
+/* ===============================
+   LIGHTWEIGHT BACKGROUND ANIMATION
+   (GPU SAFE – FIXES DISAPPEAR ISSUE)
+================================ */
+.av-page::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  z-index: -1;
+
+  background:
+    radial-gradient(circle at top left, rgba(255, 210, 170, 0.45), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(190, 220, 255, 0.45), transparent 55%);
+
+  animation: avBgFloat 45s linear infinite;
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
+}
+
+@keyframes avBgFloat {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(4%, 4%, 0);
+  }
 }
 
 /* ===============================
@@ -40,7 +54,6 @@
   padding: 5rem 1.5rem 3rem;
   text-align: center;
   animation: fadeSoft 0.6s ease-out both;
-  will-change: transform, opacity;
 }
 
 @keyframes fadeSoft {
@@ -88,7 +101,6 @@
   text-align: center;
   margin-bottom: 55px;
   animation: fadeSoftUp 0.7s ease-out both;
-  will-change: transform, opacity;
 }
 
 .av-guruji-frame {
@@ -116,7 +128,6 @@
   font-size: 0.95rem;
   font-style: italic;
   color: #7a3f5c;
-  opacity: 0.9;
 }
 
 /* ===============================
@@ -140,7 +151,6 @@
   border: 1px solid rgba(255, 200, 230, 0.6);
 
   animation: fadeSoftUp 0.7s ease-out both;
-  will-change: transform, opacity;
 }
 
 @keyframes fadeSoftUp {
@@ -217,27 +227,12 @@
 /* ===============================
    RESPONSIVE
 ================================ */
-
-/* Large Desktop */
-@media (min-width: 1400px) {
-  .av-container { max-width: 1200px; }
-  .av-card { padding: 48px 56px; }
-}
-
-/* Tablets & Laptops */
-@media (max-width: 1023px) {
-  .av-title { font-size: 2.2rem; }
-  .av-card { padding: 36px 34px; }
-}
-
-/* Tablets */
 @media (max-width: 767px) {
   .av-hero { padding: 4rem 1.25rem 2.5rem; }
   .av-guruji-frame { width: 150px; height: 150px; }
   .av-card { padding: 30px 26px; }
 }
 
-/* Mobiles */
 @media (max-width: 599px) {
   .av-title { font-size: 1.8rem; }
   .av-subtitle { font-size: 0.95rem; }
