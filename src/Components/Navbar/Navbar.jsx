@@ -212,14 +212,46 @@ const Navbar = () => {
         </li>
 
 
-        <li>
+        {/* ✅ BLOG DROPDOWN */}
+        <li className='dropdown'>
           <button
-            onClick={() => handleNavClick('/blog')}
-            className={linkClass({ isActive: location.pathname === '/blog' })}
+            className={linkClass({
+              isActive: location.pathname.startsWith('/blog')
+            })}
+            onClick={(e) => {
+              e.stopPropagation()
+              toggleDropdown('blog')
+            }}
           >
-            Blog
+            Blog ▾
           </button>
+
+          {openDropdown === 'blog' && (
+            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
+              <li>
+                <button onClick={() => handleNavClick('/blog')}>
+                  All Blogs
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/blog/latest')}>
+                  Latest Posts
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/blog/testimonies')}>
+                  Testimonies
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/blog/articles')}>
+                  Articles
+                </button>
+              </li>
+            </ul>
+          )}
         </li>
+
 
         <li>
           <button
