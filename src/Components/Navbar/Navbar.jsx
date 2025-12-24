@@ -253,32 +253,128 @@ const Navbar = () => {
         </li>
 
 
-        <li>
+        {/* ✅ GALLERY DROPDOWN */}
+        <li className='dropdown'>
           <button
-            onClick={() => handleNavClick('/gallery')}
-            className={linkClass({ isActive: location.pathname === '/gallery' })}
+            className={linkClass({
+              isActive: location.pathname.startsWith('/gallery')
+            })}
+            onClick={(e) => {
+              e.stopPropagation()
+              toggleDropdown('gallery')
+            }}
           >
-            Gallery
+            Gallery ▾
           </button>
+
+          {openDropdown === 'gallery' && (
+            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
+              <li>
+                <button onClick={() => handleNavClick('/gallery')}>
+                  All Gallery
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/gallery/photos')}>
+                  Photo Gallery
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/gallery/videos')}>
+                  Video Gallery
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/gallery/events')}>
+                  Event Gallery
+                </button>
+              </li>
+            </ul>
+          )}
         </li>
 
-        <li>
+
+        {/* ✅ CONTACT US DROPDOWN */}
+        <li className='dropdown'>
           <button
-            onClick={() => handleNavClick('/contact')}
-            className={linkClass({ isActive: location.pathname === '/contact' })}
+            className={linkClass({
+              isActive: location.pathname.startsWith('/contact')
+            })}
+            onClick={(e) => {
+              e.stopPropagation()
+              toggleDropdown('contact')
+            }}
           >
-            Contact Us
+            Contact Us ▾
           </button>
+
+          {openDropdown === 'contact' && (
+            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
+              <li>
+                <button onClick={() => handleNavClick('/contact')}>
+                  Contact Information
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/contact/location')}>
+                  Location & Map
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/contact/support')}>
+                  Support / Help
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/contact/feedback')}>
+                  Feedback
+                </button>
+              </li>
+            </ul>
+          )}
         </li>
 
-        <li>
+
+        {/* ✅ CONTRIBUTE DROPDOWN */}
+        <li className='dropdown'>
           <button
-            onClick={() => handleNavClick('/contribute')}
-            className={linkClass({ isActive: location.pathname === '/contribute' })}
+            className={linkClass({
+              isActive: location.pathname.startsWith('/contribute')
+            })}
+            onClick={(e) => {
+              e.stopPropagation()
+              toggleDropdown('contribute')
+            }}
           >
-            Contribute
+            Contribute ▾
           </button>
+
+          {openDropdown === 'contribute' && (
+            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
+              <li>
+                <button onClick={() => handleNavClick('/contribute')}>
+                  Donate Now
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/contribute/volunteer')}>
+                  Become a Volunteer
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/contribute/sponsor')}>
+                  Sponsor a Program
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/contribute/faq')}>
+                  Contribution FAQ
+                </button>
+              </li>
+            </ul>
+          )}
         </li>
+
       </ul>
 
       {/* Circle */}
