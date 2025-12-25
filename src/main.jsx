@@ -40,6 +40,7 @@ import QuickStart from './pages/QuickStart.jsx'
 import AshramVision from './pages/AshramVision.jsx'
 import LatestAmritvani from './pages/LatestAmritvani.jsx'
 import LatestBhajan from './pages/LatestBhajan.jsx'
+import UpcomingPrograms from './pages/UpcomingPrograms.jsx'
 
 const router = createBrowserRouter([
   {
@@ -82,6 +83,7 @@ const router = createBrowserRouter([
       { path: 'ashram-vision', element: <AshramVision /> },
       { path: 'latest-amritvani', element: <LatestAmritvani /> },
       { path: 'latest-bhajan', element: <LatestBhajan /> },
+      { path: 'upcoming-programs', element: <UpcomingPrograms /> },
     ],
   },
   { path: '*', element: <NotFound /> },

@@ -183,7 +183,7 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/program/upcoming')}>
+                <button onClick={() => handleNavClick('/upcoming-programs')}>
                   Upcoming Programs
                 </button>
               </li>

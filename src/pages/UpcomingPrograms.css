@@ -1,0 +1,236 @@
+/* ================= Upcoming Programs Page Only ================= */
+.up-page {
+  min-height: 100vh;
+  padding: 40px 16px 70px;
+  background-color: #fff6f0;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+
+/* ===== Header ===== */
+.up-page .up-header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #d35400;
+  margin-bottom: 6px;
+}
+
+.up-page .up-header p {
+  font-size: 0.95rem;
+  color: #777;
+  margin-bottom: 32px;
+}
+
+/* ===== GRID LAYOUT ===== */
+.up-page .program-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 26px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== Program Card ===== */
+.up-page .program-card {
+  background: #ffffff;
+  padding: 26px 24px;
+  border-radius: 20px;
+  border: 1px solid #f3d7c6;
+  text-align: left;
+  position: relative;
+
+  /* animation */
+  animation: softFadeUp 0.6s ease both;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ===== Soft Accent Line ===== */
+.up-page .program-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: 20px 0 0 20px;
+  background: linear-gradient(
+    180deg,
+    #f39c12,
+    #f6b26b,
+    #f9c5d1
+  );
+}
+
+/* ===== Titles ===== */
+.up-page .program-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #bf360c;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.up-page .program-subtitle {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #d35400;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+/* ===== Info ===== */
+.up-page .program-info p {
+  font-size: 0.92rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+/* ===== Message ===== */
+.up-page .program-message {
+  background: #fff1e6;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  color: #6d4c41;
+  margin: 16px 0;
+}
+
+/* ===== Contact ===== */
+.up-page .program-contact {
+  font-size: 0.92rem;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+/* ===== Blessing ===== */
+.up-page .program-blessing {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #8e24aa;
+  text-align: center;
+}
+
+/* ===== Hover Effect ===== */
+.up-page .program-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== Animations ===== */
+@keyframes softFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger */
+.up-page .program-card:nth-child(1) { animation-delay: 0.05s; }
+.up-page .program-card:nth-child(2) { animation-delay: 0.12s; }
+.up-page .program-card:nth-child(3) { animation-delay: 0.18s; }
+
+/* ===== Header Animation ===== */
+@keyframes headerFadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subtitleFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.up-page .up-header {
+  animation: headerFadeDown 0.7s ease-out both;
+}
+
+.up-page .up-header p {
+  animation: subtitleFade 0.6s ease-out both;
+  animation-delay: 0.15s;
+}
+
+/* ===== Calendar Icon Float ===== */
+@keyframes softFloat {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+  100% { transform: translateY(0); }
+}
+
+.up-page .up-header h1 span,
+.up-page .up-header h1::after {
+  animation: softFloat 2.6s ease-in-out infinite;
+}
+
+/* ===== Accessibility ===== */
+@media (prefers-reduced-motion: reduce) {
+  .up-page .program-card,
+  .up-page .up-header {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* 📱 Mobile */
+@media (max-width: 600px) {
+  .up-page {
+    padding: 30px 12px 60px;
+  }
+
+  .up-page .up-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .up-page .up-header p {
+    font-size: 0.9rem;
+  }
+
+  .up-page .program-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .up-page .program-card {
+    padding: 22px 18px;
+  }
+
+  .up-page .program-title {
+    font-size: 1.2rem;
+  }
+}
+
+/* 📲 Tablet */
+@media (min-width: 601px) and (max-width: 992px) {
+  .up-page .program-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+
+  .up-page .up-header h1 {
+    font-size: 2.05rem;
+  }
+}
+
+/* 🖥️ Laptop / Desktop */
+@media (min-width: 993px) {
+  .up-page .program-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
