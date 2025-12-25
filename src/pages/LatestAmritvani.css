@@ -2,9 +2,10 @@
   padding: 70px 20px 90px;
   background: linear-gradient(180deg, #fff2e6 0%, #ffffff 60%);
   text-align: center;
+  isolation: isolate;
 }
 
-/* Heading */
+/* ================= Heading ================= */
 .latest-title {
   font-size: 2.6rem;
   font-weight: 700;
@@ -22,33 +23,36 @@
   margin-bottom: 45px;
 }
 
-/* Grid */
+/* ================= Grid ================= */
 .latest-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
   max-width: 1200px;
   margin: auto;
+  justify-items: center; /* ✅ prevents stretching on page 2 */
 }
 
-/* Card */
+/* ================= Card ================= */
 .latest-card {
+  width: 100%;
+  max-width: 380px; /* ✅ SAME CARD SIZE ALWAYS */
   background: #ffffff;
   border-radius: 24px;
   padding: 18px;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.latest-card:hover {
-  transform: translateY(-8px);
+.latest-amritvani .latest-card:hover {
+  transform: translateY(-4px);
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
 }
 
-/* Video */
+/* ================= Video ================= */
 .latest-video {
   width: 100%;
-  height: 190px;
+  aspect-ratio: 16 / 9; /* ✅ consistent height */
   border-radius: 18px;
   overflow: hidden;
   margin-bottom: 16px;
@@ -60,7 +64,7 @@
   border-radius: 18px;
 }
 
-/* Title */
+/* ================= Title ================= */
 .latest-card h3 {
   font-size: 1.05rem;
   font-weight: 600;
@@ -68,7 +72,7 @@
   margin-bottom: 14px;
 }
 
-/* Button */
+/* ================= Button ================= */
 .latest-btn {
   display: inline-block;
   padding: 10px 24px;
@@ -84,18 +88,15 @@
   transform: scale(1.05);
   box-shadow: 0 6px 18px rgba(255, 152, 0, 0.5);
 }
-/* =================== Laptop (Large Screens) =================== */
+
+/* =================== Laptop =================== */
 @media (min-width: 1200px) {
   .latest-title {
     font-size: 2.8rem;
   }
-
-  .latest-video {
-    height: 210px;
-  }
 }
 
-/* =================== Tablet (Medium Screens) =================== */
+/* =================== Tablet =================== */
 @media (max-width: 992px) {
   .latest-amritvani {
     padding: 60px 16px 80px;
@@ -109,13 +110,9 @@
     font-size: 0.95rem;
     margin-bottom: 35px;
   }
-
-  .latest-video {
-    height: 180px;
-  }
 }
 
-/* =================== Mobile (Small Screens) =================== */
+/* =================== Mobile =================== */
 @media (max-width: 576px) {
   .latest-amritvani {
     padding: 50px 14px 70px;
@@ -140,11 +137,6 @@
     border-radius: 20px;
   }
 
-  .latest-video {
-    height: 170px;
-    border-radius: 14px;
-  }
-
   .latest-card h3 {
     font-size: 0.95rem;
   }
@@ -154,6 +146,7 @@
     font-size: 0.9rem;
   }
 }
+
 /* =================== Scoped Minimal Animation =================== */
 @keyframes latestAmritvaniFade {
   from {
@@ -166,32 +159,55 @@
   }
 }
 
-/* Page load animation (scoped) */
 .latest-amritvani {
   animation: latestAmritvaniFade 0.5s ease-out both;
 }
 
-/* Cards animation (scoped) */
 .latest-amritvani .latest-card {
   animation: latestAmritvaniFade 0.55s ease-out both;
 }
 
-/* Small stagger */
 .latest-amritvani .latest-card:nth-child(1) { animation-delay: 0.05s; }
 .latest-amritvani .latest-card:nth-child(2) { animation-delay: 0.1s; }
 .latest-amritvani .latest-card:nth-child(3) { animation-delay: 0.15s; }
 .latest-amritvani .latest-card:nth-child(4) { animation-delay: 0.2s; }
 
-/* =================== Single Hover Rule (No Conflict) =================== */
-.latest-amritvani .latest-card:hover {
-  transform: translateY(-4px);
-}
-
-/* =================== Accessibility & Low-end Devices =================== */
+/* =================== Reduce Motion =================== */
 @media (prefers-reduced-motion: reduce) {
   .latest-amritvani,
   .latest-amritvani .latest-card {
     animation: none;
     transform: none;
   }
+}
+
+/* ================= Pagination ================= */
+.latest-amritvani .latest-pagination {
+  margin-top: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.latest-amritvani .latest-pagination button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  background: linear-gradient(135deg, #ff9800, #e57c00);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.25s ease;
+}
+
+.latest-amritvani .latest-pagination button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.latest-amritvani .latest-pagination span {
+  font-weight: 500;
 }
