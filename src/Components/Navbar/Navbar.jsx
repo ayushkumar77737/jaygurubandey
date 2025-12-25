@@ -78,12 +78,7 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/home/intro')}>
-                  Introduction
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/home/latest-updates')}>
+                <button onClick={() => handleNavClick('/latest-updates')}>
                   Latest Updates
                 </button>
               </li>
