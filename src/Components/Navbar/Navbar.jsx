@@ -92,7 +92,7 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/committee')}>
+                <button onClick={() => handleNavClick('/committee-members')}>
                   Committee Members
                 </button>
               </li>
