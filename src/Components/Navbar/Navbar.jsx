@@ -188,11 +188,6 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/program/past')}>
-                  Past Programs
-                </button>
-              </li>
-              <li>
                 <button onClick={() => handleNavClick('/program/special')}>
                   Special Events
                 </button>
