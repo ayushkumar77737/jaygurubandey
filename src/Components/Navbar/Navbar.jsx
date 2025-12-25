@@ -84,7 +84,7 @@ const Navbar = () => {
               </li>
               <li>
                 <button onClick={() => handleNavClick('/home/announcements')}>
-                  Notice
+                  Announcements
                 </button>
               </li>
             </ul>
