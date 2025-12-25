@@ -233,3 +233,56 @@
     margin: 4px;
   }
 }
+/* =================== Satsang Fade Animation =================== */
+@keyframes satsangFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Page animation */
+.satsang-container {
+  animation: satsangFadeUp 0.55s ease-out both;
+}
+
+/* Title animation */
+.satsang-title {
+  animation: satsangFadeUp 0.45s ease-out both;
+}
+
+/* Video cards animation */
+.video-card {
+  animation: satsangFadeUp 0.55s ease-out both;
+}
+
+/* =================== Stagger Effect =================== */
+.video-card:nth-child(1) { animation-delay: 0.05s; }
+.video-card:nth-child(2) { animation-delay: 0.1s; }
+.video-card:nth-child(3) { animation-delay: 0.15s; }
+.video-card:nth-child(4) { animation-delay: 0.2s; }
+.video-card:nth-child(5) { animation-delay: 0.25s; }
+.video-card:nth-child(6) { animation-delay: 0.3s; }
+.video-card:nth-child(7) { animation-delay: 0.35s; }
+.video-card:nth-child(8) { animation-delay: 0.4s; }
+
+/* =================== Pagination Animation =================== */
+.pagination {
+  animation: satsangFadeUp 0.45s ease-out both;
+  animation-delay: 0.2s;
+}
+
+/* =================== Reduce Motion =================== */
+@media (prefers-reduced-motion: reduce) {
+  .satsang-container,
+  .satsang-title,
+  .video-card,
+  .pagination {
+    animation: none;
+    transform: none;
+  }
+}
