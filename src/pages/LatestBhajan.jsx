@@ -1,0 +1,116 @@
+import React, { useState } from "react";
+import "./LatestBhajan.css";
+
+const bhajans = [
+  {
+    id: 1,
+    title: "Latest Bhajan – Shri Ram Naam",
+    embed: "https://www.youtube.com/embed/su7VYdVdn-M",
+  },
+  {
+    id: 2,
+    title: "Latest Bhajan – Krishna Leela",
+    embed: "https://www.youtube.com/embed/InNsbUsqhns",
+  },
+  {
+    id: 3,
+    title: "Latest Bhajan – Hanuman Chalisa",
+    embed: "https://www.youtube.com/embed/X5LPFy50VdY",
+  },
+  {
+    id: 4,
+    title: "Latest Bhajan – Shiv Bhakti",
+    embed: "https://www.youtube.com/embed/su7VYdVdn-M",
+  },
+  {
+    id: 5,
+    title: "Latest Bhajan – Devi Stuti",
+    embed: "https://www.youtube.com/embed/InNsbUsqhns",
+  },
+  {
+    id: 6,
+    title: "Latest Bhajan – Guru Vandana",
+    embed: "https://www.youtube.com/embed/X5LPFy50VdY",
+  },
+  {
+    id: 7,
+    title: "Latest Bhajan – Ram Bhajan",
+    embed: "https://www.youtube.com/embed/su7VYdVdn-M",
+  },
+  {
+    id: 8,
+    title: "Latest Bhajan – Krishna Bhajan",
+    embed: "https://www.youtube.com/embed/InNsbUsqhns",
+  },
+];
+
+const PER_PAGE = 6;
+
+const LatestBhajan = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(bhajans.length / PER_PAGE);
+  const startIndex = (currentPage - 1) * PER_PAGE;
+  const currentBhajans = bhajans.slice(startIndex, startIndex + PER_PAGE);
+
+  return (
+    <section className="latest-bhajan">
+      <h1 className="bhajan-title">
+        Latest <span>Bhajans</span> 🎵
+      </h1>
+      <p className="bhajan-subtitle">
+        Soulful bhajans filled with devotion & divine music
+      </p>
+
+      <div className="bhajan-grid">
+        {currentBhajans.map((bhajan) => (
+          <div className="bhajan-card" key={bhajan.id}>
+            <div className="bhajan-video">
+              <iframe
+                src={bhajan.embed}
+                title={bhajan.title}
+                frameBorder="0"
+                allowFullScreen
+              ></iframe>
+            </div>
+
+            <h3>{bhajan.title}</h3>
+
+            <a
+              href={bhajan.embed.replace("embed/", "watch?v=")}
+              target="_blank"
+              rel="noreferrer"
+              className="bhajan-btn"
+            >
+              Listen Bhajan
+            </a>
+          </div>
+        ))}
+      </div>
+
+      {/* Pagination */}
+      <div className="bhajan-pagination">
+        <button
+          onClick={() => setCurrentPage((p) => p - 1)}
+          disabled={currentPage === 1}
+        >
+          ⬅ Prev
+        </button>
+
+        <span>
+          Page <strong>{currentPage}</strong> of{" "}
+          <strong>{totalPages}</strong>
+        </span>
+
+        <button
+          onClick={() => setCurrentPage((p) => p + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next ➡
+        </button>
+      </div>
+    </section>
+  );
+};
+
+export default LatestBhajan;
