@@ -153,12 +153,7 @@ const Navbar = () => {
               </li>
               <li>
                 <button onClick={() => handleNavClick('/bhajan/audio')}>
-                  Audio Bhajan
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/bhajan/video')}>
-                  Video Bhajan
+                  Latest Bhajan
                 </button>
               </li>
             </ul>
