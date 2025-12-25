@@ -122,8 +122,8 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/satsang/audio')}>
-                  Audio Amritvani
+                <button onClick={() => handleNavClick('/latest-amritvani')}>
+                  Latest Amritvani
                 </button>
               </li>
               <li>

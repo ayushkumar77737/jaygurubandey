@@ -1,0 +1,197 @@
+.latest-amritvani {
+  padding: 70px 20px 90px;
+  background: linear-gradient(180deg, #fff2e6 0%, #ffffff 60%);
+  text-align: center;
+}
+
+/* Heading */
+.latest-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #e57c00;
+  margin-bottom: 6px;
+}
+
+.latest-title span {
+  color: #ff9800;
+}
+
+.latest-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 45px;
+}
+
+/* Grid */
+.latest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Card */
+.latest-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 18px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.latest-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
+}
+
+/* Video */
+.latest-video {
+  width: 100%;
+  height: 190px;
+  border-radius: 18px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.latest-video iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+}
+
+/* Title */
+.latest-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 14px;
+}
+
+/* Button */
+.latest-btn {
+  display: inline-block;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #ff9800, #e57c00);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.latest-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(255, 152, 0, 0.5);
+}
+/* =================== Laptop (Large Screens) =================== */
+@media (min-width: 1200px) {
+  .latest-title {
+    font-size: 2.8rem;
+  }
+
+  .latest-video {
+    height: 210px;
+  }
+}
+
+/* =================== Tablet (Medium Screens) =================== */
+@media (max-width: 992px) {
+  .latest-amritvani {
+    padding: 60px 16px 80px;
+  }
+
+  .latest-title {
+    font-size: 2.2rem;
+  }
+
+  .latest-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 35px;
+  }
+
+  .latest-video {
+    height: 180px;
+  }
+}
+
+/* =================== Mobile (Small Screens) =================== */
+@media (max-width: 576px) {
+  .latest-amritvani {
+    padding: 50px 14px 70px;
+  }
+
+  .latest-title {
+    font-size: 1.9rem;
+    line-height: 1.2;
+  }
+
+  .latest-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+  }
+
+  .latest-grid {
+    gap: 22px;
+  }
+
+  .latest-card {
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .latest-video {
+    height: 170px;
+    border-radius: 14px;
+  }
+
+  .latest-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .latest-btn {
+    padding: 9px 20px;
+    font-size: 0.9rem;
+  }
+}
+/* =================== Minimal Fade Animation =================== */
+@keyframes softFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Page load */
+.latest-amritvani {
+  animation: softFade 0.5s ease-out both;
+}
+
+/* Cards */
+.latest-card {
+  animation: softFade 0.55s ease-out both;
+}
+
+/* Very small stagger */
+.latest-card:nth-child(1) { animation-delay: 0.05s; }
+.latest-card:nth-child(2) { animation-delay: 0.1s; }
+.latest-card:nth-child(3) { animation-delay: 0.15s; }
+.latest-card:nth-child(4) { animation-delay: 0.2s; }
+
+/* =================== Micro Hover Only =================== */
+.latest-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Disable motion for accessibility & low-end devices */
+@media (prefers-reduced-motion: reduce) {
+  .latest-amritvani,
+  .latest-card {
+    animation: none;
+    transform: none;
+  }
+}
