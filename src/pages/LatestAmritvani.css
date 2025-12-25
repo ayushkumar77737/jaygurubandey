@@ -154,8 +154,8 @@
     font-size: 0.9rem;
   }
 }
-/* =================== Minimal Fade Animation =================== */
-@keyframes softFade {
+/* =================== Scoped Minimal Animation =================== */
+@keyframes latestAmritvaniFade {
   from {
     opacity: 0;
     transform: translateY(12px);
@@ -166,31 +166,31 @@
   }
 }
 
-/* Page load */
+/* Page load animation (scoped) */
 .latest-amritvani {
-  animation: softFade 0.5s ease-out both;
+  animation: latestAmritvaniFade 0.5s ease-out both;
 }
 
-/* Cards */
-.latest-card {
-  animation: softFade 0.55s ease-out both;
+/* Cards animation (scoped) */
+.latest-amritvani .latest-card {
+  animation: latestAmritvaniFade 0.55s ease-out both;
 }
 
-/* Very small stagger */
-.latest-card:nth-child(1) { animation-delay: 0.05s; }
-.latest-card:nth-child(2) { animation-delay: 0.1s; }
-.latest-card:nth-child(3) { animation-delay: 0.15s; }
-.latest-card:nth-child(4) { animation-delay: 0.2s; }
+/* Small stagger */
+.latest-amritvani .latest-card:nth-child(1) { animation-delay: 0.05s; }
+.latest-amritvani .latest-card:nth-child(2) { animation-delay: 0.1s; }
+.latest-amritvani .latest-card:nth-child(3) { animation-delay: 0.15s; }
+.latest-amritvani .latest-card:nth-child(4) { animation-delay: 0.2s; }
 
-/* =================== Micro Hover Only =================== */
-.latest-card:hover {
+/* =================== Single Hover Rule (No Conflict) =================== */
+.latest-amritvani .latest-card:hover {
   transform: translateY(-4px);
 }
 
-/* Disable motion for accessibility & low-end devices */
+/* =================== Accessibility & Low-end Devices =================== */
 @media (prefers-reduced-motion: reduce) {
   .latest-amritvani,
-  .latest-card {
+  .latest-amritvani .latest-card {
     animation: none;
     transform: none;
   }
