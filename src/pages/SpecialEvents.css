@@ -1,0 +1,329 @@
+/* ================= PAGE WRAPPER ================= */
+.special-events-page {
+  min-height: 100vh;
+  padding: 40px 20px 90px;
+  background: linear-gradient(180deg, #fff7e8 0%, #ffffff 45%, #f6f0ff 100%);
+  font-family: "Poppins", sans-serif;
+
+  /* Page isolation */
+  isolation: isolate;
+
+  /* Page entry animation */
+  animation: pageFadeIn 0.6s ease forwards;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= HERO ================= */
+.special-events-hero {
+  text-align: center;
+  margin-bottom: 60px;
+  animation: heroSlide 0.7s ease forwards;
+}
+
+@keyframes heroSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.special-events-hero h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ff9800, #e65100, #8e24aa);
+  -webkit-background-clip: text;
+  color: #d35400;
+}
+
+.special-events-hero p {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* ================= GRID ================= */
+.special-events-container {
+  max-width: 1150px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 32px;
+}
+
+/* ================= CARD ================= */
+.event-card {
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  transform: translateY(12px);
+  opacity: 0;
+  animation: cardFadeUp 0.7s ease forwards;
+  animation-delay: calc(var(--i, 0) * 0.08s);
+
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+@keyframes cardFadeUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.event-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 26px 55px rgba(0, 0, 0, 0.14);
+}
+
+/* ================= IMAGE ================= */
+.event-image {
+  position: relative;
+  height: 210px;
+  overflow: hidden;
+}
+
+.event-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.event-card:hover .event-image img {
+  transform: scale(1.06);
+}
+
+/* ================= BADGE ================= */
+.event-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: linear-gradient(90deg, #ff9800, #ab47bc);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  animation: badgeGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes badgeGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(255, 152, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 14px rgba(171, 71, 188, 0.55);
+  }
+}
+
+/* ================= CONTENT ================= */
+.event-content {
+  padding: 24px 22px 26px;
+}
+
+.event-content h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #6a1b9a;
+  margin-bottom: 6px;
+}
+
+.event-date,
+.event-location {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ff9800;
+  margin-bottom: 4px;
+}
+
+.event-desc {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.6;
+  margin: 14px 0 16px;
+}
+
+/* ================= HIGHLIGHTS ================= */
+.event-highlights h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #8e24aa;
+  margin-bottom: 6px;
+}
+
+.event-highlights ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.event-highlights li {
+  font-size: 0.88rem;
+  color: #333;
+  margin-bottom: 6px;
+  transition: transform 0.25s ease;
+}
+
+.event-highlights li:hover {
+  transform: translateX(4px);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 480px) {
+  .special-events-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .event-image {
+    height: 190px;
+  }
+}
+
+/* ================= ACCESSIBILITY ================= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+/* =========================================================
+   LARGE DESKTOP / LAPTOP (≥1200px)
+========================================================= */
+@media (min-width: 1200px) {
+  .special-events-container {
+    max-width: 1200px;
+    gap: 36px;
+  }
+
+  .event-content {
+    padding: 28px 26px 30px;
+  }
+
+  .event-content h2 {
+    font-size: 1.55rem;
+  }
+}
+
+/* =========================================================
+   LAPTOP & SMALL DESKTOP (992px – 1199px)
+========================================================= */
+@media (max-width: 1199px) {
+  .special-events-container {
+    max-width: 1000px;
+    gap: 30px;
+  }
+}
+
+/* =========================================================
+   TABLET (768px – 991px)
+========================================================= */
+@media (max-width: 991px) {
+  .special-events-hero {
+    margin-bottom: 50px;
+  }
+
+  .special-events-hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .special-events-hero p {
+    font-size: 1.05rem;
+  }
+
+  .special-events-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px;
+  }
+
+  .event-image {
+    height: 200px;
+  }
+
+  .event-content h2 {
+    font-size: 1.35rem;
+  }
+}
+
+/* =========================================================
+   LARGE MOBILE (576px – 767px)
+========================================================= */
+@media (max-width: 767px) {
+  .special-events-page {
+    padding: 32px 16px 80px;
+  }
+
+  .special-events-hero {
+    margin-bottom: 44px;
+  }
+
+  .special-events-hero h1 {
+    font-size: 2.1rem;
+  }
+
+  .special-events-hero p {
+    font-size: 1rem;
+  }
+
+  .special-events-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .event-image {
+    height: 190px;
+  }
+
+  .event-content {
+    padding: 22px 20px 24px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE (≤575px)
+========================================================= */
+@media (max-width: 575px) {
+  .special-events-hero h1 {
+    font-size: 1.9rem;
+  }
+
+  .special-events-hero p {
+    font-size: 0.95rem;
+  }
+
+  .event-image {
+    height: 175px;
+  }
+
+  .event-content h2 {
+    font-size: 1.25rem;
+  }
+
+  .event-date,
+  .event-location {
+    font-size: 0.85rem;
+  }
+
+  .event-desc {
+    font-size: 0.9rem;
+  }
+
+  .event-highlights li {
+    font-size: 0.85rem;
+  }
+}

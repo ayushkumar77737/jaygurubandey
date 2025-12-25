@@ -188,7 +188,7 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/program/special')}>
+                <button onClick={() => handleNavClick('/special-events')}>
                   Special Events
                 </button>
               </li>
