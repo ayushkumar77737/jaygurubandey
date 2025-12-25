@@ -126,11 +126,6 @@ const Navbar = () => {
                   Latest Amritvani
                 </button>
               </li>
-              <li>
-                <button onClick={() => handleNavClick('/satsang/video')}>
-                  Video Amritvani
-                </button>
-              </li>
             </ul>
           )}
         </li>
