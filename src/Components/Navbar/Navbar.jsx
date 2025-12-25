@@ -148,7 +148,7 @@ const Navbar = () => {
             <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
               <li>
                 <button onClick={() => handleNavClick('/bhajan')}>
-                  Bhajan List
+                  All Bhajan
                 </button>
               </li>
               <li>
