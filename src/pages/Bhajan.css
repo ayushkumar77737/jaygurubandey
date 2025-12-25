@@ -230,3 +230,56 @@
     width: 90%;
   }
 }
+/* =================== Bhajan Page Animation =================== */
+@keyframes bhajanFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Page animation */
+.bhajan-container {
+  animation: bhajanFadeUp 0.5s ease-out both;
+}
+
+/* Title animation */
+.bhajan-title {
+  animation: bhajanFadeUp 0.45s ease-out both;
+}
+
+/* Card animation */
+.bhajan-card {
+  animation: bhajanFadeUp 0.55s ease-out both;
+}
+
+/* =================== Stagger Effect =================== */
+.bhajan-card:nth-child(1) { animation-delay: 0.05s; }
+.bhajan-card:nth-child(2) { animation-delay: 0.1s; }
+.bhajan-card:nth-child(3) { animation-delay: 0.15s; }
+.bhajan-card:nth-child(4) { animation-delay: 0.2s; }
+.bhajan-card:nth-child(5) { animation-delay: 0.25s; }
+.bhajan-card:nth-child(6) { animation-delay: 0.3s; }
+.bhajan-card:nth-child(7) { animation-delay: 0.35s; }
+.bhajan-card:nth-child(8) { animation-delay: 0.4s; }
+
+/* Pagination animation */
+.pagination {
+  animation: bhajanFadeUp 0.45s ease-out both;
+  animation-delay: 0.2s;
+}
+
+/* =================== Reduce Motion =================== */
+@media (prefers-reduced-motion: reduce) {
+  .bhajan-container,
+  .bhajan-title,
+  .bhajan-card,
+  .pagination {
+    animation: none;
+    transform: none;
+  }
+}
