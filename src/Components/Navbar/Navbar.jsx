@@ -87,8 +87,8 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/about-ashram')}>
-                  About Ashram
+                <button onClick={() => handleNavClick('/ashram-vision')}>
+                  Ashram Vision
                 </button>
               </li>
               <li>

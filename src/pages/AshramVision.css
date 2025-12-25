@@ -1,0 +1,195 @@
+/* ===============================
+   ASHRAM VISION – BLOG THEMED
+================================ */
+
+.av-page {
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  color: #333;
+
+  /* 🔁 SAME AS BLOG BACKGROUND */
+  background: linear-gradient(135deg, #fffdf7, #f8e9f0, #fcefe9);
+  animation: fadeIn 1s ease-in-out;
+  padding: 80px 20px;
+  box-sizing: border-box;
+}
+
+/* ===== HERO ===== */
+.av-hero {
+  margin-bottom: 50px;
+  animation: fadeUp 0.8s ease;
+}
+
+.av-badge {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: rgba(139, 0, 0, 0.1);
+  border: 1px solid rgba(139, 0, 0, 0.3);
+  color: #8b0000;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+.av-title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 900;
+  color: #8b0000;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+}
+
+.av-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: #555;
+  font-style: italic;
+}
+
+/* ===== GURUJI ===== */
+.av-guruji {
+  margin: 40px 0;
+  animation: fadeUp 1s ease;
+}
+
+.av-guruji-frame {
+  width: 170px;
+  height: 170px;
+  margin: auto;
+  padding: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b0000, #b30000);
+  box-shadow: 0 0 25px rgba(139, 0, 0, 0.35);
+}
+
+.av-guruji-frame img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+}
+
+.av-guruji-text {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #666;
+}
+
+/* ===== MAIN CARD ===== */
+.av-container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.av-card {
+  background: rgba(255,255,255,0.95);
+  border-radius: 18px;
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.12);
+  border: 1px solid rgba(139,0,0,0.15);
+  padding: 40px;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.av-card p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* ===== VALUES (BLOG GRID STYLE) ===== */
+.av-values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 35px;
+  margin-top: 55px;
+}
+
+.av-value-card {
+  background: rgba(255,255,255,0.95);
+  border-radius: 18px;
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.12);
+  border: 1px solid rgba(139,0,0,0.15);
+  padding: 28px 22px;
+  transition: 0.35s ease;
+}
+
+.av-value-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 14px 28px rgba(0,0,0,0.22);
+}
+
+.av-value-card span {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.av-value-card h3 {
+  font-size: 1.2rem;
+  color: #8b0000;
+  margin-bottom: 8px;
+}
+
+.av-value-card p {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* ===== QUOTE ===== */
+.av-quote {
+  margin-top: 60px;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* ===== SAME BLOG ANIMATIONS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .av-card {
+    padding: 28px;
+  }
+  .av-card p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .av-title {
+    font-size: 1.6rem;
+  }
+  .av-card {
+    padding: 22px;
+  }
+  .av-values {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+/* ===== TITLE LINE – SAME COLOR AS TEXT ===== */
+.av-title-line {
+  width: 100px;
+  height: 5px;
+  margin: 10px auto 18px;
+  border-radius: 999px;
+  background: #8b0000; /* EXACT SAME AS TITLE */
+  box-shadow: 0 4px 10px rgba(139, 0, 0, 0.35);
+}
+
