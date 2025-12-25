@@ -3,8 +3,8 @@ import "./SpecialEvents.css";
 
 // ✅ Import images from assets
 import guruPurnima from "../assets/photo25.jpg";
-import satsangSamaroh from "../assets/photo25.jpg";
-import mahaShivratri from "../assets/photo25.jpg";
+import satsangSamaroh from "../assets/photo28.jpg";
+import mahaShivratri from "../assets/photo29.jpg";
 
 const events = [
   {
