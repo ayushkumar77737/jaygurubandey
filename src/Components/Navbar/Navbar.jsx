@@ -83,8 +83,8 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/home/announcements')}>
-                  Announcements
+                <button onClick={() => handleNavClick('/dailyschedule')}>
+                  Daily Schedule
                 </button>
               </li>
             </ul>
