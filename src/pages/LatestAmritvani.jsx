@@ -5,17 +5,17 @@ const videos = [
   {
     id: 1,
     title: "Latest Satsang – Vijayawada",
-    embed: "https://www.youtube.com/embed/VIDEO_ID_1",
+    embed: "https://www.youtube.com/embed/su7VYdVdn-M",
   },
   {
     id: 2,
-    title: "Latest Satsang – Live Pravachan",
-    embed: "https://www.youtube.com/embed/VIDEO_ID_2",
+    title: "Latest Satsang – Varanasi",
+    embed: "https://www.youtube.com/embed/InNsbUsqhns",
   },
   {
     id: 3,
     title: "Latest Satsang – Goa",
-    embed: "https://www.youtube.com/embed/VIDEO_ID_3",
+    embed: "https://www.youtube.com/embed/X5LPFy50VdY",
   },
 ];
 
