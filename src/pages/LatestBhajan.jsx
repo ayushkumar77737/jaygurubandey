@@ -5,42 +5,42 @@ const bhajans = [
   {
     id: 1,
     title: "Latest Bhajan – Shri Ram Naam",
-    embed: "https://www.youtube.com/embed/su7VYdVdn-M",
+    embed: "https://www.youtube.com/embed/SXWtAGqBaNE",
   },
   {
     id: 2,
     title: "Latest Bhajan – Krishna Leela",
-    embed: "https://www.youtube.com/embed/InNsbUsqhns",
+    embed: "https://www.youtube.com/embed/QvsZ4SVZhE8",
   },
   {
     id: 3,
     title: "Latest Bhajan – Hanuman Chalisa",
-    embed: "https://www.youtube.com/embed/X5LPFy50VdY",
+    embed: "https://www.youtube.com/embed/DXhUMvBtc6o",
   },
   {
     id: 4,
     title: "Latest Bhajan – Shiv Bhakti",
-    embed: "https://www.youtube.com/embed/su7VYdVdn-M",
+    embed: "https://www.youtube.com/embed/F8CcmJ77jYk",
   },
   {
     id: 5,
     title: "Latest Bhajan – Devi Stuti",
-    embed: "https://www.youtube.com/embed/InNsbUsqhns",
+    embed: "https://www.youtube.com/embed/uSnPVCL2CzI",
   },
   {
     id: 6,
     title: "Latest Bhajan – Guru Vandana",
-    embed: "https://www.youtube.com/embed/X5LPFy50VdY",
+    embed: "https://www.youtube.com/embed/zB9IL7md6iI",
   },
   {
     id: 7,
     title: "Latest Bhajan – Ram Bhajan",
-    embed: "https://www.youtube.com/embed/su7VYdVdn-M",
+    embed: "https://www.youtube.com/embed/tKc0pbP0aSc",
   },
   {
     id: 8,
     title: "Latest Bhajan – Krishna Bhajan",
-    embed: "https://www.youtube.com/embed/InNsbUsqhns",
+    embed: "https://www.youtube.com/embed/MjVr70JW2gA",
   },
 ];
 
