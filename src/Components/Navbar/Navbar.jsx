@@ -56,14 +56,46 @@ const Navbar = () => {
 
       {/* Nav Links */}
       <ul className={mobileMenu ? 'nav-links' : 'nav-links hide-mobile-menu'}>
-        <li>
+        {/* ✅ HOME DROPDOWN */}
+        <li className='dropdown'>
           <button
-            onClick={() => handleNavClick('/')}
-            className={linkClass({ isActive: location.pathname === '/' })}
+            className={linkClass({
+              isActive: location.pathname === '/' || location.pathname.startsWith('/home')
+            })}
+            onClick={(e) => {
+              e.stopPropagation()
+              toggleDropdown('home')
+            }}
           >
-            Home
+            Home ▾
           </button>
+
+          {openDropdown === 'home' && (
+            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
+              <li>
+                <button onClick={() => handleNavClick('/')}>
+                  Main Home
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/home/intro')}>
+                  Introduction
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/home/latest-updates')}>
+                  Latest Updates
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/home/announcements')}>
+                  Announcements
+                </button>
+              </li>
+            </ul>
+          )}
         </li>
+
 
         {/* ✅ ABOUT DROPDOWN */}
         <li className='dropdown'>
