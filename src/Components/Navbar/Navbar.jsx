@@ -379,7 +379,7 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/contribute/faq')}>
+                <button onClick={() => handleNavClick('/contribute-faq')}>
                   Contribution FAQ
                 </button>
               </li>

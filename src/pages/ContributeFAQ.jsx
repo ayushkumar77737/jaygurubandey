@@ -1,0 +1,69 @@
+import React, { useEffect, useState } from "react";
+import "./ContributeFAQ.css";
+
+const ContributeFAQ = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  const faqs = [
+    {
+      question: "Why should I contribute to the Ashram?",
+      answer:
+        "Your contribution supports spiritual activities, seva programs, annadanam, and the daily functioning of the Ashram.",
+    },
+    {
+      question: "How can I contribute?",
+      answer:
+        "You can contribute through online payment, QR code scan, or by making a direct contribution at the Ashram.",
+    },
+    {
+      question: "Is online payment safe?",
+      answer:
+        "Yes. All online contributions are processed through secure and trusted payment methods to ensure safety.",
+    },
+    {
+      question: "Can I contribute any amount?",
+      answer:
+        "Yes. There is no fixed amount. Every contribution, big or small, is accepted with gratitude and devotion.",
+    },
+    {
+      question: "Will I receive confirmation after contributing?",
+      answer:
+        "Yes. You will receive a confirmation or acknowledgment after a successful contribution.",
+    },
+  ];
+
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <div className="faq-page">
+      <h2 className="faq-title">Contribute – Faq's</h2>
+
+      <div className="faq-container">
+        {faqs.map((faq, index) => (
+          <div
+            key={index}
+            className={`faq-item ${openIndex === index ? "open" : ""}`}
+            onClick={() => toggleFAQ(index)}
+          >
+            <div className="faq-question">
+              <span>{faq.question}</span>
+              <span className="faq-icon">
+                {openIndex === index ? "–" : "＋"}
+              </span>
+            </div>
+
+            <div className="faq-answer">{faq.answer}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default ContributeFAQ;
