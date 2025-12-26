@@ -219,6 +219,11 @@ const Navbar = () => {
                   Special Events
                 </button>
               </li>
+              <li>
+                <button onClick={() => handleNavClick('/important-dates')}>
+                  Important Dates
+                </button>
+              </li>
             </ul>
           )}
         </li>
