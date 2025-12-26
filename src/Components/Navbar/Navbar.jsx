@@ -183,6 +183,16 @@ const Navbar = () => {
                   Latest Bhajan
                 </button>
               </li>
+              <li>
+                <button onClick={() => handleNavClick('/satguru-chalisa')}>
+                  Satguru Chalisa
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/satguru-arti')}>
+                  Satguru Arti
+                </button>
+              </li>
             </ul>
           )}
         </li>
