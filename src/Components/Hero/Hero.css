@@ -80,7 +80,7 @@ html, body {
   color: #fff;
 }
 
-/* Buttons */
+/* ===== Global Buttons (USED IN NAVBAR – KEEP) ===== */
 .btn {
   font-size: clamp(14px, 2.5vw, 18px);
   padding: 10px 22px;
@@ -120,17 +120,16 @@ html, body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ✅ Only text animates in Hero */
 .hero-text h2,
 .hero-text h1,
-.hero-text p,
-.hero-text .btn {
+.hero-text p {
   opacity: 1;
 }
 
 .hero.animate-once h2,
 .hero.animate-once h1,
-.hero.animate-once p,
-.hero.animate-once .btn {
+.hero.animate-once p {
   opacity: 0;
   animation: fadeSlideUp 1s ease-out forwards;
 }
@@ -138,7 +137,6 @@ html, body {
 .hero.animate-once h2 { animation-delay: 0.2s; }
 .hero.animate-once h1 { animation-delay: 0.4s; }
 .hero.animate-once p  { animation-delay: 0.6s; }
-.hero.animate-once .btn { animation-delay: 0.8s; }
 
 /* Cursor */
 .cursor {
@@ -165,6 +163,7 @@ html, body {
   .hero-text h2 { font-size: clamp(20px, 5vw, 32px); }
   .hero-text h1 { font-size: clamp(24px, 6vw, 36px); }
   .hero-text p  { font-size: clamp(12px, 2.5vw, 16px); }
+
   .btn {
     padding: 8px 18px;
     font-size: clamp(12px, 2.5vw, 16px);

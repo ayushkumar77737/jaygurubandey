@@ -19,7 +19,6 @@ const Hero = () => {
   const images = [bio, hero1, hero2, photo1, photo6, photo7, photo8];
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // ✅ Check sessionStorage before rendering (prevents flash)
   const alreadyShown = sessionStorage.getItem("hasShownLoader");
   const [loading, setLoading] = useState(!alreadyShown);
 
@@ -34,7 +33,6 @@ const Hero = () => {
     }
   }, [alreadyShown]);
 
-  // ✅ Preload background images
   useEffect(() => {
     images.forEach((src) => {
       const img = new Image();
@@ -42,8 +40,9 @@ const Hero = () => {
     });
   }, [images]);
 
-  // ✅ Typing text effect
-  const fullText = `Param Sant Swami Jai Gurubande Ji Maharaj\nLet’s Move Towards God And Understand Sanatan Dharma.\nIt’s a spiritual and philosophical message encouraging people to seek divine connection and explore the essence of Sanatan Dharma.`;
+  const fullText = `Param Sant Swami Jai Gurubande Ji Maharaj
+Let’s Move Towards God And Understand Sanatan Dharma.
+It’s a spiritual and philosophical message encouraging people to seek divine connection and explore the essence of Sanatan Dharma.`;
 
   const [displayedText, setDisplayedText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
@@ -71,12 +70,8 @@ const Hero = () => {
     return () => clearTimeout(timeout);
   }, [charIndex, fullText]);
 
-  const handleChatClick = () => navigate("/chat");
-  const handleAnnouncementClick = () => navigate("/important-dates");
-
   const textLines = displayedText.split("\n");
 
-  // ✅ Show loading screen only when page first opens in this tab
   if (loading) {
     return <LoadingPage />;
   }
@@ -113,14 +108,6 @@ const Hero = () => {
               {textLines[2]} <span className="cursor"></span>
             </p>
           )}
-
-          <button className="btn" onClick={handleChatClick}>
-            Chat With Us <span className="arrow">→</span>
-          </button>
-
-          <button className="btn announcement-btn" onClick={handleAnnouncementClick}>
-            Important Dates <span className="arrow">→</span>
-          </button>
         </div>
       </div>
       <ScrollingText />
