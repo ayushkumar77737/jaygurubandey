@@ -369,16 +369,6 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/contribute/volunteer')}>
-                  Become a Volunteer
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/contribute/sponsor')}>
-                  Sponsor a Program
-                </button>
-              </li>
-              <li>
                 <button onClick={() => handleNavClick('/contribute-faq')}>
                   Contribution FAQ
                 </button>
