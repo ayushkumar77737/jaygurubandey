@@ -148,3 +148,81 @@
   opacity: 0.45;
   cursor: not-allowed;
 }
+@media (min-width: 1200px) {
+  .bhajan-title {
+    font-size: 2.8rem;
+  }
+
+  .bhajan-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .bhajan-grid {
+    gap: 34px;
+  }
+}
+@media (max-width: 992px) {
+  .latest-bhajan {
+    padding: 60px 16px 80px;
+  }
+
+  .bhajan-title {
+    font-size: 2.2rem;
+  }
+
+  .bhajan-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 36px;
+  }
+
+  .bhajan-grid {
+    gap: 26px;
+  }
+
+  .bhajan-card {
+    max-width: 360px;
+  }
+}
+@media (max-width: 576px) {
+  .latest-bhajan {
+    padding: 50px 14px 70px;
+  }
+
+  .bhajan-title {
+    font-size: 1.9rem;
+    line-height: 1.2;
+    display: flex;              /* ✅ fixes heading wrapping */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .bhajan-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+  }
+
+  .bhajan-grid {
+    grid-template-columns: 1fr; /* ✅ single column */
+    gap: 22px;
+  }
+
+  .bhajan-card {
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .bhajan-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .bhajan-btn {
+    padding: 9px 20px;
+    font-size: 0.9rem;
+  }
+
+  .bhajan-pagination {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
