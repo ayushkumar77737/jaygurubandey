@@ -333,13 +333,8 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/contact/location')}>
-                  Location & Map
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/contact/support')}>
-                  Support / Help
+                <button onClick={() => handleNavClick('/chat')}>
+                  Chat With Us
                 </button>
               </li>
               <li>
