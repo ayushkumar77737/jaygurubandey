@@ -277,13 +277,13 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/blog/testimonies')}>
+                <button onClick={() => handleNavClick('/testimonies')}>
                   Testimonies
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/blog/articles')}>
-                  Articles
+                <button onClick={() => handleNavClick('/spotlight')}>
+                  Spotlight
                 </button>
               </li>
             </ul>
