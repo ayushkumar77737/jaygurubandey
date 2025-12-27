@@ -136,22 +136,7 @@ nav ul li a:hover {
   transition: all 0.3s ease;
 }
 
-/* Hamburger animation when open */
-.menu.open {
-  transform: translateX(8px); /* move slightly right when menu open */
-}
 
-.menu.open span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.menu.open span:nth-child(2) {
-  opacity: 0;
-}
-
-.menu.open span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
 
 /* ========================= Mobile / Tablet View ========================= */
 @media (max-width: 1286px) {
@@ -355,4 +340,8 @@ nav {
   inset: 0;
   background: rgba(0,0,0,0.65);
   z-index: 14;
+}
+.menu.open {
+  opacity: 0;
+  pointer-events: none;
 }
