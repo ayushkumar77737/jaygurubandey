@@ -272,11 +272,6 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/blog/latest')}>
-                  Latest Posts
-                </button>
-              </li>
-              <li>
                 <button onClick={() => handleNavClick('/testimonies')}>
                   Testimonies
                 </button>
