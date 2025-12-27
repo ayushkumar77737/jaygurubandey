@@ -309,17 +309,12 @@ const Navbar = () => {
               </li>
               <li>
                 <button onClick={() => handleNavClick('/gallery/photos')}>
-                  Photo Gallery
+                  Ashram Life
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/gallery/videos')}>
-                  Video Gallery
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/gallery/events')}>
-                  Event Gallery
+                <button onClick={() => handleNavClick('/divine')}>
+                  Divine Moments
                 </button>
               </li>
             </ul>
