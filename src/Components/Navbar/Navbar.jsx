@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './Navbar.css'
 import logo from '../../assets/logo.jpg.png'
 import circle from '../../assets/circle.png'
@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
   const [openDropdown, setOpenDropdown] = useState(null)
-
+  const navRef = useRef(null)
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -35,16 +35,27 @@ const Navbar = () => {
   }
 
   const handleRefresh = () => window.location.reload()
-
-  /* ✅ Close dropdowns when clicking outside */
   useEffect(() => {
-    const closeDropdowns = () => setOpenDropdown(null)
-    window.addEventListener('click', closeDropdowns)
-    return () => window.removeEventListener('click', closeDropdowns)
-  }, [])
+    if (!openDropdown) return
+
+    const handleOutsideClick = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setOpenDropdown(null)
+      }
+    }
+
+    document.addEventListener('mousedown', handleOutsideClick)
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick)
+    }
+  }, [openDropdown])
 
   return (
-    <nav className='container'>
+    <nav className='container' ref={navRef}>
+      {mobileMenu && (
+        <div className="nav-overlay" onClick={closeMenu}></div>
+      )}
       {/* Logo */}
       <img
         src={logo}

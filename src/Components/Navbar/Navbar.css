@@ -350,3 +350,9 @@ nav {
 .dropdown > button::after {
   font-size: 10px;
 }
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 14;
+}
