@@ -308,7 +308,7 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/gallery/photos')}>
+                <button onClick={() => handleNavClick('/ashram-life')}>
                   Ashram Life
                 </button>
               </li>

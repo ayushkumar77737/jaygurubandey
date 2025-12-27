@@ -35,7 +35,7 @@ import DailySatsang from './pages/DailySatsang.jsx'
 import StayConnected from './pages/StayConnected.jsx'
 import NotFound from './pages/NotFound.jsx'
 import AshramRules from './pages/Beforeyouvisit.jsx'
-import DivineMoments from "./pages/DivineMoments.jsx";
+import DivineMoments from "./pages/DivineMoments.jsx"
 import QuickStart from './pages/QuickStart.jsx'
 import AshramVision from './pages/AshramVision.jsx'
 import LatestAmritvani from './pages/LatestAmritvani.jsx'
@@ -43,6 +43,7 @@ import LatestBhajan from './pages/LatestBhajan.jsx'
 import UpcomingPrograms from './pages/UpcomingPrograms.jsx'
 import SpecialEvents from './pages/SpecialEvents.jsx'
 import ContributeFAQ from './pages/ContributeFAQ.jsx'
+import AshramLife from './pages/AshramLife.jsx'
 
 const router = createBrowserRouter([
   {
@@ -88,6 +89,7 @@ const router = createBrowserRouter([
       { path: 'upcoming-programs', element: <UpcomingPrograms /> },
       { path: 'special-events', element: <SpecialEvents /> },
       { path: 'contribute-faq', element: <ContributeFAQ /> },
+      { path: 'ashram-life', element: <AshramLife /> },
     ],
   },
   { path: '*', element: <NotFound /> },
