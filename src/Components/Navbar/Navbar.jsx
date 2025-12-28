@@ -169,6 +169,11 @@ const Navbar = () => {
                   Latest Amritvani
                 </button>
               </li>
+              <li>
+                <button onClick={() => handleNavClick('/daily-teachings')}>
+                  Daily Teachings
+                </button>
+              </li>
             </ul>
           )}
         </li>
