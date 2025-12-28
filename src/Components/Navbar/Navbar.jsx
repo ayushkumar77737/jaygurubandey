@@ -98,6 +98,11 @@ const Navbar = () => {
                   Daily Schedule
                 </button>
               </li>
+              <li>
+                <button onClick={() => handleNavClick('/live-now')}>
+                  Live Now
+                </button>
+              </li>
             </ul>
           )}
         </li>

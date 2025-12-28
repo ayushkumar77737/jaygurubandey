@@ -44,6 +44,7 @@ import UpcomingPrograms from './pages/UpcomingPrograms.jsx'
 import SpecialEvents from './pages/SpecialEvents.jsx'
 import ContributeFAQ from './pages/ContributeFAQ.jsx'
 import AshramLife from './pages/AshramLife.jsx'
+import LiveNow from './pages/LiveNow.jsx'
 
 const router = createBrowserRouter([
   {
@@ -90,6 +91,7 @@ const router = createBrowserRouter([
       { path: 'special-events', element: <SpecialEvents /> },
       { path: 'contribute-faq', element: <ContributeFAQ /> },
       { path: 'ashram-life', element: <AshramLife /> },
+      { path: 'live-now', element: <LiveNow /> },
     ],
   },
   { path: '*', element: <NotFound /> },

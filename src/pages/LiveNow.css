@@ -1,0 +1,195 @@
+/* ===============================
+   LIVE NOW PAGE (SCOPED)
+================================ */
+
+/* ===== Page Background ===== */
+.live-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fff5e6, #ffeef3, #f6f0ff);
+  font-family: "Poppins", system-ui, sans-serif;
+  padding: 2rem;
+}
+
+/* ===== Card ===== */
+.live-page .live-card {
+  width: 100%;
+  max-width: 820px;
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 2.5rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+  text-align: center;
+  animation: fadeUp 0.6s ease;
+}
+
+/* ===== Live Indicator ===== */
+.live-page .live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #b71c1c, #e53935);
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+
+.live-page .live-indicator .dot {
+  width: 10px;
+  height: 10px;
+  background: red;
+  border-radius: 50%;
+  animation: pulse 1.4s infinite;
+}
+
+/* ===== Text ===== */
+.live-page .live-card h1 {
+  color: #b71c1c;
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.live-page .live-card p {
+  color: #555;
+  margin-bottom: 1.6rem;
+  font-size: 1.05rem;
+}
+
+/* ===== Video ===== */
+.live-page .video-box {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 1.8rem;
+}
+
+.live-page .video-box iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ===== Buttons ===== */
+.live-page .join-btn,
+.live-page .schedule-btn {
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.live-page .join-btn {
+  background: linear-gradient(135deg, #b71c1c, #ff5252);
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(183, 28, 28, 0.35);
+}
+
+.live-page .join-btn:hover {
+  transform: translateY(-2px);
+}
+
+.live-page .schedule-btn {
+  background: #f3f3f3;
+  color: #333;
+}
+
+.live-page .schedule-btn:hover {
+  background: #e0e0e0;
+}
+
+/* ===== Next Info ===== */
+.live-page .next-info {
+  background: #fff3cd;
+  padding: 12px 18px;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  color: #856404;
+}
+
+/* ===== Google Meet Card ===== */
+.live-page .meet-box {
+  background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+  border-radius: 16px;
+  padding: 2.2rem;
+  margin-bottom: 1.8rem;
+  text-align: center;
+  box-shadow: inset 0 0 0 1px rgba(26, 115, 232, 0.15);
+}
+
+.live-page .meet-box p {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.live-page .meet-box h2 {
+  color: #1a73e8;
+  font-size: 1.6rem;
+  margin-bottom: 1.4rem;
+  font-weight: 700;
+}
+
+/* ===== Animations ===== */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.6); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===============================
+   RESPONSIVE BREAKPOINTS
+================================ */
+
+/* 📱 Mobile */
+@media (max-width: 767px) {
+  .live-page {
+    padding: 1.2rem;
+  }
+
+  .live-page .live-card {
+    padding: 1.6rem;
+  }
+
+  .live-page .live-card h1 {
+    font-size: 1.45rem;
+  }
+
+  .live-page .join-btn,
+  .live-page .schedule-btn {
+    width: 100%;
+  }
+}
+
+/* 📲 Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .live-page .live-card {
+    max-width: 700px;
+    padding: 2.2rem;
+  }
+
+  .live-page .live-card h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* 💻 Laptop & Desktop */
+@media (min-width: 1024px) {
+  .live-page .live-card {
+    max-width: 820px;
+  }
+}
