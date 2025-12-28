@@ -59,7 +59,7 @@ const LiveNow = () => {
             <p>Next satsang will begin soon</p>
 
             <div className="next-info">
-              <span>🕕 Today at 6:30 PM</span>
+              <span>🕕 Time We Will Let You Know</span>
             </div>
 
             <button className="schedule-btn">View Schedule</button>
