@@ -6,9 +6,26 @@ const Subscribe = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // Show message temporarily & clear input
+  const showMessage = (text) => {
+    setMessage(text);
+    setEmail(""); // always clear input
+
+    setTimeout(() => {
+      setMessage("");
+    }, 3000);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (loading) return;
+
+    // Extra safety email validation
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      showMessage("❌ Please enter a valid email address.");
+      return;
+    }
 
     setLoading(true);
     setMessage("");
@@ -23,14 +40,13 @@ const Subscribe = () => {
       .then((res) => res.text())
       .then((text) => {
         if (text === "Already subscribed") {
-          setMessage("⚠️ This email is already subscribed.");
+          showMessage("⚠️ This email is already subscribed.");
         } else {
-          setMessage("✅ You are successfully subscribed!");
-          setEmail("");
+          showMessage("✅ You are successfully subscribed!");
         }
       })
       .catch(() => {
-        setMessage("❌ Something went wrong. Try again.");
+        showMessage("❌ Something went wrong. Try again.");
       })
       .finally(() => {
         setLoading(false);
@@ -49,7 +65,15 @@ const Subscribe = () => {
             placeholder="Enter your email"
             required
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              // Allow only email-safe characters
+              const value = e.target.value;
+              const filteredValue = value.replace(
+                /[^a-zA-Z0-9@._-]/g,
+                ""
+              );
+              setEmail(filteredValue);
+            }}
             disabled={loading}
           />
 
