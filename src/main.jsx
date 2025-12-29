@@ -46,6 +46,7 @@ import ContributeFAQ from './pages/ContributeFAQ.jsx'
 import AshramLife from './pages/AshramLife.jsx'
 import LiveNow from './pages/LiveNow.jsx'
 import DailyTeachings from "./pages/DailyTeachings.jsx"
+import Subscribe from './pages/Subscribe.jsx'
 
 const router = createBrowserRouter([
   {
@@ -94,6 +95,7 @@ const router = createBrowserRouter([
       { path: 'ashram-life', element: <AshramLife /> },
       { path: 'live-now', element: <LiveNow /> },
       { path: "daily-teachings", element: <DailyTeachings /> },
+      { path: 'subscribe', element: <Subscribe /> },
     ],
   },
   { path: '*', element: <NotFound /> },

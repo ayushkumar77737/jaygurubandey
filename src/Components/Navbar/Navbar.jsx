@@ -363,6 +363,11 @@ const Navbar = () => {
                   Feedback
                 </button>
               </li>
+              <li>
+                <button onClick={() => handleNavClick('/subscribe')}>
+                  Subscribe to Notifications
+                </button>
+              </li>
             </ul>
           )}
         </li>
