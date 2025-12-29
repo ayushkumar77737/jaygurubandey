@@ -40,7 +40,7 @@ const Subscribe = () => {
   return (
     <div className="subscribe-page">
       <div className="subscribe-box">
-        <h2>🔔 Stay Connected</h2>
+        <h2>🔔 Notify Me</h2>
         <p>Get notified whenever we post something new</p>
 
         <form onSubmit={handleSubmit} className="subscribe-form">
