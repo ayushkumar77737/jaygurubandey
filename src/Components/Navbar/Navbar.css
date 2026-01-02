@@ -19,9 +19,10 @@ nav {
   justify-content: space-between;
   position: relative;
   z-index: 10;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
   border-bottom: 2px solid #ff9800;
+  max-width: none;
 }
 
 /* Logo - stays left */
@@ -218,6 +219,13 @@ nav ul li a:hover {
     width: 140px;
     font-size: 14px;
   }
+  nav {
+  padding: 6px 14px;
+}
+
+.nav-right {
+  gap: 8px;
+}
 }
 
 /* ========================= Full 3D Moderate-Speed Flip ========================= */
@@ -344,4 +352,11 @@ nav {
 .menu.open {
   opacity: 0;
   pointer-events: none;
+}
+@media (max-width: 768px) {
+  nav img.logo,
+  .circle-img {
+    animation: none;   /* 🔥 stops shaking/distortion */
+    transform: none;
+  }
 }
