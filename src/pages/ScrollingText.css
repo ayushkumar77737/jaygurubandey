@@ -56,7 +56,7 @@
   }
   .scrolling-text {
     animation: scroll-right 25s linear infinite;
-    text-shadow: 0 0 14px rgba(245,197,66,0.9);
+    text-shadow: 0 0 5px rgba(245,197,66,0.5);
   }
 }
 
@@ -72,7 +72,14 @@
 }
 
 @keyframes goldGlow {
-  0%   { text-shadow: 0 0 6px rgba(245,197,66,0.4); }
-  50%  { text-shadow: 0 0 14px rgba(245,197,66,0.9); }
-  100% { text-shadow: 0 0 6px rgba(245,197,66,0.4); }
+  0% {
+    text-shadow: 0 0 2px rgba(245,197,66,0.25);
+  }
+  50% {
+    text-shadow: 0 0 5px rgba(245,197,66,0.5);
+  }
+  100% {
+    text-shadow: 0 0 2px rgba(245,197,66,0.25);
+  }
 }
+
