@@ -120,19 +120,22 @@ const DivineMoments = () => {
                             <label htmlFor="dm-month">Month</label>
                             <select
                                 id="dm-month"
-                                value={selectedMonth}
+                                value={selectedMonth || ""}
                                 onChange={handleMonthChange}
                                 disabled={!selectedYear}
                             >
-                                <option value="">
-                                    {selectedYear ? "Select Month" : "Select year first"}
+                                {/* Placeholder: visible initially, NOT in dropdown */}
+                                <option value="" disabled hidden>
+                                    Select Month
                                 </option>
+
                                 {monthsForYear.map((m) => (
                                     <option key={m} value={m}>
                                         {m}
                                     </option>
                                 ))}
                             </select>
+
                         </div>
                     </div>
                 </div>
