@@ -1,17 +1,21 @@
+/* ========================= Announcement Bar ========================= */
 .announcement-container {
-  background: #fff4d1;   /* Light yellow background */
-  color: #8b0000;        /* Deep red text */
-  font-weight: bold;
+  background: linear-gradient(90deg, #0a1a2f, #020b1a); /* navbar match */
+  color: #f5c542;              /* divine gold text */
+  font-weight: 600;
   font-size: 16px;
   padding: 10px 0;
   overflow: hidden;
-  border-top: 2px solid #d19a00;   /* Goldish top border */
-  border-bottom: 2px solid #d19a00;/* Goldish bottom border */
   white-space: nowrap;
   position: relative;
+
+  border-top: 1.5px solid #f5c542;
+  border-bottom: 1.5px solid #f5c542;
+
+  box-shadow: inset 0 -1px 6px rgba(245, 197, 66, 0.25);
 }
 
-/* Scrolling text */
+/* ========================= Scrolling Text ========================= */
 .announcement-text {
   display: inline-block;
   padding-left: 100%;
@@ -19,7 +23,7 @@
   white-space: nowrap;
 }
 
-/* Scroll keyframes */
+/* ========================= Scroll Animation ========================= */
 @keyframes scroll-right {
   0% {
     transform: translateX(-100%);
@@ -34,11 +38,11 @@
 /* Medium screens */
 @media (max-width: 1286px) {
   .announcement-container {
-    font-size: 14px;      /* Slightly smaller font */
+    font-size: 14px;
     padding: 8px 0;
   }
   .announcement-text {
-    animation: scroll-right 30s linear infinite; /* Slower for smaller screens */
+    animation: scroll-right 30s linear infinite;
   }
 }
 
@@ -49,7 +53,7 @@
     padding: 6px 0;
   }
   .announcement-text {
-    animation: scroll-right 35s linear infinite; /* Slower for narrow screens */
+    animation: scroll-right 35s linear infinite;
   }
 }
 
@@ -60,6 +64,16 @@
     padding: 5px 0;
   }
   .announcement-text {
-    animation: scroll-right 40s linear infinite; /* Slowest for very small screens */
+    animation: scroll-right 40s linear infinite;
   }
+}
+
+@keyframes goldGlow {
+  0% { text-shadow: 0 0 6px rgba(245,197,66,0.4); }
+  50% { text-shadow: 0 0 14px rgba(245,197,66,0.9); }
+  100% { text-shadow: 0 0 6px rgba(245,197,66,0.4); }
+}
+
+.announcement-text {
+  animation: scroll-right 25s linear infinite, goldGlow 3.5s ease-in-out infinite;
 }
