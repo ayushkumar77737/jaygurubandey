@@ -1,26 +1,31 @@
+/* ========================= Scrolling Text Bar ========================= */
 .scrolling-text-container {
   width: 100%;
-  background: #d54410; /* Orange-red background */
-  color: white;
+  background: linear-gradient(90deg, #0a1a2f, #020b1a); /* navbar match */
+  color: #f5c542;              /* divine gold text */
   overflow: hidden;
   position: relative;
   padding: 10px 0;
   font-size: 20px;
-  font-weight: bold;
-  border-top: 2px solid #8b2f0b;
-  border-bottom: 2px solid #8b2f0b;
+  font-weight: 600;
   white-space: nowrap;
+
+  border-top: 1.5px solid #f5c542;
+  border-bottom: 1.5px solid #f5c542;
+
+  box-shadow: inset 0 -1px 6px rgba(245, 197, 66, 0.25);
 }
 
-/* Scrolling text (same behavior as announcement bar) */
+/* ========================= Scrolling Text ========================= */
 .scrolling-text {
   display: inline-block;
   padding-left: 100%;
-  animation: scroll-right 15s linear infinite;   /* ⬅️ FASTER */
+  animation: scroll-right 15s linear infinite,
+           goldGlow 3.5s ease-in-out infinite; /* SAME SPEED */
   white-space: nowrap;
 }
 
-/* Scroll keyframes (LEFT → RIGHT) */
+/* ========================= Scroll Keyframes ========================= */
 @keyframes scroll-right {
   0% {
     transform: translateX(-100%);
@@ -39,7 +44,7 @@
     padding: 8px 0;
   }
   .scrolling-text {
-    animation: scroll-right 20s linear infinite;  /* ⬅️ Faster */
+    animation: scroll-right 20s linear infinite;
   }
 }
 
@@ -50,7 +55,7 @@
     padding: 6px 0;
   }
   .scrolling-text {
-    animation: scroll-right 25s linear infinite;  /* ⬅️ Faster */
+    animation: scroll-right 25s linear infinite;
   }
 }
 
@@ -61,6 +66,12 @@
     padding: 5px 0;
   }
   .scrolling-text {
-    animation: scroll-right 30s linear infinite;  /* ⬅️ Faster */
+    animation: scroll-right 30s linear infinite;
   }
+}
+
+@keyframes goldGlow {
+  0%   { text-shadow: 0 0 6px rgba(245,197,66,0.4); }
+  50%  { text-shadow: 0 0 14px rgba(245,197,66,0.9); }
+  100% { text-shadow: 0 0 6px rgba(245,197,66,0.4); }
 }
