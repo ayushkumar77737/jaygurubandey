@@ -1,12 +1,14 @@
 /* ================= FOOTER BASE ================= */
 .footer {
-  background: linear-gradient(90deg, #1a1a1a, #000); /* matches navbar */
-  color: #fff;
+  background: linear-gradient(90deg, #0a1a2f, #020b1a); /* navbar match */
+  color: #ffffff;
   padding: 16px 0;
   text-align: center;
   width: 100%;
   box-sizing: border-box;
-  border-top: 2px solid #ff9800; /* orange border like navbar */
+
+  border-top: 2px solid #f5c542;
+  box-shadow: inset 0 1px 6px rgba(245,197,66,0.25);
 }
 
 .footer-content {
@@ -20,10 +22,10 @@
 /* ================= FOOTER BOTTOM ================= */
 .footer-bottom {
   display: flex;
-  flex-direction: column; /* stack copyright and buttons vertically */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 8px; /* vertical space between copyright and buttons */
+  gap: 8px;
   text-align: center;
 }
 
@@ -31,28 +33,30 @@
   font-size: 14px;
   margin: 0;
   line-height: 1.4;
+  color: #e6e6e6;
 }
 
+/* Footer links */
 .footer-bottom .privacy-link {
-  color: #fff;
+  color: #f5c542;
   text-decoration: none;
   font-size: 15px;
   font-weight: 500;
-  transition: color 0.3s;
+  transition: all 0.3s ease;
   position: relative;
   display: inline-block;
-  /* ✅ Added pointer cursor */
   cursor: pointer;
 }
 
 .footer-bottom .privacy-link:not(:first-child)::before {
   content: "|";
   margin: 0 8px;
-  color: #aaa;
+  color: rgba(245,197,66,0.5);
 }
 
 .footer-bottom .privacy-link:hover {
-  color: #ff9800; /* orange hover like navbar */
+  color: #ffb703;
+  text-shadow: 0 0 8px rgba(245,197,66,0.7);
 }
 
 /* ================= SOCIAL LINKS ================= */
@@ -72,12 +76,12 @@
   height: 40px;
   border-radius: 50%;
   font-size: 20px;
-  color: #fff;
+  color: #ffffff;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 
-/* Social brand colors */
+/* Brand colors kept (best practice) */
 .social-links a.facebook {
   background: #1877f2;
 }
@@ -96,26 +100,20 @@
 
 .social-links a:hover {
   transform: scale(1.2);
-  box-shadow: 0 6px 10px rgba(0,0,0,0.45);
+  box-shadow: 0 0 14px rgba(245,197,66,0.6);
   filter: brightness(1.15);
 }
 
 /* ================= RESPONSIVE DESIGN ================= */
 
-/* Tablets (max-width: 768px) */
+/* Tablets */
 @media (max-width: 768px) {
   .footer-content {
     padding: 0 12px;
   }
 
-  .footer-bottom {
-    flex-direction: column;
-    gap: 8px;
-  }
-
   .footer-bottom p {
     font-size: 13px;
-    text-align: center;
   }
 
   .footer-bottom .privacy-link {
@@ -134,14 +132,10 @@
   }
 }
 
-/* Mobile phones (max-width: 480px) */
+/* Mobile phones */
 @media (max-width: 480px) {
   .footer-content {
     gap: 10px;
-  }
-
-  .footer-bottom {
-    gap: 6px;
   }
 
   .footer-bottom p {
@@ -150,10 +144,6 @@
 
   .footer-bottom .privacy-link {
     font-size: 13px;
-  }
-
-  .footer-bottom .privacy-link::before {
-    margin: 0 6px;
   }
 
   .social-links {
@@ -167,7 +157,7 @@
   }
 }
 
-/* Extra small devices (max-width: 320px) */
+/* Extra small devices */
 @media (max-width: 320px) {
   .footer-bottom p {
     font-size: 11px;
