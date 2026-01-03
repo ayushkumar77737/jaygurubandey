@@ -22,7 +22,7 @@
   padding-left: 100%;
   animation: scroll-right 15s linear infinite,
            goldGlow 3.5s ease-in-out infinite; /* SAME SPEED */
-  white-space: nowrap;
+  will-change: transform, text-shadow;
 }
 
 /* ========================= Scroll Keyframes ========================= */
@@ -56,6 +56,7 @@
   }
   .scrolling-text {
     animation: scroll-right 25s linear infinite;
+    text-shadow: 0 0 14px rgba(245,197,66,0.9);
   }
 }
 
