@@ -3,13 +3,13 @@ import "./Subscribe.css";
 import guruji from "../assets/guruji.jpg"; // adjust path if needed
 
 const Subscribe = () => {
-    const [email, setEmail] = useState("");
+    const [number, setNumber] = useState("");
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
 
     const showMessage = (text) => {
         setMessage(text);
-        setEmail("");
+        setNumber("");
         setTimeout(() => setMessage(""), 3000);
     };
 
@@ -17,9 +17,11 @@ const Subscribe = () => {
         e.preventDefault();
         if (loading) return;
 
-        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (!emailRegex.test(email)) {
-            showMessage("❌ Please enter a valid email address.");
+        // ✅ Indian mobile number validation (10 digits, starts with 6–9)
+        const numberRegex = /^[6-9][0-9]{9}$/;
+
+        if (!numberRegex.test(number)) {
+            showMessage("❌ Please enter a valid 10-digit mobile number.");
             return;
         }
 
@@ -29,13 +31,13 @@ const Subscribe = () => {
             "https://script.google.com/macros/s/AKfycbzif_0VWMjd86WRh5d1pnV-z5dZ2YIvOS6jXZw5WebYH9BwO9axds5DtBR-vTHyQUvkJQ/exec",
             {
                 method: "POST",
-                body: new URLSearchParams({ email }),
+                body: new URLSearchParams({ number }),
             }
         )
             .then((res) => res.text())
             .then((text) => {
                 if (text === "Already subscribed") {
-                    showMessage("⚠️ This email is already subscribed.");
+                    showMessage("⚠️ This number is already subscribed.");
                 } else {
                     showMessage("✅ You are successfully subscribed!");
                 }
@@ -56,19 +58,18 @@ const Subscribe = () => {
                 </div>
 
                 <h2>🔔 Notify Me</h2>
-                <p>Get notified whenever we post something new
-
-                </p>
+                <p>Get notified whenever we post something new</p>
 
                 <form onSubmit={handleSubmit} className="subscribe-form">
                     <input
-                        type="email"
-                        placeholder="Enter your email"
+                        type="tel"
+                        placeholder="Enter your mobile number"
                         required
-                        value={email}
+                        value={number}
                         onChange={(e) =>
-                            setEmail(e.target.value.replace(/[^a-zA-Z0-9@._-]/g, ""))
+                            setNumber(e.target.value.replace(/[^0-9]/g, ""))
                         }
+                        maxLength={10}
                         disabled={loading}
                     />
 
