@@ -1,10 +1,13 @@
 /* ================================
-   MAINTENANCE PAGE (ISOLATED)
+   MAINTENANCE PAGE (FIXED & ISOLATED)
    ================================ */
 
 .maintenance-page {
-  min-height: 100vh;
-  width: 100%;
+  position: fixed;
+  inset: 0;                 /* top:0 right:0 bottom:0 left:0 */
+  width: 100vw;
+  height: 100vh;
+
   background: linear-gradient(135deg, #111, #000);
   color: #ffffff;
 
@@ -16,9 +19,11 @@
   text-align: center;
   padding: 24px;
 
-  /* Prevent style bleed */
+  /* Prevent style bleed & scroll */
   box-sizing: border-box;
   isolation: isolate;
+  overflow: hidden;
+  z-index: 99999;
 }
 
 /* ================================
