@@ -1,0 +1,26 @@
+.maintenance-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #111, #000);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.maintenance-page h1 {
+  font-size: 2.3rem;
+  margin-bottom: 10px;
+}
+
+.maintenance-page p {
+  font-size: 1.05rem;
+  opacity: 0.85;
+}
+
+.resume-text {
+  margin-top: 14px;
+  color: #ff9800;
+}
