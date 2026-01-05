@@ -230,3 +230,20 @@
     height: 90px;
   }
 }
+
+/* ================= STACK INPUTS CLEARLY (NUMBER + STATE) ================= */
+
+.subscribe-page .subscribe-form {
+  flex-direction: column;
+  gap: 14px;
+}
+
+.subscribe-page .subscribe-form input,
+.subscribe-page .subscribe-form button {
+  width: 100%;
+}
+
+.subscribe-page .subscribe-form input::placeholder {
+  color: #999;
+  font-weight: 400;
+}

@@ -4,12 +4,14 @@ import guruji from "../assets/guruji.jpg"; // adjust path if needed
 
 const Subscribe = () => {
     const [number, setNumber] = useState("");
+    const [state, setState] = useState("");
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
 
     const showMessage = (text) => {
         setMessage(text);
         setNumber("");
+        setState("");
         setTimeout(() => setMessage(""), 3000);
     };
 
@@ -17,11 +19,19 @@ const Subscribe = () => {
         e.preventDefault();
         if (loading) return;
 
-        // ✅ Indian mobile number validation (10 digits, starts with 6–9)
+        // ✅ Indian mobile number validation
         const numberRegex = /^[6-9][0-9]{9}$/;
+
+        // ✅ State validation (only letters & spaces)
+        const stateRegex = /^[A-Za-z ]{2,}$/;
 
         if (!numberRegex.test(number)) {
             showMessage("❌ Please enter a valid 10-digit mobile number.");
+            return;
+        }
+
+        if (!stateRegex.test(state)) {
+            showMessage("❌ Please enter a valid state name.");
             return;
         }
 
@@ -31,7 +41,10 @@ const Subscribe = () => {
             "https://script.google.com/macros/s/AKfycbzif_0VWMjd86WRh5d1pnV-z5dZ2YIvOS6jXZw5WebYH9BwO9axds5DtBR-vTHyQUvkJQ/exec",
             {
                 method: "POST",
-                body: new URLSearchParams({ number }),
+                body: new URLSearchParams({
+                    number,
+                    state
+                }),
             }
         )
             .then((res) => res.text())
@@ -61,6 +74,7 @@ const Subscribe = () => {
                 <p>Get notified whenever we post something new</p>
 
                 <form onSubmit={handleSubmit} className="subscribe-form">
+                    {/* 📱 Mobile Number */}
                     <input
                         type="tel"
                         placeholder="Enter your mobile number"
@@ -70,6 +84,18 @@ const Subscribe = () => {
                             setNumber(e.target.value.replace(/[^0-9]/g, ""))
                         }
                         maxLength={10}
+                        disabled={loading}
+                    />
+
+                    {/* 🏛 State Name */}
+                    <input
+                        type="text"
+                        placeholder="Enter your state"
+                        required
+                        value={state}
+                        onChange={(e) =>
+                            setState(e.target.value.replace(/[^A-Za-z ]/g, ""))
+                        }
                         disabled={loading}
                     />
 
