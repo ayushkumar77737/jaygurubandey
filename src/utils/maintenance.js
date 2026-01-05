@@ -1,13 +1,16 @@
 export function isMaintenanceTime() {
-    const now = new Date();
+  // 🟢 Always allow site in local development
+  if (import.meta.env.DEV) {
+    return false;
+  }
 
-    // Current time in minutes
-    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+  const now = new Date();
+  const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-    // Maintenance window (24-hour format)
-    const startMinutes = 0 * 60 + 27;  // 12:27 AM
-    const endMinutes = 0 * 60 + 30;  // 12:30 AM
+  // 🔴 PRODUCTION maintenance window
+  const startMinutes = 0 * 60 + 31; // 12:31 AM
+  const endMinutes   = 0 * 60 + 35; // 12:35 AM
 
-    return currentMinutes >= startMinutes &&
-        currentMinutes <= endMinutes;
+  return currentMinutes >= startMinutes &&
+         currentMinutes <= endMinutes;
 }
