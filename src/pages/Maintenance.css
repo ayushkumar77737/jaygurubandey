@@ -1,26 +1,90 @@
+/* ================================
+   MAINTENANCE PAGE (ISOLATED)
+   ================================ */
+
 .maintenance-page {
   min-height: 100vh;
+  width: 100%;
   background: linear-gradient(135deg, #111, #000);
-  color: #fff;
+  color: #ffffff;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   text-align: center;
-  padding: 20px;
+  padding: 24px;
+
+  /* Prevent style bleed */
+  box-sizing: border-box;
+  isolation: isolate;
 }
 
+/* ================================
+   HEADING
+   ================================ */
 .maintenance-page h1 {
-  font-size: 2.3rem;
-  margin-bottom: 10px;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  margin-bottom: 12px;
+  line-height: 1.2;
 }
 
+/* ================================
+   TEXT
+   ================================ */
 .maintenance-page p {
-  font-size: 1.05rem;
-  opacity: 0.85;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  max-width: 520px;
+  opacity: 0.88;
+  line-height: 1.6;
 }
 
-.resume-text {
-  margin-top: 14px;
+/* ================================
+   RESUME TEXT
+   ================================ */
+.maintenance-page .resume-text {
+  margin-top: 16px;
   color: #ff9800;
+  font-size: clamp(0.9rem, 2.2vw, 1rem);
+}
+
+/* ================================
+   MOBILE (≤480px)
+   ================================ */
+@media (max-width: 480px) {
+  .maintenance-page {
+    padding: 20px;
+  }
+
+  .maintenance-page h1 {
+    margin-bottom: 10px;
+  }
+}
+
+/* ================================
+   TABLET (481px – 768px)
+   ================================ */
+@media (min-width: 481px) and (max-width: 768px) {
+  .maintenance-page p {
+    max-width: 460px;
+  }
+}
+
+/* ================================
+   LAPTOP (769px – 1200px)
+   ================================ */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .maintenance-page p {
+    max-width: 540px;
+  }
+}
+
+/* ================================
+   LARGE SCREENS (≥1201px)
+   ================================ */
+@media (min-width: 1201px) {
+  .maintenance-page p {
+    max-width: 600px;
+  }
 }
