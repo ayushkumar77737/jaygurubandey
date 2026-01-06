@@ -27,7 +27,7 @@ const ContributeFAQ = () => {
     {
       question: "Can I contribute any amount?",
       answer:
-        "Yes. There is no fixed amount. Every contribution, big or small, is accepted with gratitude and devotion.",
+        "Yes. Contributions are accepted up to a maximum amount of ₹1,000. Any amount beyond this limit is not permitted. Every contribution within the allowed limit is accepted with gratitude and devotion.",
     },
     {
       question: "Will I receive confirmation after contributing?",
