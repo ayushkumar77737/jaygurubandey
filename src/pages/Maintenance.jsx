@@ -9,7 +9,7 @@ export default function Maintenance() {
         The website will resume shortly.
       </p>
       <p className="resume-text">
-        Please visit again after <strong>12:20 PM</strong>
+        Please visit again after <strong>05:01 AM</strong>
       </p>
     </div>
   );
