@@ -1,17 +1,27 @@
 export function isMaintenanceTime() {
-    // 🟢 Always allow site in local development
-    if (import.meta.env.DEV) {
-        return false;
-    }
+  // 🟢 Always allow site in local development
+  if (import.meta.env.DEV) {
+    return false;
+  }
 
-    const now = new Date();
-    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+  const now = new Date();
+  const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-    // 🔴 PRODUCTION maintenance window
-    const startMinutes = 0 * 60 + 44;  // 12:44 AM
-    const endMinutes = 0 * 60 + 45;  // 12:45 AM
+  // 🔴 PRODUCTION maintenance window
+  const startMinutes = 22 * 60 + 0; // 10:00 PM
+  const endMinutes   = 5 * 60 + 0;  // 5:00 AM
 
+  // ⏱ Maintenance range crosses midnight
+  if (startMinutes > endMinutes) {
+    return (
+      currentMinutes >= startMinutes ||
+      currentMinutes <= endMinutes
+    );
+  }
 
-    return currentMinutes >= startMinutes &&
-        currentMinutes <= endMinutes;
+  // Normal (same-day) range
+  return (
+    currentMinutes >= startMinutes &&
+    currentMinutes <= endMinutes
+  );
 }
