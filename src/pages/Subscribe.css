@@ -247,3 +247,133 @@
   color: #999;
   font-weight: 400;
 }
+
+/* ==================================================
+   SUCCESS POPUP (STATE TELEGRAM JOIN)
+   RESPONSIVE + COLOR ISOLATED
+   ================================================== */
+
+/* 🔒 Local color variables (NO global overlap) */
+.subscribe-page {
+  --popup-bg: #ffffff;
+  --popup-text: #333333;
+  --popup-subtext: #555555;
+  --popup-overlay: rgba(0, 0, 0, 0.65);
+  --popup-telegram: #229ED9;
+  --popup-telegram-hover: #1c8cc3;
+}
+
+/* Overlay */
+.subscribe-page .popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--popup-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 16px; /* prevents edge overflow on small screens */
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Popup Box */
+.subscribe-page .popup-box {
+  background: var(--popup-bg);
+  color: var(--popup-text);
+  width: 100%;
+  max-width: 420px; /* laptop safe */
+  border-radius: 18px;
+  padding: 28px 26px;
+  text-align: center;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
+  animation: fadeUp 0.35s ease-out both;
+}
+
+/* Heading */
+.subscribe-page .popup-box h3 {
+  font-size: 1.45rem;
+  margin-bottom: 8px;
+  color: var(--popup-text);
+}
+
+/* Text */
+.subscribe-page .popup-box p {
+  font-size: 0.95rem;
+  color: var(--popup-subtext);
+  margin-bottom: 18px;
+}
+
+/* Telegram Button */
+.subscribe-page .telegram-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--popup-telegram);
+  color: #ffffff;
+  padding: 12px 22px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 16px;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.subscribe-page .telegram-btn:hover {
+  background: var(--popup-telegram-hover);
+  transform: translateY(-1px);
+}
+
+/* Close Button */
+.subscribe-page .close-btn {
+  background: transparent;
+  border: none;
+  color: #777;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 6px 12px;
+}
+
+/* ==================================================
+   RESPONSIVE BREAKPOINTS
+   ================================================== */
+
+/* 🖥️ Large laptops & desktops */
+@media (min-width: 1200px) {
+  .subscribe-page .popup-box {
+    max-width: 460px;
+    padding: 32px 30px;
+  }
+
+  .subscribe-page .popup-box h3 {
+    font-size: 1.55rem;
+  }
+}
+
+/* 💻 Tablets */
+@media (max-width: 1024px) {
+  .subscribe-page .popup-box {
+    max-width: 420px;
+  }
+}
+
+/* 📱 Mobile */
+@media (max-width: 480px) {
+  .subscribe-page .popup-box {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+
+  .subscribe-page .popup-box h3 {
+    font-size: 1.3rem;
+  }
+
+  .subscribe-page .popup-box p {
+    font-size: 0.9rem;
+  }
+
+  .subscribe-page .telegram-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 0.95rem;
+  }
+}
