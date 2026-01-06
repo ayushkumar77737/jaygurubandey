@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Subscribe.css";
-import guruji from "../assets/guruji.jpg"; // adjust path if needed
+import guruji from "../assets/guruji.jpg";
 
 // 🔗 State → Telegram Group Mapping
 const STATE_TELEGRAM_LINKS = {
@@ -10,6 +10,9 @@ const STATE_TELEGRAM_LINKS = {
     Karnataka: "https://t.me/karnataka_guruji",
     "Tamil Nadu": "https://t.me/tamilnadu_guruji",
 };
+
+// ✅ Allowed states list
+const ALLOWED_STATES = Object.keys(STATE_TELEGRAM_LINKS);
 
 const Subscribe = () => {
     const [number, setNumber] = useState("");
@@ -33,16 +36,23 @@ const Subscribe = () => {
         // ✅ Indian mobile number validation
         const numberRegex = /^[6-9][0-9]{9}$/;
 
-        // ✅ State validation
-        const stateRegex = /^[A-Za-z ]{2,}$/;
-
         if (!numberRegex.test(number)) {
             showMessage("❌ Please enter a valid 10-digit mobile number.");
             return;
         }
 
-        if (!stateRegex.test(state)) {
-            showMessage("❌ Please enter a valid state name.");
+        // ✅ Normalize state input
+        const normalizedState = state.trim();
+
+        // ✅ STRICT state validation (only allowed states)
+        if (!ALLOWED_STATES.includes(normalizedState)) {
+            showMessage(
+                "❌ Please enter a valid state from the allowed list only."
+            );
+            // 🔴 Clear inputs on invalid state
+            setState("");
+            // setNumber(""); // uncomment if you ALSO want to clear number
+            setNumber("");
             return;
         }
 
@@ -54,7 +64,7 @@ const Subscribe = () => {
                 method: "POST",
                 body: new URLSearchParams({
                     number,
-                    state,
+                    state: normalizedState,
                 }),
             }
         )
@@ -66,10 +76,10 @@ const Subscribe = () => {
                     setState("");
                 } else {
                     showMessage("✅ You are successfully subscribed!");
-                    setSubscribedState(state);
+                    setSubscribedState(normalizedState);
                     setShowPopup(true);
 
-                    // reset inputs after success
+                    // reset inputs
                     setNumber("");
                     setState("");
                 }
