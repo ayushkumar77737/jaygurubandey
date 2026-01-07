@@ -2,11 +2,11 @@
    LATEST UPDATES – BLOG THEME
 ================================ */
 
-/* ===== Page Base ===== */
+/* ===== Page Base (same as blog) ===== */
 .latest-updates-page {
   text-align: center;
   padding: 80px 20px;
-  font-family: "Inter", sans-serif; /* 🔥 UPDATED */
+  font-family: "Poppins", sans-serif;
   background: linear-gradient(135deg, #fffdf7, #f8e9f0, #fcefe9);
   min-height: 100vh;
   animation: fadeIn 1s ease-in-out;
@@ -18,21 +18,20 @@
 
 /* ===== Page Title ===== */
 .page-title {
-  font-family: "Playfair Display", serif; /* 🔥 UPDATED */
   font-size: clamp(1.8rem, 4vw, 2.6rem);
-  font-weight: 800;
+  font-weight: 900;
   color: #8b0000;
   margin-bottom: 45px;
-  letter-spacing: 1.2px;
+  letter-spacing: 1px;
   text-shadow: 2px 2px 6px rgba(0,0,0,0.15);
 }
 
 .page-title::after {
   content: "";
   display: block;
-  width: 70px;
+  width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, #8b0000, #ff9800);
+  background: #8b0000;
   margin: 12px auto 0;
   border-radius: 2px;
 }
@@ -71,9 +70,9 @@
   gap: 25px;
 }
 
-/* ===== Update Item ===== */
+/* ===== Update Item (Blog-card style) ===== */
 .update-item {
-  background: rgba(255,255,255,0.96);
+  background: rgba(255,255,255,0.95);
   border-radius: 18px;
   box-shadow: 0px 8px 20px rgba(0,0,0,0.12);
   border: 1px solid rgba(139,0,0,0.15);
@@ -95,29 +94,25 @@
 
 /* ===== Text Styling ===== */
 .update-item h2 {
-  font-family: "Playfair Display", serif; /* 🔥 UPDATED */
-  font-size: 1.28rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 800;
   color: #8b0000;
   margin-bottom: 6px;
 }
 
 .update-date {
   font-size: 0.85rem;
-  font-weight: 600;
-  color: #a24c4c;
+  color: #777;
   margin-bottom: 10px;
-  letter-spacing: 0.4px;
 }
 
 .update-item p {
   font-size: 0.95rem;
-  font-weight: 400;
   color: #444;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
-/* ===== Animations ===== */
+/* ===== Animations (same as blog) ===== */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -129,6 +124,12 @@
 }
 
 /* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .updates-layout {
+    gap: 28px;
+  }
+}
+
 @media (max-width: 768px) {
   .latest-updates-page {
     padding: 60px 15px;
@@ -159,6 +160,10 @@
 
   .update-item {
     padding: 20px;
+  }
+
+  .update-item h2 {
+    font-size: 1.05rem;
   }
 
   .update-item p {
