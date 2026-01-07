@@ -2,27 +2,16 @@ import { useState } from "react";
 import "./Subscribe.css";
 import guruji from "../assets/guruji.jpg";
 
-// 🔗 State → Telegram Group Mapping
-const STATE_TELEGRAM_LINKS = {
-    Telangana: "https://t.me/telangana_guruji",
-    "Andhra Pradesh": "https://t.me/andhra_guruji",
-    Maharashtra: "https://t.me/maharashtra_guruji",
-    Karnataka: "https://t.me/karnataka_guruji",
-    "Tamil Nadu": "https://t.me/tamilnadu_guruji",
-};
-
-// ✅ Allowed states list
-const ALLOWED_STATES = Object.keys(STATE_TELEGRAM_LINKS);
+// ✅ Single Telegram Group Link
+const TELEGRAM_GROUP_LINK = "https://t.me/+5APCSKB6YC85MjRl";
 
 const Subscribe = () => {
     const [number, setNumber] = useState("");
-    const [state, setState] = useState("");
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
 
-    // 🆕 Popup states
+    // 🆕 Popup state
     const [showPopup, setShowPopup] = useState(false);
-    const [subscribedState, setSubscribedState] = useState("");
 
     const showMessage = (text) => {
         setMessage(text);
@@ -41,21 +30,6 @@ const Subscribe = () => {
             return;
         }
 
-        // ✅ Normalize state input
-        const normalizedState = state.trim();
-
-        // ✅ STRICT state validation (only allowed states)
-        if (!ALLOWED_STATES.includes(normalizedState)) {
-            showMessage(
-                "❌ Please enter a valid state from the allowed list only."
-            );
-            // 🔴 Clear inputs on invalid state
-            setState("");
-            // setNumber(""); // uncomment if you ALSO want to clear number
-            setNumber("");
-            return;
-        }
-
         setLoading(true);
 
         fetch(
@@ -64,7 +38,6 @@ const Subscribe = () => {
                 method: "POST",
                 body: new URLSearchParams({
                     number,
-                    state: normalizedState,
                 }),
             }
         )
@@ -73,15 +46,14 @@ const Subscribe = () => {
                 if (text === "Already subscribed") {
                     showMessage("⚠️ This number is already subscribed.");
                     setNumber("");
-                    setState("");
                 } else {
                     showMessage("✅ You are successfully subscribed!");
-                    setSubscribedState(normalizedState);
-                    setShowPopup(true);
-
-                    // reset inputs
                     setNumber("");
-                    setState("");
+
+                    // 🕒 Open popup after 2 seconds
+                    setTimeout(() => {
+                        setShowPopup(true);
+                    }, 2000);
                 }
             })
             .catch(() => {
@@ -115,18 +87,6 @@ const Subscribe = () => {
                         disabled={loading}
                     />
 
-                    {/* 🏛 State Name */}
-                    <input
-                        type="text"
-                        placeholder="Enter your state"
-                        required
-                        value={state}
-                        onChange={(e) =>
-                            setState(e.target.value.replace(/[^A-Za-z ]/g, ""))
-                        }
-                        disabled={loading}
-                    />
-
                     <button type="submit" disabled={loading}>
                         {loading ? "Subscribing..." : "Subscribe"}
                     </button>
@@ -140,21 +100,15 @@ const Subscribe = () => {
                 <div className="popup-overlay">
                     <div className="popup-box">
                         <h3>🙏 Welcome</h3>
-
-                        <p>
-                            You selected <strong>{subscribedState}</strong>
-                        </p>
+                        <p>You are successfully subscribed</p>
 
                         <a
-                            href={
-                                STATE_TELEGRAM_LINKS[subscribedState] ||
-                                "https://t.me/guruji_official"
-                            }
+                            href={TELEGRAM_GROUP_LINK}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="telegram-btn"
                         >
-                            👉 Join {subscribedState} Telegram Group
+                            👉 Join Telegram Group
                         </a>
 
                         <button
