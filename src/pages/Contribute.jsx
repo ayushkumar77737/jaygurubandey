@@ -72,12 +72,21 @@ const Contribute = () => {
       errors.push("❌ This Transaction ID has already been submitted.");
     }
 
-    // If there are errors, show all at once
     if (errors.length > 0) {
-      setMessage(errors.join("\n")); // multiple lines
+      setMessage(errors.join("\n"));
+
+      // 🔥 CLEAR ALL INPUT FIELDS ON ERROR
+      setFormData({
+        name: "",
+        phone: "",
+        amount: "",
+        transactionId: "",
+      });
+
       setTimeout(() => setMessage(""), 5000);
       return;
     }
+
 
     // ✅ Send data to Google Form
     const formDataToSend = new FormData();
