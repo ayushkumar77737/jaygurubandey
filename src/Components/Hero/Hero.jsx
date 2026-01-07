@@ -13,6 +13,13 @@ import photo1 from "../../assets/photo1.jpg";
 import photo6 from "../../assets/photo6.jpg";
 import photo7 from "../../assets/photo7.jpg";
 import photo8 from "../../assets/photo8.jpg";
+import {
+  FaYoutube,
+  FaInstagram,
+  FaFacebook,
+  FaWhatsapp
+} from "react-icons/fa";
+
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -110,6 +117,106 @@ It’s a spiritual and philosophical message encouraging people to seek divine c
           )}
         </div>
       </div>
+      {/* ===== DECORATIVE DIVIDER ===== */}
+      <div className="section-divider" />
+
+      {/* ===== SOCIAL LINKS SECTION START ===== */}
+      <section className="social-section">
+        <div className="social-grid">
+
+          {/* YouTube */}
+          <div className="social-box">
+            <div className="social-title">
+              <FaYoutube className="social-icon youtube" />
+              <span>YouTube Channels</span>
+            </div>
+
+            <ul>
+              <li>
+                <a
+                  href="https://youtube.com/@jaigurubande?feature=shared"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Jai Gurubande
+                </a>
+              </li>
+              <li>
+                <a
+                  href="youtube.com/@jaygurubande1?si=7f0-bxVAZFTx7r-8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Jai Gurubande 3377
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Instagram */}
+          <div className="social-box">
+            <div className="social-title">
+              <FaInstagram className="social-icon instagram" />
+              <span>Instagram</span>
+            </div>
+
+            <ul>
+              <li>
+                <a
+                  href="https://www.instagram.com/jaigurubande__official?igsh=NnIwdnI5cGMxemYy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Jai Gurubande Official
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Facebook */}
+          <div className="social-box">
+            <div className="social-title">
+              <FaFacebook className="social-icon facebook" />
+              <span>Facebook</span>
+            </div>
+
+            <ul>
+              <li>
+                <a
+                  href="https://www.facebook.com/share/g/1AZvFisxcs/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Jai Gurubande
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* WhatsApp */}
+          <div className="social-box">
+            <div className="social-title">
+              <FaWhatsapp className="social-icon whatsapp" />
+              <span>WhatsApp</span>
+            </div>
+
+            <ul>
+              <li>
+                <a
+                  href="https://chat.whatsapp.com/GwdDS530clKJsNc4zkPCyD"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Jai Gurubande
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+      {/* ===== SOCIAL LINKS SECTION END ===== */}
+
       <ScrollingText />
     </div>
   );
