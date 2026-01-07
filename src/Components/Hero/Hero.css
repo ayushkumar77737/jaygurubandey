@@ -378,18 +378,21 @@ html, body {
 
 .section-divider {
   width: 100%;
-  height: 40px;              /* ⬅ reduced */
-  margin: 30px 0 10px;       /* ⬅ less bottom margin */
+  height: 1px;                 /* REAL divider */
+  margin: 50px 0 30px;         /* spacing handled here */
   position: relative;
-  isolation: isolate;
-  background: transparent;   /* ⬅ remove background bleed */
+  background: linear-gradient(
+    to right,
+    transparent,
+    #ddd,
+    transparent
+  );
 }
 
 
 .section-divider::before {
   content: "";
   position: absolute;
-  top: 50%;
   left: 10%;
   width: 80%;
   height: 1px;
@@ -399,16 +402,16 @@ html, body {
     #ddd,
     transparent
   );
-  transform: translateY(-50%);
 }
 
+/* center star */
 .section-divider::after {
   content: "✦";
   position: absolute;
-  top: 50%;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
-  font-size: 18px;
+  font-size: 16px;
   color: #8B0000;
   background: #fff;
   padding: 0 10px;
@@ -483,4 +486,36 @@ html, body {
   max-width: 100%;
   word-break: keep-all;       /* prevents ugly breaks */
   overflow-wrap: break-word;  /* wraps only if needed */
+}
+.section-heading {
+  text-align: center;
+  font-family: "Outfit", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #7a1c1c;
+
+  margin-top: 20px;    /* space from divider */
+  margin-bottom: 40px; /* space before cards */
+
+  background: transparent;
+  line-height: 1.2;
+}
+
+/* decorative underline */
+.section-heading::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 3px;
+  background: #e6bfa3;
+  margin: 12px auto 0;
+  border-radius: 3px;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .section-heading {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
 }
