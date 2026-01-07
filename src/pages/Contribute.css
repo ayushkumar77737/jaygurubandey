@@ -57,7 +57,7 @@
 .contribute-image {
   width: 100%;
   max-width: 280px;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 14px;
   border: 3px solid rgba(255, 255, 255, 0.1);
@@ -65,7 +65,7 @@
   animation: dropFade 1s ease forwards;
   animation-delay: 0.6s;
 
-  /* 🔑 prevents image from blocking form clicks */
+  /* prevents image from blocking form clicks */
   pointer-events: none;
   z-index: 1;
 }
@@ -81,7 +81,7 @@
   animation-delay: 0.9s;
   width: 100%;
   position: relative;
-  z-index: 3; /* 🔑 keep form always on top */
+  z-index: 3;
 }
 
 .contribute-form input {
@@ -123,14 +123,38 @@
   animation: dropFade 1s ease forwards;
   animation-delay: 1.2s;
 
-  /* 🔑 keep button fully clickable */
   position: relative;
   z-index: 4;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .submit-btn:hover {
   transform: translateY(-3px) scale(1.03);
   opacity: 0.95;
+}
+
+/* ✅ Disabled / Loading State */
+.submit-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+/* ===== MESSAGE ===== */
+.contribute-message {
+  margin-top: 20px;
+  white-space: pre-line;
+  font-weight: bold;
+  text-align: center;
+  animation: fadeIn 0.4s ease;
+}
+
+.contribute-message.success {
+  color: #00ff9d;
+}
+
+.contribute-message.error {
+  color: #ff6b6b;
 }
 
 /* ===== ANIMATIONS ===== */
@@ -145,12 +169,24 @@
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
   .contribute-card {
     gap: 28px;
     padding: 28px;
   }
+
   .contribute-title {
     font-size: 2.1rem;
   }
@@ -163,18 +199,34 @@
     gap: 20px;
     padding: 24px;
   }
-  .contribute-title { font-size: 1.9rem; }
-  .contribute-image { max-width: 240px; }
-  .contribute-form input { font-size: 0.95rem; }
+
+  .contribute-title {
+    font-size: 1.9rem;
+  }
+
+  .contribute-image {
+    max-width: 240px;
+  }
+
+  .contribute-form input {
+    font-size: 0.95rem;
+  }
 }
 
 @media (max-width: 480px) {
-  .contribute-title { font-size: 1.6rem; }
+  .contribute-title {
+    font-size: 1.6rem;
+  }
+
   .contribute-form input {
     font-size: 0.9rem;
     padding: 10px 12px;
   }
-  .contribute-image { max-width: 200px; }
+
+  .contribute-image {
+    max-width: 200px;
+  }
+
   .submit-btn {
     font-size: 0.9rem;
     padding: 10px 18px;

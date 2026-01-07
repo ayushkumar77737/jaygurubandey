@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "./Contribute.css";
 import qrImg from "../assets/scanner.jpg";
 
+const APPS_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbznlQRq52r71ftv6lgYAEL5FQ_4PmG60SPAjlzq9-wRVGI8pkDLd11seck6SfYmbmDoLw/exec"; // 🔴 replace with your URL
+
 const Contribute = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -11,71 +14,69 @@ const Contribute = () => {
   });
 
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const GOOGLE_FORM_ACTION =
-    "https://docs.google.com/forms/d/e/1FAIpQLScPaPqGsLaYiW7g_wh_fwByBIi_TbA7j-pe61szA6y10TVRmQ/formResponse";
-
-  const FORM_FIELDS = {
-    name: "entry.1297364123",
-    phone: "entry.1745026852",
-    amount: "entry.118440354",
-    transactionId: "entry.336321479",
+  const showMessage = (text, time = 4000) => {
+    setMessage(text);
+    setTimeout(() => setMessage(""), time);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     let newValue = value;
 
-    if (name === "name") newValue = value.replace(/[^a-zA-Z\s]/g, "");
-    if (name === "phone") newValue = value.replace(/\D/g, "").slice(0, 10);
+    if (name === "name") {
+      newValue = value.replace(/[^a-zA-Z\s]/g, "");
+    }
+
+    if (name === "phone") {
+      newValue = value.replace(/\D/g, "").slice(0, 10);
+    }
+
     if (name === "amount") {
-      newValue = value.replace(/\D/g, ""); // only digits
-      if (parseInt(newValue, 10) > 100000) {
-        newValue = "100000"; // cap at 1 lakh
+      newValue = value.replace(/\D/g, "");
+      if (parseInt(newValue || "0", 10) > 100000) {
+        newValue = "100000";
       }
     }
-    if (name === "transactionId") newValue = value.replace(/\D/g, "").slice(0, 12);
+
+    if (name === "transactionId") {
+      newValue = value.replace(/\D/g, "").slice(0, 12);
+    }
 
     setFormData({ ...formData, [name]: newValue });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (loading) return;
 
     let errors = [];
 
-    // Name validation
     if (!formData.name.trim()) {
       errors.push("❌ Name is required.");
     }
 
-    // Phone validation
     if (formData.phone.length !== 10) {
       errors.push("❌ Phone number must be exactly 10 digits.");
     }
 
-    // Amount validation
-    if (!formData.amount || parseInt(formData.amount, 10) <= 0) {
+    const amountNum = parseInt(formData.amount, 10);
+    if (!amountNum || amountNum <= 0) {
       errors.push("❌ Amount must be greater than 0.");
-    } else if (parseInt(formData.amount, 10) > 100000) {
+    } else if (amountNum > 100000) {
       errors.push("❌ Amount cannot exceed ₹1,00,000.");
     }
 
-    // Transaction ID validation
     if (formData.transactionId.length !== 12) {
       errors.push("❌ Transaction ID must be exactly 12 digits.");
     }
 
-    // Check for duplicate Transaction ID in localStorage
-    const storedTransactions = JSON.parse(localStorage.getItem("transactions")) || [];
-    if (storedTransactions.includes(formData.transactionId)) {
-      errors.push("❌ This Transaction ID has already been submitted.");
-    }
-
+    // ❌ Validation errors
     if (errors.length > 0) {
-      setMessage(errors.join("\n"));
+      showMessage(errors.join("\n"));
 
-      // 🔥 CLEAR ALL INPUT FIELDS ON ERROR
+      // 🔥 CLEAR ALL FIELDS ON ERROR
       setFormData({
         name: "",
         phone: "",
@@ -83,39 +84,77 @@ const Contribute = () => {
         transactionId: "",
       });
 
-      setTimeout(() => setMessage(""), 5000);
       return;
     }
 
-
-    // ✅ Send data to Google Form
-    const formDataToSend = new FormData();
-    formDataToSend.append(FORM_FIELDS.name, formData.name);
-    formDataToSend.append(FORM_FIELDS.phone, formData.phone);
-    formDataToSend.append(FORM_FIELDS.amount, formData.amount);
-    formDataToSend.append(FORM_FIELDS.transactionId, formData.transactionId);
-
     try {
-      await fetch(GOOGLE_FORM_ACTION, {
+      setLoading(true);
+
+      const response = await fetch(APPS_SCRIPT_URL, {
         method: "POST",
-        body: formDataToSend,
-        mode: "no-cors",
+        body: new URLSearchParams({
+          name: formData.name,
+          phone: formData.phone,
+          amount: formData.amount,
+          transactionId: formData.transactionId,
+        }),
       });
 
-      // Save transaction ID to localStorage to prevent duplicates
-      storedTransactions.push(formData.transactionId);
-      localStorage.setItem("transactions", JSON.stringify(storedTransactions));
+      const text = await response.text();
 
-      setMessage("✅ Message sent successfully!");
-      setFormData({ name: "", phone: "", amount: "", transactionId: "" });
+      // ❌ Duplicate transaction
+      if (text === "Duplicate transaction") {
+        showMessage("❌ This Transaction ID has already been submitted.");
 
-      // Clear message after 3 seconds
-      setTimeout(() => setMessage(""), 3000);
-    } catch (error) {
-      setMessage("❌ Failed to send. Please try again.");
-      setTimeout(() => setMessage(""), 3000);
+        // 🔥 CLEAR FIELDS
+        setFormData({
+          name: "",
+          phone: "",
+          amount: "",
+          transactionId: "",
+        });
+
+        return;
+      }
+
+      // ✅ Success
+      if (text === "Success") {
+        showMessage("✅ Contribution submitted successfully!", 3000);
+
+        setFormData({
+          name: "",
+          phone: "",
+          amount: "",
+          transactionId: "",
+        });
+
+        return;
+      }
+
+      // ❌ Unknown response
+      showMessage("❌ Something went wrong. Please try again.");
+
+      setFormData({
+        name: "",
+        phone: "",
+        amount: "",
+        transactionId: "",
+      });
+    } catch {
+      // ❌ Server error
+      showMessage("❌ Server error. Please try again.");
+
+      setFormData({
+        name: "",
+        phone: "",
+        amount: "",
+        transactionId: "",
+      });
+    } finally {
+      setLoading(false);
     }
   };
+
 
   return (
     <div className="contribute-container">
@@ -133,6 +172,7 @@ const Contribute = () => {
             onChange={handleChange}
             required
           />
+
           <input
             type="tel"
             name="phone"
@@ -141,6 +181,7 @@ const Contribute = () => {
             onChange={handleChange}
             required
           />
+
           <input
             type="text"
             name="amount"
@@ -149,6 +190,7 @@ const Contribute = () => {
             onChange={handleChange}
             required
           />
+
           <input
             type="text"
             name="transactionId"
@@ -158,13 +200,12 @@ const Contribute = () => {
             required
           />
 
-          <button type="submit" className="submit-btn">
-            Submit
+          <button type="submit" className="submit-btn" disabled={loading}>
+            {loading ? "Submitting..." : "Submit"}
           </button>
         </form>
       </div>
 
-      {/* Success or error message */}
       {message && (
         <div
           style={{
@@ -172,6 +213,7 @@ const Contribute = () => {
             marginTop: "20px",
             whiteSpace: "pre-line",
             fontWeight: "bold",
+            textAlign: "center",
           }}
         >
           {message}
