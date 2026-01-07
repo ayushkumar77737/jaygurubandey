@@ -42,7 +42,6 @@
   justify-content: center;
   margin-bottom: 16px;
   animation: fadeUp 0.6s ease-out both;
-  animation-delay: 0.05s;
 }
 
 .subscribe-page .guruji-photo img {
@@ -61,16 +60,12 @@
   font-size: 1.6rem;
   margin-bottom: 6px;
   color: #333;
-  animation: fadeUp 0.6s ease-out both;
-  animation-delay: 0.1s;
 }
 
 .subscribe-page .subscribe-box p {
   font-size: 0.95rem;
   color: #666;
   margin-bottom: 22px;
-  animation: fadeUp 0.6s ease-out both;
-  animation-delay: 0.18s;
 }
 
 /* ================= FORM ================= */
@@ -80,8 +75,6 @@
   flex-direction: column;
   gap: 14px;
   width: 100%;
-  animation: fadeUp 0.6s ease-out both;
-  animation-delay: 0.25s;
 }
 
 .subscribe-page .subscribe-form input {
@@ -91,12 +84,6 @@
   border: 1px solid #ccc;
   font-size: 0.95rem;
   outline: none;
-  transition: border-color 0.3s ease;
-}
-
-.subscribe-page .subscribe-form input::placeholder {
-  color: #999;
-  font-weight: 400;
 }
 
 .subscribe-page .subscribe-form input:focus {
@@ -107,18 +94,18 @@
 
 .subscribe-page .subscribe-form button {
   width: 100%;
-  padding: 12px 22px;
+  padding: 14px 22px;
   border-radius: 30px;
   border: none;
   background-color: #ff9800;
   color: #fff;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
-}
 
-.subscribe-page .subscribe-form button:hover {
-  background-color: #e68900;
+  /* 🔥 MOBILE CLICK FIX */
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .subscribe-page .subscribe-form button:disabled {
@@ -135,7 +122,7 @@
   font-weight: 500;
 }
 
-/* ================= SUCCESS POPUP ================= */
+/* ================= POPUP OVERLAY ================= */
 
 .subscribe-page .popup-overlay {
   position: fixed;
@@ -145,9 +132,12 @@
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  padding: 16px;
-  animation: fadeIn 0.3s ease-out;
+
+  /* 🔥 CRITICAL FIX */
+  pointer-events: auto;
 }
+
+/* ================= POPUP BOX ================= */
 
 .subscribe-page .popup-box {
   background: var(--popup-bg);
@@ -158,7 +148,11 @@
   padding: 28px 26px;
   text-align: center;
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
-  animation: fadeUp 0.35s ease-out both;
+
+  /* 🔥 ENSURE TOP LAYER */
+  position: relative;
+  z-index: 10000;
+  pointer-events: auto;
 }
 
 .subscribe-page .popup-box h3 {
@@ -172,24 +166,24 @@
   margin-bottom: 18px;
 }
 
-/* Telegram Button */
+/* ================= TELEGRAM BUTTON ================= */
+
 .subscribe-page .telegram-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   background: var(--popup-telegram);
   color: #fff;
-  padding: 12px 22px;
+  padding: 14px 22px;
   border-radius: 30px;
   text-decoration: none;
   font-weight: 600;
   margin-bottom: 16px;
-  transition: background 0.25s ease, transform 0.2s ease;
-}
 
-.subscribe-page .telegram-btn:hover {
-  background: var(--popup-telegram-hover);
-  transform: translateY(-1px);
+  /* 🔥 MOBILE CLICK FIX */
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Close Button */
@@ -197,9 +191,11 @@
   background: transparent;
   border: none;
   color: #777;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   cursor: pointer;
-  padding: 6px 12px;
+
+  pointer-events: auto;
+  touch-action: manipulation;
 }
 
 /* ================= ANIMATIONS ================= */
@@ -226,54 +222,13 @@
 
 /* ================= RESPONSIVE ================= */
 
-/* Tablet */
-@media (max-width: 768px) {
-  .subscribe-page .subscribe-box {
-    padding: 26px 22px;
-  }
-
-  .subscribe-page .subscribe-box h2 {
-    font-size: 1.45rem;
-  }
-
-  .subscribe-page .guruji-photo img {
-    width: 100px;
-    height: 100px;
-  }
-}
-
-/* Mobile */
 @media (max-width: 480px) {
   .subscribe-page {
     padding: 30px 14px;
   }
 
-  .subscribe-page .subscribe-box {
-    padding: 24px 20px;
-    border-radius: 16px;
-  }
-
-  .subscribe-page .subscribe-box h2 {
-    font-size: 1.35rem;
-  }
-
-  .subscribe-page .subscribe-box p {
-    font-size: 0.9rem;
-  }
-
-  .subscribe-page .guruji-photo img {
-    width: 90px;
-    height: 90px;
-  }
-
-  .subscribe-page .popup-box {
-    padding: 24px 20px;
-    border-radius: 16px;
-  }
-
   .subscribe-page .telegram-btn {
     width: 100%;
-    padding: 14px;
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 }
