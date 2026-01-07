@@ -519,3 +519,234 @@ html, body {
     margin-bottom: 30px;
   }
 }
+
+/* ===============================
+   ABOUT SECTION (FULLY SCOPED)
+================================ */
+
+.about-section {
+  padding: 90px 20px;
+  background: radial-gradient(circle at top, #fff8ef, #ffffff);
+  font-family: "Outfit", sans-serif;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate; /* 🔒 prevents overlap with other sections */
+}
+
+/* Decorative background glow */
+.about-section::before {
+  content: "";
+  position: absolute;
+  top: -120px;
+  left: -120px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(197, 157, 95, 0.25), transparent 70%);
+  z-index: 0;
+}
+
+/* ===============================
+   HEADING
+================================ */
+
+.about-section .about-heading {
+  text-align: center;
+  font-size: 44px;
+  font-weight: 700;
+  margin-bottom: 60px;
+  color: #2b2b2b;
+  position: relative;
+  z-index: 1;
+}
+
+.about-section .about-heading::after {
+  content: "";
+  width: 90px;
+  height: 4px;
+  background: linear-gradient(90deg, #c59d5f, #e6c88c);
+  display: block;
+  margin: 16px auto 0;
+  border-radius: 4px;
+}
+
+/* ===============================
+   CARD CONTAINER
+================================ */
+
+.about-section .about-container {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 50px;
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 1;
+}
+
+/* ===============================
+   IMAGE
+================================ */
+
+.about-section .about-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.about-section .about-image img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-section .about-image img:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.18);
+}
+
+/* ===============================
+   CONTENT
+================================ */
+
+.about-section .about-content {
+  flex: 1;
+  color: #444;
+}
+
+.about-section .about-content p {
+  font-size: 18px;
+  line-height: 1.9;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Spiritual first-letter effect */
+.about-section .about-content p:first-child::first-letter {
+  font-size: 42px;
+  font-weight: 700;
+  color: #c59d5f;
+  float: left;
+  line-height: 1;
+  padding-right: 8px;
+}
+
+/* ===============================
+   LARGE LAPTOPS (1400px+)
+================================ */
+
+@media (min-width: 1400px) {
+  .about-section .about-container {
+    max-width: 1250px;
+  }
+
+  .about-section .about-content p {
+    font-size: 19px;
+  }
+}
+
+/* ===============================
+   LAPTOPS (1024px – 1399px)
+================================ */
+
+@media (max-width: 1399px) {
+  .about-section .about-container {
+    gap: 50px;
+    padding: 45px;
+  }
+}
+
+/* ===============================
+   TABLETS (768px – 1023px)
+================================ */
+
+@media (max-width: 1023px) {
+  .about-section {
+    padding: 70px 18px;
+  }
+
+  .about-section .about-heading {
+    font-size: 36px;
+    margin-bottom: 45px;
+  }
+
+  .about-section .about-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 30px;
+    gap: 40px;
+  }
+
+  .about-section .about-image img {
+    max-width: 360px;
+  }
+
+  .about-section .about-content p:first-child::first-letter {
+    float: none;
+    font-size: 34px;
+    padding: 0;
+  }
+}
+
+/* ===============================
+   MOBILE (≤ 767px)
+================================ */
+
+@media (max-width: 767px) {
+  .about-section {
+    padding: 60px 16px;
+  }
+
+  .about-section .about-heading {
+    font-size: 30px;
+  }
+
+  .about-section .about-container {
+    padding: 30px 20px;
+    border-radius: 18px;
+  }
+
+  .about-section .about-image img {
+    max-width: 100%;
+    border-radius: 16px;
+  }
+
+  .about-section .about-content p {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+}
+
+/* ===============================
+   SMALL MOBILES (≤ 480px)
+================================ */
+
+@media (max-width: 480px) {
+  .about-section .about-heading {
+    font-size: 26px;
+  }
+
+  .about-section .about-content p {
+    font-size: 15.5px;
+  }
+}
+.about-section .about-image img {
+  animation: aboutFade 0.8s ease-in-out;
+}
+
+@keyframes aboutFade {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

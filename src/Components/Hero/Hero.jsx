@@ -22,12 +22,24 @@ import {
 
 
 const Hero = () => {
+  // About section images only
+  const aboutImages = [photo7, photo8, photo6];
+  const [aboutIndex, setAboutIndex] = useState(0);
   const navigate = useNavigate();
   const images = [bio, hero1, hero2, photo1, photo6, photo7, photo8];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const alreadyShown = sessionStorage.getItem("hasShownLoader");
   const [loading, setLoading] = useState(!alreadyShown);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAboutIndex((prev) => (prev + 1) % aboutImages.length);
+    }, 4000); // change every 4 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
 
   useEffect(() => {
     if (!alreadyShown) {
@@ -117,6 +129,41 @@ It’s a spiritual and philosophical message encouraging people to seek divine c
           )}
         </div>
       </div>
+      {/* ===== DECORATIVE DIVIDER ===== */}
+      <div className="section-divider" />
+      <section className="about-section">
+        {/* Heading */}
+        <h2 className="about-heading">About Guruji</h2>
+
+        {/* Content Container */}
+        <div className="about-container">
+          {/* Left Image */}
+          <div className="about-image">
+            <img
+              src={aboutImages[aboutIndex]}
+              alt="Guruji"
+              key={aboutIndex}
+            />
+
+          </div>
+
+          {/* Right Content */}
+          <div className="about-content">
+            <p>
+              Guruji is a spiritual guide devoted to spreading wisdom, positivity,
+              and inner peace. Through teachings rooted in ancient traditions and
+              practical life values, Guruji inspires individuals to lead a
+              balanced, meaningful, and conscious life.
+            </p>
+
+            <p>
+              With compassion and clarity, Guruji emphasizes self-discipline,
+              devotion, and service to humanity. Thousands of followers have found
+              direction, strength, and purpose through Guruji’s guidance.
+            </p>
+          </div>
+        </div>
+      </section>
       {/* ===== DECORATIVE DIVIDER ===== */}
       <div className="section-divider" />
 
