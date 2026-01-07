@@ -9,7 +9,7 @@ export function isMaintenanceTime() {
 
   // 🔴 PRODUCTION maintenance window
   const startMinutes = 22 * 60 + 0; // 10:00 PM
-  const endMinutes   = 5 * 60 + 0;  // 5:00 AM
+  const endMinutes   = 4 * 60 + 59; // 4:59 AM
 
   // ⏱ Maintenance range crosses midnight
   if (startMinutes > endMinutes) {
