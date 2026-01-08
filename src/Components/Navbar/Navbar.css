@@ -162,7 +162,7 @@ nav ul li a:hover {
   align-items: center;
   gap: 20px;
 
-  z-index: 15;
+  z-index: 8;
   flex: unset;
 
   transform: translateX(0);
