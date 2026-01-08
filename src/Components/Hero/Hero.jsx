@@ -13,6 +13,8 @@ import photo1 from "../../assets/photo1.jpg";
 import photo6 from "../../assets/photo6.jpg";
 import photo7 from "../../assets/photo7.jpg";
 import photo8 from "../../assets/photo8.jpg";
+import photo10 from "../../assets/photo10.jpg";
+import photo19 from "../../assets/photo19.jpg";
 import {
   FaYoutube,
   FaInstagram,
@@ -172,6 +174,62 @@ It’s a spiritual and philosophical message encouraging people to seek divine c
           </div>
         </div>
       </section>
+      {/* ===== DECORATIVE DIVIDER ===== */}
+      <div className="section-divider" />
+
+      <section className="latest-updates-section">
+  <h2 className="latest-updates-heading">Latest Updates</h2>
+
+  <div className="latest-updates-grid">
+    <div className="update-card">
+      <span className="update-badge important">IMPORTANT</span>
+
+      <div className="update-image">
+        <img src={photo8} alt="Spiritual Yatra" />
+      </div>
+
+      <h3>Upcoming Spiritual Yatra</h3>
+      <p>
+        Swami Ji will be visiting Varanasi and Hyderabad this month.
+        Devotees are requested to stay connected for darshan updates.
+      </p>
+      <span className="update-date">18 Jan 2026</span>
+    </div>
+
+    <div className="update-card">
+      <span className="update-badge new">NEW</span>
+
+      <div className="update-image">
+        <img src={photo10} alt="Live Satsang" />
+      </div>
+
+      <h3>Weekly Live Satsang</h3>
+      <p>
+        Join our live satsang every Sunday at 7:30 PM IST and receive
+        divine guidance and blessings.
+      </p>
+      <span className="update-date">Every Sunday</span>
+    </div>
+
+    <div className="update-card">
+      <span className="update-badge update">UPDATE</span>
+
+      <div className="update-image">
+        <img src={photo19} alt="Contributions" />
+      </div>
+
+      <h3>Contribution Options Enabled</h3>
+      <p>
+        UPI & QR-based contribution options are now available for
+        devotees to support spiritual activities.
+      </p>
+      <span className="update-date">Recently Updated</span>
+    </div>
+  </div>
+</section>
+
+
+
       {/* ===== DECORATIVE DIVIDER ===== */}
       <div className="section-divider" />
 
