@@ -1,12 +1,10 @@
-/* ========================= Global Reset ========================= */
-html,
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  background: #222; /* darker elegant background */
-  font-family: "Poppins", Arial, sans-serif;
+.nav-overlay{
+  position:absolute; /* 🔥 not fixed */
+  inset:0;
+  background:rgba(0,0,0,0.65);
+  z-index:14;
 }
+
 
 /* ========================= Navbar Container ========================= */
 nav {

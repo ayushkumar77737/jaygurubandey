@@ -1,0 +1,70 @@
+.scroll-top-btn{
+  position:fixed;
+  right:24px;
+  bottom:100px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:#8b0000;
+  color:#fff;
+  font-size:22px;
+  border:none;
+  cursor:pointer;
+  z-index:99999;
+  box-shadow:0 6px 15px rgba(0,0,0,0.35);
+  transition:transform 0.2s ease,opacity 0.2s ease;
+}
+
+/* Hover (desktop only feel) */
+.scroll-top-btn:hover{
+  transform:scale(1.1);
+}
+
+/* ========================= LAPTOP (≤ 1366px) ========================= */
+@media (max-width:1366px){
+  .scroll-top-btn{
+    right:20px;
+    bottom:90px;
+    width:46px;
+    height:46px;
+    font-size:21px;
+  }
+}
+
+/* ========================= TABLET (≤ 1024px) ========================= */
+@media (max-width:1024px){
+  .scroll-top-btn{
+    right:18px;
+    bottom:80px;
+    width:44px;
+    height:44px;
+    font-size:20px;
+  }
+}
+
+/* ========================= MOBILE (≤ 768px) ========================= */
+@media (max-width:768px){
+  .scroll-top-btn{
+    right:14px;
+    bottom:70px;
+    width:40px;
+    height:40px;
+    font-size:18px;
+  }
+
+  /* Optional: disable hover zoom on touch */
+  .scroll-top-btn:hover{
+    transform:none;
+  }
+}
+
+/* ========================= SMALL MOBILE (≤ 480px) ========================= */
+@media (max-width:480px){
+  .scroll-top-btn{
+    right:12px;
+    bottom:65px;
+    width:38px;
+    height:38px;
+    font-size:17px;
+  }
+}
