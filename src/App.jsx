@@ -4,12 +4,12 @@ import { Outlet } from 'react-router-dom'
 import Footer from './pages/Footer'
 import CookieConsent from './Components/Cookies/CookieConsent'
 import Maintenance from './pages/Maintenance'
-import { isMaintenanceTime } from './utils/maintenance'
+//import { isMaintenanceTime } from './utils/maintenance'
 
 const App = () => {
-  if (isMaintenanceTime()) {
-    return <Maintenance />
-  }
+  //if (isMaintenanceTime()) {
+    //return <Maintenance />
+  //}
   return (
     <>
       <Navbar />
