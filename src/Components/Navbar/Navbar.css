@@ -146,25 +146,33 @@ nav ul li a:hover {
   }
 
   nav ul {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(160deg, #0a1a2f, #020b1a);
-    width: 240px;
-    padding-top: 90px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    z-index: 15;
-    flex: unset;
-    transform: translateX(0);
-    transition: transform 0.45s ease;
-    will-change: transform;
-    overflow-y: auto;
-    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.7);
-  }
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  height: 100vh;          /* ✅ ADD */
+  max-height: 100vh;      /* ✅ ADD */
+
+  background: linear-gradient(160deg, #0a1a2f, #020b1a);
+  width: 240px;
+  padding-top: 90px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  z-index: 15;
+  flex: unset;
+
+  transform: translateX(0);
+  transition: transform 0.45s ease;
+  will-change: transform;
+
+  overflow-y: auto;       /* ✅ keep */
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.7);
+}
+
 
   .hide-mobile-menu {
     transform: translateX(100%);
@@ -335,12 +343,6 @@ nav {
 .dropdown > button span,
 .dropdown > button::after {
   font-size: 10px;
-}
-.nav-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.65);
-  z-index: 14;
 }
 .menu.open {
   opacity: 0;
