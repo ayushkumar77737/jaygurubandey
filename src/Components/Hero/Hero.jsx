@@ -22,6 +22,12 @@ import {
   FaFacebook,
   FaWhatsapp
 } from "react-icons/fa";
+import {
+  FaHandsHelping,
+  FaCalendarAlt,
+  FaUsers,
+  FaGlobe
+} from "react-icons/fa";
 
 
 const Hero = () => {
@@ -260,7 +266,61 @@ It’s a spiritual and philosophical message encouraging people to seek divine c
         </div>
       </section>
 
+      {/* ===== DECORATIVE DIVIDER ===== */}
+      <div className="section-divider" />
+      <section className="activities-section">
+      <h2 className="activities-heading">Key Activities / What We Do</h2>
 
+      <div className="activities-grid">
+        {/* Card 1 */}
+        <div className="activity-card">
+          <div className="activity-icon">
+            <FaHandsHelping />
+          </div>
+          <h3>Seva / Activities</h3>
+          <p>
+            Daily and regular spiritual, social, and seva-based activities
+            conducted with devotion and discipline.
+          </p>
+        </div>
+
+        {/* Card 2 */}
+        <div className="activity-card">
+          <div className="activity-icon">
+            <FaCalendarAlt />
+          </div>
+          <h3>Events</h3>
+          <p>
+            Special programs, celebrations, satsangs, yatras, and spiritual
+            gatherings throughout the year.
+          </p>
+        </div>
+
+        {/* Card 3 */}
+        <div className="activity-card">
+          <div className="activity-icon">
+            <FaUsers />
+          </div>
+          <h3>Community Support</h3>
+          <p>
+            Guidance, unity, social responsibility, and support for individuals
+            and families in need.
+          </p>
+        </div>
+
+        {/* Card 4 */}
+        <div className="activity-card">
+          <div className="activity-icon">
+            <FaGlobe />
+          </div>
+          <h3>Online Services</h3>
+          <p>
+            Website services, announcements, updates, and digital access to
+            spiritual resources.
+          </p>
+        </div>
+      </div>
+    </section>
 
       {/* ===== DECORATIVE DIVIDER ===== */}
       <div className="section-divider" />

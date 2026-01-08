@@ -1273,5 +1273,162 @@ html, body {
   }
 }
 
+/* ===============================
+   KEY ACTIVITIES SECTION (ENHANCED)
+================================ */
 
+.activities-section {
+  padding: 100px 20px;
+  background:
+    radial-gradient(circle at top, rgba(197, 157, 95, 0.18), transparent 60%),
+    linear-gradient(180deg, #fffaf3, #ffffff);
+  font-family: "Outfit", sans-serif;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle decorative glow */
+.activities-section::before {
+  content: "";
+  position: absolute;
+  bottom: -120px;
+  right: -120px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(197, 157, 95, 0.25), transparent 70%);
+  z-index: 0;
+}
+
+/* ===== Heading ===== */
+
+.activities-heading {
+  font-size: 44px;
+  font-weight: 700;
+  color: #2b2b2b;
+  margin-bottom: 80px;
+  position: relative;
+  letter-spacing: 0.6px;
+  z-index: 1;
+}
+
+.activities-heading::after {
+  content: "";
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, #c59d5f, #b38745);
+  display: block;
+  margin: 20px auto 0;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(197, 157, 95, 0.45);
+}
+
+/* ===== Grid ===== */
+
+.activities-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 36px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Card ===== */
+
+.activity-card {
+  position: relative;
+  background: linear-gradient(180deg, #ffffff, #fffaf3);
+  padding: 46px 28px;
+  border-radius: 22px;
+  border: 1.5px solid rgba(197, 157, 95, 0.25);
+  transition: all 0.4s ease;
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.06),
+    inset 0 0 0 rgba(255, 255, 255, 0);
+}
+
+/* gradient border illusion */
+.activity-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  padding: 1.5px;
+  background: linear-gradient(135deg, #c59d5f, #ffffff, #b38745);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.activity-card:hover::before {
+  opacity: 1;
+}
+
+.activity-card:hover {
+  transform: translateY(-14px) scale(1.02);
+  box-shadow:
+    0 28px 60px rgba(197, 157, 95, 0.28),
+    inset 0 0 0 rgba(255, 255, 255, 0.4);
+}
+
+/* ===== Icon ===== */
+
+.activity-icon {
+  width: 78px;
+  height: 78px;
+  margin: 0 auto 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c59d5f, #b38745);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: #ffffff;
+  box-shadow: 0 12px 26px rgba(197, 157, 95, 0.5);
+  transition: all 0.4s ease;
+}
+
+.activity-card:hover .activity-icon {
+  transform: rotate(8deg) scale(1.12);
+  box-shadow: 0 16px 36px rgba(197, 157, 95, 0.65);
+}
+
+/* ===== Text ===== */
+
+.activity-card h3 {
+  font-size: 21px;
+  font-weight: 600;
+  color: #2b2b2b;
+  margin-bottom: 14px;
+}
+
+.activity-card p {
+  font-size: 15.8px;
+  line-height: 1.75;
+  color: #555555;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 1024px) {
+  .activities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .activities-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .activities-heading {
+    font-size: 34px;
+  }
+}
 
