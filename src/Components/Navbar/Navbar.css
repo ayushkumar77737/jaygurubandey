@@ -171,12 +171,17 @@ nav ul li a:hover {
 
   overflow-y: auto;       /* ✅ keep */
   box-shadow: -4px 0 12px rgba(0, 0, 0, 0.7);
+  pointer-events: auto;
+  visibility: visible;
 }
 
 
   .hide-mobile-menu {
-    transform: translateX(100%);
-  }
+  transform: translateX(100%);
+  pointer-events: none;   /* 🔥 MOST IMPORTANT */
+  visibility: hidden;     /* 🔥 ensures footer is reachable */
+}
+
 
   nav ul li {
     margin: 0;
