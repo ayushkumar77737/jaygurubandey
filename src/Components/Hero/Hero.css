@@ -750,3 +750,41 @@ html, body {
     transform: scale(1);
   }
 }
+
+/* ================= BUTTON WRAPPER ================= */
+.about-btn-wrapper {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;   /* ✅ CENTER horizontally */
+}
+
+/* ================= BUTTON ================= */
+.about-btn {
+  padding: 14px 36px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Outfit", sans-serif;
+  color: #ffffff;
+  background: linear-gradient(135deg, #c59d5f, #b38745);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  box-shadow: 0 10px 25px rgba(197, 157, 95, 0.35);
+  width: fit-content;
+}
+
+/* ================= HOVER ================= */
+.about-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 35px rgba(197, 157, 95, 0.45);
+  background: linear-gradient(135deg, #b38745, #9f7338);
+}
+
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .about-btn-wrapper {
+    justify-content: center; /* optional: center only on mobile */
+  }
+}

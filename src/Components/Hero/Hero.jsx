@@ -161,6 +161,14 @@ It’s a spiritual and philosophical message encouraging people to seek divine c
               devotion, and service to humanity. Thousands of followers have found
               direction, strength, and purpose through Guruji’s guidance.
             </p>
+            <div className="about-btn-wrapper">
+    <button
+      className="about-btn"
+      onClick={() => navigate("/about")}
+    >
+      Read More About Guruji
+    </button>
+  </div>
           </div>
         </div>
       </section>
