@@ -5,7 +5,8 @@ import AnnouncementBar from "../../pages/AnnouncementBar";
 import FlowerSprinkler from "../../pages/FlowerSprinkler";
 import LoadingPage from "../../pages/LoadingPage";
 import "./Hero.css";
-
+import missionImg from "../../assets/photo9.jpg"; // your image
+import visionImg from "../../assets/photo10.jpg";   // your image
 import bio from "../../assets/bio.jpg";
 import hero1 from "../../assets/hero1.jpg";
 import hero2 from "../../assets/hero2.png";
@@ -174,59 +175,90 @@ It’s a spiritual and philosophical message encouraging people to seek divine c
           </div>
         </div>
       </section>
+
+      {/* ===== DECORATIVE DIVIDER ===== */}
+      <div className="section-divider" />
+      <section className="mission-vision-section">
+        <h2 className="mission-vision-heading">Mission & Vision</h2>
+
+        <div className="mission-vision-container">
+          {/* Mission */}
+          <div className="mv-card">
+            <img src={missionImg} alt="Mission" className="mv-icon" />
+            <h3>Our Mission</h3>
+            <p>
+              To spread the eternal wisdom of Sanatan Dharma and guide individuals
+              toward spiritual awareness, righteous living, and inner peace.
+            </p>
+          </div>
+
+          <div className="mv-divider" />
+
+          {/* Vision */}
+          <div className="mv-card">
+            <img src={visionImg} alt="Vision" className="mv-icon" />
+            <h3>Our Vision</h3>
+            <p>
+              To build a spiritually awakened society where ancient Dharma values
+              blend harmoniously with modern life for unity and growth.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ===== DECORATIVE DIVIDER ===== */}
       <div className="section-divider" />
 
       <section className="latest-updates-section">
-  <h2 className="latest-updates-heading">Latest Updates</h2>
+        <h2 className="latest-updates-heading">Latest Updates</h2>
 
-  <div className="latest-updates-grid">
-    <div className="update-card">
-      <span className="update-badge important">IMPORTANT</span>
+        <div className="latest-updates-grid">
+          <div className="update-card">
+            <span className="update-badge important">IMPORTANT</span>
 
-      <div className="update-image">
-        <img src={photo8} alt="Spiritual Yatra" />
-      </div>
+            <div className="update-image">
+              <img src={photo8} alt="Spiritual Yatra" />
+            </div>
 
-      <h3>Upcoming Spiritual Yatra</h3>
-      <p>
-        Swami Ji will be visiting Varanasi and Hyderabad this month.
-        Devotees are requested to stay connected for darshan updates.
-      </p>
-      <span className="update-date">18 Jan 2026</span>
-    </div>
+            <h3>Upcoming Spiritual Yatra</h3>
+            <p>
+              Swami Ji will be visiting Varanasi and Hyderabad this month.
+              Devotees are requested to stay connected for darshan updates.
+            </p>
+            <span className="update-date">18 Jan 2026</span>
+          </div>
 
-    <div className="update-card">
-      <span className="update-badge new">NEW</span>
+          <div className="update-card">
+            <span className="update-badge new">NEW</span>
 
-      <div className="update-image">
-        <img src={photo10} alt="Live Satsang" />
-      </div>
+            <div className="update-image">
+              <img src={photo10} alt="Live Satsang" />
+            </div>
 
-      <h3>Weekly Live Satsang</h3>
-      <p>
-        Join our live satsang every Sunday at 7:30 PM IST and receive
-        divine guidance and blessings.
-      </p>
-      <span className="update-date">Every Sunday</span>
-    </div>
+            <h3>Weekly Live Satsang</h3>
+            <p>
+              Join our live satsang every Sunday at 7:30 PM IST and receive
+              divine guidance and blessings.
+            </p>
+            <span className="update-date">Every Sunday</span>
+          </div>
 
-    <div className="update-card">
-      <span className="update-badge update">UPDATE</span>
+          <div className="update-card">
+            <span className="update-badge update">UPDATE</span>
 
-      <div className="update-image">
-        <img src={photo19} alt="Contributions" />
-      </div>
+            <div className="update-image">
+              <img src={photo19} alt="Contributions" />
+            </div>
 
-      <h3>Contribution Options Enabled</h3>
-      <p>
-        UPI & QR-based contribution options are now available for
-        devotees to support spiritual activities.
-      </p>
-      <span className="update-date">Recently Updated</span>
-    </div>
-  </div>
-</section>
+            <h3>Contribution Options Enabled</h3>
+            <p>
+              UPI & QR-based contribution options are now available for
+              devotees to support spiritual activities.
+            </p>
+            <span className="update-date">Recently Updated</span>
+          </div>
+        </div>
+      </section>
 
 
 

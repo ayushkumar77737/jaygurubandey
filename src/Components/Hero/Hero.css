@@ -1056,3 +1056,222 @@ html, body {
   }
 }
 
+.mission-vision-section {
+  padding: 90px 20px;
+  background: radial-gradient(circle at top, #fff8ef, #ffffff);
+  font-family: "Outfit", sans-serif;
+}
+
+/* ===============================
+   MISSION & VISION (RESPONSIVE & ISOLATED)
+================================ */
+
+.mission-vision-section {
+  padding: 120px 20px;
+  background:
+    radial-gradient(circle at top, rgba(180, 145, 90, 0.18), transparent 65%),
+    linear-gradient(180deg, #fdf9f4, #ffffff);
+  font-family: "Outfit", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== Heading ===== */
+
+.mission-vision-heading {
+  text-align: center;
+  font-size: 44px;
+  font-weight: 700;
+  margin-bottom: 90px;
+  color: #2e2a25;
+  letter-spacing: 0.6px;
+  position: relative;
+}
+
+.mission-vision-heading::after {
+  content: "";
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #b08a52, #8f6b3c);
+  display: block;
+  margin: 18px auto 0;
+  border-radius: 10px;
+  box-shadow: 0 5px 14px rgba(176, 138, 82, 0.35);
+}
+
+/* ===== Layout ===== */
+
+.mission-vision-container {
+  max-width: 1180px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+/* ===== Cards ===== */
+
+.mv-card {
+  background: linear-gradient(180deg, #ffffff, #fef8ef);
+  padding: 48px 38px;
+  border-radius: 26px;
+  text-align: center;
+  box-shadow:
+    0 22px 48px rgba(0, 0, 0, 0.09),
+    inset 0 0 0 1px rgba(176, 138, 82, 0.14);
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+  position: relative;
+  will-change: transform;
+}
+
+.mv-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 26px;
+  background: linear-gradient(
+    135deg,
+    rgba(176, 138, 82, 0.22),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.mv-card:hover::before {
+  opacity: 1;
+}
+
+.mv-card:hover {
+  transform: translateY(-10px) scale(1.04);
+  box-shadow: 0 32px 70px rgba(176, 138, 82, 0.32);
+}
+
+/* ===== Icon ===== */
+
+.mv-icon {
+  width: 120px;
+  height: 120px;        /* ✅ ADD THIS */
+  margin-bottom: 26px;
+  border-radius: 24px;
+  object-fit: cover;   /* ✅ ADD THIS */
+  filter: drop-shadow(0 10px 20px rgba(176, 138, 82, 0.35));
+  transition: transform 0.4s ease;
+}
+
+
+.mv-card:hover .mv-icon {
+  transform: scale(1.08);
+}
+
+/* ===== Text ===== */
+
+.mv-card h3 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: #2e2a25;
+}
+
+.mv-card p {
+  font-size: 16.5px;
+  line-height: 1.85;
+  color: #5a544c;
+}
+
+/* ===== Divider ===== */
+
+.mv-divider {
+  width: 3px;
+  height: 190px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #b08a52,
+    transparent
+  );
+  border-radius: 10px;
+  box-shadow: 0 0 22px rgba(176, 138, 82, 0.3);
+}
+
+/* ===============================
+   RESPONSIVE BREAKPOINTS
+================================ */
+
+/* -------- Laptop -------- */
+@media (max-width: 1200px) {
+  .mission-vision-container {
+    gap: 40px;
+  }
+}
+
+/* -------- Tablet -------- */
+@media (max-width: 1024px) {
+  .mission-vision-section {
+    padding: 100px 18px;
+  }
+
+  .mission-vision-heading {
+    font-size: 38px;
+    margin-bottom: 70px;
+  }
+
+  .mv-icon {
+    width: 105px;
+  }
+
+  .mv-card {
+    padding: 42px 32px;
+  }
+}
+
+/* -------- Mobile -------- */
+@media (max-width: 768px) {
+  .mission-vision-container {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .mv-divider {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      #b08a52,
+      transparent
+    );
+  }
+
+  .mv-card:hover {
+    transform: none; /* disable scale on touch */
+  }
+}
+
+/* -------- Small Mobile -------- */
+@media (max-width: 480px) {
+  .mission-vision-section {
+    padding: 80px 16px;
+  }
+
+  .mission-vision-heading {
+    font-size: 32px;
+    margin-bottom: 55px;
+  }
+
+  .mv-icon {
+    width: 92px;
+  }
+
+  .mv-card h3 {
+    font-size: 22px;
+  }
+
+  .mv-card p {
+    font-size: 15.5px;
+  }
+}
+
+
+
