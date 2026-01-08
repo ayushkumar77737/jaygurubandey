@@ -1,32 +1,23 @@
 import React from 'react'
 import Navbar from './Components/Navbar/Navbar'
-import {Outlet} from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import Footer from './pages/Footer'
 import CookieConsent from './Components/Cookies/CookieConsent'
 import Maintenance from './pages/Maintenance'
-import {isMaintenanceTime} from './utils/maintenance'
-import ScrollToTop from './Components/ScrollToTop/ScrollToTop'
+import { isMaintenanceTime } from './utils/maintenance'
 
-const App=()=>{
-  if(isMaintenanceTime()){
-    return <Maintenance/>
+const App = () => {
+  if (isMaintenanceTime()) {
+    return <Maintenance />
   }
-
-  return(
+  return (
     <>
-      {/* 🔥 Single scroll container */}
-      <div className="app-scroll">
-        <Navbar/>
-
-        <main>
-          <Outlet/>
-        </main>
-
-        <Footer/>
-      </div>
-
-      <CookieConsent/>
-      <ScrollToTop/>
+      <Navbar />
+      <main>
+        <Outlet /> {/* Renders the nested route like Home, About, etc. */}
+      </main>
+      <Footer />
+      <CookieConsent />
     </>
   )
 }
