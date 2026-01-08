@@ -751,15 +751,18 @@ html, body {
   }
 }
 
-/* ================= BUTTON WRAPPER ================= */
-.about-btn-wrapper {
+/* ==================================================
+   ABOUT SECTION – BUTTON (FULLY SCOPED & RESPONSIVE)
+================================================== */
+
+.about-section .about-content .about-btn-wrapper {
   margin-top: 32px;
   display: flex;
-  justify-content: center;   /* ✅ CENTER horizontally */
+  justify-content: center;
 }
 
-/* ================= BUTTON ================= */
-.about-btn {
+/* Button */
+.about-section .about-content .about-btn {
   padding: 14px 36px;
   font-size: 16px;
   font-weight: 600;
@@ -767,24 +770,60 @@ html, body {
   color: #ffffff;
   background: linear-gradient(135deg, #c59d5f, #b38745);
   border: none;
-  border-radius: 30px;
+  border-radius: 32px;
   cursor: pointer;
-  transition: all 0.35s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background 0.3s ease;
   box-shadow: 0 10px 25px rgba(197, 157, 95, 0.35);
   width: fit-content;
+  white-space: nowrap;
 }
 
-/* ================= HOVER ================= */
-.about-btn:hover {
+/* Hover */
+.about-section .about-content .about-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 16px 35px rgba(197, 157, 95, 0.45);
   background: linear-gradient(135deg, #b38745, #9f7338);
 }
 
-
-/* ================= MOBILE ================= */
-@media (max-width: 768px) {
-  .about-btn-wrapper {
-    justify-content: center; /* optional: center only on mobile */
+/* ================= LAPTOP (<= 1200px) ================= */
+@media (max-width: 1200px) {
+  .about-section .about-content .about-btn {
+    padding: 13px 34px;
+    font-size: 15.5px;
   }
 }
+
+/* ================= TABLET (<= 992px) ================= */
+@media (max-width: 992px) {
+  .about-section .about-content .about-btn-wrapper {
+    margin-top: 28px;
+  }
+
+  .about-section .about-content .about-btn {
+    padding: 13px 32px;
+    font-size: 15px;
+  }
+}
+
+/* ================= MOBILE (<= 768px) ================= */
+@media (max-width: 768px) {
+  .about-section .about-content .about-btn-wrapper {
+    margin-top: 26px;
+    justify-content: center;
+  }
+
+  .about-section .about-content .about-btn {
+    padding: 12px 30px;
+    font-size: 14.5px;
+  }
+}
+
+/* ================= SMALL MOBILE (<= 480px) ================= */
+@media (max-width: 480px) {
+  .about-section .about-content .about-btn {
+    padding: 12px 26px;
+    font-size: 14px;
+  }
+}
+
