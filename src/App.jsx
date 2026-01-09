@@ -5,6 +5,7 @@ import Footer from './pages/Footer'
 import CookieConsent from './Components/Cookies/CookieConsent'
 import Maintenance from './pages/Maintenance'
 import { isMaintenanceTime } from './utils/maintenance'
+import { Analytics } from '@vercel/analytics/react'
 
 const App = () => {
   if (isMaintenanceTime()) {
@@ -18,6 +19,7 @@ const App = () => {
       </main>
       <Footer />
       <CookieConsent />
+      <Analytics />
     </>
   )
 }
