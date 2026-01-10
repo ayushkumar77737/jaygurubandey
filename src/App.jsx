@@ -6,6 +6,7 @@ import CookieConsent from './Components/Cookies/CookieConsent'
 import Maintenance from './pages/Maintenance'
 import { isMaintenanceTime } from './utils/maintenance'
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 const App = () => {
   useEffect(() => {
@@ -31,6 +32,7 @@ const App = () => {
       <Footer />
       <CookieConsent />
       <Analytics />
+      <SpeedInsights />
     </>
   )
 }
