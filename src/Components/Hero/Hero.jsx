@@ -16,6 +16,7 @@ import photo7 from "../../assets/photo7.jpg";
 import photo8 from "../../assets/photo8.jpg";
 import photo10 from "../../assets/photo10.jpg";
 import photo19 from "../../assets/photo19.jpg";
+import pic from "../../assets/pic.jpeg";
 import {
   FaYoutube,
   FaInstagram,
@@ -35,7 +36,7 @@ const Hero = () => {
   const aboutImages = [photo7, photo8, photo6];
   const [aboutIndex, setAboutIndex] = useState(0);
   const navigate = useNavigate();
-  const images = [bio, hero1, hero2, photo1, photo6, photo7, photo8];
+  const images = [bio, pic, hero1, hero2, photo1, photo6, photo7, photo8];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const alreadyShown = sessionStorage.getItem("hasShownLoader");
