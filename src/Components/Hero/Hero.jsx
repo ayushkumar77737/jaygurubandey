@@ -8,7 +8,7 @@ import "./Hero.css";
 import missionImg from "../../assets/photo9.jpg"; // your image
 import visionImg from "../../assets/photo10.jpg";   // your image
 import bio from "../../assets/bio.jpg";
-import hero1 from "../../assets/hero1.jpg";
+import hero1 from "../../assets/hero1.webp";
 import hero2 from "../../assets/hero2.png";
 import photo1 from "../../assets/photo1.jpg";
 import photo6 from "../../assets/photo6.jpg";
