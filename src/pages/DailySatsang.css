@@ -1,5 +1,5 @@
 /* ----------------------------------------------------
-   DAILY SATSANG – Premium Animated UI (SCOPED)
+   DAILY SATSANG – Optimized Lightweight UI (SCOPED)
 ---------------------------------------------------- */
 
 .daily-satsang-page {
@@ -7,15 +7,18 @@
   padding: 4rem 1.5rem 5rem;
   font-family: "Poppins", system-ui, sans-serif;
 
-  /* ✨ New attractive spiritual gradient background */
-  background:
-    radial-gradient(circle at top left, rgba(255, 213, 128, 0.42), transparent 55%),
-    radial-gradient(circle at bottom right, rgba(199, 135, 255, 0.35), transparent 55%),
-    linear-gradient(135deg, #fff7ec, #fde4f2, #f7f0ff);
+  /* ✅ Lightweight gradient (NO animation, NO repaint loop) */
+  background: linear-gradient(
+    135deg,
+    #fff7ec 0%,
+    #fdeef6 50%,
+    #f6f2ff 100%
+  );
 
-  background-size: 220% 220%;
-  animation: dsBgShift 18s ease-in-out infinite alternate;
   overflow-x: hidden;
+
+  /* ✅ Prevents animations from affecting navbar */
+  contain: layout paint;
 }
 
 /* ===== HERO ===== */
@@ -23,20 +26,20 @@
 .daily-satsang-page .daily-hero {
   text-align: center;
   margin-bottom: 3rem;
-  animation: dsFadeUp 0.8s ease-out;
+  animation: dsFadeUp 0.6s ease-out;
 }
 
 .daily-satsang-page .daily-hero h1 {
   font-family: "Playfair Display", serif;
-  font-size: clamp(2.5rem, 4vw, 3.3rem);
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   color: #4a1b00;
-  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
 .daily-satsang-page .daily-hero-decor {
-  margin-top: 1.2rem;
+  margin-top: 1.1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,15 +48,13 @@
 
 .daily-satsang-page .daily-hero-decor .line {
   height: 2px;
-  width: 160px;
-  max-width: 22vw;
+  width: 140px;
   background: linear-gradient(to right, #b8860b, #000);
 }
 
 .daily-satsang-page .daily-hero-decor .star {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #b8860b;
-  animation: dsSoftPulse 1.6s ease-in-out infinite;
 }
 
 /* ===== CHANNEL CARD ===== */
@@ -61,64 +62,51 @@
 .daily-satsang-page .channel-card {
   max-width: 1150px;
   margin: 0 auto 3rem;
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(14px);
-  border-radius: 30px;
+
+  /* ✅ No backdrop-filter (major performance fix) */
+  background: rgba(255, 255, 255, 0.95);
+
+  border-radius: 26px;
   padding: 2rem 2.2rem;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+
+  /* ✅ Reduced shadow blur */
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.14);
+
   display: grid;
   grid-template-columns: auto 1fr auto;
   gap: 2rem;
   align-items: center;
-  position: relative;
-  overflow: hidden;
-  animation: dsFadeInScale 0.9s ease-out 0.1s both;
-  z-index: 1;
-}
 
-.daily-satsang-page .channel-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top left, rgba(255, 215, 128, 0.18), transparent 55%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.daily-satsang-page .channel-card > * {
-  position: relative;
-  z-index: 2;
+  animation: dsFadeInScale 0.6s ease-out;
 }
 
 /* Avatar */
 .daily-satsang-page .channel-avatar {
-  width: 95px;
-  height: 95px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid #fff;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
-  animation: dsFloatSoft 4s ease-in-out infinite;
+  border: 3px solid #fff;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Main Text */
+/* Text */
 .daily-satsang-page .channel-title {
-  font-size: 1.45rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: #2a1a10;
-  margin-bottom: 0.2rem;
 }
 
 .daily-satsang-page .channel-meta {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: #666;
 }
 
 .daily-satsang-page .channel-desc {
-  font-size: 0.95rem;
+  font-size: 0.94rem;
   color: #333;
-  line-height: 1.6;
-  margin-top: 0.7rem;
+  line-height: 1.55;
+  margin-top: 0.6rem;
 }
 
 /* ===== TABS ===== */
@@ -126,29 +114,23 @@
 .daily-satsang-page .channel-tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  border-top: 1px solid #e5dede;
+  gap: 0.9rem;
+  border-top: 1px solid #e7dfd6;
   padding-top: 1rem;
-  position: relative;
-  z-index: 3;
 }
 
 .daily-satsang-page .month-tab {
   background: transparent;
   border: none;
-  padding: 0;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   cursor: pointer;
-  position: relative;
   color: #555;
   font-weight: 500;
-  transition: color 0.2s ease, transform 0.2s ease;
-  z-index: 4;
+  position: relative;
 }
 
 .daily-satsang-page .month-tab:hover {
   color: #b8860b;
-  transform: translateY(-1px);
 }
 
 .daily-satsang-page .month-tab::after {
@@ -159,20 +141,17 @@
   height: 2px;
   width: 0;
   background: #b8860b;
-  transition: width 0.3s ease;
+  transition: width 0.25s ease;
 }
 
-.daily-satsang-page .month-tab:hover::after {
+.daily-satsang-page .month-tab:hover::after,
+.daily-satsang-page .month-tab-active::after {
   width: 100%;
 }
 
 .daily-satsang-page .month-tab-active {
   font-weight: 700;
   color: #b8860b;
-}
-
-.daily-satsang-page .month-tab-active::after {
-  width: 100%;
 }
 
 /* ===== YOUTUBE BUTTON ===== */
@@ -189,23 +168,13 @@
   padding: 0.55rem 1rem;
   border-radius: 999px;
   color: #fff;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   text-decoration: none;
-  box-shadow: 0 6px 14px rgba(255, 0, 0, 0.32);
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  box-shadow: 0 5px 12px rgba(255, 0, 0, 0.3);
 }
 
 .daily-satsang-page .yt-button:hover {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 10px 22px rgba(255, 0, 0, 0.4);
-}
-
-.daily-satsang-page .yt-count {
-  background: #fff;
-  color: #333;
-  border-radius: 5px;
-  padding: 0.05rem 0.4rem;
-  font-size: 0.75rem;
+  transform: translateY(-2px);
 }
 
 /* ===== VIDEO GRID ===== */
@@ -218,38 +187,30 @@
 .daily-satsang-page .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 320px));
-  gap: 1.6rem;
+  gap: 1.5rem;
   justify-content: center;
 }
 
 .daily-satsang-page .video-card {
   text-decoration: none;
-  border-radius: 18px;
+  border-radius: 16px;
   overflow: hidden;
   background: #000;
-  box-shadow: 0 15px 34px rgba(0, 0, 0, 0.18);
-  transition: transform 0.28s ease, box-shadow 0.28s ease;
-  opacity: 0;
-  transform: translateY(18px);
-  animation: dsFadeUp 0.7s ease forwards;
+
+  /* ✅ Reduced shadow */
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.2);
+
+  transition: transform 0.25s ease;
+  animation: dsFadeUp 0.5s ease forwards;
 }
 
-.daily-satsang-page .video-card:nth-child(1) { animation-delay: 0.1s; }
-.daily-satsang-page .video-card:nth-child(2) { animation-delay: 0.2s; }
-.daily-satsang-page .video-card:nth-child(3) { animation-delay: 0.3s; }
-.daily-satsang-page .video-card:nth-child(4) { animation-delay: 0.4s; }
-.daily-satsang-page .video-card:nth-child(5) { animation-delay: 0.5s; }
-.daily-satsang-page .video-card:nth-child(6) { animation-delay: 0.6s; }
-
 .daily-satsang-page .video-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.32);
+  transform: translateY(-5px);
 }
 
 .daily-satsang-page .video-thumb-wrapper {
   position: relative;
   padding-top: 56.25%;
-  overflow: hidden;
 }
 
 .daily-satsang-page .video-thumb {
@@ -258,76 +219,53 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
 }
 
-.daily-satsang-page .video-card:hover .video-thumb {
-  transform: scale(1.05);
-}
-
-.daily-satsang-page .video-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.6));
-}
-
-/* Play icon */
+/* Play Icon */
 .daily-satsang-page .play-icon {
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.95);
-  font-size: 1.3rem;
+  background: #fff;
   color: #e53935;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.4);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.daily-satsang-page .video-card:hover .play-icon {
-  transform: scale(1.08);
-  box-shadow: 0 0 0 8px rgba(229, 57, 53, 0.18);
 }
 
 /* Info */
 .daily-satsang-page .video-info {
   background: #fff;
-  padding: 1rem 1.1rem 1.2rem;
+  padding: 1rem 1.1rem;
 }
 
 .daily-satsang-page .video-info h3 {
-  font-size: 1rem;
-  line-height: 1.45;
-  margin-bottom: 0.4rem;
+  font-size: 0.96rem;
+  line-height: 1.4;
 }
 
 .daily-satsang-page .video-date {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: #888;
 }
 
-/* No videos */
+/* ===== NO VIDEOS ===== */
+
 .daily-satsang-page .no-videos {
   text-align: center;
-  padding: 2.2rem 1rem;
+  padding: 2rem 1rem;
   background: #fff8f0;
-  border-radius: 18px;
+  border-radius: 16px;
   border: 1px dashed #e6c186;
   color: #8a6b3c;
-  animation: dsFadeUp 0.7s ease-out;
 }
 
-/* ===== ANIMATIONS (RENAMED) ===== */
+/* ===== ANIMATIONS (GPU SAFE) ===== */
 
 @keyframes dsFadeUp {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
@@ -338,7 +276,7 @@
 @keyframes dsFadeInScale {
   from {
     opacity: 0;
-    transform: translateY(18px) scale(0.97);
+    transform: translateY(14px) scale(0.98);
   }
   to {
     opacity: 1;
@@ -346,48 +284,8 @@
   }
 }
 
-@keyframes dsBgShift {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 50% 100%;
-  }
-  100% {
-    background-position: 100% 0%;
-  }
-}
-
-@keyframes dsSoftPulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.9;
-  }
-  50% {
-    transform: scale(1.15);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.9;
-  }
-}
-
-@keyframes dsFloatSoft {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
 /* ===== RESPONSIVE ===== */
 
-/* Tablets */
 @media (max-width: 900px) {
   .daily-satsang-page .channel-card {
     grid-template-columns: auto 1fr;
@@ -395,42 +293,27 @@
 
   .daily-satsang-page .channel-right {
     grid-column: 1 / -1;
+    margin-top: 0.6rem;
     justify-self: start;
-    margin-top: 0.5rem;
   }
 }
 
-/* Mobiles */
 @media (max-width: 600px) {
-
   .daily-satsang-page {
-    padding: 2.8rem 1rem 4rem;
-    /* keep bg animation on mobile too */
-    background-size: 140% 140%;
-    background-attachment: scroll;
+    padding: 2.6rem 1rem 4rem;
   }
-
-  /* ✅ DO NOT disable animations here – just layout changes */
 
   .daily-satsang-page .channel-card {
     grid-template-columns: 1fr;
-    text-align: left;
-    padding: 1.7rem 1.3rem;
-    backdrop-filter: none; /* lighter on mobile but no !important */
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    padding: 1.6rem 1.3rem;
   }
 
   .daily-satsang-page .channel-avatar {
-    width: 75px;
-    height: 75px;
+    width: 72px;
+    height: 72px;
   }
 
   .daily-satsang-page .video-grid {
     grid-template-columns: 1fr;
   }
-
-  .daily-satsang-page .month-tab {
-    font-size: 0.82rem;
-  }
 }
-
