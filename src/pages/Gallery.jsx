@@ -6,7 +6,7 @@ import photo6 from "../assets/photo6.webp";
 import photo7 from "../assets/photo7.webp";
 import photo8 from "../assets/photo8.webp";
 import photo2 from "../assets/photo2.webp";
-import photo9 from "../assets/photo9.jpg";
+import photo9 from "../assets/photo9.webp";
 import photo10 from "../assets/photo10.jpg";
 import photo11 from "../assets/photo11.jpg";
 import photo12 from "../assets/photo12.jpg";

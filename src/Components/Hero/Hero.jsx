@@ -5,7 +5,7 @@ import AnnouncementBar from "../../pages/AnnouncementBar";
 import FlowerSprinkler from "../../pages/FlowerSprinkler";
 import LoadingPage from "../../pages/LoadingPage";
 import "./Hero.css";
-import missionImg from "../../assets/photo9.jpg"; // your image
+import missionImg from "../../assets/photo9.webp"; // your image
 import visionImg from "../../assets/photo10.jpg";   // your image
 import bio from "../../assets/bio.jpg";
 import hero1 from "../../assets/hero1.webp";
