@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "./About.css";
 import guruji from "../assets/guruji.webp";
 import vision from "../assets/vision.jpg";
-import daily from "../assets/journey.jpg";
+import daily from "../assets/journey.webp";
 
 const About = () => {
   const navigate = useNavigate();
