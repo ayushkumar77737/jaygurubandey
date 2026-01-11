@@ -13,7 +13,7 @@ import photo12 from "../assets/photo12.webp";
 import photo13 from "../assets/photo13.webp";
 import photo14 from "../assets/photo14.webp";
 import photo15 from "../assets/photo15.webp";
-import photo16 from "../assets/photo16.jpg";
+import photo16 from "../assets/photo16.webp";
 import photo17 from "../assets/photo17.jpg";
 import photo18 from "../assets/photo18.jpg";
 import photo19 from "../assets/photo19.jpg";
