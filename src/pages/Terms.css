@@ -1,0 +1,304 @@
+/* ===============================
+   TERMS & CONDITIONS PAGE
+================================ */
+
+.terms-page {
+  min-height: 100vh;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #fffaf3, #ffffff);
+  font-family: "Outfit", sans-serif;
+}
+
+/* Main Container */
+.terms-container {
+  max-width: 900px;
+  margin: auto;
+  background: #ffffff;
+  padding: 50px 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+}
+
+/* Title */
+.terms-title {
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
+  color: #2b2b2b;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.terms-updated {
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 40px;
+}
+
+/* Sections */
+.terms-section {
+  margin-bottom: 32px;
+}
+
+.terms-section h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #c59d5f;
+  margin-bottom: 10px;
+}
+
+.terms-section p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .terms-container {
+    padding: 35px 22px;
+  }
+
+  .terms-title {
+    font-size: 32px;
+  }
+
+  .terms-section h2 {
+    font-size: 20px;
+  }
+
+  .terms-section p {
+    font-size: 15px;
+  }
+}
+
+/* ===============================
+   ANIMATIONS
+================================ */
+
+/* Page entry animation */
+.terms-page {
+  animation: termsFadeIn 0.9s ease-out both;
+}
+
+@keyframes termsFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Container soft scale */
+.terms-container {
+  animation: containerPop 0.7s ease-out both;
+}
+
+@keyframes containerPop {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Title animation */
+.terms-title {
+  animation: titleSlide 0.7s ease-out both;
+}
+
+@keyframes titleSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section stagger animation */
+.terms-section {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: sectionReveal 0.6s ease-out forwards;
+}
+
+/* Stagger delay */
+.terms-section:nth-child(1) { animation-delay: 0.15s; }
+.terms-section:nth-child(2) { animation-delay: 0.25s; }
+.terms-section:nth-child(3) { animation-delay: 0.35s; }
+.terms-section:nth-child(4) { animation-delay: 0.45s; }
+.terms-section:nth-child(5) { animation-delay: 0.55s; }
+.terms-section:nth-child(6) { animation-delay: 0.65s; }
+.terms-section:nth-child(7) { animation-delay: 0.75s; }
+
+@keyframes sectionReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover micro interaction */
+.terms-section {
+  transition: transform 0.35s ease, background 0.35s ease;
+  padding: 4px 6px;
+  border-radius: 12px;
+}
+
+.terms-section:hover {
+  transform: translateY(-3px);
+  background: rgba(197, 157, 95, 0.05);
+}
+
+/* Heading underline glow effect */
+.terms-section h2 {
+  position: relative;
+}
+
+.terms-section h2::after {
+  content: "";
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #c59d5f, #b38745);
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.terms-section:hover h2::after {
+  width: 60px;
+}
+/* ===============================
+   RESPONSIVE BREAKPOINTS
+================================ */
+
+/* ===== Large Screens (1200px+) ===== */
+@media (min-width: 1200px) {
+  .terms-container {
+    max-width: 1000px;
+    padding: 60px 60px;
+  }
+
+  .terms-title {
+    font-size: 44px;
+  }
+
+  .terms-section h2 {
+    font-size: 24px;
+  }
+
+  .terms-section p {
+    font-size: 17px;
+  }
+}
+
+/* ===== Laptop (992px – 1199px) ===== */
+@media (max-width: 1199px) {
+  .terms-container {
+    max-width: 900px;
+    padding: 50px 44px;
+  }
+
+  .terms-title {
+    font-size: 38px;
+  }
+}
+
+/* ===== Tablet (768px – 991px) ===== */
+@media (max-width: 991px) {
+  .terms-page {
+    padding: 70px 16px;
+  }
+
+  .terms-container {
+    padding: 42px 30px;
+  }
+
+  .terms-title {
+    font-size: 34px;
+  }
+
+  .terms-section h2 {
+    font-size: 21px;
+  }
+
+  .terms-section p {
+    font-size: 15.5px;
+  }
+}
+
+/* ===== Mobile (max-width: 767px) ===== */
+@media (max-width: 767px) {
+  .terms-page {
+    padding: 60px 14px;
+  }
+
+  .terms-container {
+    padding: 34px 20px;
+    border-radius: 16px;
+  }
+
+  .terms-title {
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  .terms-updated {
+    font-size: 13px;
+    margin-bottom: 28px;
+  }
+
+  .terms-section {
+    margin-bottom: 26px;
+  }
+
+  .terms-section h2 {
+    font-size: 19px;
+  }
+
+  .terms-section p {
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+
+  /* Reduce animation intensity on mobile */
+  .terms-section:hover {
+    transform: none;
+    background: transparent;
+  }
+
+  .terms-section:hover h2::after {
+    width: 40px;
+  }
+}
+
+/* ===== Small Mobile (max-width: 420px) ===== */
+@media (max-width: 420px) {
+  .terms-title {
+    font-size: 26px;
+  }
+
+  .terms-container {
+    padding: 28px 16px;
+  }
+
+  .terms-section h2 {
+    font-size: 18px;
+  }
+
+  .terms-section p {
+    font-size: 14px;
+  }
+}

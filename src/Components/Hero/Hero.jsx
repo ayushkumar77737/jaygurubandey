@@ -356,7 +356,7 @@ It’s a spiritual and philosophical message encouraging people to seek divine c
             <h3 className="quicklinks-title">Legal</h3>
             <ul>
               <li><a href="/privacy-policy">Privacy Policy</a></li>
-              <li><a href="/terms-and-conditions">Terms & Conditions</a></li>
+              <li><a href="/terms-conditions">Terms & Conditions</a></li>
               <li><a href="/donation-policy">Donation Policy</a></li>
               <li><a href="/refund-policy">Refund Policy</a></li>
             </ul>
