@@ -358,7 +358,6 @@ It’s a spiritual and philosophical message encouraging people to seek divine c
               <li><a href="/privacy-policy">Privacy Policy</a></li>
               <li><a href="/terms-conditions">Terms & Conditions</a></li>
               <li><a href="/donation-policy">Donation Policy</a></li>
-              <li><a href="/refund-policy">Refund Policy</a></li>
             </ul>
           </div>
         </div>
