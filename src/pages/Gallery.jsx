@@ -18,8 +18,8 @@ import photo17 from "../assets/photo17.webp";
 import photo18 from "../assets/photo18.webp";
 import photo19 from "../assets/photo19.webp";
 import photo20 from "../assets/photo20.webp";
-import photo21 from "../assets/photo21.jpg";
-import photo22 from "../assets/photo22.jpg";
+import photo21 from "../assets/photo21.webp";
+import photo22 from "../assets/photo22.webp";
 import photo23 from "../assets/photo23.jpg";
 
 const photos = [
