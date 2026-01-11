@@ -1,0 +1,262 @@
+/* ===============================
+   DONATION POLICY PAGE (SCOPED)
+================================ */
+
+.donation-policy-page {
+  min-height: 100vh;
+  padding: 90px 24px;
+  background:
+    radial-gradient(circle at top left, rgba(197, 157, 95, 0.25), transparent 60%),
+    linear-gradient(180deg, #fffaf3, #ffffff);
+  font-family: "Outfit", sans-serif;
+  overflow-x: hidden;
+
+  /* page fade */
+  animation: dpPageFade 0.8s ease-out both;
+}
+
+@keyframes dpPageFade {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.donation-policy-container {
+  max-width: 900px;
+  margin: auto;
+}
+
+/* ===== Title ===== */
+
+.donation-policy-title {
+  font-size: 44px;
+  font-weight: 700;
+  text-align: center;
+  color: #2b2b2b;
+  margin-bottom: 34px;
+  position: relative;
+  letter-spacing: 0.4px;
+
+  animation: dpTitleReveal 0.9s ease-out both;
+}
+
+@keyframes dpTitleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.donation-policy-title::after {
+  content: "";
+  width: 96px;
+  height: 4px;
+  background: linear-gradient(90deg, #c59d5f, #b38745);
+  display: block;
+  margin: 18px auto 0;
+  border-radius: 6px;
+
+  animation: dpUnderlineGrow 0.8s ease-out both;
+}
+
+@keyframes dpUnderlineGrow {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 96px;
+    opacity: 1;
+  }
+}
+
+/* ===== Intro ===== */
+
+.donation-policy-intro {
+  font-size: 18px;
+  line-height: 1.85;
+  color: #555;
+  text-align: center;
+  margin-bottom: 56px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+
+  animation: dpFadeUp 1s ease-out both;
+}
+
+@keyframes dpFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Policy Card ===== */
+
+.policy-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px 30px;
+  margin-bottom: 26px;
+  border: 1.5px solid #f0e6dc;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.04);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+
+  animation: dpCardReveal 0.9s ease-out both;
+}
+
+.policy-card:nth-child(2) { animation-delay: 0.05s; }
+.policy-card:nth-child(3) { animation-delay: 0.1s; }
+.policy-card:nth-child(4) { animation-delay: 0.15s; }
+.policy-card:nth-child(5) { animation-delay: 0.2s; }
+.policy-card:nth-child(6) { animation-delay: 0.25s; }
+
+@keyframes dpCardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.policy-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(197, 157, 95, 0.08),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.policy-card:hover::before {
+  opacity: 1;
+}
+
+.policy-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.08);
+}
+
+.policy-card h2 {
+  font-size: 21px;
+  font-weight: 600;
+  color: #3a2c1a;
+  margin-bottom: 10px;
+}
+
+.policy-card p {
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: #555;
+}
+
+/* ===== Footer Note ===== */
+
+.donation-policy-footer {
+  margin-top: 56px;
+  font-size: 15.5px;
+  color: #666;
+  text-align: center;
+  font-style: italic;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+
+  animation: dpFadeUp 1s ease-out both;
+}
+
+/* ===============================
+   RESPONSIVE BREAKPOINTS
+================================ */
+
+/* 💻 Large Laptop */
+@media (min-width: 1200px) {
+  .donation-policy-container {
+    max-width: 960px;
+  }
+}
+
+/* 💻 Laptop */
+@media (max-width: 1199px) {
+  .donation-policy-title {
+    font-size: 40px;
+  }
+}
+
+/* 📱 Tablet */
+@media (max-width: 991px) {
+  .donation-policy-page {
+    padding: 70px 20px;
+  }
+
+  .donation-policy-title {
+    font-size: 36px;
+  }
+
+  .donation-policy-intro {
+    font-size: 17px;
+  }
+
+  .policy-card {
+    padding: 24px 24px;
+  }
+}
+
+/* 📱 Mobile */
+@media (max-width: 576px) {
+  .donation-policy-page {
+    padding: 56px 16px;
+  }
+
+  .donation-policy-title {
+    font-size: 30px;
+  }
+
+  .donation-policy-intro {
+    font-size: 16px;
+    line-height: 1.75;
+    margin-bottom: 42px;
+  }
+
+  .policy-card {
+    padding: 20px 18px;
+    border-radius: 16px;
+  }
+
+  .policy-card h2 {
+    font-size: 18px;
+  }
+
+  .policy-card p {
+    font-size: 15.5px;
+  }
+
+  .donation-policy-footer {
+    font-size: 14.5px;
+  }
+}

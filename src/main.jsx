@@ -48,6 +48,7 @@ import LiveNow from './pages/LiveNow.jsx'
 import DailyTeachings from './pages/DailyTeachings.jsx'
 import Subscribe from './pages/Subscribe.jsx'
 import Terms from './pages/Terms.jsx'
+import DonationPolicy from './pages/DonationPolicy.jsx'
 
 const router = createBrowserRouter([
   {
@@ -98,6 +99,7 @@ const router = createBrowserRouter([
       { path: "daily-teachings", element: <DailyTeachings /> },
       { path: 'subscribe', element: <Subscribe /> },
       { path: 'terms-conditions', element: <Terms /> },
+      { path: 'donation-policy', element: <DonationPolicy /> },
     ],
   },
   { path: '*', element: <NotFound /> },
