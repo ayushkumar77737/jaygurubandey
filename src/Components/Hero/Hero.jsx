@@ -270,58 +270,100 @@ It’s a spiritual and philosophical message encouraging people to seek divine c
       {/* ===== DECORATIVE DIVIDER ===== */}
       <div className="section-divider" />
       <section className="activities-section">
-      <h2 className="activities-heading">Key Activities / What We Do</h2>
+        <h2 className="activities-heading">Key Activities / What We Do</h2>
 
-      <div className="activities-grid">
-        {/* Card 1 */}
-        <div className="activity-card">
-          <div className="activity-icon">
-            <FaHandsHelping />
+        <div className="activities-grid">
+          {/* Card 1 */}
+          <div className="activity-card">
+            <div className="activity-icon">
+              <FaHandsHelping />
+            </div>
+            <h3>Seva / Activities</h3>
+            <p>
+              Daily and regular spiritual, social, and seva-based activities
+              conducted with devotion and discipline.
+            </p>
           </div>
-          <h3>Seva / Activities</h3>
-          <p>
-            Daily and regular spiritual, social, and seva-based activities
-            conducted with devotion and discipline.
-          </p>
-        </div>
 
-        {/* Card 2 */}
-        <div className="activity-card">
-          <div className="activity-icon">
-            <FaCalendarAlt />
+          {/* Card 2 */}
+          <div className="activity-card">
+            <div className="activity-icon">
+              <FaCalendarAlt />
+            </div>
+            <h3>Events</h3>
+            <p>
+              Special programs, celebrations, satsangs, yatras, and spiritual
+              gatherings throughout the year.
+            </p>
           </div>
-          <h3>Events</h3>
-          <p>
-            Special programs, celebrations, satsangs, yatras, and spiritual
-            gatherings throughout the year.
-          </p>
-        </div>
 
-        {/* Card 3 */}
-        <div className="activity-card">
-          <div className="activity-icon">
-            <FaUsers />
+          {/* Card 3 */}
+          <div className="activity-card">
+            <div className="activity-icon">
+              <FaUsers />
+            </div>
+            <h3>Community Support</h3>
+            <p>
+              Guidance, unity, social responsibility, and support for individuals
+              and families in need.
+            </p>
           </div>
-          <h3>Community Support</h3>
-          <p>
-            Guidance, unity, social responsibility, and support for individuals
-            and families in need.
-          </p>
-        </div>
 
-        {/* Card 4 */}
-        <div className="activity-card">
-          <div className="activity-icon">
-            <FaGlobe />
+          {/* Card 4 */}
+          <div className="activity-card">
+            <div className="activity-icon">
+              <FaGlobe />
+            </div>
+            <h3>Online Services</h3>
+            <p>
+              Website services, announcements, updates, and digital access to
+              spiritual resources.
+            </p>
           </div>
-          <h3>Online Services</h3>
-          <p>
-            Website services, announcements, updates, and digital access to
-            spiritual resources.
-          </p>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* ===== DECORATIVE DIVIDER ===== */}
+      <div className="section-divider" />
+
+      <section className="quicklinks-section">
+        <h2 className="section-heading">Quick Links & Updates</h2>
+
+        <div className="quicklinks-grid">
+          <div className="quicklinks-box">
+            <h3 className="quicklinks-title">Important Links</h3>
+            <ul>
+              <li><a href="/about">About</a></li>
+              <li><a href="/ashram-vision">Ashram Vision</a></li>
+              <li><a href="/committee-members">Committee Members</a></li>
+              <li><a href="/ashram-life">Ashram Life</a></li>
+              <li><a href="/contact">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <div className="quicklinks-box">
+            <h3 className="quicklinks-title">Latest Updates</h3>
+            <ul>
+              <li><a href="/latest-updates">Latest Updates</a></li>
+              <li><a href="/daily-schedule">Daily Schedule</a></li>
+              <li><a href="/live">Live Now</a></li>
+              <li><a href="/upcoming-programs">Upcoming Programs</a></li>
+              <li><a href="/special-events">Special Events</a></li>
+            </ul>
+          </div>
+
+          <div className="quicklinks-box">
+            <h3 className="quicklinks-title">Legal</h3>
+            <ul>
+              <li><a href="/privacy-policy">Privacy Policy</a></li>
+              <li><a href="/terms-and-conditions">Terms & Conditions</a></li>
+              <li><a href="/donation-policy">Donation Policy</a></li>
+              <li><a href="/refund-policy">Refund Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
 
       {/* ===== DECORATIVE DIVIDER ===== */}
       <div className="section-divider" />

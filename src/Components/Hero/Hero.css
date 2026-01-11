@@ -1432,3 +1432,201 @@ html, body {
   }
 }
 
+/* =================================================
+   QUICK LINKS SECTION (PREMIUM + FULLY RESPONSIVE)
+   Scoped ONLY to .quicklinks-* (NO CSS CLASH)
+================================================= */
+
+.quicklinks-section {
+  padding: 120px 20px;
+  background:
+    radial-gradient(circle at top, rgba(197, 157, 95, 0.22), transparent 55%),
+    linear-gradient(180deg, #fff7ed, #ffffff);
+  font-family: "Outfit", sans-serif;
+  position: relative;
+  isolation: isolate; /* prevents bleed */
+}
+
+/* ================= GRID ================= */
+
+.quicklinks-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 46px;
+}
+
+/* ================= CARD ================= */
+
+.quicklinks-box {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  padding: 44px 32px 38px;
+  border-radius: 26px;
+  border: 1.5px solid rgba(197, 157, 95, 0.28);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+}
+
+/* golden edge shimmer */
+.quicklinks-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 26px;
+  background: linear-gradient(
+    135deg,
+    rgba(197, 157, 95, 0.35),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.quicklinks-box:hover::before {
+  opacity: 1;
+}
+
+.quicklinks-box:hover {
+  transform: translateY(-16px);
+  box-shadow:
+    0 32px 70px rgba(197, 157, 95, 0.35),
+    0 0 0 1px rgba(197, 157, 95, 0.25);
+}
+
+/* ================= TITLE ================= */
+
+.quicklinks-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #7a1c1c;
+  text-align: center;
+  margin-bottom: 24px;
+  letter-spacing: 0.4px;
+}
+
+.quicklinks-title::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin: 12px auto 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #c59d5f, #b38745);
+  box-shadow: 0 4px 10px rgba(197, 157, 95, 0.45);
+}
+
+/* ================= LIST ================= */
+
+.quicklinks-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quicklinks-box li {
+  margin: 14px 0;
+  font-size: 16.2px;
+  color: #444;
+  position: relative;
+  padding-left: 20px;
+  transition: color 0.35s ease, padding-left 0.35s ease;
+}
+
+/* golden bullet */
+.quicklinks-box li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #c59d5f;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.quicklinks-box li:hover {
+  color: #8B0000;
+  padding-left: 28px;
+}
+
+.quicklinks-box a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =================================================
+   RESPONSIVE BREAKPOINTS
+================================================= */
+
+/* -------- Large Laptops (1400px+) -------- */
+@media (min-width: 1400px) {
+  .quicklinks-grid {
+    max-width: 1300px;
+    gap: 52px;
+  }
+
+  .quicklinks-box {
+    padding: 48px 36px 42px;
+  }
+}
+
+/* -------- Laptops (1024px – 1399px) -------- */
+@media (max-width: 1399px) {
+  .quicklinks-section {
+    padding: 100px 20px;
+  }
+}
+
+/* -------- Tablets (768px – 1023px) -------- */
+@media (max-width: 1023px) {
+  .quicklinks-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 38px;
+  }
+
+  .quicklinks-box {
+    padding: 40px 30px 34px;
+  }
+}
+
+/* -------- Mobile (≤ 767px) -------- */
+@media (max-width: 767px) {
+  .quicklinks-section {
+    padding: 80px 16px;
+  }
+
+  .quicklinks-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .quicklinks-title {
+    font-size: 20px;
+  }
+
+  .quicklinks-box li {
+    font-size: 15.5px;
+  }
+}
+
+/* -------- Small Mobile (≤ 480px) -------- */
+@media (max-width: 480px) {
+  .quicklinks-section {
+    padding: 70px 14px;
+  }
+
+  .quicklinks-box {
+    padding: 36px 24px 30px;
+    border-radius: 22px;
+  }
+
+  .quicklinks-title {
+    font-size: 19px;
+  }
+
+  .quicklinks-box li {
+    font-size: 15px;
+  }
+}
