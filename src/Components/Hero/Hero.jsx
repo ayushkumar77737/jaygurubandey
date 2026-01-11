@@ -328,7 +328,7 @@ It’s a spiritual and philosophical message encouraging people to seek divine c
 
       {/* ===== SOCIAL LINKS SECTION START ===== */}
       <section className="social-section">
-        <h2 className="section-heading">Important Links</h2>
+        <h2 className="section-heading">Official Digital Platforms</h2>
         <div className="social-grid">
 
           {/* YouTube */}
