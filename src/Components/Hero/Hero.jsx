@@ -6,7 +6,7 @@ import FlowerSprinkler from "../../pages/FlowerSprinkler";
 import LoadingPage from "../../pages/LoadingPage";
 import "./Hero.css";
 import missionImg from "../../assets/photo9.webp"; // your image
-import visionImg from "../../assets/photo10.jpg";   // your image
+import visionImg from "../../assets/photo10.webp";   // your image
 import bio from "../../assets/bio.jpg";
 import hero1 from "../../assets/hero1.webp";
 import hero2 from "../../assets/hero2.webp";
