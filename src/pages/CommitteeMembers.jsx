@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './CommitteeMembers.css';
 import member1Image from '../assets/photo5.jpg';
-import member2Image from '../assets/photo6.jpg';
+import member2Image from '../assets/photo6.webp';
 import member3Image from '../assets/photo5.jpg';
-import member4Image from '../assets/photo6.jpg';
+import member4Image from '../assets/photo6.webp';
 import member5Image from '../assets/photo5.jpg';
-import member6Image from '../assets/photo6.jpg';
+import member6Image from '../assets/photo6.webp';
 
 const members = [
     { name: "Shri Guru Prakash Ji", role: "Founder & Head", phone: "+91 98765 43210", email: "guruprakash@example.com", image: member1Image },
