@@ -345,8 +345,8 @@ It’s a spiritual and philosophical message encouraging people to seek divine c
             <h3 className="quicklinks-title">Latest Updates</h3>
             <ul>
               <li><a href="/latest-updates">Latest Updates</a></li>
-              <li><a href="/daily-schedule">Daily Schedule</a></li>
-              <li><a href="/live">Live Now</a></li>
+              <li><a href="/dailyschedule">Daily Schedule</a></li>
+              <li><a href="/live-now">Live Now</a></li>
               <li><a href="/upcoming-programs">Upcoming Programs</a></li>
               <li><a href="/special-events">Special Events</a></li>
             </ul>
