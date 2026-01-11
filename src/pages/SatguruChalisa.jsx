@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./SatguruChalisa.css";
-import guruImage from "../assets/photo24.jpg"; // replace with your actual image
+import guruImage from "../assets/photo24.webp"; // replace with your actual image
 
 const SatguruChalisa = () => {
   const [page, setPage] = useState(1);

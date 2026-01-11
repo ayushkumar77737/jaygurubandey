@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./SatguruArti.css";
-import guruImage from "../assets/photo24.jpg"; // replace with actual path
+import guruImage from "../assets/photo24.webp"; // replace with actual path
 
 const SatguruArti = () => {
   const [page, setPage] = useState(1);

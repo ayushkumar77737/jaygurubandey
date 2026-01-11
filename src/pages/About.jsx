@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./About.css";
 import guruji from "../assets/guruji.webp";
-import vision from "../assets/vision.jpg";
+import vision from "../assets/vision.webp";
 import daily from "../assets/journey.webp";
 
 const About = () => {

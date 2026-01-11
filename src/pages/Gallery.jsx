@@ -20,7 +20,7 @@ import photo19 from "../assets/photo19.webp";
 import photo20 from "../assets/photo20.webp";
 import photo21 from "../assets/photo21.webp";
 import photo22 from "../assets/photo22.webp";
-import photo23 from "../assets/photo23.jpg";
+import photo23 from "../assets/photo23.webp";
 
 const photos = [
   { id: 1, src: photo23, alt: "Photo 23" },

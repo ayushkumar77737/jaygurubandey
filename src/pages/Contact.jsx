@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Contact.css";
-import ashramImg from "../assets/vision.jpg";
+import ashramImg from "../assets/vision.webp";
 import gurujiImg from "../assets/guruji.webp";
 
 const ContactUs = () => {

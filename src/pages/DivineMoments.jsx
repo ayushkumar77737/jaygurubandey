@@ -3,7 +3,7 @@ import "./DivineMoments.css";
 
 // 👉 Import your real images here
 import gurujiNewYear from "../assets/guruji.webp";
-import satsangImage from "../assets/vision.jpg";
+import satsangImage from "../assets/vision.webp";
 
 const MOMENTS = [
     {
