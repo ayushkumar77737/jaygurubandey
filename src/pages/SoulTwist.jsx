@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./SoulTwist.css";
-import img1 from "../assets/guruji.jpg";
-import img2 from "../assets/guruji.jpg";
-import img3 from "../assets/guruji.jpg";
-import img4 from "../assets/guruji.jpg";
+import img1 from "../assets/guruji.webp";
+import img2 from "../assets/guruji.webp";
+import img3 from "../assets/guruji.webp";
+import img4 from "../assets/guruji.webp";
 
 const SoulTwist = () => {
   const [selectedMonth, setSelectedMonth] = useState("");

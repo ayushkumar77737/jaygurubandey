@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./DivineMoments.css";
 
 // 👉 Import your real images here
-import gurujiNewYear from "../assets/guruji.jpg";
+import gurujiNewYear from "../assets/guruji.webp";
 import satsangImage from "../assets/vision.jpg";
 
 const MOMENTS = [

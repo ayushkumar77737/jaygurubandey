@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./PublishedBooks.css";
-import book1 from "../assets/guruji.jpg";
-import book2 from "../assets/guruji.jpg";
-import book3 from "../assets/guruji.jpg";
+import book1 from "../assets/guruji.webp";
+import book2 from "../assets/guruji.webp";
+import book3 from "../assets/guruji.webp";
 
 const PublishedBooks = () => {
   const [selectedBook, setSelectedBook] = useState(null);

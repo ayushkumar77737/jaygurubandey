@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Subscribe.css";
-import guruji from "../assets/guruji.jpg";
+import guruji from "../assets/guruji.webp";
 
 // ✅ Single Telegram Group Link
 const TELEGRAM_GROUP_LINK = "https://t.me/+5APCSKB6YC85MjRl";

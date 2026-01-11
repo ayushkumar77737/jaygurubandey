@@ -1,6 +1,6 @@
 import React from "react";
 import "./AshramVision.css";
-import guruji from "../assets/guruji.jpg";
+import guruji from "../assets/guruji.webp";
 
 const AshramVision = () => {
     return (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Chatwithus.css";
-import sideImage from "../assets/guruji.jpg"; // <-- replace with your image path
+import sideImage from "../assets/guruji.webp"; // <-- replace with your image path
 
 const ChatWithUs = () => {
   const [name, setName] = useState("");

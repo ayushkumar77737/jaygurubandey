@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./program.css";
-import gurujiImage from "../assets/guruji.jpg";
+import gurujiImage from "../assets/guruji.webp";
 
 const Program = () => {
   const data = [

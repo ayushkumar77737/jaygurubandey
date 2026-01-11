@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./DailySatsang.css";
-import guruAvatar from "../assets/guruji.jpg";
+import guruAvatar from "../assets/guruji.webp";
 
 const MONTHS = [
     {
