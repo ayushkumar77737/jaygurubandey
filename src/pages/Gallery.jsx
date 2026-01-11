@@ -4,7 +4,7 @@ import "./Gallery.css";
 // Import images
 import photo6 from "../assets/photo6.jpg";
 import photo7 from "../assets/photo7.jpg";
-import photo8 from "../assets/photo8.jpg";
+import photo8 from "../assets/photo8.webp";
 import photo2 from "../assets/photo2.jpg";
 import photo9 from "../assets/photo9.jpg";
 import photo10 from "../assets/photo10.jpg";

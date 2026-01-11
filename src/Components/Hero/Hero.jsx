@@ -13,7 +13,7 @@ import hero2 from "../../assets/hero2.png";
 import photo1 from "../../assets/photo1.jpg";
 import photo6 from "../../assets/photo6.jpg";
 import photo7 from "../../assets/photo7.jpg";
-import photo8 from "../../assets/photo8.jpg";
+import photo8 from "../../assets/photo8.webp";
 import photo10 from "../../assets/photo10.jpg";
 import photo19 from "../../assets/photo19.jpg";
 import pic from "../../assets/pic.jpeg";
