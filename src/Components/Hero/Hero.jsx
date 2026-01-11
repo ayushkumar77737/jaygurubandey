@@ -15,7 +15,7 @@ import photo6 from "../../assets/photo6.webp";
 import photo7 from "../../assets/photo7.webp";
 import photo8 from "../../assets/photo8.webp";
 import photo10 from "../../assets/photo10.webp";
-import photo19 from "../../assets/photo19.jpg";
+import photo19 from "../../assets/photo19.webp";
 import pic from "../../assets/pic.jpeg";
 import {
   FaYoutube,

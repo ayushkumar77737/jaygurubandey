@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./LatestUpdates.css";
 import guruji1 from "../assets/guruji.webp";
 import photo16 from "../assets/photo16.webp";
-import photo19 from "../assets/photo19.jpg";
+import photo19 from "../assets/photo19.webp";
 
 const updates = [
   {
