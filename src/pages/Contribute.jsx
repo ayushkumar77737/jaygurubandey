@@ -1,20 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./Contribute.css";
 import qrImg from "../assets/scanner.jpg";
 
-/* ===============================
-   GOOGLE APPS SCRIPT URL
-================================ */
 const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbznlQRq52r71ftv6lgYAEL5FQ_4PmG60SPAjlzq9-wRVGI8pkDLd11seck6SfYmbmDoLw/exec";
+  "https://script.google.com/macros/s/AKfycbznlQRq52r71ftv6lgYAEL5FQ_4PmG60SPAjlzq9-wRVGI8pkDLd11seck6SfYmbmDoLw/exec"; // 🔴 replace with your URL
 
 const Contribute = () => {
-  const navigate = useNavigate();
-
-  /* ===============================
-     STATE
-  ================================ */
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -25,17 +16,11 @@ const Contribute = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  /* ===============================
-     SHOW MESSAGE
-  ================================ */
   const showMessage = (text, time = 4000) => {
     setMessage(text);
     setTimeout(() => setMessage(""), time);
   };
 
-  /* ===============================
-     INPUT HANDLER
-  ================================ */
   const handleChange = (e) => {
     const { name, value } = e.target;
     let newValue = value;
@@ -59,15 +44,9 @@ const Contribute = () => {
       newValue = value.replace(/\D/g, "").slice(0, 12);
     }
 
-    setFormData({
-      ...formData,
-      [name]: newValue,
-    });
+    setFormData({ ...formData, [name]: newValue });
   };
 
-  /* ===============================
-     SUBMIT HANDLER
-  ================================ */
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (loading) return;
@@ -93,15 +72,18 @@ const Contribute = () => {
       errors.push("❌ Transaction ID must be exactly 12 digits.");
     }
 
-    /* ❌ VALIDATION ERROR */
+    // ❌ Validation errors
     if (errors.length > 0) {
       showMessage(errors.join("\n"));
+
+      // 🔥 CLEAR ALL FIELDS ON ERROR
       setFormData({
         name: "",
         phone: "",
         amount: "",
         transactionId: "",
       });
+
       return;
     }
 
@@ -120,19 +102,22 @@ const Contribute = () => {
 
       const text = await response.text();
 
-      /* ❌ DUPLICATE TRANSACTION */
+      // ❌ Duplicate transaction
       if (text === "Duplicate transaction") {
         showMessage("❌ This Transaction ID has already been submitted.");
+
+        // 🔥 CLEAR FIELDS
         setFormData({
           name: "",
           phone: "",
           amount: "",
           transactionId: "",
         });
+
         return;
       }
 
-      /* ✅ SUCCESS */
+      // ✅ Success
       if (text === "Success") {
         showMessage("✅ Contribution submitted successfully!", 3000);
 
@@ -143,48 +128,42 @@ const Contribute = () => {
           transactionId: "",
         });
 
-        /* 🔁 REDIRECT AFTER 3 SECONDS */
-        setTimeout(() => {
-          navigate("/payment-verification");
-        }, 3000);
-
         return;
       }
 
-      /* ❌ UNKNOWN RESPONSE */
+      // ❌ Unknown response
       showMessage("❌ Something went wrong. Please try again.");
-    } catch {
-      /* ❌ SERVER ERROR */
-      showMessage("❌ Server error. Please try again.");
-    } finally {
-      setLoading(false);
+
       setFormData({
         name: "",
         phone: "",
         amount: "",
         transactionId: "",
       });
+    } catch {
+      // ❌ Server error
+      showMessage("❌ Server error. Please try again.");
+
+      setFormData({
+        name: "",
+        phone: "",
+        amount: "",
+        transactionId: "",
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
-  /* ===============================
-     JSX
-  ================================ */
+
   return (
     <div className="contribute-container">
       <h1 className="contribute-title">Contribute</h1>
 
       <div className="contribute-card">
-        <img
-          src={qrImg}
-          alt="Scanner / QR"
-          className="contribute-image"
-        />
+        <img src={qrImg} alt="Scanner / QR" className="contribute-image" />
 
-        <form
-          className="contribute-form"
-          onSubmit={handleSubmit}
-        >
+        <form className="contribute-form" onSubmit={handleSubmit}>
           <input
             type="text"
             name="name"
@@ -221,11 +200,7 @@ const Contribute = () => {
             required
           />
 
-          <button
-            type="submit"
-            className="submit-btn"
-            disabled={loading}
-          >
+          <button type="submit" className="submit-btn" disabled={loading}>
             {loading ? "Submitting..." : "Submit"}
           </button>
         </form>
@@ -234,9 +209,7 @@ const Contribute = () => {
       {message && (
         <div
           style={{
-            color: message.startsWith("✅")
-              ? "#00ff9d"
-              : "#ff6b6b",
+            color: message.startsWith("✅") ? "#00ff9d" : "#ff6b6b",
             marginTop: "20px",
             whiteSpace: "pre-line",
             fontWeight: "bold",
