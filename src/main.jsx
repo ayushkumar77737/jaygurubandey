@@ -49,6 +49,7 @@ import DailyTeachings from './pages/DailyTeachings.jsx'
 import Subscribe from './pages/Subscribe.jsx'
 import Terms from './pages/Terms.jsx'
 import DonationPolicy from './pages/DonationPolicy.jsx'
+import VerificationUpload from "./pages/VerificationUpload.jsx"
 
 const router = createBrowserRouter([
   {
@@ -100,6 +101,7 @@ const router = createBrowserRouter([
       { path: 'subscribe', element: <Subscribe /> },
       { path: 'terms-conditions', element: <Terms /> },
       { path: 'donation-policy', element: <DonationPolicy /> },
+      { path: "payment-verification", element: <VerificationUpload /> },
     ],
   },
   { path: '*', element: <NotFound /> },

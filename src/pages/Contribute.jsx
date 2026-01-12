@@ -145,7 +145,7 @@ const Contribute = () => {
 
         /* 🔁 REDIRECT AFTER 3 SECONDS */
         setTimeout(() => {
-          navigate("/thank-you");
+          navigate("/payment-verification");
         }, 3000);
 
         return;
