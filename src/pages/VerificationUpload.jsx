@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./VerificationUpload.css";
 
 const SCRIPT_URL =
-  "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec"; // 🔴 replace
+  "https://script.google.com/macros/s/AKfycbydswF4z_UD_NwvTUlof9OFVQnqOBJxW6ecdvDIlRYeDSWIVfbCcIDT9xX33lMZbA/exec"; // 🔴 replace
 
 const VerificationUpload = () => {
   const [transactionId, setTransactionId] = useState("");
