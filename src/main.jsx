@@ -15,7 +15,7 @@ import Gallery from './pages/Gallery.jsx'
 import Contact from './pages/Contact.jsx'
 import ChatWithUs from './pages/Chatwithus.jsx'
 import ImportantDates from './pages/ImportantDates.jsx'
-import Contribute from './pages/Contribute.jsx'
+//import Contribute from './pages/Contribute.jsx'
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
 import SatguruArti from './pages/SatguruArti.jsx'
 import CommitteeMembers from './pages/CommitteeMembers.jsx'
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
       { path: 'contact', element: <Contact /> },
       { path: 'chat', element: <ChatWithUs /> },
       { path: 'important-dates', element: <ImportantDates /> },
-      { path: 'contribute', element: <Contribute /> },
+      //{ path: 'contribute', element: <Contribute /> },
       { path: 'privacy-policy', element: <PrivacyPolicy /> },
       { path: 'satguru-arti', element: <SatguruArti /> },
       { path: 'satguru-chalisa', element: <SatguruChalisa /> },
