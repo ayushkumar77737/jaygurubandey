@@ -10,7 +10,22 @@
       ]
     }
   ],
+
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/(.*)",
+      "destination": "/maintenance.html",
+      "has": [
+        {
+          "type": "env",
+          "key": "MAINTENANCE_MODE",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }
