@@ -8,8 +8,8 @@ export function isMaintenanceTime() {
   const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
   // 🔴 PRODUCTION maintenance window (12:45 AM – 12:47 AM)
-  const startMinutes = 0 * 60 + 45; // 12:45 AM
-  const endMinutes   = 0 * 60 + 47; // 12:47 AM
+  const startMinutes = 0 * 60 + 47; // 12:45 AM
+  const endMinutes   = 0 * 60 + 49; // 12:47 AM
 
   // ⏱ No midnight crossing here, but logic still safe
   if (startMinutes > endMinutes) {
