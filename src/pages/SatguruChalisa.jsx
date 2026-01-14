@@ -36,10 +36,10 @@ const SatguruChalisa = () => {
               Mile bhaagya se Satguru daataa, raakhe jiiv se bhakti naataa | <br />
               Satguru naam jo bhitar gaave, adbhut tirath kaa phal paave || <br /><br />
 
-              Satguru dukh hare sukhdaai, janam janam kaa paap nasaai | <br />
+              Satguru dras rahe sukhdaai, janam janam kaa paap nasaai | <br />
               Satguru saran jiivan jo aave, Prabhu kaa pyaaraa so ban jaave || <br />
               Satguru Raam ratan dhan khaani, daataa diin dayaalu daanii | <br />
-              Saahib Satguru jiiv vidhaataa, aaye jagat bhaye vikhyaataa ||
+              Saahib Satguru jiiv vidhaataa, aaye jagat bhaye vikhyaataa |
             </p>
           )}
 
@@ -50,14 +50,16 @@ const SatguruChalisa = () => {
               Jehi ghar Satguru kare nivaasaa, dete prem atal vishwaasaa | <br />
               Satguru naam akhand akaashaa, kare hriday mein param prakaashaa || <br /><br />
 
-              Raakhe ek jo Satguru aashaa, amarlok ghar paave vaasaa | <br />
-              Satguru vaidya hai vachan davaai, saaraa maanas rog hataai || <br />
-              Satguru mahimaa jaay na varni, jiiv ko taare mangal karni | <br />
-              Satsang tirath jo maarat gotaa, man mailaa chit chaadar dhotaa || <br />
-              Satguru ek hai samarth swaami, bhedi ghat kaa antaryaami || <br /><br />
+              Satguru vachan hṛiday jo raakhaa, man mandir mein amṛit chaakhaa | <br />
+              Raakhe ek jo Satguru aashaa, amarlok ghar paave vaasaa || <br />
+              Satguru vaidya hai vachan davaai, saaraa maanas rog hataai | <br />
+              Satguru mahimaa jaay na varni, jiiv ko taare mangal karni || <br /><br />
 
-              Sur nar muni sansaar mein koi, bin Satguru bhav paar na hoi | <br />
-              Jo Satguru pad dhyaan lagaai, ghat mein aatam gyaan samaai || <br />
+              Satsang tirath jo maarat gotaa, man mailaa chit chaadar dhotaa | <br />
+              Satguru ek hai samarth swaami, bhedi ghat kaa antaryaami || <br />
+              Sur nagar muni sansaar mein koi, bin Satguru bhav paar na hoi | <br />
+              Jo Satguru pad dhyaan lagaai, ghat mein aatam gyaan samaai || <br /><br />
+              
               Bin Satguru kaa jiiv hai nirguraa, Hari mile jo maanav saguraa ||
             </p>
           )}
