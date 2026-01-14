@@ -29,7 +29,7 @@ const App = () => {
     const interval = setInterval(() => {
       const status = isMaintenanceTime();
       setMaintenance(status);
-    }, 30 * 1000); // every 30 sec
+    }, 5 * 1000); // every 30 sec
 
     return () => clearInterval(interval);
   }, []);
