@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./SatguruChalisa.css";
-import guruImage from "../assets/photo24.webp"; // replace with your actual image
+import guruImage from "../assets/photo24.webp";
 
 const SatguruChalisa = () => {
   const [page, setPage] = useState(1);
@@ -9,23 +9,23 @@ const SatguruChalisa = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [page]);
 
-  const handleNext = () => setPage((prev) => Math.min(prev + 1, 3));
+  const handleNext = () => setPage((prev) => Math.min(prev + 1, 2));
   const handlePrev = () => setPage((prev) => Math.max(prev - 1, 1));
 
   return (
-    <div className="arti-container">
-      <h1 className="arti-title">🙏 Satguru Chalisa 🙏</h1>
+    <div className="chalisa-container">
+      <h1 className="chalisa-title">🙏 Satguru Chalisa 🙏</h1>
 
-      <div className="arti-content">
+      <div className="chalisa-content">
         {/* Left: Image */}
-        <div className="arti-image-box">
-          <img src={guruImage} alt="Satguru" className="arti-image" />
+        <div className="chalisa-image-box">
+          <img src={guruImage} alt="Satguru" className="chalisa-image" />
         </div>
 
         {/* Right: Text */}
-        <div className="arti-text-box">
+        <div className="chalisa-text-box">
           {page === 1 && (
-            <p className="arti-text">
+            <p key={page}>
               <b>Doha</b> <br />
               Poojaa Satguru charan kaa, kare nitya jo dhyaan | <br />
               Tere kripaa se jai Gurubande, sahaj usii kaa praan || <br /><br />
@@ -44,7 +44,7 @@ const SatguruChalisa = () => {
           )}
 
           {page === 2 && (
-            <p className="arti-text">
+            <p key={page}>
               Satguru bhagat bane jo koi, baal na baankaa uskaa hoi | <br />
               Raakhe jo Satguru ko aage, bhoot bhram sab dekhat bhaage || <br />
               Jehi ghar Satguru kare nivaasaa, dete prem atal vishwaasaa | <br />
@@ -59,16 +59,15 @@ const SatguruChalisa = () => {
               Satguru ek hai samarth swaami, bhedi ghat kaa antaryaami || <br />
               Sur nagar muni sansaar mein koi, bin Satguru bhav paar na hoi | <br />
               Jo Satguru pad dhyaan lagaai, ghat mein aatam gyaan samaai || <br /><br />
-              
+
               Bin Satguru kaa jiiv hai nirguraa, Hari mile jo maanav saguraa ||
             </p>
           )}
         </div>
-
       </div>
 
       {/* Pagination */}
-      <div className="arti-pagination">
+      <div className="chalisa-pagination">
         <button onClick={handlePrev} disabled={page === 1}>
           ⬅️ Previous
         </button>
@@ -78,7 +77,7 @@ const SatguruChalisa = () => {
         </button>
       </div>
 
-      <div className="arti-footer">
+      <div className="chalisa-footer">
         <p>🙏 Jai Gurubande Saheeb Sabka 🙏</p>
       </div>
     </div>
