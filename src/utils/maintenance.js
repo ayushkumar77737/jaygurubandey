@@ -7,11 +7,11 @@ export function isMaintenanceTime() {
   const now = new Date();
   const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-  // 🔴 PRODUCTION maintenance window
-  const startMinutes = 22 * 60 + 0; // 10:00 PM
-  const endMinutes   = 4 * 60 + 59; // 4:59 AM
+  // 🔴 PRODUCTION maintenance window (12:45 AM – 12:47 AM)
+  const startMinutes = 0 * 60 + 45; // 12:45 AM
+  const endMinutes   = 0 * 60 + 47; // 12:47 AM
 
-  // ⏱ Maintenance range crosses midnight
+  // ⏱ No midnight crossing here, but logic still safe
   if (startMinutes > endMinutes) {
     return (
       currentMinutes >= startMinutes ||
@@ -19,7 +19,6 @@ export function isMaintenanceTime() {
     );
   }
 
-  // Normal (same-day) range
   return (
     currentMinutes >= startMinutes &&
     currentMinutes <= endMinutes
