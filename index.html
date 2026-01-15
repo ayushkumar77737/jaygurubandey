@@ -20,12 +20,12 @@
     function maintenanceCheck() {
       const now = new Date();
 
-      // 🔧 EDIT ONLY THESE VALUES LATER
-      const startHour = 10;   // 10 AM
-      const startMinute = 19;  // 10:01 AM
+      // 🔧 EDIT ONLY THESE VALUES
+      const startHour = 10;
+      const startMinute = 27;
 
-      const endHour = 10;      // 5 AM
-      const endMinute = 21;    // 5:00 AM
+      const endHour = 10;
+      const endMinute = 28;
 
       const currentMinutes = now.getHours() * 60 + now.getMinutes();
       const startMinutes = startHour * 60 + startMinute;
@@ -33,23 +33,30 @@
 
       let isMaintenance = false;
 
-      // ⏰ Case 1: Same-day window
+      // Same-day window
       if (startMinutes < endMinutes) {
         isMaintenance =
           currentMinutes >= startMinutes &&
           currentMinutes < endMinutes;
       }
-      // 🌙 Case 2: Overnight window (10:01 AM → 5:00 AM next day)
+      // Overnight window
       else {
         isMaintenance =
           currentMinutes >= startMinutes ||
           currentMinutes < endMinutes;
       }
 
-      if (isMaintenance) {
-        if (!window.location.pathname.includes("maintenance")) {
-          window.location.replace("/maintenance.html");
-        }
+      const isOnMaintenancePage =
+        window.location.pathname.includes("maintenance");
+
+      // 🚧 Go TO maintenance
+      if (isMaintenance && !isOnMaintenancePage) {
+        window.location.replace("/maintenance.html");
+      }
+
+      // ✅ COME BACK after maintenance
+      if (!isMaintenance && isOnMaintenancePage) {
+        window.location.replace("/");
       }
     }
 
@@ -60,6 +67,7 @@
       if (!document.hidden) maintenanceCheck();
     });
   </script>
+
 
 
   <!-- React entry -->
