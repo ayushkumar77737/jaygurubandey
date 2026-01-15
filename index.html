@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="./src/assets/circle.png" />
@@ -16,47 +15,36 @@
 <body>
   <div id="root"></div>
 
+  <!-- 🔒 MAINTENANCE START CHECK -->
   <script>
     function maintenanceCheck() {
       const now = new Date();
 
-      // 🔧 EDIT ONLY THESE VALUES
+      /* 🔧 EDIT TIME HERE (ONLY) */
       const startHour = 10;
-      const startMinute = 27;
+      const startMinute = 38;
 
       const endHour = 10;
-      const endMinute = 28;
+      const endMinute = 40;
 
       const currentMinutes = now.getHours() * 60 + now.getMinutes();
       const startMinutes = startHour * 60 + startMinute;
       const endMinutes = endHour * 60 + endMinute;
 
-      let isMaintenance = false;
+      let isMaintenance;
 
-      // Same-day window
       if (startMinutes < endMinutes) {
         isMaintenance =
           currentMinutes >= startMinutes &&
           currentMinutes < endMinutes;
-      }
-      // Overnight window
-      else {
+      } else {
         isMaintenance =
           currentMinutes >= startMinutes ||
           currentMinutes < endMinutes;
       }
 
-      const isOnMaintenancePage =
-        window.location.pathname.includes("maintenance");
-
-      // 🚧 Go TO maintenance
-      if (isMaintenance && !isOnMaintenancePage) {
+      if (isMaintenance && !location.pathname.includes("maintenance")) {
         window.location.replace("/maintenance.html");
-      }
-
-      // ✅ COME BACK after maintenance
-      if (!isMaintenance && isOnMaintenancePage) {
-        window.location.replace("/");
       }
     }
 
@@ -68,10 +56,7 @@
     });
   </script>
 
-
-
   <!-- React entry -->
   <script type="module" src="/src/main.jsx"></script>
 </body>
-
 </html>

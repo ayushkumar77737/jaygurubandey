@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <title>Maintenance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Link external CSS -->
   <link rel="stylesheet" href="maintenance.css" />
 </head>
 
@@ -19,8 +17,49 @@
     </p>
 
     <p class="resume-text">
-      Please visit again after <strong>05:00 AM</strong>
+      Please visit again after <strong>10:21 AM</strong>
     </p>
   </div>
+
+  <!-- 🔁 MAINTENANCE END CHECK -->
+  <script>
+    function maintenanceCheck() {
+      const now = new Date();
+
+      /* 🔧 SAME TIME AS index.html */
+      const startHour = 10;
+      const startMinute = 38;
+
+      const endHour = 10;
+      const endMinute = 40;
+
+      const currentMinutes = now.getHours() * 60 + now.getMinutes();
+      const startMinutes = startHour * 60 + startMinute;
+      const endMinutes = endHour * 60 + endMinute;
+
+      let isMaintenance;
+
+      if (startMinutes < endMinutes) {
+        isMaintenance =
+          currentMinutes >= startMinutes &&
+          currentMinutes < endMinutes;
+      } else {
+        isMaintenance =
+          currentMinutes >= startMinutes ||
+          currentMinutes < endMinutes;
+      }
+
+      if (!isMaintenance) {
+        window.location.replace(window.location.origin);
+      }
+    }
+
+    maintenanceCheck();
+    setInterval(maintenanceCheck, 10000);
+
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) maintenanceCheck();
+    });
+  </script>
 </body>
 </html>
