@@ -1,0 +1,80 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
+body {
+  min-height: 100vh;
+  font-family: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #0a1a2f, #020b1a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* ===== MAINTENANCE CARD ===== */
+.maintenance-page {
+  max-width: 520px;
+  width: 90%;
+  padding: 48px 32px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+  animation: fadeIn 0.8s ease;
+}
+
+/* ===== TITLE ===== */
+.maintenance-page h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* ===== TEXT ===== */
+.maintenance-page p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+/* ===== RESUME TEXT ===== */
+.resume-text {
+  margin-top: 22px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f5c542;
+}
+
+/* ===== FADE ANIMATION ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== MOBILE OPTIMIZATION ===== */
+@media (max-width: 480px) {
+  .maintenance-page {
+    padding: 40px 24px;
+  }
+
+  .maintenance-page h1 {
+    font-size: 1.6rem;
+  }
+
+  .maintenance-page p {
+    font-size: 1rem;
+  }
+}
