@@ -4,9 +4,64 @@
   <meta charset="UTF-8" />
   <title>Maintenance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Maintenance CSS -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Outfit", system-ui, sans-serif;
+      background: linear-gradient(135deg, #0a1a2f, #020b1a);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .maintenance-page {
+      max-width: 520px;
+      padding: 50px 30px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .maintenance-page h1 {
+      font-size: 2rem;
+      margin-bottom: 18px;
+    }
+
+    .maintenance-page p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    .resume-text {
+      margin-top: 22px;
+      font-size: 1.1rem;
+      color: #f5c542;
+      font-weight: 600;
+    }
+  </style>
 </head>
-<body style="text-align:center;padding:60px;font-family:sans-serif">
-  <h1>🚧 Site Under Maintenance</h1>
-  <p>Please try again later.</p>
+
+<body>
+  <div class="maintenance-page">
+    <h1>🚧 Site Under Maintenance</h1>
+
+    <p>
+      We are performing scheduled maintenance.<br />
+      The website will resume shortly.
+    </p>
+
+    <p class="resume-text">
+      Please visit again after <strong>05:00 AM</strong>
+    </p>
+  </div>
 </body>
 </html>
