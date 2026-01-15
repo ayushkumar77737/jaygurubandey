@@ -20,12 +20,12 @@
     function maintenanceCheck() {
       const now = new Date();
 
-      /* 🔧 EDIT TIME HERE (ONLY) */
-      const startHour = 22;
-      const startMinute = 0;
+      /* 🔧 EDIT TIME HERE ONLY */
+      const startHour = 23;
+      const startMinute = 32;
 
-      const endHour = 4;
-      const endMinute = 59;
+      const endHour = 23;
+      const endMinute = 34;
 
       const currentMinutes = now.getHours() * 60 + now.getMinutes();
       const startMinutes = startHour * 60 + startMinute;
@@ -43,7 +43,16 @@
           currentMinutes < endMinutes;
       }
 
-      if (isMaintenance && !location.pathname.includes("maintenance")) {
+      /* ✅ LOCALHOST BYPASS (DEV ACCESS) */
+      const isLocalhost =
+        location.hostname === "localhost" ||
+        location.hostname === "127.0.0.1";
+
+      if (
+        isMaintenance &&
+        !isLocalhost &&
+        !location.pathname.includes("maintenance")
+      ) {
         window.location.replace("/maintenance.html");
       }
     }

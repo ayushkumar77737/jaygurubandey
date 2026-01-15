@@ -27,11 +27,11 @@
       const now = new Date();
 
       /* 🔧 SAME TIME AS index.html */
-      const startHour = 22;
-      const startMinute = 0;
+      const startHour = 23;
+      const startMinute = 32;
 
-      const endHour = 4;
-      const endMinute = 59;
+      const endHour = 23;
+      const endMinute = 34;
 
       const currentMinutes = now.getHours() * 60 + now.getMinutes();
       const startMinutes = startHour * 60 + startMinute;
@@ -49,7 +49,12 @@
           currentMinutes < endMinutes;
       }
 
-      if (!isMaintenance) {
+      /* ✅ LOCALHOST BYPASS */
+      const isLocalhost =
+        location.hostname === "localhost" ||
+        location.hostname === "127.0.0.1";
+
+      if (!isMaintenance && !isLocalhost) {
         window.location.replace(window.location.origin);
       }
     }
