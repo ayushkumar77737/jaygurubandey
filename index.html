@@ -1,48 +1,69 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./src/assets/circle.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jai Gurubande</title>
 
-    <!-- 🚫 Disable cache -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="./src/assets/circle.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jai Gurubande</title>
 
-  <body>
-    <div id="root"></div>
+  <!-- 🚫 Disable cache -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+</head>
 
-    <!-- 🔒 MAINTENANCE CHECK (TEST @ 9:35 AM) -->
-    <script>
-      function maintenanceCheck() {
-        const now=new Date();
-        const hour=now.getHours();   // 0–23
-        const minute=now.getMinutes();
+<body>
+  <div id="root"></div>
 
-        // ⏰ TEST TIME: 9:35 AM
-        if (hour===10 && minute>=1) {
-          if (!window.location.pathname.includes("maintenance")) {
-            window.location.replace("/maintenance.html");
-          }
-        }
+  <script>
+    function maintenanceCheck() {
+      const now = new Date();
+
+      // 🔧 EDIT ONLY THESE VALUES LATER
+      const startHour = 10;   // 10 AM
+      const startMinute = 11;  // 10:01 AM
+
+      const endHour = 10;      // 5 AM
+      const endMinute = 15;    // 5:00 AM
+
+      const currentMinutes = now.getHours() * 60 + now.getMinutes();
+      const startMinutes = startHour * 60 + startMinute;
+      const endMinutes = endHour * 60 + endMinute;
+
+      let isMaintenance = false;
+
+      // ⏰ Case 1: Same-day window
+      if (startMinutes < endMinutes) {
+        isMaintenance =
+          currentMinutes >= startMinutes &&
+          currentMinutes < endMinutes;
+      }
+      // 🌙 Case 2: Overnight window (10:01 AM → 5:00 AM next day)
+      else {
+        isMaintenance =
+          currentMinutes >= startMinutes ||
+          currentMinutes < endMinutes;
       }
 
-      // Run immediately
-      maintenanceCheck();
+      if (isMaintenance) {
+        if (!window.location.pathname.includes("maintenance")) {
+          window.location.replace("/maintenance.html");
+        }
+      }
+    }
 
-      // Check every 10 seconds
-      setInterval(maintenanceCheck,10000);
+    maintenanceCheck();
+    setInterval(maintenanceCheck, 10000);
 
-      // Check again when tab becomes active
-      document.addEventListener("visibilitychange",()=>{
-        if (!document.hidden) maintenanceCheck();
-      });
-    </script>
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) maintenanceCheck();
+    });
+  </script>
 
-    <!-- React entry -->
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+  <!-- React entry -->
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>
