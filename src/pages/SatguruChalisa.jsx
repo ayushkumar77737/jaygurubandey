@@ -50,7 +50,7 @@ const SatguruChalisa = () => {
               Jehi ghar Satguru kare nivaasaa, dete prem atal vishwaasaa | <br />
               Satguru naam akhand akaashaa, kare hriday mein param prakaashaa || <br /><br />
 
-              Satguru vachan hṛiday jo raakhaa, man mandir mein amṛit chaakhaa | <br />
+              Satguru vachan hriday jo raakhaa, man mandir mein amrit chaakhaa | <br />
               Raakhe ek jo Satguru aashaa, amarlok ghar paave vaasaa || <br />
               Satguru vaidya hai vachan davaai, saaraa maanas rog hataai | <br />
               Satguru mahimaa jaay na varni, jiiv ko taare mangal karni || <br /><br />
