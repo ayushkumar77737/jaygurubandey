@@ -66,5 +66,29 @@
       if (!document.hidden) maintenanceCheck();
     });
   </script>
+
+  <!-- 🔒 DISABLE RIGHT CLICK & INSPECT -->
+  <script>
+    // Disable right click
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
+
+    // Disable inspect shortcuts
+    document.addEventListener("keydown", function (e) {
+      // F12
+      if (e.key === "F12") {
+        e.preventDefault();
+      }
+
+      // Ctrl + Shift + I / J / C
+      if (
+        (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) ||
+        (e.ctrlKey && e.key === "U") // View Source
+      ) {
+        e.preventDefault();
+      }
+    });
+  </script>
 </body>
 </html>
