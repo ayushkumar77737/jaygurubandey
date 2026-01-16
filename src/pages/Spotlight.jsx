@@ -94,9 +94,14 @@ const Spotlight = () => {
       {/* ===== Articles Section ===== */}
       {selectedType === "article" && (
         <>
-          <div className="spotlight-grid">
+          <div className="spotlight-grid" key={`${selectedType}-${currentPage}`}>
             {currentArticles.map((item, index) => (
-              <div className="spotlight-card" key={index}>
+              <div
+                className="spotlight-card animate-card"
+                key={index}
+                style={{ animationDelay: `${index * 0.12}s` }}
+              >
+
                 <img src={item.image} alt={item.title} className="spotlight-img" />
                 <div className="spotlight-content">
                   <h2>{item.title}</h2>
