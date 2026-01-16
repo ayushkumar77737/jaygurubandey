@@ -32,7 +32,7 @@ const SatguruChalisa = () => {
 
               <b>Chalisa</b> <br />
               Jai jai jai Satguru jii devaa, karen jo maanav bhakti sevaa | <br />
-              Sukh shaanti ghar satsaraṇ aave, janam maran bhav rog nasaave || <br />
+              Sukh shaanti ghar satsaran aave, janam maran bhav rog nasaave || <br />
               Mile bhaagya se Satguru daataa, raakhe jiiv se bhakti naataa | <br />
               Satguru naam jo bhitar gaave, adbhut tirath kaa phal paave || <br /><br />
 
@@ -60,7 +60,7 @@ const SatguruChalisa = () => {
               Sur nagar muni sansaar mein koi, bin Satguru bhav paar na hoi | <br />
               Jo Satguru pad dhyaan lagaai, ghat mein aatam gyaan samaai || <br /><br />
 
-              Bin Satguru kaa jiiv hai nirguraa, Hari mile jo maanav saguraa ||
+              Bin Satguru kaa jiiv hai nirguraa, Hari mile jo maanav saguraa |
             </p>
           )}
         </div>
