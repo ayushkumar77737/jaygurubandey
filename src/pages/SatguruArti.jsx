@@ -28,15 +28,15 @@ const SatguruArti = () => {
           {page === 1 && (
             <p>
               <b>(1)</b> <br />
-              Aarti daas sada karen Prabhu ji,Satguru dwar tumhare || <br />
+              Aarti daas sada karen Prabhu ji,Satguru dwar tumhare | <br />
               Bina thaal kapoor deep ke,gagan dekh ujiyare || <br /><br />
-              Virah se vyakul jaay wahan par,premi prem sahare || <br />
+              Virah se vyakul jaay wahan par,premi prem sahare | <br />
               Shabd dhvani sune soorati sudha ras,tan-man sudhi bisaare || <br /><br />
-              Kar se kripa karen Swami ji,mile priyatam pyare || <br />
+              Kar se kripa karen Swami ji,mile priyatam pyare | <br />
               Nij sukh wahan mile charanamut,man maya sab haare || <br /><br />
-              Naam desh jahan noor nirantar,aatho pahar nihaare || <br />
+              Naam desh jahan noor nirantar,aatho pahar nihaare | <br />
               Gyaan ki Ganga bhakti ka saagar,jaaye hans milore || <br /><br />
-              Jai Gurubande param purush Prabhu,santan ko gahi taare || <br />
+              Jai Gurubande param purush Prabhu,santan ko gahi taare | <br />
               Alakh Anami Agam Agochar,Jai Gurubande hamaare || <br />
             </p>
           )}
@@ -60,11 +60,11 @@ const SatguruArti = () => {
             <p>
               <b>(3)</b> <br />
               Akhand mandalakar jyoti, sam rahi Satlok | <br />
-              Jeev dekhi Jai Gurubande, mite jagat ka shok. ॥ <br /><br />
+              Jeev dekhi Jai Gurubande, mite jagat ka shok ॥ <br /><br />
               Satguru bad Govind nahi nabh se pare kahaya | <br />
-              Peechhe-peechhe Jai Gurubande, Hari milne ko bataya. ॥ <br /><br />
+              Peechhe-peechhe Jai Gurubande, Hari milne ko bataya ॥ <br /><br />
               Sant samagam sabse achha mat bhatko manlaya | <br />
-              Bhajate-bhajate Jai Gurubande, Hari darshan ko paaya. ॥ <br />
+              Bhajate-bhajate Jai Gurubande, Hari darshan ko paaya ॥ <br />
             </p>
           )}
         </div>
