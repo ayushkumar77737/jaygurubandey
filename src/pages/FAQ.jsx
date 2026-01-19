@@ -32,10 +32,10 @@ const FAQ = () => {
         "No, joining Jai Gurubande is completely free. All you need is devotion and willingness to participate in community activities.",
     },
     {
-      question: "How can I contact the organizing committee?",
+      question: "How can I get in touch for event-related queries?",
       answer:
-        "You can visit the 'Committee Members' page in the footer to get in touch with the respective team or send a message via our official social media channels.",
-    },
+        "All important contact details are shared in official announcements on the website and through our verified social media channels.",
+    }
   ];
 
   const toggleFAQ = (index) => {
