@@ -134,11 +134,6 @@ const Navbar = () => {
                   Ashram Vision
                 </button>
               </li>
-              <li>
-                <button onClick={() => handleNavClick('/committee-members')}>
-                  Committee Members
-                </button>
-              </li>
             </ul>
           )}
         </li>

@@ -335,7 +335,6 @@ It’s a spiritual and philosophical message encouraging people to seek divine c
             <ul>
               <li><a href="/about">About</a></li>
               <li><a href="/ashram-vision">Ashram Vision</a></li>
-              <li><a href="/committee-members">Committee Members</a></li>
               <li><a href="/ashram-life">Ashram Life</a></li>
               <li><a href="/contact">Contact Us</a></li>
             </ul>

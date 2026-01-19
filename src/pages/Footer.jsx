@@ -39,9 +39,6 @@ const Footer = () => {
             <span className="privacy-link" onClick={handlePrivacyClick}>
               Privacy Policy
             </span>
-            <span className="privacy-link" onClick={handleCommitteeClick}>
-              Committee Members
-            </span>
             <span className="privacy-link" onClick={handleBooksClick}>
               Published Books
             </span>
