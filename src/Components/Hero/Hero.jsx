@@ -302,10 +302,10 @@ It’s a spiritual and philosophical message encouraging people to seek divine c
             <div className="activity-icon">
               <FaUsers />
             </div>
-            <h3>Community Support</h3>
+            <h3>Paralysis Treatment as Seva</h3>
             <p>
-              Guidance, unity, social responsibility, and support for individuals
-              and families in need.
+              By Guruji’s grace, free paralysis treatment is provided at our ashram
+              as a service (Seva) for devotees and those in need.
             </p>
           </div>
 
