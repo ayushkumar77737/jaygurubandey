@@ -50,10 +50,21 @@ import Subscribe from './pages/Subscribe.jsx'
 import Terms from './pages/Terms.jsx'
 import DonationPolicy from './pages/DonationPolicy.jsx'
 
+import Login from "./auth/Login.jsx";
+import Register from "./auth/Register.jsx";
+import ProtectedRoute from "./auth/ProtectedRoute.jsx";
+
+
 const router = createBrowserRouter([
+  { path: "/login", element: <Login /> },
+  { path: "/register", element: <Register /> },
   {
     path: '/',
-    element: <App />,
+  element: (
+    <ProtectedRoute>
+      <App />
+    </ProtectedRoute>
+  ),
     children: [
       { index: true, element: <Home /> },
       { path: 'about', element: <About /> },
