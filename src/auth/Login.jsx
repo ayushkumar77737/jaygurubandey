@@ -5,9 +5,10 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import "./Login.css";
 
+import guruji from "../assets/guruji.webp";
+
 const Login = () => {
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -15,11 +16,10 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/", { replace: true });
-    } catch (err) {
+    } catch {
       alert("Invalid email or password");
     } finally {
       setLoading(false);
@@ -27,34 +27,42 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <h2 className="login-title">Login</h2>
+    <div className="login-page">
+      <div className="login-card">
+        {/* IMAGE */}
+        <div className="login-image">
+          <img src={guruji} alt="Guruji" />
+        </div>
 
-      <form onSubmit={handleLogin} className="login-form">
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        {/* FORM */}
+        <h2 className="login-title">Welcome Back</h2>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <form className="login-form" onSubmit={handleLogin}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
-        </button>
-      </form>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-      <p className="login-text">
-        New user? <Link to="/register">Register</Link>
-      </p>
+          <button type="submit" disabled={loading}>
+            {loading ? "Please wait..." : "Login"}
+          </button>
+        </form>
+
+        <p className="login-text">
+          New user? <Link to="/register">Register</Link>
+        </p>
+      </div>
     </div>
   );
 };
