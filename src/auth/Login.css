@@ -1,7 +1,7 @@
 /* src/auth/Login.css */
 
 .login-page {
-  min-height: 120vh;
+  min-height: 100vh;
   background: linear-gradient(135deg, #ece9e6, #ffffff);
   display: flex;
   justify-content: center;
