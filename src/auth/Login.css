@@ -116,3 +116,73 @@
     transform: translateY(0);
   }
 }
+
+/* ===============================
+   📱 MOBILE (Small devices)
+   =============================== */
+@media (max-width: 480px) {
+  .login-card {
+    width: 92%;
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .login-image {
+    height: 160px;
+    margin-bottom: 16px;
+  }
+
+  .login-title {
+    font-size: 22px;
+  }
+
+  .login-form input {
+    font-size: 13px;
+    padding: 11px 12px;
+  }
+
+  .login-form button {
+    font-size: 14px;
+    padding: 11px;
+  }
+
+  .login-text {
+    font-size: 13px;
+  }
+}
+
+/* ===============================
+   📱 LARGE MOBILE / SMALL TABLET
+   =============================== */
+@media (min-width: 481px) and (max-width: 768px) {
+  .login-card {
+    width: 420px;
+    padding: 26px;
+  }
+
+  .login-image {
+    height: 180px;
+  }
+
+  .login-title {
+    font-size: 24px;
+  }
+}
+
+/* ===============================
+   💻 LAPTOP / DESKTOP
+   =============================== */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .login-card {
+    width: 380px;
+  }
+}
+
+/* ===============================
+   🖥 LARGE DESKTOP
+   =============================== */
+@media (min-width: 1201px) {
+  .login-card {
+    width: 400px;
+  }
+}
