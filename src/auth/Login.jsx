@@ -1,7 +1,11 @@
 // src/auth/Login.jsx
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  setPersistence,
+  browserSessionPersistence
+} from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import "./Login.css";
 
@@ -16,8 +20,13 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     try {
+      // 🔐 SESSION ONLY (logout on browser close)
+      await setPersistence(auth, browserSessionPersistence);
+
       await signInWithEmailAndPassword(auth, email, password);
+
       navigate("/", { replace: true });
     } catch {
       alert("Invalid email or password");
