@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase";
+import "./Register.css";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -36,11 +37,12 @@ const Register = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <h2>Register</h2>
+    <div className="register-container">
+      <h2 className="register-title">Register</h2>
 
-      <form onSubmit={handleRegister} style={styles.form}>
+      <form onSubmit={handleRegister} className="register-form">
         <input
+          type="text"
           placeholder="Full Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -68,27 +70,11 @@ const Register = () => {
         </button>
       </form>
 
-      <p>
+      <p className="register-text">
         Already have an account? <Link to="/login">Login</Link>
       </p>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
-    width: "260px",
-  },
 };
 
 export default Register;

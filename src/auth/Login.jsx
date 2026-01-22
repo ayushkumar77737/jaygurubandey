@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase";
+import "./Login.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Login = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/", { replace: true }); // ✅ IMPORTANT
+      navigate("/", { replace: true });
     } catch (err) {
       alert("Invalid email or password");
     } finally {
@@ -25,10 +26,10 @@ const Login = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <h2>Login</h2>
+    <div className="login-container">
+      <h2 className="login-title">Login</h2>
 
-      <form onSubmit={handleLogin} style={styles.form}>
+      <form onSubmit={handleLogin} className="login-form">
         <input
           type="email"
           placeholder="Email"
@@ -50,27 +51,11 @@ const Login = () => {
         </button>
       </form>
 
-      <p>
+      <p className="login-text">
         New user? <Link to="/register">Register</Link>
       </p>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
-    width: "260px",
-  },
 };
 
 export default Login;
