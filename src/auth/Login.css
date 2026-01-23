@@ -66,14 +66,45 @@
 }
 
 /* ===============================
-   🏷 TITLE
+   🏷 TITLE (Light & Attractive)
    =============================== */
 .login-title {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 18px;
-  color: #222;
+  text-align: center;
+  color: #2a2a2a;
+  margin-bottom: 8px;
 }
+
+/* base */
+.login-title span {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* Jai Gurubande */
+.login-title .line1 {
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Saheb Sabka */
+.login-title .line2 {
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 6px;
+  color: #444;
+}
+
+/* Welcome Back */
+.login-title .line3 {
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 10px;
+  color: #666;
+}
+
+
 
 /* ===============================
    📝 FORM
@@ -82,6 +113,7 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
+  margin-top: 18px;
 }
 
 .login-form input {

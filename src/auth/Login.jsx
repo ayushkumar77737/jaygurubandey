@@ -40,7 +40,12 @@ const Login = () => {
           <img src={guruji} alt="Guruji" />
         </div>
 
-        <h2 className="login-title">Welcome Back</h2>
+        <h2 className="login-title">
+          <span className="line1">🙏 Jai Gurubande 🙏</span>
+          <span className="line2">Saheb Sabka</span>
+          <span className="line3">Welcome Back</span>
+        </h2>
+
 
         <form className="login-form" onSubmit={handleLogin}>
           <input
