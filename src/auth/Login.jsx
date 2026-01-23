@@ -26,7 +26,7 @@ const Login = () => {
 
     try {
       await setPersistence(auth, browserSessionPersistence);
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email.trim(), password);
       navigate("/", { replace: true });
     }
     catch (err) {
@@ -76,11 +76,13 @@ const Login = () => {
             placeholder="Email"
             value={email}
             onChange={(e) => {
-              setEmail(e.target.value);
+              const filtered = e.target.value.replace(/[^a-zA-Z0-9@._-]/g, "");
+              setEmail(filtered);
               setError("");
             }}
             required
           />
+
 
           <input
             type="password"
