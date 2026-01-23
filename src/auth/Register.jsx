@@ -1,5 +1,5 @@
 // src/auth/Register.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
@@ -9,6 +9,43 @@ import "./Register.css";
 import guruji from "../assets/guruji.webp";
 
 const Register = () => {
+  useEffect(() => {
+    // 🔒 Disable Right Click
+    const disableRightClick = (e) => {
+      e.preventDefault();
+    };
+  
+    // 🔒 Disable Inspect & View Source
+    const disableInspectKeys = (e) => {
+      // F12
+      if (e.key === "F12") {
+        e.preventDefault();
+      }
+  
+      // Ctrl + Shift + I / J / C
+      if (
+        e.ctrlKey &&
+        e.shiftKey &&
+        ["I", "J", "C"].includes(e.key.toUpperCase())
+      ) {
+        e.preventDefault();
+      }
+  
+      // Ctrl + U (View Source)
+      if (e.ctrlKey && e.key.toUpperCase() === "U") {
+        e.preventDefault();
+      }
+    };
+  
+    document.addEventListener("contextmenu", disableRightClick);
+    document.addEventListener("keydown", disableInspectKeys);
+  
+    // ✅ CLEANUP (VERY IMPORTANT)
+    return () => {
+      document.removeEventListener("contextmenu", disableRightClick);
+      document.removeEventListener("keydown", disableInspectKeys);
+    };
+  }, []);
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
