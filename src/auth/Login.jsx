@@ -22,11 +22,8 @@ const Login = () => {
     setLoading(true);
 
     try {
-      // 🔐 SESSION ONLY (logout on browser close)
       await setPersistence(auth, browserSessionPersistence);
-
       await signInWithEmailAndPassword(auth, email, password);
-
       navigate("/", { replace: true });
     } catch {
       alert("Invalid email or password");
@@ -37,13 +34,12 @@ const Login = () => {
 
   return (
     <div className="login-page">
+      {/* 🔥 Background overlay handled via CSS */}
       <div className="login-card">
-        {/* IMAGE */}
         <div className="login-image">
           <img src={guruji} alt="Guruji" />
         </div>
 
-        {/* FORM */}
         <h2 className="login-title">Welcome Back</h2>
 
         <form className="login-form" onSubmit={handleLogin}>

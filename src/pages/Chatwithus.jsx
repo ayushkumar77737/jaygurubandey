@@ -42,6 +42,7 @@ const ChatWithUs = () => {
   };
 
   return (
+    <div className="chatwithus-page">
     <div className="chatwithus-wrapper">
       {/* Left Side Image */}
       <div className="chat-image-box">
@@ -100,6 +101,7 @@ const ChatWithUs = () => {
         </form>
         {successMessage && <p className="success-msg">{successMessage}</p>}
       </div>
+    </div>
     </div>
   );
 };

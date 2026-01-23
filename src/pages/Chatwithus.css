@@ -244,32 +244,52 @@
 
 
 
-/* ===== Full-Screen Animated Background ===== */
-body {
-  margin: 0;
-  padding: 0;
+/* ===== ChatWithUs Page Background ===== */
+.chatwithus-page {
   min-height: 100vh;
-  background: linear-gradient(120deg, #ffecd2, #fcb69f, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
+  width: 100%;
+  background: linear-gradient(
+    120deg,
+    #ffecd2,
+    #fcb69f,
+    #ff9a9e,
+    #fad0c4,
+    #a1c4fd,
+    #c2e9fb
+  );
   background-size: 600% 600%;
   animation: backgroundMove 20s ease infinite;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
   font-family: "Poppins", sans-serif;
 }
 
-/* ===== Animated Glowing Orbs in Background ===== */
-body::before,
-body::after {
+/* ===== Animated Glowing Orbs ===== */
+.chatwithus-page::before,
+.chatwithus-page::after {
   content: "";
   position: absolute;
   width: 350px;
   height: 350px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 105, 180, 0.35), transparent 70%);
   filter: blur(100px);
   z-index: 0;
   animation: floatOrb 12s ease-in-out infinite alternate;
 }
+
+.chatwithus-page::before {
+  top: -80px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(255, 182, 193, 0.4), transparent 70%);
+}
+
+.chatwithus-page::after {
+  bottom: -120px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(135, 206, 250, 0.4), transparent 70%);
+  animation-delay: 6s;
+}
+
 
 body::before {
   top: -80px;
