@@ -46,7 +46,11 @@ const Register = () => {
           <img src={guruji} alt="Register" />
         </div>
 
-        <h2 className="register-title">Create Account</h2>
+        <h2 className="register-title">
+          <span className="line1">🙏 Jai Gurubande 🙏</span>
+          <span className="line2">Saheb Sabka</span>
+          <span className="line3">Create Account</span>
+        </h2>
 
         <form onSubmit={handleRegister} className="register-form">
           <input
