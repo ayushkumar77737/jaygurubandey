@@ -23,7 +23,7 @@ const Register = () => {
     setError("");
 
     try {
-      const res = await createUserWithEmailAndPassword(auth, email, password);
+      const res = await createUserWithEmailAndPassword(auth, email.trim(), password);
 
       await setDoc(doc(db, "users", res.user.uid), {
         name,
@@ -81,22 +81,26 @@ const Register = () => {
             placeholder="Full Name"
             value={name}
             onChange={(e) => {
-              setName(e.target.value);
+              const filtered = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+              setName(filtered);
               setError("");
             }}
             required
           />
+
 
           <input
             type="email"
             placeholder="Email Address"
             value={email}
             onChange={(e) => {
-              setEmail(e.target.value);
+              const filtered = e.target.value.replace(/[^a-zA-Z0-9@._-]/g, "");
+              setEmail(filtered);
               setError("");
             }}
             required
           />
+
 
           <input
             type="password"
