@@ -244,3 +244,18 @@
   height: 100%;
   object-fit: cover;
 }
+/* ===============================
+   ❌ INLINE ERROR MESSAGE
+   =============================== */
+.register-error {
+  background: rgba(255, 0, 0, 0.08);
+  color: #b00020;
+  font-size: 13px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  border: 1px solid rgba(255, 0, 0, 0.25);
+  text-align: center;
+  animation: fadeUp 0.3s ease;
+}

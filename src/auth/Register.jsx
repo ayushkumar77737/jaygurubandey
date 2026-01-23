@@ -10,14 +10,17 @@ import guruji from "../assets/guruji.webp";
 
 const Register = () => {
   const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(""); // ✅ error state
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError("");
 
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -29,11 +32,29 @@ const Register = () => {
         createdAt: serverTimestamp(),
       });
 
-      alert("Registration successful");
       navigate("/login", { replace: true });
     } catch (err) {
-      alert(err.message);
-    } finally {
+      // ❌ CLEAR ALL FIELDS
+      setName("");
+      setEmail("");
+      setPassword("");
+
+      if (err.code === "auth/email-already-in-use") {
+        setError("This email is already registered. Please login.");
+      } else if (err.code === "auth/invalid-email") {
+        setError("Please enter a valid email address.");
+      } else if (err.code === "auth/weak-password") {
+        setError("Password must be at least 6 characters.");
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+
+      // ⏳ AUTO HIDE ERROR MESSAGE
+      setTimeout(() => {
+        setError("");
+      }, 3000);
+    }
+    finally {
       setLoading(false);
     }
   };
@@ -41,7 +62,6 @@ const Register = () => {
   return (
     <div className="register-page">
       <div className="register-card">
-        {/* 🖼 Image like Login */}
         <div className="register-image">
           <img src={guruji} alt="Register" />
         </div>
@@ -52,12 +72,18 @@ const Register = () => {
           <span className="line3">Create Account</span>
         </h2>
 
+        {/* ✅ INLINE ERROR MESSAGE */}
+        {error && <p className="register-error">{error}</p>}
+
         <form onSubmit={handleRegister} className="register-form">
           <input
             type="text"
             placeholder="Full Name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              setName(e.target.value);
+              setError("");
+            }}
             required
           />
 
@@ -65,7 +91,10 @@ const Register = () => {
             type="email"
             placeholder="Email Address"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setError("");
+            }}
             required
           />
 
@@ -73,7 +102,10 @@ const Register = () => {
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setError("");
+            }}
             required
           />
 
