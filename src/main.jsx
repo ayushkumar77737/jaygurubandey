@@ -50,9 +50,9 @@ import Subscribe from './pages/Subscribe.jsx'
 import Terms from './pages/Terms.jsx'
 import DonationPolicy from './pages/DonationPolicy.jsx'
 
-import Login from "./auth/Login.jsx";
-import Register from "./auth/Register.jsx";
-import ProtectedRoute from "./auth/ProtectedRoute.jsx";
+import Login from "./auth/Login.jsx"
+import Register from "./auth/Register.jsx"
+import ProtectedRoute from "./auth/ProtectedRoute.jsx"
 
 
 const router = createBrowserRouter([
