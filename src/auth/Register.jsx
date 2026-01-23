@@ -6,6 +6,8 @@ import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase";
 import "./Register.css";
 
+import guruji from "../assets/guruji.webp";
+
 const Register = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -28,7 +30,7 @@ const Register = () => {
       });
 
       alert("Registration successful");
-      navigate("/login");
+      navigate("/login", { replace: true });
     } catch (err) {
       alert(err.message);
     } finally {
@@ -37,42 +39,49 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
-      <h2 className="register-title">Register</h2>
+    <div className="register-page">
+      <div className="register-card">
+        {/* 🖼 Image like Login */}
+        <div className="register-image">
+          <img src={guruji} alt="Register" />
+        </div>
 
-      <form onSubmit={handleRegister} className="register-form">
-        <input
-          type="text"
-          placeholder="Full Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
+        <h2 className="register-title">Create Account</h2>
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        <form onSubmit={handleRegister} className="register-form">
+          <input
+            type="text"
+            placeholder="Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+          <input
+            type="email"
+            placeholder="Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Creating..." : "Register"}
-        </button>
-      </form>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-      <p className="register-text">
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
+          <button type="submit" disabled={loading}>
+            {loading ? "Creating..." : "Register"}
+          </button>
+        </form>
+
+        <p className="register-text">
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+      </div>
     </div>
   );
 };
