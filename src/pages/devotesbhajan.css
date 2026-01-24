@@ -22,7 +22,6 @@
   font-weight: 600;
   margin-bottom: 30px;
   color: #2b2b2b;
-
   animation: fadeUp 0.7s ease-out both;
 }
 
@@ -34,6 +33,7 @@
   margin-bottom: 40px;
 }
 
+/* ✅ CENTER TEXT FIX (DESKTOP + MOBILE) */
 .devotes-bhajan__dropdown select {
   padding: 12px 18px;
   font-size: 16px;
@@ -42,6 +42,13 @@
   background: #ffffff;
   cursor: pointer;
   outline: none;
+
+  text-align: center;
+  text-align-last: center; /* ✅ mobile fix */
+}
+
+.devotes-bhajan__dropdown select option {
+  text-align: center;
 }
 
 .devotes-bhajan__dropdown select:focus {
@@ -70,8 +77,6 @@
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
   transition: transform 0.3s ease;
-
-  /* Card opening animation */
   animation: softScale 0.45s ease-out both;
 }
 
