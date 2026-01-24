@@ -201,7 +201,7 @@ const AshramRules = () => {
         </p>
         <button
           className="rules-cta-btn"
-          onClick={() => navigate("/explore")} // ✅ now goes to Explore Ashram page
+          onClick={() => navigate("/")} // ✅ now goes to Explore Ashram page
         >
           I have read &amp; understood the guidelines
         </button>
