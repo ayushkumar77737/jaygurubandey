@@ -76,12 +76,56 @@ It’s a spiritual and philosophical message encouraging people to seek divine c
   const [displayedText, setDisplayedText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
 
+  // ===== Ulat-Bhaidni images =====
+  const ulatImages = [photo7, photo8, photo6];
+  const [ulatIndex, setUlatIndex] = useState(0);
+
+  // ===== Ulat-Bhaidni typing text =====
+  const ulatText = `Ulat-Bhaidni reveals hidden spiritual truths through symbolic and paradoxical expressions, guiding the seeker beyond ordinary understanding.
+
+These mystical expressions encourage seekers to look beyond literal meanings and experience deeper spiritual realization.`;
+
+  const [ulatDisplayedText, setUlatDisplayedText] = useState("");
+  const [ulatCharIndex, setUlatCharIndex] = useState(0);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 5000);
     return () => clearInterval(interval);
   }, [images.length]);
+
+  // ===== Ulat-Bhaidni image swap =====
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setUlatIndex(prev => (prev + 1) % ulatImages.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // ===== Ulat-Bhaidni typing effect (LOOPING) =====
+  useEffect(() => {
+    const typingSpeed = 30;
+    const pauseAfterComplete = 2000; // 2 seconds pause
+
+    let timer;
+
+    if (ulatCharIndex < ulatText.length) {
+      timer = setTimeout(() => {
+        setUlatDisplayedText(prev => prev + ulatText[ulatCharIndex]);
+        setUlatCharIndex(prev => prev + 1);
+      }, typingSpeed);
+    } else {
+      // reset after full text typed
+      timer = setTimeout(() => {
+        setUlatDisplayedText("");
+        setUlatCharIndex(0);
+      }, pauseAfterComplete);
+    }
+
+    return () => clearTimeout(timer);
+  }, [ulatCharIndex]);
 
   useEffect(() => {
     const typingSpeed = 50;
@@ -179,6 +223,34 @@ It’s a spiritual and philosophical message encouraging people to seek divine c
                 Read More About Guruji
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== DECORATIVE DIVIDER ===== */}
+      <div className="section-divider" />
+
+      <section className="ulat-section">
+        <h2 className="ulat-heading">Ulat-Bhaidni</h2>
+
+        <div className="ulat-container">
+          {/* Left Image */}
+          <div className="ulat-image">
+            <img
+              src={ulatImages[ulatIndex]}
+              alt="Guruji"
+              key={ulatIndex}
+            />
+          </div>
+
+          {/* Right Content (Typing) */}
+          <div className="ulat-content-text">
+            {ulatDisplayedText.split("\n\n").map((para, index, arr) => (
+              <p key={index}>
+                {para}
+                {index === arr.length - 1 && <span className="cursor">|</span>}
+              </p>
+            ))}
           </div>
         </div>
       </section>
