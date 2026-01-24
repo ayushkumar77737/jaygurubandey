@@ -5,6 +5,7 @@ import Footer from "./pages/Footer";
 import CookieConsent from "./Components/Cookies/CookieConsent";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import IdleLogout from "./utils/IdleLogout";
 
 const App = () => {
   useEffect(() => {
@@ -46,6 +47,7 @@ const App = () => {
 
   return (
     <>
+      <IdleLogout /> {/* ✅ AUTO LOGOUT ENABLED */}
       <Navbar />
       <main>
         <Outlet />
