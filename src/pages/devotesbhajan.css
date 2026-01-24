@@ -1,0 +1,208 @@
+/* ===============================
+   Devotes Bhajan Page ONLY
+   =============================== */
+
+.devotes-bhajan {
+  min-height: 100vh;
+  padding: 50px 20px;
+  background: linear-gradient(135deg, #fff7e6, #ffffff);
+  font-family: "Outfit", sans-serif;
+  text-align: center;
+
+  /* Opening animation */
+  animation: pageFadeUp 0.6s ease-out both;
+}
+
+/* ===============================
+   Title
+   =============================== */
+
+.devotes-bhajan__title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #2b2b2b;
+
+  animation: fadeUp 0.7s ease-out both;
+}
+
+/* ===============================
+   Dropdown
+   =============================== */
+
+.devotes-bhajan__dropdown {
+  margin-bottom: 40px;
+}
+
+.devotes-bhajan__dropdown select {
+  padding: 12px 18px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #ffffff;
+  cursor: pointer;
+  outline: none;
+}
+
+.devotes-bhajan__dropdown select:focus {
+  border-color: #c59d5f;
+}
+
+/* ===============================
+   Videos Grid
+   =============================== */
+
+.devotes-bhajan__videos {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+/* ===============================
+   Video Card
+   =============================== */
+
+.devotes-bhajan__card {
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease;
+
+  /* Card opening animation */
+  animation: softScale 0.45s ease-out both;
+}
+
+.devotes-bhajan__card:hover {
+  transform: translateY(-6px);
+}
+
+/* iframe ONLY inside this page */
+.devotes-bhajan__card iframe {
+  width: 100%;
+  height: 200px;
+  border: none;
+}
+
+/* ===============================
+   Hint Text
+   =============================== */
+
+.devotes-bhajan__hint {
+  grid-column: 1 / -1;
+  font-size: 16px;
+  color: #777;
+  margin-top: 20px;
+}
+
+/* ===============================
+   RESPONSIVE STYLES
+   =============================== */
+
+/* 📱 Mobile Devices */
+@media (max-width: 480px) {
+  .devotes-bhajan {
+    padding: 30px 12px;
+  }
+
+  .devotes-bhajan__title {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .devotes-bhajan__dropdown select {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+
+  .devotes-bhajan__videos {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .devotes-bhajan__card iframe {
+    height: 180px;
+  }
+}
+
+/* 📱 Large Mobile / Small Tablets */
+@media (max-width: 768px) {
+  .devotes-bhajan__title {
+    font-size: 26px;
+  }
+
+  .devotes-bhajan__dropdown select {
+    width: 100%;
+  }
+
+  .devotes-bhajan__videos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .devotes-bhajan__card iframe {
+    height: 190px;
+  }
+}
+
+/* 💻 Tablets / Small Laptops */
+@media (max-width: 1024px) {
+  .devotes-bhajan__videos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .devotes-bhajan__title {
+    font-size: 28px;
+  }
+}
+
+/* 🖥️ Large Screens */
+@media (min-width: 1200px) {
+  .devotes-bhajan__videos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .devotes-bhajan__card iframe {
+    height: 220px;
+  }
+}
+
+/* ===============================
+   LIGHTWEIGHT ANIMATIONS
+   =============================== */
+
+@keyframes pageFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes softScale {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

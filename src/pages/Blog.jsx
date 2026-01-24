@@ -159,8 +159,8 @@ const Blog = () => {
         className="map-button-container fade-in-up"
         style={{ display: "flex", justifyContent: "center", gap: "15px", flexWrap: "wrap" }}
       >
-        <Link to="/explore" className="know-more-btn">
-          🔍 Explore Ashram
+        <Link to="/devotes-bhajan" className="know-more-btn">
+          🎶 Devotes Bhajan
         </Link>
 
         <Link to="/testimonies" className="know-more-btn">

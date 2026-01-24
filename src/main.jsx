@@ -53,6 +53,7 @@ import DonationPolicy from './pages/DonationPolicy.jsx'
 import Login from "./auth/Login.jsx"
 import Register from "./auth/Register.jsx"
 import ProtectedRoute from "./auth/ProtectedRoute.jsx"
+import DevotesBhajan from "./pages/devotesbhajan.jsx"
 
 
 const router = createBrowserRouter([
@@ -111,6 +112,7 @@ const router = createBrowserRouter([
       { path: 'subscribe', element: <Subscribe /> },
       { path: 'terms-conditions', element: <Terms /> },
       { path: 'donation-policy', element: <DonationPolicy /> },
+      { path: "devotes-bhajan", element: <DevotesBhajan /> },
     ],
   },
   { path: '*', element: <NotFound /> },
