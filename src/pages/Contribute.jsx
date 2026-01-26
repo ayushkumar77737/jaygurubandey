@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import "./Contribute.css";
 import qrImg from "../assets/scanner.jpg";
 
-const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbznlQRq52r71ftv6lgYAEL5FQ_4PmG60SPAjlzq9-wRVGI8pkDLd11seck6SfYmbmDoLw/exec"; // 🔴 replace with your URL
+import {
+  collection,
+  addDoc,
+  query,
+  where,
+  getDocs
+} from "firebase/firestore";
+import { db } from "../firebase/firebase";
 
 const Contribute = () => {
   const [formData, setFormData] = useState({
@@ -72,67 +78,49 @@ const Contribute = () => {
       errors.push("❌ Transaction ID must be exactly 12 digits.");
     }
 
-    // ❌ Validation errors
     if (errors.length > 0) {
       showMessage(errors.join("\n"));
-
-      // 🔥 CLEAR ALL FIELDS ON ERROR
       setFormData({
         name: "",
         phone: "",
         amount: "",
         transactionId: "",
       });
-
       return;
     }
 
     try {
       setLoading(true);
 
-      const response = await fetch(APPS_SCRIPT_URL, {
-        method: "POST",
-        body: new URLSearchParams({
-          name: formData.name,
-          phone: formData.phone,
-          amount: formData.amount,
-          transactionId: formData.transactionId,
-        }),
-      });
+      // 🔍 CHECK DUPLICATE TRANSACTION ID
+      const q = query(
+        collection(db, "contributions"),
+        where("transactionId", "==", formData.transactionId)
+      );
 
-      const text = await response.text();
+      const snapshot = await getDocs(q);
 
-      // ❌ Duplicate transaction
-      if (text === "Duplicate transaction") {
+      if (!snapshot.empty) {
         showMessage("❌ This Transaction ID has already been submitted.");
-
-        // 🔥 CLEAR FIELDS
         setFormData({
           name: "",
           phone: "",
           amount: "",
           transactionId: "",
         });
-
         return;
       }
 
-      // ✅ Success
-      if (text === "Success") {
-        showMessage("✅ Contribution submitted successfully!", 3000);
+      // ✅ SAVE TO FIRESTORE
+      await addDoc(collection(db, "contributions"), {
+        name: formData.name,
+        phone: formData.phone,
+        amount: amountNum,
+        transactionId: formData.transactionId,
+        createdAt: new Date(),
+      });
 
-        setFormData({
-          name: "",
-          phone: "",
-          amount: "",
-          transactionId: "",
-        });
-
-        return;
-      }
-
-      // ❌ Unknown response
-      showMessage("❌ Something went wrong. Please try again.");
+      showMessage("✅ Contribution submitted successfully!", 3000);
 
       setFormData({
         name: "",
@@ -140,21 +128,12 @@ const Contribute = () => {
         amount: "",
         transactionId: "",
       });
-    } catch {
-      // ❌ Server error
+    } catch (error) {
       showMessage("❌ Server error. Please try again.");
-
-      setFormData({
-        name: "",
-        phone: "",
-        amount: "",
-        transactionId: "",
-      });
     } finally {
       setLoading(false);
     }
   };
-
 
   return (
     <div className="contribute-container">
