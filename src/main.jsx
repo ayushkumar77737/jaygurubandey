@@ -53,7 +53,7 @@ import Login from './auth/Login.jsx'
 import Register from './auth/Register.jsx'
 import ProtectedRoute from './auth/ProtectedRoute.jsx'
 import DevotesBhajan from './pages/devotesbhajan.jsx'
-
+import CheckStatus from "./pages/CheckStatus.jsx";
 
 const router = createBrowserRouter([
   { path: "/login", element: <Login /> },
@@ -111,6 +111,7 @@ const router = createBrowserRouter([
       { path: 'terms-conditions', element: <Terms /> },
       { path: 'donation-policy', element: <DonationPolicy /> },
       { path: "devotes-bhajan", element: <DevotesBhajan /> },
+      { path: "check-status", element: <CheckStatus /> },
     ],
   },
   { path: '*', element: <NotFound /> },

@@ -394,6 +394,11 @@ const Navbar = () => {
                   Contribution FAQ
                 </button>
               </li>
+              <li>
+                <button onClick={() => handleNavClick('/check-status')}>
+                  Check Payment Status
+                </button>
+              </li>
             </ul>
           )}
         </li>
