@@ -8,7 +8,7 @@ const IdleLogout = () => {
   const timerRef = useRef(null);
 
   // ⏱ Change time here (10 minutes)
-  const IDLE_TIME = 10 * 60 * 1000;
+  const IDLE_TIME = 2 * 60 * 1000;
 
   const logoutUser = async () => {
     await signOut(auth);
