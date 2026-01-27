@@ -1,19 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./CheckStatus.css";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebase";
+import guruji from "../assets/guruji.webp";
 
 const CheckStatus = () => {
   const [transactionId, setTransactionId] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // ⏱ to clear previous timers safely
+  const timerRef = useRef(null);
+
+  // ✅ show message & auto-hide
+  const showResult = (message) => {
+    setResult(message);
+
+    if (timerRef.current) clearTimeout(timerRef.current);
+
+    timerRef.current = setTimeout(() => {
+      setResult("");
+    }, 3000); // ⏱ 3 seconds
+  };
+
   const handleCheck = async (e) => {
     e.preventDefault();
     if (loading) return;
 
     if (transactionId.length !== 12) {
-      setResult("❌ Transaction ID must be 12 digits");
+      showResult("❌ Transaction ID must be 12 digits");
+      setTransactionId("");
       return;
     }
 
@@ -29,24 +45,28 @@ const CheckStatus = () => {
       const snapshot = await getDocs(q);
 
       if (snapshot.empty) {
-        setResult("❌ Wrong Transaction ID");
+        showResult("❌ Wrong Transaction ID");
+        setTransactionId("");
         return;
       }
 
       const data = snapshot.docs[0].data();
 
-      // 🔥 NO STATUS FIELD? → TREAT AS PENDING
       if (!data.status) {
-        setResult("⏳ Payment Pending Verification");
+        showResult("⏳ Payment Pending Verification");
       } else if (data.status === "verified") {
-        setResult("✅ Payment Verified");
+        showResult("✅ Payment Verified");
       } else if (data.status === "failed") {
-        setResult("❌ Payment Failed");
+        showResult("❌ Payment Failed");
       } else {
-        setResult("⏳ Payment Pending Verification");
+        showResult("⏳ Payment Pending Verification");
       }
+
+      setTransactionId("");
+
     } catch (err) {
-      setResult("❌ Server error. Try again later.");
+      showResult("❌ Server error. Try again later.");
+      setTransactionId("");
     } finally {
       setLoading(false);
     }
@@ -54,6 +74,12 @@ const CheckStatus = () => {
 
   return (
     <div className="status-container">
+
+      {/* 🖼 Guruji Image */}
+      <div className="status-image">
+        <img src={guruji} alt="Guruji" />
+      </div>
+
       <h1 className="status-title">Check Payment Status</h1>
 
       <form className="status-card" onSubmit={handleCheck}>
