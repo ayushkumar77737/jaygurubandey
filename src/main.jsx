@@ -34,7 +34,7 @@ import DailySatsang from './pages/DailySatsang.jsx'
 import StayConnected from './pages/StayConnected.jsx'
 import NotFound from './pages/NotFound.jsx'
 import AshramRules from './pages/Beforeyouvisit.jsx'
-import DivineMoments from "./pages/DivineMoments.jsx"
+import DivineMoments from './pages/DivineMoments.jsx'
 import QuickStart from './pages/QuickStart.jsx'
 import AshramVision from './pages/AshramVision.jsx'
 import LatestAmritvani from './pages/LatestAmritvani.jsx'
@@ -53,7 +53,7 @@ import Login from './auth/Login.jsx'
 import Register from './auth/Register.jsx'
 import ProtectedRoute from './auth/ProtectedRoute.jsx'
 import DevotesBhajan from './pages/devotesbhajan.jsx'
-import CheckStatus from "./pages/CheckStatus.jsx";
+import CheckStatus from './pages/CheckStatus.jsx'
 
 const router = createBrowserRouter([
   { path: "/login", element: <Login /> },

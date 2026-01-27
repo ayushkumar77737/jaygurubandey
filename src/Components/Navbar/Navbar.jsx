@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { signOut } from "firebase/auth"
+import { auth } from "../../firebase/firebase"
 import './Navbar.css'
 import logo from '../../assets/logo1.png'
 import circle from '../../assets/circle.png'
@@ -51,6 +53,16 @@ const Navbar = () => {
     }
   }, [openDropdown])
 
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      closeMenu();        // close dropdown & mobile menu
+      navigate("/login"); // redirect after logout
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+
   return (
     <nav className='container' ref={navRef}>
       {mobileMenu && (
@@ -101,6 +113,14 @@ const Navbar = () => {
               <li>
                 <button onClick={() => handleNavClick('/live-now')}>
                   Live Now
+                </button>
+              </li>
+              <li>
+                <button
+                  className="logout-btn"
+                  onClick={handleLogout}
+                >
+                  Logout
                 </button>
               </li>
             </ul>
