@@ -96,8 +96,7 @@
    BUTTONS
 ========================= */
 .primary-btn {
-  width: 100%;
-  margin-top: 10px;
+  flex: 1;                /* ✅ equal width */
   padding: 12px;
   background: #f5c542;
   border: none;
@@ -116,25 +115,26 @@
 /* Update + Cancel group */
 .btn-group {
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 12px;
+  margin-top: 12px;
 }
 
 .cancel-btn {
-  width: 100%;
+  flex: 1;                /* ✅ equal width */
   padding: 12px;
-  background: #2a3550;
-  border: 1px solid #3a4a6a;
+  background: transparent;
+  border: 1.5px solid #3a4a6a;
   border-radius: 8px;
   font-weight: 600;
   font-size: 15px;
-  color: #ffffff;
+  color: #cfd6ff;
   cursor: pointer;
-  transition: background 0.15s ease, transform 0.15s ease;
+  transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
 }
 
 .cancel-btn:hover {
-  background: #334066;
+  background: rgba(58, 74, 106, 0.35);
+  border-color: #5a6cff;
   transform: translateY(-1px);
 }
 
@@ -210,4 +210,9 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+/* Full width when Edit is alone */
+.account-card > .primary-btn,
+.account-card .primary-btn:only-child {
+  width: 100%;
 }
