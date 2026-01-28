@@ -1,7 +1,11 @@
 // src/auth/Register.jsx
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { Link } from "react-router-dom";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  signOut
+} from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase";
 import "./Register.css";
@@ -10,71 +14,78 @@ import guruji from "../assets/guruji.webp";
 
 const Register = () => {
   useEffect(() => {
-    // 🔒 Disable Right Click
-    const disableRightClick = (e) => {
-      e.preventDefault();
-    };
-  
-    // 🔒 Disable Inspect & View Source
+    const disableRightClick = (e) => e.preventDefault();
     const disableInspectKeys = (e) => {
-      // F12
-      if (e.key === "F12") {
-        e.preventDefault();
-      }
-  
-      // Ctrl + Shift + I / J / C
+      if (e.key === "F12") e.preventDefault();
       if (
         e.ctrlKey &&
         e.shiftKey &&
         ["I", "J", "C"].includes(e.key.toUpperCase())
-      ) {
-        e.preventDefault();
-      }
-  
-      // Ctrl + U (View Source)
-      if (e.ctrlKey && e.key.toUpperCase() === "U") {
-        e.preventDefault();
-      }
+      ) e.preventDefault();
+      if (e.ctrlKey && e.key.toUpperCase() === "U") e.preventDefault();
     };
-  
+
     document.addEventListener("contextmenu", disableRightClick);
     document.addEventListener("keydown", disableInspectKeys);
-  
-    // ✅ CLEANUP (VERY IMPORTANT)
+
     return () => {
       document.removeEventListener("contextmenu", disableRightClick);
       document.removeEventListener("keydown", disableInspectKeys);
     };
   }, []);
-  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(""); // ✅ error state
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
+    setSuccess("");
 
     try {
-      const res = await createUserWithEmailAndPassword(auth, email.trim(), password);
+      const res = await createUserWithEmailAndPassword(
+        auth,
+        email.trim(),
+        password
+      );
+
+      await sendEmailVerification(res.user);
 
       await setDoc(doc(db, "users", res.user.uid), {
         name,
         email,
         role: "user",
+        emailVerified: false,
         createdAt: serverTimestamp(),
       });
 
-      navigate("/login", { replace: true });
-    } catch (err) {
-      // ❌ CLEAR ALL FIELDS
+      await signOut(auth);
+
+      // ✅ show success message
+      setSuccess(
+        "Verification email has been sent. Please verify your email before login."
+      );
+
+      // ⏳ auto clear success message
+      setTimeout(() => {
+        setSuccess("");
+      }, 4000);
+
+      // clear form
       setName("");
       setEmail("");
       setPassword("");
+
+    } catch (err) {
+      setName("");
+      setEmail("");
+      setPassword("");
+      setSuccess("");
 
       if (err.code === "auth/email-already-in-use") {
         setError("This email is already registered. Please login.");
@@ -86,12 +97,8 @@ const Register = () => {
         setError("Something went wrong. Please try again.");
       }
 
-      // ⏳ AUTO HIDE ERROR MESSAGE
-      setTimeout(() => {
-        setError("");
-      }, 3000);
-    }
-    finally {
+      setTimeout(() => setError(""), 3000);
+    } finally {
       setLoading(false);
     }
   };
@@ -109,7 +116,10 @@ const Register = () => {
           <span className="line3">Create Account</span>
         </h2>
 
-        {/* ✅ INLINE ERROR MESSAGE */}
+        {/* ✅ SUCCESS MESSAGE */}
+        {success && <p className="register-success">{success}</p>}
+
+        {/* ❌ ERROR MESSAGE */}
         {error && <p className="register-error">{error}</p>}
 
         <form onSubmit={handleRegister} className="register-form">
@@ -118,26 +128,24 @@ const Register = () => {
             placeholder="Full Name"
             value={name}
             onChange={(e) => {
-              const filtered = e.target.value.replace(/[^a-zA-Z\s]/g, "");
-              setName(filtered);
+              setName(e.target.value.replace(/[^a-zA-Z\s]/g, ""));
               setError("");
+              setSuccess("");
             }}
             required
           />
-
 
           <input
             type="email"
             placeholder="Email Address"
             value={email}
             onChange={(e) => {
-              const filtered = e.target.value.replace(/[^a-zA-Z0-9@._-]/g, "");
-              setEmail(filtered);
+              setEmail(e.target.value.replace(/[^a-zA-Z0-9@._-]/g, ""));
               setError("");
+              setSuccess("");
             }}
             required
           />
-
 
           <input
             type="password"
@@ -146,6 +154,7 @@ const Register = () => {
             onChange={(e) => {
               setPassword(e.target.value);
               setError("");
+              setSuccess("");
             }}
             required
           />
@@ -155,6 +164,7 @@ const Register = () => {
           </button>
         </form>
 
+        {/* ✅ RESTORED LOGIN TEXT */}
         <p className="register-text">
           Already have an account? <Link to="/login">Login</Link>
         </p>

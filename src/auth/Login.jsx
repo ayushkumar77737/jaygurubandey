@@ -4,71 +4,77 @@ import { useNavigate, Link } from "react-router-dom";
 import {
   signInWithEmailAndPassword,
   setPersistence,
-  browserSessionPersistence
+  browserSessionPersistence,
+  signOut
 } from "firebase/auth";
-import { auth } from "../firebase/firebase";
+import { doc, updateDoc } from "firebase/firestore"; // ✅ added
+import { auth, db } from "../firebase/firebase";     // ✅ db added
 import "./Login.css";
 
 import guruji from "../assets/guruji.webp";
 
 const Login = () => {
   useEffect(() => {
-  // 🔒 Disable Right Click
-  const disableRightClick = (e) => {
-    e.preventDefault();
-  };
+    // 🔒 Disable Right Click
+    const disableRightClick = (e) => e.preventDefault();
 
-  // 🔒 Disable Inspect & View Source
-  const disableInspectKeys = (e) => {
-    // F12
-    if (e.key === "F12") {
-      e.preventDefault();
-    }
+    // 🔒 Disable Inspect & View Source
+    const disableInspectKeys = (e) => {
+      if (e.key === "F12") e.preventDefault();
+      if (
+        e.ctrlKey &&
+        e.shiftKey &&
+        ["I", "J", "C"].includes(e.key.toUpperCase())
+      ) e.preventDefault();
+      if (e.ctrlKey && e.key.toUpperCase() === "U") e.preventDefault();
+    };
 
-    // Ctrl + Shift + I / J / C
-    if (
-      e.ctrlKey &&
-      e.shiftKey &&
-      ["I", "J", "C"].includes(e.key.toUpperCase())
-    ) {
-      e.preventDefault();
-    }
+    document.addEventListener("contextmenu", disableRightClick);
+    document.addEventListener("keydown", disableInspectKeys);
 
-    // Ctrl + U (View Source)
-    if (e.ctrlKey && e.key.toUpperCase() === "U") {
-      e.preventDefault();
-    }
-  };
-
-  document.addEventListener("contextmenu", disableRightClick);
-  document.addEventListener("keydown", disableInspectKeys);
-
-  // ✅ CLEANUP (VERY IMPORTANT)
-  return () => {
-    document.removeEventListener("contextmenu", disableRightClick);
-    document.removeEventListener("keydown", disableInspectKeys);
-  };
-}, []);
+    return () => {
+      document.removeEventListener("contextmenu", disableRightClick);
+      document.removeEventListener("keydown", disableInspectKeys);
+    };
+  }, []);
 
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(""); // ✅ error state
+  const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError(""); // clear previous error
+    setError("");
 
     try {
       await setPersistence(auth, browserSessionPersistence);
-      await signInWithEmailAndPassword(auth, email.trim(), password);
+
+      const res = await signInWithEmailAndPassword(
+        auth,
+        email.trim(),
+        password
+      );
+
+      // ❌ BLOCK LOGIN IF EMAIL NOT VERIFIED
+      if (!res.user.emailVerified) {
+        await signOut(auth);
+        setError("Please verify your email before logging in.");
+        setTimeout(() => setError(""), 4000);
+        return;
+      }
+
+      // ✅ OPTIONAL: sync verification status to Firestore
+      await updateDoc(doc(db, "users", res.user.uid), {
+        emailVerified: true,
+      });
+
       navigate("/", { replace: true });
-    }
-    catch (err) {
-      // ❌ Clear fields
+
+    } catch (err) {
       setEmail("");
       setPassword("");
 
@@ -82,12 +88,8 @@ const Login = () => {
         setError("Invalid email or password.");
       }
 
-      // ⏳ AUTO REMOVE ERROR MESSAGE
-      setTimeout(() => {
-        setError("");
-      }, 3000); // disappears after 3 seconds
-    }
-    finally {
+      setTimeout(() => setError(""), 3000);
+    } finally {
       setLoading(false);
     }
   };
@@ -105,7 +107,6 @@ const Login = () => {
           <span className="line3">Welcome Back</span>
         </h2>
 
-        {/* ✅ MESSAGE TYPE ERROR */}
         {error && <p className="login-error">{error}</p>}
 
         <form className="login-form" onSubmit={handleLogin}>
@@ -120,7 +121,6 @@ const Login = () => {
             }}
             required
           />
-
 
           <input
             type="password"
