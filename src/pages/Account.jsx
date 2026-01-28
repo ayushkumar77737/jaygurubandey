@@ -7,18 +7,22 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 const Account = () => {
   const [name, setName] = useState("");
-  const [originalName, setOriginalName] = useState(""); // backup for cancel
-  const [email, setEmail] = useState(""); // read-only
+  const [originalName, setOriginalName] = useState("");
+  const [email, setEmail] = useState("");
 
   const [editing, setEditing] = useState(false);
   const [message, setMessage] = useState("");
+  const [isBlocked, setIsBlocked] = useState(false); // 🔒 blocks Edit button
   const [loading, setLoading] = useState(true);
 
-  // 🔹 helper: show message for few seconds
+  // 🔹 helper: show message + block Edit temporarily
   const showMessage = (text, duration = 3000) => {
+    setIsBlocked(true);
     setMessage(text);
+
     setTimeout(() => {
       setMessage("");
+      setIsBlocked(false);
     }, duration);
   };
 
@@ -29,10 +33,8 @@ const Account = () => {
       if (!user) return;
 
       try {
-        // Email from Firebase Auth (read-only)
         setEmail(user.email);
 
-        // Name from Firestore
         const userRef = doc(db, "users", user.uid);
         const snap = await getDoc(userRef);
 
@@ -56,7 +58,7 @@ const Account = () => {
     const user = auth.currentUser;
     if (!user) return;
 
-    // 🚫 same name check
+    // 🚫 same-name check
     if (name.trim() === originalName.trim()) {
       setEditing(false);
       showMessage("❌ Update failed: you are using the same name");
@@ -121,6 +123,7 @@ const Account = () => {
             <button
               className="primary-btn"
               onClick={() => setEditing(true)}
+              disabled={isBlocked}   // ✅ disabled while message shown
             >
               Edit
             </button>
