@@ -62,6 +62,9 @@ const Login = () => {
       // ❌ BLOCK LOGIN IF EMAIL NOT VERIFIED
       if (!res.user.emailVerified) {
         await signOut(auth);
+        // ✅ CLEAR FIELDS
+        setEmail("");
+        setPassword("");
         setError("Please verify your email before logging in.");
         setTimeout(() => setError(""), 4000);
         return;
@@ -78,15 +81,15 @@ const Login = () => {
       setEmail("");
       setPassword("");
 
-      if (err.code === "auth/user-not-found") {
-        setError("No account found with this email.");
-      } else if (err.code === "auth/wrong-password") {
-        setError("Incorrect password. Please try again.");
-      } else if (err.code === "auth/invalid-email") {
+
+      if (err.code === "auth/invalid-email") {
         setError("Please enter a valid email address.");
+      } else if (err.code === "auth/invalid-credential") {
+        setError("Invalid email or password.");
       } else {
         setError("Invalid email or password.");
       }
+
 
       setTimeout(() => setError(""), 3000);
     } finally {
