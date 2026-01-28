@@ -111,11 +111,6 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/live-now')}>
-                  Live Now
-                </button>
-              </li>
-              <li>
                 <button
                   className="logout-btn"
                   onClick={handleLogout}
@@ -268,6 +263,11 @@ const Navbar = () => {
               <li>
                 <button onClick={() => handleNavClick('/important-dates')}>
                   Important Dates
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavClick('/live-now')}>
+                  Live Now
                 </button>
               </li>
             </ul>
