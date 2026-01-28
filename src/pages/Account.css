@@ -1,0 +1,213 @@
+/* =========================
+   PAGE BACKGROUND
+========================= */
+.account-page {
+  min-height: calc(100vh - 90px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #0f1c3d, #060a18);
+  padding: 20px;
+  animation: fadeIn 0.4s ease-out both;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.account-container {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* =========================
+   TITLE
+========================= */
+.account-title {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  animation: slideDown 0.35s ease-out both;
+}
+
+/* =========================
+   CARD
+========================= */
+.account-card {
+  width: 100%;
+  background: linear-gradient(180deg, #0f1b34, #0b1428);
+  padding: 26px;
+  border-radius: 16px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  animation: fadeUp 0.4s ease-out both;
+}
+
+/* =========================
+   INPUT FIELD
+========================= */
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.field input {
+  width: 100%;
+  margin-top: 6px;
+  padding: 11px;
+  border-radius: 8px;
+  border: none;
+  background: #2a3550;
+  color: #ffffff;
+  font-size: 14px;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.field input:focus {
+  outline: none;
+  background: #334066;
+  transform: scale(1.01);
+}
+
+.field input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================
+   EMAIL NOTE
+========================= */
+.email-note {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #cfcfcf;
+  opacity: 0.85;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.primary-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  background: #f5c542;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(245, 197, 66, 0.35);
+}
+
+/* Update + Cancel group */
+.btn-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.cancel-btn {
+  width: 100%;
+  padding: 12px;
+  background: #2a3550;
+  border: 1px solid #3a4a6a;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.cancel-btn:hover {
+  background: #334066;
+  transform: translateY(-1px);
+}
+
+/* =========================
+   SUCCESS MESSAGE
+========================= */
+.success-msg {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #7cff7c;
+  text-align: center;
+  animation: fadeIn 0.3s ease-out both;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+/* Mobile */
+@media (max-width: 480px) {
+  .account-title {
+    font-size: 20px;
+  }
+
+  .account-card {
+    padding: 22px;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
+}
+
+/* Tablet */
+@media (min-width: 481px) and (max-width: 768px) {
+  .account-container {
+    max-width: 380px;
+  }
+}
+
+/* Laptop / Desktop */
+@media (min-width: 769px) {
+  .account-container {
+    max-width: 420px;
+  }
+}
+
+/* =========================
+   ANIMATIONS (LIGHTWEIGHT)
+========================= */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

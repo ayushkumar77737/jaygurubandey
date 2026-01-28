@@ -419,6 +419,11 @@ const Navbar = () => {
                   Check Payment Status
                 </button>
               </li>
+              <li>
+                <button onClick={() => handleNavClick('/account')}>
+                  My Account
+                </button>
+              </li>
             </ul>
           )}
         </li>
