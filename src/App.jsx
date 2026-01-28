@@ -8,20 +8,56 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import IdleLogout from "./utils/IdleLogout";
 
 const App = () => {
-  useEffect(() => {
-    /* 🔒 Disable Right Click */
-    const disableRightClick = (e) => {
-      e.preventDefault();
-    };
 
-    /* 🔒 Disable Inspect Shortcuts */
-    const disableInspectKeys = (e) => {
-      // F12
-      if (e.key === "F12") {
-        e.preventDefault();
+  /* 🔧 MAINTENANCE START CHECK (ADD THIS) */
+  useEffect(() => {
+    function maintenanceCheck() {
+      const now = new Date();
+
+      const startHour = 20;
+      const startMinute = 59;
+
+      const endHour = 21;
+      const endMinute = 2;
+
+      const currentMinutes = now.getHours() * 60 + now.getMinutes();
+      const startMinutes = startHour * 60 + startMinute;
+      const endMinutes = endHour * 60 + endMinute;
+
+      let isMaintenance;
+
+      if (startMinutes < endMinutes) {
+        isMaintenance =
+          currentMinutes >= startMinutes &&
+          currentMinutes < endMinutes;
+      } else {
+        isMaintenance =
+          currentMinutes >= startMinutes ||
+          currentMinutes < endMinutes;
       }
 
-      // Ctrl + Shift + I / J / C
+      const isLocalhost =
+        location.hostname === "localhost" ||
+        location.hostname === "127.0.0.1";
+
+      if (isMaintenance && !isLocalhost) {
+        window.location.replace("/maintenance.html");
+      }
+    }
+
+    maintenanceCheck(); // immediate check
+    const interval = setInterval(maintenanceCheck, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  /* 🔒 YOUR EXISTING SECURITY useEffect (NO CHANGE) */
+  useEffect(() => {
+    const disableRightClick = (e) => e.preventDefault();
+
+    const disableInspectKeys = (e) => {
+      if (e.key === "F12") e.preventDefault();
+
       if (
         e.ctrlKey &&
         e.shiftKey &&
@@ -30,7 +66,6 @@ const App = () => {
         e.preventDefault();
       }
 
-      // Ctrl + U (View Source)
       if (e.ctrlKey && e.key.toUpperCase() === "U") {
         e.preventDefault();
       }
@@ -47,7 +82,7 @@ const App = () => {
 
   return (
     <>
-      <IdleLogout /> {/* ✅ AUTO LOGOUT ENABLED */}
+      <IdleLogout />
       <Navbar />
       <main>
         <Outlet />
