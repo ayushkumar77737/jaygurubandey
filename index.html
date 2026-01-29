@@ -21,8 +21,8 @@
     function getNextMaintenanceStart() {
       const now = new Date();
 
-      const startHour = 22;
-      const startMinute = 0;
+      const startHour = 11;
+      const startMinute = 28;
 
       const startTime = new Date(now);
       startTime.setHours(startHour, startMinute, 0, 0);
@@ -37,11 +37,8 @@
     function maintenanceCheck() {
       const now = new Date();
 
-      const startMinutes =
-  now.getHours() * 60 + now.getMinutes() + 1; // starts in 1 min
-
-const endMinutes =
-  now.getHours() * 60 + now.getMinutes() + 3; // ends in 3 min
+      const startMinutes = 11 * 60 + 28;
+      const endMinutes = 11 * 60 + 32;
       const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
       const isMaintenance =
