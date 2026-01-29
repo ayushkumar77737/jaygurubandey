@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="./src/assets/circle.png" />
@@ -17,49 +18,56 @@
 
   <!-- 🔒 MAINTENANCE START CHECK -->
   <script>
-    function maintenanceCheck() {
+    function getNextMaintenanceStart() {
       const now = new Date();
 
-      /* 🔧 EDIT TIME HERE ONLY */
       const startHour = 22;
       const startMinute = 0;
 
-      const endHour = 4;
-      const endMinute = 59;
+      const startTime = new Date(now);
+      startTime.setHours(startHour, startMinute, 0, 0);
 
-      const currentMinutes = now.getHours() * 60 + now.getMinutes();
-      const startMinutes = startHour * 60 + startMinute;
-      const endMinutes = endHour * 60 + endMinute;
-
-      let isMaintenance;
-
-      if (startMinutes < endMinutes) {
-        isMaintenance =
-          currentMinutes >= startMinutes &&
-          currentMinutes < endMinutes;
-      } else {
-        isMaintenance =
-          currentMinutes >= startMinutes ||
-          currentMinutes < endMinutes;
+      if (now > startTime) {
+        startTime.setDate(startTime.getDate() + 1);
       }
 
-      /* ✅ LOCALHOST BYPASS (DEV ACCESS) */
+      return startTime - now;
+    }
+
+    function maintenanceCheck() {
+      const now = new Date();
+
+      const startMinutes =
+  now.getHours() * 60 + now.getMinutes() + 1; // starts in 1 min
+
+const endMinutes =
+  now.getHours() * 60 + now.getMinutes() + 3; // ends in 3 min
+      const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+      const isMaintenance =
+        startMinutes < endMinutes
+          ? currentMinutes >= startMinutes && currentMinutes < endMinutes
+          : currentMinutes >= startMinutes || currentMinutes < endMinutes;
+
       const isLocalhost =
         location.hostname === "localhost" ||
         location.hostname === "127.0.0.1";
 
-      if (
-        isMaintenance &&
-        !isLocalhost &&
-        !location.pathname.includes("maintenance")
-      ) {
+      if (isMaintenance && !isLocalhost) {
         window.location.replace("/maintenance.html");
       }
     }
 
+    // 🔥 Run immediately
     maintenanceCheck();
-    setInterval(maintenanceCheck, 10000);
 
+    // 🔥 Force redirect exactly at 22:00
+    setTimeout(maintenanceCheck, getNextMaintenanceStart());
+
+    // 🔁 Backup check every 1 min
+    setInterval(maintenanceCheck, 60000);
+
+    // 🔄 When tab becomes active
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden) maintenanceCheck();
     });
@@ -68,4 +76,5 @@
   <!-- React entry -->
   <script type="module" src="/src/main.jsx"></script>
 </body>
+
 </html>
