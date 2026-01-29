@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <title>Jai Gurubande</title>
@@ -24,54 +23,44 @@
 
   <!-- 🔁 MAINTENANCE END CHECK -->
   <script>
-    function getNextMaintenanceStart() {
-      const now = new Date();
-
-      const startHour = 11;
-      const startMinute = 28;
-
-      const startTime = new Date(now);
-      startTime.setHours(startHour, startMinute, 0, 0);
-
-      // If already past 22:00, schedule for tomorrow
-      if (now > startTime) {
-        startTime.setDate(startTime.getDate() + 1);
-      }
-
-      return startTime - now;
-    }
-
     function maintenanceCheck() {
       const now = new Date();
 
-      const startMinutes = 11 * 60 + 28;
-      const endMinutes = 11 * 60 + 32;
+      /* 🔧 SAME TIME AS index.html */
+      const startHour = 11;
+      const startMinute = 31;
+
+      const endHour = 11;
+      const endMinute = 35;
+
       const currentMinutes = now.getHours() * 60 + now.getMinutes();
+      const startMinutes = startHour * 60 + startMinute;
+      const endMinutes = endHour * 60 + endMinute;
 
-      const isMaintenance =
-        startMinutes < endMinutes
-          ? currentMinutes >= startMinutes && currentMinutes < endMinutes
-          : currentMinutes >= startMinutes || currentMinutes < endMinutes;
+      let isMaintenance;
 
+      if (startMinutes < endMinutes) {
+        isMaintenance =
+          currentMinutes >= startMinutes &&
+          currentMinutes < endMinutes;
+      } else {
+        isMaintenance =
+          currentMinutes >= startMinutes ||
+          currentMinutes < endMinutes;
+      }
+
+      /* ✅ LOCALHOST BYPASS */
       const isLocalhost =
         location.hostname === "localhost" ||
         location.hostname === "127.0.0.1";
 
-      if (isMaintenance && !isLocalhost) {
-        window.location.replace("/maintenance.html");
+      if (!isMaintenance && !isLocalhost) {
+        window.location.replace(window.location.origin);
       }
     }
 
-    // ✅ Run immediately
     maintenanceCheck();
-
-    // ✅ Hard redirect exactly at 22:00
-    setTimeout(() => {
-      maintenanceCheck();
-    }, getNextMaintenanceStart());
-
-    // ✅ Backup checks
-    setInterval(maintenanceCheck, 60000);
+    setInterval(maintenanceCheck, 10000);
 
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden) maintenanceCheck();
@@ -102,5 +91,4 @@
     });
   </script>
 </body>
-
 </html>
