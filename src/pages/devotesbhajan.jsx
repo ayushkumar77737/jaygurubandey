@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./DevotesBhajan.css";
+import "./devotesbhajan.css";
 
 const bhajanData = {
   "Ankit Ji": [
