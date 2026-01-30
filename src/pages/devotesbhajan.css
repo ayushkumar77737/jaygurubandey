@@ -1,185 +1,152 @@
 /* ===============================
-   Devotes Bhajan Page ONLY
+   DEVOTES BHAJAN – FULLY SCOPED
    =============================== */
 
 .devotes-bhajan {
+  font-family: 'Poppins', sans-serif;
   min-height: 100vh;
-  padding: 50px 20px;
-  background: linear-gradient(135deg, #fff7e6, #ffffff);
-  font-family: "Outfit", sans-serif;
+  padding: 30px 20px 80px;
   text-align: center;
-
-  /* Opening animation */
-  animation: pageFadeUp 0.6s ease-out both;
+  background: linear-gradient(135deg, #fff5f5, #fff0fa, #f5faff);
+  overflow-x: hidden;
+  animation: devotesFadeUp 0.5s ease-out both;
 }
 
-/* ===============================
-   Title
-   =============================== */
+/* ===== Title ===== */
+.devotes-bhajan .devotes-title {
+  margin-bottom: 35px;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #2b2b2b;   /* 👈 solid color */
+  letter-spacing: 1.5px;
+  animation: devotesFadeUp 0.45s ease-out both;
 
-.devotes-bhajan__title {
-  font-size: 32px;
-  font-weight: 600;
-  margin-bottom: 30px;
-  color: #2b2b2b;
-  animation: fadeUp 0.7s ease-out both;
+  /* ❌ REMOVE THESE */
+  background: none;
+  -webkit-background-clip: unset;
 }
 
-/* ===============================
-   Dropdown
-   =============================== */
-
-.devotes-bhajan__dropdown {
-  margin-bottom: 40px;
+/* ===== Dropdown ===== */
+.devotes-bhajan .devotes-dropdown {
+  margin-bottom: 35px;
 }
 
-/* ✅ CENTER TEXT FIX (DESKTOP + MOBILE) */
-.devotes-bhajan__dropdown select {
-  padding: 12px 18px;
+/* ===== Dropdown (NO COLOR) ===== */
+.devotes-bhajan .devotes-dropdown select {
+  padding: 12px 22px;
   font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  border-radius: 10px;
+  border: 1px solid #ccc;     /* neutral gray */
   background: #ffffff;
+  color: #000;               /* text color */
+  font-weight: 600;
   cursor: pointer;
   outline: none;
-
   text-align: center;
-  text-align-last: center; /* ✅ mobile fix */
+  text-align-last: center;
+  transition: border 0.2s ease;
 }
 
-.devotes-bhajan__dropdown select option {
-  text-align: center;
+/* Focus state – still neutral */
+.devotes-bhajan .devotes-dropdown select:focus {
+  border-color: #999;        /* no orange */
+  box-shadow: none;          /* remove glow */
 }
 
-.devotes-bhajan__dropdown select:focus {
-  border-color: #c59d5f;
-}
-
-/* ===============================
-   Videos Grid
-   =============================== */
-
-.devotes-bhajan__videos {
-  max-width: 1100px;
-  margin: auto;
+/* ===== Video Grid ===== */
+.devotes-bhajan .devotes-video-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 10px;
 }
 
-/* ===============================
-   Video Card
-   =============================== */
-
-.devotes-bhajan__card {
-  background: #ffffff;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-  transition: transform 0.3s ease;
-  animation: softScale 0.45s ease-out both;
+/* ===== Video Card ===== */
+.devotes-bhajan .devotes-video-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+  border: 1px solid rgba(243, 156, 18, 0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 18px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: devotesFadeUp 0.55s ease-out both;
 }
 
-.devotes-bhajan__card:hover {
-  transform: translateY(-6px);
+.devotes-bhajan .devotes-video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
-/* iframe ONLY inside this page */
-.devotes-bhajan__card iframe {
+.devotes-bhajan .devotes-video-card iframe {
   width: 100%;
-  height: 200px;
+  height: 180px;
+  border-radius: 14px;
   border: none;
+  margin-bottom: 10px;
 }
 
-/* ===============================
-   Hint Text
-   =============================== */
+.devotes-bhajan .devotes-video-card p {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #2b2b2b;
+}
 
-.devotes-bhajan__hint {
+/* ===== Hint ===== */
+.devotes-bhajan .devotes-hint {
   grid-column: 1 / -1;
   font-size: 16px;
   color: #777;
   margin-top: 20px;
 }
 
-/* ===============================
-   RESPONSIVE STYLES
-   =============================== */
-
-/* 📱 Mobile Devices */
-@media (max-width: 480px) {
-  .devotes-bhajan {
-    padding: 30px 12px;
-  }
-
-  .devotes-bhajan__title {
-    font-size: 22px;
-    margin-bottom: 20px;
-  }
-
-  .devotes-bhajan__dropdown select {
-    width: 100%;
-    font-size: 14px;
-    padding: 10px 14px;
-  }
-
-  .devotes-bhajan__videos {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  .devotes-bhajan__card iframe {
-    height: 180px;
-  }
+/* ===== Pagination (Page-color matched) ===== */
+.devotes-bhajan .devotes-pagination {
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
 }
 
-/* 📱 Large Mobile / Small Tablets */
-@media (max-width: 768px) {
-  .devotes-bhajan__title {
-    font-size: 26px;
-  }
-
-  .devotes-bhajan__dropdown select {
-    width: 100%;
-  }
-
-  .devotes-bhajan__videos {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .devotes-bhajan__card iframe {
-    height: 190px;
-  }
+/* Prev / Next buttons */
+.devotes-bhajan .devotes-pagination button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #ffffff;      /* ✅ matches page */
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* 💻 Tablets / Small Laptops */
-@media (max-width: 1024px) {
-  .devotes-bhajan__videos {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .devotes-bhajan__title {
-    font-size: 28px;
-  }
+.devotes-bhajan .devotes-pagination button:hover:not(:disabled) {
+  background: #f5f5f5;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
-/* 🖥️ Large Screens */
-@media (min-width: 1200px) {
-  .devotes-bhajan__videos {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .devotes-bhajan__card iframe {
-    height: 220px;
-  }
+.devotes-bhajan .devotes-pagination button:disabled {
+  background: #e0e0e0;
+  color: #888;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
-/* ===============================
-   LIGHTWEIGHT ANIMATIONS
-   =============================== */
+/* Page indicator */
+.devotes-bhajan .devotes-page-circle {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #ffffff;      /* ✅ matches page */
+  border: 1px solid #ddd;
+  color: #333;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
 
-@keyframes pageFadeUp {
+/* ===== Animation ===== */
+@keyframes devotesFadeUp {
   from {
     opacity: 0;
     transform: translateY(14px);
@@ -190,24 +157,31 @@
   }
 }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .devotes-bhajan .devotes-title {
+    font-size: 2.2rem;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .devotes-bhajan .devotes-video-card iframe {
+    height: 150px;
   }
 }
 
-@keyframes softScale {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
+@media (max-width: 480px) {
+  .devotes-bhajan .devotes-title {
+    font-size: 1.8rem;
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+
+  .devotes-bhajan .devotes-video-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .devotes-bhajan .devotes-video-card iframe {
+    height: 130px;
+  }
+
+  .devotes-bhajan .devotes-dropdown select {
+    width: 100%;
   }
 }
