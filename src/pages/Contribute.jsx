@@ -120,7 +120,7 @@ const Contribute = () => {
         createdAt: new Date(),
       });
 
-      showMessage("✅ Contribution submitted successfully!", 3000);
+      showMessage("✅ Contribution submitted successfully. Please verify the payment by checking the payment status", 3000);
 
       setFormData({
         name: "",
