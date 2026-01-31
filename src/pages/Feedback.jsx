@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import "./Feedback.css";
 
+// 🔥 Firebase imports
+import { db } from "../firebase//firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+
 const Feedback = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -10,7 +14,9 @@ const Feedback = () => {
     issues: "",
     contact: "",
   });
+
   const [successMsg, setSuccessMsg] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,7 +37,7 @@ const Feedback = () => {
       if (!valid.test(value)) return;
     }
 
-    // If "issues" is changed to "Yes", reset contact field
+    // If issues = Yes → contact auto Yes
     if (name === "issues" && value === "Yes") {
       setFormData({ ...formData, [name]: value, contact: "Yes" });
       return;
@@ -55,25 +61,22 @@ const Feedback = () => {
       return;
     }
 
-    const formURL =
-      "https://docs.google.com/forms/d/e/1FAIpQLSfJPwUXzqt_USScLrDAquYYrjijAbg3kIuKixkvSkVMuBGQEA/formResponse";
-
-    const data = new FormData();
-    data.append("entry.1385578647", formData.fullName); // Full Name
-    data.append("entry.331457870", formData.email); // Email
-    data.append("entry.984911187", formData.rating); // Rating
-    data.append("entry.118230991", formData.feedback); // Feedback
-    data.append("entry.1904533888", formData.issues); // Issues
-    data.append("entry.408974374", formData.contact); // Contact
-
     try {
-      await fetch(formURL, {
-        method: "POST",
-        body: data,
-        mode: "no-cors",
+      setLoading(true);
+
+      // 🔥 Store data in Firestore
+      await addDoc(collection(db, "feedbacks"), {
+        fullName: formData.fullName,
+        email: formData.email,
+        rating: formData.rating,
+        feedback: formData.feedback,
+        issues: formData.issues,
+        contact: formData.contact,
+        createdAt: serverTimestamp(),
       });
 
       setSuccessMsg("✅ Thank you for your feedback!");
+
       setFormData({
         fullName: "",
         email: "",
@@ -85,8 +88,10 @@ const Feedback = () => {
 
       setTimeout(() => setSuccessMsg(""), 4000);
     } catch (err) {
-      console.error("Error submitting form:", err);
+      console.error("Firestore Error:", err);
       setSuccessMsg("❌ Submission failed. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -191,7 +196,6 @@ const Feedback = () => {
               Yes
             </label>
 
-            {/* 👇 Only show "No" if user didn't face issues */}
             {formData.issues !== "Yes" && (
               <label>
                 <input
@@ -206,11 +210,11 @@ const Feedback = () => {
             )}
           </div>
 
-          <button type="submit" className="submit-btn">
-            Submit Feedback
+          <button type="submit" className="submit-btn" disabled={loading}>
+            {loading ? "Submitting..." : "Submit Feedback"}
           </button>
 
-          {successMsg && <p className="success-msg">{successMsg}</p>}
+          {successMsg && <p className="success-message">{successMsg}</p>}
         </form>
       </div>
     </div>
