@@ -5,7 +5,8 @@ import {
   signInWithEmailAndPassword,
   setPersistence,
   browserSessionPersistence,
-  signOut
+  signOut,
+  sendPasswordResetEmail
 } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore"; // ✅ added
 import { auth, db } from "../firebase/firebase";     // ✅ db added
@@ -97,6 +98,27 @@ const Login = () => {
     }
   };
 
+  const handleForgotPassword = async () => {
+    if (!email) {
+      setError("Please enter your registered email first.");
+      setTimeout(() => setError(""), 3000);
+      return;
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, email.trim());
+
+      setEmail("");        // ✅ CLEAR EMAIL FIELD
+      setPassword("");     // ✅ CLEAR PASSWORD FIELD (recommended)
+
+      setError("Password reset link sent to your email.");
+      setTimeout(() => setError(""), 4000);
+    } catch (err) {
+      setError("Unable to send reset email. Try again.");
+      setTimeout(() => setError(""), 4000);
+    }
+  };
+
   return (
     <div className="login-page">
       <div className="login-card">
@@ -135,6 +157,9 @@ const Login = () => {
             }}
             required
           />
+          <p className="forgot-password" onClick={handleForgotPassword}>
+            Forgot Password?
+          </p>
 
           <button type="submit" disabled={loading}>
             {loading ? "Please wait..." : "Login"}

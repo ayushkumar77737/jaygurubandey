@@ -283,3 +283,15 @@
   text-align: center;
   animation: fadeUp 0.3s ease;
 }
+
+.forgot-password {
+  text-align: right;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #6c63ff;
+  cursor: pointer;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
