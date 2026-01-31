@@ -53,8 +53,7 @@
       if (
         isMaintenance &&
         !isLocalhost &&
-        !location.pathname.includes("maintenance") &&
-        !location.pathname.includes("sitemap.xml")
+        !location.pathname.includes("maintenance")
       ) {
         window.location.replace("/maintenance.html");
       }
