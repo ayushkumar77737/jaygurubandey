@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import "./SubmitTestimony.css";
 
+// 🔥 Firebase imports
+import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { db } from "../firebase/firebase"; // adjust path if needed
+
 const SubmitTestimony = () => {
   const [form, setForm] = useState({
     name: "",
@@ -11,14 +15,7 @@ const SubmitTestimony = () => {
 
   const [submitted, setSubmitted] = useState(false);
 
-  const googleFormURL =
-    "https://docs.google.com/forms/d/e/1FAIpQLScYAJdOlq2a9vG_a46-cz6UsLmDkhROgCBc3zEbUMY6MY-uBg/formResponse";
-
-  const entryName = "entry.1956407696";
-  const entryLocation = "entry.699348816";
-  const entryDate = "entry.349804285";
-  const entryTestimony = "entry.185507649";
-
+  // ✅ Allow only letters & spaces
   const handleNameChange = (e) => {
     const value = e.target.value.replace(/[^A-Za-z\s]/g, "");
     setForm({ ...form, name: value });
@@ -33,28 +30,30 @@ const SubmitTestimony = () => {
     setForm({ ...form, testimony: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  // 🔥 Submit to Firebase Firestore
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append(entryName, form.name);
-    formData.append(entryLocation, form.location);
-    formData.append(entryDate, form.date);
-    formData.append(entryTestimony, form.testimony);
+    try {
+      await addDoc(collection(db, "testimonies"), {
+        name: form.name,
+        location: form.location,
+        date: form.date,
+        testimony: form.testimony,
+        createdAt: Timestamp.now(),
+      });
 
-    fetch(googleFormURL, {
-      method: "POST",
-      mode: "no-cors",
-      body: formData,
-    });
+      setSubmitted(true);
+      setForm({ name: "", location: "", date: "", testimony: "" });
 
-    setSubmitted(true);
-    setForm({ name: "", location: "", date: "", testimony: "" });
+      // ⏳ hide success message after 4 seconds
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 4000);
 
-    // ⏳ hide success message after 4 seconds
-    setTimeout(() => {
-      setSubmitted(false);
-    }, 4000);
+    } catch (error) {
+      console.error("Error submitting testimony:", error);
+    }
   };
 
   return (
@@ -98,7 +97,9 @@ const SubmitTestimony = () => {
           placeholder="Write your testimony..."
         />
 
-        <button type="submit" className="submit-testimony-btn">Submit</button>
+        <button type="submit" className="submit-testimony-btn">
+          Submit
+        </button>
 
         {submitted && (
           <p className="success-message">
