@@ -149,9 +149,6 @@ nav ul li a:hover {
     left: 0;
     width: 100%;
   }
-  body {
-    padding-top: 110px;
-  }
 
   nav ul {
     position: fixed;
