@@ -151,7 +151,7 @@ nav ul li a:hover {
     width: 100%;
   }
   body {
-    padding-top: 80px;
+    padding-top: 110px;
   }
 
   nav ul {
@@ -161,7 +161,7 @@ nav ul li a:hover {
     bottom: 0;
     background: linear-gradient(160deg, #0a1a2f, #020b1a);
     width: 240px;
-    padding-top: 90px;
+    padding-top: 110px;
     display: flex;
     flex-direction: column;
     align-items: center;
