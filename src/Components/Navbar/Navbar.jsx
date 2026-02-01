@@ -3,7 +3,6 @@ import { signOut } from "firebase/auth"
 import { auth } from "../../firebase/firebase"
 import './Navbar.css'
 import logo from '../../assets/logo1.png'
-import circle from '../../assets/circle.png'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
@@ -432,11 +431,11 @@ const Navbar = () => {
 
       {/* Circle */}
       <img
-        src={circle}
-        alt='Circle'
-        className='circle-img'
+        src="/favicon.png"
+        alt="Circle"
+        className="circle-img"
         onClick={handleRefresh}
-        style={{ cursor: 'pointer' }}
+        style={{ cursor: "pointer" }}
       />
 
       {/* Mobile Menu */}

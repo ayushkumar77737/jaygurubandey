@@ -1,6 +1,5 @@
 import React from "react";
 import "./LoadingPage.css";
-import circle from "../assets/circle.png"; // your image
 
 const LoadingPage = () => {
   return (
@@ -10,7 +9,7 @@ const LoadingPage = () => {
 
       {/* Glowing Orb around the image */}
       <div className="orb-wrapper">
-        <img src={circle} alt="Loading..." className="loading-circle" />
+        <img src="/favicon.png" alt="Loading..." className="loading-circle" />
       </div>
 
       {/* Animated Text */}
