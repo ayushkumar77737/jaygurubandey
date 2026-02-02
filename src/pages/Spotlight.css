@@ -114,7 +114,7 @@
   border-radius: 20px;
   box-shadow: 0 4px 15px rgba(182, 0, 73, 0.08);
   overflow: hidden;
-  width: 44%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   transition: all 0.35s ease;
@@ -139,7 +139,7 @@
 
 /* ===== Content ===== */
 .spotlight-content {
-  padding: 28px;
+  padding: 20px 22px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -148,7 +148,7 @@
 }
 
 .spotlight-content h2 {
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   color: #b60049;
   margin-bottom: 10px;
   font-weight: 600;
@@ -166,19 +166,19 @@
   color: #555;
   font-size: 0.98rem;
   line-height: 1.6;
-  margin-bottom: 25px;
+  margin-bottom: 18px;
 }
 
 /* ===== Button ===== */
 .read-btn {
   display: inline-block;
-  padding: 11px 24px;
+  padding: 9px 22px;
   background: linear-gradient(135deg, #b60049, #ff007f);
   color: #fff;
   text-decoration: none;
   border-radius: 30px;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   transition: all 0.3s ease;
   box-shadow: 0 3px 12px rgba(182, 0, 73, 0.2);
 }
@@ -193,7 +193,7 @@
 .video-container {
   position: relative;
   width: 100%;
-  padding-top: 56.25%;
+  padding-top: 48%;
   overflow: hidden;
   background: #000;
   border-radius: 20px 20px 0 0;
