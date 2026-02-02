@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import "./Landing.css";
+import landingImage from "../assets/landing.webp"; // ✅ image import
 
 const Landing = () => {
     const navigate = useNavigate();
@@ -21,9 +22,44 @@ const Landing = () => {
         return () => unsub();
     }, [navigate]);
 
+    /* 🔒 SECURITY: Disable Inspect & Right Click */
+    useEffect(() => {
+        const disableRightClick = (e) => e.preventDefault();
+
+        const disableInspectKeys = (e) => {
+            if (e.key === "F12") e.preventDefault();
+
+            if (
+                e.ctrlKey &&
+                e.shiftKey &&
+                ["I", "J", "C"].includes(e.key.toUpperCase())
+            ) {
+                e.preventDefault();
+            }
+
+            if (e.ctrlKey && e.key.toUpperCase() === "U") {
+                e.preventDefault();
+            }
+        };
+
+        document.addEventListener("contextmenu", disableRightClick);
+        document.addEventListener("keydown", disableInspectKeys);
+
+        return () => {
+            document.removeEventListener("contextmenu", disableRightClick);
+            document.removeEventListener("keydown", disableInspectKeys);
+        };
+    }, []);
+
     return (
         <div className={`landing ${animate ? "animate" : ""}`}>
             <div className="landing-container">
+                {/* ✅ Image added above Welcome */}
+                <img
+                    src={landingImage}
+                    alt="Guruji spiritual website landing page"
+                    className="landing-image"
+                />
                 <h1>Welcome</h1>
 
                 <p>

@@ -12,53 +12,62 @@
   animation: landingFadeIn 0.8s ease-in-out;
 }
 
-/* Container */
+/* Container (card-style but light) */
 .landing .landing-container {
   max-width: 900px;
-  padding: 60px 20px;
+  width: 92%;
+  padding: 60px 40px;
   text-align: center;
+
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(123, 63, 0, 0.25);
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
+
   animation: slideUp 0.8s ease forwards;
+}
+
+/* Image */
+.landing-image {
+  max-width: 240px;
+  width: 100%;
+  margin-bottom: 24px;
 }
 
 /* Heading */
 .landing h1 {
   font-size: 2.6rem;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
   color: #4a2c2a;
+  letter-spacing: 0.4px;
 }
 
 /* Paragraphs */
 .landing p {
   font-size: 1.1rem;
   color: #333;
-  line-height: 1.7;
-  margin-bottom: 20px;
+  line-height: 1.75;
+  margin-bottom: 18px;
 }
 
 /* Buttons wrapper */
 .landing .landing-actions {
-  margin-top: 40px;
+  margin-top: 36px;
 }
 
-/* Common button styles */
+/* Buttons */
 .landing .landing-actions a {
   display: inline-block;
-  padding: 12px 32px;
+  padding: 12px 34px;
   margin: 0 10px;
   border-radius: 30px;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Login = secondary */
-.landing .landing-actions .login {
-  background: transparent;
-  border: 2px solid #7b3f00;
-  color: #7b3f00;
-}
-
-/* Register = primary */
+/* Login & Register */
+.landing .landing-actions .login,
 .landing .landing-actions .register {
   background: transparent;
   border: 2px solid #7b3f00;
@@ -76,18 +85,14 @@
    ================================ */
 
 @keyframes landingFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(35px);
   }
   to {
     opacity: 1;
@@ -113,7 +118,7 @@
 /* Mobile */
 @media (max-width: 768px) {
   .landing .landing-container {
-    padding: 40px 16px;
+    padding: 40px 18px;
   }
 
   .landing h1 {
