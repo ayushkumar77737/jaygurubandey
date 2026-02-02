@@ -55,8 +55,11 @@ import ProtectedRoute from './auth/ProtectedRoute.jsx'
 import DevotesBhajan from './pages/devotesbhajan.jsx'
 import CheckStatus from './pages/CheckStatus.jsx'
 import Account from './pages/Account.jsx'
+import Landing from './pages/Landing.jsx'
 
 const router = createBrowserRouter([
+  // 🌟 PUBLIC LANDING PAGE
+  { path: "/", element: <Landing /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
   {
@@ -67,7 +70,7 @@ const router = createBrowserRouter([
     </ProtectedRoute>
   ),
     children: [
-      { index: true, element: <Home /> },
+      { path: 'home', element: <Home /> },
       { path: 'about', element: <About /> },
       { path: 'about/:id', element: <AboutDetails /> },   // ✅ Details route for About
       { path: 'satsang', element: <Satsang /> },

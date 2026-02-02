@@ -76,7 +76,7 @@ const Login = () => {
         emailVerified: true,
       });
 
-      navigate("/", { replace: true });
+      navigate("/home", { replace: true });
 
     } catch (err) {
       setEmail("");

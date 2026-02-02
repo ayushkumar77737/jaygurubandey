@@ -68,7 +68,8 @@ const Navbar = () => {
     try {
       await signOut(auth);
       closeMenu();        // close dropdown & mobile menu
-      navigate("/login"); // redirect after logout
+      navigate("/login", { replace: true }); // redirect after logout
+      window.history.replaceState(null, "", "/login");
     } catch (error) {
       console.error("Logout error:", error);
     }

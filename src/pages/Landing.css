@@ -1,0 +1,144 @@
+/* ================================
+   Landing Page Styles (ISOLATED)
+   File: src/pages/Landing.css
+   ================================ */
+
+.landing {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: landingFadeIn 0.8s ease-in-out;
+}
+
+/* Container */
+.landing .landing-container {
+  max-width: 900px;
+  padding: 60px 20px;
+  text-align: center;
+  animation: slideUp 0.8s ease forwards;
+}
+
+/* Heading */
+.landing h1 {
+  font-size: 2.6rem;
+  margin-bottom: 24px;
+  color: #4a2c2a;
+}
+
+/* Paragraphs */
+.landing p {
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* Buttons wrapper */
+.landing .landing-actions {
+  margin-top: 40px;
+}
+
+/* Common button styles */
+.landing .landing-actions a {
+  display: inline-block;
+  padding: 12px 32px;
+  margin: 0 10px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Login = secondary */
+.landing .landing-actions .login {
+  background: transparent;
+  border: 2px solid #7b3f00;
+  color: #7b3f00;
+}
+
+/* Register = primary */
+.landing .landing-actions .register {
+  background: transparent;
+  border: 2px solid #7b3f00;
+  color: #7b3f00;
+}
+
+/* Hover effect */
+.landing .landing-actions a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* ================================
+   Animations
+   ================================ */
+
+@keyframes landingFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+   ================================ */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .landing h1 {
+    font-size: 2.3rem;
+  }
+
+  .landing p {
+    font-size: 1.05rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .landing .landing-container {
+    padding: 40px 16px;
+  }
+
+  .landing h1 {
+    font-size: 2rem;
+  }
+
+  .landing p {
+    font-size: 1rem;
+  }
+
+  .landing .landing-actions a {
+    display: block;
+    margin: 12px auto;
+    width: 80%;
+    max-width: 280px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .landing h1 {
+    font-size: 1.8rem;
+  }
+
+  .landing p {
+    font-size: 0.95rem;
+  }
+}
