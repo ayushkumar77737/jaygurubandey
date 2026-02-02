@@ -82,7 +82,7 @@ const SatguruArti = () => {
       </div>
 
       <div className="arti-footer">
-        <p>🙏 Jai Gurubande Saheeb Sabka 🙏</p>
+        <p>🙏 Jai Gurubande Saheb Sabka 🙏</p>
       </div>
     </div>
   );
