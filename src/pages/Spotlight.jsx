@@ -171,6 +171,35 @@ const Spotlight = () => {
               </a>
             </div>
           </div>
+          {/* ===== Interview Video 2 (NEW) ===== */}
+          <div className="spotlight-card">
+            <div className="video-container">
+              <iframe
+                src="https://www.youtube.com/embed/lrVNRF51aGg"
+                title="Guruji Interview Video 2"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+
+            <div className="spotlight-content">
+              <h2>Guruji’s Message on Faith, Service & Inner Peace</h2>
+              <span className="spotlight-date">Published on: November 5, 2025</span>
+              <p>
+                Guruji speaks deeply about faith, selfless service, and the importance of
+                inner peace in today’s fast-moving world.
+              </p>
+              <a
+                href="https://youtu.be/lrVNRF51aGg?si=wGatGH6xezapoznR"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="read-btn"
+              >
+                Watch Full Interview
+              </a>
+            </div>
+          </div>
         </div>
       )}
     </div>
