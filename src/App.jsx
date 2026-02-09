@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Navbar from "./Components/Navbar/Navbar";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import Footer from "./pages/Footer";
 import CookieConsent from "./Components/Cookies/CookieConsent";
 import { Analytics } from "@vercel/analytics/react";
@@ -12,6 +12,7 @@ import { auth } from "./firebase/firebase";
 
 const App = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   /* 🔐 FIREBASE AUTH WATCHER (USER DELETED → AUTO LOGOUT) */
   useEffect(() => {
@@ -83,11 +84,14 @@ const App = () => {
   return (
     <>
       <IdleLogout /> {/* ✅ AUTO LOGOUT ON IDLE */}
-      <Navbar />
+      {(location.pathname === "/" || location.pathname === "/home") && <Navbar />}
+
       <main>
         <Outlet />
       </main>
-      <Footer />
+
+      {(location.pathname === "/" || location.pathname === "/home") && <Footer />}
+
       <CookieConsent />
       <Analytics />
       <SpeedInsights />
