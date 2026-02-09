@@ -13,8 +13,23 @@ import { auth, db } from "../firebase/firebase";     // ✅ db added
 import "./Login.css";
 
 import guruji from "../assets/guruji.webp";
+import pic from "../assets/pic.jpeg";
+import bg1 from "../assets/bg1.webp";
+import bg2 from "../assets/bg2.webp";
+
 
 const Login = () => {
+  const bgImages = [pic, bg1, bg2];
+  const [bgIndex, setBgIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBgIndex((prev) => (prev + 1) % bgImages.length);
+    }, 5000); // 5 seconds me image change
+
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     // 🔒 Disable Right Click
     const disableRightClick = (e) => e.preventDefault();
@@ -121,6 +136,18 @@ const Login = () => {
 
   return (
     <div className="login-page">
+      {/* 🔥 Sliding Background */}
+      <div className="login-bg-wrapper">
+        {bgImages.map((img, index) => (
+          <div
+            key={index}
+            className={`login-bg ${index === bgIndex ? "active" : ""}`}
+            style={{
+              backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url(${img})`,
+            }}
+          ></div>
+        ))}
+      </div>
       <div className="login-card">
         <div className="login-image">
           <img src={guruji} alt="Guruji" />

@@ -9,26 +9,50 @@
   justify-content: center;
   align-items: center;
   font-family: "Outfit", sans-serif;
-
-  /* BACKGROUND IMAGE */
-  background-image: url("../assets/pic.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
   position: relative;
   overflow: hidden;
   animation: pageFade 0.5s ease-in-out;
 }
 
-/* 🌑 DARK OVERLAY */
-.login-page::before {
+/* ===============================
+   🌄 LOGIN BACKGROUND SLIDER
+================================ */
+
+/* Wrapper for background layers */
+.login-bg-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Individual background layer */
+.login-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+/* Active image */
+.login-bg.active {
+  opacity: 1;
+}
+
+/* Dark overlay (same feel as Hero) */
+.login-bg::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  z-index: 0;
+  background: rgba(0, 0, 0, 0.1);
 }
+
 
 /* ===============================
    💎 GLASS CARD
