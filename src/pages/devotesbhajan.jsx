@@ -121,10 +121,10 @@ const DevotesBhajan = () => {
   return (
     <div className="devotes-bhajan">
       <h1 className="devotes-title">
-  <span className="emoji">🙏</span>
-  <span className="title-text">Guruji Devotees Bhajan Seva</span>
-  <span className="emoji">🙏</span>
-</h1>
+        <span className="emoji">🙏</span>
+        <span className="title-text">Guruji Devotees Bhajan Seva</span>
+        <span className="emoji">🙏</span>
+      </h1>
 
 
       {/* Dropdown */}
