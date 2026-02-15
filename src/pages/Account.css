@@ -216,3 +216,33 @@
 .account-card .primary-btn:only-child {
   width: 100%;
 }
+
+/* 🔒 Scoped ONLY for Account Page - My Payments Button (match Edit color) */
+.account-page .account-card .my-payments-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #ffd54f, #ffb300); /* same family as Edit */
+  color: #111;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  transition: 0.25s ease;
+  box-shadow: 0 8px 18px rgba(255, 193, 7, 0.35);
+}
+
+.account-page .account-card .my-payments-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(255, 193, 7, 0.55);
+  filter: brightness(1.03);
+}
+
+.account-page .account-card .my-payments-btn:active {
+  transform: scale(0.98);
+}

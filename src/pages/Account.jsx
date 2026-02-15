@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; 
 import "./Account.css";
 
 import { auth } from "../firebase/firebase";
@@ -6,6 +7,7 @@ import { db } from "../firebase/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 const Account = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [originalName, setOriginalName] = useState("");
   const [email, setEmail] = useState("");
@@ -144,6 +146,13 @@ const Account = () => {
               </button>
             </div>
           )}
+          <button
+  className="my-payments-btn"
+  onClick={() => navigate("/my-payments")}
+>
+  💳 My Payments
+</button>
+
 
           {message && <p className="success-msg">{message}</p>}
         </div>
