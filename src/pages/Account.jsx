@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import "./Account.css";
 
 import { auth } from "../firebase/firebase";
@@ -147,11 +147,11 @@ const Account = () => {
             </div>
           )}
           <button
-  className="my-payments-btn"
-  onClick={() => navigate("/my-payments")}
->
-  💳 My Payments
-</button>
+            className="my-payments-btn"
+            onClick={() => navigate("/my-payments")}
+          >
+            💳 My Payments
+          </button>
 
 
           {message && <p className="success-msg">{message}</p>}

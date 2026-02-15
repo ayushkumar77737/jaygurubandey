@@ -6,4 +6,7 @@ export default defineConfig({
   server: {
     historyApiFallback: true, // ensures SPA fallback
   },
+  build: {
+    chunkSizeWarningLimit: 1500, // ⬅️ increases warning limit (in KB)
+  },
 })
