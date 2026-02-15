@@ -10,6 +10,9 @@ import {
   getDocs
 } from "firebase/firestore";
 import { db } from "../firebase/firebase";
+import { auth } from "../firebase/firebase";
+import { serverTimestamp } from "firebase/firestore";
+
 
 const Contribute = () => {
   const [formData, setFormData] = useState({
@@ -56,6 +59,12 @@ const Contribute = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (loading) return;
+
+     const user = auth.currentUser;          // 👈 get user safely
+  if (!user) {
+    showMessage("❌ Please login to submit contribution.");
+    return;
+  }
 
     let errors = [];
 
@@ -113,6 +122,7 @@ const Contribute = () => {
 
       // ✅ SAVE TO FIRESTORE
       await addDoc(collection(db, "contributions"), {
+        userId: user.uid,   
         name: formData.name,
         phone: formData.phone,
         amount: amountNum,

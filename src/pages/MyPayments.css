@@ -1,0 +1,92 @@
+/* ===========================
+   MY PAYMENTS PAGE (SCOPED)
+=========================== */
+
+.mypayments-page {
+  min-height: calc(100vh - 90px);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #0f1c3d, #060a18);
+  box-sizing: border-box;
+}
+
+.mypayments-container {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mypayments-title {
+  text-align: center;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.mypayments-loading,
+.mypayments-empty {
+  text-align: center;
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+/* ===========================
+   LIST + CARD
+=========================== */
+
+.mypayments-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.mypayments-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+  transition: 0.25s ease;
+}
+
+.mypayments-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+}
+
+/* ===========================
+   ROWS
+=========================== */
+
+.mypayments-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.mypayments-row span {
+  color: #9aa4b2;
+  font-size: 12px;
+}
+
+/* ===========================
+   MOBILE FRIENDLY
+=========================== */
+
+@media (max-width: 520px) {
+  .mypayments-card {
+    padding: 14px;
+  }
+
+  .mypayments-title {
+    font-size: 20px;
+  }
+}

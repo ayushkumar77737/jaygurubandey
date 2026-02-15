@@ -47,7 +47,7 @@ import DailyTeachings from './pages/DailyTeachings.jsx'
 import Subscribe from './pages/Subscribe.jsx'
 import Terms from './pages/Terms.jsx'
 import DonationPolicy from './pages/DonationPolicy.jsx'
-
+import MyPayments from './pages/MyPayments.jsx';
 import Login from './auth/Login.jsx'
 import Register from './auth/Register.jsx'
 import ProtectedRoute from './auth/ProtectedRoute.jsx'
@@ -115,6 +115,7 @@ const router = createBrowserRouter([
       { path: "devotes-bhajan", element: <DevotesBhajan /> },
       { path: "check-status", element: <CheckStatus /> },
       { path: "account", element: <Account /> },
+      { path: "my-payments", element: <MyPayments /> },
     ],
   },
   { path: '*', element: <NotFound /> },
