@@ -63,35 +63,22 @@ const Landing = () => {
                 <h1>Welcome</h1>
 
                 <p>
-                    This is a comprehensive spiritual website designed to bring devotees,
-                    seekers, and visitors closer to the teachings, activities, and values
-                    associated with Guruji and the ashram. This platform serves as a central
-                    digital space where users can explore spiritual content, stay informed,
-                    and remain connected with ongoing events and initiatives.
+                    Jai Gurubande is a sacred digital space created for seekers of peace, purpose, and inner growth.
+                    This platform brings devotees, seekers, and visitors closer to the divine teachings of Guruji and the serene life of the ashram. Whether you are beginning your spiritual journey or deepening your practice, Jai Gurubande offers a calm and welcoming place to learn, reflect, and stay connected.
                 </p><br></br>
 
                 <p>
-                    Through the Guruji website, users can access satsang sessions, devotional
-                    bhajans, daily teachings, and spiritual messages that promote inner growth
-                    and positive living. The site also provides detailed information about
-                    programs, special events, important dates, and spiritual gatherings,
-                    helping users stay updated at all times.
+                    Through this website, you can experience soulful satsang sessions, devotional bhajans, and daily spiritual guidance that uplift the heart and calm the mind. Stay updated with upcoming programs, special events, sacred dates, and live spiritual gatherings, so you remain connected with the Guruji community wherever you are.
                 </p><br></br>
 
                 <p>
-                    In addition to spiritual content, the website offers insights into ashram
-                    life, published books, international centers, committee members, and
-                    various community initiatives. Dedicated sections allow users to explore
-                    blogs, galleries, testimonials, and live updates, making the platform both
-                    informative and engaging.
+                    Explore the beauty of ashram life and the global mission of Guruji.
+                    Discover inspiring blogs, divine moments, photo galleries, heartfelt testimonials, books, international centers, and community initiatives that reflect devotion, service, and unity across the world.
                 </p><br></br>
 
                 <p>
-                    Guruji is built to be simple, structured, and user-friendly, ensuring that
-                    visitors of all age groups can easily navigate and find what they are
-                    looking for. By creating an account, users can personalize their
-                    experience, participate more actively, and stay connected with the Guruji
-                    community through a single, trusted platform.
+                    Jai Gurubande is designed to be simple, pure, and user-friendly for people of all age groups.
+                    By creating an account, you can personalize your spiritual journey, follow meaningful updates, participate more actively in programs, and stay spiritually connected through one trusted and peaceful platform
                 </p><br></br>
 
                 <div className="landing-actions">
