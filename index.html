@@ -25,7 +25,6 @@
     function maintenanceCheck() {
       const now = new Date();
 
-      /* 🔧 EDIT TIME HERE ONLY */
       const startHour = 13;
       const startMinute = 35;
 
@@ -48,7 +47,7 @@
           currentMinutes < endMinutes;
       }
 
-      /* ✅ LOCALHOST BYPASS (DEV ACCESS) */
+      
       const isLocalhost =
         location.hostname === "localhost" ||
         location.hostname === "127.0.0.1";
@@ -70,7 +69,7 @@
     });
   </script>
 
-  <!-- React entry -->
+  
   <script type="module" src="/src/main.jsx"></script>
 </body>
 

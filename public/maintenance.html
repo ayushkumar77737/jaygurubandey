@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <title>Jai Gurubande</title>
-  <!-- ✅ IMPORTANT: stop Google indexing maintenance page -->
   <meta name="robots" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="maintenance.css" />
@@ -12,33 +11,25 @@
 <body>
   <div class="maintenance-page">
     <h1>🚧 Site Under Maintenance</h1>
-
     <p>
       We are performing scheduled maintenance.<br />
       The website will resume shortly.
     </p>
-
     <p class="resume-text">
       Please visit again after <strong>05:00 AM</strong>
     </p>
   </div>
-
-  <!-- 🔁 MAINTENANCE END CHECK -->
+  
   <script>
     function maintenanceCheck() {
       const now = new Date();
-
-      /* 🔧 SAME TIME AS index.html */
       const startHour = 13;
       const startMinute = 35;
-
       const endHour = 13;
       const endMinute = 40;
-
       const currentMinutes = now.getHours() * 60 + now.getMinutes();
       const startMinutes = startHour * 60 + startMinute;
       const endMinutes = endHour * 60 + endMinute;
-
       let isMaintenance;
 
       if (startMinutes < endMinutes) {
@@ -50,8 +41,6 @@
           currentMinutes >= startMinutes ||
           currentMinutes < endMinutes;
       }
-
-      /* ✅ LOCALHOST BYPASS */
       const isLocalhost =
         location.hostname === "localhost" ||
         location.hostname === "127.0.0.1";
@@ -60,33 +49,26 @@
         window.location.replace(window.location.origin);
       }
     }
-
     maintenanceCheck();
     setInterval(maintenanceCheck, 10000);
-
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden) maintenanceCheck();
     });
   </script>
-
-  <!-- 🔒 DISABLE RIGHT CLICK & INSPECT -->
   <script>
-    // Disable right click
+    
     document.addEventListener("contextmenu", function (e) {
       e.preventDefault();
     });
 
-    // Disable inspect shortcuts
     document.addEventListener("keydown", function (e) {
-      // F12
+      
       if (e.key === "F12") {
         e.preventDefault();
       }
-
-      // Ctrl + Shift + I / J / C
       if (
         (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) ||
-        (e.ctrlKey && e.key === "U") // View Source
+        (e.ctrlKey && e.key === "U") 
       ) {
         e.preventDefault();
       }
