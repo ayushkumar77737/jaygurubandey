@@ -1,20 +1,21 @@
 /* =========================
-   PAGE BACKGROUND
+   ACCOUNT PAGE (SCOPED)
 ========================= */
 .account-page {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at top, #0f1c3d, #060a18);
+  background: radial-gradient(circle at top, #0a1a1f, #050b12);
   padding: 20px;
-  animation: fadeIn 0.4s ease-out both;
+  box-sizing: border-box;
+  animation: accFade 0.4s ease-out both;
 }
 
 /* =========================
    CONTAINER
 ========================= */
-.account-container {
+.account-page .account-container {
   width: 100%;
   max-width: 420px;
   display: flex;
@@ -26,58 +27,59 @@
 /* =========================
    TITLE
 ========================= */
-.account-title {
-  color: #ffffff;
+.account-page .account-title {
+  color: #e6faff;
   font-size: 24px;
-  font-weight: 600;
-  letter-spacing: 0.4px;
-  animation: slideDown 0.35s ease-out both;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  animation: accSlide 0.35s ease-out both;
 }
 
 /* =========================
    CARD
 ========================= */
-.account-card {
+.account-page .account-card {
   width: 100%;
-  background: linear-gradient(180deg, #0f1b34, #0b1428);
+  background: linear-gradient(180deg, rgba(20, 44, 56, 0.9), rgba(10, 22, 32, 0.95));
+  backdrop-filter: blur(8px);
   padding: 26px;
   border-radius: 16px;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
-  color: #ffffff;
-  animation: fadeUp 0.4s ease-out both;
+  box-shadow: 0 18px 40px rgba(0, 255, 255, 0.12);
+  color: #e8faff;
+  animation: accUp 0.4s ease-out both;
 }
 
 /* =========================
    INPUT FIELD
 ========================= */
-.field {
+.account-page .field {
   margin-bottom: 16px;
 }
 
-.field label {
+.account-page .field label {
   font-size: 13px;
-  opacity: 0.85;
+  color: #b6eaff;
 }
 
-.field input {
+.account-page .field input {
   width: 100%;
   margin-top: 6px;
   padding: 11px;
   border-radius: 8px;
-  border: none;
-  background: #2a3550;
-  color: #ffffff;
+  border: 1px solid rgba(0, 255, 255, 0.15);
+  background: rgba(10, 24, 36, 0.9);
+  color: #e6faff;
   font-size: 14px;
-  transition: background 0.2s ease, transform 0.15s ease;
+  transition: 0.2s ease;
 }
 
-.field input:focus {
+.account-page .field input:focus {
   outline: none;
-  background: #334066;
-  transform: scale(1.01);
+  border-color: #00e5ff;
+  box-shadow: 0 0 0 2px rgba(0, 229, 255, 0.15);
 }
 
-.field input:disabled {
+.account-page .field input:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
@@ -85,99 +87,136 @@
 /* =========================
    EMAIL NOTE
 ========================= */
-.email-note {
+.account-page .email-note {
   margin-top: 6px;
   font-size: 12px;
-  color: #cfcfcf;
-  opacity: 0.85;
+  color: #9adcf0;
 }
 
 /* =========================
    BUTTONS
 ========================= */
-.primary-btn {
-  flex: 1;                /* ✅ equal width */
+.account-page .primary-btn {
+  flex: 1;
   padding: 12px;
-  background: #f5c542;
+  background: linear-gradient(135deg, #00e5ff, #7c4dff);
   border: none;
   border-radius: 8px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 15px;
+  color: #041018;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: 0.2s ease;
 }
 
-.primary-btn:hover {
+.account-page .primary-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(245, 197, 66, 0.35);
+  box-shadow: 0 8px 18px rgba(0, 229, 255, 0.35);
 }
 
 /* Update + Cancel group */
-.btn-group {
+.account-page .btn-group {
   display: flex;
   gap: 12px;
   margin-top: 12px;
 }
 
-.cancel-btn {
-  flex: 1;                /* ✅ equal width */
+.account-page .cancel-btn {
+  flex: 1;
   padding: 12px;
   background: transparent;
-  border: 1.5px solid #3a4a6a;
+  border: 1.5px solid rgba(124, 77, 255, 0.5);
   border-radius: 8px;
   font-weight: 600;
   font-size: 15px;
-  color: #cfd6ff;
+  color: #d6c9ff;
   cursor: pointer;
-  transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+  transition: 0.2s ease;
 }
 
-.cancel-btn:hover {
-  background: rgba(58, 74, 106, 0.35);
-  border-color: #5a6cff;
-  transform: translateY(-1px);
+.account-page .cancel-btn:hover {
+  background: rgba(124, 77, 255, 0.15);
+  border-color: #7c4dff;
 }
 
 /* =========================
    SUCCESS MESSAGE
 ========================= */
-.success-msg {
+/* =========================
+   SUCCESS MESSAGE (MATCH THEME - NO GREEN)
+========================= */
+.account-page .success-msg {
   margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+
+  background: rgba(0, 229, 255, 0.12);   /* soft cyan glass */
+  border: 1px solid rgba(0, 229, 255, 0.35);
+
+  color: #bff6ff;   /* light cyan text */
   font-size: 13px;
-  color: #7cff7c;
-  text-align: center;
-  animation: fadeIn 0.3s ease-out both;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  animation: accFade 0.3s ease-out both;
+}
+
+
+/* =========================
+   MY PAYMENTS BUTTON
+========================= */
+.account-page .account-card .my-payments-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #7c4dff, #00e5ff);
+  color: #041018;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: 0.25s ease;
+  box-shadow: 0 10px 22px rgba(124, 77, 255, 0.35);
+}
+
+.account-page .account-card .my-payments-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
-
-/* Mobile */
 @media (max-width: 480px) {
-  .account-title {
+  .account-page .account-title {
     font-size: 20px;
   }
 
-  .account-card {
+  .account-page .account-card {
     padding: 22px;
   }
 
-  .btn-group {
+  .account-page .btn-group {
     flex-direction: column;
   }
 }
 
-/* Tablet */
 @media (min-width: 481px) and (max-width: 768px) {
-  .account-container {
+  .account-page .account-container {
     max-width: 380px;
   }
 }
 
-/* Laptop / Desktop */
 @media (min-width: 769px) {
-  .account-container {
+  .account-page .account-container {
     max-width: 420px;
   }
 }
@@ -185,64 +224,39 @@
 /* =========================
    ANIMATIONS (LIGHTWEIGHT)
 ========================= */
-@keyframes fadeIn {
+@keyframes accFade {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes accUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* Full width when Edit is alone */
-.account-card > .primary-btn,
-.account-card .primary-btn:only-child {
-  width: 100%;
+@keyframes accSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* 🔒 Scoped ONLY for Account Page - My Payments Button (match Edit color) */
-.account-page .account-card .my-payments-btn {
-  width: 100%;
-  margin-top: 10px;
+/* =========================
+   ERROR MESSAGE (MATCH ACCOUNT THEME)
+========================= */
+.account-page .error-msg {
+  margin-top: 12px;
   padding: 10px 14px;
-  border-radius: 10px;
-  border: none;
-  background: linear-gradient(135deg, #ffd54f, #ffb300); /* same family as Edit */
-  color: #111;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
+  border-radius: 8px;
+
+  background: rgba(124, 77, 255, 0.12);   /* soft violet glass */
+  border: 1px solid rgba(124, 77, 255, 0.35);
+
+  color: #d6c9ff;   /* light violet text */
+  font-size: 13px;
+  font-weight: 500;
+
   display: flex;
   align-items: center;
   gap: 8px;
-  justify-content: center;
-  transition: 0.25s ease;
-  box-shadow: 0 8px 18px rgba(255, 193, 7, 0.35);
-}
 
-.account-page .account-card .my-payments-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 26px rgba(255, 193, 7, 0.55);
-  filter: brightness(1.03);
-}
-
-.account-page .account-card .my-payments-btn:active {
-  transform: scale(0.98);
+  animation: accFade 0.3s ease-out both;
 }

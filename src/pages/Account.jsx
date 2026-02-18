@@ -63,7 +63,7 @@ const Account = () => {
     // 🚫 same-name check
     if (name.trim() === originalName.trim()) {
       setEditing(false);
-      showMessage("❌ Update failed: you are using the same name");
+      showMessage("❌ Update failed : you are using the same name");
       return;
     }
 
@@ -154,7 +154,12 @@ const Account = () => {
           </button>
 
 
-          {message && <p className="success-msg">{message}</p>}
+          {message && (
+            <p className={message.startsWith("❌") ? "error-msg" : "success-msg"}>
+              {message}
+            </p>
+          )}
+
         </div>
       </div>
     </div>
