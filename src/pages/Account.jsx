@@ -117,7 +117,7 @@ const Account = () => {
             <label>Email</label>
             <input type="email" value={email} disabled />
             <p className="email-note">
-              ℹ️ To update your email address, please contact the support team.
+              ℹ️ To update your email address, please go to request update page.
             </p>
           </div>
 
