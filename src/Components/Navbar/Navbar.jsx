@@ -436,6 +436,11 @@ const Navbar = () => {
                   My Account
                 </button>
               </li>
+              <li>
+                <button onClick={() => handleNavClick('/request-email-update')}>
+                  Request Email Update
+                </button>
+              </li>
             </ul>
           )}
         </li>

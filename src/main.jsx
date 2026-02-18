@@ -47,7 +47,7 @@ import DailyTeachings from './pages/DailyTeachings.jsx'
 import Subscribe from './pages/Subscribe.jsx'
 import Terms from './pages/Terms.jsx'
 import DonationPolicy from './pages/DonationPolicy.jsx'
-import MyPayments from './pages/MyPayments.jsx';
+import MyPayments from './pages/MyPayments.jsx'
 import Login from './auth/Login.jsx'
 import Register from './auth/Register.jsx'
 import ProtectedRoute from './auth/ProtectedRoute.jsx'
@@ -55,6 +55,7 @@ import DevotesBhajan from './pages/devotesbhajan.jsx'
 import CheckStatus from './pages/CheckStatus.jsx'
 import Account from './pages/Account.jsx'
 import Landing from './pages/Landing.jsx'
+import RequestEmailUpdate from './pages/RequestEmailUpdate.jsx'
 
 const router = createBrowserRouter([
   // 🌟 PUBLIC LANDING PAGE
@@ -116,6 +117,7 @@ const router = createBrowserRouter([
       { path: "check-status", element: <CheckStatus /> },
       { path: "account", element: <Account /> },
       { path: "my-payments", element: <MyPayments /> },
+      { path: "request-email-update", element: <RequestEmailUpdate /> },
     ],
   },
   { path: '*', element: <NotFound /> },
