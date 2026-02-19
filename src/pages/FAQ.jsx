@@ -34,7 +34,7 @@ const FAQ = () => {
     {
       question: "How can I get in touch for event-related queries?",
       answer:
-        "All important contact details are shared in all programs page on the website and through our verified social media channel in Whatsapp.",
+        "All important contact details are shared in all programs page in the website and through our verified social media channel in Whatsapp.",
     }
   ];
 
