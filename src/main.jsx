@@ -56,7 +56,7 @@ import CheckStatus from './pages/CheckStatus.jsx'
 import Account from './pages/Account.jsx'
 import Landing from './pages/Landing.jsx'
 import RequestEmailUpdate from './pages/RequestEmailUpdate.jsx'
-import DeleteAccount from './pages/DeleteAccount.jsx'
+//import DeleteAccount from './pages/DeleteAccount.jsx'
 
 const router = createBrowserRouter([
   // 🌟 PUBLIC LANDING PAGE
@@ -119,7 +119,7 @@ const router = createBrowserRouter([
       { path: "account", element: <Account /> },
       { path: "my-payments", element: <MyPayments /> },
       { path: "request-email-update", element: <RequestEmailUpdate /> },
-      { path: "delete-account", element: <DeleteAccount /> },
+      //{ path: "delete-account", element: <DeleteAccount /> },
     ],
   },
   { path: '*', element: <NotFound /> },
