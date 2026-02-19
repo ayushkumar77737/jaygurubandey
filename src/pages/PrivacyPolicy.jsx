@@ -39,7 +39,7 @@ const PrivacyPolicy = () => {
           <h2>Contact Us</h2>
           <p>
             If you have any questions about this Privacy Policy, please contact us
-            at <span className="highlight">jaigurubande15@gmail.com</span>.
+            at <span className="highlight">jaigurubande15@gmail.com</span>
           </p>
         </div>
       </div>
