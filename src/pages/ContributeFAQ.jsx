@@ -17,7 +17,7 @@ const ContributeFAQ = () => {
     {
       question: "How can I contribute?",
       answer:
-        "You can contribute through online payment, QR code scan, or by making a direct contribution at the Ashram.",
+        "You can contribute through QR code scan, or by making a direct contribution at the Ashram.",
     },
     {
       question: "Is online payment safe?",
@@ -32,7 +32,7 @@ const ContributeFAQ = () => {
     {
       question: "Will I receive confirmation after contributing?",
       answer:
-        "Yes. You will receive a confirmation or acknowledgment after a successful contribution.",
+        "After submitting your contribution, the details are saved securely in our system. You can check the status of your contribution anytime in the Check Payment Status page to see whether it has been reviewed and accepted or not."
     },
   ];
 
