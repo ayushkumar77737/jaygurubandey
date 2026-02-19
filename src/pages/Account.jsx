@@ -153,11 +153,11 @@ const Account = () => {
             💳 My Payments
           </button>
           <button
-  className="account-delete-btn"
-  onClick={() => navigate("/delete-account")}
->
-  Delete Account
-</button>
+            className="account-delete-btn"
+            onClick={() => navigate("/delete-account")}
+          >
+            Delete Account
+          </button>
 
 
           {message && (
