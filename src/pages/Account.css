@@ -260,3 +260,65 @@
 
   animation: accFade 0.3s ease-out both;
 }
+
+/* =========================
+   🔥 DELETE ACCOUNT BUTTON (SCOPED)
+========================= */
+
+.account-delete-btn {
+  width: 100%;
+  max-width: 520px;              /* ⬅️ match My Payments width */
+  margin: 12px auto 0;          /* ⬅️ center like My Payments */
+  padding: 11px 18px;           /* ⬅️ match height */
+  border-radius: 10px;          /* ⬅️ more pill-like */
+  border: 1px solid rgba(255, 80, 80, 0.45);
+  background: linear-gradient(135deg, #ff3b3b, #b30000);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 15px;              /* ⬅️ slightly bigger text */
+  letter-spacing: 0.3px;
+  cursor: pointer;
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  box-shadow: 0 10px 26px rgba(255, 0, 0, 0.28);
+  align-self: center;
+}
+
+/* Hover */
+.account-delete-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(255, 0, 0, 0.4);
+  opacity: 0.95;
+}
+
+/* Active */
+.account-delete-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.28);
+}
+
+/* Focus (accessibility) */
+.account-delete-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px rgba(255, 80, 80, 0.4),
+    0 10px 26px rgba(255, 0, 0, 0.28);
+}
+
+/* Disabled state */
+.account-delete-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* 📱 Responsive tweaks */
+@media (max-width: 480px) {
+  .account-delete-btn {
+    max-width: 100%;
+    font-size: 14px;
+    padding: 13px 14px;
+    border-radius: 14px;
+  }
+}
