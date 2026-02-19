@@ -36,7 +36,7 @@ const DonationPolicy = () => {
           <p>
             Contributions received are used solely for religious, spiritual,
             and charitable purposes, including but not limited to satsangs,
-            spiritual programs, temple activities, community service, and
+            spiritual programs, ashram activities, community service, and
             related initiatives.
           </p>
         </div>
@@ -44,26 +44,27 @@ const DonationPolicy = () => {
         <div className="policy-card">
           <h2>4. Payment Methods</h2>
           <p>
-            Donations may be made through UPI, PhonePe, QR code, or other payment
-            links provided on the website. We do not store or process any
-            sensitive payment information.
+            Donations may be made through QR code provided on the website.
+            We do not store or process any sensitive payment information.
           </p>
         </div>
 
         <div className="policy-card">
           <h2>5. Non-Refundable Donations</h2>
           <p>
-            All donations are final and non-refundable. Once a contribution has
-            been made, it cannot be reversed or canceled.
+            All donations are final and non-refundable. Once a contribution has been submitted
+            and recorded, it cannot be reversed or canceled. Users are advised to verify payment
+            details before submitting.
           </p>
+
         </div>
 
         <div className="policy-card">
           <h2>6. Transparency & Responsibility</h2>
           <p>
             We strive to use all contributions responsibly and ethically for
-            the intended purposes. However, the exact allocation of funds may
-            vary based on organizational needs.
+            the intended purposes.The exact allocation of funds may vary based 
+            on organizational needs.
           </p>
         </div>
 
