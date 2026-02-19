@@ -13,7 +13,7 @@ const Terms = () => {
           <p>
             By accessing and using this website, you agree to be bound by these
             Terms & Conditions. If you do not agree with any part of these terms,
-            please do not use the website.
+            please discontinue using the website.
           </p>
         </section>
 
@@ -29,43 +29,35 @@ const Terms = () => {
         <section className="terms-section">
           <h2>3. Content Accuracy</h2>
           <p>
-            While we strive to keep the information accurate and up to date, we
-            make no warranties or guarantees of any kind regarding completeness,
-            reliability, or accuracy of the content.
+            We strive to keep the information on this website accurate and up to date.
+            If any content is found to be incorrect or outdated, we take responsibility
+            for correcting it and encourage users to inform us so we can make necessary updates.
           </p>
         </section>
 
         <section className="terms-section">
           <h2>4. External Links</h2>
           <p>
-            This website may contain links to third-party websites. We are not
-            responsible for the content, policies, or practices of any external
-            sites.
+            This website may contain links to third-party websites. We do not control or endorse
+            the content, policies, or practices of any external websites and are not responsible for them.
           </p>
         </section>
 
         <section className="terms-section">
           <h2>5. Limitation of Liability</h2>
           <p>
-            We shall not be held liable for any loss, damage, or inconvenience
-            arising from the use of this website or reliance on its content.
+            While we strive to provide a smooth and safe experience on this website, if any user
+            faces issues or difficulties while using the site, we encourage them to contact us.
+            We will make reasonable efforts to review and address such issues in a timely manner.
           </p>
+
         </section>
 
         <section className="terms-section">
-          <h2>6. Changes to Terms</h2>
-          <p>
-            We reserve the right to update or change these Terms & Conditions at
-            any time without prior notice. Continued use of the website implies
-            acceptance of the updated terms.
-          </p>
-        </section>
-
-        <section className="terms-section">
-          <h2>7. Contact</h2>
+          <h2>6. Contact</h2>
           <p>
             If you have any questions regarding these Terms & Conditions, please
-            contact us through the information provided on the website.
+            contact us using the contact details provided on the website.
           </p>
         </section>
       </div>
