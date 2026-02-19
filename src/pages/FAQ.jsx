@@ -14,27 +14,27 @@ const FAQ = () => {
     {
       question: "Who is Guruji and what is Jai Gurubande?",
       answer:
-        "Guruji is our divine guide and spiritual inspiration. Jai Gurubande is a community dedicated to spreading his teachings, positivity, and devotion through seva, love, and spiritual practices.",
+        "Guruji, lovingly known as Jai Gurubande, is our divine guide and spiritual inspiration. He leads and blesses the community with his teachings, spreading positivity, devotion, and the path of seva (selfless service) and love.",
     },
     {
-      question: "How can I become part of this community?",
+      question: "How can I become part of the Jai Gurubande spiritual path?",
       answer:
-        "You can join our official WhatsApp group, follow us on social media, or participate in our seva and events to stay connected and contribute.",
+        "You can become part of the Jai Gurubande spiritual path by staying connected with Guruji’s teachings, joining satsangs and seva activities, following the official social channels, and participating in spiritual programs and events organized by the ashram."
     },
     {
-      question: "What kind of activities does the community organize?",
+      question: "What kind of activities are conducted under Ashram?",
       answer:
-        "We conduct satsangs, seva events, spiritual discussions, and community gatherings that help connect devotees and spread Guruji’s teachings.",
+        "Under ashram, regular seva activities, satsangs, spiritual programs and events are conducted throughout the year. By Guruji’s grace, free paralysis treatment is also offered at the ashram as a form of seva, along with online services such as spiritual resources, announcements, and updates."
     },
     {
       question: "Is there any fee or membership required?",
       answer:
-        "No, joining Jai Gurubande is completely free. All you need is devotion and willingness to participate in community activities.",
+        "No, joining with guruji is completely free. All you need is devotion and willingness to participate in ashram activities.",
     },
     {
       question: "How can I get in touch for event-related queries?",
       answer:
-        "All important contact details are shared in official announcements on the website and through our verified social media channels.",
+        "All important contact details are shared in all programs page on the website and through our verified social media channel in Whatsapp.",
     }
   ];
 
