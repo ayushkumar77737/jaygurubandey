@@ -57,6 +57,7 @@ import Account from './pages/Account.jsx'
 import Landing from './pages/Landing.jsx'
 import RequestEmailUpdate from './pages/RequestEmailUpdate.jsx'
 import DeleteAccount from './pages/DeleteAccount.jsx'
+import VerifyEmail from "./pages/VerifyEmail.jsx";
 
 const router = createBrowserRouter([
   // 🌟 PUBLIC LANDING PAGE
@@ -120,6 +121,7 @@ const router = createBrowserRouter([
       { path: "my-payments", element: <MyPayments /> },
       { path: "request-email-update", element: <RequestEmailUpdate /> },
       { path: "delete-account", element: <DeleteAccount /> },
+      { path: "/verify-email",element: <VerifyEmail />},
     ],
   },
   { path: '*', element: <NotFound /> },

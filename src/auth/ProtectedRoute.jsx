@@ -28,7 +28,16 @@ const ProtectedRoute = ({ children }) => {
     );
   }
 
-  return user ? children : <Navigate to="/login" replace />;
+  if (!user) {
+  return <Navigate to="/login" replace />;
+}
+
+// 🔐 Block unverified emails
+if (!user.emailVerified) {
+  return <Navigate to="/verify-email" replace />;
+}
+
+return children;
 };
 
 export default ProtectedRoute;
