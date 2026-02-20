@@ -76,15 +76,11 @@ const Login = () => {
       );
 
       // ❌ BLOCK LOGIN IF EMAIL NOT VERIFIED
-      if (!res.user.emailVerified) {
-        await signOut(auth);
-        // ✅ CLEAR FIELDS
-        setEmail("");
-        setPassword("");
-        setError("Please verify your email before logging in.");
-        setTimeout(() => setError(""), 4000);
-        return;
-      }
+      // 🔐 Redirect unverified users to Verify Email page
+if (!res.user.emailVerified) {
+  navigate("/verify-email", { replace: true });
+  return;
+}
 
       // ✅ OPTIONAL: sync verification status to Firestore
       await updateDoc(doc(db, "users", res.user.uid), {
