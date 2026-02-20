@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { sendEmailVerification } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import { useNavigate } from "react-router-dom";
-import "./VerifyEmail.css"; // optional styling
+//import "./VerifyEmail.css"; // optional styling
 
 const VerifyEmail = () => {
   const [message, setMessage] = useState("");
