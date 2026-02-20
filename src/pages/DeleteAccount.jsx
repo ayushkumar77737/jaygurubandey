@@ -13,20 +13,26 @@ const DeleteAccount = () => {
   const [message, setMessage] = useState("");
   const [confirming, setConfirming] = useState(false); // 🆕 confirm state
   const [loading, setLoading] = useState(false);
+  const showMessage = (text, duration = 3000) => {
+    setMessage(text);
+    setTimeout(() => {
+      setMessage("");
+    }, duration);
+  };
 
   const handleDeleteClick = () => {
     if (!reason.trim()) {
-      setMessage("❌ Please enter a reason");
+      showMessage("❌ Please enter a reason");
       return;
     }
     setMessage("");
-    setConfirming(true); // show confirm UI
+    setConfirming(true);
   };
 
   const handleConfirmDelete = async () => {
     const user = auth.currentUser;
     if (!user) {
-      setMessage("❌ Not logged in");
+      showMessage("❌ Not logged in");
       return;
     }
 
@@ -43,15 +49,15 @@ const DeleteAccount = () => {
       await deleteDoc(doc(db, "users", user.uid));
       await deleteUser(user);
 
-      setMessage("✅ Account permanently deleted");
+      showMessage("✅ Account permanently deleted", 1200);
       setTimeout(() => navigate("/"), 1200);
 
     } catch (err) {
       console.error(err);
       if (err.code === "auth/requires-recent-login") {
-        setMessage("⚠️ Please logout and login again to confirm deletion.");
+        showMessage("⚠️ Please logout and login again to confirm deletion.", 4000);
       } else {
-        setMessage("❌ Something went wrong. Please try again.");
+        showMessage("❌ Something went wrong. Please try again.");
       }
     } finally {
       setLoading(false);
@@ -71,7 +77,10 @@ const DeleteAccount = () => {
         <textarea
           placeholder="Why are you deleting your account?"
           value={reason}
-          onChange={(e) => setReason(e.target.value)}
+          onChange={(e) => {
+            setReason(e.target.value);
+            if (message) setMessage("");
+          }}
           disabled={loading}
         />
 
