@@ -23,5 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 # 🔐 Firebase Admin secrets (DO NOT COMMIT)
+admin-tools/
 admin-tools/serviceAccountKey.json
 admin-tools/node_modules/
