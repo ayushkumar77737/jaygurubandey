@@ -77,10 +77,10 @@ const Login = () => {
 
       // ❌ BLOCK LOGIN IF EMAIL NOT VERIFIED
       // 🔐 Redirect unverified users to Verify Email page
-if (!res.user.emailVerified) {
-  navigate("/verify-email", { replace: true });
-  return;
-}
+      if (!res.user.emailVerified) {
+        navigate("/verify-email", { replace: true });
+        return;
+      }
 
       // ✅ OPTIONAL: sync verification status to Firestore
       await updateDoc(doc(db, "users", res.user.uid), {
