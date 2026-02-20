@@ -111,6 +111,9 @@ const Account = () => {
               disabled={!editing}
               onChange={(e) => setName(e.target.value)}
             />
+            <p className="email-note">
+              ℹ️ To update your name, please click on the edit button below the email.
+            </p>
           </div>
 
           <div className="field">
