@@ -12,6 +12,7 @@ const VerifyEmail = () => {
   const resendVerification = async () => {
     if (!auth.currentUser) {
       setMessage("❌ Not logged in");
+      setTimeout(() => setMessage(""), 3000);
       return;
     }
 
@@ -19,9 +20,11 @@ const VerifyEmail = () => {
       setLoading(true);
       await sendEmailVerification(auth.currentUser);
       setMessage("📩 Verification email sent. Please check your inbox/spam.");
+      setTimeout(() => setMessage(""), 3000);
     } catch (err) {
       console.error(err);
       setMessage("❌ Failed to send verification email. Try again later.");
+      setTimeout(() => setMessage(""), 3000);
     } finally {
       setLoading(false);
     }
