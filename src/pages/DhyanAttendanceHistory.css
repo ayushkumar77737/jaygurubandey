@@ -102,19 +102,83 @@
   background: rgba(239, 68, 68, 0.2);
   color: #ef4444;
 }
-.row-left {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+/* =========================
+   OPENING ANIMATIONS (SAME AS ACCOUNT)
+========================= */
+.dhyan-history-page {
+  animation: accFade 0.4s ease-out both;
 }
 
-.row-left .name {
-  font-size: 14px;
-  font-weight: 600;
-  color: #e5e7eb;
+.dhyan-history-page h2 {
+  animation: accSlide 0.35s ease-out both;
 }
 
-.row-left .roll {
-  font-size: 12px;
-  color: #94a3b8;
+.dhyan-results {
+  animation: accUp 0.4s ease-out both;
+}
+
+/* =========================
+   RESPONSIVE (SAME PATTERN AS ACCOUNT)
+========================= */
+@media (max-width: 480px) {
+  .dhyan-history-page {
+    padding: 16px;
+  }
+
+  .dhyan-history-page h2 {
+    font-size: 20px;
+  }
+
+  .dhyan-search {
+    flex-direction: column;
+  }
+
+  .dhyan-search input,
+  .dhyan-search button {
+    width: 100%;
+  }
+
+  .dhyan-results {
+    padding: 12px;
+  }
+
+  .dhyan-results li {
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .dhyan-history-page {
+    padding: 20px;
+  }
+
+  .dhyan-results {
+    max-width: 380px;
+  }
+}
+
+@media (min-width: 769px) {
+  .dhyan-results {
+    max-width: 420px;
+  }
+}
+
+/* =========================
+   ANIMATIONS (REUSED FROM ACCOUNT)
+========================= */
+@keyframes accFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes accUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes accSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
