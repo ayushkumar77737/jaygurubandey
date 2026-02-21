@@ -1,52 +1,94 @@
-import React, { useEffect, useState } from "react";
-import { auth, db } from "../firebase/firebase";
-import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
+import React, { useState } from "react";
+import { db } from "../firebase/firebase";
+import {
+  collection,
+  query,
+  where,
+  orderBy,
+  getDocs,
+} from "firebase/firestore";
 import "./DhyanAttendanceHistory.css";
 
 const DhyanAttendanceHistory = () => {
+  const [idNumber, setIdNumber] = useState("");
   const [list, setList] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [status, setStatus] = useState("idle"); 
+  // idle | loading | found | notfound | error
 
-  useEffect(() => {
-    const fetchAttendance = async () => {
-      const user = auth.currentUser;
-      if (!user) return;
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    if (!idNumber.trim()) return;
 
-      try {
-        const q = query(
-          collection(db, "attendance"),
-          where("userId", "==", user.uid),
-          orderBy("dateKey", "desc")
-        );
+    setStatus("loading");
+    setList([]);
 
-        const snap = await getDocs(q);
-        setList(snap.docs.map(d => ({ id: d.id, ...d.data() })));
-      } catch (e) {
-        console.error("Attendance fetch error:", e);
-      } finally {
-        setLoading(false);
+    try {
+      const q = query(
+        collection(db, "attendance"),
+        where("rollNo", "==", idNumber.trim()),
+        orderBy("dateKey", "desc")
+      );
+
+      const snap = await getDocs(q);
+
+      if (snap.empty) {
+        setStatus("notfound");
+        return;
       }
-    };
 
-    fetchAttendance();
-  }, []);
+      const data = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      setList(data);
+      setStatus("found");
+    } catch (err) {
+      console.error("Attendance search error:", err);
+      setStatus("error");
+    }
+  };
 
   return (
     <div className="dhyan-history-page">
       <h2>🧘 Dhyan Attendance History</h2>
 
-      {loading && <p className="dhyan-muted">Loading...</p>}
+      <form className="dhyan-search" onSubmit={handleSearch}>
+        <input
+          type="text"
+          placeholder="Enter your ID / Roll No"
+          value={idNumber}
+          onChange={(e) => setIdNumber(e.target.value)}
+        />
+        <button type="submit" disabled={status === "loading"}>
+          {status === "loading" ? "Checking..." : "Check"}
+        </button>
+      </form>
 
-      {!loading && list.length === 0 && (
-        <p className="dhyan-muted">No attendance marked yet.</p>
+      {status === "notfound" && (
+        <p className="dhyan-error">
+          ❌ You are not a member of Dhyan program.
+        </p>
       )}
 
-      {!loading && list.length > 0 && (
-        <ul className="dhyan-history-list">
-          {list.map(item => (
-            <li key={item.id}>📅 {item.dateKey}</li>
-          ))}
-        </ul>
+      {status === "error" && (
+        <p className="dhyan-error">❌ Something went wrong. Try again.</p>
+      )}
+
+      {status === "found" && (
+        <div className="dhyan-results">
+          <h3>Attendance Records</h3>
+          <ul>
+            {list.map((item) => (
+              <li key={item.id}>
+                <span className="date">📅 {item.dateKey}</span>
+                <span
+                  className={`status ${
+                    item.status === "present" ? "present" : "absent"
+                  }`}
+                >
+                  {item.status === "present" ? "Present" : "Absent"}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );
