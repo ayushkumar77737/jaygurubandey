@@ -1,0 +1,21 @@
+.dhyan-history-page {
+  min-height: 100vh;
+  padding: 24px;
+  background: radial-gradient(circle at top, #0f1c3d, #060a18);
+  color: #ffffff;
+}
+
+.dhyan-muted {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.dhyan-history-list {
+  margin-top: 10px;
+  padding-left: 16px;
+}
+
+.dhyan-history-list li {
+  margin-bottom: 6px;
+  color: #e5e7eb;
+}

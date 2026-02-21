@@ -283,7 +283,7 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('/live-now')}>
+                <button onClick={() => handleNavClick('/dhyan-attendance-history')}>
                   My Dhyan Attendance
                 </button>
               </li>
