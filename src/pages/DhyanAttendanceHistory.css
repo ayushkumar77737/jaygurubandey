@@ -102,3 +102,19 @@
   background: rgba(239, 68, 68, 0.2);
   color: #ef4444;
 }
+.row-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.row-left .name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.row-left .roll {
+  font-size: 12px;
+  color: #94a3b8;
+}

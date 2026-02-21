@@ -31,7 +31,7 @@ const DhyanAttendanceHistory = () => {
         return;
       }
 
-      const data=getDocs ? snap.docs.map((d)=>({ id:d.id, ...d.data() })) : [];
+      const data = getDocs ? snap.docs.map((d) => ({ id: d.id, ...d.data() })) : [];
       setList(data);
       setStatus("found");
     } catch (err) {
@@ -78,11 +78,14 @@ const DhyanAttendanceHistory = () => {
           <ul>
             {list.map((item) => (
               <li key={item.id}>
-                <span className="date">📅 {item.dateKey}</span>
+                <div className="row-left">
+                  <div className="name">👤 {item.name || "—"}</div>
+                  <div className="roll">🆔 {item.rollNo}</div>
+                  <div className="date">📅 {item.dateKey}</div>
+                </div>
                 <span
-                  className={`status ${
-                    item.status === "present" ? "present" : "absent"
-                  }`}
+                  className={`status ${item.status === "present" ? "present" : "absent"
+                    }`}
                 >
                   {item.status === "present" ? "Present" : "Absent"}
                 </span>
