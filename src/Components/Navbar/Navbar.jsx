@@ -282,6 +282,11 @@ const Navbar = () => {
                   Live Now
                 </button>
               </li>
+              <li>
+                <button onClick={() => handleNavClick('/live-now')}>
+                  My Dhyan Attendance
+                </button>
+              </li>
             </ul>
           )}
         </li>
