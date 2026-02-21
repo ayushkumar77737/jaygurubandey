@@ -1,23 +1,18 @@
 import React, { useState } from "react";
 import { db } from "../firebase/firebase";
-import {
-  collection,
-  query,
-  where,
-  orderBy,
-  getDocs,
-} from "firebase/firestore";
+import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
 import "./DhyanAttendanceHistory.css";
 
 const DhyanAttendanceHistory = () => {
   const [idNumber, setIdNumber] = useState("");
   const [list, setList] = useState([]);
-  const [status, setStatus] = useState("idle"); 
+  const [status, setStatus] = useState("idle");
   // idle | loading | found | notfound | error
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    if (!idNumber.trim()) return;
+    const roll = idNumber.trim().toUpperCase(); // normalize
+    if (!roll) return;
 
     setStatus("loading");
     setList([]);
@@ -25,7 +20,7 @@ const DhyanAttendanceHistory = () => {
     try {
       const q = query(
         collection(db, "attendance"),
-        where("rollNo", "==", idNumber.trim()),
+        where("rollNo", "==", roll),
         orderBy("dateKey", "desc")
       );
 
@@ -36,7 +31,7 @@ const DhyanAttendanceHistory = () => {
         return;
       }
 
-      const data = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      const data=getDocs ? snap.docs.map((d)=>({ id:d.id, ...d.data() })) : [];
       setList(data);
       setStatus("found");
     } catch (err) {
@@ -54,7 +49,13 @@ const DhyanAttendanceHistory = () => {
           type="text"
           placeholder="Enter your ID / Roll No"
           value={idNumber}
-          onChange={(e) => setIdNumber(e.target.value)}
+          onChange={(e) => {
+            setIdNumber(e.target.value);
+            if (status !== "idle") {
+              setStatus("idle");
+              setList([]);
+            }
+          }}
         />
         <button type="submit" disabled={status === "loading"}>
           {status === "loading" ? "Checking..." : "Check"}
