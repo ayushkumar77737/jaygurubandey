@@ -8,10 +8,22 @@ const DhyanAttendanceHistory = () => {
   const [list, setList] = useState([]);
   const [status, setStatus] = useState("idle");
   // idle | loading | found | notfound | error
+  const showTempStatus = (type, duration = 3000) => {
+    setStatus(type);
+
+    setTimeout(() => {
+      setStatus("idle");
+    }, duration);
+  };
 
   const handleSearch = async (e) => {
     e.preventDefault();
     const roll = idNumber.trim().toUpperCase(); // normalize
+    if (!/^[A-Z0-9]+$/.test(roll)) {
+      showTempStatus("error", 3000);
+      return;
+    }
+
     if (!roll) return;
 
     setStatus("loading");
@@ -27,16 +39,16 @@ const DhyanAttendanceHistory = () => {
       const snap = await getDocs(q);
 
       if (snap.empty) {
-        setStatus("notfound");
+        showTempStatus("notfound", 3000);
         return;
       }
 
-      const data=getDocs ? snap.docs.map((d)=>({ id:d.id, ...d.data() })) : [];
+      const data = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
       setList(data);
       setStatus("found");
     } catch (err) {
       console.error("Attendance search error:", err);
-      setStatus("error");
+      showTempStatus("error", 3000);
     }
   };
 
@@ -50,7 +62,13 @@ const DhyanAttendanceHistory = () => {
           placeholder="Enter your ID / Roll No"
           value={idNumber}
           onChange={(e) => {
-            setIdNumber(e.target.value);
+            const value = e.target.value;
+
+            // ❌ remove @, ~ and all special characters
+            const cleaned = value.replace(/[^a-zA-Z0-9]/g, "");
+
+            setIdNumber(cleaned);
+
             if (status !== "idle") {
               setStatus("idle");
               setList([]);
@@ -82,9 +100,8 @@ const DhyanAttendanceHistory = () => {
                 <span className="date">👤 {item.name}</span>
                 <span className="date">🆔 {item.rollNo}</span>
                 <span
-                  className={`status ${
-                    item.status === "present" ? "present" : "absent"
-                  }`}
+                  className={`status ${item.status === "present" ? "present" : "absent"
+                    }`}
                 >
                   {item.status === "present" ? "Present" : "Absent"}
                 </span>

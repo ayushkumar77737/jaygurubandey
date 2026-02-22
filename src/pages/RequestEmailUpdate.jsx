@@ -28,6 +28,13 @@ const RequestEmailUpdate = () => {
       setTimeout(() => setMessage(""), 3000);
       return;
     }
+    // ❌ validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(newEmail)) {
+      setMessage("❌ Please enter a valid email address");
+      setTimeout(() => setMessage(""), 3000);
+      return;
+    }
 
     if (newEmail === oldEmail) {
       setMessage("❌ New email must be different from old email");
@@ -110,7 +117,14 @@ const RequestEmailUpdate = () => {
             type="email"
             placeholder="New Email"
             value={newEmail}
-            onChange={(e) => setNewEmail(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+
+              // ❌ remove spaces and invalid characters for email
+              const cleaned = value.replace(/[^a-zA-Z0-9@._-]/g, "");
+
+              setNewEmail(cleaned);
+            }}
             required
           />
 
