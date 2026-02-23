@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; 
 import { sendEmailVerification } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,19 @@ const VerifyEmail = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  useEffect(() => {
+    const user = auth.currentUser;
+
+    if (!user) {
+      navigate("/login", { replace: true });
+      return;
+    }
+
+    if (user.emailVerified) {
+      navigate("/", { replace: true }); // or "/account"
+    }
+  }, [navigate]);
+
 
   const resendVerification = async () => {
     if (!auth.currentUser) {
