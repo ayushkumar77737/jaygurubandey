@@ -16,10 +16,11 @@ import guruji from "../assets/guruji.webp";
 import pic from "../assets/pic.jpeg";
 import bg1 from "../assets/bg1.webp";
 import bg2 from "../assets/bg2.webp";
+import bg3 from "../assets/bg3.webp";
 
 
 const Login = () => {
-  const bgImages = [pic, bg1, bg2];
+  const bgImages = [pic, bg1, bg2, bg3];
   const [bgIndex, setBgIndex] = useState(0);
 
   useEffect(() => {
