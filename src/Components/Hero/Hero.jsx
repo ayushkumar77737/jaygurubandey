@@ -29,7 +29,9 @@ import {
   FaUsers,
   FaGlobe
 } from "react-icons/fa";
-
+import {
+  FaXTwitter
+} from "react-icons/fa6";
 
 const Hero = () => {
   // About section images only
@@ -527,6 +529,25 @@ These mystical expressions encourage seekers to look beyond literal meanings and
                   rel="noopener noreferrer"
                 >
                   Jai Gurubande
+                </a>
+              </li>
+            </ul>
+          </div>
+          {/* Twitter / X */}
+          <div className="social-box">
+            <div className="social-title">
+              <FaXTwitter className="social-icon twitter" />
+              <span>Twitter</span>
+            </div>
+
+            <ul>
+              <li>
+                <a
+                  href="https://x.com/jaigurubande"   
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  JAI GURUBANDE
                 </a>
               </li>
             </ul>
