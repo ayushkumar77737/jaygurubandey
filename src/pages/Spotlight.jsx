@@ -155,11 +155,12 @@ const Spotlight = () => {
             </div>
 
             <div className="spotlight-content">
-              <h2>Exclusive Interview with Guruji on Divine Vision</h2>
+              <h2>Healing Lives Through Spirituality and Ayurveda at Jai Gurubande Ashram</h2>
               <span className="spotlight-date">Published on: October 10, 2025</span>
               <p>
-                In this inspiring interview, Guruji shares insights on devotion, compassion, and the spiritual path,
-                guiding devotees toward peace and self-realization.
+                <p>
+                  In this inspiring interview, Guruji shares how spirituality and Ayurveda work together to heal the mind and body, guiding devotees toward peace, balance, and self-realization at Jai Gurubande Ashram.
+                </p>
               </p>
               <a
                 href="https://youtu.be/bWdtyhYGKJU?si=xKJzkiFcR7CSXWEu"
@@ -184,11 +185,42 @@ const Spotlight = () => {
             </div>
 
             <div className="spotlight-content">
-              <h2>Guruji’s Message on Faith, Service & Inner Peace</h2>
-              <span className="spotlight-date">Published on: November 5, 2025</span>
+              <h2>Do Gods Exist? What Swami Jai Gurubande Maharaj Ji Says and What Science Believes</h2>
+              <span className="spotlight-date">Published on: January 14, 2026</span>
               <p>
-                Guruji speaks deeply about faith, selfless service, and the importance of
-                inner peace in today’s fast-moving world.
+                <p>
+                  Guruji shares deep insights on the existence of God, the role of faith, and how science views divinity, guiding seekers toward clarity, inner peace, and conscious living in today’s fast-moving world.
+                </p>
+              </p>
+              <a
+                href="https://youtu.be/lrVNRF51aGg?si=wGatGH6xezapoznR"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="read-btn"
+              >
+                Watch Full Interview
+              </a>
+            </div>
+          </div>
+          {/* ===== Interview Video 3 (NEW) ===== */}
+          <div className="spotlight-card">
+            <div className="video-container">
+              <iframe
+                src="https://www.youtube.com/embed/rOLmh1EgSco"
+                title="Guruji Interview Video 3"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+
+            <div className="spotlight-content">
+              <h2>Today, Swami Jai Gurubande Maharaj Ji spoke profoundly about religion, society, and humanity.</h2>
+              <span className="spotlight-date">Published on: February 23, 2026</span>
+              <p>
+                <p>
+                  Guruji shares profound insights on religion, social responsibility, and the values of humanity, guiding people toward compassion, awareness, and inner peace in today’s fast-moving world.
+                </p>
               </p>
               <a
                 href="https://youtu.be/lrVNRF51aGg?si=wGatGH6xezapoznR"
