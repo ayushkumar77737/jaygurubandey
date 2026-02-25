@@ -44,7 +44,6 @@ import ContributeFAQ from './pages/ContributeFAQ.jsx'
 import AshramLife from './pages/AshramLife.jsx'
 import LiveNow from './pages/LiveNow.jsx'
 import DailyTeachings from './pages/DailyTeachings.jsx'
-import Subscribe from './pages/Subscribe.jsx'
 import Terms from './pages/Terms.jsx'
 import DonationPolicy from './pages/DonationPolicy.jsx'
 import MyPayments from './pages/MyPayments.jsx'
@@ -113,7 +112,6 @@ const router = createBrowserRouter([
       { path: 'ashram-life', element: <AshramLife /> },
       { path: 'live-now', element: <LiveNow /> },
       { path: "daily-teachings", element: <DailyTeachings /> },
-      { path: 'subscribe', element: <Subscribe /> },
       { path: 'terms-conditions', element: <Terms /> },
       { path: 'donation-policy', element: <DonationPolicy /> },
       { path: "devotes-bhajan", element: <DevotesBhajan /> },
