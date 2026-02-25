@@ -1189,3 +1189,6 @@ html, body {
   margin: 0;           /* ⬅️ remove left/right push */
   flex-shrink: 0;
 }
+.social-icon.telegram {
+  color: #229ED9; /* Telegram brand blue */
+}

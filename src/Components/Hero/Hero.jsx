@@ -27,7 +27,8 @@ import {
   FaHandsHelping,
   FaCalendarAlt,
   FaUsers,
-  FaGlobe
+  FaGlobe,
+  FaTelegramPlane
 } from "react-icons/fa";
 import {
   FaXTwitter
@@ -573,6 +574,26 @@ These mystical expressions encourage seekers to look beyond literal meanings and
                   rel="noopener noreferrer"
                 >
                   jaigurubande15@gmail.com
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Telegram */}
+          <div className="social-box">
+            <div className="social-title">
+              <FaTelegramPlane className="social-icon telegram" />
+              <span>Telegram</span>
+            </div>
+
+            <ul>
+              <li>
+                <a
+                  href="https://t.me/+5APCSKB6YC85MjRl"   
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Jai Gurubande – Official Website Updates
                 </a>
               </li>
             </ul>
