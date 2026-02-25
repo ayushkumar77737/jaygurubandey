@@ -1179,3 +1179,11 @@ html, body {
 .social-icon.twitter {
   color: #000000;
 }
+
+.gmail-logo {
+  width: 28px;          /* adjust if needed */
+  height: 28px;
+  margin-right: 8px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(255,255,255,0.2));
+}

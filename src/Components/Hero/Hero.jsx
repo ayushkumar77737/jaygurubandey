@@ -32,6 +32,7 @@ import {
 import {
   FaXTwitter
 } from "react-icons/fa6";
+import gmailLogo from "../../assets/gmail.png"; 
 
 const Hero = () => {
   // About section images only
@@ -552,6 +553,30 @@ These mystical expressions encourage seekers to look beyond literal meanings and
               </li>
             </ul>
           </div>
+
+          {/* Email (Gmail logo) */}
+<div className="social-box">
+  <div className="social-title">
+    <img
+      src={gmailLogo}
+      alt="Gmail"
+      className="gmail-logo"
+    />
+    <span>Email</span>
+  </div>
+
+  <ul>
+    <li>
+      <a
+        href="mailto:jaigurubande15@gmail.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        jaigurubande15@gmail.com
+      </a>
+    </li>
+  </ul>
+</div>
 
         </div>
       </section>
