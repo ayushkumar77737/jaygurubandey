@@ -1186,4 +1186,6 @@ html, body {
   margin-right: 8px;
   object-fit: contain;
   filter: drop-shadow(0 0 4px rgba(255,255,255,0.2));
+  margin: 0;           /* ⬅️ remove left/right push */
+  flex-shrink: 0;
 }
