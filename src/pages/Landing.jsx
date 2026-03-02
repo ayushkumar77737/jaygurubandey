@@ -82,8 +82,8 @@ const Landing = () => {
                 </p><br></br>
 
                 <div className="landing-actions">
-                    <a href="/login" className="login">Login</a>
-                    <a href="/register" className="register">Register</a>
+                    {/*<a href="/login" className="login">Login</a>
+                    <a href="/register" className="register">Register</a>*/}
                 </div>
             </div>
         </div>
