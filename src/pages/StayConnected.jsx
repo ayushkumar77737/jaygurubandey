@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./StayConnected.css";
-import { FaFacebook, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaYoutube, FaWhatsapp,FaTelegram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const SOCIAL_LINKS = [
   {
@@ -26,6 +27,18 @@ const SOCIAL_LINKS = [
     label: "WhatsApp Group",
     url: "https://chat.whatsapp.com/GwdDS530clKJsNc4zkPCyD",
     icon: <FaWhatsapp />,
+  },
+  {
+  id: "twitter",
+  label: "Twitter (X)",
+  url: "https://x.com/jaigurubande", 
+  icon: <FaXTwitter />,
+  },
+  {
+  id: "telegram",
+  label: "Telegram Channel",
+  url: "https://t.me/+5APCSKB6YC85MjRl",
+  icon: <FaTelegram />,
   },
 ];
 
