@@ -48,10 +48,44 @@ const Spotlight = () => {
     { image: articleImage18, title: "Guruji’s Message of Eternal Love", date: "April 10, 2025", desc: "Guruji’s final message emphasizes divine love...", download: articleImage18 },
   ];
 
+  // ====== Interviews Data ======
+  const interviews = [
+    {
+      videoId: "bWdtyhYGKJU",
+      title: "Healing Lives Through Spirituality and Ayurveda at Jai Gurubande Ashram",
+      date: "October 10, 2025",
+      desc: "In this inspiring interview, Guruji shares how spirituality and Ayurveda work together to heal the mind and body..."
+    },
+    {
+      videoId: "lrVNRF51aGg",
+      title: "Do Gods Exist? What Swami Jai Gurubande Maharaj Ji Says and What Science Believes",
+      date: "January 14, 2026",
+      desc: "Guruji shares deep insights on the existence of God, the role of faith, and how science views divinity..."
+    },
+    {
+      videoId: "rOLmh1EgSco",
+      title: "Today, Swami Jai Gurubande Maharaj Ji spoke profoundly about religion, society, and humanity.",
+      date: "February 23, 2026",
+      desc: "Guruji shares profound insights on religion, social responsibility, and the values of humanity..."
+    }
+  ];
+
   const totalPages = Math.ceil(articles.length / articlesPerPage);
   const indexOfLast = currentPage * articlesPerPage;
   const indexOfFirst = indexOfLast - articlesPerPage;
   const currentArticles = articles.slice(indexOfFirst, indexOfLast);
+  // ===== Interview Pagination Logic =====
+  const interviewsPerPage = 4;
+
+  const totalInterviewPages = Math.ceil(interviews.length / interviewsPerPage);
+
+  const indexOfLastInterview = currentPage * interviewsPerPage;
+  const indexOfFirstInterview = indexOfLastInterview - interviewsPerPage;
+
+  const currentInterviews = interviews.slice(
+    indexOfFirstInterview,
+    indexOfLastInterview
+  );
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -142,97 +176,68 @@ const Spotlight = () => {
 
       {/* ===== Interviews Section ===== */}
       {selectedType === "interview" && (
-        <div className="spotlight-grid">
-          <div className="spotlight-card">
-            <div className="video-container">
-              <iframe
-                src="https://www.youtube.com/embed/bWdtyhYGKJU"
-                title="Guruji Interview Video"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-
-            <div className="spotlight-content">
-              <h2>Healing Lives Through Spirituality and Ayurveda at Jai Gurubande Ashram</h2>
-              <span className="spotlight-date">Published on: October 10, 2025</span>
-              <p>
-                <p>
-                  In this inspiring interview, Guruji shares how spirituality and Ayurveda work together to heal the mind and body, guiding devotees toward peace, balance, and self-realization at Jai Gurubande Ashram.
-                </p>
-              </p>
-              <a
-                href="https://youtu.be/bWdtyhYGKJU?si=xKJzkiFcR7CSXWEu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="read-btn"
+        <>
+          <div className="spotlight-grid" key={`interview-${currentPage}`}>
+            {currentInterviews.map((item, index) => (
+              <div
+                className="spotlight-card animate-card"
+                key={index}
+                style={{ animationDelay: `${index * 0.12}s` }}
               >
-                Watch Full Interview
-              </a>
-            </div>
-          </div>
-          {/* ===== Interview Video 2 (NEW) ===== */}
-          <div className="spotlight-card">
-            <div className="video-container">
-              <iframe
-                src="https://www.youtube.com/embed/lrVNRF51aGg"
-                title="Guruji Interview Video 2"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
+                <div className="video-container">
+                  <iframe
+                    loading="lazy"
+                    src={`https://www.youtube.com/embed/${item.videoId}`}
+                    title={item.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
 
-            <div className="spotlight-content">
-              <h2>Do Gods Exist? What Swami Jai Gurubande Maharaj Ji Says and What Science Believes</h2>
-              <span className="spotlight-date">Published on: January 14, 2026</span>
-              <p>
-                <p>
-                  Guruji shares deep insights on the existence of God, the role of faith, and how science views divinity, guiding seekers toward clarity, inner peace, and conscious living in today’s fast-moving world.
-                </p>
-              </p>
-              <a
-                href="https://youtu.be/lrVNRF51aGg?si=wGatGH6xezapoznR"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="read-btn"
-              >
-                Watch Full Interview
-              </a>
-            </div>
-          </div>
-          {/* ===== Interview Video 3 (NEW) ===== */}
-          <div className="spotlight-card">
-            <div className="video-container">
-              <iframe
-                src="https://www.youtube.com/embed/rOLmh1EgSco"
-                title="Guruji Interview Video 3"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
+                <div className="spotlight-content">
+                  <h2>{item.title}</h2>
+                  <span className="spotlight-date">
+                    Published on: {item.date}
+                  </span>
+                  <p>{item.desc}</p>
 
-            <div className="spotlight-content">
-              <h2>Today, Swami Jai Gurubande Maharaj Ji spoke profoundly about religion, society, and humanity.</h2>
-              <span className="spotlight-date">Published on: February 23, 2026</span>
-              <p>
-                <p>
-                  Guruji shares profound insights on religion, social responsibility, and the values of humanity, guiding people toward compassion, awareness, and inner peace in today’s fast-moving world.
-                </p>
-              </p>
-              <a
-                href="https://youtu.be/lrVNRF51aGg?si=wGatGH6xezapoznR"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="read-btn"
-              >
-                Watch Full Interview
-              </a>
-            </div>
+                  <a
+                    href={`https://youtu.be/${item.videoId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="read-btn"
+                  >
+                    Watch Full Interview
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
+
+          {/* ===== Interview Pagination ===== */}
+          <div className="spotlight-pagination">
+            <button
+              className="spotlight-page-btn prev"
+              onClick={() => setCurrentPage((prev) => prev - 1)}
+              disabled={currentPage === 1}
+            >
+              ⬅ Prev
+            </button>
+
+            <span>
+              Page {currentPage} of {totalInterviewPages}
+            </span>
+
+            <button
+              className="spotlight-page-btn next"
+              onClick={() => setCurrentPage((prev) => prev + 1)}
+              disabled={currentPage === totalInterviewPages}
+            >
+              Next ➡
+            </button>
+          </div>
+        </>
       )}
     </div>
   );
