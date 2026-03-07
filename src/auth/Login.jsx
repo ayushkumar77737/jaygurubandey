@@ -13,6 +13,9 @@ import { auth, db } from "../firebase/firebase";     // ✅ db added
 import "./Login.css";
 
 import guruji from "../assets/guruji.webp";
+import guruji2 from "../assets/photo11.webp";
+import guruji3 from "../assets/photo10.webp";
+
 import pic from "../assets/pic.jpeg";
 import bg1 from "../assets/bg1.webp";
 import bg2 from "../assets/bg2.webp";
@@ -21,6 +24,7 @@ import bg3 from "../assets/bg3.webp";
 
 const Login = () => {
   const bgImages = [pic, bg1, bg2, bg3];
+  const guruImages = [guruji, guruji2, guruji3];
   const [bgIndex, setBgIndex] = useState(0);
 
   useEffect(() => {
@@ -30,7 +34,6 @@ const Login = () => {
 
     return () => clearInterval(interval);
   }, []);
-
   useEffect(() => {
     // 🔒 Disable Right Click
     const disableRightClick = (e) => e.preventDefault();
@@ -147,7 +150,7 @@ const Login = () => {
       </div>
       <div className="login-card">
         <div className="login-image">
-          <img src={guruji} alt="Guruji" />
+          <img key={bgIndex} src={guruImages[bgIndex % guruImages.length]} alt="Guruji" />
         </div>
 
         <h2 className="login-title">
