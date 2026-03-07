@@ -11,6 +11,9 @@ import { auth, db } from "../firebase/firebase";
 import "./Register.css";
 
 import guruji from "../assets/guruji.webp";
+import guruji2 from "../assets/photo11.webp";
+import guruji3 from "../assets/photo10.webp";
+
 import pic from "../assets/pic.jpeg";
 import bg1 from "../assets/bg1.webp";
 import bg2 from "../assets/bg2.webp";
@@ -18,6 +21,7 @@ import bg2 from "../assets/bg2.webp";
 
 const Register = () => {
   const bgImages = [pic, bg1, bg2];
+  const guruImages = [guruji, guruji2, guruji3];
   const [bgIndex, setBgIndex] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
@@ -133,7 +137,7 @@ const Register = () => {
       </div>
       <div className="register-card">
         <div className="register-image">
-          <img src={guruji} alt="Register" />
+          <img key={bgIndex} src={guruImages[bgIndex % guruImages.length]} alt="Register" />
         </div>
 
         <h2 className="register-title">
