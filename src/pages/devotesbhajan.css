@@ -14,7 +14,7 @@
 /* ===== Title ===== */
 .devotes-bhajan .devotes-title {
   margin-bottom: 35px;
-  font-size: 2.5rem;
+  font-size: 1.9rem;
   font-weight: 900;
   color: #2b2b2b;
   letter-spacing: 1px;
@@ -32,6 +32,7 @@
 /* ===== Dropdown ===== */
 .devotes-bhajan .devotes-dropdown {
   margin-bottom: 35px;
+  animation: devotesFadeUp 0.45s ease-out both;
 }
 
 /* ===== Dropdown (NO COLOR) ===== */
@@ -64,6 +65,7 @@
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 10px;
+  animation: devotesFadeUp 0.45s ease-out both;
 }
 
 /* ===== Video Card ===== */
