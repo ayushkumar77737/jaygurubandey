@@ -9,7 +9,6 @@
   text-align: center;
   background: linear-gradient(135deg, #fff5f5, #fff0fa, #f5faff);
   overflow-x: hidden;
-  animation: devotesFadeUp 0.5s ease-out both;
 }
 
 /* ===== Title ===== */
