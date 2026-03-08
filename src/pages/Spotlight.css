@@ -5,6 +5,7 @@
   text-align: center;
   padding: 60px 20px;
   font-family: "Outfit", sans-serif;
+  animation: fadeIn 0.8s ease-in;
   min-height: 100vh;
   overflow-x: hidden;
 }
