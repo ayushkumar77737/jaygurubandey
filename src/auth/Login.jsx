@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import {
   signInWithEmailAndPassword,
   setPersistence,
-  browserSessionPersistence,
+  browserLocalPersistence,
   signOut,
   sendPasswordResetEmail
 } from "firebase/auth";
@@ -71,7 +71,7 @@ const Login = () => {
     setError("");
 
     try {
-      await setPersistence(auth, browserSessionPersistence);
+      await setPersistence(auth, browserLocalPersistence);
 
       const res = await signInWithEmailAndPassword(
         auth,
