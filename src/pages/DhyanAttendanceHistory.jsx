@@ -1,115 +1,59 @@
-import React, { useState } from "react";
-import { db } from "../firebase/firebase";
-import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
+import React from "react";
+import dhyanImg from "../assets/guruji.webp";
 import "./DhyanAttendanceHistory.css";
 
 const DhyanAttendanceHistory = () => {
-  const [idNumber, setIdNumber] = useState("");
-  const [list, setList] = useState([]);
-  const [status, setStatus] = useState("idle");
-  // idle | loading | found | notfound | error
-  const showTempStatus = (type, duration = 3000) => {
-    setStatus(type);
-
-    setTimeout(() => {
-      setStatus("idle");
-    }, duration);
-  };
-
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    const roll = idNumber.trim().toUpperCase(); // normalize
-    if (!/^[A-Z0-9]+$/.test(roll)) {
-      showTempStatus("error", 3000);
-      return;
-    }
-
-    if (!roll) return;
-
-    setStatus("loading");
-    setList([]);
-
-    try {
-      const q = query(
-        collection(db, "attendance"),
-        where("rollNo", "==", roll),
-        orderBy("dateKey", "desc")
-      );
-
-      const snap = await getDocs(q);
-
-      if (snap.empty) {
-        showTempStatus("notfound", 3000);
-        return;
-      }
-
-      const data = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-      setList(data);
-      setStatus("found");
-    } catch (err) {
-      console.error("Attendance search error:", err);
-      showTempStatus("error", 3000);
-    }
-  };
 
   return (
     <div className="dhyan-history-page">
-      <h2>🧘 Dhyan Attendance History</h2>
 
-      <form className="dhyan-search" onSubmit={handleSearch}>
-        <input
-          type="text"
-          placeholder="Enter your ID / Roll No"
-          value={idNumber}
-          onChange={(e) => {
-            const value = e.target.value;
+      <div className="dhyan-top-section">
 
-            // ❌ remove @, ~ and all special characters
-            const cleaned = value.replace(/[^a-zA-Z0-9]/g, "");
-
-            setIdNumber(cleaned);
-
-            if (status !== "idle") {
-              setStatus("idle");
-              setList([]);
-            }
-          }}
-        />
-        <button type="submit" disabled={status === "loading"}>
-          {status === "loading" ? "Checking..." : "Check"}
-        </button>
-      </form>
-
-      {status === "notfound" && (
-        <p className="dhyan-error">
-          ❌ You are not a member of Dhyan program.
-        </p>
-      )}
-
-      {status === "error" && (
-        <p className="dhyan-error">❌ Something went wrong. Try again.</p>
-      )}
-
-      {status === "found" && (
-        <div className="dhyan-results">
-          <h3>Attendance Records</h3>
-          <ul>
-            {list.map((item) => (
-              <li key={item.id}>
-                <span className="date">📅 {item.dateKey}</span>
-                <span className="date">👤 {item.name}</span>
-                <span className="date">🆔 {item.rollNo}</span>
-                <span
-                  className={`status ${item.status === "present" ? "present" : "absent"
-                    }`}
-                >
-                  {item.status === "present" ? "Present" : "Absent"}
-                </span>
-              </li>
-            ))}
-          </ul>
+        <div className="dhyan-image">
+          <img src={dhyanImg} alt="Dhyan Meditation" />
         </div>
-      )}
+
+        <div className="dhyan-about">
+
+          <h2>🧘 Dhyan Program</h2>
+
+          <p>
+            Dhyan is a spiritual meditation practice that helps calm the mind and connect with inner peace.
+            Through regular meditation sessions, participants learn to control their thoughts, reduce stress,
+            and develop a deeper awareness of themselves.
+          </p>
+
+          <p>
+            The Dhyan program encourages individuals to build a daily meditation habit that promotes
+            mental clarity, emotional balance, and spiritual growth. By practicing Dhyan regularly,
+            participants experience improved concentration, inner stability, and a more positive outlook on life.
+          </p>
+
+          <p>
+            Our Dhyan sessions are designed to guide participants step-by-step through breathing techniques,
+            mindfulness practices, and silent meditation. These practices help cultivate discipline,
+            self-control, and a deeper connection with the inner self.
+          </p>
+
+          <p>
+            The goal of the Dhyan program is not only meditation but also personal transformation.
+            With consistent practice, individuals can achieve peace of mind, stronger focus,
+            and a balanced lifestyle that supports both spiritual and personal development.
+          </p>
+
+          <a
+            href="https://dhyan-attandance.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="check-btn"
+          >
+            Check
+          </a>
+
+        </div>
+
+      </div>
+
     </div>
   );
 };
