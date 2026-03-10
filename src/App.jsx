@@ -24,7 +24,7 @@ const App = () => {
 
       try {
         // 🔁 Force token refresh
-        await user.getIdToken();
+        await user.getIdToken(true);
       } catch (err) {
         // 🔴 User deleted from Firebase Console
         await signOut(auth);
