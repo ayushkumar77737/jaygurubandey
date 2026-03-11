@@ -58,15 +58,21 @@ const Spotlight = () => {
     },
     {
       videoId: "lrVNRF51aGg",
-      title: "Do Gods Exist? What Swami Jai Gurubande Maharaj Ji Says and What Science Believes",
+      title: "Do Gods Exist? What Swami Jai Gurubande Ji Maharaj Says and What Science Believes",
       date: "January 14, 2026",
       desc: "Guruji shares deep insights on the existence of God, the role of faith, and how science views divinity..."
     },
     {
       videoId: "rOLmh1EgSco",
-      title: "Today, Swami Jai Gurubande Maharaj Ji spoke profoundly about religion, society, and humanity.",
+      title: "Today, Swami Jai Gurubande Ji Maharaj spoke profoundly about religion, society, and humanity.",
       date: "February 23, 2026",
       desc: "Guruji shares profound insights on religion, social responsibility, and the values of humanity..."
+    },
+    {
+      videoId: "gDSFlu7J--M",
+      title: "Nectar-like spiritual discourse by Jai Gurubande Ji Maharaj on the auspicious occasion of Holi.",
+      date: "March 04, 2026",
+      desc: "On the sacred occasion of Holi, Jai Gurubande Ji Maharaj showers divine nectar through his spiritual words, inspiring devotees with wisdom, devotion, and the message of love and righteousness."
     }
   ];
 
