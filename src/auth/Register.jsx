@@ -142,7 +142,7 @@ const Register = () => {
 
         <h2 className="register-title">
           <span className="line1">🙏 Jai Gurubande 🙏</span>
-          <span className="line2">Saheeb Sabka</span>
+          <span className="line2">Saheb Sabka</span>
           <span className="line3">Create Account</span>
         </h2>
 

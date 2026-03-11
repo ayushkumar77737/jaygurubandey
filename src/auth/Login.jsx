@@ -155,7 +155,7 @@ const Login = () => {
 
         <h2 className="login-title">
           <span className="line1">🙏 Jai Gurubande 🙏</span>
-          <span className="line2">Saheeb Sabka</span>
+          <span className="line2">Saheb Sabka</span>
           <span className="line3">Welcome Back</span>
         </h2>
 
