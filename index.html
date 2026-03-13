@@ -5,6 +5,14 @@
   <meta charset="UTF-8" />
   <!-- ✅ Google verification (KEEP THIS HERE) -->
   <meta name="google-site-verification" content="9e4ABjmjkDuJIhKuHg-bUfwYkCSMfXTXv8_b8ztdu0A" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXY3WY3FPF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-MXY3WY3FPF');
+  </script>
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -47,7 +55,7 @@
           currentMinutes < endMinutes;
       }
 
-      
+
       const isLocalhost =
         location.hostname === "localhost" ||
         location.hostname === "127.0.0.1";
@@ -69,7 +77,7 @@
     });
   </script>
 
-  
+
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
