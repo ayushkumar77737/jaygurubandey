@@ -5,12 +5,13 @@ import {
   signInWithEmailAndPassword,
   setPersistence,
   browserSessionPersistence,
-  signOut,
   sendPasswordResetEmail
 } from "firebase/auth";
-import { doc, updateDoc } from "firebase/firestore"; // ✅ added
-import { auth, db } from "../firebase/firebase";     // ✅ db added
+import { doc, updateDoc } from "firebase/firestore";
+import { auth, db } from "../firebase/firebase";
 import "./Login.css";
+
+import ReCAPTCHA from "react-google-recaptcha"; // ✅ added
 
 import guruji from "../assets/guruji.webp";
 import guruji2 from "../assets/photo11.webp";
@@ -21,31 +22,35 @@ import bg1 from "../assets/bg1.webp";
 import bg2 from "../assets/bg2.webp";
 import bg3 from "../assets/bg3.webp";
 
-
 const Login = () => {
   const bgImages = [pic, bg1, bg2, bg3];
   const guruImages = [guruji, guruji2, guruji3];
   const [bgIndex, setBgIndex] = useState(0);
 
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const [captchaToken, setCaptchaToken] = useState(null); // ✅ added
+
   useEffect(() => {
     const interval = setInterval(() => {
       setBgIndex((prev) => (prev + 1) % bgImages.length);
-    }, 5000); // 5 seconds me image change
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
+
   useEffect(() => {
-    // 🔒 Disable Right Click
     const disableRightClick = (e) => e.preventDefault();
 
-    // 🔒 Disable Inspect & View Source
     const disableInspectKeys = (e) => {
       if (e.key === "F12") e.preventDefault();
-      if (
-        e.ctrlKey &&
-        e.shiftKey &&
-        ["I", "J", "C"].includes(e.key.toUpperCase())
-      ) e.preventDefault();
+      if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key.toUpperCase()))
+        e.preventDefault();
       if (e.ctrlKey && e.key.toUpperCase() === "U") e.preventDefault();
     };
 
@@ -58,17 +63,17 @@ const Login = () => {
     };
   }, []);
 
-  const navigate = useNavigate();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
+
+    // ✅ Block login if captcha not verified
+    if (!captchaToken) {
+      setError("Please verify that you are not a robot.");
+      setLoading(false);
+      return;
+    }
 
     try {
       await setPersistence(auth, browserSessionPersistence);
@@ -79,14 +84,11 @@ const Login = () => {
         password
       );
 
-      // ❌ BLOCK LOGIN IF EMAIL NOT VERIFIED
-      // 🔐 Redirect unverified users to Verify Email page
       if (!res.user.emailVerified) {
         navigate("/verify-email", { replace: true });
         return;
       }
 
-      // ✅ OPTIONAL: sync verification status to Firestore
       await updateDoc(doc(db, "users", res.user.uid), {
         emailVerified: true,
       });
@@ -97,7 +99,6 @@ const Login = () => {
       setEmail("");
       setPassword("");
 
-
       if (err.code === "auth/invalid-email") {
         setError("Please enter a valid email address.");
       } else if (err.code === "auth/invalid-credential") {
@@ -105,7 +106,6 @@ const Login = () => {
       } else {
         setError("Invalid email or password.");
       }
-
 
       setTimeout(() => setError(""), 3000);
     } finally {
@@ -123,12 +123,12 @@ const Login = () => {
     try {
       await sendPasswordResetEmail(auth, email.trim());
 
-      setEmail("");        // ✅ CLEAR EMAIL FIELD
-      setPassword("");     // ✅ CLEAR PASSWORD FIELD (recommended)
+      setEmail("");
+      setPassword("");
 
       setError("Password reset link sent to your email.");
       setTimeout(() => setError(""), 4000);
-    } catch (err) {
+    } catch {
       setError("Unable to send reset email. Try again.");
       setTimeout(() => setError(""), 4000);
     }
@@ -136,7 +136,6 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      {/* 🔥 Sliding Background */}
       <div className="login-bg-wrapper">
         {bgImages.map((img, index) => (
           <div
@@ -148,9 +147,14 @@ const Login = () => {
           ></div>
         ))}
       </div>
+
       <div className="login-card">
         <div className="login-image">
-          <img key={bgIndex} src={guruImages[bgIndex % guruImages.length]} alt="Guruji" />
+          <img
+            key={bgIndex}
+            src={guruImages[bgIndex % guruImages.length]}
+            alt="Guruji"
+          />
         </div>
 
         <h2 className="login-title">
@@ -184,9 +188,18 @@ const Login = () => {
             }}
             required
           />
+
           <p className="forgot-password" onClick={handleForgotPassword}>
             Forgot Password?
           </p>
+
+          {/* ✅ reCAPTCHA */}
+          <div style={{ marginBottom: "15px", display: "flex", justifyContent: "center" }}>
+            <ReCAPTCHA
+              sitekey="6Lfed4ksAAAAAB8zC6bmp-LdJLaUD45xf27NUGbX"
+              onChange={(token) => setCaptchaToken(token)}
+            />
+          </div>
 
           <button type="submit" disabled={loading}>
             {loading ? "Please wait..." : "Login"}
