@@ -10,6 +10,8 @@ import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase";
 import "./Register.css";
 
+import ReCAPTCHA from "react-google-recaptcha"; // ✅ added
+
 import guruji from "../assets/guruji.webp";
 import guruji2 from "../assets/photo11.webp";
 import guruji3 from "../assets/photo10.webp";
@@ -18,15 +20,24 @@ import pic from "../assets/pic.jpeg";
 import bg1 from "../assets/bg1.webp";
 import bg2 from "../assets/bg2.webp";
 
-
 const Register = () => {
   const bgImages = [pic, bg1, bg2];
   const guruImages = [guruji, guruji2, guruji3];
   const [bgIndex, setBgIndex] = useState(0);
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const [captchaToken, setCaptchaToken] = useState(null); // ✅ added
+
   useEffect(() => {
     const interval = setInterval(() => {
       setBgIndex((prev) => (prev + 1) % bgImages.length);
-    }, 5000); // 5 sec me background change
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
@@ -52,18 +63,18 @@ const Register = () => {
     };
   }, []);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
     setSuccess("");
+
+    // ✅ block register if captcha not verified
+    if (!captchaToken) {
+      setError("Please verify that you are not a robot.");
+      setLoading(false);
+      return;
+    }
 
     try {
       const res = await createUserWithEmailAndPassword(
@@ -84,20 +95,18 @@ const Register = () => {
 
       await signOut(auth);
 
-      // ✅ show success message
       setSuccess(
         "Verification email has been sent. Please verify your email before login."
       );
 
-      // ⏳ auto clear success message
       setTimeout(() => {
         setSuccess("");
       }, 4000);
 
-      // clear form
       setName("");
       setEmail("");
       setPassword("");
+      setCaptchaToken(null);
 
     } catch (err) {
       setName("");
@@ -123,7 +132,6 @@ const Register = () => {
 
   return (
     <div className="register-page">
-      {/* 🔥 Sliding Background */}
       <div className="register-bg-wrapper">
         {bgImages.map((img, index) => (
           <div
@@ -135,6 +143,7 @@ const Register = () => {
           ></div>
         ))}
       </div>
+
       <div className="register-card">
         <div className="register-image">
           <img key={bgIndex} src={guruImages[bgIndex % guruImages.length]} alt="Register" />
@@ -146,10 +155,7 @@ const Register = () => {
           <span className="line3">Create Account</span>
         </h2>
 
-        {/* ✅ SUCCESS MESSAGE */}
         {success && <p className="register-success">{success}</p>}
-
-        {/* ❌ ERROR MESSAGE */}
         {error && <p className="register-error">{error}</p>}
 
         <form onSubmit={handleRegister} className="register-form">
@@ -189,12 +195,19 @@ const Register = () => {
             required
           />
 
+          {/* ✅ reCAPTCHA */}
+          <div style={{ marginBottom: "15px", display: "flex", justifyContent: "center" }}>
+            <ReCAPTCHA
+              sitekey="6Lfed4ksAAAAAB8zC6bmp-LdJLaUD45xf27NUGbX"
+              onChange={(token) => setCaptchaToken(token)}
+            />
+          </div>
+
           <button type="submit" disabled={loading}>
             {loading ? "Creating..." : "Register"}
           </button>
         </form>
 
-        {/* ✅ RESTORED LOGIN TEXT */}
         <p className="register-text">
           Already have an account? <Link to="/login">Login</Link>
         </p>
