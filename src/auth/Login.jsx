@@ -1,5 +1,5 @@
 // src/auth/Login.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
   signInWithEmailAndPassword,
@@ -35,6 +35,7 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const [captchaToken, setCaptchaToken] = useState(null); // ✅ added
+  const captchaRef = useRef(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -99,6 +100,11 @@ const Login = () => {
     } catch (err) {
       setEmail("");
       setPassword("");
+
+      if (captchaRef.current) {
+        captchaRef.current.reset();
+        setCaptchaToken(null);
+      }
 
       if (err.code === "auth/invalid-email") {
         setError("Please enter a valid email address.");
@@ -199,6 +205,7 @@ const Login = () => {
             <ReCAPTCHA
               sitekey="6Lfed4ksAAAAAB8zC6bmp-LdJLaUD45xf27NUGbX"
               onChange={(token) => setCaptchaToken(token)}
+              onExpired={() => setCaptchaToken(null)}
             />
           </div>
 
