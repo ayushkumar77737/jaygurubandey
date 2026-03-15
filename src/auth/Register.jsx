@@ -73,6 +73,7 @@ const Register = () => {
     if (!captchaToken) {
       setError("Please verify that you are not a robot.");
       setLoading(false);
+      setTimeout(() => setError(""), 3000);
       return;
     }
 
