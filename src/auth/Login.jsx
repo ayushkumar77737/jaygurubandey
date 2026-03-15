@@ -203,6 +203,7 @@ const Login = () => {
           {/* ✅ reCAPTCHA */}
           <div style={{ marginBottom: "15px", display: "flex", justifyContent: "center" }}>
             <ReCAPTCHA
+            ref={captchaRef}
               sitekey="6Lfed4ksAAAAAB8zC6bmp-LdJLaUD45xf27NUGbX"
               onChange={(token) => setCaptchaToken(token)}
               onExpired={() => setCaptchaToken(null)}
