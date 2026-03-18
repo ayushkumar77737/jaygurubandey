@@ -1,5 +1,5 @@
 // src/auth/Register.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
@@ -10,7 +10,7 @@ import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase";
 import "./Register.css";
 
-import ReCAPTCHA from "react-google-recaptcha"; // ✅ added
+import ReCAPTCHA from "react-google-recaptcha";
 
 import guruji from "../assets/guruji.webp";
 import guruji2 from "../assets/photo11.webp";
@@ -25,60 +25,62 @@ const Register = () => {
   const guruImages = [guruji, guruji2, guruji3];
   const [bgIndex, setBgIndex] = useState(0);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [name,setName]=useState("");
+  const [email,setEmail]=useState("");
+  const [password,setPassword]=useState("");
+  const [loading,setLoading]=useState(false);
+  const [error,setError]=useState("");
+  const [success,setSuccess]=useState("");
 
-  const [captchaToken, setCaptchaToken] = useState(null); // ✅ added
+  const [captchaToken,setCaptchaToken]=useState(null);
+  const captchaRef=useRef(null); // ✅ added
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setBgIndex((prev) => (prev + 1) % bgImages.length);
-    }, 5000);
+  useEffect(()=>{
+    const interval=setInterval(()=>{
+      setBgIndex((prev)=>(prev+1)%bgImages.length);
+    },5000);
+    return ()=>clearInterval(interval);
+  },[]);
 
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const disableRightClick = (e) => e.preventDefault();
-    const disableInspectKeys = (e) => {
-      if (e.key === "F12") e.preventDefault();
-      if (
-        e.ctrlKey &&
-        e.shiftKey &&
-        ["I", "J", "C"].includes(e.key.toUpperCase())
-      ) e.preventDefault();
-      if (e.ctrlKey && e.key.toUpperCase() === "U") e.preventDefault();
-    };
-
-    document.addEventListener("contextmenu", disableRightClick);
-    document.addEventListener("keydown", disableInspectKeys);
-
-    return () => {
-      document.removeEventListener("contextmenu", disableRightClick);
-      document.removeEventListener("keydown", disableInspectKeys);
-    };
-  }, []);
-
-  const handleRegister = async (e) => {
+  const handleRegister=async(e)=>{
     e.preventDefault();
     setLoading(true);
     setError("");
     setSuccess("");
 
-    // ✅ block register if captcha not verified
-    if (!captchaToken) {
+    // ✅ Step 1: check captcha
+    if(!captchaToken){
       setError("Please verify that you are not a robot.");
       setLoading(false);
-      setTimeout(() => setError(""), 3000);
       return;
     }
 
-    try {
-      const res = await createUserWithEmailAndPassword(
+    // ✅ Step 2: verify captcha with backend
+    try{
+      const res=await fetch("/api/verify-captcha",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({token:captchaToken})
+      });
+
+      const data=await res.json();
+
+      if(!data.success){
+        setError("Captcha verification failed.");
+        setLoading(false);
+        return;
+      }
+    }catch(err){
+      setError("Captcha error. Try again.");
+      setLoading(false);
+      return;
+    }
+
+    // ✅ Step 3: register user
+    try{
+      const res=await createUserWithEmailAndPassword(
         auth,
         email.trim(),
         password
@@ -86,60 +88,52 @@ const Register = () => {
 
       await sendEmailVerification(res.user);
 
-      await setDoc(doc(db, "users", res.user.uid), {
+      await setDoc(doc(db,"users",res.user.uid),{
         name,
         email,
-        role: "user",
-        emailVerified: false,
-        createdAt: serverTimestamp(),
+        role:"user",
+        emailVerified:false,
+        createdAt:serverTimestamp()
       });
 
       await signOut(auth);
 
-      setSuccess(
-        "Verification email has been sent. Please verify your email before login."
-      );
-
-      setTimeout(() => {
-        setSuccess("");
-      }, 4000);
+      setSuccess("Verification email sent. Please verify before login.");
 
       setName("");
       setEmail("");
       setPassword("");
-      setCaptchaToken(null);
 
-    } catch (err) {
-      setName("");
-      setEmail("");
-      setPassword("");
-      setSuccess("");
-
-      if (err.code === "auth/email-already-in-use") {
-        setError("This email is already registered. Please login.");
-      } else if (err.code === "auth/invalid-email") {
-        setError("Please enter a valid email address.");
-      } else if (err.code === "auth/weak-password") {
-        setError("Password must be at least 6 characters.");
-      } else {
-        setError("Something went wrong. Please try again.");
+      // ✅ reset captcha
+      if(captchaRef.current){
+        captchaRef.current.reset();
+        setCaptchaToken(null);
       }
 
-      setTimeout(() => setError(""), 3000);
-    } finally {
-      setLoading(false);
+    }catch(err){
+      if(err.code==="auth/email-already-in-use"){
+        setError("Email already registered.");
+      }else if(err.code==="auth/invalid-email"){
+        setError("Invalid email.");
+      }else if(err.code==="auth/weak-password"){
+        setError("Password must be at least 6 characters.");
+      }else{
+        setError("Something went wrong.");
+      }
     }
+
+    setLoading(false);
   };
 
-  return (
+  return(
     <div className="register-page">
       <div className="register-bg-wrapper">
-        {bgImages.map((img, index) => (
+        {bgImages.map((img,index)=>(
           <div
             key={index}
-            className={`register-bg ${index === bgIndex ? "active" : ""}`}
+            className={`register-bg ${index===bgIndex?"active":""}`}
             style={{
-              backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url(${img})`,
+              backgroundImage:`linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url(${img})`
             }}
           ></div>
         ))}
@@ -147,40 +141,32 @@ const Register = () => {
 
       <div className="register-card">
         <div className="register-image">
-          <img key={bgIndex} src={guruImages[bgIndex % guruImages.length]} alt="Register" />
+          <img src={guruImages[bgIndex%guruImages.length]} alt="Register"/>
         </div>
 
         <h2 className="register-title">
-          <span className="line1">🙏 Jai Gurubande 🙏</span>
-          <span className="line2">Saheb Sabka</span>
-          <span className="line3">Create Account</span>
+          <span>🙏 Jai Gurubande 🙏</span>
+          <span>Create Account</span>
         </h2>
 
         {success && <p className="register-success">{success}</p>}
         {error && <p className="register-error">{error}</p>}
 
         <form onSubmit={handleRegister} className="register-form">
+
           <input
             type="text"
             placeholder="Full Name"
             value={name}
-            onChange={(e) => {
-              setName(e.target.value.replace(/[^a-zA-Z\s]/g, ""));
-              setError("");
-              setSuccess("");
-            }}
+            onChange={(e)=>setName(e.target.value)}
             required
           />
 
           <input
             type="email"
-            placeholder="Email Address"
+            placeholder="Email"
             value={email}
-            onChange={(e) => {
-              setEmail(e.target.value.replace(/[^a-zA-Z0-9@._-]/g, ""));
-              setError("");
-              setSuccess("");
-            }}
+            onChange={(e)=>setEmail(e.target.value)}
             required
           />
 
@@ -188,28 +174,27 @@ const Register = () => {
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setError("");
-              setSuccess("");
-            }}
+            onChange={(e)=>setPassword(e.target.value)}
             required
           />
 
-          {/* ✅ reCAPTCHA */}
-          <div style={{ marginBottom: "15px", display: "flex", justifyContent: "center" }}>
+          {/* ✅ CAPTCHA */}
+          <div style={{display:"flex",justifyContent:"center",marginBottom:"15px"}}>
             <ReCAPTCHA
+              ref={captchaRef}
               sitekey="6Lfed4ksAAAAAB8zC6bmp-LdJLaUD45xf27NUGbX"
-              onChange={(token) => setCaptchaToken(token)}
+              onChange={(token)=>setCaptchaToken(token)}
+              onExpired={()=>setCaptchaToken(null)}
             />
           </div>
 
           <button type="submit" disabled={loading}>
             {loading ? "Creating..." : "Register"}
           </button>
+
         </form>
 
-        <p className="register-text">
+        <p>
           Already have an account? <Link to="/login">Login</Link>
         </p>
       </div>
