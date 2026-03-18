@@ -77,6 +77,29 @@ const Login = () => {
       return;
     }
 
+    // ✅ VERIFY CAPTCHA WITH VERCEL API
+    try {
+      const response = await fetch("/api/verify-captcha", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token: captchaToken }),
+      });
+
+      const data = await response.json();
+
+      if (!data.success) {
+        setError("Captcha verification failed. Try again.");
+        setLoading(false);
+        return;
+      }
+    } catch (err) {
+      setError("Captcha error. Please try again.");
+      setLoading(false);
+      return;
+    }
+
     try {
       await setPersistence(auth, browserSessionPersistence);
 
@@ -203,7 +226,7 @@ const Login = () => {
           {/* ✅ reCAPTCHA */}
           <div style={{ marginBottom: "15px", display: "flex", justifyContent: "center" }}>
             <ReCAPTCHA
-            ref={captchaRef}
+              ref={captchaRef}
               sitekey="6Lfed4ksAAAAAB8zC6bmp-LdJLaUD45xf27NUGbX"
               onChange={(token) => setCaptchaToken(token)}
               onExpired={() => setCaptchaToken(null)}
