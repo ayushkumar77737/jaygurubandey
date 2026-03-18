@@ -1,5 +1,5 @@
 // src/auth/Register.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
@@ -33,6 +33,7 @@ const Register = () => {
   const [success, setSuccess] = useState("");
 
   const [captchaToken, setCaptchaToken] = useState(null); // ✅ added
+  const captchaRef = useRef(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -77,6 +78,29 @@ const Register = () => {
       return;
     }
 
+    // ✅ VERIFY CAPTCHA WITH BACKEND
+    try {
+      const response = await fetch("/api/verify-captcha", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token: captchaToken }),
+      });
+
+      const data = await response.json();
+
+      if (!data.success) {
+        setError("Captcha verification failed.");
+        setLoading(false);
+        return;
+      }
+    } catch (err) {
+      setError("Captcha error. Try again.");
+      setLoading(false);
+      return;
+    }
+
     try {
       const res = await createUserWithEmailAndPassword(
         auth,
@@ -107,7 +131,10 @@ const Register = () => {
       setName("");
       setEmail("");
       setPassword("");
-      setCaptchaToken(null);
+      if (captchaRef.current) {
+        captchaRef.current.reset();
+        setCaptchaToken(null);
+      }
 
     } catch (err) {
       setName("");
@@ -201,6 +228,7 @@ const Register = () => {
             <ReCAPTCHA
               sitekey="6Lfed4ksAAAAAB8zC6bmp-LdJLaUD45xf27NUGbX"
               onChange={(token) => setCaptchaToken(token)}
+              onExpired={() => setCaptchaToken(null)} // ✅ added
             />
           </div>
 
