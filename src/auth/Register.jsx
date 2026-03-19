@@ -34,6 +34,13 @@ const Register = () => {
 
   const [captchaToken, setCaptchaToken] = useState(null); // ✅ added
   const captchaRef = useRef(null);
+  // ✅ ADD THIS
+  const resetCaptcha = () => {
+    if (captchaRef.current) {
+      captchaRef.current.reset();
+      setCaptchaToken(null);
+    }
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -73,6 +80,7 @@ const Register = () => {
     // ✅ block register if captcha not verified
     if (!captchaToken) {
       setError("Please verify that you are not a robot.");
+      resetCaptcha();
       setLoading(false);
       setTimeout(() => setError(""), 3000);
       return;
@@ -92,11 +100,13 @@ const Register = () => {
 
       if (!data.success) {
         setError("Captcha verification failed.");
+        resetCaptcha();
         setLoading(false);
         return;
       }
     } catch (err) {
       setError("Captcha error. Try again.");
+      resetCaptcha();
       setLoading(false);
       return;
     }
@@ -131,16 +141,13 @@ const Register = () => {
       setName("");
       setEmail("");
       setPassword("");
-      if (captchaRef.current) {
-        captchaRef.current.reset();
-        setCaptchaToken(null);
-      }
-
+      resetCaptcha();
     } catch (err) {
       setName("");
       setEmail("");
       setPassword("");
       setSuccess("");
+      resetCaptcha();
 
       if (err.code === "auth/email-already-in-use") {
         setError("This email is already registered. Please login.");
@@ -226,6 +233,7 @@ const Register = () => {
           {/* ✅ reCAPTCHA */}
           <div style={{ marginBottom: "15px", display: "flex", justifyContent: "center" }}>
             <ReCAPTCHA
+              ref={captchaRef}
               sitekey="6Lfed4ksAAAAAB8zC6bmp-LdJLaUD45xf27NUGbX"
               onChange={(token) => setCaptchaToken(token)}
               onExpired={() => setCaptchaToken(null)} // ✅ added
