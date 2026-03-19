@@ -36,6 +36,12 @@ const Login = () => {
 
   const [captchaToken, setCaptchaToken] = useState(null); // ✅ added
   const captchaRef = useRef(null);
+  const resetCaptcha = () => {
+    if (captchaRef.current) {
+      captchaRef.current.reset();
+      setCaptchaToken(null);
+    }
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -72,6 +78,7 @@ const Login = () => {
     // ✅ Block login if captcha not verified
     if (!captchaToken) {
       setError("Please verify that you are not a robot.");
+      resetCaptcha(); 
       setLoading(false);
       setTimeout(() => setError(""), 3000);
       return;
@@ -91,11 +98,13 @@ const Login = () => {
 
       if (!data.success) {
         setError("Captcha verification failed. Try again.");
+        resetCaptcha(); 
         setLoading(false);
         return;
       }
     } catch (err) {
       setError("Captcha error. Please try again.");
+      resetCaptcha(); 
       setLoading(false);
       return;
     }
@@ -117,17 +126,14 @@ const Login = () => {
       await updateDoc(doc(db, "users", res.user.uid), {
         emailVerified: true,
       });
-
+      resetCaptcha();
       navigate("/home", { replace: true });
 
     } catch (err) {
       setEmail("");
       setPassword("");
 
-      if (captchaRef.current) {
-        captchaRef.current.reset();
-        setCaptchaToken(null);
-      }
+     resetCaptcha();
 
       if (err.code === "auth/invalid-email") {
         setError("Please enter a valid email address.");
