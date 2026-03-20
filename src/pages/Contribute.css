@@ -232,37 +232,44 @@
     padding: 10px 18px;
   }
 }
-/* ===== QR BOX ===== */
+/* ===== QR BOX (MATCHED THEME) ===== */
 .qr-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 14px;
+  background: #1f2a40; /* same as your card */
+  border-radius: 16px;
 
   padding: 20px;
   width: 260px;
   min-width: 260px;
 
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 /* QR TITLE */
 .qr-title {
-  font-size: 14px;
-  color: #ccc;
-  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: #00d9ff; /* same accent color */
+  margin-bottom: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
-/* FIX QR IMAGE */
+/* QR IMAGE */
 .contribute-image {
   width: 200px;
   height: 200px;
   object-fit: contain;
 
-  background: #fff; /* 🔥 makes QR clear */
-  padding: 8px;
-  border-radius: 10px;
+  background: #ffffff; /* keep white for QR clarity */
+  padding: 10px;
+
+  border-radius: 12px;
+
+  border: 2px solid rgba(0, 217, 255, 0.2); /* subtle glow match */
 }
