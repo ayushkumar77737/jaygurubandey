@@ -60,11 +60,11 @@ const Contribute = () => {
     e.preventDefault();
     if (loading) return;
 
-     const user = auth.currentUser;          // 👈 get user safely
-  if (!user) {
-    showMessage("❌ Please login to submit contribution.");
-    return;
-  }
+    const user = auth.currentUser;          // 👈 get user safely
+    if (!user) {
+      showMessage("❌ Please login to submit contribution.");
+      return;
+    }
 
     let errors = [];
 
@@ -122,7 +122,7 @@ const Contribute = () => {
 
       // ✅ SAVE TO FIRESTORE
       await addDoc(collection(db, "contributions"), {
-        userId: user.uid,   
+        userId: user.uid,
         name: formData.name,
         phone: formData.phone,
         amount: amountNum,
@@ -150,7 +150,10 @@ const Contribute = () => {
       <h1 className="contribute-title">Contribute</h1>
 
       <div className="contribute-card">
-        <img src={qrImg} alt="Scanner / QR" className="contribute-image" />
+        <div className="qr-box">
+          <p className="qr-title">Scan to Pay</p>
+          <img src={qrImg} alt="QR Code" className="contribute-image" />
+        </div>
 
         <form className="contribute-form" onSubmit={handleSubmit}>
           <input
