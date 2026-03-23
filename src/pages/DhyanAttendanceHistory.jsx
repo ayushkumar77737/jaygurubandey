@@ -42,7 +42,7 @@ const DhyanAttendanceHistory = () => {
           </p>
 
           <a
-            href="https://dhyan-attandance.vercel.app"
+            href="https://dhyan.jaigurubande.in"
             target="_blank"
             rel="noopener noreferrer"
             className="check-btn"
