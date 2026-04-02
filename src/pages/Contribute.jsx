@@ -60,7 +60,7 @@ const Contribute = () => {
     e.preventDefault();
     if (loading) return;
 
-    const user = auth.currentUser;          // 👈 get user safely
+    const user = auth.currentUser;
     if (!user) {
       showMessage("❌ Please login to submit contribution.");
       return;
@@ -101,7 +101,6 @@ const Contribute = () => {
     try {
       setLoading(true);
 
-      // 🔍 CHECK DUPLICATE TRANSACTION ID
       const q = query(
         collection(db, "contributions"),
         where("transactionId", "==", formData.transactionId)
@@ -120,7 +119,6 @@ const Contribute = () => {
         return;
       }
 
-      // ✅ SAVE TO FIRESTORE
       await addDoc(collection(db, "contributions"), {
         userId: user.uid,
         name: formData.name,
@@ -147,66 +145,96 @@ const Contribute = () => {
 
   return (
     <div className="contribute-container">
-      <h1 className="contribute-title">Contribute</h1>
+      {/* Decorative background orbs */}
+      <div className="orb orb-1" aria-hidden="true" />
+      <div className="orb orb-2" aria-hidden="true" />
+      <div className="orb orb-3" aria-hidden="true" />
+      <div className="grid-overlay" aria-hidden="true" />
+
+      <h1 className="contribute-title">
+        <span className="title-icon">💳</span> Contribute
+      </h1>
+      <p className="contribute-subtitle">Support us with a secure UPI payment</p>
 
       <div className="contribute-card">
         <div className="qr-box">
-          <p className="qr-title">Scan to Pay</p>
-          <img src={qrImg} alt="QR Code" className="contribute-image" />
+          <p className="qr-title">
+            <span className="qr-dot" />
+            Scan to Pay
+          </p>
+          <div className="qr-image-wrapper">
+            <img src={qrImg} alt="QR Code" className="contribute-image" />
+          </div>
+          <p className="qr-hint">UPI · Any Bank · Instant</p>
         </div>
 
+        <div className="form-divider" aria-hidden="true" />
+
         <form className="contribute-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+          <div className="input-group">
+            <span className="input-icon">👤</span>
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Phone Number (10 digits)"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
+          <div className="input-group">
+            <span className="input-icon">📱</span>
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone Number (10 digits)"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <input
-            type="text"
-            name="amount"
-            placeholder="Amount (Max ₹1,00,000)"
-            value={formData.amount}
-            onChange={handleChange}
-            required
-          />
+          <div className="input-group">
+            <span className="input-icon">₹</span>
+            <input
+              type="text"
+              name="amount"
+              placeholder="Amount (Max ₹1,00,000)"
+              value={formData.amount}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <input
-            type="text"
-            name="transactionId"
-            placeholder="Transaction ID (12 digits)"
-            value={formData.transactionId}
-            onChange={handleChange}
-            required
-          />
+          <div className="input-group">
+            <span className="input-icon">#</span>
+            <input
+              type="text"
+              name="transactionId"
+              placeholder="Transaction ID (12 digits)"
+              value={formData.transactionId}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
           <button type="submit" className="submit-btn" disabled={loading}>
-            {loading ? "Submitting..." : "Submit"}
+            <span className="btn-shimmer" />
+            {loading ? (
+              <span className="btn-content">
+                <span className="spinner" /> Submitting...
+              </span>
+            ) : (
+              <span className="btn-content">Submit Contribution →</span>
+            )}
           </button>
         </form>
       </div>
 
       {message && (
         <div
-          style={{
-            color: message.startsWith("✅") ? "#00ff9d" : "#ff6b6b",
-            marginTop: "20px",
-            whiteSpace: "pre-line",
-            fontWeight: "bold",
-            textAlign: "center",
-          }}
+          className={`contribute-message ${message.startsWith("✅") ? "success" : "error"}`}
         >
           {message}
         </div>

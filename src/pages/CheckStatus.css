@@ -1,36 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Nunito:wght@300;400;500;600&display=swap');
+
 /* ===============================
-   PAGE CONTAINER (SCOPE ROOT)
+   CSS VARIABLES
+   =============================== */
+:root {
+  --cs-gold: #f0c040;
+  --cs-gold-dim: #c9972a;
+  --cs-gold-glow: rgba(240, 192, 64, 0.28);
+  --cs-bg-deep: #07090f;
+  --cs-bg-mid: #0d1520;
+  --cs-card-bg: rgba(255, 255, 255, 0.055);
+  --cs-card-border: rgba(240, 192, 64, 0.18);
+  --cs-input-bg: rgba(255, 255, 255, 0.06);
+  --cs-input-border: rgba(240, 192, 64, 0.22);
+  --cs-text: #f5ecd7;
+  --cs-text-muted: #7a8fa8;
+  --cs-success: #00ffb3;
+  --cs-pending: #f0c040;
+  --cs-error: #ff5e7a;
+}
+
+/* ===============================
+   PAGE CONTAINER
    =============================== */
 .status-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(240, 192, 64, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(180, 120, 20, 0.07) 0%, transparent 50%),
+    linear-gradient(160deg, #07090f 0%, #0d1520 50%, #111a28 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Nunito', sans-serif;
   overflow: hidden;
+  position: relative;
 }
 
 /* ===============================
-   GURUJI IMAGE
+   BACKGROUND DECORATION LAYER
    =============================== */
+.cs-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Large concentric background rings */
+.cs-bg-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(240, 192, 64, 0.06);
+  transform: translate(-50%, -50%);
+  animation: csBgRingPulse 6s ease-in-out infinite;
+}
+
+.cs-bg-ring-1 {
+  width: 520px;
+  height: 520px;
+  animation-delay: 0s;
+}
+
+.cs-bg-ring-2 {
+  width: 760px;
+  height: 760px;
+  animation-delay: -2s;
+  border-color: rgba(240, 192, 64, 0.04);
+}
+
+.cs-bg-ring-3 {
+  width: 1000px;
+  height: 1000px;
+  animation-delay: -4s;
+  border-color: rgba(240, 192, 64, 0.025);
+}
+
+@keyframes csBgRingPulse {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+}
+
+/* Glow orbs */
+.cs-bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: csOrbDrift 12s ease-in-out infinite;
+}
+
+.cs-bg-orb-1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(240, 192, 64, 0.08) 0%, transparent 70%);
+  top: -100px;
+  right: -80px;
+  animation-delay: 0s;
+}
+
+.cs-bg-orb-2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(100, 160, 240, 0.07) 0%, transparent 70%);
+  bottom: -60px;
+  left: -60px;
+  animation-delay: -5s;
+}
+
+@keyframes csOrbDrift {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-24px) scale(1.04);
+  }
+}
+
+/* Subtle dot grid */
+.cs-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(240, 192, 64, 0.07) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 30%, transparent 80%);
+}
+
+/* ===============================
+   CONTENT WRAPPER
+   =============================== */
+.cs-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 24px;
+  width: 100%;
+  max-width: 480px;
+}
+
+/* ===============================
+   IMAGE + SACRED RINGS
+   =============================== */
+.status-image-wrapper {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+  animation: csRiseUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+/* Outer rotating ring */
+.cs-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  pointer-events: none;
+}
+
+.cs-ring-outer {
+  width: 176px;
+  height: 176px;
+  border: 1.5px dashed rgba(240, 192, 64, 0.25);
+  animation: csRingRotate 18s linear infinite;
+}
+
+.cs-ring-mid {
+  width: 158px;
+  height: 158px;
+  border: 1px solid rgba(240, 192, 64, 0.12);
+  animation: csRingRotate 10s linear infinite reverse;
+}
+
+@keyframes csRingRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Image circle */
 .status-container .status-image {
+  position: relative;
+  z-index: 2;
   width: 140px;
   height: 140px;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 22px;
-  border: 3px solid rgba(255, 215, 0, 0.55);
-
+  border: 2px solid var(--cs-gold-dim);
   box-shadow:
-    0 0 18px rgba(255, 215, 0, 0.35),
-    0 14px 35px rgba(0, 0, 0, 0.45);
-
+    0 0 0 4px rgba(240, 192, 64, 0.10),
+    0 0 30px rgba(240, 192, 64, 0.25),
+    0 16px 40px rgba(0, 0, 0, 0.55);
   animation:
-    fadeUp 0.7s ease-out both,
-    floatSlow 4s ease-in-out infinite,
-    glowPulse 3.5s ease-in-out infinite;
+    csFloatSlow 4s ease-in-out infinite,
+    csGlowPulse 3.5s ease-in-out infinite;
+  /* no fadeUp here — parent wrapper handles it */
 }
 
 .status-container .status-image img {
@@ -39,118 +226,384 @@
   object-fit: cover;
 }
 
+@keyframes csFloatSlow {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes csGlowPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 4px rgba(240, 192, 64, 0.08), 0 0 20px rgba(240, 192, 64, 0.15), 0 16px 40px rgba(0, 0, 0, 0.55);
+  }
+
+  50% {
+    box-shadow: 0 0 0 6px rgba(240, 192, 64, 0.18), 0 0 44px rgba(240, 192, 64, 0.32), 0 16px 40px rgba(0, 0, 0, 0.55);
+  }
+}
+
 /* ===============================
-   TITLE
+   TITLE + SUBTITLE
    =============================== */
 .status-container .status-title {
-  color: #ffffff;
-  margin-bottom: 20px;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
   font-weight: 600;
-  animation: fadeUp 0.8s ease-out both;
+  color: var(--cs-text);
+  letter-spacing: 1.5px;
+  margin: 0 0 6px;
+  text-align: center;
+  opacity: 0;
+  animation: csRiseUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+}
+
+.status-subtitle {
+  font-size: 0.82rem;
+  color: var(--cs-text-muted);
+  letter-spacing: 0.4px;
+  margin: 0 0 28px;
+  font-weight: 400;
+  opacity: 0;
+  animation: csRiseUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
 }
 
 /* ===============================
    CARD
    =============================== */
 .status-container .status-card {
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(12px);
-  padding: 25px;
-  border-radius: 14px;
-  width: 320px;
+  background: var(--cs-card-bg);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  padding: 28px 28px 24px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 360px;
+  border: 1px solid var(--cs-card-border);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 24px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(240, 192, 64, 0.06);
   text-align: center;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
-  animation: fadeUp 0.9s ease-out both;
+  opacity: 0;
+  animation: csRiseUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
+  position: relative;
+}
+
+/* top gold accent line on card */
+.status-container .status-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cs-gold-dim), transparent);
+  border-radius: 1px;
+}
+
+/* ===============================
+   INPUT
+   =============================== */
+.cs-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.cs-input-icon {
+  position: absolute;
+  left: 14px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cs-gold-dim);
+  pointer-events: none;
+  z-index: 2;
+  transition: color 0.25s;
+}
+
+.cs-input-wrap:focus-within .cs-input-icon {
+  color: var(--cs-gold);
 }
 
 .status-container .status-card input {
   width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
+  padding: 13px 16px 13px 36px;
+  border-radius: 11px;
+  border: 1px solid var(--cs-input-border);
+  background: var(--cs-input-bg);
+  color: var(--cs-text);
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
   outline: none;
-  margin-bottom: 15px;
-  font-size: 14px;
+  letter-spacing: 1px;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  /* reset original margin, handled by wrapper */
 }
 
+.status-container .status-card input::placeholder {
+  color: var(--cs-text-muted);
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+
+.status-container .status-card input:focus {
+  border-color: rgba(240, 192, 64, 0.5);
+  background: rgba(240, 192, 64, 0.05);
+  box-shadow: 0 0 0 3px rgba(240, 192, 64, 0.1);
+}
+
+/* ===============================
+   BUTTON
+   =============================== */
 .status-container .status-card button {
   width: 100%;
-  padding: 12px;
-  border-radius: 8px;
+  padding: 13px 20px;
+  border-radius: 11px;
   border: none;
+  font-family: 'Cinzel', serif;
+  font-size: 0.88rem;
   font-weight: 600;
+  letter-spacing: 1.2px;
   cursor: pointer;
-  background: linear-gradient(135deg, #ffd166, #ffb703);
-  color: #222;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: linear-gradient(135deg, #f0c040 0%, #c9840a 100%);
+  color: #1a0f00;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cs-btn-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg,
+      transparent 38%,
+      rgba(255, 255, 255, 0.22) 50%,
+      transparent 62%);
+  transform: translateX(-100%);
+  transition: transform 0s;
+}
+
+.status-container .status-card button:hover .cs-btn-shimmer {
+  transform: translateX(100%);
+  transition: transform 0.55s ease;
+}
+
+.cs-btn-text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .status-container .status-card button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 24px rgba(240, 192, 64, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.status-container .status-card button:active {
+  transform: translateY(0) scale(0.99);
 }
 
 .status-container .status-card button:disabled {
-  opacity: 0.6;
+  opacity: 0.55;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ===============================
+   SPINNER
+   =============================== */
+.cs-spinner {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(26, 15, 0, 0.3);
+  border-top-color: #1a0f00;
+  border-radius: 50%;
+  animation: csSpin 0.75s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes csSpin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ===============================
    STATUS MESSAGE
    =============================== */
 .status-container .status-message {
-  margin-top: 16px;
-  font-weight: 500;
-  animation: fadeUp 0.5s ease-out both;
+  margin-top: 18px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: 0.3px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  animation: csRiseUp 0.45s ease forwards;
 }
 
-.status-container .status-message.success { color: #00ff9d; }
-.status-container .status-message.pending { color: #ffd166; }
-.status-container .status-message.error   { color: #ff6b6b; }
+.status-container .status-message.success {
+  color: var(--cs-success);
+  background: rgba(0, 255, 179, 0.08);
+  border: 1px solid rgba(0, 255, 179, 0.2);
+}
+
+.status-container .status-message.pending {
+  color: var(--cs-pending);
+  background: rgba(240, 192, 64, 0.08);
+  border: 1px solid rgba(240, 192, 64, 0.25);
+}
+
+.status-container .status-message.error {
+  color: var(--cs-error);
+  background: rgba(255, 94, 122, 0.08);
+  border: 1px solid rgba(255, 94, 122, 0.2);
+}
 
 /* ===============================
    ANIMATIONS
    =============================== */
-@keyframes floatSlow {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0); }
+@keyframes csRiseUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* keep original keyframes so nothing breaks */
+@keyframes floatSlow {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 @keyframes glowPulse {
-  0% { box-shadow: 0 0 0 rgba(255, 215, 0, 0); }
-  50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.35); }
-  100% { box-shadow: 0 0 0 rgba(255, 215, 0, 0); }
+  0% {
+    box-shadow: 0 0 0 rgba(255, 215, 0, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.35);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rgba(255, 215, 0, 0);
+  }
 }
 
 /* ===============================
-   RESPONSIVE (SCOPED)
+   RESPONSIVE
    =============================== */
 @media (max-width: 768px) {
+  .status-image-wrapper {
+    width: 130px;
+    height: 130px;
+  }
+
   .status-container .status-image {
-    width: 120px;
-    height: 120px;
+    width: 118px;
+    height: 118px;
+  }
+
+  .cs-ring-outer {
+    width: 146px;
+    height: 146px;
+  }
+
+  .cs-ring-mid {
+    width: 130px;
+    height: 130px;
   }
 
   .status-container .status-card {
-    width: 100%;
-    max-width: 360px;
+    max-width: 100%;
+    padding: 24px 20px 20px;
   }
 }
 
 @media (max-width: 480px) {
+  .cs-content {
+    padding: 32px 16px;
+  }
+
+  .status-image-wrapper {
+    width: 110px;
+    height: 110px;
+  }
+
   .status-container .status-image {
     width: 100px;
     height: 100px;
   }
 
+  .cs-ring-outer {
+    width: 126px;
+    height: 126px;
+  }
+
+  .cs-ring-mid {
+    width: 112px;
+    height: 112px;
+  }
+
   .status-container .status-title {
-    font-size: 18px;
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+  }
+
+  .status-container .status-card button {
+    font-size: 0.82rem;
+    padding: 12px;
+  }
+
+  .status-container .status-card input {
+    font-size: 0.9rem;
   }
 }
 
@@ -160,5 +613,6 @@
 @media (prefers-reduced-motion: reduce) {
   .status-container * {
     animation: none !important;
+    transition: none !important;
   }
 }

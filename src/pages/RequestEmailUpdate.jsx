@@ -28,7 +28,7 @@ const RequestEmailUpdate = () => {
       setTimeout(() => setMessage(""), 3000);
       return;
     }
-    // ❌ validate email format
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(newEmail)) {
       setMessage("❌ Please enter a valid email address");
@@ -60,7 +60,7 @@ const RequestEmailUpdate = () => {
 
       if (!snapshot.empty) {
         setMessage(
-          "⚠️ You already requested an email update. We’ll reach you through email."
+          "⚠️ You already requested an email update. We'll reach you through email."
         );
         setNewEmail("");
         setReason("");
@@ -77,10 +77,9 @@ const RequestEmailUpdate = () => {
         createdAt: serverTimestamp(),
       });
 
-      setMessage("✅ Request sent successfully. We’ll contact you by email.");
+      setMessage("✅ Request sent successfully. We'll contact you by email.");
       setNewEmail("");
       setReason("");
-
       setTimeout(() => setMessage(""), 3000);
     } catch (error) {
       console.error("Email change request error:", error);
@@ -93,52 +92,104 @@ const RequestEmailUpdate = () => {
 
   return (
     <div className="emailreq-page">
-      <div className="emailreq-card">
-        <h2 className="emailreq-title">Request Email Update</h2>
 
-        {message && <p className="emailreq-message">{message}</p>}
+      {/* Decorative background */}
+      <div className="er-bg" aria-hidden="true">
+        <div className="er-orb er-orb-1" />
+        <div className="er-orb er-orb-2" />
+        <div className="er-orb er-orb-3" />
+        <div className="er-grid" />
+      </div>
+
+      <div className="emailreq-card">
+
+        {/* Header */}
+        <div className="er-header">
+          <div className="er-icon-wrap" aria-hidden="true">
+            <span className="er-icon">✉</span>
+            <div className="er-icon-ring" />
+          </div>
+          <h2 className="emailreq-title">Request Email Update</h2>
+          <p className="er-subtitle">Submit a request and we'll reach you shortly</p>
+        </div>
+
+        {message && (
+          <p className={`emailreq-message ${message.startsWith("✅") ? "er-msg-success"
+              : message.startsWith("⚠️") ? "er-msg-warn"
+                : "er-msg-error"
+            }`}>
+            {message}
+          </p>
+        )}
 
         <form onSubmit={handleSubmit} className="emailreq-form">
-          <input
-            type="text"
-            placeholder="User ID"
-            value={user?.uid || ""}
-            disabled
-          />
 
-          <input
-            type="email"
-            placeholder="Old Email"
-            value={oldEmail}
-            disabled
-          />
+          <div className="er-field">
+            <label className="er-label">User ID</label>
+            <div className="er-input-wrap">
+              <span className="er-prefix">#</span>
+              <input
+                type="text"
+                placeholder="User ID"
+                value={user?.uid || ""}
+                disabled
+              />
+            </div>
+          </div>
 
-          <input
-            type="email"
-            placeholder="New Email"
-            value={newEmail}
-            onChange={(e) => {
-              const value = e.target.value;
+          <div className="er-field">
+            <label className="er-label">Current Email</label>
+            <div className="er-input-wrap">
+              <span className="er-prefix">@</span>
+              <input
+                type="email"
+                placeholder="Old Email"
+                value={oldEmail}
+                disabled
+              />
+            </div>
+          </div>
 
-              // ❌ remove spaces and invalid characters for email
-              const cleaned = value.replace(/[^a-zA-Z0-9@._-]/g, "");
+          <div className="er-field">
+            <label className="er-label">New Email</label>
+            <div className="er-input-wrap">
+              <span className="er-prefix">@</span>
+              <input
+                type="email"
+                placeholder="Enter new email address"
+                value={newEmail}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  const cleaned = value.replace(/[^a-zA-Z0-9@._-]/g, "");
+                  setNewEmail(cleaned);
+                }}
+                required
+              />
+            </div>
+          </div>
 
-              setNewEmail(cleaned);
-            }}
-            required
-          />
-
-          <textarea
-            placeholder="Reason for email change"
-            value={reason}
-            onChange={(e) => setReason(e.target.value)}
-            rows="4"
-            required
-          />
+          <div className="er-field">
+            <label className="er-label">Reason for Change</label>
+            <textarea
+              placeholder="Briefly explain why you'd like to change your email..."
+              value={reason}
+              onChange={(e) => setReason(e.target.value)}
+              rows="4"
+              required
+            />
+          </div>
 
           <button type="submit" disabled={loading}>
-            {loading ? "Submitting..." : "Request Email Update"}
+            <span className="er-btn-shimmer" />
+            <span className="er-btn-text">
+              {loading ? (
+                <><span className="er-spinner" /> Submitting...</>
+              ) : (
+                "Request Email Update →"
+              )}
+            </span>
           </button>
+
         </form>
       </div>
     </div>

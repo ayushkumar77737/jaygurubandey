@@ -1,38 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+
 /* =========================
-   ACCOUNT PAGE (SCOPED)
+   CSS VARIABLES
+========================= */
+:root {
+  --acc-cyan: #00e5ff;
+  --acc-violet: #7c4dff;
+  --acc-cyan-glow: rgba(0, 229, 255, 0.18);
+  --acc-violet-glow: rgba(124, 77, 255, 0.18);
+  --acc-bg: #050b12;
+  --acc-card: rgba(14, 30, 46, 0.82);
+  --acc-input-bg: rgba(255, 255, 255, 0.045);
+  --acc-input-border: rgba(0, 229, 255, 0.15);
+  --acc-text: #e6faff;
+  --acc-text-muted: #7a9ab5;
+  --acc-border: rgba(0, 229, 255, 0.1);
+}
+
+/* =========================
+   PAGE
 ========================= */
 .account-page {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at top, #0a1a1f, #050b12);
-  padding: 20px;
+  background:
+    radial-gradient(ellipse at 15% 15%, rgba(0, 229, 255, 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 85%, rgba(124, 77, 255, 0.08) 0%, transparent 55%),
+    linear-gradient(160deg, #050b12 0%, #07121e 50%, #0a0f1c 100%);
+  padding: 24px;
   box-sizing: border-box;
-  animation: accFade 0.4s ease-out both;
+  font-family: 'Sora', sans-serif;
+  position: relative;
+  overflow: hidden;
+  animation: accFade 0.5s ease-out both;
+}
+
+/* =========================
+   BACKGROUND LAYER
+========================= */
+.acc-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.acc-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: accOrbDrift 14s ease-in-out infinite;
+}
+
+.acc-orb-1 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.09) 0%, transparent 70%);
+  top: -120px;
+  right: -80px;
+  animation-delay: 0s;
+}
+
+.acc-orb-2 {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(124, 77, 255, 0.11) 0%, transparent 70%);
+  bottom: -80px;
+  left: -60px;
+  animation-delay: -5s;
+}
+
+@keyframes accOrbDrift {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-22px) scale(1.03);
+  }
+}
+
+.acc-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 229, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.acc-loading {
+  color: var(--acc-text);
+  font-family: 'Sora', sans-serif;
+  font-size: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 /* =========================
    CONTAINER
 ========================= */
 .account-page .account-container {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 420px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
+  gap: 6px;
+}
+
+/* =========================
+   AVATAR
+========================= */
+.acc-avatar {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 8px;
+  animation: accUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+.acc-avatar span {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(124, 77, 255, 0.2));
+  border: 1.5px solid rgba(0, 229, 255, 0.3);
+  align-items: center;
+  justify-content: center;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--acc-cyan);
+  letter-spacing: 1px;
+  box-shadow:
+    0 0 0 4px rgba(0, 229, 255, 0.07),
+    0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+.acc-avatar-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px dashed rgba(0, 229, 255, 0.2);
+  animation: accAvatarSpin 20s linear infinite;
+}
+
+@keyframes accAvatarSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* =========================
    TITLE
 ========================= */
 .account-page .account-title {
-  color: #e6faff;
-  font-size: 24px;
+  color: var(--acc-text);
+  font-size: 1.4rem;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  animation: accSlide 0.35s ease-out both;
+  letter-spacing: 0.3px;
+  margin: 0 0 16px;
+  animation: accSlide 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
 }
 
 /* =========================
@@ -40,47 +182,78 @@
 ========================= */
 .account-page .account-card {
   width: 100%;
-  background: linear-gradient(180deg, rgba(20, 44, 56, 0.9), rgba(10, 22, 32, 0.95));
-  backdrop-filter: blur(8px);
-  padding: 26px;
-  border-radius: 16px;
-  box-shadow: 0 18px 40px rgba(0, 255, 255, 0.12);
-  color: #e8faff;
-  animation: accUp 0.4s ease-out both;
+  background: var(--acc-card);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  padding: 28px 26px 24px;
+  border-radius: 20px;
+  border: 1px solid var(--acc-border);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 24px 60px rgba(0, 0, 0, 0.55),
+    0 0 50px rgba(0, 229, 255, 0.06);
+  color: var(--acc-text);
+  position: relative;
+  animation: accUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+/* top hairline accent */
+.account-page .account-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 55%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--acc-cyan), var(--acc-violet), transparent);
+  border-radius: 1px;
 }
 
 /* =========================
-   INPUT FIELD
+   FIELD
 ========================= */
 .account-page .field {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .account-page .field label {
-  font-size: 13px;
-  color: #b6eaff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--acc-text-muted);
+  display: block;
+  margin-bottom: 7px;
 }
 
 .account-page .field input {
   width: 100%;
-  margin-top: 6px;
-  padding: 11px;
-  border-radius: 8px;
-  border: 1px solid rgba(0, 255, 255, 0.15);
-  background: rgba(10, 24, 36, 0.9);
-  color: #e6faff;
-  font-size: 14px;
-  transition: 0.2s ease;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--acc-input-border);
+  background: var(--acc-input-bg);
+  color: var(--acc-text);
+  font-family: 'Sora', sans-serif;
+  font-size: 0.93rem;
+  font-weight: 400;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.account-page .field input::placeholder {
+  color: var(--acc-text-muted);
 }
 
 .account-page .field input:focus {
-  outline: none;
-  border-color: #00e5ff;
-  box-shadow: 0 0 0 2px rgba(0, 229, 255, 0.15);
+  border-color: rgba(0, 229, 255, 0.45);
+  background: rgba(0, 229, 255, 0.04);
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.09);
 }
 
 .account-page .field input:disabled {
-  opacity: 0.6;
+  opacity: 0.55;
   cursor: not-allowed;
 }
 
@@ -88,124 +261,291 @@
    EMAIL NOTE
 ========================= */
 .account-page .email-note {
-  margin-top: 6px;
-  font-size: 12px;
-  color: #9adcf0;
+  margin-top: 7px;
+  font-size: 0.75rem;
+  color: var(--acc-text-muted);
+  line-height: 1.55;
 }
 
 /* =========================
-   BUTTONS
+   DIVIDER
+========================= */
+.account-page .account-card .field+.field {
+  padding-top: 4px;
+  border-top: 1px solid rgba(0, 229, 255, 0.06);
+}
+
+/* =========================
+   PRIMARY BUTTON (Edit / Update)
 ========================= */
 .account-page .primary-btn {
-  flex: 1;
-  padding: 12px;
-  background: linear-gradient(135deg, #00e5ff, #7c4dff);
+  width: 100%;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #00c8e8 0%, #7c4dff 100%);
   border: none;
-  border-radius: 8px;
+  border-radius: 11px;
+  font-family: 'Sora', sans-serif;
   font-weight: 700;
-  font-size: 15px;
-  color: #041018;
+  font-size: 0.92rem;
+  letter-spacing: 0.4px;
+  color: #03111c;
   cursor: pointer;
-  transition: 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  margin-top: 4px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .account-page .primary-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(0, 229, 255, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 229, 255, 0.3), 0 4px 12px rgba(124, 77, 255, 0.25);
 }
 
-/* Update + Cancel group */
+.account-page .primary-btn:active {
+  transform: scale(0.99);
+}
+
+.account-page .primary-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* =========================
+   BTN GROUP (Update + Cancel)
+========================= */
 .account-page .btn-group {
   display: flex;
-  gap: 12px;
-  margin-top: 12px;
+  gap: 10px;
+  margin-top: 4px;
 }
 
+.account-page .btn-group .primary-btn {
+  flex: 1;
+  margin-top: 0;
+}
+
+/* =========================
+   CANCEL BUTTON
+========================= */
 .account-page .cancel-btn {
   flex: 1;
-  padding: 12px;
+  padding: 12px 16px;
   background: transparent;
-  border: 1.5px solid rgba(124, 77, 255, 0.5);
-  border-radius: 8px;
+  border: 1px solid rgba(124, 77, 255, 0.4);
+  border-radius: 11px;
+  font-family: 'Sora', sans-serif;
   font-weight: 600;
-  font-size: 15px;
-  color: #d6c9ff;
+  font-size: 0.92rem;
+  color: #c4b5fd;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: background 0.22s, border-color 0.22s;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .account-page .cancel-btn:hover {
-  background: rgba(124, 77, 255, 0.15);
-  border-color: #7c4dff;
+  background: rgba(124, 77, 255, 0.12);
+  border-color: rgba(124, 77, 255, 0.65);
 }
 
 /* =========================
-   SUCCESS MESSAGE
+   SHIMMER (shared)
 ========================= */
-/* =========================
-   SUCCESS MESSAGE (MATCH THEME - NO GREEN)
-========================= */
-.account-page .success-msg {
-  margin-top: 12px;
-  padding: 10px 14px;
-  border-radius: 8px;
-
-  background: rgba(0, 229, 255, 0.12);   /* soft cyan glass */
-  border: 1px solid rgba(0, 229, 255, 0.35);
-
-  color: #bff6ff;   /* light cyan text */
-  font-size: 13px;
-  font-weight: 500;
-
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  animation: accFade 0.3s ease-out both;
+.acc-btn-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg,
+      transparent 38%,
+      rgba(255, 255, 255, 0.18) 50%,
+      transparent 62%);
+  transform: translateX(-100%);
+  transition: transform 0s;
+  pointer-events: none;
 }
 
+.account-page .primary-btn:hover .acc-btn-shimmer,
+.account-page .my-payments-btn:hover .acc-btn-shimmer {
+  transform: translateX(100%);
+  transition: transform 0.55s ease;
+}
 
 /* =========================
    MY PAYMENTS BUTTON
 ========================= */
 .account-page .account-card .my-payments-btn {
   width: 100%;
-  margin-top: 10px;
-  padding: 11px 14px;
-  border-radius: 10px;
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: 11px;
   border: none;
-  background: linear-gradient(135deg, #7c4dff, #00e5ff);
-  color: #041018;
-  font-size: 14px;
+  background: linear-gradient(135deg, #7c4dff 0%, #00c8e8 100%);
+  color: #03111c;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.92rem;
   font-weight: 700;
+  letter-spacing: 0.3px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: 0.25s ease;
-  box-shadow: 0 10px 22px rgba(124, 77, 255, 0.35);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  box-shadow: 0 8px 22px rgba(124, 77, 255, 0.28);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .account-page .account-card .my-payments-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(124, 77, 255, 0.38);
+}
+
+/* =========================
+   DELETE BUTTON
+========================= */
+.account-delete-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 11px 16px;
+  border-radius: 11px;
+  border: 1px solid rgba(255, 80, 80, 0.3);
+  background: rgba(255, 59, 59, 0.08);
+  color: #ff8080;
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: background 0.22s, border-color 0.22s, color 0.22s, transform 0.22s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.account-delete-btn:hover {
+  background: rgba(255, 59, 59, 0.16);
+  border-color: rgba(255, 80, 80, 0.55);
+  color: #ffaaaa;
   transform: translateY(-1px);
-  filter: brightness(1.05);
+}
+
+.account-delete-btn:active {
+  transform: translateY(0);
+}
+
+.account-delete-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =========================
+   MESSAGES
+========================= */
+.account-page .success-msg {
+  margin-top: 14px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  color: #b0f0ff;
+  font-size: 0.83rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: accFade 0.35s ease-out both;
+  line-height: 1.5;
+}
+
+.account-page .error-msg {
+  margin-top: 14px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  background: rgba(124, 77, 255, 0.09);
+  border: 1px solid rgba(124, 77, 255, 0.28);
+  color: #d6c9ff;
+  font-size: 0.83rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: accFade 0.35s ease-out both;
+  line-height: 1.5;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes accFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes accUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes accSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
 @media (max-width: 480px) {
+  .account-page {
+    padding: 16px;
+  }
+
   .account-page .account-title {
-    font-size: 20px;
+    font-size: 1.2rem;
   }
 
   .account-page .account-card {
-    padding: 22px;
+    padding: 22px 18px 20px;
+    border-radius: 16px;
   }
 
   .account-page .btn-group {
     flex-direction: column;
+  }
+
+  .acc-avatar span {
+    width: 62px;
+    height: 62px;
+    font-size: 1.25rem;
+  }
+
+  .acc-avatar {
+    width: 62px;
+    height: 62px;
+  }
+
+  .account-delete-btn {
+    font-size: 0.85rem;
   }
 }
 
@@ -218,107 +558,5 @@
 @media (min-width: 769px) {
   .account-page .account-container {
     max-width: 420px;
-  }
-}
-
-/* =========================
-   ANIMATIONS (LIGHTWEIGHT)
-========================= */
-@keyframes accFade {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes accUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes accSlide {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* =========================
-   ERROR MESSAGE (MATCH ACCOUNT THEME)
-========================= */
-.account-page .error-msg {
-  margin-top: 12px;
-  padding: 10px 14px;
-  border-radius: 8px;
-
-  background: rgba(124, 77, 255, 0.12);   /* soft violet glass */
-  border: 1px solid rgba(124, 77, 255, 0.35);
-
-  color: #d6c9ff;   /* light violet text */
-  font-size: 13px;
-  font-weight: 500;
-
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  animation: accFade 0.3s ease-out both;
-}
-
-/* =========================
-   🔥 DELETE ACCOUNT BUTTON (SCOPED)
-========================= */
-
-.account-delete-btn {
-  width: 100%;
-  max-width: 520px;              /* ⬅️ match My Payments width */
-  margin: 12px auto 0;          /* ⬅️ center like My Payments */
-  padding: 11px 18px;           /* ⬅️ match height */
-  border-radius: 10px;          /* ⬅️ more pill-like */
-  border: 1px solid rgba(255, 80, 80, 0.45);
-  background: linear-gradient(135deg, #ff3b3b, #b30000);
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 15px;              /* ⬅️ slightly bigger text */
-  letter-spacing: 0.3px;
-  cursor: pointer;
-
-  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
-  box-shadow: 0 10px 26px rgba(255, 0, 0, 0.28);
-  align-self: center;
-}
-
-/* Hover */
-.account-delete-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 30px rgba(255, 0, 0, 0.4);
-  opacity: 0.95;
-}
-
-/* Active */
-.account-delete-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.28);
-}
-
-/* Focus (accessibility) */
-.account-delete-btn:focus-visible {
-  outline: none;
-  box-shadow:
-    0 0 0 2px rgba(255, 80, 80, 0.4),
-    0 10px 26px rgba(255, 0, 0, 0.28);
-}
-
-/* Disabled state */
-.account-delete-btn:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
-
-/* 📱 Responsive tweaks */
-@media (max-width: 480px) {
-  .account-delete-btn {
-    max-width: 100%;
-    font-size: 14px;
-    padding: 13px 14px;
-    border-radius: 14px;
   }
 }

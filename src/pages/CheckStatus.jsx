@@ -9,18 +9,14 @@ const CheckStatus = () => {
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // ⏱ to clear previous timers safely
   const timerRef = useRef(null);
 
-  // ✅ show message & auto-hide
   const showResult = (message) => {
     setResult(message);
-
     if (timerRef.current) clearTimeout(timerRef.current);
-
     timerRef.current = setTimeout(() => {
       setResult("");
-    }, 3000); // ⏱ 3 seconds
+    }, 3000);
   };
 
   const handleCheck = async (e) => {
@@ -75,42 +71,74 @@ const CheckStatus = () => {
   return (
     <div className="status-container">
 
-      {/* 🖼 Guruji Image */}
-      <div className="status-image">
-        <img src={guruji} alt="Guruji" />
+      {/* ── Decorative background ── */}
+      <div className="cs-bg" aria-hidden="true">
+        <div className="cs-bg-ring cs-bg-ring-1" />
+        <div className="cs-bg-ring cs-bg-ring-2" />
+        <div className="cs-bg-ring cs-bg-ring-3" />
+        <div className="cs-bg-orb cs-bg-orb-1" />
+        <div className="cs-bg-orb cs-bg-orb-2" />
+        <div className="cs-dots" />
       </div>
 
-      <h1 className="status-title">Check Payment Status</h1>
+      {/* ── Content ── */}
+      <div className="cs-content">
 
-      <form className="status-card" onSubmit={handleCheck}>
-        <input
-          type="text"
-          placeholder="Enter Transaction ID"
-          value={transactionId}
-          onChange={(e) =>
-            setTransactionId(e.target.value.replace(/\D/g, "").slice(0, 12))
-          }
-          required
-        />
-
-        <button type="submit" disabled={loading}>
-          {loading ? "Checking..." : "Check Status"}
-        </button>
-      </form>
-
-      {result && (
-        <div
-          className={`status-message ${
-            result.startsWith("✅")
-              ? "success"
-              : result.startsWith("⏳")
-              ? "pending"
-              : "error"
-          }`}
-        >
-          {result}
+        {/* Guruji image with sacred rings */}
+        <div className="status-image-wrapper" aria-hidden="true">
+          <div className="cs-ring cs-ring-outer" />
+          <div className="cs-ring cs-ring-mid" />
+          <div className="status-image">
+            <img src={guruji} alt="Guruji" />
+          </div>
         </div>
-      )}
+
+        <h1 className="status-title">Check Payment Status</h1>
+        <p className="status-subtitle">Enter your 12-digit transaction ID below</p>
+
+        <form className="status-card" onSubmit={handleCheck}>
+          <div className="cs-input-wrap">
+            <span className="cs-input-icon">#</span>
+            <input
+              type="text"
+              placeholder="Transaction ID (12 digits)"
+              value={transactionId}
+              onChange={(e) =>
+                setTransactionId(e.target.value.replace(/\D/g, "").slice(0, 12))
+              }
+              required
+            />
+          </div>
+
+          <button type="submit" disabled={loading}>
+            <span className="cs-btn-shimmer" />
+            <span className="cs-btn-text">
+              {loading ? (
+                <>
+                  <span className="cs-spinner" /> Checking...
+                </>
+              ) : (
+                "Check Status"
+              )}
+            </span>
+          </button>
+        </form>
+
+        {result && (
+          <div
+            className={`status-message ${
+              result.startsWith("✅")
+                ? "success"
+                : result.startsWith("⏳")
+                ? "pending"
+                : "error"
+            }`}
+          >
+            {result}
+          </div>
+        )}
+
+      </div>
     </div>
   );
 };
