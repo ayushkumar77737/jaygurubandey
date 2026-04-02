@@ -69,36 +69,36 @@ const CheckStatus = () => {
   };
 
   return (
-    <div className="status-container">
+    <div className="chkst-container">
 
       {/* ── Decorative background ── */}
-      <div className="cs-bg" aria-hidden="true">
-        <div className="cs-bg-ring cs-bg-ring-1" />
-        <div className="cs-bg-ring cs-bg-ring-2" />
-        <div className="cs-bg-ring cs-bg-ring-3" />
-        <div className="cs-bg-orb cs-bg-orb-1" />
-        <div className="cs-bg-orb cs-bg-orb-2" />
-        <div className="cs-dots" />
+      <div className="chkst-bg" aria-hidden="true">
+        <div className="chkst-bg-ring chkst-bg-ring-1" />
+        <div className="chkst-bg-ring chkst-bg-ring-2" />
+        <div className="chkst-bg-ring chkst-bg-ring-3" />
+        <div className="chkst-bg-orb chkst-bg-orb-1" />
+        <div className="chkst-bg-orb chkst-bg-orb-2" />
+        <div className="chkst-dots" />
       </div>
 
       {/* ── Content ── */}
-      <div className="cs-content">
+      <div className="chkst-content">
 
         {/* Guruji image with sacred rings */}
-        <div className="status-image-wrapper" aria-hidden="true">
-          <div className="cs-ring cs-ring-outer" />
-          <div className="cs-ring cs-ring-mid" />
-          <div className="status-image">
+        <div className="chkst-image-wrapper" aria-hidden="true">
+          <div className="chkst-ring chkst-ring-outer" />
+          <div className="chkst-ring chkst-ring-mid" />
+          <div className="chkst-image">
             <img src={guruji} alt="Guruji" />
           </div>
         </div>
 
-        <h1 className="status-title">Check Payment Status</h1>
-        <p className="status-subtitle">Enter your 12-digit transaction ID below</p>
+        <h1 className="chkst-title">Check Payment Status</h1>
+        <p className="chkst-subtitle">Enter your 12-digit transaction ID below</p>
 
-        <form className="status-card" onSubmit={handleCheck}>
-          <div className="cs-input-wrap">
-            <span className="cs-input-icon">#</span>
+        <form className="chkst-card" onSubmit={handleCheck}>
+          <div className="chkst-input-wrap">
+            <span className="chkst-input-icon">#</span>
             <input
               type="text"
               placeholder="Transaction ID (12 digits)"
@@ -111,11 +111,11 @@ const CheckStatus = () => {
           </div>
 
           <button type="submit" disabled={loading}>
-            <span className="cs-btn-shimmer" />
-            <span className="cs-btn-text">
+            <span className="chkst-btn-shimmer" />
+            <span className="chkst-btn-text">
               {loading ? (
                 <>
-                  <span className="cs-spinner" /> Checking...
+                  <span className="chkst-spinner" /> Checking...
                 </>
               ) : (
                 "Check Status"
@@ -126,12 +126,12 @@ const CheckStatus = () => {
 
         {result && (
           <div
-            className={`status-message ${
+            className={`chkst-message ${
               result.startsWith("✅")
-                ? "success"
+                ? "chkst-success"
                 : result.startsWith("⏳")
-                ? "pending"
-                : "error"
+                ? "chkst-pending"
+                : "chkst-error"
             }`}
           >
             {result}

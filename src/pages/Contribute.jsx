@@ -89,12 +89,7 @@ const Contribute = () => {
 
     if (errors.length > 0) {
       showMessage(errors.join("\n"));
-      setFormData({
-        name: "",
-        phone: "",
-        amount: "",
-        transactionId: "",
-      });
+      setFormData({ name: "", phone: "", amount: "", transactionId: "" });
       return;
     }
 
@@ -110,12 +105,7 @@ const Contribute = () => {
 
       if (!snapshot.empty) {
         showMessage("❌ This Transaction ID has already been submitted.");
-        setFormData({
-          name: "",
-          phone: "",
-          amount: "",
-          transactionId: "",
-        });
+        setFormData({ name: "", phone: "", amount: "", transactionId: "" });
         return;
       }
 
@@ -129,13 +119,7 @@ const Contribute = () => {
       });
 
       showMessage("✅ Contribution submitted successfully. Please verify the payment by checking the payment status", 3000);
-
-      setFormData({
-        name: "",
-        phone: "",
-        amount: "",
-        transactionId: "",
-      });
+      setFormData({ name: "", phone: "", amount: "", transactionId: "" });
     } catch (error) {
       showMessage("❌ Server error. Please try again.");
     } finally {
@@ -144,35 +128,35 @@ const Contribute = () => {
   };
 
   return (
-    <div className="contribute-container">
+    <div className="ctbp-container">
       {/* Decorative background orbs */}
-      <div className="orb orb-1" aria-hidden="true" />
-      <div className="orb orb-2" aria-hidden="true" />
-      <div className="orb orb-3" aria-hidden="true" />
-      <div className="grid-overlay" aria-hidden="true" />
+      <div className="ctbp-orb ctbp-orb-1" aria-hidden="true" />
+      <div className="ctbp-orb ctbp-orb-2" aria-hidden="true" />
+      <div className="ctbp-orb ctbp-orb-3" aria-hidden="true" />
+      <div className="ctbp-grid-overlay" aria-hidden="true" />
 
-      <h1 className="contribute-title">
-        <span className="title-icon">💳</span> Contribute
+      <h1 className="ctbp-title">
+        <span className="ctbp-title-icon">💳</span> Contribute
       </h1>
-      <p className="contribute-subtitle">Support us with a secure UPI payment</p>
+      <p className="ctbp-subtitle">Support us with a secure UPI payment</p>
 
-      <div className="contribute-card">
-        <div className="qr-box">
-          <p className="qr-title">
-            <span className="qr-dot" />
+      <div className="ctbp-card">
+        <div className="ctbp-qr-box">
+          <p className="ctbp-qr-title">
+            <span className="ctbp-qr-dot" />
             Scan to Pay
           </p>
-          <div className="qr-image-wrapper">
-            <img src={qrImg} alt="QR Code" className="contribute-image" />
+          <div className="ctbp-qr-image-wrapper">
+            <img src={qrImg} alt="QR Code" className="ctbp-image" />
           </div>
-          <p className="qr-hint">UPI · Any Bank · Instant</p>
+          <p className="ctbp-qr-hint">UPI · Any Bank · Instant</p>
         </div>
 
-        <div className="form-divider" aria-hidden="true" />
+        <div className="ctbp-form-divider" aria-hidden="true" />
 
-        <form className="contribute-form" onSubmit={handleSubmit}>
-          <div className="input-group">
-            <span className="input-icon">👤</span>
+        <form className="ctbp-form" onSubmit={handleSubmit}>
+          <div className="ctbp-input-group">
+            <span className="ctbp-input-icon">👤</span>
             <input
               type="text"
               name="name"
@@ -183,8 +167,8 @@ const Contribute = () => {
             />
           </div>
 
-          <div className="input-group">
-            <span className="input-icon">📱</span>
+          <div className="ctbp-input-group">
+            <span className="ctbp-input-icon">📱</span>
             <input
               type="tel"
               name="phone"
@@ -195,8 +179,8 @@ const Contribute = () => {
             />
           </div>
 
-          <div className="input-group">
-            <span className="input-icon">₹</span>
+          <div className="ctbp-input-group">
+            <span className="ctbp-input-icon">₹</span>
             <input
               type="text"
               name="amount"
@@ -207,8 +191,8 @@ const Contribute = () => {
             />
           </div>
 
-          <div className="input-group">
-            <span className="input-icon">#</span>
+          <div className="ctbp-input-group">
+            <span className="ctbp-input-icon">#</span>
             <input
               type="text"
               name="transactionId"
@@ -219,14 +203,14 @@ const Contribute = () => {
             />
           </div>
 
-          <button type="submit" className="submit-btn" disabled={loading}>
-            <span className="btn-shimmer" />
+          <button type="submit" className="ctbp-submit-btn" disabled={loading}>
+            <span className="ctbp-btn-shimmer" />
             {loading ? (
-              <span className="btn-content">
-                <span className="spinner" /> Submitting...
+              <span className="ctbp-btn-content">
+                <span className="ctbp-spinner" /> Submitting...
               </span>
             ) : (
-              <span className="btn-content">Submit Contribution →</span>
+              <span className="ctbp-btn-content">Submit Contribution →</span>
             )}
           </button>
         </form>
@@ -234,7 +218,7 @@ const Contribute = () => {
 
       {message && (
         <div
-          className={`contribute-message ${message.startsWith("✅") ? "success" : "error"}`}
+          className={`ctbp-message ${message.startsWith("✅") ? "ctbp-success" : "ctbp-error"}`}
         >
           {message}
         </div>

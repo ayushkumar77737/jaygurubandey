@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Chatwithus.css";
 import sideImage from "../assets/guruji.webp";
 
-// 🔥 Firebase imports
 import { db } from "../firebase/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
@@ -28,13 +27,10 @@ const ChatWithUs = () => {
       });
 
       setSuccessMessage("Message sent successfully ✅");
-
-      // Reset form
       setName("");
       setEmail("");
       setPhone("");
       setQuestion("");
-
       setTimeout(() => setSuccessMessage(""), 3000);
     } catch (error) {
       console.error("Firestore Error:", error);
@@ -45,75 +41,113 @@ const ChatWithUs = () => {
   };
 
   return (
-    <div className="chatwithus-page">
-      <div className="chatwithus-wrapper">
-        {/* Left Side Image */}
-        <div className="chat-image-box">
-          <img src={sideImage} alt="Chat Side" />
+    <div className="cwus-page">
+
+      {/* Decorative background */}
+      <div className="cwus-bg" aria-hidden="true">
+        <div className="cwus-orb cwus-orb-1" />
+        <div className="cwus-orb cwus-orb-2" />
+        <div className="cwus-orb cwus-orb-3" />
+      </div>
+
+      <div className="cwus-wrapper">
+
+        {/* Left image */}
+        <div className="cwus-image-box">
+          <div className="cwus-img-wrap">
+            <img src={sideImage} alt="Chat Side" />
+            <div className="cwus-img-glow" aria-hidden="true" />
+          </div>
         </div>
 
-        {/* Right Side Chat Box */}
-        <div className="chat-container">
-          <h2 className="chat-title">Chat With Us</h2>
+        {/* Right chat box */}
+        <div className="cwus-container">
 
-          <form className="chat-form" onSubmit={handleSubmit}>
-            {/* Name */}
-            <input
-              type="text"
-              placeholder="Enter your Name"
-              value={name}
-              onChange={(e) => {
-                const onlyLetters = e.target.value.replace(/[^a-zA-Z\s]/g, "");
-                setName(onlyLetters);
-              }}
-              required
-            />
+          {/* Animated border ring */}
+          <div className="cwus-border-ring" aria-hidden="true" />
 
-            {/* Email */}
-            <input
-              type="email"
-              placeholder="Enter your Email"
-              value={email}
-              onChange={(e) => {
-                const filtered = e.target.value.replace(
-                  /[^a-zA-Z0-9@._-]/g,
-                  ""
-                );
-                setEmail(filtered);
-              }}
-              required
-            />
+          <div className="cwus-title-wrap">
+            <span className="cwus-title-dot" aria-hidden="true" />
+            <h2 className="cwus-title">Chat With Us</h2>
+            <span className="cwus-title-dot" aria-hidden="true" />
+          </div>
+          <p className="cwus-subtitle">We'd love to hear from you 🙏</p>
 
-            {/* Phone */}
-            <input
-              type="tel"
-              placeholder="Enter your Phone Number"
-              value={phone}
-              onChange={(e) => {
-                const onlyNums = e.target.value.replace(/\D/g, "");
-                setPhone(onlyNums);
-              }}
-              maxLength={10}
-              pattern="\d{10}"
-              required
-            />
+          <form className="cwus-form" onSubmit={handleSubmit}>
 
-            {/* Question */}
-            <textarea
-              placeholder="Enter your Question"
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-              required
-            />
+            <div className="cwus-field">
+              <label className="cwus-label">Your Name</label>
+              <input
+                type="text"
+                placeholder="e.g. Ramesh Kumar"
+                value={name}
+                onChange={(e) => {
+                  const onlyLetters = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+                  setName(onlyLetters);
+                }}
+                required
+              />
+            </div>
+
+            <div className="cwus-field">
+              <label className="cwus-label">Email Address</label>
+              <input
+                type="email"
+                placeholder="e.g. you@example.com"
+                value={email}
+                onChange={(e) => {
+                  const filtered = e.target.value.replace(/[^a-zA-Z0-9@._-]/g, "");
+                  setEmail(filtered);
+                }}
+                required
+              />
+            </div>
+
+            <div className="cwus-field">
+              <label className="cwus-label">Phone Number</label>
+              <input
+                type="tel"
+                placeholder="10-digit number"
+                value={phone}
+                onChange={(e) => {
+                  const onlyNums = e.target.value.replace(/\D/g, "");
+                  setPhone(onlyNums);
+                }}
+                maxLength={10}
+                pattern="\d{10}"
+                required
+              />
+            </div>
+
+            <div className="cwus-field">
+              <label className="cwus-label">Your Question</label>
+              <textarea
+                placeholder="Write your question or message here..."
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
+                required
+              />
+            </div>
 
             <button type="submit" disabled={loading}>
-              {loading ? "Sending..." : "Send Message"}
+              <span className="cwus-btn-shimmer" />
+              <span className="cwus-btn-text">
+                {loading ? (
+                  <><span className="cwus-spinner" /> Sending...</>
+                ) : (
+                  "Send Message ✦"
+                )}
+              </span>
             </button>
+
           </form>
 
           {successMessage && (
-            <p className="success-msg">{successMessage}</p>
+            <p className={`cwus-success-msg ${successMessage.startsWith("❌") ? "cwus-error" : ""}`}>
+              {successMessage}
+            </p>
           )}
+
         </div>
       </div>
     </div>

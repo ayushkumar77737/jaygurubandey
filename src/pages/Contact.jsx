@@ -30,71 +30,116 @@ const ContactUs = () => {
 
   const [page, setPage] = useState(1);
   const totalPages = contacts.length;
-
   const currentContact = contacts[page - 1];
 
   return (
-    <div className="contact-container">
-      <h1 className="contact-title">Contact Us</h1>
+    <div className="ctu-container">
 
-      <div className="contact-card" key={page}>
-        <img src={currentContact.image} alt="Ashram" className="contact-image" />
+      {/* ── Decorative background ── */}
+      <div className="ctu-bg" aria-hidden="true">
+        <div className="ctu-orb ctu-orb-1" />
+        <div className="ctu-orb ctu-orb-2" />
+        <div className="ctu-orb ctu-orb-3" />
+        <div className="ctu-grid" />
+      </div>
 
-        <div className="contact-details">
-          <p><strong>Name of Ashram:</strong> {currentContact.name}</p>
-          <p><strong>Email ID:</strong> {currentContact.email}</p>
-          <p><strong>Contact No:</strong> {currentContact.contact}</p>
-          <p><strong>Location:</strong> {currentContact.location}</p>
+      {/* ── All content ── */}
+      <div className="ctu-content">
 
-          <div className="map-box">
-            <h3 className="map-title">Find Us</h3>
-            <iframe
-              title="Google Map Location"
-              src={currentContact.map}
-              width="100%"
-              height="200"
-              style={{ border: "0", borderRadius: "10px" }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+        <div className="ctu-eyebrow" aria-hidden="true">
+          <span className="ctu-eyebrow-dot" />
+          Get In Touch
+          <span className="ctu-eyebrow-dot" />
+        </div>
+
+        <h1 className="ctu-title">Contact Us</h1>
+
+        <div className="ctu-card" key={page}>
+
+          <div className="ctu-image-wrap">
+            <img src={currentContact.image} alt="Ashram" className="ctu-image" />
+            <div className="ctu-image-ring" aria-hidden="true" />
+          </div>
+
+          <div className="ctu-details">
+
+            <div className="ctu-detail-row">
+              <span className="ctu-detail-icon">🏛</span>
+              <span><strong>Ashram</strong><br />{currentContact.name}</span>
+            </div>
+
+            <div className="ctu-detail-row">
+              <span className="ctu-detail-icon">✉</span>
+              <span><strong>Email</strong><br />{currentContact.email}</span>
+            </div>
+
+            <div className="ctu-detail-row">
+              <span className="ctu-detail-icon">📞</span>
+              <span><strong>Phone</strong><br />{currentContact.contact}</span>
+            </div>
+
+            <div className="ctu-detail-row">
+              <span className="ctu-detail-icon">📍</span>
+              <span><strong>Location</strong><br />{currentContact.location}</span>
+            </div>
+
+            <div className="ctu-map-box">
+              <h3 className="ctu-map-title">
+                <span className="ctu-map-dot" aria-hidden="true" /> Find Us
+              </h3>
+              <iframe
+                title="Google Map Location"
+                src={currentContact.map}
+                width="100%"
+                height="200"
+                style={{ border: "0", borderRadius: "10px" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+
           </div>
         </div>
-      </div>
 
-      {/* Pagination Controls */}
-      <div className="pagination">
-        <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-          ⬅ Prev
-        </button>
-        <span>Page {page} of {totalPages}</span>
-        <button onClick={() => setPage(page + 1)} disabled={page === totalPages}>
-          Next ➡
-        </button>
-      </div>
+        {/* Pagination */}
+        <div className="ctu-pagination">
+          <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+            ⬅ Prev
+          </button>
+          <span>Page {page} of {totalPages}</span>
+          <button onClick={() => setPage(page + 1)} disabled={page === totalPages}>
+            Next ➡
+          </button>
+        </div>
 
-      {/* ⭐ TWO BIG BUTTONS SIDE BY SIDE ⭐ */}
-      <div className="stay-buttons-row">
-        <button
-          className="stay-connected-btn"
-          onClick={() => navigate("/stayconnected")}
-        >
-          🙏 Stay Connected
-        </button>
+        {/* Action buttons */}
+        <div className="ctu-action-row">
+          <button
+            className="ctu-action-btn"
+            onClick={() => navigate("/stayconnected")}
+          >
+            <span className="ctu-btn-shimmer" />
+            🙏 Stay Connected
+          </button>
 
-        <button
-          className="stay-connected-btn"
-          onClick={() => navigate("/beforeyouvisit")}
-        >
-          📘 Before You Visit
-        </button>
+          <button
+            className="ctu-action-btn"
+            onClick={() => navigate("/beforeyouvisit")}
+          >
+            <span className="ctu-btn-shimmer" />
+            📘 Before You Visit
+          </button>
 
-        <button
-          className="stay-connected-btn"
-          onClick={() => navigate("/divine")}
-        >
-          ✨ Divine Moments
-        </button>
+          <button
+            className="ctu-action-btn"
+            onClick={() => navigate("/divine")}
+          >
+            <span className="ctu-btn-shimmer" />
+            ✨ Divine Moments
+          </button>
+        </div>
+
       </div>
     </div>
   );

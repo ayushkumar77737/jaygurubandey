@@ -2,36 +2,36 @@
 
 /* ===== CSS VARIABLES ===== */
 :root {
-  --rose: #c2185b;
-  --rose-mid: #e91e8c;
-  --rose-light: #ff7eb3;
-  --rose-pale: #fce4ec;
-  --gold: #d4a017;
-  --faq-bg: #fffaf8;
-  --faq-bg-card: #ffffff;
-  --text-dark: #1a1a2e;
-  --text-body: #4a4a68;
-  --faq-text-muted: #9b8fa8;
-  --faq-border: rgba(194, 24, 91, 0.1);
-  --faq-shadow-soft: 0 4px 24px rgba(194, 24, 91, 0.07);
-  --faq-shadow-hover: 0 12px 40px rgba(194, 24, 91, 0.13);
+  --cfaq-rose: #c2185b;
+  --cfaq-rose-mid: #e91e8c;
+  --cfaq-rose-light: #ff7eb3;
+  --cfaq-rose-pale: #fce4ec;
+  --cfaq-gold: #d4a017;
+  --cfaq-bg: #fffaf8;
+  --cfaq-bg-card: #ffffff;
+  --cfaq-text-dark: #1a1a2e;
+  --cfaq-text-body: #4a4a68;
+  --cfaq-text-muted: #9b8fa8;
+  --cfaq-border: rgba(194, 24, 91, 0.1);
+  --cfaq-shadow-soft: 0 4px 24px rgba(194, 24, 91, 0.07);
+  --cfaq-shadow-hover: 0 12px 40px rgba(194, 24, 91, 0.13);
 }
 
 /* ===========================
    PAGE SHELL
    =========================== */
-.faq-page {
+.cfaq-page {
   font-family: 'DM Sans', sans-serif;
   min-height: 100vh;
-  background: var(--faq-bg);
+  background: var(--cfaq-bg);
   padding: 0;
-  color: var(--text-dark);
+  color: var(--cfaq-text-dark);
   position: relative;
   overflow: hidden;
-  animation: faqPageFadeIn 0.7s ease-out both;
+  animation: cfaqPageFadeIn 0.7s ease-out both;
 }
 
-@keyframes faqPageFadeIn {
+@keyframes cfaqPageFadeIn {
   from {
     opacity: 0;
     transform: translateY(14px);
@@ -46,7 +46,7 @@
 /* ===========================
    BACKGROUND DECORATION LAYER
    =========================== */
-.faq-bg {
+.cfaq-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -54,13 +54,13 @@
   overflow: hidden;
 }
 
-.faq-orb {
+.cfaq-orb {
   position: absolute;
   border-radius: 50%;
-  animation: faqOrbDrift 14s ease-in-out infinite;
+  animation: cfaqOrbDrift 14s ease-in-out infinite;
 }
 
-.faq-orb-1 {
+.cfaq-orb-1 {
   width: 480px;
   height: 480px;
   background: radial-gradient(circle, rgba(194, 24, 91, 0.07) 0%, transparent 70%);
@@ -69,7 +69,7 @@
   animation-delay: 0s;
 }
 
-.faq-orb-2 {
+.cfaq-orb-2 {
   width: 360px;
   height: 360px;
   background: radial-gradient(circle, rgba(212, 160, 23, 0.08) 0%, transparent 70%);
@@ -78,7 +78,7 @@
   animation-delay: -6s;
 }
 
-@keyframes faqOrbDrift {
+@keyframes cfaqOrbDrift {
 
   0%,
   100% {
@@ -90,7 +90,7 @@
   }
 }
 
-.faq-petal {
+.cfaq-petal {
   position: absolute;
   width: 240px;
   height: 240px;
@@ -98,21 +98,21 @@
   opacity: 0.05;
 }
 
-.faq-petal-tl {
-  background: var(--rose-mid);
+.cfaq-petal-tl {
+  background: var(--cfaq-rose-mid);
   top: 30px;
   left: -55px;
-  animation: faqPetalSpin 22s linear infinite;
+  animation: cfaqPetalSpin 22s linear infinite;
 }
 
-.faq-petal-br {
-  background: var(--gold);
+.cfaq-petal-br {
+  background: var(--cfaq-gold);
   bottom: 30px;
   right: -55px;
-  animation: faqPetalSpin 28s linear infinite reverse;
+  animation: cfaqPetalSpin 28s linear infinite reverse;
 }
 
-@keyframes faqPetalSpin {
+@keyframes cfaqPetalSpin {
   from {
     transform: rotate(0deg);
   }
@@ -125,7 +125,7 @@
 /* ===========================
    CONTENT LAYER
    =========================== */
-.faq-content {
+.cfaq-content {
   position: relative;
   z-index: 1;
   padding: 64px 24px 80px;
@@ -134,39 +134,32 @@
 
 /* ===========================
    HEADER
-   FIX: flex column so badge, title, subtitle each get their own row
    =========================== */
-.faq-header {
+.cfaq-header {
   display: flex;
   flex-direction: column;
-  /* ← key fix: stacks badge → title → subtitle */
   align-items: center;
-  /* horizontally centred */
   gap: 0;
   margin-bottom: 48px;
   opacity: 0;
-  animation: faqRiseUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+  animation: cfaqRiseUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
 }
 
-/* Badge sits clearly above title */
-.faq-badge {
+.cfaq-badge {
   display: inline-block;
-  /* sized to content */
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--rose);
-  background: var(--rose-pale);
+  color: var(--cfaq-rose);
+  background: var(--cfaq-rose-pale);
   border: 1px solid rgba(194, 24, 91, 0.18);
   padding: 5px 16px;
   border-radius: 99px;
   margin-bottom: 14px;
-  /* space between badge and title */
 }
 
-/* Title on its own row */
-.faq-title {
+.cfaq-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2.1rem, 3.5vw, 3.1rem);
   font-weight: 700;
@@ -180,18 +173,18 @@
   position: relative;
 }
 
-.faq-title::after {
+.cfaq-title::after {
   content: "";
   display: block;
   width: 0;
   height: 3px;
   border-radius: 3px;
   margin: 10px auto 0;
-  background: linear-gradient(90deg, var(--gold), var(--rose-light), var(--gold));
-  animation: faqExpandLine 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+  background: linear-gradient(90deg, var(--cfaq-gold), var(--cfaq-rose-light), var(--cfaq-gold));
+  animation: cfaqExpandLine 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
 }
 
-@keyframes faqExpandLine {
+@keyframes cfaqExpandLine {
   from {
     width: 0;
     opacity: 0;
@@ -203,10 +196,9 @@
   }
 }
 
-/* Subtitle below the underline */
-.faq-subtitle {
+.cfaq-subtitle {
   font-size: 1rem;
-  color: var(--faq-text-muted);
+  color: var(--cfaq-text-muted);
   font-weight: 400;
   margin: 14px 0 0;
   letter-spacing: 0.2px;
@@ -215,7 +207,7 @@
 /* ===========================
    FAQ CONTAINER
    =========================== */
-.faq-container {
+.cfaq-container {
   max-width: 780px;
   margin: 0 auto;
   text-align: left;
@@ -223,63 +215,61 @@
 
 /* ===========================
    FAQ ITEM
-   FIX: reduced padding so closed cards are compact
    =========================== */
-.faq-item {
-  background: var(--faq-bg-card);
+.cfaq-item {
+  background: var(--cfaq-bg-card);
   border-radius: 14px;
   margin-bottom: 12px;
-  /* tighter gap between cards */
-  border: 1px solid var(--faq-border);
-  box-shadow: var(--faq-shadow-soft);
+  border: 1px solid var(--cfaq-border);
+  box-shadow: var(--cfaq-shadow-soft);
   cursor: pointer;
   overflow: hidden;
   position: relative;
   transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
   opacity: 0;
-  animation: faqRiseUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: cfaqRiseUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.faq-item:nth-child(1) {
+.cfaq-item:nth-child(1) {
   animation-delay: 0.30s;
 }
 
-.faq-item:nth-child(2) {
+.cfaq-item:nth-child(2) {
   animation-delay: 0.40s;
 }
 
-.faq-item:nth-child(3) {
+.cfaq-item:nth-child(3) {
   animation-delay: 0.50s;
 }
 
-.faq-item:nth-child(4) {
+.cfaq-item:nth-child(4) {
   animation-delay: 0.60s;
 }
 
-.faq-item:nth-child(5) {
+.cfaq-item:nth-child(5) {
   animation-delay: 0.70s;
 }
 
-.faq-item:hover {
+.cfaq-item:hover {
   transform: translateY(-3px);
-  box-shadow: var(--faq-shadow-hover);
+  box-shadow: var(--cfaq-shadow-hover);
   border-color: rgba(194, 24, 91, 0.22);
 }
 
 /* Left accent bar when open */
-.faq-item.open::before {
+.cfaq-item.cfaq-open::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
   width: 4px;
   height: 100%;
-  background: linear-gradient(180deg, var(--gold) 0%, var(--rose) 50%, var(--rose-light) 100%);
+  background: linear-gradient(180deg, var(--cfaq-gold) 0%, var(--cfaq-rose) 50%, var(--cfaq-rose-light) 100%);
   border-radius: 14px 0 0 14px;
-  animation: faqSlideBar 0.35s ease-out;
+  animation: cfaqSlideBar 0.35s ease-out;
 }
 
-@keyframes faqSlideBar {
+@keyframes cfaqSlideBar {
   from {
     height: 0;
     opacity: 0;
@@ -291,36 +281,34 @@
   }
 }
 
-.faq-item.open {
+.cfaq-item.cfaq-open {
   border-color: rgba(194, 24, 91, 0.2);
-  box-shadow: var(--faq-shadow-hover);
+  box-shadow: var(--cfaq-shadow-hover);
   background: linear-gradient(135deg, #fffaf8 0%, #fff5f8 100%);
 }
 
 /* ===========================
    QUESTION ROW
-   FIX: tighter padding — no excessive height on closed state
    =========================== */
-.faq-question {
+.cfaq-question {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
   padding: 18px 22px;
-  /* was 20px 24px — slightly tighter */
   font-weight: 600;
   font-size: clamp(0.95rem, 1.1vw, 1.05rem);
-  color: var(--text-dark);
+  color: var(--cfaq-text-dark);
   transition: color 0.25s ease;
   min-height: 0;
 }
 
-.faq-item.open .faq-question {
-  color: var(--rose);
+.cfaq-item.cfaq-open .cfaq-question {
+  color: var(--cfaq-rose);
   padding-bottom: 10px;
 }
 
-.faq-question-inner {
+.cfaq-question-inner {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -328,33 +316,33 @@
   flex: 1;
 }
 
-.faq-question-inner>span:last-child {
+.cfaq-question-inner>span:last-child {
   word-break: break-word;
 }
 
-.faq-num {
+.cfaq-num {
   font-family: 'Cormorant Garamond', serif;
   font-size: 0.95rem;
   font-weight: 700;
-  color: var(--rose-light);
+  color: var(--cfaq-rose-light);
   flex-shrink: 0;
   opacity: 0.7;
   transition: opacity 0.25s ease, color 0.25s ease;
   line-height: 1;
 }
 
-.faq-item.open .faq-num {
-  color: var(--rose);
+.cfaq-item.cfaq-open .cfaq-num {
+  color: var(--cfaq-rose);
   opacity: 1;
 }
 
-.faq-icon {
+.cfaq-icon {
   flex-shrink: 0;
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: var(--rose-pale);
-  color: var(--rose);
+  background: var(--cfaq-rose-pale);
+  color: var(--cfaq-rose);
   font-size: 1rem;
   font-weight: 700;
   display: flex;
@@ -363,8 +351,8 @@
   transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.faq-item.open .faq-icon {
-  background: linear-gradient(135deg, var(--rose), var(--rose-mid));
+.cfaq-item.cfaq-open .cfaq-icon {
+  background: linear-gradient(135deg, var(--cfaq-rose), var(--cfaq-rose-mid));
   color: #fff;
   box-shadow: 0 4px 14px rgba(194, 24, 91, 0.3);
 }
@@ -372,11 +360,11 @@
 /* ===========================
    ANSWER
    =========================== */
-.faq-answer {
+.cfaq-answer {
   max-height: 0;
   overflow: hidden;
   font-size: 0.93rem;
-  color: var(--text-body);
+  color: var(--cfaq-text-body);
   line-height: 1.75;
   padding: 0 22px;
   opacity: 0;
@@ -386,7 +374,7 @@
     padding 0.35s ease;
 }
 
-.faq-item.open .faq-answer {
+.cfaq-item.cfaq-open .cfaq-answer {
   max-height: 320px;
   opacity: 1;
   padding: 0 22px 18px 22px;
@@ -395,23 +383,23 @@
 /* ===========================
    FOOTER NOTE
    =========================== */
-.faq-footer-note {
+.cfaq-footer-note {
   margin-top: 40px;
   font-size: 0.9rem;
-  color: var(--faq-text-muted);
+  color: var(--cfaq-text-muted);
   opacity: 0;
-  animation: faqRiseUp 0.7s ease 0.9s forwards;
+  animation: cfaqRiseUp 0.7s ease 0.9s forwards;
 }
 
-.faq-contact-hint {
-  color: var(--rose);
+.cfaq-contact-hint {
+  color: var(--cfaq-rose);
   font-weight: 500;
 }
 
 /* ===========================
    ANIMATIONS
    =========================== */
-@keyframes faqRiseUp {
+@keyframes cfaqRiseUp {
   from {
     opacity: 0;
     transform: translateY(22px);
@@ -427,95 +415,95 @@
    RESPONSIVE
    =========================== */
 @media (max-width: 1200px) {
-  .faq-container {
+  .cfaq-container {
     max-width: 720px;
   }
 }
 
 @media (max-width: 992px) {
-  .faq-content {
+  .cfaq-content {
     padding: 52px 18px 60px;
   }
 
-  .faq-question {
+  .cfaq-question {
     padding: 16px 20px;
   }
 
-  .faq-item.open .faq-question {
+  .cfaq-item.cfaq-open .cfaq-question {
     padding-bottom: 8px;
   }
 
-  .faq-answer {
+  .cfaq-answer {
     padding: 0 20px;
   }
 
-  .faq-item.open .faq-answer {
+  .cfaq-item.cfaq-open .cfaq-answer {
     padding: 0 20px 16px 20px;
   }
 }
 
 @media (max-width: 768px) {
-  .faq-content {
+  .cfaq-content {
     padding: 44px 14px 56px;
   }
 
-  .faq-container {
+  .cfaq-container {
     max-width: 100%;
   }
 
-  .faq-item {
+  .cfaq-item {
     border-radius: 12px;
   }
 
-  .faq-question {
+  .cfaq-question {
     font-size: 0.96rem;
     gap: 10px;
     padding: 15px 16px;
   }
 
-  .faq-num {
+  .cfaq-num {
     display: none;
   }
 
-  .faq-answer {
+  .cfaq-answer {
     font-size: 0.91rem;
     padding: 0 16px;
   }
 
-  .faq-item.open .faq-answer {
+  .cfaq-item.cfaq-open .cfaq-answer {
     padding: 0 16px 14px;
   }
 }
 
 @media (max-width: 480px) {
-  .faq-content {
+  .cfaq-content {
     padding: 36px 12px 48px;
   }
 
-  .faq-title {
+  .cfaq-title {
     font-size: 1.9rem;
   }
 
-  .faq-subtitle {
+  .cfaq-subtitle {
     font-size: 0.87rem;
   }
 
-  .faq-item {
+  .cfaq-item {
     margin-bottom: 10px;
   }
 
-  .faq-question {
+  .cfaq-question {
     font-size: 0.91rem;
     padding: 13px 14px;
   }
 
-  .faq-icon {
+  .cfaq-icon {
     width: 27px;
     height: 27px;
     font-size: 0.85rem;
   }
 
-  .faq-answer {
+  .cfaq-answer {
     font-size: 0.87rem;
     line-height: 1.65;
   }

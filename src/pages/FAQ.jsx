@@ -19,12 +19,12 @@ const FAQ = () => {
     {
       question: "How can I become part of the Jai Gurubande spiritual path?",
       answer:
-        "You can become part of the Jai Gurubande spiritual path by staying connected with Guruji’s teachings, joining satsangs and seva activities, following the official social channels, and participating in spiritual programs and events organized by the ashram."
+        "You can become part of the Jai Gurubande spiritual path by staying connected with Guruji's teachings, joining satsangs and seva activities, following the official social channels, and participating in spiritual programs and events organized by the ashram.",
     },
     {
       question: "What kind of activities are conducted under Ashram?",
       answer:
-        "Under ashram, regular seva activities, satsangs, spiritual programs and events are conducted throughout the year. By Guruji’s grace, free paralysis treatment is also offered at the ashram as a form of seva, along with online services such as spiritual resources, announcements, and updates."
+        "Under ashram, regular seva activities, satsangs, spiritual programs and events are conducted throughout the year. By Guruji's grace, free paralysis treatment is also offered at the ashram as a form of seva, along with online services such as spiritual resources, announcements, and updates.",
     },
     {
       question: "Is there any fee or membership required?",
@@ -35,7 +35,7 @@ const FAQ = () => {
       question: "How can I get in touch for event-related queries?",
       answer:
         "All important contact details are shared in all programs page in the website and through our verified social media channel in Whatsapp.",
-    }
+    },
   ];
 
   const toggleFAQ = (index) => {
@@ -43,43 +43,67 @@ const FAQ = () => {
   };
 
   return (
-    <div className="faq-page">
-      <h2 className="faq-title">Frequently Asked Questions</h2>
+    <div className="faqpg-page">
 
-      <div className="faq-container">
-        {faqs.map((faq, index) => (
-          <div
-            key={index}
-            className={`faq-item ${openIndex === index ? "open" : ""}`}
-            onClick={() => toggleFAQ(index)}
-          >
-            <div className="faq-question">
-              <span>{faq.question}</span>
-              <span className="faq-icon">
-                {openIndex === index ? "–" : "＋"}
-              </span>
-            </div>
-
-            <div className="faq-answer">{faq.answer}</div>
-          </div>
-        ))}
+      {/* Decorative background — z-index 0, never overlaps content */}
+      <div className="faqpg-bg" aria-hidden="true">
+        <div className="faqpg-orb faqpg-orb-1" />
+        <div className="faqpg-orb faqpg-orb-2" />
+        <div className="faqpg-petal faqpg-petal-tl" />
+        <div className="faqpg-petal faqpg-petal-br" />
       </div>
 
-      {/* ===== TWO BUTTONS (LEFT + RIGHT ALIGNED) ===== */}
-      <div className="feedback-button-container">
-        <button
-          className="feedback-button"
-          onClick={() => navigate("/feedback")}
-        >
-          🙏💬 Devotees Feedback
-        </button>
+      {/* Content layer — z-index 1 */}
+      <div className="faqpg-content">
 
-        <button
-          className="quickstart-button"
-          onClick={() => navigate("/quickstart")}
-        >
-          🚀 Quick Start
-        </button>
+        <div className="faqpg-header">
+          <span className="faqpg-badge">✦ Spiritual Guidance ✦</span>
+          <h2 className="faqpg-title">Frequently Asked Questions</h2>
+          <p className="faqpg-subtitle">
+            Answers to common questions about Guruji and the Ashram
+          </p>
+        </div>
+
+        <div className="faqpg-container">
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className={`faqpg-item ${openIndex === index ? "faqpg-open" : ""}`}
+              onClick={() => toggleFAQ(index)}
+            >
+              <div className="faqpg-question">
+                <div className="faqpg-question-inner">
+                  <span className="faqpg-num">0{index + 1}</span>
+                  <span>{faq.question}</span>
+                </div>
+                <span className="faqpg-icon">
+                  {openIndex === index ? "–" : "＋"}
+                </span>
+              </div>
+              <div className="faqpg-answer">{faq.answer}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Buttons */}
+        <div className="faqpg-btn-row">
+          <button
+            className="faqpg-feedback-btn"
+            onClick={() => navigate("/feedback")}
+          >
+            <span className="faqpg-btn-shimmer" />
+            🙏💬 Devotees Feedback
+          </button>
+
+          <button
+            className="faqpg-quickstart-btn"
+            onClick={() => navigate("/quickstart")}
+          >
+            <span className="faqpg-btn-shimmer" />
+            🚀 Quick Start
+          </button>
+        </div>
+
       </div>
     </div>
   );

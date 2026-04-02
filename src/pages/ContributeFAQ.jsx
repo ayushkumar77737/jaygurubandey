@@ -41,51 +41,51 @@ const ContributeFAQ = () => {
   };
 
   return (
-    <div className="faq-page">
+    <div className="cfaq-page">
 
       {/* Background layer — absolutely positioned, isolated, never overlaps content */}
-      <div className="faq-bg" aria-hidden="true">
-        <div className="faq-orb faq-orb-1" />
-        <div className="faq-orb faq-orb-2" />
-        <div className="faq-petal faq-petal-tl" />
-        <div className="faq-petal faq-petal-br" />
+      <div className="cfaq-bg" aria-hidden="true">
+        <div className="cfaq-orb cfaq-orb-1" />
+        <div className="cfaq-orb cfaq-orb-2" />
+        <div className="cfaq-petal cfaq-petal-tl" />
+        <div className="cfaq-petal cfaq-petal-br" />
       </div>
 
       {/* Content layer — sits strictly above the background */}
-      <div className="faq-content">
+      <div className="cfaq-content">
 
-        <div className="faq-header">
-          <span className="faq-badge">Help &amp; Support</span>
-          <h2 className="faq-title">Contribute – FAQ's</h2>
-          <p className="faq-subtitle">
+        <div className="cfaq-header">
+          <span className="cfaq-badge">Help &amp; Support</span>
+          <h2 className="cfaq-title">Contribute – FAQ's</h2>
+          <p className="cfaq-subtitle">
             Everything you need to know about contributing to the Ashram.
           </p>
         </div>
 
-        <div className="faq-container">
+        <div className="cfaq-container">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className={`faq-item ${openIndex === index ? "open" : ""}`}
+              className={`cfaq-item ${openIndex === index ? "cfaq-open" : ""}`}
               onClick={() => toggleFAQ(index)}
             >
-              <div className="faq-question">
-                <div className="faq-question-inner">
-                  <span className="faq-num">0{index + 1}</span>
+              <div className="cfaq-question">
+                <div className="cfaq-question-inner">
+                  <span className="cfaq-num">0{index + 1}</span>
                   <span>{faq.question}</span>
                 </div>
-                <span className="faq-icon">
+                <span className="cfaq-icon">
                   {openIndex === index ? "–" : "＋"}
                 </span>
               </div>
-              <div className="faq-answer">{faq.answer}</div>
+              <div className="cfaq-answer">{faq.answer}</div>
             </div>
           ))}
         </div>
 
-        <p className="faq-footer-note">
+        <p className="cfaq-footer-note">
           Still have questions?{" "}
-          <span className="faq-contact-hint">Visit us at the Ashram 🙏</span>
+          <span className="cfaq-contact-hint">Visit us at the Ashram 🙏</span>
         </p>
 
       </div>
