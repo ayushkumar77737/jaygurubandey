@@ -1,266 +1,656 @@
-/* ===== Global Container ===== */
-.program-container {
+/* =========================================================
+   PROGRAM PAGE — program.css
+   All classnames prefixed with  pg-  to prevent conflicts
+   Aesthetic: Cosmic devotional · deep indigo night sky
+              Violet, electric blue, gold & rose neon
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+
+/* ── Variables ───────────────────────────────────────────── */
+.pg-page {
+  --pg-violet: #6a11cb;
+  --pg-blue: #2575fc;
+  --pg-rose: #ff0099;
+  --pg-amber: #ff6a00;
+  --pg-gold: #e8c06a;
+  --pg-gold-soft: #c9922a;
+  --pg-cream: rgba(255, 255, 255, 0.90);
+  --pg-muted: rgba(200, 200, 230, 0.75);
+  --pg-dim: rgba(160, 160, 200, 0.60);
+  --pg-card-bg: rgba(18, 16, 42, 0.92);
+  --pg-radius: 26px;
+  --pg-font-display: 'Cormorant Garamond', Georgia, serif;
+  --pg-font-body: 'Lato', sans-serif;
+}
+
+/* ── Page Shell ──────────────────────────────────────────── */
+.pg-page {
+  position: relative;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 20% 30%, #1a0a3e 0%, #0f0c29 40%, #0a0a1a 100%);
+  font-family: var(--pg-font-body);
+  color: var(--pg-cream);
+  padding: 70px 20px 72px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  animation: pg-fadeIn 0.9s ease;
+}
+
+/* ── Starfield ───────────────────────────────────────────── */
+.pg-stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.pg-stars__layer {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 60%, rgba(255, 255, 255, 0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 15%, rgba(255, 255, 255, 0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 80%, rgba(255, 255, 255, 0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 45%, rgba(255, 255, 255, 0.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 75%, rgba(255, 255, 255, 0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 35%, rgba(255, 255, 255, 0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 50%, rgba(255, 255, 255, 0.55) 0%, transparent 100%);
+}
+
+.pg-stars__layer--1 {
+  animation: pg-twinkle 6s ease-in-out infinite alternate;
+  opacity: 0.7;
+}
+
+.pg-stars__layer--2 {
+  animation: pg-twinkle 9s ease-in-out infinite alternate-reverse;
+  opacity: 0.5;
+  transform: scale(1.4) rotate(30deg);
+}
+
+.pg-stars__layer--3 {
+  animation: pg-twinkle 12s ease-in-out infinite alternate;
+  opacity: 0.4;
+  transform: scale(1.8) rotate(60deg);
+}
+
+@keyframes pg-twinkle {
+  0% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
+
+/* ── Nebula orbs ─────────────────────────────────────────── */
+.pg-nebula {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.pg-nebula__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+}
+
+.pg-nebula__orb--1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(106, 17, 203, 0.28), transparent 70%);
+  top: -80px;
+  left: -100px;
+  animation: pg-nebulaDrift 18s ease-in-out infinite alternate;
+}
+
+.pg-nebula__orb--2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(37, 117, 252, 0.22), transparent 70%);
+  top: 40%;
+  right: -80px;
+  animation: pg-nebulaDrift 24s ease-in-out infinite alternate-reverse;
+}
+
+.pg-nebula__orb--3 {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(255, 0, 153, 0.18), transparent 70%);
+  bottom: 60px;
+  left: 25%;
+  animation: pg-nebulaDrift 20s ease-in-out infinite alternate;
+}
+
+@keyframes pg-nebulaDrift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(30px, 20px) scale(1.08);
+  }
+}
+
+/* ── Ornament helpers ────────────────────────────────────── */
+.pg-orn-line {
+  display: block;
+  width: 70px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--pg-gold), transparent);
+}
+
+.pg-orn-icon {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 0 10px rgba(232, 192, 106, 0.60));
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.pg-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 44px;
+}
+
+.pg-header__ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.pg-header__title {
+  font-family: var(--pg-font-display);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0 0 14px;
+  background: linear-gradient(135deg, #e8c06a 0%, #ffffff 40%, #b388ff 70%, #82b1ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(0 0 20px rgba(106, 17, 203, 0.50));
+}
+
+.pg-header__subtitle {
+  font-family: var(--pg-font-display);
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--pg-muted);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ── Dropdown ────────────────────────────────────────────── */
+.pg-dropdown-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto 52px;
+}
+
+.pg-dropdown-label {
+  font-family: var(--pg-font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--pg-gold);
+}
+
+.pg-dropdown-box {
+  position: relative;
+  display: inline-block;
+}
+
+.pg-dropdown {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 280px;
+  max-width: 90vw;
+  padding: 13px 48px 13px 24px;
+  border-radius: 30px;
+  border: 1.5px solid rgba(106, 17, 203, 0.6);
+  background: rgba(20, 16, 50, 0.85);
+  color: #fff;
+  font-family: var(--pg-font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  box-shadow:
+    0 0 18px rgba(106, 17, 203, 0.30),
+    0 0 36px rgba(37, 117, 252, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+  backdrop-filter: blur(8px);
+}
+
+.pg-dropdown:hover {
+  border-color: rgba(106, 17, 203, 0.9);
+  box-shadow:
+    0 0 28px rgba(106, 17, 203, 0.50),
+    0 0 56px rgba(37, 117, 252, 0.25);
+  transform: translateY(-2px);
+}
+
+.pg-dropdown:focus {
+  outline: none;
+  border-color: var(--pg-gold);
+  box-shadow: 0 0 0 3px rgba(232, 192, 106, 0.25), 0 0 28px rgba(106, 17, 203, 0.40);
+}
+
+.pg-dropdown option {
+  background: #1a1040;
+  color: #fff;
+}
+
+.pg-dropdown-arrow {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--pg-gold);
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+/* ── Cards container ─────────────────────────────────────── */
+.pg-cards {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: clamp(20px, 2.5vw, 40px);
-  padding: clamp(30px, 6vw, 60px);
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-  min-height: 100vh;
-  font-family: "Poppins", sans-serif;
-  perspective: 1200px;
-
-  /* ✅ Items stay at top, centered horizontally */
+  gap: clamp(24px, 3vw, 44px);
+  max-width: 1160px;
+  margin: 0 auto;
   align-content: start;
   justify-items: center;
 }
 
-/* ===== Dropdown Styling (Reusable) ===== */
-.dropdown-group {
-  margin-bottom: clamp(20px, 2.5vw, 40px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  flex-wrap: wrap; /* ✅ prevent overflow on smaller screens */
-}
-
-.dropdown-group label {
-  color: #fff;
-  font-size: clamp(1.1rem, 2vw, 1.3rem);
-  white-space: nowrap; /* ✅ prevents text breaking */
-}
-
-.dropdown-group select {
-  padding: clamp(8px, 1vw, 10px) clamp(12px, 2vw, 15px);
-  border-radius: 8px;
-  border: none;
-  font-size: clamp(1rem, 1.5vw, 1.1rem);
-  outline: none;
-  cursor: pointer;
-
-  /* ✅ Center text inside select */
-  text-align: center;
-  text-align-last: center;
-  min-width: 200px; /* ✅ ensures dropdown is not too small */
-  max-width: 100%;
-}
-
-/* ===== Individual Card ===== */
-.program-card {
+/* ── Card ────────────────────────────────────────────────── */
+.pg-card {
   position: relative;
-  background: #1a1a2e;
-  border-radius: 28px;
-  padding: clamp(25px, 3vw, 40px) clamp(20px, 3vw, 30px);
+  background: var(--pg-card-bg);
+  border-radius: var(--pg-radius);
+  padding: clamp(28px, 3.5vw, 44px) clamp(22px, 3vw, 34px);
   text-align: center;
-  cursor: pointer;
   overflow: hidden;
-  transition: transform 0.6s ease, box-shadow 0.6s ease;
-  box-shadow: 0 0 25px rgba(106, 17, 203, 0.5),
-              0 0 50px rgba(37, 117, 252, 0.3);
+  width: 100%;
+  max-width: 480px;
+  box-sizing: border-box;
+  cursor: default;
+  transition: transform 0.55s ease, box-shadow 0.55s ease;
+  box-shadow:
+    0 0 30px rgba(106, 17, 203, 0.40),
+    0 0 60px rgba(37, 117, 252, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  animation: pg-cardReveal 0.7s ease both;
+  backdrop-filter: blur(10px);
 }
 
-/* Neon Glow Border */
-.program-card::after {
-  content: "";
+.pg-card--upcoming {
+  box-shadow:
+    0 0 30px rgba(37, 117, 252, 0.45),
+    0 0 60px rgba(106, 17, 203, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.pg-card--completed {
+  box-shadow:
+    0 0 28px rgba(106, 17, 203, 0.38),
+    0 0 52px rgba(255, 0, 153, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.pg-card:hover {
+  transform: translateY(-14px) rotateX(3deg) scale(1.03);
+}
+
+.pg-card--upcoming:hover {
+  box-shadow:
+    0 0 60px rgba(37, 117, 252, 0.70),
+    0 0 100px rgba(106, 17, 203, 0.45);
+}
+
+.pg-card--completed:hover {
+  box-shadow:
+    0 0 60px rgba(106, 17, 203, 0.75),
+    0 0 100px rgba(255, 0, 153, 0.40);
+}
+
+/* Rotating neon border */
+.pg-card__border {
   position: absolute;
   inset: 0;
-  border-radius: 28px;
-  padding: 4px;
-  background: linear-gradient(45deg, #6a11cb, #2575fc, #ff0099, #ff6a00, #6a11cb);
+  border-radius: var(--pg-radius);
+  padding: 2px;
+  background: conic-gradient(from 0deg,
+      #6a11cb, #2575fc, #ff0099, #ff6a00, #e8c06a, #6a11cb);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: destination-out;
   mask-composite: exclude;
   pointer-events: none;
-  filter: blur(6px);
-  animation: rotateBorder 8s linear infinite;
+  opacity: 0.55;
+  animation: pg-rotateBorder 10s linear infinite;
 }
 
-@keyframes rotateBorder {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.pg-card:hover .pg-card__border {
+  opacity: 0.9;
 }
 
-/* Hover Effect */
-.program-card:hover {
-  transform: translateY(-15px) rotateX(4deg) scale(1.05);
-  box-shadow: 0 0 60px rgba(106, 17, 203, 0.9),
-              0 0 90px rgba(37, 117, 252, 0.6);
+@keyframes pg-rotateBorder {
+  from {
+    --angle: 0deg;
+  }
+
+  to {
+    --angle: 360deg;
+  }
 }
 
-/* Decorative Glow */
-.program-card::before {
+/* Inner radial glow pulse */
+.pg-card::before {
   content: "";
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 220%;
-  height: 220%;
-  background: radial-gradient(circle, rgba(255,255,255,0.03), transparent 70%);
+  inset: -30%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.025), transparent 65%);
   border-radius: 50%;
-  transition: all 0.6s ease;
-  animation: pulseGlow 3s ease-in-out infinite alternate;
+  pointer-events: none;
+  animation: pg-pulseGlow 3.5s ease-in-out infinite alternate;
 }
 
-@keyframes pulseGlow {
-  0% { transform: scale(1); opacity: 0.1; }
-  100% { transform: scale(1.05); opacity: 0.15; }
+@keyframes pg-pulseGlow {
+  0% {
+    transform: scale(1);
+    opacity: 0.08;
+  }
+
+  100% {
+    transform: scale(1.06);
+    opacity: 0.14;
+  }
 }
 
-/* Image Styling */
-.program-image {
-  width: clamp(140px, 18vw, 180px);
-  height: clamp(140px, 18vw, 180px);
-  margin: 0 auto 25px auto;
+/* ── Status Ribbon ───────────────────────────────────────── */
+.pg-card__ribbon {
+  position: absolute;
+  top: 18px;
+  right: -28px;
+  padding: 5px 36px;
+  font-family: var(--pg-font-body);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #fff;
+  transform: rotate(38deg);
+  transform-origin: center;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
+  z-index: 3;
+}
+
+.pg-card__ribbon--upcoming {
+  background: linear-gradient(90deg, #2575fc, #6a11cb);
+}
+
+.pg-card__ribbon--completed {
+  background: linear-gradient(90deg, #ff0099, #6a11cb);
+}
+
+/* ── Avatar ──────────────────────────────────────────────── */
+.pg-card__avatar-wrap {
+  position: relative;
+  width: clamp(130px, 18vw, 170px);
+  height: clamp(130px, 18vw, 170px);
+  margin: 0 auto 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pg-card__avatar-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #6a11cb, #2575fc, #ff0099, #ff6a00, #6a11cb);
+  animation: pg-rotateBorder 6s linear infinite;
+  opacity: 0.80;
+  filter: blur(3px);
+}
+
+.pg-card__avatar {
+  position: relative;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid #fff;
-  box-shadow: 0 0 35px rgba(106, 17, 203, 0.5),
-              0 0 45px rgba(37, 117, 252, 0.4);
-  transition: all 0.6s ease;
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 40px rgba(106, 17, 203, 0.55), 0 0 60px rgba(37, 117, 252, 0.35);
+  transition: transform 0.55s ease, box-shadow 0.55s ease;
+  z-index: 1;
 }
 
-.program-card:hover .program-image {
-  transform: scale(1.2) rotate(15deg);
-  box-shadow: 0 0 70px rgba(106, 17, 203, 1),
-              0 0 90px rgba(37, 117, 252, 0.8);
+.pg-card:hover .pg-card__avatar {
+  transform: scale(1.14) rotate(10deg);
+  box-shadow: 0 0 70px rgba(106, 17, 203, 0.9), 0 0 90px rgba(37, 117, 252, 0.70);
 }
 
-.program-image img {
+.pg-card__avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  display: block;
 }
 
-/* Title */
-.program-title {
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-weight: 900;
-  text-transform: uppercase;
+/* ── Title ───────────────────────────────────────────────── */
+.pg-card__title {
+  font-family: var(--pg-font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
   letter-spacing: 1.5px;
-  margin-bottom: 15px;
-  color: #fff;
-  text-shadow: 0 0 8px #6a11cb,
-               0 0 18px #2575fc,
-               0 0 25px #ff0099;
-  transition: all 0.4s ease;
+  margin: 0 0 14px;
+  background: linear-gradient(135deg, #ffffff 0%, #b388ff 50%, #82b1ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: letter-spacing 0.4s ease, filter 0.4s ease;
+  filter: drop-shadow(0 0 8px rgba(106, 17, 203, 0.50));
 }
 
-.program-card:hover .program-title {
-  letter-spacing: 3px;
-  text-shadow: 0 0 15px #ff0099,
-               0 0 28px #ff6a00,
-               0 0 40px #2575fc;
+.pg-card:hover .pg-card__title {
+  letter-spacing: 2.5px;
+  filter: drop-shadow(0 0 16px rgba(255, 0, 153, 0.60)) drop-shadow(0 0 28px rgba(37, 117, 252, 0.50));
 }
 
-/* Info Text */
-.program-time,
-.program-date,
-.program-location {
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
-  color: #b0b0c0;
-  margin-bottom: 10px;
-  transition: all 0.5s ease;
+/* ── Divider ─────────────────────────────────────────────── */
+.pg-card__divider {
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, #6a11cb, #2575fc, #ff0099);
+  border-radius: 2px;
+  margin: 0 auto 18px;
+  transition: width 0.4s ease;
+  box-shadow: 0 0 8px rgba(106, 17, 203, 0.50);
 }
 
-.program-time strong,
-.program-date strong,
-.program-location strong {
-  color: #fff;
+.pg-card:hover .pg-card__divider {
+  width: 80px;
 }
 
-.program-card:hover .program-time,
-.program-card:hover .program-date,
-.program-card:hover .program-location {
-  color: #6a11cb;
-  letter-spacing: 1px;
-  text-shadow: 0 0 6px #6a11cb,
-               0 0 12px #2575fc;
-}
-
-/* Description */
-.program-description {
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
-  color: #dcdcdc;
-  margin-bottom: 20px;
-  line-height: 1.6;
+/* ── Description ─────────────────────────────────────────── */
+.pg-card__desc {
+  font-size: clamp(0.88rem, 1.8vw, 1rem);
+  color: rgba(220, 220, 255, 0.80);
+  line-height: 1.75;
+  margin: 0 0 24px;
+  text-align: left;
+  font-weight: 300;
   transition: color 0.4s ease;
 }
 
-.program-card:hover .program-description {
-  color: #ff6a00;
+.pg-card:hover .pg-card__desc {
+  color: rgba(255, 200, 120, 0.90);
 }
 
-/* ===== Responsive Fixes ===== */
+/* ── Info Pills ──────────────────────────────────────────── */
+.pg-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.pg-card__info-pill {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(106, 17, 203, 0.12);
+  border: 1px solid rgba(106, 17, 203, 0.25);
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-size: clamp(0.82rem, 1.6vw, 0.94rem);
+  color: rgba(210, 210, 255, 0.85);
+  text-align: left;
+  transition: background 0.35s, border-color 0.35s, color 0.35s;
+}
+
+.pg-card:hover .pg-card__info-pill {
+  background: rgba(37, 117, 252, 0.14);
+  border-color: rgba(37, 117, 252, 0.40);
+  color: rgba(200, 230, 255, 0.95);
+}
+
+.pg-card__info-pill--wide {
+  align-items: flex-start;
+}
+
+.pg-card__info-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── Empty Message ───────────────────────────────────────── */
+.pg-empty {
+  position: relative;
+  z-index: 1;
+  font-family: var(--pg-font-display);
+  font-style: italic;
+  color: var(--pg-muted);
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* ── Keyframes ───────────────────────────────────────────── */
+@keyframes pg-fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pg-cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 @media (max-width: 1024px) {
-  .program-container {
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  .pg-cards {
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   }
 }
 
 @media (max-width: 768px) {
-  .program-container {
-    grid-template-columns: 1fr;
-    padding: 25px 18px;
-    gap: 25px;
+  .pg-page {
+    padding: 55px 15px 52px;
   }
 
-  .program-card {
-    padding: 22px 18px;
+  .pg-cards {
+    grid-template-columns: 1fr;
+    padding: 0 4px;
+  }
+
+  .pg-card {
+    padding: 24px 18px;
     border-radius: 22px;
   }
 
-  .program-title {
-    font-size: 1.6rem;
-  }
-
-  .program-image {
-    width: 130px;
-    height: 130px;
-  }
-
-  /* ✅ stack label + dropdown */
-  .dropdown-group {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .dropdown-group select {
-    width: 100%;
-    max-width: 320px;
+  .pg-card__title {
+    font-size: 1.55rem;
   }
 }
 
 @media (max-width: 480px) {
-  .program-card {
-    padding: 18px 12px;
-    border-radius: 20px;
+  .pg-page {
+    padding: 44px 10px 44px;
   }
 
-  .program-title {
-    font-size: 1.4rem;
+  .pg-header__title {
+    font-size: clamp(1.8rem, 7vw, 2.2rem);
   }
 
-  .program-description,
-  .program-time,
-  .program-date,
-  .program-location {
+  .pg-header__subtitle {
+    font-size: 0.94rem;
+  }
+
+  .pg-card {
+    padding: 20px 14px;
+    border-radius: 18px;
+  }
+
+  .pg-card__title {
+    font-size: 1.35rem;
+  }
+
+  .pg-card__desc {
+    font-size: 0.88rem;
+  }
+
+  .pg-card__info-pill {
+    font-size: 0.82rem;
+    padding: 8px 12px;
+  }
+
+  .pg-dropdown {
+    width: 90vw;
     font-size: 0.9rem;
   }
 
-  .program-image {
-    width: 110px;
-    height: 110px;
-  }
-
-  .dropdown-group label {
-    font-size: 1rem;
-  }
-
-  .dropdown-group select {
-    font-size: 0.95rem;
-    padding: 6px 10px;
-    min-width: 180px;
+  .pg-card__avatar-wrap {
+    width: 120px;
+    height: 120px;
   }
 }

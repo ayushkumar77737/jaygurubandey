@@ -13,7 +13,7 @@ const testimoniesData = [
     shortText:
       "For months I was worried about my health and mind. After visiting the ashram and doing satsang regularly, I felt a deep peace in my heart...",
     fullText:
-      "For months I was worried about my health and mind. After visiting the ashram and doing satsang regularly, I felt a deep peace in my heart. Guruji’s blessings gave me strength to face my problems calmly. Within a short time, my reports improved and my family also felt happier and more connected. I now start my day with Guruji’s name and feel guided in every decision."
+      "For months I was worried about my health and mind. After visiting the ashram and doing satsang regularly, I felt a deep peace in my heart. Guruji's blessings gave me strength to face my problems calmly. Within a short time, my reports improved and my family also felt happier and more connected. I now start my day with Guruji's name and feel guided in every decision."
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const testimoniesData = [
     shortText:
       "I was very confused about my career and personal life. After one darshan at the ashram, things slowly started becoming clear for me...",
     fullText:
-      "I was very confused about my career and personal life. After one darshan at the ashram, things slowly started becoming clear for me. Through Guruji’s satsangs and simple teachings on faith and hard work, I developed confidence and patience. I got a good job opportunity at the right time and my family relationships also healed. I truly feel Guruji arranged everything better than I imagined."
+      "I was very confused about my career and personal life. After one darshan at the ashram, things slowly started becoming clear for me. Through Guruji's satsangs and simple teachings on faith and hard work, I developed confidence and patience. I got a good job opportunity at the right time and my family relationships also healed. I truly feel Guruji arranged everything better than I imagined."
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const testimoniesData = [
     shortText:
       "Earlier I used to overthink and stay stressed all the time. Regular bhajans and chanting brought a soft, silent joy inside me...",
     fullText:
-      "Earlier I used to overthink and stay stressed all the time. Regular bhajans and chanting brought a soft, silent joy inside me. I feel lighter, sleep better and handle daily challenges with a smile. The ashram became a second home where I can sit quietly, pray and feel Guruji’s presence. This inner peace is the biggest blessing in my life."
+      "Earlier I used to overthink and stay stressed all the time. Regular bhajans and chanting brought a soft, silent joy inside me. I feel lighter, sleep better and handle daily challenges with a smile. The ashram became a second home where I can sit quietly, pray and feel Guruji's presence. This inner peace is the biggest blessing in my life."
   },
   {
     id: 4,
@@ -51,8 +51,9 @@ const testimoniesData = [
 ];
 
 const Testimonies = () => {
-  const [openId, setOpenId] = useState(1); // default open: Story of the Week
+  const [openId, setOpenId] = useState(1);
   const navigate = useNavigate();
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -61,68 +62,109 @@ const Testimonies = () => {
   const others = testimoniesData.slice(1);
 
   return (
-    <div className="testimonies-page">
-      {/* Intro */}
-      <section className="testimonies-intro">
-        <h1>🌸 Testimonies of Grace 🌸</h1>
-        <p className="testimonies-subtitle">
+    <div className="tm-page">
+
+      {/* Ambient background glows */}
+      <div className="tm-bg" aria-hidden="true">
+        <span className="tm-bg__glow tm-bg__glow--1" />
+        <span className="tm-bg__glow tm-bg__glow--2" />
+        <span className="tm-bg__glow tm-bg__glow--3" />
+      </div>
+
+      {/* ── Intro ─────────────────────────────────────────── */}
+      <section className="tm-intro">
+        <div className="tm-intro__ornament">
+          <span className="tm-orn-line" />
+          <span className="tm-orn-icon">🌸</span>
+          <span className="tm-orn-line" />
+        </div>
+        <h1 className="tm-intro__title">Testimonies of Grace</h1>
+        <p className="tm-intro__subtitle">
           Real stories from devotees whose lives were touched by Guruji&apos;s
           blessings, satsangs, and the loving atmosphere of the ashram.
         </p>
-      </section>
-
-      {/* Story of the Week */}
-      <section className="featured-section">
-        <p className="section-label">✨ Story of the Week</p>
-        <div className="featured-card">
-          <div className="featured-left">
-            <div className="avatar-circle big-avatar">
-              {featured.name.charAt(0)}
-            </div>
-            <div>
-              <h2>{featured.name}</h2>
-              <p className="meta">
-                {featured.date} • {featured.location}
-              </p>
-              <span className="tag-pill">{featured.tag}</span>
-            </div>
-          </div>
-          <p className="featured-text">{featured.fullText}</p>
+        <div className="tm-intro__ornament tm-intro__ornament--bottom">
+          <span className="tm-orn-line" />
+          <span className="tm-orn-dot" />
+          <span className="tm-orn-line" />
         </div>
       </section>
 
-      {/* Testimonies Grid */}
-      <section className="grid-section">
-        <p className="section-label">🌸 More Devotee Experiences</p>
+      {/* ── Story of the Week ──────────────────────────────── */}
+      <section className="tm-featured">
+        <p className="tm-section-label">
+          <span className="tm-section-label__icon">✨</span>
+          Story of the Week
+        </p>
 
-        <div className="testimonies-grid">
-          {others.map((t) => {
+        <div className="tm-featured__card">
+          {/* Decorative quote mark */}
+          <span className="tm-featured__quote">&ldquo;</span>
+
+          <div className="tm-featured__top">
+            <div className="tm-avatar tm-avatar--lg">
+              {featured.name.charAt(0)}
+            </div>
+            <div className="tm-featured__info">
+              <h2 className="tm-featured__name">{featured.name}</h2>
+              <p className="tm-meta">
+                <span className="tm-meta__date">{featured.date}</span>
+                <span className="tm-meta__sep">·</span>
+                <span className="tm-meta__loc">{featured.location}</span>
+              </p>
+              <span className="tm-tag">{featured.tag}</span>
+            </div>
+          </div>
+
+          <p className="tm-featured__text">{featured.fullText}</p>
+
+          <div className="tm-featured__bar" />
+        </div>
+      </section>
+
+      {/* ── More Testimonies Grid ──────────────────────────── */}
+      <section className="tm-grid-section">
+        <p className="tm-section-label">
+          <span className="tm-section-label__icon">🌸</span>
+          More Devotee Experiences
+        </p>
+
+        <div className="tm-grid">
+          {others.map((t, i) => {
             const isOpen = openId === t.id;
             return (
               <article
                 key={t.id}
-                className={`testimony-card ${isOpen ? "open" : ""}`}
+                className={`tm-card ${isOpen ? "tm-card--open" : ""}`}
+                style={{ animationDelay: `${0.2 + i * 0.12}s` }}
               >
-                <div className="card-header">
-                  <div className="avatar-circle">{t.name.charAt(0)}</div>
-                  <div>
-                    <h3>{t.name}</h3>
-                    <p className="meta">
-                      {t.date} • {t.location}
+                {/* Top accent bar */}
+                <div className="tm-card__accent" />
+
+                <div className="tm-card__header">
+                  <div className="tm-avatar">{t.name.charAt(0)}</div>
+                  <div className="tm-card__info">
+                    <h3 className="tm-card__name">{t.name}</h3>
+                    <p className="tm-meta">
+                      <span className="tm-meta__date">{t.date}</span>
+                      <span className="tm-meta__sep">·</span>
+                      <span className="tm-meta__loc">{t.location}</span>
                     </p>
-                    <span className="tag-pill">{t.tag}</span>
+                    <span className="tm-tag">{t.tag}</span>
                   </div>
                 </div>
 
-                <p className="card-text">
+                <div className="tm-card__divider" />
+
+                <p className="tm-card__text">
                   {isOpen ? t.fullText : t.shortText}
                 </p>
 
                 <button
-                  className="card-button"
+                  className="tm-card__btn"
                   onClick={() => setOpenId(isOpen ? null : t.id)}
                 >
-                  {isOpen ? "Show Less" : "Read Full Story"}
+                  {isOpen ? "Show Less ↑" : "Read Full Story →"}
                 </button>
               </article>
             );
@@ -130,22 +172,25 @@ const Testimonies = () => {
         </div>
       </section>
 
-      {/* Small call-to-action */}
-      <section className="share-story-section">
-        <h2>Share Your Experience</h2>
-        <p>
-          Have you felt Guruji&apos;s presence or received blessings in your
-          life? You can share your story so that other devotees also feel
-          inspired and hopeful.
-        </p>
-        {/* Later you can link this to a Google Form */}
-        <button
-          className="share-story-btn"
-          onClick={() => navigate("/submit-testimony")}
-        >
-          Submit Your Testimony
-        </button>
+      {/* ── Share Story CTA ────────────────────────────────── */}
+      <section className="tm-cta">
+        <div className="tm-cta__inner">
+          <div className="tm-cta__icon-wrap">🙏</div>
+          <h2 className="tm-cta__title">Share Your Experience</h2>
+          <p className="tm-cta__text">
+            Have you felt Guruji&apos;s presence or received blessings in your
+            life? You can share your story so that other devotees also feel
+            inspired and hopeful.
+          </p>
+          <button
+            className="tm-cta__btn"
+            onClick={() => navigate("/submit-testimony")}
+          >
+            Submit Your Testimony
+          </button>
+        </div>
       </section>
+
     </div>
   );
 };

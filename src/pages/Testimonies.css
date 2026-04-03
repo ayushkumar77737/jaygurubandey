@@ -1,358 +1,649 @@
-/* ===== Page Background (SCOPED) ===== */
-.testimonies-page {
+/* =========================================================
+   TESTIMONIES PAGE — Testimonies.css
+   All classnames prefixed with  tm-  to prevent conflicts
+   Aesthetic: Devotional editorial · Cormorant + Lato
+              Crimson, blush rose & antique gold
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap');
+
+/* ── CSS Variables ───────────────────────────────────────── */
+.tm-page {
+  --tm-crimson: #8b0000;
+  --tm-crimson-dark: #5c0000;
+  --tm-crimson-soft: #b30000;
+  --tm-rose: #c0185a;
+  --tm-rose-soft: #e05080;
+  --tm-blush: #fce4ec;
+  --tm-gold: #c9922a;
+  --tm-gold-light: #e8c06a;
+  --tm-cream: #fffdf5;
+  --tm-cream-mid: #fdf4e3;
+  --tm-text: #2e1a0e;
+  --tm-text-mid: #5a3e28;
+  --tm-text-light: #7a6252;
+  --tm-radius: 18px;
+  --tm-shadow: 0 8px 32px rgba(139, 0, 0, 0.09);
+  --tm-shadow-hover: 0 20px 50px rgba(139, 0, 0, 0.16);
+  --tm-font-display: 'Cormorant Garamond', Georgia, serif;
+  --tm-font-body: 'Lato', sans-serif;
+}
+
+/* ── Page Shell ──────────────────────────────────────────── */
+.tm-page {
+  position: relative;
   min-height: 100vh;
-  padding: 4rem 1.5rem 5rem;
-  background: linear-gradient(135deg, #fff5f5, #fff0fa, #f5faff);
-  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
-  color: #333;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201, 146, 42, 0.09) 0%, transparent 65%),
+    linear-gradient(155deg, #fffdf5 0%, #fdf4e3 35%, #fce4ec 70%, #fffdf5 100%);
+  font-family: var(--tm-font-body);
+  color: var(--tm-text);
+  padding: 70px 20px 64px;
   box-sizing: border-box;
-
-  /* 🔥 Page fade-in like blog */
-  animation: testimoniesFadeIn 1s ease-in-out;
+  overflow-x: hidden;
+  animation: tm-fadeIn 0.8s ease;
 }
 
-/* ===== Intro ===== */
-.testimonies-page .testimonies-intro {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 3rem;
-}
-
-.testimonies-page .testimonies-badge {
-  display: inline-block;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: rgba(255, 192, 203, 0.4);
-  color: #b30059;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.8rem;
-}
-
-.testimonies-page .testimonies-intro h1 {
-  font-size: clamp(1.9rem, 4vw, 2.6rem);
-  color: #b71c1c;
-  margin-bottom: 0.7rem;
-  white-space: nowrap;       /* forces same line */
+/* ── Ambient background glows ────────────────────────────── */
+.tm-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-.testimonies-page .testimonies-subtitle {
-  font-size: 0.98rem;
-  color: #555;
-  line-height: 1.7;
+.tm-bg__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.12;
 }
 
-/* ===== Section labels ===== */
-.testimonies-page .section-label {
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: #b30059;
-  margin-bottom: 0.8rem;
+.tm-bg__glow--1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #e8c06a, transparent);
+  top: -120px;
+  left: -100px;
+  animation: tm-drift 14s ease-in-out infinite alternate;
 }
 
-/* ===== Featured Story (Story of the Week) ===== */
-.testimonies-page .featured-section {
-  max-width: 960px;
-  margin: 0 auto 3.5rem;
-  padding: 0 0.5rem;
+.tm-bg__glow--2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #ffb6c1, transparent);
+  top: 30%;
+  right: -100px;
+  animation: tm-drift 18s ease-in-out infinite alternate-reverse;
 }
 
-.testimonies-page .featured-card {
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 1.8rem 2rem;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 105, 135, 0.18);
+.tm-bg__glow--3 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, #c9922a, transparent);
+  bottom: 60px;
+  left: 20%;
+  animation: tm-drift 22s ease-in-out infinite alternate;
+}
+
+@keyframes tm-drift {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(30px, 20px);
+  }
+}
+
+/* ── Ornament helpers ────────────────────────────────────── */
+.tm-orn-line {
+  display: block;
+  width: 70px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--tm-gold), transparent);
+}
+
+.tm-orn-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 6px rgba(201, 146, 42, 0.4));
+}
+
+.tm-orn-dot {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--tm-gold);
+  box-shadow: 0 0 8px var(--tm-gold-light);
+}
+
+/* ── Intro ───────────────────────────────────────────────── */
+.tm-intro {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 52px;
+}
+
+.tm-intro__ornament {
   display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
 
-  /* 🔥 Animate featured card coming up */
+.tm-intro__ornament--bottom {
+  margin-top: 18px;
+  margin-bottom: 0;
+}
+
+.tm-intro__title {
+  font-family: var(--tm-font-display);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  color: var(--tm-crimson);
+  margin: 0 0 14px;
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+  text-shadow: 1px 2px 12px rgba(139, 0, 0, 0.10);
+}
+
+.tm-intro__subtitle {
+  font-family: var(--tm-font-display);
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--tm-text-mid);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ── Section Label ───────────────────────────────────────── */
+.tm-section-label {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--tm-font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--tm-rose);
+  margin-bottom: 20px;
+}
+
+.tm-section-label__icon {
+  font-size: 1rem;
+}
+
+/* ── Featured Card ───────────────────────────────────────── */
+.tm-featured {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto 56px;
+  padding: 0 6px;
+}
+
+.tm-featured__card {
+  position: relative;
+  background: rgba(255, 253, 245, 0.97);
+  border-radius: 24px;
+  padding: 44px 48px;
+  box-shadow: var(--tm-shadow);
+  border: 1px solid rgba(201, 146, 42, 0.18);
+  overflow: hidden;
   opacity: 0;
-  animation: testimoniesFadeUp 0.8s ease-in-out forwards;
+  animation: tm-fadeUp 0.8s ease forwards;
   animation-delay: 0.15s;
 }
 
-.testimonies-page .featured-left {
+/* Decorative corner gradient */
+.tm-featured__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle at top left, rgba(201, 146, 42, 0.10), transparent 70%);
+  pointer-events: none;
+}
+
+/* Giant decorative quote */
+.tm-featured__quote {
+  position: absolute;
+  top: 16px;
+  right: 32px;
+  font-family: var(--tm-font-display);
+  font-size: 9rem;
+  line-height: 1;
+  color: rgba(139, 0, 0, 0.055);
+  pointer-events: none;
+  user-select: none;
+}
+
+.tm-featured__top {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 18px;
+  margin-bottom: 24px;
 }
 
-.testimonies-page .featured-left h2 {
-  font-size: 1.3rem;
-  margin-bottom: 0.1rem;
-  color: #a0003c;
+.tm-featured__info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
-.testimonies-page .meta {
-  font-size: 0.82rem;
-  color: #777;
+.tm-featured__name {
+  font-family: var(--tm-font-display);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--tm-crimson);
+  margin: 0;
 }
 
-.testimonies-page .tag-pill {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: rgba(255, 192, 203, 0.25);
-  color: #a0003c;
-  font-size: 0.75rem;
-  margin-top: 5px;
+.tm-featured__text {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--tm-text-mid);
+  margin: 0;
+  font-family: var(--tm-font-body);
+  font-weight: 300;
 }
 
-.testimonies-page .featured-text {
-  font-size: 0.96rem;
-  line-height: 1.8;
-  color: #444;
+.tm-featured__bar {
+  width: 56px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--tm-gold), var(--tm-gold-light));
+  border-radius: 3px;
+  margin-top: 28px;
 }
 
-/* ===== Avatar Circle (no real images needed) ===== */
-.testimonies-page .avatar-circle {
-  width: 44px;
-  height: 44px;
+/* ── Avatar ──────────────────────────────────────────────── */
+.tm-avatar {
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: var(--tm-font-display);
   font-weight: 700;
-  font-size: 1.1rem;
-  background: radial-gradient(circle at 30% 0, #ffe1f0, #ff8bb0);
-  color: #6b0024;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, #ffd6e0, #ffb3c6);
+  color: var(--tm-crimson-dark);
   flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.8);
 }
 
-.testimonies-page .big-avatar {
-  width: 56px;
-  height: 56px;
-  font-size: 1.3rem;
+.tm-avatar--lg {
+  width: 62px;
+  height: 62px;
+  font-size: 1.5rem;
 }
 
-/* ===== Grid Section (using flex so cards don't stretch each other) ===== */
-.testimonies-page .grid-section {
-  max-width: 1100px;
-  margin: 0 auto 3.5rem;
-  padding: 0 0.5rem;
+/* ── Meta ────────────────────────────────────────────────── */
+.tm-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--tm-text-light);
 }
 
-/* Flexbox container – fully responsive & independent heights */
-.testimonies-page .testimonies-grid {
+.tm-meta__sep {
+  color: var(--tm-gold);
+}
+
+/* ── Tag Pill ─────────────────────────────────────────────── */
+.tm-tag {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: rgba(201, 146, 42, 0.12);
+  border: 1px solid rgba(201, 146, 42, 0.30);
+  color: var(--tm-gold);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+/* ── Grid Section ────────────────────────────────────────── */
+.tm-grid-section {
+  position: relative;
+  z-index: 1;
+  max-width: 1060px;
+  margin: 0 auto 56px;
+  padding: 0 6px;
+}
+
+.tm-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.8rem;
+  gap: 24px;
   justify-content: center;
   align-items: flex-start;
 }
 
-/* Cards */
-.testimonies-page .testimony-card {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 1.3rem 1.4rem 1.5rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-  border: 1px solid transparent;
+/* ── Testimony Card ──────────────────────────────────────── */
+.tm-card {
+  position: relative;
+  background: rgba(255, 253, 245, 0.96);
+  border-radius: var(--tm-radius);
+  border: 1px solid rgba(201, 146, 42, 0.15);
+  box-shadow: var(--tm-shadow);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.25s ease, box-shadow 0.25s ease,
-    border-color 0.25s ease;
+  flex: 1 1 280px;
+  max-width: 330px;
+  padding: 0 0 22px;
   box-sizing: border-box;
-
-  /* responsive width */
-  flex: 1 1 280px;   /* min width per card */
-  max-width: 340px; /* prevents over-stretch on big screens */
-
-  /* 🔥 Card fade + slide up like blog cards */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   opacity: 0;
-  animation: testimoniesFadeUp 0.8s ease-in-out forwards;
+  animation: tm-fadeUp 0.7s ease both;
 }
 
-/* 🔥 Staggered animation delays for cards */
-.testimonies-page .testimony-card:nth-child(1) { animation-delay: 0.25s; }
-.testimonies-page .testimony-card:nth-child(2) { animation-delay: 0.35s; }
-.testimonies-page .testimony-card:nth-child(3) { animation-delay: 0.45s; }
-.testimonies-page .testimony-card:nth-child(4) { animation-delay: 0.55s; }
-.testimonies-page .testimony-card:nth-child(5) { animation-delay: 0.65s; }
-.testimonies-page .testimony-card:nth-child(6) { animation-delay: 0.75s; }
-/* Extend nth-child if you have more cards */
-
-.testimonies-page .testimony-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
-  border-color: rgba(255, 105, 135, 0.4);
+.tm-card:hover {
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: var(--tm-shadow-hover);
+  border-color: rgba(201, 146, 42, 0.32);
 }
 
-.testimonies-page .testimony-card.open {
-  border-color: rgba(255, 105, 135, 0.7);
+.tm-card--open {
+  border-color: rgba(139, 0, 0, 0.30);
+  box-shadow: 0 12px 40px rgba(139, 0, 0, 0.14);
 }
 
-.testimonies-page .card-header {
+/* Top accent strip */
+.tm-card__accent {
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--tm-crimson), var(--tm-rose-soft), var(--tm-gold));
+  margin-bottom: 20px;
+}
+
+.tm-card__header {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  margin-bottom: 0.8rem;
+  gap: 14px;
+  padding: 0 20px;
+  margin-bottom: 6px;
 }
 
-.testimonies-page .card-header h3 {
-  font-size: 1.05rem;
-  color: #a0003c;
+.tm-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.testimonies-page .card-text {
-  font-size: 0.9rem;
-  color: #444;
-  line-height: 1.7;
-  margin: 0.5rem 0 1.1rem;
+.tm-card__name {
+  font-family: var(--tm-font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--tm-crimson);
+  margin: 0;
 }
 
-/* Button */
-.testimonies-page .card-button {
-  margin: 0 auto;             /* Centers the button */
-  display: block;             /* Allows margin auto to work */
-  padding: 8px 18px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: 600;
-  background: linear-gradient(90deg, #b30059, #ff5f9e);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(179, 0, 89, 0.25);
-  transition: transform 0.2s ease, box-shadow 0.2s ease,
-    background 0.2s ease;
+.tm-card__divider {
+  width: calc(100% - 40px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 146, 42, 0.30), transparent);
+  margin: 14px 20px;
 }
 
-.testimonies-page .card-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(179, 0, 89, 0.35);
-  background: linear-gradient(90deg, #ff5f9e, #ffb6d0);
+.tm-card__text {
+  font-size: 0.91rem;
+  color: var(--tm-text-mid);
+  line-height: 1.75;
+  margin: 0 20px 18px;
+  font-weight: 300;
 }
 
-/* ===== Call to Action Section ===== */
-.testimonies-page .share-story-section {
-  max-width: 700px;
+/* ── Card Button ─────────────────────────────────────────── */
+.tm-card__btn {
+  display: block;
   margin: 0 auto;
-  text-align: center;
-  padding: 2.2rem 1.8rem;
-  background: #ffffffcc;
-  border-radius: 24px;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
-
-  /* 🔥 Optional: fade up CTA too */
-  opacity: 0;
-  animation: testimoniesFadeUp 0.8s ease-in-out forwards;
-  animation-delay: 0.85s;
-}
-
-.testimonies-page .share-story-section h2 {
-  color: #a0003c;
-  margin-bottom: 0.5rem;
-}
-
-.testimonies-page .share-story-section p {
-  font-size: 0.94rem;
-  color: #555;
-  margin-bottom: 1.3rem;
-  line-height: 1.7;
-}
-
-.testimonies-page .share-story-btn {
-  padding: 10px 24px;
-  border-radius: 999px;
-  border: none;
-  font-size: 0.92rem;
-  font-weight: 600;
+  padding: 9px 22px;
+  border-radius: 30px;
+  border: 2px solid var(--tm-crimson);
+  background: transparent;
+  color: var(--tm-crimson);
+  font-family: var(--tm-font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
   cursor: pointer;
-  background: linear-gradient(90deg, #ff5f9e, #ffb6d0);
-  color: #6b0024;
-  box-shadow: 0 4px 14px rgba(255, 105, 135, 0.35);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 
-.testimonies-page .share-story-btn:hover {
+.tm-card__btn:hover {
+  background: var(--tm-crimson);
+  color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 7px 18px rgba(255, 105, 135, 0.45);
+  box-shadow: 0 8px 22px rgba(139, 0, 0, 0.22);
 }
 
-/* ===== Responsive ===== */
+.tm-card--open .tm-card__btn {
+  border-color: var(--tm-rose);
+  color: var(--tm-rose);
+}
 
-/* Large desktops – give more breathing space */
+.tm-card--open .tm-card__btn:hover {
+  background: var(--tm-rose);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(192, 24, 90, 0.22);
+}
+
+/* ── CTA Section ─────────────────────────────────────────── */
+.tm-cta {
+  position: relative;
+  z-index: 1;
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 0 6px;
+  opacity: 0;
+  animation: tm-fadeUp 0.8s ease forwards;
+  animation-delay: 0.75s;
+}
+
+.tm-cta__inner {
+  background: rgba(255, 253, 245, 0.96);
+  border-radius: 24px;
+  border: 1px solid rgba(201, 146, 42, 0.18);
+  box-shadow: var(--tm-shadow);
+  padding: 44px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle radial glow behind CTA */
+.tm-cta__inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(201, 146, 42, 0.07), transparent 70%);
+  pointer-events: none;
+}
+
+.tm-cta__icon-wrap {
+  font-size: 2.4rem;
+  margin-bottom: 14px;
+  filter: drop-shadow(0 4px 8px rgba(201, 146, 42, 0.30));
+}
+
+.tm-cta__title {
+  font-family: var(--tm-font-display);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 700;
+  color: var(--tm-crimson);
+  margin: 0 0 12px;
+}
+
+.tm-cta__text {
+  font-size: 0.96rem;
+  color: var(--tm-text-mid);
+  line-height: 1.8;
+  margin: 0 0 28px;
+  font-weight: 300;
+}
+
+.tm-cta__btn {
+  display: inline-block;
+  padding: 13px 36px;
+  border-radius: 30px;
+  border: none;
+  background: var(--tm-crimson);
+  color: #fff;
+  font-family: var(--tm-font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.25s, box-shadow 0.3s;
+  box-shadow: 0 6px 20px rgba(139, 0, 0, 0.28);
+}
+
+.tm-cta__btn:hover {
+  background: var(--tm-crimson-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(139, 0, 0, 0.32);
+}
+
+/* ── Keyframes ───────────────────────────────────────────── */
+@keyframes tm-fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes tm-fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(36px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
 @media (min-width: 1200px) {
-  .testimonies-page {
-    padding: 4.5rem 4rem 5rem;
+  .tm-page {
+    padding: 80px 60px 72px;
   }
 }
 
-/* Tablets */
 @media (max-width: 900px) {
-  .testimonies-page {
-    padding: 3rem 1.2rem 4rem;
+  .tm-page {
+    padding: 55px 16px 52px;
   }
 
-  .testimonies-page .featured-card {
-    padding: 1.5rem 1.4rem;
+  .tm-featured__card {
+    padding: 32px 28px;
   }
 
-  .testimonies-page .testimony-card {
+  .tm-cta__inner {
+    padding: 32px 28px;
+  }
+
+  .tm-card {
     flex: 1 1 260px;
     max-width: 100%;
   }
 }
 
-/* Small tablets & big phones */
 @media (max-width: 700px) {
-  .testimonies-page .featured-left {
+  .tm-featured__top {
     align-items: flex-start;
   }
 
-  .testimonies-page .featured-card {
-    padding: 1.4rem 1.2rem;
+  .tm-featured__card {
+    padding: 28px 22px;
   }
 
-  .testimonies-page .testimony-card {
+  .tm-card {
     flex: 1 1 100%;
     max-width: 100%;
   }
+
+  .tm-cta__inner {
+    padding: 28px 20px;
+  }
 }
 
-/* Mobile phones */
 @media (max-width: 480px) {
-  .testimonies-page {
-    padding: 2.8rem 1rem 3.5rem;
+  .tm-page {
+    padding: 48px 12px 44px;
   }
 
-  .testimonies-page .testimonies-intro h1 {
-    font-size: 1.3rem;     /* Makes it fit in 1 line */
-    white-space: nowrap;
+  .tm-intro__title {
+    font-size: clamp(1.7rem, 7vw, 2rem);
   }
 
-  .testimonies-page .featured-card {
+  .tm-intro__subtitle {
+    font-size: 0.94rem;
+  }
+
+  .tm-featured__card {
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+
+  .tm-featured__quote {
+    font-size: 6rem;
+    top: 10px;
+    right: 16px;
+  }
+
+  .tm-featured__name {
+    font-size: 1.3rem;
+  }
+
+  .tm-featured__text {
+    font-size: 0.96rem;
+  }
+
+  .tm-cta__inner {
+    padding: 24px 18px;
     border-radius: 18px;
   }
 
-  .testimonies-page .share-story-section {
-    padding: 1.8rem 1.2rem;
+  .tm-card {
+    border-radius: 14px;
+  }
+
+  .tm-card__text {
+    font-size: 0.88rem;
+  }
+
+  .tm-orn-line {
+    width: 44px;
   }
 }
 
 @media (max-width: 360px) {
-  .testimonies-page .testimonies-intro h1 {
-    font-size: 1.15rem;   /* For very narrow screens */
+  .tm-intro__title {
+    font-size: 1.5rem;
   }
-}
-
-/* ===== Animations (SCOPED NAMES) ===== */
-@keyframes testimoniesFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes testimoniesFadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
 }

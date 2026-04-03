@@ -116,59 +116,124 @@ const Blog = () => {
   };
 
   return (
-    <div className="blog-container">
-      <h2 className="blog-title">🌸 The Spiritual Voyage 🌸</h2>
-      <p className="blog-subtitle">
-        Teachings, events, and experiences from the spiritual journey.
-      </p>
+    <div className="sb-page">
+      {/* Decorative background petals */}
+      <div className="sb-bg-decoration" aria-hidden="true">
+        <span className="sb-petal sb-petal--1">✿</span>
+        <span className="sb-petal sb-petal--2">❁</span>
+        <span className="sb-petal sb-petal--3">✿</span>
+        <span className="sb-petal sb-petal--4">❁</span>
+      </div>
 
-      <div className="blog-grid">
-        {currentPosts.map(post => (
-          <div key={post.id} className="blog-card">
-            <img
-              src={post.images[currentImages[post.id] || 0]}
-              alt={post.title}
-            />
-            <div className="blog-content">
-              <h3>{post.title}</h3>
-              <p className="blog-meta">📅 {post.date} | 👤 {post.author}</p>
+      <header className="sb-header">
+        <div className="sb-header__ornament">
+          <span className="sb-ornament-line"></span>
+          <span className="sb-ornament-icon">🪷</span>
+          <span className="sb-ornament-line"></span>
+        </div>
+        <h2 className="sb-header__title">The Spiritual Voyage</h2>
+        <p className="sb-header__subtitle">
+          Teachings, events &amp; experiences from the sacred journey
+        </p>
+        <div className="sb-header__ornament sb-header__ornament--bottom">
+          <span className="sb-ornament-line"></span>
+          <span className="sb-ornament-dot"></span>
+          <span className="sb-ornament-line"></span>
+        </div>
+      </header>
 
-              {/* ✅ Only first paragraph preview */}
-              <p className="blog-desc">
-                {post.description[0].slice(0, 100)}...
+      <div className="sb-grid">
+        {currentPosts.map((post, i) => (
+          <article
+            key={post.id}
+            className="sb-card"
+            style={{ animationDelay: `${i * 0.15}s` }}
+          >
+            <div className="sb-card__image-wrap">
+              <img
+                src={post.images[currentImages[post.id] || 0]}
+                alt={post.title}
+                className="sb-card__image"
+              />
+              <div className="sb-card__image-overlay"></div>
+              <div className="sb-card__image-dots">
+                {post.images.map((_, idx) => (
+                  <span
+                    key={idx}
+                    className={`sb-dot ${(currentImages[post.id] || 0) === idx ? "sb-dot--active" : ""}`}
+                  />
+                ))}
+              </div>
+              <span className="sb-card__category">Sacred Event</span>
+            </div>
+
+            <div className="sb-card__body">
+              <div className="sb-card__meta">
+                <span className="sb-card__date">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
+                  {post.date}
+                </span>
+                <span className="sb-card__author">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+                  {post.author}
+                </span>
+              </div>
+
+              <h3 className="sb-card__title">{post.title}</h3>
+              <div className="sb-card__divider"></div>
+              <p className="sb-card__excerpt">
+                {post.description[0].slice(0, 110)}…
               </p>
 
               <Link
                 to={`/blog/${post.id}`}
                 state={{ currentPage }}
-                className="read-more-btn"
+                className="sb-card__btn"
               >
                 Know More
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
               </Link>
             </div>
-          </div>
+          </article>
         ))}
       </div>
 
-      <div className="pagination">
-        <button onClick={handlePrev} disabled={currentPage === 1}>⬅ Previous</button>
-        <span className="page-info">Page {currentPage} of {totalPages}</span>
-        <button onClick={handleNext} disabled={currentPage === totalPages}>Next ➡</button>
+      {/* Pagination */}
+      <div className="sb-pagination">
+        <button
+          className="sb-pagination__btn"
+          onClick={handlePrev}
+          disabled={currentPage === 1}
+        >
+          ← Prev
+        </button>
+        <div className="sb-pagination__info">
+          <span className="sb-pagination__current">{currentPage}</span>
+          <span className="sb-pagination__sep">/</span>
+          <span className="sb-pagination__total">{totalPages}</span>
+        </div>
+        <button
+          className="sb-pagination__btn"
+          onClick={handleNext}
+          disabled={currentPage === totalPages}
+        >
+          Next →
+        </button>
       </div>
-      <div
-        className="map-button-container fade-in-up"
-        style={{ display: "flex", justifyContent: "center", gap: "15px", flexWrap: "wrap" }}
-      >
-        <Link to="/devotes-bhajan" className="know-more-btn">
-          🎶 Devotes Bhajan
-        </Link>
 
-        <Link to="/testimonies" className="know-more-btn">
-          🔱 Testimonies
+      {/* Bottom navigation links */}
+      <div className="sb-bottom-nav">
+        <Link to="/devotes-bhajan" className="sb-bottom-nav__link">
+          <span className="sb-bottom-nav__icon">🎶</span>
+          <span>Devotes Bhajan</span>
         </Link>
-
-        <Link to="/dailysatsang" className="know-more-btn">
-          🔅 Daily Satsang
+        <Link to="/testimonies" className="sb-bottom-nav__link">
+          <span className="sb-bottom-nav__icon">🔱</span>
+          <span>Testimonies</span>
+        </Link>
+        <Link to="/dailysatsang" className="sb-bottom-nav__link">
+          <span className="sb-bottom-nav__icon">🔅</span>
+          <span>Daily Satsang</span>
         </Link>
       </div>
     </div>

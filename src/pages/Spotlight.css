@@ -1,379 +1,607 @@
-/* ===== Page Background ===== */
-.spotlight-page {
-  background: linear-gradient(135deg, #fff7fa, #f8faff);
-  color: #333;
-  text-align: center;
-  padding: 60px 20px;
-  font-family: "Outfit", sans-serif;
+/* =========================================================
+   SPOTLIGHT PAGE — Spotlight.css
+   All classnames prefixed with  sp-  to prevent conflicts
+   Aesthetic: Press & editorial · Cormorant + Lato
+              Deep crimson, warm gold & parchment
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+
+/* ── Variables ───────────────────────────────────────────── */
+.sp-page {
+  --sp-crimson: #8b0000;
+  --sp-crimson-dark: #5c0000;
+  --sp-crimson-soft: #b30000;
+  --sp-rose: #c0185a;
+  --sp-gold: #c9922a;
+  --sp-gold-light: #e8c06a;
+  --sp-cream: #fffdf5;
+  --sp-cream-mid: #fdf4e3;
+  --sp-text: #2e1a0e;
+  --sp-text-mid: #5a3e28;
+  --sp-text-light: #7a6252;
+  --sp-radius: 18px;
+  --sp-shadow: 0 8px 32px rgba(139, 0, 0, 0.09);
+  --sp-shadow-hover: 0 20px 50px rgba(139, 0, 0, 0.17);
+  --sp-font-display: 'Cormorant Garamond', Georgia, serif;
+  --sp-font-body: 'Lato', sans-serif;
+}
+
+/* ── Page Shell ──────────────────────────────────────────── */
+.sp-page {
+  position: relative;
   min-height: 100vh;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201, 146, 42, 0.09) 0%, transparent 65%),
+    linear-gradient(155deg, #fffdf5 0%, #fdf4e3 40%, #fce9e9 80%, #fffdf5 100%);
+  font-family: var(--sp-font-body);
+  color: var(--sp-text);
+  text-align: center;
+  padding: 70px 20px 64px;
+  box-sizing: border-box;
   overflow-x: hidden;
+  animation: sp-fadeIn 0.8s ease;
 }
 
-/* ===== Header Section ===== */
-.spotlight-header h1 {
-  font-size: 2.6rem;
-  color: #b60049;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
-  font-weight: 700;
-  animation: fadeIn 0.8s ease-in;
-}
-
-.spotlight-header .underline {
-  width: 100px;
-  height: 3px;
-  background: linear-gradient(90deg, #b60049, #ff5fa2);
-  margin: 0 auto 20px;
-  border-radius: 10px;
-  animation: fadeIn 0.8s ease-in;
-}
-
-.spotlight-header p {
-  color: #666;
-  font-size: 1.05rem;
-  max-width: 620px;
-  margin: 0 auto 45px;
-  line-height: 1.6;
-  animation: fadeIn 0.8s ease-in;
-}
-
-/* ===== Dropdown Container (Centered) ===== */
-.dropdown-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 40px auto;
-  position: relative;
-  flex-direction: column;
-  gap: 10px;
-  animation: fadeIn 0.8s ease-in;
-}
-
-/* ===== Refined Dropdown Style (Inspired by SoulTwist) ===== */
-.spotlight-dropdown {
-  width: 250px;
-  max-width: 90%;
-  padding: 10px 14px;
-  border-radius: 25px;
-  border: 1.8px solid #b60049;
-  font-size: 0.95rem;
-  background: #fff;
-  color: #333;
-  cursor: pointer;
-  text-align: center;
-  font-weight: 500;
-  box-shadow: 0 2px 6px rgba(179, 0, 89, 0.15);
-  transition: all 0.3s ease;
-  appearance: none;
-  position: relative;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23b30059' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 15px center;
-  background-size: 12px;
-}
-
-.spotlight-dropdown:hover {
-  border-color: #ff4081;
-  background-color: #fff8fb;
-  box-shadow: 0 3px 8px rgba(179, 0, 89, 0.25);
-  transform: translateY(-1px);
-}
-
-.spotlight-dropdown:focus {
-  outline: none;
-  border-color: #ff4081;
-  box-shadow: 0 0 6px rgba(255, 64, 129, 0.4);
-}
-
-.spotlight-dropdown option {
-  background: #fff;
-  color: #333;
-  font-weight: 500;
-}
-
-/* ===== Selection Message ===== */
-.select-message {
-  text-align: center;
-  margin-top: 30px;
-  font-size: 1.1rem;
-  color: #666;
-  font-style: italic;
-  animation: fadeIn 0.8s ease-in;
-}
-
-/* ===== Grid Layout ===== */
-.spotlight-grid {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  flex-wrap: wrap;
-  gap: 35px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* ===== Card ===== */
-.spotlight-card {
-  background: linear-gradient(145deg, #ffffff, #fdf6fa);
-  border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(182, 0, 73, 0.08);
+/* ── Ambient Glows ───────────────────────────────────────── */
+.sp-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
   overflow: hidden;
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.35s ease;
 }
 
-.spotlight-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 25px rgba(182, 0, 73, 0.18);
+.sp-bg__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.10;
 }
 
-/* ===== Image ===== */
-.spotlight-img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  transition: transform 0.4s ease;
+.sp-bg__glow--1 {
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, #e8c06a, transparent);
+  top: -130px;
+  left: -100px;
+  animation: sp-drift 15s ease-in-out infinite alternate;
 }
 
-.spotlight-card:hover .spotlight-img {
-  transform: scale(1.04);
+.sp-bg__glow--2 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, #ffb6c1, transparent);
+  top: 35%;
+  right: -90px;
+  animation: sp-drift 20s ease-in-out infinite alternate-reverse;
 }
 
-/* ===== Content ===== */
-.spotlight-content {
-  padding: 20px 22px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
+.sp-bg__glow--3 {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, #c9922a, transparent);
+  bottom: 80px;
+  left: 18%;
+  animation: sp-drift 25s ease-in-out infinite alternate;
 }
 
-.spotlight-content h2 {
-  font-size: 1.25rem;
-  color: #b60049;
-  margin-bottom: 10px;
-  font-weight: 600;
+@keyframes sp-drift {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(28px, 18px);
+  }
 }
 
-.spotlight-date {
+/* ── Ornament helpers ────────────────────────────────────── */
+.sp-orn-line {
   display: block;
-  font-size: 0.95rem;
-  color: #888;
-  margin-bottom: 15px;
-  font-style: italic;
+  width: 70px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--sp-gold), transparent);
 }
 
-.spotlight-content p {
-  color: #555;
-  font-size: 0.98rem;
-  line-height: 1.6;
+.sp-orn-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 6px rgba(201, 146, 42, 0.40));
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.sp-header {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto 12px;
+}
+
+.sp-header__ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
   margin-bottom: 18px;
 }
 
-/* ===== Button ===== */
-.read-btn {
+.sp-header__title {
+  font-family: var(--sp-font-display);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 700;
+  color: var(--sp-crimson);
+  margin: 0 0 14px;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  text-shadow: 1px 2px 12px rgba(139, 0, 0, 0.10);
+}
+
+.sp-header__rule {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--sp-crimson), var(--sp-gold));
+  border-radius: 3px;
+  margin: 0 auto 18px;
+}
+
+.sp-header__subtitle {
+  font-family: var(--sp-font-display);
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--sp-text-mid);
+  line-height: 1.75;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ── Dropdown ────────────────────────────────────────────── */
+.sp-dropdown-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  margin: 36px auto;
+}
+
+.sp-dropdown-box {
+  position: relative;
   display: inline-block;
-  padding: 9px 22px;
-  background: linear-gradient(135deg, #b60049, #ff007f);
-  color: #fff;
-  text-decoration: none;
+}
+
+.sp-dropdown {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 240px;
+  max-width: 90vw;
+  padding: 12px 44px 12px 22px;
   border-radius: 30px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 3px 12px rgba(182, 0, 73, 0.2);
+  border: 2px solid var(--sp-crimson);
+  background: rgba(255, 253, 245, 0.95);
+  color: var(--sp-text);
+  font-family: var(--sp-font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 16px rgba(139, 0, 0, 0.12);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
 }
 
-.read-btn:hover {
-  background: linear-gradient(135deg, #ff007f, #b60049);
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 6px 18px rgba(182, 0, 73, 0.3);
+.sp-dropdown:hover {
+  border-color: var(--sp-crimson-soft);
+  box-shadow: 0 6px 22px rgba(139, 0, 0, 0.18);
+  transform: translateY(-1px);
 }
 
-/* ===== Video Styling ===== */
-.video-container {
+.sp-dropdown:focus {
+  outline: none;
+  border-color: var(--sp-gold);
+  box-shadow: 0 0 0 3px rgba(201, 146, 42, 0.20);
+}
+
+.sp-dropdown option {
+  background: #fff;
+  color: var(--sp-text);
+  font-weight: 400;
+}
+
+.sp-dropdown-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--sp-crimson);
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+/* ── Prompt ──────────────────────────────────────────────── */
+.sp-prompt {
+  position: relative;
+  z-index: 1;
+  font-family: var(--sp-font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--sp-text-light);
+  margin-top: 24px;
+  animation: sp-fadeIn 0.8s ease;
+}
+
+/* ── Grid ────────────────────────────────────────────────── */
+.sp-grid {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto 48px;
+}
+
+.sp-grid--animate {
+  animation: sp-gridReveal 0.55s ease both;
+}
+
+/* ── Card ────────────────────────────────────────────────── */
+.sp-card {
+  position: relative;
+  background: rgba(255, 253, 245, 0.97);
+  border-radius: var(--sp-radius);
+  border: 1px solid rgba(201, 146, 42, 0.18);
+  box-shadow: var(--sp-shadow);
+  overflow: hidden;
+  width: 42%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.sp-card:hover {
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: var(--sp-shadow-hover);
+}
+
+.sp-card--animate {
+  opacity: 0;
+  transform: translateY(30px) scale(0.97);
+  animation: sp-cardUp 0.55s ease forwards;
+}
+
+/* ── Card Image ──────────────────────────────────────────── */
+.sp-card__img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.sp-card__img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.sp-card:hover .sp-card__img {
+  transform: scale(1.06);
+}
+
+.sp-card__img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(91, 20, 10, 0.38) 100%);
+  pointer-events: none;
+}
+
+/* Badge */
+.sp-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--sp-crimson);
+  color: #fff;
+  font-family: var(--sp-font-body);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 11px;
+  border-radius: 20px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.20);
+}
+
+.sp-card__badge--video {
+  background: #1a1a2e;
+}
+
+/* ── Card Body ───────────────────────────────────────────── */
+.sp-card__body {
+  padding: 22px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-align: left;
+}
+
+.sp-card__title {
+  font-family: var(--sp-font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--sp-crimson);
+  margin: 0 0 10px;
+  line-height: 1.3;
+  transition: color 0.3s;
+}
+
+.sp-card:hover .sp-card__title {
+  color: var(--sp-crimson-soft);
+}
+
+.sp-card__rule {
+  width: 38px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--sp-gold), var(--sp-gold-light));
+  border-radius: 2px;
+  margin-bottom: 12px;
+  transition: width 0.35s ease;
+}
+
+.sp-card:hover .sp-card__rule {
+  width: 64px;
+}
+
+.sp-card__date {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: var(--sp-text-light);
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.sp-card__date svg {
+  color: var(--sp-gold);
+  flex-shrink: 0;
+}
+
+.sp-card__desc {
+  font-size: 0.93rem;
+  color: var(--sp-text-mid);
+  line-height: 1.72;
+  margin: 0 0 22px;
+  flex: 1;
+  font-weight: 300;
+}
+
+/* ── Card Button ─────────────────────────────────────────── */
+.sp-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 10px 22px;
+  border-radius: 30px;
+  background: var(--sp-crimson);
+  color: #fff;
+  font-family: var(--sp-font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.25s, box-shadow 0.3s;
+  box-shadow: 0 4px 14px rgba(139, 0, 0, 0.22);
+}
+
+.sp-card__btn:hover {
+  background: var(--sp-crimson-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(139, 0, 0, 0.30);
+}
+
+.sp-card__btn svg {
+  transition: transform 0.25s;
+}
+
+.sp-card__btn:hover svg {
+  transform: translateY(2px);
+}
+
+/* ── Video Wrapper ───────────────────────────────────────── */
+.sp-video-wrap {
   position: relative;
   width: 100%;
   padding-top: 48%;
   overflow: hidden;
-  background: #000;
-  border-radius: 20px 20px 0 0;
+  background: #0d0d0d;
+  border-radius: var(--sp-radius) var(--sp-radius) 0 0;
 }
 
-.video-container iframe {
+.sp-video-wrap iframe {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
-  border-radius: 20px 20px 0 0;
+  border: none;
 }
 
-/* ===== Responsive Design ===== */
-@media (max-width: 1100px) {
-  .spotlight-card {
-    width: 48%;
-  }
-}
-
-@media (max-width: 900px) {
-  .spotlight-card {
-    width: 85%;
-  }
-  .spotlight-header h1 {
-    font-size: 2.2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .spotlight-page {
-    padding: 50px 15px;
-  }
-  .spotlight-card {
-    width: 95%;
-  }
-  .spotlight-img {
-    height: 220px;
-  }
-}
-
-@media (max-width: 480px) {
-  .spotlight-page {
-    padding: 35px 12px;
-  }
-  .spotlight-header h1 {
-    font-size: 1.9rem;
-  }
-  .spotlight-card {
-    width: 100%;
-  }
-  .spotlight-img {
-    height: 200px;
-  }
-}
-
-/* ===== Animation ===== */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* ===== Scoped Pagination ===== */
-.spotlight-pagination {
+/* ── Pagination ──────────────────────────────────────────── */
+.sp-pagination {
+  position: relative;
+  z-index: 1;
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin: 30px 0;
-  gap: 10px;
-  font-family: "Outfit", sans-serif;
+  justify-content: center;
+  gap: 20px;
+  margin: 0 auto 48px;
+  flex-wrap: wrap;
 }
 
-/* Common pagination button */
-.spotlight-pagination .spotlight-page-btn {
-  background: #f3f3ff;
-  border: 1px solid #ccc;
-  padding: 8px 18px;
-  border-radius: 8px;
+.sp-pagination__btn {
+  background: transparent;
+  border: 2px solid var(--sp-crimson);
+  color: var(--sp-crimson);
+  font-family: var(--sp-font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 9px 26px;
+  border-radius: 30px;
   cursor: pointer;
-  font-weight: 600;
-  transition: 0.3s;
+  letter-spacing: 0.4px;
+  transition: background 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 
-/* Hover */
-.spotlight-pagination .spotlight-page-btn:hover {
-  background: #e3e3ff;
+.sp-pagination__btn:hover:not(:disabled) {
+  background: var(--sp-crimson);
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(139, 0, 0, 0.22);
 }
 
-/* Active (current page) */
-.spotlight-pagination .spotlight-page-btn.active {
-  background: #6c63ff;
-  color: white;
-  border-color: #6c63ff;
-}
-
-/* Disabled (greyed-out) */
-.spotlight-pagination .spotlight-page-btn:disabled {
-  background: #e0dede;
-  color: #777;
+.sp-pagination__btn:disabled {
   border-color: #ccc;
+  color: #bbb;
   cursor: not-allowed;
 }
 
-/* Prev & Next button base style */
-.spotlight-pagination .spotlight-page-btn.prev,
-.spotlight-pagination .spotlight-page-btn.next {
-  background: #b71c1c;
-  color: white;
-  border: 1px solid #b71c1c;
+.sp-pagination__info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--sp-font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--sp-text-mid);
 }
 
-/* Hover for Prev & Next */
-.spotlight-pagination .spotlight-page-btn.prev:hover:not(:disabled),
-.spotlight-pagination .spotlight-page-btn.next:hover:not(:disabled) {
-  background: #9a1414;
+.sp-pagination__cur {
+  font-size: 1.4rem;
+  color: var(--sp-crimson);
+  font-weight: 700;
 }
 
-/* Disabled Prev & Next (greyed-out look) */
-.spotlight-pagination .spotlight-page-btn.prev:disabled,
-.spotlight-pagination .spotlight-page-btn.next:disabled {
-  background: #e0dede;
-  color: #777;
-  border-color: #ccc;
+.sp-pagination__sep {
+  color: var(--sp-gold);
 }
-/* ===== Fix: Ensure navbar overlay always stays above Spotlight content ===== */
-.spotlight-page,
-.spotlight-card,
-.spotlight-content,
-.read-btn,
-.spotlight-pagination {
+
+.sp-pagination__tot {
+  color: var(--sp-text-light);
+}
+
+/* ── z-index safety ──────────────────────────────────────── */
+.sp-page,
+.sp-card,
+.sp-card__body,
+.sp-card__btn,
+.sp-pagination {
   position: relative;
-  z-index: 0 !important;
+  z-index: 0;
 }
 
-.navbar,
-.sidebar,
-.mobile-menu,
-.menu-overlay {
-  position: relative;
-  z-index: 9999 !important;
-}
-/* ===== Opening Animation for Articles & Page Change ===== */
-.spotlight-grid {
-  animation: fadeSlideUp 0.6s ease forwards;
-}
-
-/* ===== Individual Card Animation ===== */
-.animate-card {
-  opacity: 0;
-  transform: translateY(30px) scale(0.97);
-  animation: cardFadeUp 0.55s ease forwards;
-}
-
-/* ===== Keyframes ===== */
-@keyframes fadeSlideUp {
+/* ── Keyframes ───────────────────────────────────────────── */
+@keyframes sp-fadeIn {
   from {
     opacity: 0;
-    transform: translateY(25px);
   }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sp-gridReveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@keyframes cardFadeUp {
+@keyframes sp-cardUp {
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
 }
 
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 1100px) {
+  .sp-card {
+    width: 46%;
+  }
+}
 
+@media (max-width: 900px) {
+  .sp-card {
+    width: 80%;
+  }
+
+  .sp-header__title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sp-page {
+    padding: 55px 15px 48px;
+  }
+
+  .sp-card {
+    width: 94%;
+  }
+
+  .sp-card__img {
+    height: 210px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sp-page {
+    padding: 44px 12px 40px;
+  }
+
+  .sp-header__title {
+    font-size: clamp(1.8rem, 7vw, 2.2rem);
+  }
+
+  .sp-card {
+    width: 100%;
+    border-radius: 14px;
+  }
+
+  .sp-card__img {
+    height: 190px;
+  }
+
+  .sp-card__title {
+    font-size: 1.15rem;
+  }
+
+  .sp-card__body {
+    padding: 18px 18px 22px;
+  }
+
+  .sp-pagination {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sp-pagination__btn {
+    width: 100%;
+    max-width: 240px;
+    text-align: center;
+  }
+
+  .sp-orn-line {
+    width: 44px;
+  }
+}
