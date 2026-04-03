@@ -42,18 +42,8 @@ const MOMENTS = [
 ];
 
 const MONTH_ORDER = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
 ];
 
 const DivineMoments = () => {
@@ -70,7 +60,6 @@ const DivineMoments = () => {
         ].sort((a, b) => MONTH_ORDER.indexOf(a) - MONTH_ORDER.indexOf(b))
         : [];
 
-    // 👉 Now we require BOTH year and month
     const filteredMoments = MOMENTS.filter((m) => {
         if (!selectedYear || !selectedMonth) return false;
         return m.year === selectedYear && m.month === selectedMonth;
@@ -78,7 +67,7 @@ const DivineMoments = () => {
 
     const handleYearChange = (e) => {
         setSelectedYear(e.target.value);
-        setSelectedMonth(""); // reset month when year changes
+        setSelectedMonth("");
     };
 
     const handleMonthChange = (e) => {
@@ -86,123 +75,129 @@ const DivineMoments = () => {
     };
 
     return (
-        <div className="dm-page">
-            <div className="dm-inner">
+        <div className="divm-page">
+
+            {/* ===== DECORATIVE BG ===== */}
+            <div className="divm-bg" aria-hidden="true">
+                <div className="divm-bg-orb divm-bg-orb-1" />
+                <div className="divm-bg-orb divm-bg-orb-2" />
+                <div className="divm-bg-orb divm-bg-orb-3" />
+                <div className="divm-bg-stars" />
+                <div className="divm-bg-ring divm-bg-ring-1" />
+                <div className="divm-bg-ring divm-bg-ring-2" />
+            </div>
+
+            <div className="divm-inner">
+
                 {/* ===== FILTER HEADER ===== */}
-                <div className="dm-header">
-                    <h1 className="dm-title">
-                        ✨ Divine Moments ✨
-                    </h1>
-                    <p className="dm-subtitle">
+                <div className="divm-header">
+                    <div className="divm-title-wrap">
+                        <span className="divm-title-ornament" aria-hidden="true">✦</span>
+                        <h1 className="divm-title">Divine Moments</h1>
+                        <span className="divm-title-ornament" aria-hidden="true">✦</span>
+                    </div>
+                    <p className="divm-subtitle">
                         Choose the year and month to relive precious memories with Guruji.
                     </p>
 
-                    <div className="dm-filters">
+                    <div className="divm-filters">
                         {/* Year dropdown */}
-                        <div className="dm-select-group">
-                            <label htmlFor="dm-year">Year</label>
+                        <div className="divm-select-group">
+                            <label htmlFor="divm-year">Year</label>
                             <select
-                                id="dm-year"
+                                id="divm-year"
                                 value={selectedYear}
                                 onChange={handleYearChange}
                             >
                                 <option value="">Select Year</option>
                                 {years.map((y) => (
-                                    <option key={y} value={y}>
-                                        {y}
-                                    </option>
+                                    <option key={y} value={y}>{y}</option>
                                 ))}
                             </select>
                         </div>
 
-                        {/* Month dropdown – enabled only after year is selected */}
-                        <div className="dm-select-group">
-                            <label htmlFor="dm-month">Month</label>
+                        {/* Month dropdown */}
+                        <div className="divm-select-group">
+                            <label htmlFor="divm-month">Month</label>
                             <select
-                                id="dm-month"
+                                id="divm-month"
                                 value={selectedMonth || ""}
                                 onChange={handleMonthChange}
                                 disabled={!selectedYear}
                             >
-                                {/* Placeholder: visible initially, NOT in dropdown */}
-                                <option value="" disabled hidden>
-                                    Select Month
-                                </option>
-
+                                <option value="" disabled hidden>Select Month</option>
                                 {monthsForYear.map((m) => (
-                                    <option key={m} value={m}>
-                                        {m}
-                                    </option>
+                                    <option key={m} value={m}>{m}</option>
                                 ))}
                             </select>
-
                         </div>
                     </div>
                 </div>
 
                 {/* ===== INFO / MESSAGES ===== */}
                 {!selectedYear && (
-                    <div className="dm-info-message">
-                        Please select a <strong>year</strong> first, then choose{" "}
-                        <strong>month</strong>.
+                    <div className="divm-info-message">
+                        Please select a <strong>year</strong> first, then choose <strong>month</strong>.
                     </div>
                 )}
 
                 {selectedYear && !selectedMonth && (
-                    <div className="dm-info-message">
-                        Year selected: <strong>{selectedYear}</strong>. Now please select a{" "}
-                        <strong>month</strong>.
+                    <div className="divm-info-message">
+                        Year selected: <strong>{selectedYear}</strong>. Now please select a <strong>month</strong>.
                     </div>
                 )}
 
                 {selectedYear && selectedMonth && filteredMoments.length === 0 && (
-                    <div className="dm-info-message">
+                    <div className="divm-info-message">
                         No divine moments have been added yet for{" "}
-                        <strong>
-                            {selectedMonth} {selectedYear}
-                        </strong>
-                        .
+                        <strong>{selectedMonth} {selectedYear}</strong>.
                     </div>
                 )}
 
                 {/* ===== LIST OF MOMENTS ===== */}
-                <div className="dm-list">
+                <div className="divm-list">
                     {filteredMoments.map((moment) => (
-                        <div className="dm-card" key={moment.id}>
-                            {/* LEFT: IMAGE / PLACEHOLDER */}
-                            <div className="dm-image-wrapper">
+                        <div className="divm-card" key={moment.id}>
+
+                            {/* LEFT: IMAGE */}
+                            <div className="divm-image-wrapper">
                                 {moment.image ? (
                                     <img
                                         src={moment.image}
                                         alt={moment.title}
-                                        className="dm-image"
+                                        className="divm-image"
                                     />
                                 ) : (
-                                    <div className="dm-no-image">
-                                        <span className="dm-no-image-icon">📷</span>
+                                    <div className="divm-no-image">
+                                        <span className="divm-no-image-icon">📷</span>
                                         <span>Image not uploaded</span>
                                     </div>
                                 )}
+                                <div className="divm-image-overlay" aria-hidden="true" />
                             </div>
 
                             {/* ARROW */}
-                            <div className="dm-arrow">➜</div>
+                            <div className="divm-arrow">➜</div>
 
                             {/* RIGHT: DESCRIPTION */}
-                            <div className="dm-content">
-                                <div className="dm-meta">
-                                    <span className="dm-date">
+                            <div className="divm-content">
+                                <div className="divm-meta">
+                                    <span className="divm-date">
                                         {moment.date} {moment.month} {moment.year}
                                     </span>
-                                    <span className="dm-type">{moment.type}</span>
+                                    <span className="divm-type">{moment.type}</span>
                                 </div>
-
-                                <h3 className="dm-card-title">{moment.title}</h3>
-                                <p className="dm-description">{moment.description}</p>
+                                <h3 className="divm-card-title">{moment.title}</h3>
+                                <p className="divm-description">{moment.description}</p>
                             </div>
+
+                            {/* corner accents */}
+                            <span className="divm-card-corner divm-card-corner-tl" aria-hidden="true" />
+                            <span className="divm-card-corner divm-card-corner-br" aria-hidden="true" />
                         </div>
                     ))}
                 </div>
+
             </div>
         </div>
     );

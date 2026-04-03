@@ -1,287 +1,612 @@
-/* ===============================
-   ASHRAM LIFE PAGE (SCOPED)
-   =============================== */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Hind:wght@300;400;500;600&display=swap');
 
-.ashram-life {
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(180deg, #fff8ef, #ffffff);
+/* ===============================
+   VARIABLES
+   =============================== */
+:root {
+  --ashl-bg: #110600;
+  --ashl-bg-mid: #1e0a00;
+  --ashl-bg-card: rgba(38, 16, 4, 0.82);
+  --ashl-saffron: #f97316;
+  --ashl-gold: #d4960a;
+  --ashl-gold-light: #f5c842;
+  --ashl-gold-dim: rgba(212, 150, 10, 0.12);
+  --ashl-cream: #fdf0d5;
+  --ashl-cream-dim: rgba(253, 240, 213, 0.7);
+  --ashl-maroon: #7b1f00;
+  --ashl-text: #f0e0c0;
+  --ashl-text-muted: #9c7a55;
+  --ashl-border: rgba(212, 150, 10, 0.2);
+  --ashl-radius: 20px;
+}
+
+/* ===============================
+   BASE
+   =============================== */
+.ashl-page {
+  font-family: 'Hind', sans-serif;
+  background: var(--ashl-bg);
   min-height: 100vh;
   text-align: center;
   overflow-x: hidden;
+  color: var(--ashl-text);
+  position: relative;
 }
 
-/* ===== HERO ===== */
-.ashram-life .al-hero {
-  padding: 80px 20px 60px;
-  background: linear-gradient(135deg, #ffedd5, #fff7ed);
+/* ===============================
+   BACKGROUND LAYER
+   =============================== */
+.ashl-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-.ashram-life .al-hero h1 {
-  font-size: clamp(2.2rem, 4vw, 3rem);
-  font-weight: 800;
-  color: #b45309;
+.ashl-bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
 }
 
-.ashram-life .al-hero p {
+.ashl-bg-orb-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.12) 0%, transparent 70%);
+  top: -200px;
+  left: -150px;
+  animation: ashlOrbDrift 20s ease-in-out infinite;
+}
+
+.ashl-bg-orb-2 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(212, 150, 10, 0.1) 0%, transparent 70%);
+  bottom: -120px;
+  right: -100px;
+  animation: ashlOrbDrift 25s ease-in-out infinite reverse;
+}
+
+.ashl-bg-orb-3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(123, 31, 0, 0.18) 0%, transparent 70%);
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ashlOrbDrift 18s ease-in-out infinite;
+  animation-delay: -9s;
+}
+
+@keyframes ashlOrbDrift {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-25px, 18px) scale(1.05);
+  }
+}
+
+.ashl-bg-mandala {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 150, 10, 0.04);
+  box-shadow:
+    0 0 0 60px rgba(212, 150, 10, 0.025),
+    0 0 0 120px rgba(212, 150, 10, 0.015),
+    0 0 0 200px rgba(212, 150, 10, 0.008);
+  animation: ashlMandalaRotate 90s linear infinite;
+}
+
+@keyframes ashlMandalaRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* ===============================
+   HERO
+   =============================== */
+.ashl-page .ashl-hero {
+  position: relative;
+  z-index: 1;
+  padding: 100px 20px 80px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(249, 115, 22, 0.18) 0%, transparent 65%),
+    linear-gradient(180deg, rgba(30, 10, 0, 0.95) 0%, transparent 100%);
+  animation: ashlFadeDown 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ashl-hero-inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.ashl-hero-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--ashl-gold);
+  margin: 0 0 18px;
+  opacity: 0.9;
+}
+
+.ashl-page .ashl-hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 9vw, 6.5rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ashl-cream);
+  margin: 0 0 12px;
+  letter-spacing: -1px;
+  text-shadow:
+    0 0 80px rgba(249, 115, 22, 0.4),
+    0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.ashl-hero-sub {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--ashl-text-muted);
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* Divider */
+.ashl-hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.ashl-divider-line {
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ashl-gold));
+}
+
+.ashl-divider-line:last-child {
+  background: linear-gradient(90deg, var(--ashl-gold), transparent);
+}
+
+.ashl-divider-lotus {
+  font-size: 1.2rem;
+  animation: ashlLotusFloat 4s ease-in-out infinite;
+}
+
+@keyframes ashlLotusFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ===============================
+   INTRO
+   =============================== */
+.ashl-page .ashl-intro {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto 20px;
+  padding: 40px 28px;
+  color: var(--ashl-cream-dim);
+  line-height: 1.85;
   font-size: 1.05rem;
-  color: #7c2d12;
-  margin-top: 8px;
+  font-weight: 300;
+  letter-spacing: 0.2px;
+  animation: ashlFadeIn 1.1s ease-out 0.2s both;
 }
 
-/* ===== INTRO ===== */
-.ashram-life .al-intro {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 0 20px;
-  color: #444;
-  line-height: 1.7;
-  font-size: 1.05rem;
+.ashl-page .ashl-intro::before,
+.ashl-page .ashl-intro::after {
+  content: '"';
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem;
+  color: var(--ashl-gold);
+  opacity: 0.15;
+  position: absolute;
+  line-height: 1;
 }
 
-/* ===== SECTION ===== */
-.ashram-life .al-section {
-  padding: 60px 20px;
+.ashl-page .ashl-intro::before {
+  top: 10px;
+  left: 10px;
 }
 
-.ashram-life .al-section h2 {
+.ashl-page .ashl-intro::after {
+  content: '"';
+  bottom: -10px;
+  right: 10px;
+}
+
+/* ===============================
+   SECTION WRAPPER
+   =============================== */
+.ashl-page .ashl-section {
+  position: relative;
+  z-index: 1;
+  padding: 70px 24px;
+}
+
+.ashl-section-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 50px;
+}
+
+.ashl-section-icon {
   font-size: 2rem;
-  color: #92400e;
-  margin-bottom: 40px;
+  animation: ashlIconGlow 3s ease-in-out infinite;
 }
 
-/* ===== CARDS ===== */
-.ashram-life .al-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 26px;
-  max-width: 1100px;
-  margin: auto;
+@keyframes ashlIconGlow {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0px transparent);
+  }
+
+  50% {
+    filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.6));
+  }
 }
 
-.ashram-life .al-card {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 26px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease;
+.ashl-page .ashl-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 600;
+  color: var(--ashl-gold-light);
+  margin: 0;
+  letter-spacing: 0.5px;
+  animation: ashlFadeIn 0.8s ease-out both;
 }
 
-.ashram-life .al-card:hover {
-  transform: translateY(-6px);
+.ashl-section-rule {
+  width: 48px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--ashl-saffron), var(--ashl-gold));
+  margin-top: 4px;
+  animation: ashlRulePulse 3s ease-in-out infinite;
 }
 
-.ashram-life .al-card h3 {
-  color: #c2410c;
-  margin-bottom: 10px;
+@keyframes ashlRulePulse {
+
+  0%,
+  100% {
+    width: 48px;
+    opacity: 1;
+  }
+
+  50% {
+    width: 80px;
+    opacity: 0.7;
+  }
 }
 
-.ashram-life .al-card p {
-  color: #555;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-/* ===== SEVA SECTION ===== */
-.ashram-life .seva-section {
-  background: linear-gradient(180deg, #fffaf0, #fff);
-}
-
-.ashram-life .seva-grid {
+/* ===============================
+   ROUTINE CARDS
+   =============================== */
+.ashl-page .ashl-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.ashl-page .ashl-card {
+  position: relative;
+  background: var(--ashl-bg-card);
+  border: 1px solid var(--ashl-border);
+  border-radius: var(--ashl-radius);
+  padding: 32px 24px 28px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow:
+    0 1px 0 rgba(255, 220, 100, 0.06) inset,
+    0 20px 50px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+  animation: ashlFadeIn 0.9s ease-out both;
+  text-align: center;
+  overflow: hidden;
+}
+
+.ashl-card-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--ashl-radius);
+  background: radial-gradient(circle at 50% 0%, rgba(249, 115, 22, 0.08) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.ashl-page .ashl-card:hover .ashl-card-glow {
+  opacity: 1;
+}
+
+.ashl-page .ashl-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(212, 150, 10, 0.45);
+  box-shadow:
+    0 1px 0 rgba(255, 220, 100, 0.1) inset,
+    0 28px 60px rgba(0, 0, 0, 0.65),
+    0 0 40px rgba(212, 150, 10, 0.1);
+}
+
+.ashl-card-icon {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 14px;
+  filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.4));
+}
+
+.ashl-page .ashl-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--ashl-gold-light);
+  margin: 0 0 10px;
+  letter-spacing: 0.3px;
+}
+
+.ashl-page .ashl-card p {
+  color: var(--ashl-text-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ===============================
+   SEVA SECTION
+   =============================== */
+.ashl-page .ashl-seva-section {
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(123, 31, 0, 0.22) 0%, transparent 65%),
+    transparent;
+}
+
+.ashl-page .ashl-seva-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 24px;
   max-width: 1100px;
-  margin: auto;
+  margin: 0 auto;
 }
 
-.ashram-life .seva-card {
-  background: #ffffff;
-  border-radius: 20px;
+.ashl-page .ashl-seva-card {
+  background: var(--ashl-bg-card);
+  border: 1px solid var(--ashl-border);
+  border-radius: var(--ashl-radius);
   overflow: hidden;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+  animation: ashlFadeIn 0.9s ease-out both;
+  text-align: left;
 }
 
-.ashram-life .seva-card:hover {
-  transform: scale(1.03);
+.ashl-page .ashl-seva-card:hover {
+  transform: translateY(-8px) scale(1.015);
+  border-color: rgba(249, 115, 22, 0.4);
+  box-shadow:
+    0 28px 60px rgba(0, 0, 0, 0.65),
+    0 0 30px rgba(249, 115, 22, 0.08);
 }
 
-.ashram-life .seva-card img {
+.ashl-seva-img-wrap {
+  position: relative;
   width: 100%;
-  height: 180px;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.ashl-page .ashl-seva-card img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-}
-
-.ashram-life .seva-card h4 {
-  margin: 14px 0 6px;
-  color: #9a3412;
-}
-
-.ashram-life .seva-card p {
-  padding: 0 14px 16px;
-  font-size: 0.9rem;
-  color: #555;
-}
-
-/* ===== CLOSING ===== */
-.ashram-life .al-closing {
-  padding: 60px 20px 80px;
-  background: #fff7ed;
-}
-
-.ashram-life .al-closing p {
-  max-width: 750px;
-  margin: auto;
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: #444;
-}
-
-.ashram-life .al-closing span {
   display: block;
-  margin-top: 16px;
-  font-size: 1.1rem;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.55s ease;
+  filter: brightness(0.85) saturate(1.15);
+}
+
+.ashl-page .ashl-seva-card:hover img {
+  transform: scale(1.08);
+  filter: brightness(0.7) saturate(1.3);
+}
+
+.ashl-seva-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      transparent 50%,
+      rgba(17, 6, 0, 0.85) 100%);
+  pointer-events: none;
+}
+
+.ashl-seva-body {
+  padding: 18px 18px 20px;
+}
+
+.ashl-page .ashl-seva-card h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
   font-weight: 600;
-  color: #b45309;
+  color: var(--ashl-gold-light);
+  margin: 0 0 8px;
+  letter-spacing: 0.2px;
+}
+
+.ashl-page .ashl-seva-card p {
+  font-size: 0.88rem;
+  color: var(--ashl-text-muted);
+  line-height: 1.65;
+  margin: 0;
 }
 
 /* ===============================
-   RESPONSIVE BREAKPOINTS
+   CLOSING
    =============================== */
-
-/* ===== Tablets (≤ 1024px) ===== */
-@media (max-width: 1024px) {
-  .ashram-life .al-section {
-    padding: 50px 18px;
-  }
-
-  .ashram-life .al-section h2 {
-    font-size: 1.8rem;
-  }
+.ashl-page .ashl-closing {
+  position: relative;
+  z-index: 1;
+  padding: 80px 24px 100px;
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(249, 115, 22, 0.14) 0%, transparent 60%),
+    linear-gradient(0deg, rgba(30, 10, 0, 0.95) 0%, transparent 100%);
+  animation: ashlFadeIn 1s ease-out both;
 }
 
-/* ===== Mobile (≤ 768px) ===== */
-@media (max-width: 768px) {
-  .ashram-life .al-hero {
-    padding: 60px 16px 50px;
-  }
-
-  .ashram-life .al-hero h1 {
-    font-size: 2rem;
-  }
-
-  .ashram-life .al-hero p {
-    font-size: 0.95rem;
-  }
-
-  .ashram-life .al-intro {
-    margin: 30px auto;
-    font-size: 0.95rem;
-  }
-
-  .ashram-life .al-section h2 {
-    font-size: 1.6rem;
-  }
-
-  .ashram-life .al-card {
-    padding: 22px;
-  }
-
-  .ashram-life .seva-card img {
-    height: 160px;
-  }
+.ashl-closing-ornament {
+  font-size: 2.5rem;
+  color: var(--ashl-gold);
+  opacity: 0.45;
+  display: block;
+  margin-bottom: 28px;
+  animation: ashlLotusFloat 5s ease-in-out infinite;
 }
 
-/* ===== Small Mobile (≤ 480px) ===== */
-@media (max-width: 480px) {
-  .ashram-life .al-hero h1 {
-    font-size: 1.8rem;
-  }
-
-  .ashram-life .al-section {
-    padding: 40px 14px;
-  }
-
-  .ashram-life .al-card,
-  .ashram-life .seva-card {
-    border-radius: 16px;
-  }
-
-  .ashram-life .al-closing p {
-    font-size: 0.95rem;
-  }
+.ashl-page .ashl-closing p {
+  max-width: 680px;
+  margin: 0 auto;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.85;
+  color: var(--ashl-cream-dim);
+  letter-spacing: 0.2px;
 }
+
+.ashl-page .ashl-closing span {
+  display: block;
+  margin-top: 28px;
+  font-family: 'Hind', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ashl-saffron);
+  opacity: 0.9;
+}
+
 /* ===============================
-   LIGHT WEIGHT ANIMATIONS (NO SCROLL)
+   SHARED ANIMATIONS
    =============================== */
-
-/* ----- Keyframes (SAFE) ----- */
-@keyframes fadeInOnly {
+@keyframes ashlFadeIn {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
 
-@keyframes fadeDownSoft {
+@keyframes ashlFadeDown {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-16px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* ----- Hero Animation ----- */
-.ashram-life .al-hero {
-  animation: fadeDownSoft 0.9s ease-out both;
+/* ===============================
+   RESPONSIVE
+   =============================== */
+@media (max-width: 1024px) {
+  .ashl-page .ashl-section {
+    padding: 56px 18px;
+  }
 }
 
-/* ----- Intro Animation ----- */
-.ashram-life .al-intro {
-  animation: fadeInOnly 1.1s ease-out both;
+@media (max-width: 768px) {
+  .ashl-page .ashl-hero {
+    padding: 80px 16px 60px;
+  }
+
+  .ashl-page .ashl-hero h1 {
+    font-size: 3.2rem;
+  }
+
+  .ashl-page .ashl-intro {
+    padding: 32px 22px;
+    font-size: 0.97rem;
+  }
+
+  .ashl-page .ashl-section h2 {
+    font-size: 2rem;
+  }
+
+  .ashl-page .ashl-card {
+    padding: 26px 20px;
+  }
+
+  .ashl-page .ashl-seva-card img {
+    height: 160px;
+  }
 }
 
-/* ----- Section Titles ----- */
-.ashram-life .al-section h2 {
-  animation: fadeInOnly 0.8s ease-out both;
+@media (max-width: 480px) {
+  .ashl-page .ashl-hero h1 {
+    font-size: 2.6rem;
+  }
+
+  .ashl-page .ashl-section {
+    padding: 44px 14px;
+  }
+
+  .ashl-page .ashl-card,
+  .ashl-page .ashl-seva-card {
+    border-radius: 16px;
+  }
+
+  .ashl-page .ashl-closing p {
+    font-size: 1.1rem;
+  }
 }
 
-/* ----- Cards (NO translateY on load) ----- */
-.ashram-life .al-card,
-.ashram-life .seva-card {
-  animation: fadeInOnly 0.9s ease-out both;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  will-change: transform;
-}
-
-/* ----- Card Hover (Only on interaction) ----- */
-.ashram-life .al-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 14px 36px rgba(0,0,0,0.12);
-}
-
-.ashram-life .seva-card:hover img {
-  transform: scale(1.06);
-}
-
-/* ----- Image Transition ----- */
-.ashram-life .seva-card img {
-  transition: transform 0.45s ease;
-}
-
-/* ----- Closing Animation ----- */
-.ashram-life .al-closing {
-  animation: fadeInOnly 1s ease-out both;
-}
-
-/* ----- Accessibility (Recommended) ----- */
+/* ===============================
+   ACCESSIBILITY
+   =============================== */
 @media (prefers-reduced-motion: reduce) {
-  .ashram-life * {
+
+  .ashl-page *,
+  .ashl-bg * {
     animation: none !important;
     transition: none !important;
   }

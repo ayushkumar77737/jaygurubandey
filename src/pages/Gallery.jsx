@@ -48,50 +48,86 @@ const Gallery = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const photosPerPage = 10;
 
-  // Calculate page photos
   const indexOfLastPhoto = currentPage * photosPerPage;
   const indexOfFirstPhoto = indexOfLastPhoto - photosPerPage;
   const currentPhotos = photos.slice(indexOfFirstPhoto, indexOfLastPhoto);
-
   const totalPages = Math.ceil(photos.length / photosPerPage);
 
   return (
-    <div className="gallery-container">
-      <h2 className="gallery-title">Gallery</h2>
+    <div className="phgal-container">
 
-      <div className="gallery-grid" key={currentPage}>
-        {currentPhotos.map((photo) => (
-          <div key={photo.id} className="gallery-item">
-            <img src={photo.src} alt={photo.alt} className="gallery-photo" />
-            <a href={photo.src} download className="download-btn">
-              Download
-            </a>
+      {/* Ambient background blobs */}
+      <div className="phgal-bg" aria-hidden="true">
+        <div className="phgal-blob phgal-blob-1" />
+        <div className="phgal-blob phgal-blob-2" />
+        <div className="phgal-blob phgal-blob-3" />
+        <div className="phgal-noise" />
+      </div>
+
+      {/* Header */}
+      <header className="phgal-header">
+        <p className="phgal-eyebrow">Our Collection</p>
+        <h2 className="phgal-title">
+          <span className="phgal-title-word">Photo</span>
+          <span className="phgal-title-word phgal-title-accent">Gallery</span>
+        </h2>
+        <div className="phgal-title-bar" />
+      </header>
+
+      {/* Grid */}
+      <div className="phgal-grid" key={currentPage}>
+        {currentPhotos.map((photo, index) => (
+          <div
+            key={photo.id}
+            className="phgal-item"
+            style={{ animationDelay: `${index * 0.07}s` }}
+          >
+            {/* Corner accents */}
+            <span className="phgal-corner phgal-corner-tl" aria-hidden="true" />
+            <span className="phgal-corner phgal-corner-br" aria-hidden="true" />
+
+            <div className="phgal-img-wrap">
+              <img src={photo.src} alt={photo.alt} className="phgal-photo" />
+              <div className="phgal-overlay">
+                <a href={photo.src} download className="phgal-download-btn">
+                  <span className="phgal-dl-icon">↓</span>
+                  Download
+                </a>
+              </div>
+            </div>
+
+            <div className="phgal-item-footer">
+              <span className="phgal-photo-label">{photo.alt}</span>
+            </div>
           </div>
         ))}
       </div>
 
       {/* Pagination */}
-      <div className="pagination">
+      <div className="phgal-pagination">
         <button
+          className="phgal-page-btn"
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
         >
-          ← Prev
+          <span className="phgal-arrow">←</span> Prev
         </button>
 
-        <span>
-          Page {currentPage} of {totalPages}
-        </span>
+        <div className="phgal-page-info">
+          <span className="phgal-page-current">{currentPage}</span>
+          <span className="phgal-page-sep">/</span>
+          <span className="phgal-page-total">{totalPages}</span>
+        </div>
 
         <button
-          onClick={() =>
-            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-          }
+          className="phgal-page-btn"
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
           disabled={currentPage === totalPages}
         >
-          Next →
+          Next <span className="phgal-arrow">→</span>
         </button>
       </div>
+
     </div>
   );
 };
