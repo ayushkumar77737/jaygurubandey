@@ -11,7 +11,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase";
 import "./Login.css";
 
-//import ReCAPTCHA from "react-google-recaptcha"; // ✅ added
+import ReCAPTCHA from "react-google-recaptcha"; // ✅ added
 
 import guruji from "../assets/guruji.webp";
 import guruji2 from "../assets/photo11.webp";
@@ -34,14 +34,14 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  //const [captchaToken, setCaptchaToken] = useState(null); // ✅ added
-  //const captchaRef = useRef(null);
-  //const resetCaptcha = () => {
-    //if (captchaRef.current) {
-      //captchaRef.current.reset();
-      //setCaptchaToken(null);
-    //}
-  //};
+  const [captchaToken, setCaptchaToken] = useState(null); // ✅ added
+  const captchaRef = useRef(null);
+  const resetCaptcha = () => {
+    if (captchaRef.current) {
+      captchaRef.current.reset();
+      setCaptchaToken(null);
+    }
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -76,38 +76,38 @@ const Login = () => {
     setError("");
 
     // ✅ Block login if captcha not verified
-    //if (!captchaToken) {
-      //setError("Please verify that you are not a robot.");
-      //resetCaptcha(); 
-      //setLoading(false);
-      //setTimeout(() => setError(""), 3000);
-      //return;
-    //}
+    if (!captchaToken) {
+      setError("Please verify that you are not a robot.");
+      resetCaptcha(); 
+      setLoading(false);
+      setTimeout(() => setError(""), 3000);
+      return;
+    }
 
     // ✅ VERIFY CAPTCHA WITH VERCEL API
-    //try {
-      //const response = await fetch("/api/verify-captcha", {
-       // method: "POST",
-        //headers: {
-          //"Content-Type": "application/json",
-        //},
-        //body: JSON.stringify({ token: captchaToken }),
-      //});
+    try {
+      const response = await fetch("/api/verify-captcha", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token: captchaToken }),
+      });
 
-     // const data = await response.json();
+      const data = await response.json();
 
-      //if (!data.success) {
-        //setError("Captcha verification failed. Try again.");
-        //resetCaptcha(); 
-        //setLoading(false);
-        //return;
-      //}
-    //} catch (err) {
-      //setError("Captcha error. Please try again.");
-      //resetCaptcha(); 
-      //setLoading(false);
-      //return;
-    //}
+      if (!data.success) {
+        setError("Captcha verification failed. Try again.");
+        resetCaptcha(); 
+        setLoading(false);
+        return;
+      }
+    } catch (err) {
+      setError("Captcha error. Please try again.");
+      resetCaptcha(); 
+      setLoading(false);
+      return;
+    }
 
     try {
       await setPersistence(auth, browserSessionPersistence);
@@ -126,14 +126,14 @@ const Login = () => {
       await updateDoc(doc(db, "users", res.user.uid), {
         emailVerified: true,
       });
-      //resetCaptcha();
+      resetCaptcha();
       navigate("/home", { replace: true });
 
     } catch (err) {
       setEmail("");
       setPassword("");
 
-     //resetCaptcha();
+     resetCaptcha();
 
       if (err.code === "auth/invalid-email") {
         setError("Please enter a valid email address.");
@@ -229,7 +229,7 @@ const Login = () => {
             Forgot Password?
           </p>
 
-          {/* ✅ reCAPTCHA 
+          {/* ✅ reCAPTCHA */}
           <div style={{ marginBottom: "15px", display: "flex", justifyContent: "center" }}>
             <ReCAPTCHA
               ref={captchaRef}
@@ -238,7 +238,6 @@ const Login = () => {
               onExpired={() => setCaptchaToken(null)}
             />
           </div>
-          */}
 
           <button type="submit" disabled={loading}>
             {loading ? "Please wait..." : "Login"}
