@@ -4,23 +4,23 @@
    CSS VARIABLES
    =============================== */
 :root {
-  --er-teal: #2dd4bf;
-  --er-emerald: #34d399;
-  --er-cyan: #22d3ee;
-  --er-teal-glow: rgba(45, 212, 191, 0.2);
-  --er-bg: #020c0a;
-  --er-card: rgba(10, 28, 24, 0.85);
-  --er-input-bg: rgba(255, 255, 255, 0.04);
-  --er-input-border: rgba(45, 212, 191, 0.18);
-  --er-text: #e0fdf4;
-  --er-text-muted: #5eada0;
-  --er-border: rgba(45, 212, 191, 0.12);
+  --requ-teal: #2dd4bf;
+  --requ-emerald: #34d399;
+  --requ-cyan: #22d3ee;
+  --requ-teal-glow: rgba(45, 212, 191, 0.2);
+  --requ-bg: #020c0a;
+  --requ-card: rgba(10, 28, 24, 0.85);
+  --requ-input-bg: rgba(255, 255, 255, 0.04);
+  --requ-input-border: rgba(45, 212, 191, 0.18);
+  --requ-text: #e0fdf4;
+  --requ-text-muted: #5eada0;
+  --requ-border: rgba(45, 212, 191, 0.12);
 }
 
 /* ===============================
    PAGE
    =============================== */
-.emailreq-page {
+.requ-page {
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -39,7 +39,7 @@
 /* ===============================
    BACKGROUND DECORATION LAYER
    =============================== */
-.er-bg {
+.requ-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -47,14 +47,14 @@
   overflow: hidden;
 }
 
-.er-orb {
+.requ-orb {
   position: absolute;
   border-radius: 50%;
   filter: blur(85px);
-  animation: erOrbDrift 14s ease-in-out infinite;
+  animation: requOrbDrift 14s ease-in-out infinite;
 }
 
-.er-orb-1 {
+.requ-orb-1 {
   width: 440px;
   height: 440px;
   background: radial-gradient(circle, rgba(45, 212, 191, 0.1) 0%, transparent 70%);
@@ -63,7 +63,7 @@
   animation-delay: 0s;
 }
 
-.er-orb-2 {
+.requ-orb-2 {
   width: 320px;
   height: 320px;
   background: radial-gradient(circle, rgba(34, 211, 238, 0.08) 0%, transparent 70%);
@@ -72,7 +72,7 @@
   animation-delay: -5s;
 }
 
-.er-orb-3 {
+.requ-orb-3 {
   width: 220px;
   height: 220px;
   background: radial-gradient(circle, rgba(52, 211, 153, 0.06) 0%, transparent 70%);
@@ -82,7 +82,7 @@
   animation-delay: -9s;
 }
 
-@keyframes erOrbDrift {
+@keyframes requOrbDrift {
 
   0%,
   100% {
@@ -95,7 +95,7 @@
 }
 
 /* Grid pattern */
-.er-grid {
+.requ-grid {
   position: absolute;
   inset: 0;
   background-image:
@@ -108,17 +108,17 @@
 /* ===============================
    CARD
    =============================== */
-.emailreq-card {
+.requ-card {
   position: relative;
   z-index: 1;
   width: 100%;
   max-width: 460px;
   padding: 36px 32px 30px;
   border-radius: 22px;
-  background: var(--er-card);
+  background: var(--requ-card);
   backdrop-filter: blur(22px) saturate(160%);
   -webkit-backdrop-filter: blur(22px) saturate(160%);
-  border: 1px solid var(--er-border);
+  border: 1px solid var(--requ-border);
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.025),
     0 28px 70px rgba(0, 0, 0, 0.65),
@@ -126,11 +126,11 @@
   display: flex;
   flex-direction: column;
   gap: 22px;
-  animation: erFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: requFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* top hairline */
-.emailreq-card::before {
+.requ-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -138,21 +138,21 @@
   transform: translateX(-50%);
   width: 50%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--er-teal), var(--er-cyan), transparent);
+  background: linear-gradient(90deg, transparent, var(--requ-teal), var(--requ-cyan), transparent);
   border-radius: 1px;
 }
 
 /* ===============================
    HEADER
    =============================== */
-.er-header {
+.requ-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 }
 
-.er-icon-wrap {
+.requ-icon-wrap {
   position: relative;
   width: 54px;
   height: 54px;
@@ -161,7 +161,7 @@
   justify-content: center;
 }
 
-.er-icon {
+.requ-icon {
   position: relative;
   z-index: 2;
   font-size: 1.5rem;
@@ -176,18 +176,18 @@
   box-shadow:
     0 0 0 5px rgba(45, 212, 191, 0.06),
     0 8px 24px rgba(0, 0, 0, 0.4);
-  animation: erIconPulse 3.5s ease-in-out infinite;
+  animation: requIconPulse 3.5s ease-in-out infinite;
 }
 
-.er-icon-ring {
+.requ-icon-ring {
   position: absolute;
   inset: -8px;
   border-radius: 50%;
   border: 1px dashed rgba(45, 212, 191, 0.2);
-  animation: erIconSpin 18s linear infinite;
+  animation: requIconSpin 18s linear infinite;
 }
 
-@keyframes erIconSpin {
+@keyframes requIconSpin {
   from {
     transform: rotate(0deg);
   }
@@ -197,7 +197,7 @@
   }
 }
 
-@keyframes erIconPulse {
+@keyframes requIconPulse {
 
   0%,
   100% {
@@ -212,7 +212,7 @@
 /* ===============================
    TITLE + SUBTITLE
    =============================== */
-.emailreq-title {
+.requ-title {
   text-align: center;
   font-size: 1.45rem;
   font-weight: 700;
@@ -224,10 +224,10 @@
   background-clip: text;
 }
 
-.er-subtitle {
+.requ-subtitle {
   text-align: center;
   font-size: 0.82rem;
-  color: var(--er-text-muted);
+  color: var(--requ-text-muted);
   margin: 0;
   font-weight: 400;
   letter-spacing: 0.2px;
@@ -236,29 +236,29 @@
 /* ===============================
    MESSAGE BADGES
    =============================== */
-.emailreq-message {
+.requ-message {
   text-align: center;
   font-size: 0.83rem;
   font-weight: 500;
   padding: 11px 16px;
   border-radius: 10px;
   line-height: 1.5;
-  animation: erFadeUp 0.35s ease both;
+  animation: requFadeUp 0.35s ease both;
 }
 
-.er-msg-success {
+.requ-msg-success {
   color: #6effd9;
   background: rgba(45, 212, 191, 0.09);
   border: 1px solid rgba(45, 212, 191, 0.25);
 }
 
-.er-msg-warn {
+.requ-msg-warn {
   color: #fde68a;
   background: rgba(253, 230, 138, 0.08);
   border: 1px solid rgba(253, 230, 138, 0.2);
 }
 
-.er-msg-error {
+.requ-msg-error {
   color: #fca5a5;
   background: rgba(252, 165, 165, 0.07);
   border: 1px solid rgba(252, 165, 165, 0.18);
@@ -267,7 +267,7 @@
 /* ===============================
    FORM
    =============================== */
-.emailreq-form {
+.requ-form {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -276,36 +276,36 @@
 /* ===============================
    FIELD + LABEL
    =============================== */
-.er-field {
+.requ-field {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.er-label {
+.requ-label {
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 1.3px;
   text-transform: uppercase;
-  color: var(--er-text-muted);
+  color: var(--requ-text-muted);
 }
 
 /* ===============================
    INPUT WRAP (icon prefix)
    =============================== */
-.er-input-wrap {
+.requ-input-wrap {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.er-prefix {
+.requ-prefix {
   position: absolute;
   left: 13px;
   font-family: 'DM Mono', monospace;
   font-size: 0.82rem;
   font-weight: 500;
-  color: var(--er-teal);
+  color: var(--requ-teal);
   opacity: 0.6;
   pointer-events: none;
   z-index: 2;
@@ -313,19 +313,19 @@
   line-height: 1;
 }
 
-.er-input-wrap:focus-within .er-prefix {
+.requ-input-wrap:focus-within .requ-prefix {
   opacity: 1;
 }
 
 /* Inputs */
-.emailreq-form input,
-.emailreq-form textarea {
+.requ-form input,
+.requ-form textarea {
   width: 100%;
   padding: 12px 14px;
   border-radius: 11px;
-  border: 1px solid var(--er-input-border);
-  background: var(--er-input-bg);
-  color: var(--er-text);
+  border: 1px solid var(--requ-input-border);
+  background: var(--requ-input-bg);
+  color: var(--requ-text);
   font-family: 'Instrument Sans', sans-serif;
   font-size: 0.92rem;
   font-weight: 400;
@@ -335,29 +335,29 @@
 }
 
 /* Inputs with prefix icon get left padding */
-.er-input-wrap input {
+.requ-input-wrap input {
   padding-left: 32px;
 }
 
-.emailreq-form input::placeholder,
-.emailreq-form textarea::placeholder {
-  color: var(--er-text-muted);
+.requ-form input::placeholder,
+.requ-form textarea::placeholder {
+  color: var(--requ-text-muted);
   font-weight: 300;
 }
 
-.emailreq-form input:focus,
-.emailreq-form textarea:focus {
+.requ-form input:focus,
+.requ-form textarea:focus {
   border-color: rgba(45, 212, 191, 0.5);
   background: rgba(45, 212, 191, 0.04);
   box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.09);
 }
 
-.emailreq-form input:disabled {
+.requ-form input:disabled {
   opacity: 0.45;
   cursor: not-allowed;
 }
 
-.emailreq-form textarea {
+.requ-form textarea {
   resize: vertical;
   min-height: 100px;
   line-height: 1.6;
@@ -366,7 +366,7 @@
 /* ===============================
    SUBMIT BUTTON
    =============================== */
-.emailreq-form button {
+.requ-form button {
   margin-top: 6px;
   padding: 13px 20px;
   border-radius: 12px;
@@ -384,7 +384,7 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.er-btn-shimmer {
+.requ-btn-shimmer {
   position: absolute;
   inset: 0;
   background: linear-gradient(105deg,
@@ -396,12 +396,12 @@
   pointer-events: none;
 }
 
-.emailreq-form button:hover .er-btn-shimmer {
+.requ-form button:hover .requ-btn-shimmer {
   transform: translateX(100%);
   transition: transform 0.55s ease;
 }
 
-.er-btn-text {
+.requ-btn-text {
   position: relative;
   z-index: 1;
   display: flex;
@@ -410,16 +410,16 @@
   gap: 8px;
 }
 
-.emailreq-form button:hover {
+.requ-form button:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 28px rgba(45, 212, 191, 0.35), 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.emailreq-form button:active {
+.requ-form button:active {
   transform: scale(0.99) translateY(0);
 }
 
-.emailreq-form button:disabled {
+.requ-form button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   transform: none;
@@ -429,18 +429,18 @@
 /* ===============================
    SPINNER
    =============================== */
-.er-spinner {
+.requ-spinner {
   display: inline-block;
   width: 14px;
   height: 14px;
   border: 2px solid rgba(1, 33, 24, 0.3);
   border-top-color: #012118;
   border-radius: 50%;
-  animation: erSpin 0.75s linear infinite;
+  animation: requSpin 0.75s linear infinite;
   flex-shrink: 0;
 }
 
-@keyframes erSpin {
+@keyframes requSpin {
   to {
     transform: rotate(360deg);
   }
@@ -449,23 +449,10 @@
 /* ===============================
    ANIMATIONS
    =============================== */
-@keyframes erFadeUp {
+@keyframes requFadeUp {
   from {
     opacity: 0;
     transform: translateY(18px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* keep original for backward compat */
-@keyframes emailreq-fade {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
   }
 
   to {
@@ -478,53 +465,53 @@
    RESPONSIVE
    =============================== */
 @media (max-width: 768px) {
-  .emailreq-card {
+  .requ-card {
     padding: 28px 24px 24px;
     border-radius: 18px;
   }
 
-  .emailreq-title {
+  .requ-title {
     font-size: 1.3rem;
   }
 }
 
 @media (max-width: 480px) {
-  .emailreq-page {
+  .requ-page {
     padding: 16px;
   }
 
-  .emailreq-card {
+  .requ-card {
     padding: 22px 18px 20px;
     gap: 18px;
     border-radius: 16px;
   }
 
-  .emailreq-title {
+  .requ-title {
     font-size: 1.15rem;
   }
 
-  .emailreq-form input,
-  .emailreq-form textarea {
+  .requ-form input,
+  .requ-form textarea {
     font-size: 0.88rem;
     padding: 11px 12px;
   }
 
-  .er-input-wrap input {
+  .requ-input-wrap input {
     padding-left: 30px;
   }
 
-  .emailreq-form button {
+  .requ-form button {
     font-size: 0.87rem;
     padding: 12px;
   }
 
-  .er-icon {
+  .requ-icon {
     width: 46px;
     height: 46px;
     font-size: 1.25rem;
   }
 
-  .er-icon-wrap {
+  .requ-icon-wrap {
     width: 46px;
     height: 46px;
   }

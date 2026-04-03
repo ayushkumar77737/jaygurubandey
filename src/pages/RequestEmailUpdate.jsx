@@ -91,43 +91,43 @@ const RequestEmailUpdate = () => {
   };
 
   return (
-    <div className="emailreq-page">
+    <div className="requ-page">
 
       {/* Decorative background */}
-      <div className="er-bg" aria-hidden="true">
-        <div className="er-orb er-orb-1" />
-        <div className="er-orb er-orb-2" />
-        <div className="er-orb er-orb-3" />
-        <div className="er-grid" />
+      <div className="requ-bg" aria-hidden="true">
+        <div className="requ-orb requ-orb-1" />
+        <div className="requ-orb requ-orb-2" />
+        <div className="requ-orb requ-orb-3" />
+        <div className="requ-grid" />
       </div>
 
-      <div className="emailreq-card">
+      <div className="requ-card">
 
         {/* Header */}
-        <div className="er-header">
-          <div className="er-icon-wrap" aria-hidden="true">
-            <span className="er-icon">✉</span>
-            <div className="er-icon-ring" />
+        <div className="requ-header">
+          <div className="requ-icon-wrap" aria-hidden="true">
+            <span className="requ-icon">✉</span>
+            <div className="requ-icon-ring" />
           </div>
-          <h2 className="emailreq-title">Request Email Update</h2>
-          <p className="er-subtitle">Submit a request and we'll reach you shortly</p>
+          <h2 className="requ-title">Request Email Update</h2>
+          <p className="requ-subtitle">Submit a request and we'll reach you shortly</p>
         </div>
 
         {message && (
-          <p className={`emailreq-message ${message.startsWith("✅") ? "er-msg-success"
-              : message.startsWith("⚠️") ? "er-msg-warn"
-                : "er-msg-error"
+          <p className={`requ-message ${message.startsWith("✅") ? "requ-msg-success"
+              : message.startsWith("⚠️") ? "requ-msg-warn"
+                : "requ-msg-error"
             }`}>
             {message}
           </p>
         )}
 
-        <form onSubmit={handleSubmit} className="emailreq-form">
+        <form onSubmit={handleSubmit} className="requ-form">
 
-          <div className="er-field">
-            <label className="er-label">User ID</label>
-            <div className="er-input-wrap">
-              <span className="er-prefix">#</span>
+          <div className="requ-field">
+            <label className="requ-label">User ID</label>
+            <div className="requ-input-wrap">
+              <span className="requ-prefix">#</span>
               <input
                 type="text"
                 placeholder="User ID"
@@ -137,10 +137,10 @@ const RequestEmailUpdate = () => {
             </div>
           </div>
 
-          <div className="er-field">
-            <label className="er-label">Current Email</label>
-            <div className="er-input-wrap">
-              <span className="er-prefix">@</span>
+          <div className="requ-field">
+            <label className="requ-label">Current Email</label>
+            <div className="requ-input-wrap">
+              <span className="requ-prefix">@</span>
               <input
                 type="email"
                 placeholder="Old Email"
@@ -150,10 +150,10 @@ const RequestEmailUpdate = () => {
             </div>
           </div>
 
-          <div className="er-field">
-            <label className="er-label">New Email</label>
-            <div className="er-input-wrap">
-              <span className="er-prefix">@</span>
+          <div className="requ-field">
+            <label className="requ-label">New Email</label>
+            <div className="requ-input-wrap">
+              <span className="requ-prefix">@</span>
               <input
                 type="email"
                 placeholder="Enter new email address"
@@ -168,8 +168,8 @@ const RequestEmailUpdate = () => {
             </div>
           </div>
 
-          <div className="er-field">
-            <label className="er-label">Reason for Change</label>
+          <div className="requ-field">
+            <label className="requ-label">Reason for Change</label>
             <textarea
               placeholder="Briefly explain why you'd like to change your email..."
               value={reason}
@@ -180,10 +180,10 @@ const RequestEmailUpdate = () => {
           </div>
 
           <button type="submit" disabled={loading}>
-            <span className="er-btn-shimmer" />
-            <span className="er-btn-text">
+            <span className="requ-btn-shimmer" />
+            <span className="requ-btn-text">
               {loading ? (
-                <><span className="er-spinner" /> Submitting...</>
+                <><span className="requ-spinner" /> Submitting...</>
               ) : (
                 "Request Email Update →"
               )}

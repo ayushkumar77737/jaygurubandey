@@ -4,23 +4,23 @@
    CSS VARIABLES
 ========================= */
 :root {
-  --acc-cyan: #00e5ff;
-  --acc-violet: #7c4dff;
-  --acc-cyan-glow: rgba(0, 229, 255, 0.18);
-  --acc-violet-glow: rgba(124, 77, 255, 0.18);
-  --acc-bg: #050b12;
-  --acc-card: rgba(14, 30, 46, 0.82);
-  --acc-input-bg: rgba(255, 255, 255, 0.045);
-  --acc-input-border: rgba(0, 229, 255, 0.15);
-  --acc-text: #e6faff;
-  --acc-text-muted: #7a9ab5;
-  --acc-border: rgba(0, 229, 255, 0.1);
+  --acct-cyan: #00e5ff;
+  --acct-violet: #7c4dff;
+  --acct-cyan-glow: rgba(0, 229, 255, 0.18);
+  --acct-violet-glow: rgba(124, 77, 255, 0.18);
+  --acct-bg: #050b12;
+  --acct-card: rgba(14, 30, 46, 0.82);
+  --acct-input-bg: rgba(255, 255, 255, 0.045);
+  --acct-input-border: rgba(0, 229, 255, 0.15);
+  --acct-text: #e6faff;
+  --acct-text-muted: #7a9ab5;
+  --acct-border: rgba(0, 229, 255, 0.1);
 }
 
 /* =========================
    PAGE
 ========================= */
-.account-page {
+.acct-page {
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -34,13 +34,13 @@
   font-family: 'Sora', sans-serif;
   position: relative;
   overflow: hidden;
-  animation: accFade 0.5s ease-out both;
+  animation: acctFade 0.5s ease-out both;
 }
 
 /* =========================
    BACKGROUND LAYER
 ========================= */
-.acc-bg {
+.acct-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -48,14 +48,14 @@
   overflow: hidden;
 }
 
-.acc-orb {
+.acct-orb {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  animation: accOrbDrift 14s ease-in-out infinite;
+  animation: acctOrbDrift 14s ease-in-out infinite;
 }
 
-.acc-orb-1 {
+.acct-orb-1 {
   width: 420px;
   height: 420px;
   background: radial-gradient(circle, rgba(0, 229, 255, 0.09) 0%, transparent 70%);
@@ -64,7 +64,7 @@
   animation-delay: 0s;
 }
 
-.acc-orb-2 {
+.acct-orb-2 {
   width: 320px;
   height: 320px;
   background: radial-gradient(circle, rgba(124, 77, 255, 0.11) 0%, transparent 70%);
@@ -73,7 +73,7 @@
   animation-delay: -5s;
 }
 
-@keyframes accOrbDrift {
+@keyframes acctOrbDrift {
 
   0%,
   100% {
@@ -85,7 +85,7 @@
   }
 }
 
-.acc-grid {
+.acct-grid {
   position: absolute;
   inset: 0;
   background-image:
@@ -94,8 +94,8 @@
   background-size: 44px 44px;
 }
 
-.acc-loading {
-  color: var(--acc-text);
+.acct-loading {
+  color: var(--acct-text);
   font-family: 'Sora', sans-serif;
   font-size: 1rem;
   position: relative;
@@ -105,7 +105,7 @@
 /* =========================
    CONTAINER
 ========================= */
-.account-page .account-container {
+.acct-page .acct-container {
   position: relative;
   z-index: 1;
   width: 100%;
@@ -119,15 +119,15 @@
 /* =========================
    AVATAR
 ========================= */
-.acc-avatar {
+.acct-avatar {
   position: relative;
   width: 72px;
   height: 72px;
   margin-bottom: 8px;
-  animation: accUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  animation: acctUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
 }
 
-.acc-avatar span {
+.acct-avatar span {
   position: relative;
   z-index: 2;
   display: flex;
@@ -140,22 +140,22 @@
   justify-content: center;
   font-size: 1.45rem;
   font-weight: 700;
-  color: var(--acc-cyan);
+  color: var(--acct-cyan);
   letter-spacing: 1px;
   box-shadow:
     0 0 0 4px rgba(0, 229, 255, 0.07),
     0 8px 28px rgba(0, 0, 0, 0.45);
 }
 
-.acc-avatar-ring {
+.acct-avatar-ring {
   position: absolute;
   inset: -6px;
   border-radius: 50%;
   border: 1px dashed rgba(0, 229, 255, 0.2);
-  animation: accAvatarSpin 20s linear infinite;
+  animation: acctAvatarSpin 20s linear infinite;
 }
 
-@keyframes accAvatarSpin {
+@keyframes acctAvatarSpin {
   from {
     transform: rotate(0deg);
   }
@@ -168,37 +168,37 @@
 /* =========================
    TITLE
 ========================= */
-.account-page .account-title {
-  color: var(--acc-text);
+.acct-page .acct-title {
+  color: var(--acct-text);
   font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: 0.3px;
   margin: 0 0 16px;
-  animation: accSlide 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  animation: acctSlide 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
 }
 
 /* =========================
    CARD
 ========================= */
-.account-page .account-card {
+.acct-page .acct-card {
   width: 100%;
-  background: var(--acc-card);
+  background: var(--acct-card);
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
   padding: 28px 26px 24px;
   border-radius: 20px;
-  border: 1px solid var(--acc-border);
+  border: 1px solid var(--acct-border);
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.03),
     0 24px 60px rgba(0, 0, 0, 0.55),
     0 0 50px rgba(0, 229, 255, 0.06);
-  color: var(--acc-text);
+  color: var(--acct-text);
   position: relative;
-  animation: accUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+  animation: acctUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
 }
 
 /* top hairline accent */
-.account-page .account-card::before {
+.acct-page .acct-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -206,34 +206,34 @@
   transform: translateX(-50%);
   width: 55%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--acc-cyan), var(--acc-violet), transparent);
+  background: linear-gradient(90deg, transparent, var(--acct-cyan), var(--acct-violet), transparent);
   border-radius: 1px;
 }
 
 /* =========================
    FIELD
 ========================= */
-.account-page .field {
+.acct-page .acct-field {
   margin-bottom: 18px;
 }
 
-.account-page .field label {
+.acct-page .acct-field label {
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: var(--acc-text-muted);
+  color: var(--acct-text-muted);
   display: block;
   margin-bottom: 7px;
 }
 
-.account-page .field input {
+.acct-page .acct-field input {
   width: 100%;
   padding: 12px 14px;
   border-radius: 10px;
-  border: 1px solid var(--acc-input-border);
-  background: var(--acc-input-bg);
-  color: var(--acc-text);
+  border: 1px solid var(--acct-input-border);
+  background: var(--acct-input-bg);
+  color: var(--acct-text);
   font-family: 'Sora', sans-serif;
   font-size: 0.93rem;
   font-weight: 400;
@@ -242,17 +242,17 @@
   outline: none;
 }
 
-.account-page .field input::placeholder {
-  color: var(--acc-text-muted);
+.acct-page .acct-field input::placeholder {
+  color: var(--acct-text-muted);
 }
 
-.account-page .field input:focus {
+.acct-page .acct-field input:focus {
   border-color: rgba(0, 229, 255, 0.45);
   background: rgba(0, 229, 255, 0.04);
   box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.09);
 }
 
-.account-page .field input:disabled {
+.acct-page .acct-field input:disabled {
   opacity: 0.55;
   cursor: not-allowed;
 }
@@ -260,17 +260,17 @@
 /* =========================
    EMAIL NOTE
 ========================= */
-.account-page .email-note {
+.acct-page .acct-email-note {
   margin-top: 7px;
   font-size: 0.75rem;
-  color: var(--acc-text-muted);
+  color: var(--acct-text-muted);
   line-height: 1.55;
 }
 
 /* =========================
    DIVIDER
 ========================= */
-.account-page .account-card .field+.field {
+.acct-page .acct-card .acct-field+.acct-field {
   padding-top: 4px;
   border-top: 1px solid rgba(0, 229, 255, 0.06);
 }
@@ -278,7 +278,7 @@
 /* =========================
    PRIMARY BUTTON (Edit / Update)
 ========================= */
-.account-page .primary-btn {
+.acct-page .acct-primary-btn {
   width: 100%;
   padding: 12px 16px;
   background: linear-gradient(135deg, #00c8e8 0%, #7c4dff 100%);
@@ -297,16 +297,16 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.account-page .primary-btn:hover {
+.acct-page .acct-primary-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 229, 255, 0.3), 0 4px 12px rgba(124, 77, 255, 0.25);
 }
 
-.account-page .primary-btn:active {
+.acct-page .acct-primary-btn:active {
   transform: scale(0.99);
 }
 
-.account-page .primary-btn:disabled {
+.acct-page .acct-primary-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   transform: none;
@@ -316,13 +316,13 @@
 /* =========================
    BTN GROUP (Update + Cancel)
 ========================= */
-.account-page .btn-group {
+.acct-page .acct-btn-group {
   display: flex;
   gap: 10px;
   margin-top: 4px;
 }
 
-.account-page .btn-group .primary-btn {
+.acct-page .acct-btn-group .acct-primary-btn {
   flex: 1;
   margin-top: 0;
 }
@@ -330,7 +330,7 @@
 /* =========================
    CANCEL BUTTON
 ========================= */
-.account-page .cancel-btn {
+.acct-page .acct-cancel-btn {
   flex: 1;
   padding: 12px 16px;
   background: transparent;
@@ -345,7 +345,7 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.account-page .cancel-btn:hover {
+.acct-page .acct-cancel-btn:hover {
   background: rgba(124, 77, 255, 0.12);
   border-color: rgba(124, 77, 255, 0.65);
 }
@@ -353,7 +353,7 @@
 /* =========================
    SHIMMER (shared)
 ========================= */
-.acc-btn-shimmer {
+.acct-btn-shimmer {
   position: absolute;
   inset: 0;
   background: linear-gradient(105deg,
@@ -365,8 +365,8 @@
   pointer-events: none;
 }
 
-.account-page .primary-btn:hover .acc-btn-shimmer,
-.account-page .my-payments-btn:hover .acc-btn-shimmer {
+.acct-page .acct-primary-btn:hover .acct-btn-shimmer,
+.acct-page .acct-payments-btn:hover .acct-btn-shimmer {
   transform: translateX(100%);
   transition: transform 0.55s ease;
 }
@@ -374,7 +374,7 @@
 /* =========================
    MY PAYMENTS BUTTON
 ========================= */
-.account-page .account-card .my-payments-btn {
+.acct-page .acct-card .acct-payments-btn {
   width: 100%;
   margin-top: 12px;
   padding: 12px 16px;
@@ -398,7 +398,7 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.account-page .account-card .my-payments-btn:hover {
+.acct-page .acct-card .acct-payments-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(124, 77, 255, 0.38);
 }
@@ -406,7 +406,7 @@
 /* =========================
    DELETE BUTTON
 ========================= */
-.account-delete-btn {
+.acct-page .acct-delete-btn {
   width: 100%;
   margin-top: 10px;
   padding: 11px 16px;
@@ -423,18 +423,18 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.account-delete-btn:hover {
+.acct-page .acct-delete-btn:hover {
   background: rgba(255, 59, 59, 0.16);
   border-color: rgba(255, 80, 80, 0.55);
   color: #ffaaaa;
   transform: translateY(-1px);
 }
 
-.account-delete-btn:active {
+.acct-page .acct-delete-btn:active {
   transform: translateY(0);
 }
 
-.account-delete-btn:disabled {
+.acct-page .acct-delete-btn:disabled {
   opacity: 0.45;
   cursor: not-allowed;
   transform: none;
@@ -443,7 +443,7 @@
 /* =========================
    MESSAGES
 ========================= */
-.account-page .success-msg {
+.acct-page .acct-success-msg {
   margin-top: 14px;
   padding: 11px 14px;
   border-radius: 10px;
@@ -455,11 +455,11 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  animation: accFade 0.35s ease-out both;
+  animation: acctFade 0.35s ease-out both;
   line-height: 1.5;
 }
 
-.account-page .error-msg {
+.acct-page .acct-error-msg {
   margin-top: 14px;
   padding: 11px 14px;
   border-radius: 10px;
@@ -471,14 +471,14 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  animation: accFade 0.35s ease-out both;
+  animation: acctFade 0.35s ease-out both;
   line-height: 1.5;
 }
 
 /* =========================
    ANIMATIONS
 ========================= */
-@keyframes accFade {
+@keyframes acctFade {
   from {
     opacity: 0;
   }
@@ -488,7 +488,7 @@
   }
 }
 
-@keyframes accUp {
+@keyframes acctUp {
   from {
     opacity: 0;
     transform: translateY(18px);
@@ -500,7 +500,7 @@
   }
 }
 
-@keyframes accSlide {
+@keyframes acctSlide {
   from {
     opacity: 0;
     transform: translateY(-10px);
@@ -516,47 +516,47 @@
    RESPONSIVE
 ========================= */
 @media (max-width: 480px) {
-  .account-page {
+  .acct-page {
     padding: 16px;
   }
 
-  .account-page .account-title {
+  .acct-page .acct-title {
     font-size: 1.2rem;
   }
 
-  .account-page .account-card {
+  .acct-page .acct-card {
     padding: 22px 18px 20px;
     border-radius: 16px;
   }
 
-  .account-page .btn-group {
+  .acct-page .acct-btn-group {
     flex-direction: column;
   }
 
-  .acc-avatar span {
+  .acct-avatar span {
     width: 62px;
     height: 62px;
     font-size: 1.25rem;
   }
 
-  .acc-avatar {
+  .acct-avatar {
     width: 62px;
     height: 62px;
   }
 
-  .account-delete-btn {
+  .acct-page .acct-delete-btn {
     font-size: 0.85rem;
   }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
-  .account-page .account-container {
+  .acct-page .acct-container {
     max-width: 380px;
   }
 }
 
 @media (min-width: 769px) {
-  .account-page .account-container {
+  .acct-page .acct-container {
     max-width: 420px;
   }
 }

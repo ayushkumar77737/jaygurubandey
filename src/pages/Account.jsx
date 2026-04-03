@@ -78,12 +78,12 @@ const Account = () => {
 
   if (loading) {
     return (
-      <div className="account-page">
-        <div className="acc-bg" aria-hidden="true">
-          <div className="acc-orb acc-orb-1" />
-          <div className="acc-orb acc-orb-2" />
+      <div className="acct-page">
+        <div className="acct-bg" aria-hidden="true">
+          <div className="acct-orb acct-orb-1" />
+          <div className="acct-orb acct-orb-2" />
         </div>
-        <p className="acc-loading">Loading...</p>
+        <p className="acct-loading">Loading...</p>
       </div>
     );
   }
@@ -94,28 +94,28 @@ const Account = () => {
     : email?.[0]?.toUpperCase() || "U";
 
   return (
-    <div className="account-page">
+    <div className="acct-page">
 
       {/* Decorative background */}
-      <div className="acc-bg" aria-hidden="true">
-        <div className="acc-orb acc-orb-1" />
-        <div className="acc-orb acc-orb-2" />
-        <div className="acc-grid" />
+      <div className="acct-bg" aria-hidden="true">
+        <div className="acct-orb acct-orb-1" />
+        <div className="acct-orb acct-orb-2" />
+        <div className="acct-grid" />
       </div>
 
-      <div className="account-container">
+      <div className="acct-container">
 
         {/* Avatar */}
-        <div className="acc-avatar" aria-hidden="true">
+        <div className="acct-avatar" aria-hidden="true">
           <span>{initials}</span>
-          <div className="acc-avatar-ring" />
+          <div className="acct-avatar-ring" />
         </div>
 
-        <h2 className="account-title">My Account</h2>
+        <h2 className="acct-title">My Account</h2>
 
-        <div className="account-card">
+        <div className="acct-card">
 
-          <div className="field">
+          <div className="acct-field">
             <label>Name</label>
             <input
               type="text"
@@ -123,57 +123,57 @@ const Account = () => {
               disabled={!editing}
               onChange={(e) => setName(e.target.value)}
             />
-            <p className="email-note">
+            <p className="acct-email-note">
               ℹ️ To update your name, please click on the edit button below the email.
             </p>
           </div>
 
-          <div className="field">
+          <div className="acct-field">
             <label>Email</label>
             <input type="email" value={email} disabled />
-            <p className="email-note">
+            <p className="acct-email-note">
               ℹ️ To update your email address, please go to request email update page.
             </p>
           </div>
 
           {!editing ? (
             <button
-              className="primary-btn"
+              className="acct-primary-btn"
               onClick={() => setEditing(true)}
               disabled={isBlocked}
             >
-              <span className="acc-btn-shimmer" />
+              <span className="acct-btn-shimmer" />
               Edit
             </button>
           ) : (
-            <div className="btn-group">
-              <button className="primary-btn" onClick={handleUpdate}>
-                <span className="acc-btn-shimmer" />
+            <div className="acct-btn-group">
+              <button className="acct-primary-btn" onClick={handleUpdate}>
+                <span className="acct-btn-shimmer" />
                 Update
               </button>
-              <button className="cancel-btn" onClick={handleCancel}>
+              <button className="acct-cancel-btn" onClick={handleCancel}>
                 Cancel
               </button>
             </div>
           )}
 
           <button
-            className="my-payments-btn"
+            className="acct-payments-btn"
             onClick={() => navigate("/my-payments")}
           >
-            <span className="acc-btn-shimmer" />
+            <span className="acct-btn-shimmer" />
             💳 My Payments
           </button>
 
           <button
-            className="account-delete-btn"
+            className="acct-delete-btn"
             onClick={() => navigate("/delete-account")}
           >
             Delete Account
           </button>
 
           {message && (
-            <p className={message.startsWith("❌") ? "error-msg" : "success-msg"}>
+            <p className={message.startsWith("❌") ? "acct-error-msg" : "acct-success-msg"}>
               {message}
             </p>
           )}
