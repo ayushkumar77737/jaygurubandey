@@ -76,33 +76,73 @@ const Bhajan = () => {
   const totalPages = Math.ceil(videos.length / videosPerPage);
 
   return (
-    <div className="bhajan-container">
-      <h1 className="bhajan-title">Bhajan Moments</h1>
+    <div className="bj__page">
+      {/* Decorative background orbs */}
+      <div className="bj__orb bj__orb--1" />
+      <div className="bj__orb bj__orb--2" />
+      <div className="bj__orb bj__orb--3" />
+
+      {/* Header */}
+      <header className="bj__header">
+        <div className="bj__header-deco">🪔</div>
+        <h1 className="bj__title">Bhajan Moments</h1>
+        <p className="bj__subtitle">Sacred melodies for the soul</p>
+        <div className="bj__title-rule" />
+      </header>
 
       {/* Video Grid */}
-      <div className="video-grid">
-        {currentVideos.map((video) => (
-          <div key={video.id} className="video-card">
-            <iframe src={video.embedUrl} title={video.title} allowFullScreen></iframe>
-            <a href={video.linkUrl} target="_blank" rel="noopener noreferrer">
-              Watch {video.title}
-            </a>
+      <div className="bj__grid">
+        {currentVideos.map((video, index) => (
+          <div
+            key={video.id}
+            className="bj__card"
+            style={{ animationDelay: `${index * 0.07}s` }}
+          >
+            <div className="bj__card-frame-wrap">
+              <iframe
+                src={video.embedUrl}
+                title={video.title}
+                allowFullScreen
+                className="bj__iframe"
+              />
+              <div className="bj__card-shimmer" />
+            </div>
+            <div className="bj__card-footer">
+              <span className="bj__card-label">{video.title}</span>
+              <a
+                href={video.linkUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bj__watch-btn"
+              >
+                <span>Watch</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
           </div>
         ))}
       </div>
 
       {/* Pagination */}
-      <div className="pagination">
+      <div className="bj__pagination">
         <button
+          className="bj__page-btn"
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
         >
           ← Prev
         </button>
-        <span className="page-circle">
-          Page {currentPage} of {totalPages}
-        </span>
+
+        <div className="bj__page-badge">
+          <span className="bj__page-num">{currentPage}</span>
+          <span className="bj__page-sep">/</span>
+          <span className="bj__page-total">{totalPages}</span>
+        </div>
+
         <button
+          className="bj__page-btn"
           onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
           disabled={currentPage === totalPages}
         >
@@ -110,24 +150,29 @@ const Bhajan = () => {
         </button>
       </div>
 
-      {/* Buttons Section */}
-      <div className="bhajan-buttons">
-        {/* ✅ Changed to Link for new page */}
-        <Link to="/satguru-chalisa" className="btn">
-          Satguru Chalisa <span className="arrow">→</span>
+      {/* Action Buttons */}
+      <div className="bj__actions">
+        <Link to="/satguru-chalisa" className="bj__action-btn">
+          <span className="bj__action-icon">📿</span>
+          <span>Satguru Chalisa</span>
+          <span className="bj__action-arrow">→</span>
         </Link>
 
-        <Link to="/satguru-arti" className="btn">
-          Satguru Arti <span className="arrow">→</span>
+        <Link to="/satguru-arti" className="bj__action-btn">
+          <span className="bj__action-icon">🪔</span>
+          <span>Satguru Arti</span>
+          <span className="bj__action-arrow">→</span>
         </Link>
 
         <a
           href="https://drive.google.com/file/d/your-bhajan-sangrah-link/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
-          className="btn"
+          className="bj__action-btn"
         >
-          Bhajan Sangrah <span className="arrow">→</span>
+          <span className="bj__action-icon">📖</span>
+          <span>Bhajan Sangrah</span>
+          <span className="bj__action-arrow">→</span>
         </a>
       </div>
     </div>

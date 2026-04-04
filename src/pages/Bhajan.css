@@ -1,285 +1,471 @@
-/* ===== Global Container ===== */
-.bhajan-container {
-  font-family: 'Poppins', sans-serif;
+/* ============================================================
+   Bhajan Page — scoped under bj__ prefix (zero global leakage)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;900&family=Nunito:wght@400;600;700;800&display=swap');
+
+/* ── CSS Variables ─────────────────────────────────────────── */
+.bj__page {
+  --bj-saffron: #f39c12;
+  --bj-deep-orange: #e05c00;
+  --bj-amber: #ffb347;
+  --bj-crimson: #c0392b;
+  --bj-gold: #ffd700;
+  --bj-cream: #fffaf0;
+  --bj-card-bg: rgba(255, 252, 245, 0.92);
+  --bj-shadow-sm: 0 2px 8px rgba(200, 80, 0, 0.10);
+  --bj-shadow-md: 0 8px 28px rgba(200, 80, 0, 0.18);
+  --bj-shadow-lg: 0 16px 48px rgba(200, 80, 0, 0.22);
+  --bj-radius: 20px;
+  --bj-font-display: 'Cinzel', serif;
+  --bj-font-body: 'Nunito', sans-serif;
+
+  /* Layout */
+  position: relative;
+  font-family: var(--bj-font-body);
   min-height: 100vh;
-  padding: 30px 20px 80px;
+  padding: 50px 24px 100px;
   text-align: center;
-  background: linear-gradient(135deg, #fff5f5, #fff0fa, #f5faff);
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(255, 179, 71, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 80%, rgba(243, 156, 18, 0.16) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 240, 200, 0.5) 0%, transparent 80%),
+    linear-gradient(160deg, #fff9ed 0%, #fff5f5 45%, #fdf0ff 100%);
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 
-/* ===== Title ===== */
-.bhajan-title {
-  margin-bottom: 40px;
+/* ── Decorative Orbs ───────────────────────────────────────── */
+.bj__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+  animation: bj-float 8s ease-in-out infinite alternate;
+}
+
+.bj__orb--1 {
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(circle, rgba(255, 179, 71, 0.28), transparent 70%);
+  top: -80px;
+  left: -80px;
+  animation-delay: 0s;
+}
+
+.bj__orb--2 {
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(224, 92, 0, 0.18), transparent 70%);
+  top: 40%;
+  right: -60px;
+  animation-delay: 2.5s;
+}
+
+.bj__orb--3 {
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.22), transparent 70%);
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 5s;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.bj__header {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 52px;
+  animation: bj-fadeUp 0.6s ease-out both;
+}
+
+.bj__header-deco {
   font-size: 2.8rem;
+  display: block;
+  margin-bottom: 10px;
+  animation: bj-glow 2.5s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 12px rgba(243, 156, 18, 0.7));
+}
+
+.bj__title {
+  font-family: var(--bj-font-display);
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
   font-weight: 900;
-  background: linear-gradient(120deg, #f39c12, #d35400, #e74c3c);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: linear-gradient(130deg, #b34700 0%, #f39c12 40%, #ffd700 65%, #e05c00 100%);
   -webkit-background-clip: text;
-  color: transparent;
-  letter-spacing: 1.5px;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 10px;
+  text-shadow: none;
+  position: relative;
+}
+
+.bj__subtitle {
+  font-family: var(--bj-font-body);
+  font-size: 1.05rem;
+  color: #9a6820;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0 0 18px;
+  opacity: 0.85;
+}
+
+.bj__title-rule {
+  width: 90px;
+  height: 3px;
+  margin: 0 auto;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--bj-saffron), var(--bj-gold), transparent);
+}
+
+/* ── Video Grid ────────────────────────────────────────────── */
+.bj__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 26px;
+  max-width: 1140px;
+  margin: 0 auto 40px;
+}
+
+/* ── Video Card ────────────────────────────────────────────── */
+.bj__card {
+  background: var(--bj-card-bg);
+  border-radius: var(--bj-radius);
+  border: 1px solid rgba(243, 156, 18, 0.2);
+  box-shadow: var(--bj-shadow-sm);
+  padding: 14px 14px 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: bj-fadeUp 0.55s ease-out both;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.bj__card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: var(--bj-shadow-lg);
+  border-color: rgba(243, 156, 18, 0.45);
+}
+
+/* Frame wrapper with shimmer overlay on hover */
+.bj__card-frame-wrap {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.bj__iframe {
+  width: 100%;
+  height: 185px;
+  border: none;
+  border-radius: 14px;
+  display: block;
   transition: transform 0.3s ease;
 }
 
-.bhajan-title:hover {
-  transform: scale(1.03);
+.bj__card:hover .bj__iframe {
+  transform: scale(1.025);
 }
 
-/* ===== Bhajan Grid ===== */
-.bhajan-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 10px;
-}
-
-/* ===== Bhajan Card ===== */
-.bhajan-card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 18px;
-  border: 1px solid rgba(243, 156, 18, 0.15);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  padding: 18px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  cursor: pointer;
-}
-
-.bhajan-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-}
-
-.bhajan-card iframe {
-  width: 100%;
-  height: 180px;
+.bj__card-shimmer {
+  position: absolute;
+  inset: 0;
   border-radius: 14px;
-  border: none;
-  margin-bottom: 12px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.12) 50%, transparent 70%);
+  background-size: 200% 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.bhajan-card iframe:hover {
-  transform: scale(1.015);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+.bj__card:hover .bj__card-shimmer {
+  opacity: 1;
+  animation: bj-shimmer 0.7s ease forwards;
 }
 
-/* ===== Bhajan Button ===== */
-.bhajan-card a {
-  display: inline-block;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.9rem;
-  background: linear-gradient(90deg, #f39c12, #e67e22);
-  color: #fff;
-  padding: 10px 22px;
-  border-radius: 30px;
-  transition: transform 0.25s ease, background 0.25s ease;
-}
-
-.bhajan-card a:hover {
-  background: #d35400;
-  transform: translateY(-2px);
-}
-
-/* ===== Extra Buttons ===== */
-.bhajan-buttons {
+/* Card footer */
+.bj__card-footer {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.bj__card-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #8a5500;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.bj__watch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(100deg, #f39c12, #e05c00);
+  padding: 7px 16px;
+  border-radius: 30px;
+  white-space: nowrap;
+  box-shadow: 0 3px 10px rgba(224, 92, 0, 0.35);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+}
+
+.bj__watch-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 18px rgba(224, 92, 0, 0.45);
+  background: linear-gradient(100deg, #e05c00, #c0392b);
+}
+
+/* ── Pagination ────────────────────────────────────────────── */
+.bj__pagination {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 18px;
-  margin-top: 30px;
+  gap: 20px;
+  margin: 10px 0 44px;
+  animation: bj-fadeUp 0.5s ease-out 0.25s both;
   flex-wrap: wrap;
 }
 
-.bhajan-buttons .btn {
-  text-decoration: none;
-  padding: 11px 26px;
-  border-radius: 8px;
-  background: #f39c12;
-  color: #fff;
-  font-weight: 600;
-  transition: transform 0.25s ease, background 0.25s ease;
+.bj__page-btn {
+  padding: 10px 24px;
+  border: 2px solid var(--bj-saffron);
+  border-radius: 50px;
+  background: transparent;
+  color: var(--bj-deep-orange);
+  font-family: var(--bj-font-body);
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
 }
 
-.bhajan-buttons .btn:hover {
-  background: #e67e22;
+.bj__page-btn:hover:not(:disabled) {
+  background: var(--bj-saffron);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(243, 156, 18, 0.4);
   transform: translateY(-2px);
 }
 
-/* ===== Pagination ===== */
-.pagination {
-  margin: 30px 0;
+.bj__page-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  border-color: #ccc;
+  color: #bbb;
+}
+
+.bj__page-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #fff5e0, #fff9f0);
+  border: 2px solid rgba(243, 156, 18, 0.3);
+  border-radius: 50px;
+  padding: 8px 22px;
+  box-shadow: 0 3px 12px rgba(243, 156, 18, 0.15);
+}
+
+.bj__page-num {
+  font-family: var(--bj-font-display);
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--bj-deep-orange);
+}
+
+.bj__page-sep {
+  font-size: 1rem;
+  color: #cba050;
+  margin: 0 2px;
+}
+
+.bj__page-total {
+  font-family: var(--bj-font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #b8860b;
+}
+
+/* ── Action Buttons ────────────────────────────────────────── */
+.bj__actions {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: bj-fadeUp 0.5s ease-out 0.35s both;
+}
+
+.bj__action-btn {
+  display: inline-flex;
   align-items: center;
   gap: 10px;
-  flex-wrap: wrap;
+  text-decoration: none;
+  padding: 13px 28px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #fff8ec, #fff3e0);
+  color: #8a4800;
+  font-family: var(--bj-font-body);
+  font-weight: 800;
+  font-size: 0.95rem;
+  border: 1.5px solid rgba(243, 156, 18, 0.3);
+  box-shadow: 0 4px 14px rgba(243, 156, 18, 0.15);
+  transition: all 0.28s ease;
+  letter-spacing: 0.3px;
 }
 
-.pagination button {
-  padding: 8px 14px;
-  border: none;
-  border-radius: 6px;
-  background: #f39c12;
+.bj__action-icon {
+  font-size: 1.2rem;
+}
+
+.bj__action-arrow {
+  font-size: 1rem;
+  transition: transform 0.25s ease;
+  color: var(--bj-saffron);
+}
+
+.bj__action-btn:hover {
+  background: linear-gradient(135deg, #f39c12, #e05c00);
   color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.25s ease, transform 0.2s ease;
-  min-width: 80px;
+  border-color: transparent;
+  box-shadow: 0 8px 24px rgba(224, 92, 0, 0.35);
+  transform: translateY(-3px);
 }
 
-.pagination button:hover {
-  background: #e67e22;
-  transform: translateY(-2px);
+.bj__action-btn:hover .bj__action-arrow {
+  transform: translateX(4px);
+  color: #fff;
 }
 
-.pagination button:disabled {
-  background: #d3d3d3;
-  color: #666;
-  cursor: not-allowed;
-  transform: none;
-  opacity: 0.8;
-}
-
-/* Page Circle */
-.page-circle {
-  display: inline-block;
-  padding: 14px 20px;
-  border-radius: 50%;
-  background-color: #f39c12;
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  margin: 0 15px;
-  font-size: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  min-width: 60px;
-  min-height: 60px;
-  line-height: 1.2;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 768px) {
-  .bhajan-title {
-    font-size: 2.2rem;
-  }
-
-  .bhajan-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .bhajan-card iframe {
-    height: 140px;
-  }
-
-  .pagination button {
-    padding: 6px 10px;
-    font-size: 14px;
-    min-width: 60px;
-  }
-
-  .page-circle {
-    padding: 12px 16px;
-    font-size: 14px;
-    min-width: 50px;
-    min-height: 50px;
-    margin: 5px;
-  }
-}
-
-@media (max-width: 480px) {
-  .bhajan-title {
-    font-size: 1.8rem;
-    margin-bottom: 25px;
-  }
-
-  .bhajan-grid {
-    gap: 15px;
-    grid-template-columns: 1fr;
-  }
-
-  .bhajan-card iframe {
-    height: 120px;
-  }
-
-  .bhajan-card a {
-    font-size: 0.85rem;
-    padding: 9px 18px;
-  }
-
-  .pagination {
-    gap: 5px;
-  }
-
-  .pagination button {
-    padding: 5px 8px;
-    font-size: 13px;
-    min-width: 50px;
-  }
-
-  .page-circle {
-    padding: 10px 12px;
-    font-size: 12px;
-    min-width: 45px;
-    min-height: 45px;
-    margin: 4px;
-  }
-
-  .bhajan-buttons .btn {
-    width: 90%;
-  }
-}
-/* =================== Bhajan Page Animation =================== */
-@keyframes bhajanFadeUp {
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes bj-fadeUp {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Page animation */
-.bhajan-container {
-  animation: bhajanFadeUp 0.5s ease-out both;
+@keyframes bj-float {
+  from {
+    transform: translateY(0px) scale(1);
+  }
+
+  to {
+    transform: translateY(-22px) scale(1.04);
+  }
 }
 
-/* Title animation */
-.bhajan-title {
-  animation: bhajanFadeUp 0.45s ease-out both;
+@keyframes bj-glow {
+  from {
+    filter: drop-shadow(0 0 8px rgba(243, 156, 18, 0.5));
+  }
+
+  to {
+    filter: drop-shadow(0 0 20px rgba(243, 156, 18, 0.9));
+  }
 }
 
-/* Card animation */
-.bhajan-card {
-  animation: bhajanFadeUp 0.55s ease-out both;
+@keyframes bj-shimmer {
+  from {
+    background-position: 200% center;
+  }
+
+  to {
+    background-position: -200% center;
+  }
 }
 
-/* =================== Stagger Effect =================== */
-.bhajan-card:nth-child(1) { animation-delay: 0.05s; }
-.bhajan-card:nth-child(2) { animation-delay: 0.1s; }
-.bhajan-card:nth-child(3) { animation-delay: 0.15s; }
-.bhajan-card:nth-child(4) { animation-delay: 0.2s; }
-.bhajan-card:nth-child(5) { animation-delay: 0.25s; }
-.bhajan-card:nth-child(6) { animation-delay: 0.3s; }
-.bhajan-card:nth-child(7) { animation-delay: 0.35s; }
-.bhajan-card:nth-child(8) { animation-delay: 0.4s; }
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .bj__page {
+    padding: 36px 16px 80px;
+  }
 
-/* Pagination animation */
-.pagination {
-  animation: bhajanFadeUp 0.45s ease-out both;
-  animation-delay: 0.2s;
+  .bj__title {
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+
+  .bj__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .bj__iframe {
+    height: 150px;
+  }
+
+  .bj__page-btn {
+    padding: 8px 16px;
+    font-size: 0.82rem;
+  }
 }
 
-/* =================== Reduce Motion =================== */
+@media (max-width: 480px) {
+  .bj__title {
+    font-size: 1.65rem;
+  }
+
+  .bj__subtitle {
+    font-size: 0.82rem;
+  }
+
+  .bj__grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .bj__iframe {
+    height: 195px;
+  }
+
+  .bj__action-btn {
+    width: 90%;
+    justify-content: center;
+  }
+
+  .bj__card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .bj__watch-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── Reduced Motion ────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .bhajan-container,
-  .bhajan-title,
-  .bhajan-card,
-  .pagination {
-    animation: none;
-    transform: none;
+
+  .bj__page,
+  .bj__header,
+  .bj__card,
+  .bj__pagination,
+  .bj__actions,
+  .bj__orb,
+  .bj__header-deco {
+    animation: none !important;
+    transform: none !important;
   }
 }

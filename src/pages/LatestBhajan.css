@@ -1,228 +1,440 @@
-.latest-bhajan {
-  padding: 70px 20px 90px;
-  background: linear-gradient(180deg, #fff7e6 0%, #ffffff 60%);
+/* ============================================================
+   LatestBhajan — fully scoped under lb__ prefix
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;900&family=Nunito:wght@400;600;700;800&display=swap');
+
+/* ── Variables ─────────────────────────────────────────────── */
+.lb__section {
+  --lb-saffron: #f59e0b;
+  --lb-deep-orange: #d97706;
+  --lb-amber-light: #fef3c7;
+  --lb-gold: #fbbf24;
+  --lb-crimson: #b45309;
+  --lb-card-bg: #fffdf7;
+  --lb-text-dark: #292524;
+  --lb-text-muted: #78716c;
+  --lb-shadow-sm: 0 4px 12px rgba(180, 83, 9, 0.10);
+  --lb-shadow-md: 0 10px 32px rgba(180, 83, 9, 0.17);
+  --lb-shadow-lg: 0 20px 52px rgba(180, 83, 9, 0.22);
+  --lb-radius: 22px;
+  --lb-font-display: 'Cinzel', serif;
+  --lb-font-body: 'Nunito', sans-serif;
+
+  /* Layout */
+  position: relative;
+  font-family: var(--lb-font-body);
+  padding: 72px 22px 96px;
   text-align: center;
   isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 15% 0%, rgba(251, 191, 36, 0.18) 0%, transparent 52%),
+    radial-gradient(ellipse at 85% 100%, rgba(245, 158, 11, 0.14) 0%, transparent 52%),
+    linear-gradient(175deg, #fff9ec 0%, #ffffff 55%, #fff8f0 100%);
 }
 
-/* ================= Heading ================= */
-.bhajan-title {
+/* ── Background Blobs ──────────────────────────────────────── */
+.lb__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+  animation: lb-float 9s ease-in-out infinite alternate;
+}
+
+.lb__blob--a {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.22), transparent 70%);
+  top: -100px;
+  right: -80px;
+  animation-delay: 0s;
+}
+
+.lb__blob--b {
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.16), transparent 70%);
+  bottom: 60px;
+  left: -60px;
+  animation-delay: 3.5s;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.lb__header {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 56px;
+  animation: lb-fadeUp 0.55s ease-out both;
+}
+
+.lb__header-icon {
   font-size: 2.6rem;
-  font-weight: 700;
-  color: #d97706;
-  margin-bottom: 6px;
+  display: block;
+  margin-bottom: 12px;
+  animation: lb-pulse 2.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.65));
 }
 
-.bhajan-title span {
-  color: #f59e0b;
+.lb__title {
+  font-family: var(--lb-font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--lb-deep-orange);
+  margin: 0 0 10px;
+  line-height: 1.15;
 }
 
-.bhajan-subtitle {
+.lb__title-accent {
+  background: linear-gradient(120deg, #f59e0b, #fbbf24, #d97706);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.lb__subtitle {
   font-size: 1rem;
-  color: #666;
-  margin-bottom: 45px;
+  color: var(--lb-text-muted);
+  letter-spacing: 0.6px;
+  margin: 0 0 20px;
+  font-weight: 600;
 }
 
-/* ================= Grid ================= */
-.bhajan-grid {
+.lb__divider {
+  width: 80px;
+  height: 3px;
+  margin: 0 auto;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--lb-gold), transparent);
+}
+
+/* ── Grid ──────────────────────────────────────────────────── */
+.lb__grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  gap: 28px;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto 50px;
   justify-items: center;
 }
 
-/* ================= Card ================= */
-.bhajan-card {
+/* ── Card ──────────────────────────────────────────────────── */
+.lb__card {
   width: 100%;
-  max-width: 380px;
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 18px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  max-width: 390px;
+  background: var(--lb-card-bg);
+  border-radius: var(--lb-radius);
+  border: 1px solid rgba(245, 158, 11, 0.18);
+  box-shadow: var(--lb-shadow-sm);
+  overflow: hidden;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  animation: lb-fadeUp 0.55s ease-out both;
+  backdrop-filter: blur(4px);
 }
 
-.latest-bhajan .bhajan-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
+.lb__card:hover {
+  transform: translateY(-9px) scale(1.012);
+  box-shadow: var(--lb-shadow-lg);
+  border-color: rgba(245, 158, 11, 0.42);
 }
 
-/* ================= Video ================= */
-.bhajan-video {
+/* ── Video ─────────────────────────────────────────────────── */
+.lb__video-wrap {
+  position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: 18px;
   overflow: hidden;
-  margin-bottom: 16px;
 }
 
-.bhajan-video iframe {
+.lb__iframe {
   width: 100%;
   height: 100%;
-  border-radius: 18px;
+  border: none;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
-/* ================= Title ================= */
-.bhajan-card h3 {
+.lb__card:hover .lb__iframe {
+  transform: scale(1.03);
+}
+
+/* Subtle gradient overlay at bottom of video */
+.lb__video-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: linear-gradient(to top, rgba(255, 252, 240, 0.7), transparent);
+  pointer-events: none;
+}
+
+/* ── Card Body ─────────────────────────────────────────────── */
+.lb__card-body {
+  padding: 16px 18px 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lb__card-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--lb-deep-orange);
+  background: var(--lb-amber-light);
+  padding: 3px 10px;
+  border-radius: 30px;
+  width: fit-content;
+}
+
+.lb__card-title {
+  font-family: var(--lb-font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--lb-text-dark);
+  margin: 0;
+  line-height: 1.35;
+  letter-spacing: 0.5px;
+}
+
+.lb__listen-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  font-family: var(--lb-font-body);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(110deg, #f59e0b, #d97706);
+  padding: 9px 20px;
+  border-radius: 30px;
+  width: fit-content;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+}
+
+.lb__listen-btn:hover {
+  background: linear-gradient(110deg, #d97706, #b45309);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 7px 22px rgba(180, 83, 9, 0.42);
+}
+
+/* ── Pagination ────────────────────────────────────────────── */
+.lb__pagination {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  margin-top: 8px;
+  animation: lb-fadeUp 0.5s ease-out 0.2s both;
+  flex-wrap: wrap;
+}
+
+.lb__pg-btn {
+  padding: 10px 26px;
+  border: 2px solid var(--lb-saffron);
+  border-radius: 50px;
+  background: transparent;
+  color: var(--lb-deep-orange);
+  font-family: var(--lb-font-body);
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: 0.4px;
+  transition: all 0.24s ease;
+}
+
+.lb__pg-btn:hover:not(:disabled) {
+  background: var(--lb-saffron);
+  color: #fff;
+  box-shadow: 0 5px 16px rgba(245, 158, 11, 0.38);
+  transform: translateY(-2px);
+}
+
+.lb__pg-btn:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+  border-color: #d6d3d1;
+  color: #a8a29e;
+}
+
+.lb__pg-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(135deg, #fffbeb, #fff9f0);
+  border: 2px solid rgba(245, 158, 11, 0.28);
+  border-radius: 50px;
+  padding: 9px 24px;
+  box-shadow: 0 3px 12px rgba(245, 158, 11, 0.12);
+}
+
+.lb__pg-current {
+  font-family: var(--lb-font-display);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--lb-deep-orange);
+}
+
+.lb__pg-slash {
+  font-size: 1rem;
+  color: #d6b87a;
+  margin: 0 1px;
+}
+
+.lb__pg-total {
+  font-family: var(--lb-font-display);
   font-size: 1.05rem;
   font-weight: 600;
-  color: #333;
-  margin-bottom: 14px;
+  color: var(--lb-crimson);
 }
 
-/* ================= Button ================= */
-.bhajan-btn {
-  display: inline-block;
-  padding: 10px 24px;
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: #ffffff;
-  font-weight: 600;
-  border-radius: 30px;
-  text-decoration: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.bhajan-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.5);
-}
-
-/* ================= Animation ================= */
-@keyframes bhajanFade {
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes lb-fadeUp {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(18px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.latest-bhajan {
-  animation: bhajanFade 0.5s ease-out both;
-}
+@keyframes lb-float {
+  from {
+    transform: translateY(0) scale(1);
+  }
 
-.latest-bhajan .bhajan-card {
-  animation: bhajanFade 0.55s ease-out both;
-}
-
-.latest-bhajan .bhajan-card:nth-child(1) { animation-delay: 0.05s; }
-.latest-bhajan .bhajan-card:nth-child(2) { animation-delay: 0.1s; }
-.latest-bhajan .bhajan-card:nth-child(3) { animation-delay: 0.15s; }
-.latest-bhajan .bhajan-card:nth-child(4) { animation-delay: 0.2s; }
-
-/* ================= Reduce Motion ================= */
-@media (prefers-reduced-motion: reduce) {
-  .latest-bhajan,
-  .latest-bhajan .bhajan-card {
-    animation: none;
-    transform: none;
+  to {
+    transform: translateY(-24px) scale(1.05);
   }
 }
 
-/* ================= Pagination ================= */
-.bhajan-pagination {
-  margin-top: 45px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-  font-size: 0.95rem;
-  color: #555;
+@keyframes lb-pulse {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
+    transform: scale(1);
+  }
+
+  50% {
+    filter: drop-shadow(0 0 18px rgba(245, 158, 11, 0.9));
+    transform: scale(1.08);
+  }
 }
 
-.bhajan-pagination button {
-  padding: 8px 16px;
-  border-radius: 20px;
-  border: none;
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.bhajan-pagination button:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-}
+/* ── Responsive ────────────────────────────────────────────── */
 @media (min-width: 1200px) {
-  .bhajan-title {
-    font-size: 2.8rem;
+  .lb__title {
+    font-size: 3.4rem;
   }
 
-  .bhajan-subtitle {
+  .lb__subtitle {
     font-size: 1.05rem;
   }
 
-  .bhajan-grid {
+  .lb__grid {
     gap: 34px;
   }
 }
+
 @media (max-width: 992px) {
-  .latest-bhajan {
+  .lb__section {
     padding: 60px 16px 80px;
   }
 
-  .bhajan-title {
+  .lb__title {
     font-size: 2.2rem;
   }
 
-  .bhajan-subtitle {
+  .lb__subtitle {
     font-size: 0.95rem;
     margin-bottom: 36px;
   }
 
-  .bhajan-grid {
-    gap: 26px;
-  }
-
-  .bhajan-card {
-    max-width: 360px;
-  }
-}
-@media (max-width: 576px) {
-  .latest-bhajan {
-    padding: 50px 14px 70px;
-  }
-
-  .bhajan-title {
-    font-size: 1.9rem;
-    line-height: 1.2;
-    display: flex;              /* ✅ fixes heading wrapping */
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .bhajan-subtitle {
-    font-size: 0.9rem;
-    margin-bottom: 28px;
-  }
-
-  .bhajan-grid {
-    grid-template-columns: 1fr; /* ✅ single column */
+  .lb__grid {
     gap: 22px;
   }
 
-  .bhajan-card {
-    padding: 14px;
-    border-radius: 20px;
+  .lb__card {
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 576px) {
+  .lb__section {
+    padding: 50px 14px 70px;
   }
 
-  .bhajan-card h3 {
+  .lb__title {
+    font-size: 1.8rem;
+    letter-spacing: 1.5px;
+  }
+
+  .lb__subtitle {
+    font-size: 0.88rem;
+    margin-bottom: 26px;
+  }
+
+  .lb__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .lb__card {
+    max-width: 100%;
+    border-radius: 18px;
+  }
+
+  .lb__card-body {
+    padding: 14px 16px 18px;
+  }
+
+  .lb__card-title {
     font-size: 0.95rem;
   }
 
-  .bhajan-btn {
-    padding: 9px 20px;
-    font-size: 0.9rem;
+  .lb__listen-btn {
+    font-size: 0.82rem;
+    padding: 8px 18px;
   }
 
-  .bhajan-pagination {
-    flex-wrap: wrap;
+  .lb__pagination {
     gap: 12px;
+  }
+
+  .lb__pg-btn {
+    padding: 8px 18px;
+    font-size: 0.82rem;
+  }
+}
+
+/* ── Reduced Motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+  .lb__section,
+  .lb__header,
+  .lb__card,
+  .lb__pagination,
+  .lb__blob,
+  .lb__header-icon {
+    animation: none !important;
+    transform: none !important;
   }
 }
