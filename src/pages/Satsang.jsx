@@ -75,33 +75,73 @@ const Satsang = () => {
   const totalPages = Math.ceil(videos.length / videosPerPage);
 
   return (
-    <div className="satsang-container">
-      <h1 className="satsang-title">Amritvani</h1>
+    <div className="ss__page">
+      {/* Decorative orbs */}
+      <div className="ss__orb ss__orb--1" />
+      <div className="ss__orb ss__orb--2" />
+      <div className="ss__orb ss__orb--3" />
+
+      {/* Header */}
+      <div className="ss__header">
+        <div className="ss__header-icon">🔔</div>
+        <h1 className="ss__title">Amritvani</h1>
+        <p className="ss__subtitle">Sacred Satsang Sessions</p>
+        <div className="ss__title-rule" />
+      </div>
 
       {/* Video Grid */}
-      <div className="video-grid">
-        {currentVideos.map((video) => (
-          <div key={video.id} className="video-card">
-            <iframe src={video.embedUrl} title={video.title} allowFullScreen></iframe>
-            <a href={video.linkUrl} target="_blank" rel="noopener noreferrer">
-              Watch {video.title}
-            </a>
+      <div className="ss__grid">
+        {currentVideos.map((video, index) => (
+          <div
+            key={video.id}
+            className="ss__card"
+            style={{ animationDelay: `${index * 0.07}s` }}
+          >
+            <div className="ss__frame-wrap">
+              <iframe
+                src={video.embedUrl}
+                title={video.title}
+                allowFullScreen
+                className="ss__iframe"
+              />
+              <div className="ss__frame-glow" />
+            </div>
+            <div className="ss__card-footer">
+              <span className="ss__card-label">{video.title}</span>
+              <a
+                href={video.linkUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ss__watch-btn"
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+                Watch
+              </a>
+            </div>
           </div>
         ))}
       </div>
 
       {/* Pagination */}
-      <div className="pagination">
+      <div className="ss__pagination">
         <button
+          className="ss__pg-btn"
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
         >
           ← Prev
         </button>
-        <span className="page-circle">
-          Page {currentPage} of {totalPages}
-        </span>
+
+        <div className="ss__pg-badge">
+          <span className="ss__pg-current">{currentPage}</span>
+          <span className="ss__pg-sep">/</span>
+          <span className="ss__pg-total">{totalPages}</span>
+        </div>
+
         <button
+          className="ss__pg-btn"
           onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
           disabled={currentPage === totalPages}
         >
@@ -109,32 +149,39 @@ const Satsang = () => {
         </button>
       </div>
 
-      {/* Buttons Section */}
-      <div className="satsang-buttons">
+      {/* Action Buttons */}
+      <div className="ss__actions">
         <a
           href="https://drive.google.com/file/d/1qWtxGPsRd5WpH1NjkgmVRiHvP2kKWNOJ/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
-          className="btn"
+          className="ss__action-btn"
         >
-          Anmol Rakhi <span className="arrow">→</span>
+          <span className="ss__action-icon">📿</span>
+          <span>Anmol Rakhi</span>
+          <span className="ss__action-arrow">→</span>
         </a>
 
         <a
           href="https://drive.google.com/file/d/your-hari-pagh-link/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
-          className="btn"
+          className="ss__action-btn"
         >
-          Hari Pagh <span className="arrow">→</span>
+          <span className="ss__action-icon">🪷</span>
+          <span>Hari Pagh</span>
+          <span className="ss__action-arrow">→</span>
         </a>
+
         <a
           href="https://drive.google.com/file/d/your-anmol-wadi-link/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
-          className="btn"
+          className="ss__action-btn"
         >
-          Anmol Wadi <span className="arrow">→</span>
+          <span className="ss__action-icon">📖</span>
+          <span>Anmol Wadi</span>
+          <span className="ss__action-arrow">→</span>
         </a>
       </div>
     </div>
