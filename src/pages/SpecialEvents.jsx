@@ -56,46 +56,71 @@ const events = [
 
 const SpecialEvents = () => {
   return (
-    <section className="special-events-page">
+    <section className="sev-page">
+
       {/* ===== HERO ===== */}
-      <div className="special-events-hero">
-        <h1>Special Events ✨</h1>
+      <div className="sev-hero">
+        <div className="sev-hero-eyebrow">
+          🕉️ Sacred Gatherings
+        </div>
+
+        <h1>
+          Special Events
+          <span className="sev-hero-icon"> ✨</span>
+        </h1>
+
         <p>
-          Major festivals, grand celebrations, and spiritually transformative
-          occasions
+          Major festivals, grand celebrations, and spiritually
+          transformative occasions
         </p>
+
+        <div className="sev-hero-divider">
+          <span className="sev-hero-divider-icon">🪷</span>
+        </div>
       </div>
 
-      {/* ===== EVENTS ===== */}
-      <div className="special-events-container">
+      {/* ===== EVENTS GRID ===== */}
+      <div className="sev-grid">
         {events.map((event, index) => (
-          <div className="event-card" key={index}>
+          <div
+            className="sev-card"
+            key={index}
+            style={{ "--i": index }}
+          >
             {/* IMAGE */}
-            <div className="event-image">
+            <div className="sev-img-wrap">
               <img src={event.image} alt={event.title} />
-              <span className="event-badge">{event.type}</span>
+              <div className="sev-img-overlay" />
+              <span className="sev-badge">{event.type}</span>
             </div>
 
             {/* CONTENT */}
-            <div className="event-content">
+            <div className="sev-body">
               <h2>{event.title}</h2>
-              <p className="event-date">📅 {event.date}</p>
-              <p className="event-location">📍 {event.location}</p>
 
-              <p className="event-desc">{event.description}</p>
-
-              <div className="event-highlights">
-                <h4>✨ Highlights</h4>
-                <ul>
-                  {event.highlights.map((item, i) => (
-                    <li key={i}>🕉 {item}</li>
-                  ))}
-                </ul>
+              <div className="sev-meta">
+                <p className="sev-meta-date">📅 {event.date}</p>
+                <p className="sev-meta-loc">📍 {event.location}</p>
               </div>
+
+              <p className="sev-desc">{event.description}</p>
+
+              <div className="sev-highlights-title">
+                ✨ Highlights
+              </div>
+
+              <ul className="sev-highlights-list">
+                {event.highlights.map((item, i) => (
+                  <li key={i}>
+                    <span>🕉</span> {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         ))}
       </div>
+
     </section>
   );
 };

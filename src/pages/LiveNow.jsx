@@ -15,22 +15,23 @@ const LiveNow = () => {
     const googleMeetLink = "https://meet.google.com/abc-defg-hij";
 
     return (
-        <div className="live-page">
-            <div className="live-card">
+        <div className="lvn-page">
+            <div className="lvn-card">
+
                 {isLive ? (
                     <>
                         {/* 🔴 Live Indicator */}
-                        <div className="live-indicator">
-                            <span className="dot"></span>
-                            <span className="text">LIVE NOW</span>
+                        <div className="lvn-indicator">
+                            <span className="lvn-dot"></span>
+                            LIVE NOW
                         </div>
 
                         <h1>Live Satsang with Guruji</h1>
-                        <p>Join the divine moment happening right now</p>
+                        <p className="lvn-card-sub">Join the divine moment happening right now</p>
 
                         {/* 🎥 Live Content */}
                         {livePlatform === "youtube" ? (
-                            <div className="video-box">
+                            <div className="lvn-video-box">
                                 <iframe
                                     src={youtubeLiveUrl}
                                     title="Live Satsang"
@@ -38,7 +39,7 @@ const LiveNow = () => {
                                 ></iframe>
                             </div>
                         ) : (
-                            <div className="meet-box">
+                            <div className="lvn-meet-box">
                                 <p>Live Satsang is happening on</p>
                                 <h2>Google Meet</h2>
 
@@ -46,7 +47,7 @@ const LiveNow = () => {
                                     href={googleMeetLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="join-btn"
+                                    className="lvn-join-btn"
                                 >
                                     Join Live Meeting
                                 </a>
@@ -55,19 +56,26 @@ const LiveNow = () => {
                     </>
                 ) : (
                     <>
-                        <h1>No Live Session Now 🙏</h1>
-                        <p>Next satsang will begin soon</p>
+                        {/* Offline / No session state */}
+                        <span className="lvn-offline-icon">🙏</span>
 
-                        <div className="next-info">
-                            <span>🕕 Timings We Will Let You Know</span>
+                        <h1>No Live Session Now</h1>
+                        <p className="lvn-card-sub">Next satsang will begin soon. Stay blessed.</p>
+
+                        <div className="lvn-offline-divider">
+                            <span>🪷</span>
                         </div>
 
-                        <div className="check-back-message">
+                        <div className="lvn-next-info">
+                            🕕 Timings We Will Let You Know
+                        </div>
+
+                        <div className="lvn-check-back">
                             🙏 Please check back later for the next live satsang
                         </div>
-
                     </>
                 )}
+
             </div>
         </div>
     );

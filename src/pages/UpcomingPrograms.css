@@ -1,236 +1,399 @@
-/* ================= Upcoming Programs Page Only ================= */
-.up-page {
+/* ============================================================
+   Upcoming Programs Page — Scoped with ugp- prefix
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;500;700&display=swap');
+
+/* ===== Root Tokens ===== */
+.ugp-page {
+  --ugp-saffron: #e07b2a;
+  --ugp-saffron-deep: #b85c0a;
+  --ugp-saffron-glow: #f4a94e;
+  --ugp-gold: #d4a017;
+  --ugp-gold-light: #f5d97e;
+  --ugp-cream: #fffaf3;
+  --ugp-cream-dark: #fdf0da;
+  --ugp-maroon: #7b1f1f;
+  --ugp-maroon-deep: #4e0e0e;
+  --ugp-purple: #6a1b9a;
+  --ugp-purple-soft: #ce93d8;
+  --ugp-text: #3a2010;
+  --ugp-text-muted: #7a5c40;
+  --ugp-border: rgba(212, 160, 23, 0.3);
+  --ugp-shadow: 0 8px 40px rgba(139, 69, 19, 0.12);
+  --ugp-shadow-hover: 0 20px 56px rgba(139, 69, 19, 0.2);
+  --ugp-radius: 22px;
+  --ugp-font-display: 'Cinzel', serif;
+  --ugp-font-body: 'Lato', sans-serif;
+}
+
+/* ===== Page Shell ===== */
+.ugp-page {
   min-height: 100vh;
-  padding: 40px 16px 70px;
-  background-color: #fff6f0;
-  font-family: "Poppins", sans-serif;
+  padding: 60px 20px 90px;
+  background-color: var(--ugp-cream);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(224, 123, 42, 0.12) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg width='52' height='52' viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M26 0 L27 25 L52 26 L27 27 L26 52 L25 27 L0 26 L25 25 Z' fill='%23d4a017' fill-opacity='0.04'/%3E%3C/svg%3E");
+  font-family: var(--ugp-font-body);
   text-align: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Decorative top border */
+.ugp-page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--ugp-maroon), var(--ugp-saffron), var(--ugp-gold), var(--ugp-saffron), var(--ugp-maroon));
+  z-index: 100;
 }
 
 /* ===== Header ===== */
-.up-page .up-header h1 {
-  font-size: 2.2rem;
+.ugp-header {
+  margin-bottom: 52px;
+  animation: ugp-fadeDown 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+
+.ugp-header h1 {
+  font-family: var(--ugp-font-display);
+  font-size: 2.6rem;
   font-weight: 700;
-  color: #d35400;
-  margin-bottom: 6px;
+  color: var(--ugp-maroon-deep);
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
 }
 
-.up-page .up-header p {
+.ugp-header h1 .ugp-calendar-icon {
+  display: inline-block;
+  animation: ugp-float 2.6s ease-in-out infinite;
+  margin-left: 8px;
+}
+
+.ugp-header-sub {
   font-size: 0.95rem;
-  color: #777;
-  margin-bottom: 32px;
+  color: var(--ugp-text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  animation: ugp-fadeUp 0.7s ease-out 0.2s both;
 }
 
-/* ===== GRID LAYOUT ===== */
-.up-page .program-grid {
+/* Lotus divider */
+.ugp-lotus-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 18px 0 0;
+}
+
+.ugp-lotus-divider::before,
+.ugp-lotus-divider::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ugp-saffron));
+}
+
+.ugp-lotus-divider::after {
+  background: linear-gradient(90deg, var(--ugp-saffron), transparent);
+}
+
+.ugp-lotus-icon {
+  font-size: 1.2rem;
+  color: var(--ugp-saffron);
+}
+
+/* ===== Grid ===== */
+.ugp-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 26px;
-  max-width: 1200px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1180px;
   margin: 0 auto;
 }
 
 /* ===== Program Card ===== */
-.up-page .program-card {
+.ugp-card {
   background: #ffffff;
-  padding: 26px 24px;
-  border-radius: 20px;
-  border: 1px solid #f3d7c6;
+  border-radius: var(--ugp-radius);
+  border: 1px solid var(--ugp-border);
   text-align: left;
   position: relative;
-
-  /* animation */
-  animation: softFadeUp 0.6s ease both;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+  box-shadow: var(--ugp-shadow);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  animation: ugp-fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* ===== Soft Accent Line ===== */
-.up-page .program-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  border-radius: 20px 0 0 20px;
-  background: linear-gradient(
-    180deg,
-    #f39c12,
-    #f6b26b,
-    #f9c5d1
-  );
+.ugp-card:nth-child(1) {
+  animation-delay: 0.05s;
 }
 
-/* ===== Titles ===== */
-.up-page .program-title {
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: #bf360c;
-  margin-bottom: 6px;
-  text-align: center;
-}
-
-.up-page .program-subtitle {
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: #d35400;
-  margin-bottom: 18px;
-  text-align: center;
-}
-
-/* ===== Info ===== */
-.up-page .program-info p {
-  font-size: 0.92rem;
-  color: #555;
-  margin: 5px 0;
-}
-
-/* ===== Message ===== */
-.up-page .program-message {
-  background: #fff1e6;
-  padding: 12px 14px;
-  border-radius: 8px;
-  font-size: 0.92rem;
-  color: #6d4c41;
-  margin: 16px 0;
-}
-
-/* ===== Contact ===== */
-.up-page .program-contact {
-  font-size: 0.92rem;
-  color: #444;
-  margin-bottom: 12px;
-}
-
-/* ===== Blessing ===== */
-.up-page .program-blessing {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #8e24aa;
-  text-align: center;
-}
-
-/* ===== Hover Effect ===== */
-.up-page .program-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
-}
-
-/* ===== Animations ===== */
-@keyframes softFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Stagger */
-.up-page .program-card:nth-child(1) { animation-delay: 0.05s; }
-.up-page .program-card:nth-child(2) { animation-delay: 0.12s; }
-.up-page .program-card:nth-child(3) { animation-delay: 0.18s; }
-
-/* ===== Header Animation ===== */
-@keyframes headerFadeDown {
-  from {
-    opacity: 0;
-    transform: translateY(-12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes subtitleFade {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.up-page .up-header {
-  animation: headerFadeDown 0.7s ease-out both;
-}
-
-.up-page .up-header p {
-  animation: subtitleFade 0.6s ease-out both;
+.ugp-card:nth-child(2) {
   animation-delay: 0.15s;
 }
 
-/* ===== Calendar Icon Float ===== */
-@keyframes softFloat {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-  100% { transform: translateY(0); }
+.ugp-card:nth-child(3) {
+  animation-delay: 0.25s;
 }
 
-.up-page .up-header h1 span,
-.up-page .up-header h1::after {
-  animation: softFloat 2.6s ease-in-out infinite;
+.ugp-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--ugp-shadow-hover);
+}
+
+/* Gold shimmer top bar */
+.ugp-card-topbar {
+  height: 5px;
+  background: linear-gradient(90deg, var(--ugp-maroon), var(--ugp-saffron), var(--ugp-gold-light), var(--ugp-saffron), var(--ugp-maroon));
+  background-size: 200% 100%;
+  animation: ugp-shimmer 4s linear infinite;
+}
+
+/* Left accent strip */
+.ugp-card::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 4px;
+  height: calc(100% - 5px);
+  background: linear-gradient(180deg, var(--ugp-saffron-glow), var(--ugp-gold), var(--ugp-purple-soft));
+  border-radius: 0 0 0 var(--ugp-radius);
+}
+
+/* Background watermark mandala */
+.ugp-card::after {
+  content: '☸';
+  position: absolute;
+  bottom: -20px;
+  right: -10px;
+  font-size: 9rem;
+  color: var(--ugp-saffron);
+  opacity: 0.04;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.ugp-card-body {
+  padding: 26px 26px 24px 30px;
+}
+
+/* ===== Card Header ===== */
+.ugp-card-title {
+  font-family: var(--ugp-font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ugp-maroon);
+  margin-bottom: 4px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.ugp-card-subtitle {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ugp-saffron);
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: var(--ugp-font-body);
+}
+
+/* ===== Info Section ===== */
+.ugp-card-info {
+  background: var(--ugp-cream-dark);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(212, 160, 23, 0.15);
+}
+
+.ugp-card-info p {
+  font-size: 0.9rem;
+  color: var(--ugp-text);
+  margin: 5px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.ugp-card-info p strong {
+  color: var(--ugp-saffron-deep);
+  min-width: 62px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.ugp-info-icon {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ===== Message Box ===== */
+.ugp-card-message {
+  background: linear-gradient(135deg, #fff8ee, #fef3e2);
+  padding: 14px 16px;
+  border-radius: 12px;
+  border-left: 3px solid var(--ugp-gold);
+  font-size: 0.875rem;
+  color: #5c3d1a;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+/* ===== Contact ===== */
+.ugp-card-contact {
+  font-size: 0.875rem;
+  color: var(--ugp-text-muted);
+  margin-bottom: 16px;
+}
+
+.ugp-card-contact p:first-child {
+  font-weight: 700;
+  color: var(--ugp-text);
+  margin-bottom: 4px;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ugp-card-contact p:last-child {
+  font-size: 0.9rem;
+  color: var(--ugp-maroon);
+  font-weight: 500;
+}
+
+/* ===== Blessing Footer ===== */
+.ugp-card-blessing {
+  background: linear-gradient(135deg, #f3e5f5, #ede7f6);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ugp-purple);
+  text-align: center;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(106, 27, 154, 0.12);
+}
+
+/* ===== Shimmer animation ===== */
+@keyframes ugp-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ===== Float ===== */
+@keyframes ugp-float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ===== Fade animations ===== */
+@keyframes ugp-fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ugp-fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ===== Accessibility ===== */
 @media (prefers-reduced-motion: reduce) {
-  .up-page .program-card,
-  .up-page .up-header {
-    animation: none;
-    transition: none;
+
+  .ugp-card,
+  .ugp-header,
+  .ugp-card-topbar,
+  .ugp-header-ornament .ugp-om,
+  .ugp-header h1 .ugp-calendar-icon {
+    animation: none !important;
+    transition: none !important;
   }
 }
 
-/* ================= RESPONSIVE ================= */
+/* ===== Responsive ===== */
 
 /* 📱 Mobile */
 @media (max-width: 600px) {
-  .up-page {
-    padding: 30px 12px 60px;
+  .ugp-page {
+    padding: 40px 14px 70px;
   }
 
-  .up-page .up-header h1 {
-    font-size: 1.8rem;
+  .ugp-header h1 {
+    font-size: 1.85rem;
   }
 
-  .up-page .up-header p {
-    font-size: 0.9rem;
+  .ugp-header-sub {
+    font-size: 0.82rem;
   }
 
-  .up-page .program-grid {
+  .ugp-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 22px;
   }
 
-  .up-page .program-card {
-    padding: 22px 18px;
+  .ugp-card-body {
+    padding: 22px 20px 20px 24px;
   }
 
-  .up-page .program-title {
-    font-size: 1.2rem;
+  .ugp-card-title {
+    font-size: 0.95rem;
   }
 }
 
 /* 📲 Tablet */
 @media (min-width: 601px) and (max-width: 992px) {
-  .up-page .program-grid {
+  .ugp-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 22px;
+    gap: 24px;
   }
 
-  .up-page .up-header h1 {
-    font-size: 2.05rem;
+  .ugp-header h1 {
+    font-size: 2.2rem;
   }
 }
 
-/* 🖥️ Laptop / Desktop */
+/* 🖥️ Desktop */
 @media (min-width: 993px) {
-  .up-page .program-grid {
+  .ugp-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }

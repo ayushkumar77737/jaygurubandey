@@ -39,42 +39,77 @@ const UpcomingPrograms = () => {
   ];
 
   return (
-    <section className="up-page">
+    <section className="ugp-page">
+
       {/* ===== Page Header ===== */}
-      <div className="up-header">
-        <h1>Upcoming Programs 📅</h1>
-        <p>Programs yet to happen (Most Important)</p>
-      </div>
+      <header className="ugp-header">
+        <h1>
+          Upcoming Programs
+          <span className="ugp-calendar-icon"> 📅</span>
+        </h1>
+
+        <p className="ugp-header-sub">Programs yet to happen · Most Important</p>
+
+        <div className="ugp-lotus-divider">
+          <span className="ugp-lotus-icon">🪷</span>
+        </div>
+      </header>
 
       {/* ===== Program Cards Grid ===== */}
-      <div className="program-grid">
+      <div className="ugp-grid">
         {programs.map((program, index) => (
-          <div className="program-card" key={index}>
-            <h2 className="program-title">{program.title}</h2>
-            <h3 className="program-subtitle">{program.subtitle}</h3>
+          <article className="ugp-card" key={index}>
 
-            <div className="program-info">
-              <p><strong>Date:</strong> {program.date}</p>
-              <p><strong>Day:</strong> {program.day}</p>
-              <p><strong>Time:</strong> {program.time}</p>
-              <p><strong>Location:</strong> {program.location}</p>
-            </div>
+            {/* Shimmer top bar */}
+            <div className="ugp-card-topbar" />
 
-            <div className="program-message">
-              <p>{program.message}</p>
-            </div>
+            <div className="ugp-card-body">
 
-            <div className="program-contact">
-              <p><strong>Contact Details:</strong></p>
-              <p>{program.contact}</p>
-            </div>
+              {/* Titles */}
+              <h2 className="ugp-card-title">{program.title}</h2>
+              <h3 className="ugp-card-subtitle">{program.subtitle}</h3>
 
-            <div className="program-blessing">
-              🙏 Saheb Sabka (Blessings to all) 🙏
+              {/* Info block */}
+              <div className="ugp-card-info">
+                <p>
+                  <span className="ugp-info-icon">🗓️</span>
+                  <strong>Date:</strong> {program.date}
+                </p>
+                <p>
+                  <span className="ugp-info-icon">📆</span>
+                  <strong>Day:</strong> {program.day}
+                </p>
+                <p>
+                  <span className="ugp-info-icon">⏰</span>
+                  <strong>Time:</strong> {program.time}
+                </p>
+                <p>
+                  <span className="ugp-info-icon">📍</span>
+                  <strong>Venue:</strong> {program.location}
+                </p>
+              </div>
+
+              {/* Message */}
+              <div className="ugp-card-message">
+                <p>{program.message}</p>
+              </div>
+
+              {/* Contact */}
+              <div className="ugp-card-contact">
+                <p>Contact Details:</p>
+                <p>{program.contact}</p>
+              </div>
+
+              {/* Blessing */}
+              <div className="ugp-card-blessing">
+                🙏 Saheb Sabka (Blessings to all) 🙏
+              </div>
+
             </div>
-          </div>
+          </article>
         ))}
       </div>
+
     </section>
   );
 };

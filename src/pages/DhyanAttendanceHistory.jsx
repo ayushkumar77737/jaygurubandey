@@ -5,17 +5,34 @@ import "./DhyanAttendanceHistory.css";
 const DhyanAttendanceHistory = () => {
 
   return (
-    <div className="dhyan-history-page">
+    <div className="dah-page">
 
-      <div className="dhyan-top-section">
+      {/* ===== Page Eyebrow Header ===== */}
+      <div className="dah-page-eyebrow">
+        <span className="dah-eyebrow-tag">🧘 Spiritual Practice</span>
+        <h1>
+          The Art of <span>Dhyan</span>
+        </h1>
+        <div className="dah-header-divider">
+          <span className="dah-header-divider-icon">✦</span>
+        </div>
+      </div>
 
-        <div className="dhyan-image">
-          <img src={dhyanImg} alt="Dhyan Meditation" />
+      {/* ===== Main Content Row ===== */}
+      <div className="dah-content-row">
+
+        {/* Left — Image */}
+        <div className="dah-img-col">
+          <div className="dah-img-frame">
+            <img src={dhyanImg} alt="Dhyan Meditation" />
+            <span className="dah-img-ornament">✦</span>
+          </div>
         </div>
 
-        <div className="dhyan-about">
-
+        {/* Right — Text */}
+        <div className="dah-text-col">
           <h2>🧘 Dhyan Program</h2>
+          <span className="dah-title-accent" />
 
           <p>
             Dhyan is a spiritual meditation practice that helps calm the mind and connect with inner peace.
@@ -45,11 +62,11 @@ const DhyanAttendanceHistory = () => {
             href="https://dhyan.jaigurubande.in"
             target="_blank"
             rel="noopener noreferrer"
-            className="check-btn"
+            className="dah-check-btn"
           >
-            Check
+            Explore Dhyan Portal
+            <span className="dah-btn-arrow">→</span>
           </a>
-
         </div>
 
       </div>

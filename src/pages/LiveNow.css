@@ -1,198 +1,406 @@
-/* ===============================
-   LIVE NOW PAGE (SCOPED)
-================================ */
+/* ============================================================
+   Live Now Page — Scoped with lvn- prefix
+   ============================================================ */
 
-/* ===== Page Background ===== */
-.live-page {
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Hind:wght@300;400;500;600&display=swap');
+
+/* ===== Root Tokens ===== */
+.lvn-page {
+  --lvn-red: #c0392b;
+  --lvn-red-deep: #8b0000;
+  --lvn-red-glow: #e74c3c;
+  --lvn-red-pale: #fff0ee;
+  --lvn-saffron: #e07b2a;
+  --lvn-gold: #d4a017;
+  --lvn-gold-light: #f5d97e;
+  --lvn-meet-blue: #1a73e8;
+  --lvn-amber: #856404;
+  --lvn-amber-pale: #fff8dc;
+  --lvn-cream: #fffcf7;
+  --lvn-white: #ffffff;
+  --lvn-text: #1e0f08;
+  --lvn-text-muted: #6b5744;
+  --lvn-shadow: 0 20px 55px rgba(139, 0, 0, 0.12);
+  --lvn-shadow-deep: 0 32px 72px rgba(139, 0, 0, 0.2);
+  --lvn-radius: 26px;
+  --lvn-font-display: 'Josefin Sans', sans-serif;
+  --lvn-font-body: 'Hind', sans-serif;
+}
+
+/* ===== Page Shell ===== */
+.lvn-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #fff5e6, #ffeef3, #f6f0ff);
-  font-family: "Poppins", system-ui, sans-serif;
-  padding: 2rem;
+  padding: 2.5rem 1.5rem;
+  font-family: var(--lvn-font-body);
+  background-color: var(--lvn-cream);
+  background-image:
+    radial-gradient(ellipse 70% 55% at 15% 20%, rgba(192, 57, 43, 0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 85% 80%, rgba(212, 160, 23, 0.09) 0%, transparent 65%),
+    url("data:image/svg+xml,%3Csvg width='52' height='52' viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M26 0 L27 25 L52 26 L27 27 L26 52 L25 27 L0 26 L25 25 Z' fill='%23d4a017' fill-opacity='0.045'/%3E%3C/svg%3E");
+  isolation: isolate;
+}
+
+/* Fixed shimmer top bar */
+.lvn-page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--lvn-red-deep), var(--lvn-red-glow), var(--lvn-saffron), var(--lvn-gold), var(--lvn-saffron), var(--lvn-red-glow), var(--lvn-red-deep));
+  background-size: 200% 100%;
+  animation: lvn-barShimmer 4s linear infinite;
+  z-index: 100;
 }
 
 /* ===== Card ===== */
-.live-page .live-card {
+.lvn-card {
   width: 100%;
-  max-width: 820px;
-  background: #ffffff;
-  border-radius: 22px;
-  padding: 2.5rem;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+  max-width: 840px;
+  background: var(--lvn-white);
+  border-radius: var(--lvn-radius);
+  padding: 3rem 3rem 2.8rem;
+  box-shadow: var(--lvn-shadow);
+  border: 1px solid rgba(212, 160, 23, 0.18);
   text-align: center;
-  animation: fadeUp 0.6s ease;
+  position: relative;
+  overflow: hidden;
+  animation: lvn-fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Watermark inside card */
+.lvn-card::after {
+  content: '☸';
+  position: absolute;
+  bottom: -22px;
+  right: -12px;
+  font-size: 9rem;
+  color: var(--lvn-red);
+  opacity: 0.03;
+  pointer-events: none;
+  line-height: 1;
+}
+
+/* Gold top bar on card */
+.lvn-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--lvn-red-deep), var(--lvn-red-glow), var(--lvn-gold-light), var(--lvn-red-glow), var(--lvn-red-deep));
+  background-size: 200% 100%;
+  animation: lvn-barShimmer 4s linear infinite;
 }
 
 /* ===== Live Indicator ===== */
-.live-page .live-indicator {
+.lvn-indicator {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: linear-gradient(135deg, #b71c1c, #e53935);
-  color: #fff;
-  padding: 8px 18px;
+  background: linear-gradient(135deg, var(--lvn-red-deep), var(--lvn-red-glow));
+  color: var(--lvn-white);
+  padding: 8px 22px;
   border-radius: 999px;
-  font-weight: 600;
-  margin-bottom: 1.2rem;
+  font-family: var(--lvn-font-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 1.4rem;
+  box-shadow: 0 6px 20px rgba(192, 57, 43, 0.35);
 }
 
-.live-page .live-indicator .dot {
+.lvn-indicator .lvn-dot {
   width: 10px;
   height: 10px;
-  background: red;
+  background: #ff6b6b;
   border-radius: 50%;
-  animation: pulse 1.4s infinite;
+  flex-shrink: 0;
+  animation: lvn-pulse 1.4s ease-in-out infinite;
 }
 
-/* ===== Text ===== */
-.live-page .live-card h1 {
-  color: #b71c1c;
-  font-size: 2rem;
-  margin-bottom: 0.4rem;
+/* ===== Card Headings ===== */
+.lvn-card h1 {
+  font-family: var(--lvn-font-display);
+  color: var(--lvn-red-deep);
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.45rem;
+  line-height: 1.2;
 }
 
-.live-page .live-card p {
-  color: #555;
-  margin-bottom: 1.6rem;
-  font-size: 1.05rem;
+.lvn-card>p,
+.lvn-card-sub {
+  color: var(--lvn-text-muted);
+  margin-bottom: 1.8rem;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
-/* ===== Video ===== */
-.live-page .video-box {
+/* ===== Video Box ===== */
+.lvn-video-box {
   width: 100%;
   aspect-ratio: 16 / 9;
   background: #000;
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
   margin-bottom: 1.8rem;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.28);
+  border: 2px solid rgba(212, 160, 23, 0.2);
 }
 
-.live-page .video-box iframe {
+.lvn-video-box iframe {
   width: 100%;
   height: 100%;
   border: none;
 }
 
-/* ===== Buttons ===== */
-.live-page .join-btn,
-.live-page .schedule-btn {
-  padding: 14px 32px;
+/* ===== Join Button ===== */
+.lvn-join-btn {
+  display: inline-block;
+  padding: 14px 36px;
   border-radius: 50px;
+  font-family: var(--lvn-font-display);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  text-decoration: none;
+  background: linear-gradient(135deg, var(--lvn-red-deep), var(--lvn-red-glow));
+  color: var(--lvn-white);
+  box-shadow: 0 10px 28px rgba(192, 57, 43, 0.38);
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease;
 }
 
-.live-page .join-btn {
-  background: linear-gradient(135deg, #b71c1c, #ff5252);
-  color: #fff;
-  box-shadow: 0 12px 30px rgba(183, 28, 28, 0.35);
+.lvn-join-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(192, 57, 43, 0.45);
 }
 
-.live-page .join-btn:hover {
-  transform: translateY(-2px);
+/* ===== Google Meet Box ===== */
+.lvn-meet-box {
+  background: linear-gradient(135deg, #e8f4fd, #f3e5f5);
+  border-radius: 18px;
+  padding: 2.4rem 2rem;
+  margin-bottom: 1.8rem;
+  box-shadow: inset 0 0 0 1px rgba(26, 115, 232, 0.18);
+  position: relative;
+  overflow: hidden;
 }
 
+/* Subtle Google Meet colour strip */
+.lvn-meet-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4285F4, #0F9D58, #F4B400, #DB4437);
+}
+
+.lvn-meet-box p {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.lvn-meet-box h2 {
+  color: var(--lvn-meet-blue);
+  font-family: var(--lvn-font-display);
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.4rem;
+}
 
 /* ===== Next Info ===== */
-.live-page .next-info {
-  background: #fff3cd;
-  padding: 12px 18px;
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
-  color: #856404;
-}
-
-/* ===== Google Meet Card ===== */
-.live-page .meet-box {
-  background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
-  border-radius: 16px;
-  padding: 2.2rem;
-  margin-bottom: 1.8rem;
-  text-align: center;
-  box-shadow: inset 0 0 0 1px rgba(26, 115, 232, 0.15);
-}
-
-.live-page .meet-box p {
-  color: #555;
-  font-size: 1rem;
-  margin-bottom: 0.6rem;
-}
-
-.live-page .meet-box h2 {
-  color: #1a73e8;
-  font-size: 1.6rem;
+.lvn-next-info {
+  background: linear-gradient(135deg, var(--lvn-amber-pale), #fff3cd);
+  border: 1px solid rgba(133, 100, 4, 0.2);
+  padding: 13px 20px;
+  border-radius: 14px;
   margin-bottom: 1.4rem;
-  font-weight: 700;
+  font-family: var(--lvn-font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  color: var(--lvn-amber);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* ===== Offline state header ornament ===== */
+.lvn-offline-icon {
+  display: block;
+  font-size: 3.5rem;
+  margin-bottom: 0.6rem;
+  animation: lvn-float 3s ease-in-out infinite;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.1));
+}
+
+.lvn-offline-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 1rem 0 1.6rem;
+}
+
+.lvn-offline-divider::before,
+.lvn-offline-divider::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--lvn-gold));
+}
+
+.lvn-offline-divider::after {
+  background: linear-gradient(90deg, var(--lvn-gold), transparent);
+}
+
+.lvn-offline-divider span {
+  font-size: 1rem;
+  color: var(--lvn-gold);
+  animation: lvn-float 3.5s ease-in-out infinite;
+}
+
+/* ===== Check Back Message ===== */
+.lvn-check-back {
+  margin-top: 1rem;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, var(--lvn-red-pale), #fff8f0);
+  border: 1px solid rgba(192, 57, 43, 0.12);
+  border-radius: 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #5c2a1a;
+  text-align: center;
+  line-height: 1.6;
 }
 
 /* ===== Animations ===== */
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.6); }
-  70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+@keyframes lvn-fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes lvn-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 80, 80, 0.7);
+  }
+
+  70% {
+    box-shadow: 0 0 0 11px rgba(255, 80, 80, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 80, 80, 0);
+  }
 }
 
-/* ===============================
-   RESPONSIVE BREAKPOINTS
-================================ */
+@keyframes lvn-float {
 
-/* 📱 Mobile */
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes lvn-barShimmer {
+  0% {
+    background-position: 0% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ===== Accessibility ===== */
+@media (prefers-reduced-motion: reduce) {
+
+  .lvn-page::before,
+  .lvn-card::before,
+  .lvn-indicator .lvn-dot,
+  .lvn-offline-icon,
+  .lvn-offline-divider span,
+  .lvn-card {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ===== Responsive ===== */
+
+/* Mobile ≤ 767px */
 @media (max-width: 767px) {
-  .live-page {
-    padding: 1.2rem;
+  .lvn-page {
+    padding: 1.4rem 1rem;
+    align-items: flex-start;
+    padding-top: 3rem;
   }
 
-  .live-page .live-card {
-    padding: 1.6rem;
+  .lvn-card {
+    padding: 1.8rem 1.4rem 1.6rem;
   }
 
-  .live-page .live-card h1 {
-    font-size: 1.45rem;
+  .lvn-card h1 {
+    font-size: 1.5rem;
   }
 
-  .live-page .join-btn,
-  .live-page .schedule-btn {
+  .lvn-join-btn {
     width: 100%;
+    text-align: center;
+  }
+
+  .lvn-meet-box {
+    padding: 1.6rem 1.2rem;
+  }
+
+  .lvn-offline-icon {
+    font-size: 2.8rem;
   }
 }
 
-/* 📲 Tablet */
+/* Tablet 768–1023px */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .live-page .live-card {
+  .lvn-card {
     max-width: 700px;
-    padding: 2.2rem;
+    padding: 2.4rem 2.2rem;
   }
 
-  .live-page .live-card h1 {
-    font-size: 1.8rem;
+  .lvn-card h1 {
+    font-size: 1.85rem;
   }
 }
 
-/* 💻 Laptop & Desktop */
+/* Desktop ≥ 1024px */
 @media (min-width: 1024px) {
-  .live-page .live-card {
-    max-width: 820px;
+  .lvn-card {
+    max-width: 840px;
   }
-}
-/* ===== Check Back Message ===== */
-.live-page .check-back-message {
-  margin-top: 1.2rem;
-  padding: 14px 18px;
-  background: #f8f9fa;
-  border-radius: 14px;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #444;
-  text-align: center;
 }
