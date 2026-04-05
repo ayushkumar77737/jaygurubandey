@@ -1,190 +1,473 @@
-/* ===== Daily Schedule Page ===== */
-.schedule-page {
-  font-family: "Poppins", sans-serif;
+/* ============================================================
+   DailySchedule — fully scoped under ds__ prefix
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700;800&display=swap');
+
+/* ── Variables ─────────────────────────────────────────────── */
+.ds__page {
+  --ds-purple: #3b2f5c;
+  --ds-purple-mid: #6043b6;
+  --ds-purple-soft: #9c6ade;
+  --ds-purple-pale: #f2edff;
+  --ds-purple-border: rgba(200, 200, 255, 0.35);
+  --ds-pink: #ff8dcf;
+  --ds-gold: #c9a227;
+  --ds-card-bg: rgba(255, 255, 255, 0.94);
+  --ds-row-bg: #fafaff;
+  --ds-row-hover: #f2edff;
+  --ds-text-dark: #1a1030;
+  --ds-text-mid: #333;
+  --ds-text-muted: #666;
+  --ds-shadow-sm: 0 4px 14px rgba(96, 67, 182, 0.08);
+  --ds-shadow-md: 0 10px 34px rgba(96, 67, 182, 0.14);
+  --ds-shadow-lg: 0 22px 56px rgba(96, 67, 182, 0.20);
+  --ds-radius: 18px;
+  --ds-font-display: 'Cinzel', serif;
+  --ds-font-verse: 'Lora', serif;
+  --ds-font-body: 'Nunito', sans-serif;
+
+  /* Morning accent */
+  --ds-morning-bar: linear-gradient(180deg, #f6a623, #ff8dcf);
+  --ds-morning-time: #c97820;
+
+  /* Afternoon accent */
+  --ds-afternoon-bar: linear-gradient(180deg, #9c6ade, #7b57d1);
+  --ds-afternoon-time: #6043b6;
+
+  /* Evening accent */
+  --ds-evening-bar: linear-gradient(180deg, #3b2f5c, #6043b6);
+  --ds-evening-time: #3b2f5c;
+
+  /* Layout */
+  position: relative;
+  font-family: var(--ds-font-body);
   min-height: 100vh;
-  background: linear-gradient(135deg, #ffffff, #f3f6fd);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 20px;
-  animation: fadeIn 0.8s ease-in;
-  color: #333;
+  padding: 68px 22px 96px;
+  color: var(--ds-text-mid);
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(ellipse at 15% 8%, rgba(156, 106, 222, 0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 92%, rgba(59, 47, 92, 0.10) 0%, transparent 50%),
+    linear-gradient(148deg, #ffffff 0%, #f3f6fd 55%, #faf0ff 100%);
+
+  animation: ds-pageIn 0.8s ease-in both;
 }
 
-/* ===== Main Title ===== */
-.main-title {
-  font-size: 2.4rem;
-  font-weight: 800;
-  color: #3b2f5c;
-  text-align: center;
-  margin-bottom: 40px;
+/* ── Background Orbs ───────────────────────────────────────── */
+.ds__orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(90px);
+  animation: ds-float 10s ease-in-out infinite alternate;
+}
+
+.ds__orb--1 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(156, 106, 222, 0.18), transparent 70%);
+  top: -100px;
+  left: -90px;
+  animation-delay: 0s;
+}
+
+.ds__orb--2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(59, 47, 92, 0.12), transparent 70%);
+  bottom: 80px;
+  right: -70px;
+  animation-delay: 3.5s;
+}
+
+.ds__orb--3 {
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(255, 141, 207, 0.13), transparent 70%);
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 7s;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.ds__header {
   position: relative;
-  letter-spacing: 0.5px;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 52px;
+  animation: ds-fadeDown 0.7s ease-out both;
 }
 
-.main-title::after {
-  content: "";
+.ds__header-icon {
+  font-size: 2.8rem;
   display: block;
+  margin-bottom: 10px;
+  animation: ds-tick 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(96, 67, 182, 0.55));
+}
+
+.ds__main-title {
+  font-family: var(--ds-font-display);
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  font-weight: 900;
+  color: var(--ds-purple);
+  margin: 0 0 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(59, 47, 92, 0.16);
+}
+
+.ds__title-rule {
   width: 100px;
   height: 3px;
-  background: linear-gradient(90deg, #9c6ade, #7b57d1, #ff8dcf);
-  margin: 10px auto 0;
-  border-radius: 2px;
-  opacity: 0.9;
+  margin: 0 auto 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--ds-purple-soft), var(--ds-pink), transparent);
+  box-shadow: 0 2px 8px rgba(156, 106, 222, 0.28);
 }
 
-/* ===== Container ===== */
-.schedule-container {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  width: 100%;
-  max-width: 950px;
-}
-
-/* ===== Section Cards ===== */
-.schedule-section {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 16px;
-  padding: 25px 22px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  border: 1px solid rgba(200, 200, 255, 0.2);
-}
-
-.schedule-section:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-}
-
-/* ===== Section Title ===== */
-.schedule-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #6043b6;
-  padding-left: 12px;
-  margin-bottom: 18px;
-  border-left: 4px solid #9b6bdf;
-  letter-spacing: 0.3px;
-}
-
-/* ===== List Styling ===== */
-.schedule-list {
-  list-style: none;
-  padding: 0;
+.ds__header-sub {
+  font-family: var(--ds-font-verse);
+  font-style: italic;
+  font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+  color: var(--ds-text-muted);
   margin: 0;
 }
 
-.schedule-item {
+/* ── Container ─────────────────────────────────────────────── */
+.ds__container {
+  position: relative;
+  z-index: 1;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+  max-width: 960px;
+}
+
+/* ── Section Card ──────────────────────────────────────────── */
+.ds__section {
+  position: relative;
+  background: var(--ds-card-bg);
+  border-radius: var(--ds-radius);
+  border: 1px solid var(--ds-purple-border);
+  padding: 28px 26px 24px;
+  box-shadow: var(--ds-shadow-sm);
+  transition: transform 0.26s ease, box-shadow 0.26s ease;
+  animation: ds-fadeUp 0.65s ease-out both;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+}
+
+.ds__section:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--ds-shadow-lg);
+}
+
+/* Left accent bar per session */
+.ds__section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  border-radius: 4px 0 0 4px;
+}
+
+.ds__section--morning::before {
+  background: var(--ds-morning-bar);
+}
+
+.ds__section--afternoon::before {
+  background: var(--ds-afternoon-bar);
+}
+
+.ds__section--evening::before {
+  background: var(--ds-evening-bar);
+}
+
+/* ── Section Header ────────────────────────────────────────── */
+.ds__section-header {
+  display: flex;
   align-items: center;
-  background: #fafaff;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.ds__section-icon {
+  font-size: 1.7rem;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.ds__section:hover .ds__section-icon {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.ds__section-title {
+  font-family: var(--ds-font-display);
+  font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+  font-weight: 600;
+  color: var(--ds-purple-mid);
+  margin: 0;
+  letter-spacing: 1.5px;
+}
+
+.ds__section--morning .ds__section-title {
+  color: #b06020;
+}
+
+.ds__section--afternoon .ds__section-title {
+  color: var(--ds-purple-mid);
+}
+
+.ds__section--evening .ds__section-title {
+  color: var(--ds-purple);
+}
+
+/* Divider */
+.ds__divider {
+  height: 1.5px;
+  margin: 14px 0 16px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--ds-purple-border), transparent);
+}
+
+/* ── Schedule List ─────────────────────────────────────────── */
+.ds__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+/* ── Schedule Item ─────────────────────────────────────────── */
+.ds__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--ds-row-bg);
   border-radius: 10px;
   padding: 10px 16px;
-  margin-bottom: 10px;
   border: 1px solid rgba(220, 220, 255, 0.5);
-  transition: all 0.25s ease;
+  transition: background 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  animation: ds-fadeUp 0.55s ease-out both;
+  opacity: 0;
 }
 
-.schedule-item:hover {
-  background: #f2edff;
+.ds__item:hover {
+  background: var(--ds-row-hover);
   border-color: #cfc4ff;
+  transform: translateX(4px);
 }
 
-.schedule-text {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #333;
-  flex: 1;
+/* Dot */
+.ds__item-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--ds-purple-soft);
+  box-shadow: 0 0 6px rgba(156, 106, 222, 0.5);
+  transition: transform 0.22s ease;
 }
 
-.schedule-time {
-  font-size: 0.95rem;
+.ds__section--morning .ds__item-dot {
+  background: #f6a623;
+  box-shadow: 0 0 6px rgba(246, 166, 35, 0.5);
+}
+
+.ds__section--afternoon .ds__item-dot {
+  background: var(--ds-purple-soft);
+}
+
+.ds__section--evening .ds__item-dot {
+  background: var(--ds-purple);
+  box-shadow: 0 0 6px rgba(59, 47, 92, 0.4);
+}
+
+.ds__item:hover .ds__item-dot {
+  transform: scale(1.5);
+}
+
+.ds__item-text {
+  font-family: var(--ds-font-body);
+  font-size: 0.97rem;
   font-weight: 600;
-  color: #6a4acd;
-  white-space: nowrap;
+  color: var(--ds-text-mid);
+  flex: 1;
+  line-height: 1.4;
 }
 
-/* ===== Animation ===== */
-@keyframes fadeIn {
+.ds__item-time {
+  font-family: var(--ds-font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 3px 12px;
+  border-radius: 30px;
+  color: #fff;
+}
+
+.ds__section--morning .ds__item-time {
+  background: #c97820;
+}
+
+.ds__section--afternoon .ds__item-time {
+  background: var(--ds-purple-mid);
+}
+
+.ds__section--evening .ds__item-time {
+  background: var(--ds-purple);
+}
+
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes ds-pageIn {
   from {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* ===== Responsive Design ===== */
+@keyframes ds-fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ds-fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ds-float {
+  from {
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    transform: translateY(-26px) scale(1.04);
+  }
+}
+
+@keyframes ds-tick {
+
+  0%,
+  100% {
+    transform: rotate(-8deg);
+    filter: drop-shadow(0 0 8px rgba(96, 67, 182, 0.5));
+  }
+
+  50% {
+    transform: rotate(8deg);
+    filter: drop-shadow(0 0 18px rgba(96, 67, 182, 0.85));
+  }
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 992px) {
-  .main-title {
-    font-size: 2.1rem;
+  .ds__main-title {
+    font-size: 2.2rem;
   }
 
-  .main-title::after {
-    width: 80px;
+  .ds__section {
+    padding: 24px 20px;
   }
 
-  .schedule-section {
-    padding: 22px 18px;
-  }
-
-  .schedule-title {
-    font-size: 1.3rem;
+  .ds__section-title {
+    font-size: 1.2rem;
   }
 }
 
 @media (max-width: 768px) {
-  .schedule-page {
-    padding: 40px 15px;
+  .ds__page {
+    padding: 48px 16px 72px;
   }
 
-  .main-title {
+  .ds__main-title {
     font-size: 2rem;
   }
 
-  .main-title::after {
-    width: 70px;
+  .ds__item {
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
-  .schedule-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-    padding: 12px 14px;
-  }
-
-  .schedule-text {
-    font-size: 0.95rem;
-  }
-
-  .schedule-time {
-    font-size: 0.9rem;
+  .ds__item-time {
+    align-self: flex-start;
   }
 }
 
 @media (max-width: 480px) {
-  .main-title {
+  .ds__page {
+    padding: 42px 12px 64px;
+  }
+
+  .ds__main-title {
     font-size: 1.7rem;
+    letter-spacing: 2px;
   }
 
-  .main-title::after {
-    width: 55px;
+  .ds__section {
+    padding: 20px 14px;
   }
 
-  .schedule-section {
-    padding: 18px 14px;
+  .ds__section-title {
+    font-size: 1.05rem;
   }
 
-  .schedule-title {
-    font-size: 1.15rem;
+  .ds__item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 12px 14px;
   }
 
-  .schedule-text,
-  .schedule-time {
-    font-size: 0.9rem;
+  .ds__item-text,
+  .ds__item-time {
+    font-size: 0.88rem;
+  }
+}
+
+/* ── Reduced Motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+  .ds__page,
+  .ds__header,
+  .ds__section,
+  .ds__item,
+  .ds__orb,
+  .ds__header-icon {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

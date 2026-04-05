@@ -28,49 +28,77 @@ function DailySchedule() {
     { title: "Ekantik Varta", time: "10:15 PM - 10:30 PM" },
   ];
 
+  const sessions = [
+    {
+      key: "morning",
+      icon: "🌅",
+      label: "Morning Schedule",
+      items: morningSchedule,
+      mod: "ds__section--morning",
+    },
+    {
+      key: "afternoon",
+      icon: "🌤️",
+      label: "Afternoon Schedule",
+      items: afternoonSchedule,
+      mod: "ds__section--afternoon",
+    },
+    {
+      key: "evening",
+      icon: "🌙",
+      label: "Evening Schedule",
+      items: eveningSchedule,
+      mod: "ds__section--evening",
+    },
+  ];
+
   return (
-    <div className="schedule-page">
-      <h1 className="main-title">Daily Schedule</h1>
+    <div className="ds__page">
+      {/* Decorative orbs */}
+      <div className="ds__orb ds__orb--1" />
+      <div className="ds__orb ds__orb--2" />
+      <div className="ds__orb ds__orb--3" />
 
-      <div className="schedule-container">
-        {/* Morning */}
-        <div className="schedule-section">
-          <h2 className="schedule-title">Morning Schedule</h2>
-          <ul className="schedule-list">
-            {morningSchedule.map((item, i) => (
-              <li key={i} className="schedule-item">
-                <span className="schedule-text">{item.title}</span>
-                <span className="schedule-time">{item.time}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+      {/* Header */}
+      <div className="ds__header">
+        <div className="ds__header-icon">🕰️</div>
+        <h1 className="ds__main-title">Daily Schedule</h1>
+        <div className="ds__title-rule" />
+        <p className="ds__header-sub">A day aligned with devotion &amp; discipline</p>
+      </div>
 
-        {/* Afternoon */}
-        <div className="schedule-section">
-          <h2 className="schedule-title">Afternoon Schedule</h2>
-          <ul className="schedule-list">
-            {afternoonSchedule.map((item, i) => (
-              <li key={i} className="schedule-item">
-                <span className="schedule-text">{item.title}</span>
-                <span className="schedule-time">{item.time}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+      {/* Schedule Sections */}
+      <div className="ds__container">
+        {sessions.map((session, si) => (
+          <div
+            className={`ds__section ${session.mod}`}
+            key={session.key}
+            style={{ animationDelay: `${si * 0.15}s` }}
+          >
+            {/* Section header */}
+            <div className="ds__section-header">
+              <span className="ds__section-icon">{session.icon}</span>
+              <h2 className="ds__section-title">{session.label}</h2>
+            </div>
 
-        {/* Evening */}
-        <div className="schedule-section">
-          <h2 className="schedule-title">Evening Schedule</h2>
-          <ul className="schedule-list">
-            {eveningSchedule.map((item, i) => (
-              <li key={i} className="schedule-item">
-                <span className="schedule-text">{item.title}</span>
-                <span className="schedule-time">{item.time}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+            <div className="ds__divider" />
+
+            {/* Items */}
+            <ul className="ds__list">
+              {session.items.map((item, i) => (
+                <li
+                  className="ds__item"
+                  key={i}
+                  style={{ animationDelay: `${si * 0.15 + i * 0.05 + 0.1}s` }}
+                >
+                  <div className="ds__item-dot" />
+                  <span className="ds__item-text">{item.title}</span>
+                  <span className="ds__item-time">{item.time}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   );

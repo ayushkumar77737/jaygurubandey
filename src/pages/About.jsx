@@ -9,7 +9,6 @@ const About = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Restore currentPage from location state if available
   const initialPage = location.state?.currentPage || 1;
   const [currentPage, setCurrentPage] = useState(initialPage);
 
@@ -18,29 +17,29 @@ const About = () => {
   const sections = [
     {
       id: 1,
-      className: "about-journey",
+      key: "journey",
       photo: guruji,
-      title: "Guruji’s Journey",
+      title: "Guruji's Journey",
       text: [
-        "Guruji’s life is a sacred journey of devotion, wisdom, and service to humanity...",
+        "Guruji's life is a sacred journey of devotion, wisdom, and service to humanity...",
         "Through years of meditation, study of scriptures, and divine experiences, Guruji blossomed into a beacon of spiritual knowledge...",
         "Today, countless seekers look to him for guidance. His life reminds us that true greatness lies not in wealth or recognition, but in humility, compassion, and surrender to the Divine will."
       ],
     },
     {
       id: 2,
-      className: "about-vision",
+      key: "vision",
       photo: vision,
-      title: "Ashram’s Vision & Values",
+      title: "Ashram's Vision & Values",
       text: [
         "The Ashram is not merely a place; it is a living sanctuary where seekers find peace, purpose, and spiritual nourishment...",
         "Rooted deeply in the timeless wisdom of the Vedanta, the Ashram reminds every soul that the Divine exists equally in all beings...",
-        "Above all, the Ashram’s values inspire seekers to live with integrity, compassion, and gratitude, transforming daily life into a spiritual journey."
+        "Above all, the Ashram's values inspire seekers to live with integrity, compassion, and gratitude, transforming daily life into a spiritual journey."
       ],
     },
     {
       id: 3,
-      className: "about-daily",
+      key: "daily",
       photo: daily,
       title: "Daily Life at the Ashram",
       text: [
@@ -51,18 +50,18 @@ const About = () => {
     },
     {
       id: 4,
-      className: "about-teachings",
+      key: "teachings",
       photo: guruji,
       title: "Teachings of Guruji",
       text: [
-        "Guruji’s teachings are timeless treasures of wisdom, guiding seekers toward self-realization and compassion...",
+        "Guruji's teachings are timeless treasures of wisdom, guiding seekers toward self-realization and compassion...",
         "His discourses often highlight the importance of balancing worldly duties with spiritual practices...",
         "These teachings continue to inspire countless souls, guiding them to find strength in challenges, peace in silence, and purpose in service."
       ],
     },
     {
       id: 5,
-      className: "about-seva",
+      key: "seva",
       photo: vision,
       title: "Community & Seva",
       text: [
@@ -73,7 +72,7 @@ const About = () => {
     },
     {
       id: 6,
-      className: "about-festivals",
+      key: "festivals",
       photo: daily,
       title: "Festivals & Celebrations",
       text: [
@@ -89,83 +88,87 @@ const About = () => {
   const currentSections = sections.slice(indexOfFirst, indexOfLast);
   const totalPages = Math.ceil(sections.length / sectionsPerPage);
 
-  // Scroll to top when page changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
 
   return (
-    <div className="about-page">
-      <section className="about-intro">
-        <h1>In the Light of Guruji’s Grace</h1>
-        <p className="subtext">“This ashram is not just a place—it is a presence.”</p>
+    <div className="ab__page">
+      {/* Decorative orbs */}
+      <div className="ab__orb ab__orb--1" />
+      <div className="ab__orb ab__orb--2" />
+
+      {/* Intro */}
+      <section className="ab__intro">
+        <div className="ab__intro-deco">🙏</div>
+        <h1 className="ab__intro-heading">In the Light of Guruji's Grace</h1>
+        <div className="ab__intro-rule" />
+        <p className="ab__intro-subtext">"This ashram is not just a place — it is a presence."</p>
       </section>
 
-      {currentSections.map((sec) => (
-        <section key={sec.id} className={sec.className}>
-          <div className={`${sec.className.split("-")[1]}-photo`}>
-            <img src={sec.photo} alt={sec.title} />
+      {/* Section Cards */}
+      {currentSections.map((sec, idx) => (
+        <section
+          key={sec.id}
+          className="ab__section"
+          style={{ animationDelay: `${idx * 0.15}s` }}
+        >
+          <div className="ab__section-photo">
+            <div className="ab__photo-ring" />
+            <img src={sec.photo} alt={sec.title} className="ab__photo-img" />
           </div>
-          <div className={`${sec.className.split("-")[1]}-text`}>
-            <h2>{sec.title}</h2>
-            {sec.text.slice(0, 1).map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
 
+          <div className="ab__section-text">
+            <span className="ab__section-tag">Sacred Story</span>
+            <h2 className="ab__section-title">{sec.title}</h2>
+            <div className="ab__section-rule" />
+            <p className="ab__section-para">{sec.text[0]}</p>
             <button
-              className="know-more-btn"
+              className="ab__know-btn"
               onClick={() =>
                 navigate(`/about/${sec.id}`, { state: { section: sec, currentPage } })
               }
             >
               Know More
+              <span className="ab__btn-arrow">→</span>
             </button>
           </div>
         </section>
       ))}
 
-      <div className="pagination">
+      {/* Pagination */}
+      <div className="ab__pagination">
         <button
+          className="ab__pg-btn"
           onClick={() => setCurrentPage((prev) => prev - 1)}
           disabled={currentPage === 1}
         >
-          ⬅ Prev
+          ← Prev
         </button>
-        <span>
-          Page {currentPage} of {totalPages}
-        </span>
+        <div className="ab__pg-badge">
+          <span className="ab__pg-current">{currentPage}</span>
+          <span className="ab__pg-sep">/</span>
+          <span className="ab__pg-total">{totalPages}</span>
+        </div>
         <button
+          className="ab__pg-btn"
           onClick={() => setCurrentPage((prev) => prev + 1)}
           disabled={currentPage === totalPages}
         >
-          Next ➡
+          Next →
         </button>
       </div>
 
-      {/* ✅ Two Buttons side by side with same style */}
-      <div
-        className="map-button-container fade-in-up"
-        style={{ display: "flex", justifyContent: "center", gap: "15px", flexWrap: "wrap" }}
-      >
-        <button
-          className="know-more-btn"
-          onClick={() => navigate("/intlcenters")}
-        >
-          🌏 Spiritual Network
+      {/* Navigation Buttons */}
+      <div className="ab__nav-actions">
+        <button className="ab__nav-btn" onClick={() => navigate("/intlcenters")}>
+          <span>🌏</span> Spiritual Network
         </button>
-
-        <button
-          className="know-more-btn"
-          onClick={() => navigate("/spotlight")}
-        >
-          🔦 Spotlight
+        <button className="ab__nav-btn" onClick={() => navigate("/spotlight")}>
+          <span>🔦</span> Spotlight
         </button>
-
-        <button
-          className="know-more-btn"
-          onClick={() => navigate("/dailyschedule")}
-        >
-          📅 Daily Schedule
+        <button className="ab__nav-btn" onClick={() => navigate("/dailyschedule")}>
+          <span>📅</span> Daily Schedule
         </button>
       </div>
     </div>

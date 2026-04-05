@@ -1,202 +1,431 @@
-/* ===============================
-   DAILY TEACHINGS – SCOPED STYLES
-   =============================== */
+/* ============================================================
+   DailyTeachings — fully scoped under dt__ prefix
+   ============================================================ */
 
-.daily-teachings-page {
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700;800&display=swap');
+
+/* ── Variables ─────────────────────────────────────────────── */
+.dt__page {
+  --dt-orange: #ff7a00;
+  --dt-orange-deep: #e06200;
+  --dt-amber: #ff9800;
+  --dt-amber-light: #fff3e0;
+  --dt-gold: #ffb74d;
+  --dt-gold-soft: #ffe0a0;
+  --dt-card-bg: rgba(255, 254, 250, 0.97);
+  --dt-msg-bg: rgba(255, 252, 244, 0.90);
+  --dt-text-dark: #1c1008;
+  --dt-text-mid: #3d2b10;
+  --dt-text-muted: #7a5c38;
+  --dt-shadow-sm: 0 4px 16px rgba(255, 122, 0, 0.09);
+  --dt-shadow-md: 0 12px 38px rgba(255, 122, 0, 0.16);
+  --dt-shadow-lg: 0 24px 60px rgba(255, 122, 0, 0.22);
+  --dt-radius: 26px;
+  --dt-font-display: 'Cinzel', serif;
+  --dt-font-verse: 'Lora', serif;
+  --dt-font-body: 'Nunito', sans-serif;
+
+  /* Layout */
+  position: relative;
   min-height: 100vh;
-  background: linear-gradient(135deg, #fff8ec, #ffffff);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 24px;
-  font-family: "Poppins", sans-serif;
+  padding: 64px 24px 80px;
+  font-family: var(--dt-font-body);
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(255, 183, 77, 0.22) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 90%, rgba(255, 122, 0, 0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 248, 230, 0.5) 0%, transparent 70%),
+    linear-gradient(158deg, #fffbf0 0%, #ffffff 55%, #fff8ec 100%);
 }
 
-/* ===============================
-   CARD
-   =============================== */
+/* ── Background Orbs ───────────────────────────────────────── */
+.dt__orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(90px);
+  animation: dt-float 10s ease-in-out infinite alternate;
+}
 
-.daily-teachings-page .daily-card {
+.dt__orb--1 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(255, 183, 77, 0.20), transparent 70%);
+  top: -120px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.dt__orb--2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 122, 0, 0.14), transparent 70%);
+  bottom: 60px;
+  right: -80px;
+  animation-delay: 3.5s;
+}
+
+.dt__orb--3 {
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(255, 152, 0, 0.12), transparent 70%);
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 7s;
+}
+
+/* ── Content wrapper ───────────────────────────────────────── */
+.dt__content {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  max-width: 720px;
-  background: #ffffff;
-  padding: 42px 38px;
-  border-radius: 24px;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+  max-width: 740px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.dt__header {
   text-align: center;
-  animation: dailyFadeUp 0.7s ease-out both;
+  margin-bottom: 36px;
+  animation: dt-fadeDown 0.65s ease-out both;
 }
 
-/* ===============================
-   BADGE
-   =============================== */
+.dt__header-icon {
+  font-size: 2.6rem;
+  display: block;
+  margin-bottom: 10px;
+  animation: dt-glow 2.4s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 12px rgba(255, 152, 0, 0.75));
+}
 
-.daily-teachings-page .day-badge {
-  display: inline-block;
-  background: linear-gradient(90deg, #ff9800, #ff6f00);
-  color: #ffffff;
-  padding: 8px 20px;
+.dt__page-title {
+  font-family: var(--dt-font-display);
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  background: linear-gradient(120deg, #b34700 0%, #ff7a00 40%, #ffb74d 65%, #e06200 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 12px;
+}
+
+.dt__title-rule {
+  width: 80px;
+  height: 2.5px;
+  margin: 0 auto 10px;
   border-radius: 999px;
-  font-size: 0.9rem;
-  margin-bottom: 22px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
+  background: linear-gradient(90deg, transparent, var(--dt-amber), var(--dt-gold), transparent);
 }
 
-/* ===============================
-   TEXT
-   =============================== */
-
-.daily-teachings-page .daily-question {
-  font-size: 2rem;
+.dt__page-tag {
+  font-family: var(--dt-font-body);
+  font-size: 0.8rem;
   font-weight: 700;
-  color: #333333;
-  margin-bottom: 22px;
-  line-height: 1.3;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dt-text-muted);
+  margin: 0;
+  opacity: 0.85;
 }
 
-.daily-teachings-page .daily-answer {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #555555;
+/* ── Main Teaching Card ────────────────────────────────────── */
+.dt__card {
+  width: 100%;
+  background: var(--dt-card-bg);
+  border-radius: var(--dt-radius);
+  border: 1px solid rgba(255, 152, 0, 0.22);
+  padding: 44px 42px 38px;
+  box-shadow: var(--dt-shadow-md);
+  text-align: center;
+  animation: dt-fadeUp 0.7s ease-out 0.1s both;
+  backdrop-filter: blur(6px);
+  position: relative;
+  overflow: hidden;
 }
 
-/* ===============================
-   ANIMATION
-   =============================== */
+/* Subtle corner accent */
+.dt__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle at top left, rgba(255, 183, 77, 0.14), transparent 65%);
+  pointer-events: none;
+}
 
-@keyframes dailyFadeUp {
+.dt__card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle at bottom right, rgba(255, 122, 0, 0.10), transparent 65%);
+  pointer-events: none;
+}
+
+.dt__card-top {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.dt__day-badge {
+  display: inline-block;
+  background: linear-gradient(100deg, #ff9800, #e06200);
+  color: #fff;
+  padding: 8px 26px;
+  border-radius: 999px;
+  font-family: var(--dt-font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 14px rgba(255, 122, 0, 0.35);
+}
+
+.dt__card-deco {
+  display: none;
+}
+
+.dt__question {
+  font-family: var(--dt-font-display);
+  font-size: clamp(1.25rem, 3vw, 1.9rem);
+  font-weight: 600;
+  color: var(--dt-text-dark);
+  line-height: 1.4;
+  margin: 0 0 20px;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 1;
+}
+
+.dt__question-rule {
+  width: 56px;
+  height: 2px;
+  margin: 0 auto 20px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--dt-gold-soft), transparent);
+  position: relative;
+  z-index: 1;
+}
+
+.dt__answer {
+  font-family: var(--dt-font-verse);
+  font-size: clamp(0.97rem, 2vw, 1.12rem);
+  line-height: 1.85;
+  color: var(--dt-text-mid);
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Guruji's Message ──────────────────────────────────────── */
+.dt__message-box {
+  width: 100%;
+  background: var(--dt-msg-bg);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 152, 0, 0.18);
+  padding: 26px 30px 24px;
+  margin-top: 24px;
+  text-align: center;
+  box-shadow: var(--dt-shadow-sm);
+  backdrop-filter: blur(4px);
+
+  opacity: 0;
+  animation: dt-fadeUp 0.65s ease-out 0.3s forwards;
+}
+
+.dt__message-icon {
+  font-size: 1.6rem;
+  display: block;
+  margin-bottom: 8px;
+  animation: dt-twinkle 2s ease-in-out infinite alternate;
+}
+
+.dt__message-title {
+  font-family: var(--dt-font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dt-orange);
+  margin: 0 0 12px;
+
+  opacity: 0;
+  animation: dt-fadeUp 0.6s ease-out 0.4s forwards;
+}
+
+.dt__message-text {
+  font-family: var(--dt-font-verse);
+  font-style: italic;
+  font-size: 0.98rem;
+  color: var(--dt-text-muted);
+  line-height: 1.72;
+  margin: 0;
+
+  opacity: 0;
+  animation: dt-fadeUp 0.6s ease-out 0.5s forwards;
+}
+
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes dt-fadeUp {
   from {
     opacity: 0;
     transform: translateY(22px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* ===============================
-   RESPONSIVE BREAKPOINTS
-   =============================== */
+@keyframes dt-fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
 
-/* 💻 Large Laptop / Desktop */
-@media (min-width: 1200px) {
-  .daily-teachings-page .daily-card {
-    max-width: 760px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* 💻 Small Laptop */
+@keyframes dt-float {
+  from {
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    transform: translateY(-26px) scale(1.04);
+  }
+}
+
+@keyframes dt-glow {
+  from {
+    filter: drop-shadow(0 0 8px rgba(255, 152, 0, 0.55));
+  }
+
+  to {
+    filter: drop-shadow(0 0 22px rgba(255, 152, 0, 0.95));
+  }
+}
+
+@keyframes dt-twinkle {
+  from {
+    transform: scale(1) rotate(-5deg);
+    opacity: 0.85;
+  }
+
+  to {
+    transform: scale(1.15) rotate(5deg);
+    opacity: 1;
+  }
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (min-width: 1200px) {
+  .dt__content {
+    max-width: 780px;
+  }
+
+  .dt__card {
+    padding: 50px 48px 44px;
+  }
+}
+
 @media (max-width: 1199px) and (min-width: 992px) {
-  .daily-teachings-page {
+  .dt__page {
     padding: 56px 22px;
   }
 
-  .daily-teachings-page .daily-question {
-    font-size: 1.85rem;
+  .dt__question {
+    font-size: 1.7rem;
   }
 }
 
-/* 📱 Tablet */
 @media (max-width: 991px) and (min-width: 768px) {
-  .daily-teachings-page {
+  .dt__page {
     padding: 50px 20px;
   }
 
-  .daily-teachings-page .daily-card {
+  .dt__card {
     padding: 36px 30px;
   }
 
-  .daily-teachings-page .daily-question {
-    font-size: 1.6rem;
+  .dt__question {
+    font-size: 1.5rem;
   }
 
-  .daily-teachings-page .daily-answer {
-    font-size: 1.02rem;
+  .dt__answer {
+    font-size: 1rem;
   }
 }
 
-/* 📱 Mobile */
 @media (max-width: 767px) {
-  .daily-teachings-page {
-    padding: 40px 16px;
+  .dt__page {
+    padding: 44px 16px 64px;
     align-items: flex-start;
   }
 
-  .daily-teachings-page .daily-card {
-    padding: 28px 22px;
-    border-radius: 18px;
+  .dt__card {
+    padding: 30px 22px 28px;
+    border-radius: 20px;
   }
 
-  .daily-teachings-page .daily-question {
-    font-size: 1.35rem;
+  .dt__question {
+    font-size: 1.28rem;
   }
 
-  .daily-teachings-page .daily-answer {
+  .dt__answer {
     font-size: 0.95rem;
   }
-}
-.daily-teachings-page .daily-extra {
-  margin-top: 42px;
-  max-width: 700px;
-  background: rgba(255, 255, 255, 0.75);
-  padding: 22px 26px;
-  border-radius: 18px;
-  text-align: center;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
-}
 
-.daily-teachings-page .extra-title {
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: #ff7a00;
-  margin-bottom: 10px;
-}
-
-.daily-teachings-page .extra-text {
-  font-size: 0.95rem;
-  color: #666;
-  line-height: 1.65;
-}
-
-/* ===============================
-   RESPONSIVE (KEEP AT BOTTOM)
-   =============================== */
-
-@media (max-width: 768px) {
-  .daily-teachings-page .daily-extra {
-    margin-top: 30px;
-    padding: 18px 20px;
+  .dt__message-box {
+    padding: 20px 18px;
+    margin-top: 18px;
   }
 
-  .daily-teachings-page .extra-title {
-    font-size: 1.05rem;
+  .dt__message-title {
+    font-size: 0.92rem;
   }
 
-  .daily-teachings-page .extra-text {
+  .dt__message-text {
     font-size: 0.9rem;
   }
 }
-/* ===============================
-   GURUJI MESSAGE – OPENING ANIMATION
-   =============================== */
 
-.daily-teachings-page .daily-extra {
-  opacity: 0;
-  animation: dailyFadeUp 0.6s ease-out forwards;
-  animation-delay: 0.25s; /* comes after main card */
+/* ── Reduced Motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+  .dt__page,
+  .dt__header,
+  .dt__card,
+  .dt__message-box,
+  .dt__message-title,
+  .dt__message-text,
+  .dt__orb,
+  .dt__header-icon,
+  .dt__message-icon {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
-
-.daily-teachings-page .extra-title {
-  opacity: 0;
-  animation: dailyFadeUp 0.6s ease-out forwards;
-  animation-delay: 0.35s;
-}
-
-.daily-teachings-page .extra-text {
-  opacity: 0;
-  animation: dailyFadeUp 0.6s ease-out forwards;
-  animation-delay: 0.45s;
-}
-

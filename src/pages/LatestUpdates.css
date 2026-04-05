@@ -1,172 +1,463 @@
-/* ===============================
-   LATEST UPDATES – BLOG THEME
-================================ */
+/* ============================================================
+   LatestUpdates — fully scoped under lu__ prefix
+   ============================================================ */
 
-/* ===== Page Base (same as blog) ===== */
-.latest-updates-page {
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700;800&display=swap');
+
+/* ── Variables ─────────────────────────────────────────────── */
+.lu__page {
+  --lu-crimson: #8b0000;
+  --lu-crimson-deep: #600000;
+  --lu-crimson-soft: #b03030;
+  --lu-gold: #c9a227;
+  --lu-gold-light: #f0d080;
+  --lu-gold-soft: #fff8e1;
+  --lu-card-bg: rgba(255, 254, 250, 0.97);
+  --lu-text-dark: #1a0808;
+  --lu-text-mid: #3d1c1c;
+  --lu-text-muted: #7a5050;
+  --lu-shadow-sm: 0 4px 16px rgba(139, 0, 0, 0.09);
+  --lu-shadow-md: 0 10px 36px rgba(139, 0, 0, 0.15);
+  --lu-shadow-lg: 0 22px 58px rgba(139, 0, 0, 0.22);
+  --lu-radius: 20px;
+  --lu-font-display: 'Cinzel', serif;
+  --lu-font-verse: 'Lora', serif;
+  --lu-font-body: 'Nunito', sans-serif;
+
+  /* Layout */
+  position: relative;
   text-align: center;
-  padding: 80px 20px;
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #fffdf7, #f8e9f0, #fcefe9);
+  padding: 80px 22px 100px;
+  font-family: var(--lu-font-body);
   min-height: 100vh;
-  animation: fadeIn 1s ease-in-out;
   box-sizing: border-box;
   width: 100%;
   overflow-x: hidden;
-  color: #333;
+  color: var(--lu-text-dark);
+
+  background:
+    radial-gradient(ellipse at 14% 6%, rgba(201, 162, 39, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 86% 94%, rgba(139, 0, 0, 0.10) 0%, transparent 50%),
+    linear-gradient(145deg, #fffdf7 0%, #f8e9f0 55%, #fcefe9 100%);
+
+  animation: lu-pageIn 0.9s ease-out both;
 }
 
-/* ===== Page Title ===== */
-.page-title {
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
+/* ── Orbs ──────────────────────────────────────────────────── */
+.lu__orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(88px);
+  animation: lu-float 10s ease-in-out infinite alternate;
+}
+
+.lu__orb--1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(201, 162, 39, 0.18), transparent 70%);
+  top: -110px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.lu__orb--2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(139, 0, 0, 0.12), transparent 70%);
+  bottom: 80px;
+  right: -80px;
+  animation-delay: 4s;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.lu__header {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 52px;
+  animation: lu-fadeDown 0.7s ease-out both;
+}
+
+.lu__header-badge {
+  display: inline-block;
+  font-family: var(--lu-font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--lu-crimson);
+  background: rgba(139, 0, 0, 0.07);
+  border: 1px solid rgba(139, 0, 0, 0.20);
+  padding: 5px 18px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.lu__title {
+  font-family: var(--lu-font-display);
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
   font-weight: 900;
-  color: #8b0000;
-  margin-bottom: 45px;
-  letter-spacing: 1px;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+  color: var(--lu-crimson);
+  margin: 0 0 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(139, 0, 0, 0.16);
 }
 
-.page-title::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: #8b0000;
-  margin: 12px auto 0;
-  border-radius: 2px;
+.lu__title-line {
+  width: 90px;
+  height: 3.5px;
+  margin: 0 auto 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--lu-crimson), var(--lu-gold), transparent);
+  box-shadow: 0 2px 8px rgba(139, 0, 0, 0.22);
 }
 
-/* ===== Layout ===== */
-.updates-layout {
+.lu__title-sub {
+  font-family: var(--lu-font-verse);
+  font-style: italic;
+  font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+  color: var(--lu-text-muted);
+  margin: 0;
+}
+
+/* ── Layout ────────────────────────────────────────────────── */
+.lu__layout {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 35px;
+  gap: 36px;
   max-width: 1200px;
-  margin: auto;
-  padding: 0 10px;
+  margin: 0 auto;
+  padding: 0 8px;
   width: 100%;
   box-sizing: border-box;
+  align-items: start;
 }
 
-/* ===== Left Image ===== */
-.updates-left img {
+/* ── Left: Image ───────────────────────────────────────────── */
+.lu__left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: lu-fadeUp 0.75s ease-out 0.05s both;
+}
+
+.lu__image-wrap {
+  position: relative;
   width: 100%;
-  border-radius: 18px;
+  border-radius: var(--lu-radius);
+  overflow: hidden;
+}
+
+.lu__image-halo {
+  position: absolute;
+  inset: -3px;
+  border-radius: calc(var(--lu-radius) + 3px);
+  background: linear-gradient(135deg, var(--lu-gold), var(--lu-crimson), var(--lu-gold));
+  z-index: 0;
+  opacity: 0.55;
+  animation: lu-haloSpin 8s linear infinite;
+}
+
+.lu__image {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  border-radius: var(--lu-radius);
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  box-shadow: 0px 8px 20px rgba(0,0,0,0.12);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: var(--lu-shadow-md);
+  display: block;
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-.updates-left img:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 14px 28px rgba(0,0,0,0.22);
+.lu__image--fade {
+  opacity: 0;
+  transform: scale(0.98);
 }
 
-/* ===== Right Updates List ===== */
-.updates-right {
+.lu__image-wrap:hover .lu__image:not(.lu__image--fade) {
+  transform: scale(1.04);
+}
+
+/* Bottom label overlay */
+.lu__image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 18px 18px 14px;
+  background: linear-gradient(to top, rgba(139, 0, 0, 0.6), transparent);
+  border-radius: 0 0 var(--lu-radius) var(--lu-radius);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.lu__image-label {
+  font-family: var(--lu-font-display);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 30px;
+  padding: 4px 14px;
+}
+
+/* Dot indicators */
+.lu__dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.lu__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(139, 0, 0, 0.18);
+  border: 2px solid rgba(139, 0, 0, 0.30);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.27s ease, transform 0.27s ease;
+}
+
+.lu__dot:hover {
+  background: rgba(139, 0, 0, 0.38);
+  transform: scale(1.15);
+}
+
+.lu__dot--active {
+  background: var(--lu-crimson);
+  transform: scale(1.3);
+  box-shadow: 0 0 8px rgba(139, 0, 0, 0.45);
+  border-color: var(--lu-crimson);
+}
+
+/* ── Right: Cards ──────────────────────────────────────────── */
+.lu__right {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 25px;
+  gap: 20px;
 }
 
-/* ===== Update Item (Blog-card style) ===== */
-.update-item {
-  background: rgba(255,255,255,0.95);
-  border-radius: 18px;
-  box-shadow: 0px 8px 20px rgba(0,0,0,0.12);
-  border: 1px solid rgba(139,0,0,0.15);
-  padding: 22px 26px;
+/* ── Update Card ───────────────────────────────────────────── */
+.lu__card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--lu-card-bg);
+  border-radius: var(--lu-radius);
+  border: 1px solid rgba(139, 0, 0, 0.13);
+  padding: 22px 24px;
   text-align: left;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  animation: fadeUp 0.8s ease-in-out forwards;
+  box-shadow: var(--lu-shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  animation: lu-fadeUp 0.7s ease-out both;
   opacity: 0;
+  backdrop-filter: blur(3px);
 }
 
-.update-item:nth-child(1) { animation-delay: 0.2s; }
-.update-item:nth-child(2) { animation-delay: 0.4s; }
-.update-item:nth-child(3) { animation-delay: 0.6s; }
-
-.update-item:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 0px 14px 28px rgba(0,0,0,0.22);
+.lu__card:hover {
+  transform: translateY(-10px) scale(1.015);
+  box-shadow: var(--lu-shadow-lg);
+  border-color: rgba(139, 0, 0, 0.26);
 }
 
-/* ===== Text Styling ===== */
-.update-item h2 {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #8b0000;
-  margin-bottom: 6px;
+.lu__card-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  line-height: 1;
+  transition: transform 0.3s ease;
 }
 
-.update-date {
-  font-size: 0.85rem;
-  color: #777;
-  margin-bottom: 10px;
+.lu__card:hover .lu__card-icon {
+  transform: scale(1.18) rotate(-6deg);
 }
 
-.update-item p {
+.lu__card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lu__card-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.lu__card-title {
+  font-family: var(--lu-font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--lu-crimson);
+  margin: 0;
+  letter-spacing: 0.6px;
+}
+
+.lu__card-date {
+  font-family: var(--lu-font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--lu-gold);
+  background: var(--lu-gold-soft);
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  padding: 2px 10px;
+  border-radius: 30px;
+  white-space: nowrap;
+}
+
+.lu__card-rule {
+  width: 40px;
+  height: 1.5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--lu-gold-light), transparent);
+}
+
+.lu__card-desc {
+  font-family: var(--lu-font-verse);
   font-size: 0.95rem;
-  color: #444;
-  line-height: 1.6;
+  color: var(--lu-text-mid);
+  line-height: 1.65;
+  margin: 0;
 }
 
-/* ===== Animations (same as blog) ===== */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes lu-pageIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes lu-fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* ===== Responsive ===== */
+@keyframes lu-fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lu-float {
+  from {
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    transform: translateY(-26px) scale(1.04);
+  }
+}
+
+@keyframes lu-haloSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .updates-layout {
+  .lu__layout {
     gap: 28px;
   }
 }
 
 @media (max-width: 768px) {
-  .latest-updates-page {
-    padding: 60px 15px;
+  .lu__page {
+    padding: 60px 16px 80px;
   }
 
-  .page-title {
-    font-size: 2rem;
+  .lu__title {
+    font-size: 2.1rem;
+    letter-spacing: 2.5px;
   }
 
-  .update-item h2 {
-    font-size: 1.15rem;
+  .lu__card-title {
+    font-size: 0.98rem;
   }
 }
 
 @media (max-width: 480px) {
-  .latest-updates-page {
-    padding: 50px 10px;
+  .lu__page {
+    padding: 50px 12px 70px;
   }
 
-  .page-title {
-    font-size: 1.6rem;
+  .lu__title {
+    font-size: 1.7rem;
+    letter-spacing: 2px;
   }
 
-  .updates-layout {
+  .lu__layout {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 20px;
   }
 
-  .update-item {
-    padding: 20px;
+  .lu__card {
+    padding: 18px 16px;
   }
 
-  .update-item h2 {
-    font-size: 1.05rem;
+  .lu__card-title {
+    font-size: 0.92rem;
   }
 
-  .update-item p {
-    font-size: 0.9rem;
+  .lu__card-desc {
+    font-size: 0.88rem;
+  }
+
+  .lu__card-top {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+/* ── Reduced Motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+  .lu__page,
+  .lu__header,
+  .lu__left,
+  .lu__card,
+  .lu__orb,
+  .lu__image-halo {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .lu__image {
+    transition: none !important;
   }
 }

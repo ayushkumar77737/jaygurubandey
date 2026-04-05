@@ -7,12 +7,27 @@ import book3 from "../assets/guruji.webp";
 const PublishedBooks = () => {
   const [selectedBook, setSelectedBook] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedCategory, setSelectedCategory] = useState(""); // initially blank
+  const [selectedCategory, setSelectedCategory] = useState("");
   const booksPerPage = 6;
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    // Match body + html background to page so footer gap never shows a different colour
+    const gradient = "radial-gradient(ellipse 65% 45% at 8% 0%, rgba(179,0,89,0.07) 0%, transparent 60%), radial-gradient(ellipse 55% 45% at 92% 100%, rgba(255,64,129,0.07) 0%, transparent 60%)";
+    document.documentElement.style.minHeight = "100%";
+    document.documentElement.style.background = "#fdf8f9";
+    document.body.style.minHeight = "100vh";
+    document.body.style.background = "#fdf8f9";
+    document.body.style.backgroundImage = gradient;
+    return () => {
+      document.documentElement.style.minHeight = "";
+      document.documentElement.style.background = "";
+      document.body.style.minHeight = "";
+      document.body.style.background = "";
+      document.body.style.backgroundImage = "";
+    };
   }, []);
+
 
   const books = [
     {
@@ -105,6 +120,35 @@ const PublishedBooks = () => {
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
   const currentBooks = filteredBooks.slice(indexOfFirstBook, indexOfLastBook);
   const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+  const booksVisible = selectedCategory !== "" && currentBooks.length > 0;
+  /**
+   * Scroll control — same pattern as SoulTwist:
+   * Browser rule: overflow-x:hidden + overflow-y:visible on the SAME element
+   * silently becomes overflow-y:auto → double scrollbar.
+   * Fix: .pb2-page has NO overflow CSS. Only html/body are the scroll container.
+   *
+   *  No books  → html/body overflow:hidden   (zero scrollbars)
+   *  Books show → html/body overflow-x:hidden + overflow-y:auto (ONE scrollbar)
+   */
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+
+    if (booksVisible) {
+      html.style.overflowX = "hidden";
+      html.style.overflowY = "auto";
+      body.style.overflowX = "hidden";
+      body.style.overflowY = "auto";
+    } else {
+      html.style.overflow = "hidden";
+      body.style.overflow = "hidden";
+    }
+
+    return () => {
+      html.style.overflow = "";
+      body.style.overflow = "";
+    };
+  }, [booksVisible]);
 
   const handlePageChange = (pageNumber) => {
     if (pageNumber < 1 || pageNumber > totalPages) return;
@@ -113,51 +157,68 @@ const PublishedBooks = () => {
   };
 
   return (
-    <div className="books-page">
-      <h1 className="books-title">📚 Published Books</h1>
+    <div className="pb2-page">
+      {/* Decorative background orbs */}
+      <div className="pb2-orb pb2-orb--tl" />
+      <div className="pb2-orb pb2-orb--br" />
+
+      {/* Header */}
+      <div className="pb2-header">
+        <span className="pb2-eyebrow">✦ Sacred Writings</span>
+        <h1 className="pb2-title">Published Books</h1>
+        <div className="pb2-divider">
+          <span className="pb2-divider__line" />
+          <span className="pb2-divider__gem">✦</span>
+          <span className="pb2-divider__line" />
+        </div>
+      </div>
 
       {/* Category Filter */}
-      <div className="category-filter">
-        <label htmlFor="categorySelect">
-          <strong>Filter by Category:</strong>{" "}
-        </label>
-        <select
-          id="categorySelect"
-          value={selectedCategory}
-          onChange={(e) => {
-            setSelectedCategory(e.target.value);
-            setCurrentPage(1);
-          }}
-          className="category-dropdown"
-        >
-          {selectedCategory === "" && (
-            <option value="" disabled hidden>
-              Select a Category
-            </option>
-          )}
-          {categories.map((cat, index) => (
-            <option key={index} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
+      <div className="pb2-filter">
+        <div className="pb2-filter__wrap">
+          <span className="pb2-filter__label">Category</span>
+          <select
+            id="pb2CategorySelect"
+            value={selectedCategory}
+            onChange={(e) => {
+              setSelectedCategory(e.target.value);
+              setCurrentPage(1);
+            }}
+            className="pb2-filter__select"
+          >
+            {selectedCategory === "" && (
+              <option value="" disabled hidden>
+                Select a Category
+              </option>
+            )}
+            {categories.map((cat, index) => (
+              <option key={index} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
+          <span className="pb2-filter__arrow">&#8964;</span>
+        </div>
       </div>
 
       {/* Books Grid */}
-      <div className="books-row">
-        {currentBooks.map((book) => (
-          <div className="book-card" key={book.id}>
-            <img src={book.image} alt={book.title} className="book-image" />
-            <p className="book-name">
-              <strong>Name :</strong> {book.title}
-            </p>
-            <p className="book-author">
-              <strong>Author :</strong> {book.author}
-            </p>
-            <p className="book-category">
-              <strong>Category :</strong> {book.category}
-            </p>
-            <button className="book-link" onClick={() => setSelectedBook(book)}>
+      <div className="pb2-grid">
+        {currentBooks.map((book, index) => (
+          <div
+            className="pb2-card"
+            key={book.id}
+            style={{ animationDelay: `${index * 0.08}s` }}
+          >
+            <div className="pb2-card__img-wrap">
+              <img src={book.image} alt={book.title} className="pb2-card__img" />
+              <div className="pb2-card__img-shine" />
+            </div>
+            <div className="pb2-card__body">
+              <span className="pb2-card__tag">{book.category}</span>
+              <p className="pb2-card__title">{book.title}</p>
+              <p className="pb2-card__author">{book.author}</p>
+            </div>
+            <button className="pb2-card__btn" onClick={() => setSelectedBook(book)}>
               Open
             </button>
           </div>
@@ -166,60 +227,66 @@ const PublishedBooks = () => {
 
       {/* Pagination */}
       {selectedCategory !== "" && filteredBooks.length > booksPerPage && (
-        <div className="pagination">
+        <div className="pb2-pagination">
           <button
-            className="page-btn"
+            className="pb2-pagination__btn"
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
           >
-            ⬅ Prev
+            ← Prev
           </button>
-          <span className="page-info">
-            Page {currentPage} of {totalPages}
+          <span className="pb2-pagination__info">
+            {currentPage} <span className="pb2-pagination__sep">/</span> {totalPages}
           </span>
           <button
-            className="page-btn"
+            className="pb2-pagination__btn"
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
           >
-            Next ➡
+            Next →
           </button>
         </div>
       )}
 
-      {/* Popup Modal */}
+      {/* Modal */}
       {selectedBook && (
-        <div className="modal-overlay" onClick={() => setSelectedBook(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-left">
+        <div className="pb2-modal-overlay" onClick={() => setSelectedBook(null)}>
+          <div className="pb2-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="pb2-modal__close" onClick={() => setSelectedBook(null)}>✕</button>
+            <div className="pb2-modal__left">
               <img
                 src={selectedBook.image}
                 alt={selectedBook.title}
-                className="modal-image"
+                className="pb2-modal__img"
               />
+              <div className="pb2-modal__year-badge">{selectedBook.year}</div>
             </div>
-            <div className="modal-right">
-              <h2>{selectedBook.title}</h2>
-              <p>
-                <strong>Author:</strong> {selectedBook.author}
-              </p>
-              <p>
-                <strong>Publisher:</strong> {selectedBook.publisher}
-              </p>
-              <p>
-                <strong>Total Pages:</strong> {selectedBook.pages}
-              </p>
-              <p>
-                <strong>Year:</strong> {selectedBook.year}
-              </p>
-              <p>
-                <strong>Category:</strong> {selectedBook.category}
-              </p>
+            <div className="pb2-modal__right">
+              <span className="pb2-modal__tag">{selectedBook.category}</span>
+              <h2 className="pb2-modal__title">{selectedBook.title}</h2>
+              <div className="pb2-modal__meta">
+                <div className="pb2-modal__row">
+                  <span className="pb2-modal__key">Author</span>
+                  <span className="pb2-modal__val">{selectedBook.author}</span>
+                </div>
+                <div className="pb2-modal__row">
+                  <span className="pb2-modal__key">Publisher</span>
+                  <span className="pb2-modal__val">{selectedBook.publisher}</span>
+                </div>
+                <div className="pb2-modal__row">
+                  <span className="pb2-modal__key">Pages</span>
+                  <span className="pb2-modal__val">{selectedBook.pages}</span>
+                </div>
+                <div className="pb2-modal__row">
+                  <span className="pb2-modal__key">Year</span>
+                  <span className="pb2-modal__val">{selectedBook.year}</span>
+                </div>
+              </div>
               <a
                 href={selectedBook.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="read-btn"
+                className="pb2-modal__read-btn"
               >
                 📖 Read Book
               </a>

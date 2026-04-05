@@ -1,346 +1,592 @@
-/* ===== Page background ===== */
-.about-page {
-  padding: 3rem 2rem;
+/* ============================================================
+   About & AboutDetails — fully scoped under ab__ prefix
+   Shared by About.jsx and AboutDetails.jsx
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700;800&display=swap');
+
+/* ── Variables ─────────────────────────────────────────────── */
+.ab__page {
+  --ab-crimson: #b71c1c;
+  --ab-crimson-deep: #8b0000;
+  --ab-crimson-soft: #d32f2f;
+  --ab-rose: #f35a7b;
+  --ab-gold: #f7c948;
+  --ab-gold-soft: #ffe0a0;
+  --ab-card-bg: rgba(255, 254, 252, 0.96);
+  --ab-text-dark: #1a0a0a;
+  --ab-text-mid: #3d1c1c;
+  --ab-text-muted: #7a4a4a;
+  --ab-shadow-sm: 0 4px 16px rgba(183, 28, 28, 0.08);
+  --ab-shadow-md: 0 10px 36px rgba(183, 28, 28, 0.14);
+  --ab-shadow-lg: 0 22px 58px rgba(183, 28, 28, 0.20);
+  --ab-radius: 24px;
+  --ab-font-display: 'Cinzel', serif;
+  --ab-font-verse: 'Lora', serif;
+  --ab-font-body: 'Nunito', sans-serif;
+
+  /* Layout */
+  position: relative;
+  padding: 52px 28px 88px;
   line-height: 1.8;
-  color: #333;
-  background: linear-gradient(135deg, #fff5f5, #fff0fa, #f5faff);
-  scroll-behavior: smooth;
+  color: var(--ab-text-dark);
+  font-family: var(--ab-font-body);
   min-height: 100vh;
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(ellipse at 12% 6%, rgba(247, 201, 72, 0.14) 0%, transparent 48%),
+    radial-gradient(ellipse at 88% 94%, rgba(183, 28, 28, 0.10) 0%, transparent 48%),
+    linear-gradient(145deg, #fff9f5 0%, #fff5f5 40%, #fff0fa 70%, #f5faff 100%);
 }
 
-/* ===== Intro Section ===== */
-.about-intro {
+/* ── Background Orbs ───────────────────────────────────────── */
+.ab__orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(90px);
+  animation: ab-float 11s ease-in-out infinite alternate;
+}
+
+.ab__orb--1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(247, 201, 72, 0.18), transparent 70%);
+  top: -110px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.ab__orb--2 {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(183, 28, 28, 0.12), transparent 70%);
+  bottom: 80px;
+  right: -80px;
+  animation-delay: 4s;
+}
+
+/* ── Intro Section ─────────────────────────────────────────── */
+.ab__intro {
+  position: relative;
+  z-index: 1;
   text-align: center;
-  margin-bottom: 3rem;
-  padding: 0 1rem;
+  margin-bottom: 52px;
   opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 0.7s ease forwards;
+  animation: ab-fadeDown 0.7s ease-out 0.05s forwards;
 }
 
-@keyframes fadeUp {
-  to { opacity: 1; transform: translateY(0); }
+.ab__intro-deco {
+  font-size: 2.6rem;
+  display: block;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 12px rgba(183, 28, 28, 0.45));
+  animation: ab-glow 2.5s ease-in-out infinite alternate;
 }
 
-.about-intro h1 {
-  font-size: clamp(1.8rem, 5vw, 2.6rem);
-  color: #b71c1c;
-  letter-spacing: 1px;
+.ab__intro-heading {
+  font-family: var(--ab-font-display);
+  font-size: clamp(1.7rem, 4.5vw, 2.8rem);
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--ab-crimson);
+  margin: 0 0 14px;
+  text-shadow: 0 2px 8px rgba(183, 28, 28, 0.12);
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-.about-intro h1:hover {
-  color: #d32f2f;
-  text-shadow: 0 0 10px rgba(243, 90, 123, 0.3);
+.ab__intro-heading:hover {
+  color: var(--ab-crimson-soft);
+  text-shadow: 0 0 14px rgba(243, 90, 123, 0.3);
 }
 
-.about-intro .subtext {
+.ab__intro-rule {
+  width: 90px;
+  height: 2.5px;
+  margin: 0 auto 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--ab-gold), transparent);
+}
+
+.ab__intro-subtext {
+  font-family: var(--ab-font-verse);
   font-style: italic;
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  color: #666;
-  margin-top: 0.5rem;
+  font-size: clamp(1rem, 2.5vw, 1.18rem);
+  color: var(--ab-text-muted);
+  margin: 0;
 }
 
-/* ===== Content Cards ===== */
-.about-journey, .about-vision, .about-daily {
+/* ── Section Card ──────────────────────────────────────────── */
+.ab__section {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
-  gap: 2rem;
-  margin-bottom: 3rem;
-  background: linear-gradient(135deg, #ffffff, #fdf6f9);
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  gap: 32px;
+  margin-bottom: 32px;
+  background: var(--ab-card-bg);
+  border: 1px solid rgba(183, 28, 28, 0.10);
+  padding: 32px 30px;
+  border-radius: var(--ab-radius);
+  box-shadow: var(--ab-shadow-sm);
   flex-wrap: wrap;
   opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 0.7s ease forwards;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: ab-fadeUp 0.65s ease-out forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  backdrop-filter: blur(4px);
 }
 
-.about-vision, .about-daily {
-  animation-delay: 0.2s;
+.ab__section:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--ab-shadow-lg);
+  border-color: rgba(183, 28, 28, 0.20);
 }
 
-.about-journey:hover, .about-vision:hover, .about-daily:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(243, 90, 123, 0.15);
+/* Detail page full-text card */
+.ab__section--detail {
+  align-items: flex-start;
 }
 
-/* ===== Profile Photos ===== */
-.journey-photo img, .vision-photo img, .daily-photo img {
-  width: 100%;
-  max-width: 200px;
-  border-radius: 50%;
-  border: 4px solid #fff;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-  object-fit: cover;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.journey-photo img:hover, .vision-photo img:hover, .daily-photo img:hover {
-  transform: scale(1.06);
-  box-shadow: 0 4px 14px rgba(243, 90, 123, 0.25);
-}
-
-/* ===== Text Styling ===== */
-.journey-text, .vision-text, .daily-text {
-  flex: 1 1 300px;
-  font-size: clamp(0.95rem, 2.3vw, 1.1rem);
-  line-height: 1.7;
-  color: #444;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 1024px) {
-  .about-journey, .about-vision, .about-daily {
-    flex-direction: column;
-    text-align: center;
-  }
-  .journey-photo img, .vision-photo img, .daily-photo img {
-    margin-bottom: 1.2rem;
-    max-width: 160px;
-  }
-}
-
-@media (max-width: 480px) {
-  .about-page { padding: 2rem 1rem; }
-  .journey-photo img, .vision-photo img, .daily-photo img { max-width: 130px; }
-  .about-intro h1 { font-size: 1.8rem; }
-}
-
-
-/* ===== New Sections ===== */
-.about-teachings, .about-seva, .about-festivals {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  margin-bottom: 3rem;
-  background: linear-gradient(135deg, #ffffff, #fdf6f9);
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-  flex-wrap: wrap;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 0.7s ease forwards;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.about-teachings { animation-delay: 0.3s; }
-.about-seva { animation-delay: 0.4s; }
-.about-festivals { animation-delay: 0.5s; }
-
-.about-teachings:hover, .about-seva:hover, .about-festivals:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(243, 90, 123, 0.15);
-}
-
-/* ===== Photos for New Sections ===== */
-.teachings-photo img, .seva-photo img, .festivals-photo img {
-  width: 100%;
-  max-width: 200px;
-  border-radius: 50%;
-  border: 4px solid #fff;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-  object-fit: cover;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.teachings-photo img:hover, .seva-photo img:hover, .festivals-photo img:hover {
-  transform: scale(1.06);
-  box-shadow: 0 4px 14px rgba(243, 90, 123, 0.25);
-}
-
-/* ===== Text Styling ===== */
-.teachings-text, .seva-text, .festivals-text {
-  flex: 1 1 300px;
-  font-size: clamp(0.95rem, 2.3vw, 1.1rem);
-  line-height: 1.7;
-  color: #444;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 1024px) {
-  .about-teachings, .about-seva, .about-festivals {
-    flex-direction: column;
-    text-align: center;
-  }
-  .teachings-photo img, .seva-photo img, .festivals-photo img {
-    margin-bottom: 1.2rem;
-    max-width: 160px;
-  }
-}
-
-@media (max-width: 480px) {
-  .teachings-photo img, .seva-photo img, .festivals-photo img { max-width: 130px; }
-}
-
-
-
-/* ===== Pagination (scoped to About page) ===== */
-.about-page .pagination {
+/* ── Photo ─────────────────────────────────────────────────── */
+.ab__section-photo {
+  position: relative;
+  flex: 0 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-  margin-top: 2rem;
-  flex-wrap: wrap; /* allows wrapping on small screens */
 }
 
-.about-page .pagination button {
-  background: #b71c1c;
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.3s ease;
+.ab__photo-ring {
+  position: absolute;
+  width: 224px;
+  height: 224px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg,
+      rgba(247, 201, 72, 0.35),
+      rgba(183, 28, 28, 0.20),
+      rgba(247, 201, 72, 0.30),
+      rgba(183, 28, 28, 0.15),
+      rgba(247, 201, 72, 0.35));
+  animation: ab-ringRotate 10s linear infinite;
+  z-index: 0;
 }
 
-.about-page .pagination button:hover:not(:disabled) {
-  background: #d32f2f;
+.ab__photo-img {
+  position: relative;
+  z-index: 1;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: var(--ab-shadow-md);
+  transition: transform 0.32s ease, box-shadow 0.32s ease;
 }
 
-.about-page .pagination button:disabled {
-  background: #ccc;
-  cursor: not-allowed;
+.ab__section:hover .ab__photo-img {
+  transform: scale(1.06);
+  box-shadow: var(--ab-shadow-lg);
 }
 
-.about-page .pagination span {
+/* ── Text ──────────────────────────────────────────────────── */
+.ab__section-text {
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ab__section-tag {
+  display: inline-block;
+  font-family: var(--ab-font-display);
+  font-size: 0.68rem;
   font-weight: 600;
-  color: #444;
-}
-
-/* ===== Responsive Adjustments ===== */
-@media (max-width: 768px) {
-  .about-page .pagination {
-    gap: 0.6rem;
-  }
-
-  .about-page .pagination button {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-  }
-
-  .about-page .pagination span {
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .about-page .pagination {
-    flex-direction: column; /* stack buttons + text */
-    gap: 0.8rem;
-  }
-
-  .about-page .pagination button {
-    width: 100%; /* full width buttons for mobile */
-    max-width: 250px;
-    text-align: center;
-  }
-
-  .about-page .pagination span {
-    font-size: 0.85rem;
-    text-align: center;
-  }
-}
-
-
-/* ===== Know More Button (Clickable & Responsive) ===== */
-.know-more-btn {
-  display: block;
-  margin: 20px auto 0 auto;
-  padding: 12px 30px;
-  background: linear-gradient(135deg, #ffeff5, #fbeaff, #eaf5ff);
-  color: #b71c1c;
-  border: 2px solid #b71c1c;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ab-crimson);
+  background: rgba(183, 28, 28, 0.07);
+  border: 1px solid rgba(183, 28, 28, 0.18);
+  padding: 3px 12px;
   border-radius: 30px;
-  font-size: 16px;
-  font-weight: 500;
+  width: fit-content;
+}
+
+.ab__section-title {
+  font-family: var(--ab-font-display);
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  font-weight: 600;
+  color: var(--ab-crimson);
+  margin: 0;
+  letter-spacing: 0.8px;
+  line-height: 1.3;
+}
+
+.ab__section-rule {
+  width: 50px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--ab-gold), transparent);
+}
+
+.ab__section-para {
+  font-family: var(--ab-font-verse);
+  font-size: clamp(0.95rem, 2.2vw, 1.07rem);
+  line-height: 1.78;
+  color: var(--ab-text-mid);
+  margin: 0;
+}
+
+.ab__section-para--full {
+  margin-bottom: 8px;
+}
+
+/* ── Know More / Back Button ───────────────────────────────── */
+.ab__know-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 11px 28px;
+  background: linear-gradient(135deg, #ffeff5, #fbeaff, #eaf5ff);
+  color: var(--ab-crimson);
+  border: 2px solid var(--ab-crimson);
+  border-radius: 30px;
+  font-family: var(--ab-font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
   cursor: pointer;
+  width: fit-content;
   transition: all 0.3s ease;
-  box-shadow: 0px 4px 8px rgba(183, 28, 28, 0.15);
-  text-align: center;
-  max-width: 250px;
-  width: 100%;
-  position: relative; /* create stacking context */
-  z-index: 10;        /* make button above images/text */
+  box-shadow: 0 4px 10px rgba(183, 28, 28, 0.14);
+  position: relative;
+  z-index: 10;
 }
 
-/* ===== Hover & Active States ===== */
-.know-more-btn:hover {
-  background: linear-gradient(135deg, #fbe0e5, #f5d9f0, #d6edff);
-  color: #d32f2f;
+.ab__btn-arrow {
+  transition: transform 0.25s ease;
+}
+
+.ab__know-btn:hover {
+  background: var(--ab-crimson);
+  color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0px 6px 12px rgba(183, 28, 28, 0.25);
+  box-shadow: 0 7px 20px rgba(183, 28, 28, 0.28);
 }
 
-.know-more-btn:active {
-  transform: scale(0.95);
+.ab__know-btn:hover .ab__btn-arrow {
+  transform: translateX(4px);
 }
 
-/* ===== Responsive Adjustments ===== */
+.ab__know-btn:active {
+  transform: scale(0.96);
+}
+
+/* ── Pagination ────────────────────────────────────────────── */
+.ab__pagination {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 8px 0 36px;
+  animation: ab-fadeUp 0.5s ease-out 0.25s both;
+  flex-wrap: wrap;
+}
+
+.ab__pg-btn {
+  font-family: var(--ab-font-body);
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--ab-crimson);
+  background: transparent;
+  border: 2px solid var(--ab-crimson);
+  padding: 10px 26px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.ab__pg-btn:hover:not(:disabled) {
+  background: var(--ab-crimson);
+  color: #fff;
+  box-shadow: 0 5px 18px rgba(183, 28, 28, 0.28);
+  transform: translateY(-2px);
+}
+
+.ab__pg-btn:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+  border-color: #ccc;
+  color: #bbb;
+}
+
+.ab__pg-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 245, 245, 0.95);
+  border: 2px solid rgba(183, 28, 28, 0.22);
+  border-radius: 50px;
+  padding: 8px 22px;
+  box-shadow: var(--ab-shadow-sm);
+}
+
+.ab__pg-current {
+  font-family: var(--ab-font-display);
+  font-size: 1.26rem;
+  font-weight: 900;
+  color: var(--ab-crimson);
+}
+
+.ab__pg-sep {
+  font-size: 1rem;
+  color: #c88080;
+  margin: 0 1px;
+}
+
+.ab__pg-total {
+  font-family: var(--ab-font-display);
+  font-size: 1.06rem;
+  font-weight: 600;
+  color: var(--ab-crimson-deep);
+}
+
+/* ── Nav Action Buttons ────────────────────────────────────── */
+.ab__nav-actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  animation: ab-fadeUp 0.5s ease-out 0.35s both;
+}
+
+.ab__nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 26px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #fff5f5, #fff0f8);
+  color: var(--ab-crimson);
+  font-family: var(--ab-font-body);
+  font-weight: 800;
+  font-size: 0.92rem;
+  border: 1.5px solid rgba(183, 28, 28, 0.22);
+  cursor: pointer;
+  box-shadow: var(--ab-shadow-sm);
+  transition: all 0.27s ease;
+}
+
+.ab__nav-btn:hover {
+  background: var(--ab-crimson);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 8px 24px rgba(183, 28, 28, 0.28);
+  transform: translateY(-3px);
+}
+
+/* ── Not Found ─────────────────────────────────────────────── */
+.ab__not-found {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 80px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.ab__not-found-icon {
+  font-size: 3rem;
+  filter: drop-shadow(0 0 12px rgba(183, 28, 28, 0.4));
+}
+
+.ab__not-found-title {
+  font-family: var(--ab-font-display);
+  font-size: 1.6rem;
+  color: var(--ab-crimson);
+  letter-spacing: 1px;
+}
+
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes ab-fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ab-fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ab-float {
+  from {
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    transform: translateY(-28px) scale(1.05);
+  }
+}
+
+@keyframes ab-glow {
+  from {
+    filter: drop-shadow(0 0 8px rgba(183, 28, 28, 0.4));
+  }
+
+  to {
+    filter: drop-shadow(0 0 20px rgba(183, 28, 28, 0.8));
+  }
+}
+
+@keyframes ab-ringRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .about-journey, .about-vision, .about-daily,
-  .about-teachings, .about-seva, .about-festivals {
+  .ab__section {
     flex-direction: column;
     text-align: center;
   }
 
-  .journey-photo img, .vision-photo img, .daily-photo img,
-  .teachings-photo img, .seva-photo img, .festivals-photo img {
-    margin-bottom: 1.5rem;
-    max-width: 160px;
+  .ab__photo-ring {
+    width: 190px;
+    height: 190px;
+  }
+
+  .ab__photo-img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .ab__section-rule {
+    margin: 0 auto;
+  }
+
+  .ab__section-tag {
+    margin: 0 auto;
+  }
+
+  .ab__know-btn {
+    margin: 6px auto 0;
   }
 }
 
 @media (max-width: 768px) {
-  .know-more-btn {
-    padding: 10px 25px;
-    font-size: 15px;
-    max-width: 200px;
+  .ab__page {
+    padding: 44px 18px 72px;
+  }
+
+  .ab__intro-heading {
+    font-size: 1.85rem;
+  }
+
+  .ab__pagination {
+    gap: 12px;
+  }
+
+  .ab__pg-btn {
+    padding: 8px 18px;
+    font-size: 0.84rem;
+  }
+
+  .ab__nav-actions {
+    gap: 10px;
+  }
+
+  .ab__nav-btn {
+    padding: 10px 20px;
+    font-size: 0.86rem;
   }
 }
 
 @media (max-width: 480px) {
-  .know-more-btn {
-    padding: 8px 20px;
-    font-size: 14px;
-    max-width: 180px;
+  .ab__page {
+    padding: 36px 14px 64px;
   }
 
-  /* Fix overlapping issues on small screens */
-  .about-journey, .about-vision, .about-daily,
-  .about-teachings, .about-seva, .about-festivals {
-    position: relative;  /* stacking context */
-    z-index: 1;          /* make sure button is above content */
+  .ab__intro-heading {
+    font-size: 1.55rem;
   }
 
-  .know-more-btn {
-    position: relative;
-    z-index: 10;
+  .ab__section {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+
+  .ab__photo-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .ab__photo-ring {
+    width: 158px;
+    height: 158px;
+  }
+
+  .ab__pagination {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ab__pg-btn {
+    width: 80%;
+    max-width: 220px;
+  }
+
+  .ab__nav-btn {
+    width: 88%;
+    justify-content: center;
+  }
+
+  .ab__know-btn {
+    width: 100%;
+    max-width: 220px;
+    justify-content: center;
   }
 }
 
-/* ===== Fix: Ensure navbar overlay always stays above About content ===== */
-.about-page,
-.about-journey,
-.about-vision,
-.about-daily,
-.about-teachings,
-.about-seva,
-.about-festivals,
-.know-more-btn {
-  position: relative;
-  z-index: 0 !important;
-}
+/* ── Reduced Motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
 
-.navbar,
-.sidebar,
-.mobile-menu,
-.menu-overlay {
-  position: relative;
-  z-index: 9999 !important;
+  .ab__page,
+  .ab__intro,
+  .ab__section,
+  .ab__pagination,
+  .ab__nav-actions,
+  .ab__orb,
+  .ab__intro-deco,
+  .ab__photo-ring {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

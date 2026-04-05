@@ -6,7 +6,7 @@ const teachings = [
     day: 1,
     question: "What is the true purpose of human life?",
     answer:
-      "According to Guruji’s teachings, the true purpose of human life is self-realization, inner purification, and union with the divine through devotion, discipline, and service."
+      "According to Guruji's teachings, the true purpose of human life is self-realization, inner purification, and union with the divine through devotion, discipline, and service."
   },
   {
     day: 2,
@@ -190,28 +190,46 @@ const DailyTeachings = () => {
   const teaching = teachings[index];
 
   return (
-  <div className="daily-teachings-page">
-    <div className="daily-content">
+    <div className="dt__page">
+      {/* Decorative background orbs */}
+      <div className="dt__orb dt__orb--1" />
+      <div className="dt__orb dt__orb--2" />
+      <div className="dt__orb dt__orb--3" />
 
-      {/* Daily Teaching Card */}
-      <div className="daily-card">
-        <span className="day-badge">Day {teaching.day}</span>
-        <h2 className="daily-question">{teaching.question}</h2>
-        <p className="daily-answer">{teaching.answer}</p>
+      <div className="dt__content">
+
+        {/* Header */}
+        <div className="dt__header">
+          <div className="dt__header-icon">🪔</div>
+          <h1 className="dt__page-title">Daily Teaching</h1>
+          <div className="dt__title-rule" />
+          <p className="dt__page-tag">Guruji's Wisdom · One Day at a Time</p>
+        </div>
+
+        {/* Main Teaching Card */}
+        <div className="dt__card">
+          <div className="dt__card-top">
+            <span className="dt__day-badge">Day {teaching.day}</span>
+            <div className="dt__card-deco" />
+          </div>
+          <h2 className="dt__question">{teaching.question}</h2>
+          <div className="dt__question-rule" />
+          <p className="dt__answer">{teaching.answer}</p>
+        </div>
+
+        {/* Guruji's Message */}
+        <div className="dt__message-box">
+          <div className="dt__message-icon">✨</div>
+          <h3 className="dt__message-title">Guruji's Message</h3>
+          <p className="dt__message-text">
+            Walk the path of truth with patience and devotion. Every step taken
+            with faith brings you closer to inner peace.
+          </p>
+        </div>
+
       </div>
-
-      {/* Guruji's Message (ADD HERE) */}
-      <div className="daily-extra">
-        <h3 className="extra-title">Guruji’s Message</h3>
-        <p className="extra-text">
-          Walk the path of truth with patience and devotion. Every step taken
-          with faith brings you closer to inner peace.
-        </p>
-      </div>
-
     </div>
-  </div>
-);
+  );
 };
 
 export default DailyTeachings;
