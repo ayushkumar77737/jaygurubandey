@@ -1,319 +1,655 @@
-/* ----------------------------------------------------
-   DAILY SATSANG – Optimized Lightweight UI (SCOPED)
----------------------------------------------------- */
+/* ================================================================
+   DAILY SATSANG – dsatsang__ prefix (zero class-name collisions)
+   Aesthetic: Devotional luxury — warm saffron, deep maroon, gold
+   Fonts: Cormorant Garamond (display) + DM Sans (body)
+================================================================ */
 
-.daily-satsang-page {
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* ── CSS Variables (scoped safely) ── */
+.dsatsang__page {
+  --ds-saffron: #e8792a;
+  --ds-deep: #3d0c00;
+  --ds-maroon: #6b1a0e;
+  --ds-gold: #c9920a;
+  --ds-gold-lt: #f0c84a;
+  --ds-cream: #fdf6ec;
+  --ds-cream-2: #fef9f4;
+  --ds-text: #2d1206;
+  --ds-muted: #7a5c46;
+  --ds-card-bg: rgba(255, 252, 246, 0.97);
+  --ds-border: rgba(200, 145, 50, 0.25);
+  --ds-radius-lg: 24px;
+  --ds-radius-md: 16px;
+  --ds-radius-sm: 10px;
+  --ds-shadow-card: 0 16px 48px rgba(61, 12, 0, 0.13), 0 2px 8px rgba(200, 140, 30, 0.1);
+  --ds-shadow-video: 0 10px 32px rgba(61, 12, 0, 0.18);
+  --ds-font-display: 'Cormorant Garamond', Georgia, serif;
+  --ds-font-body: 'DM Sans', system-ui, sans-serif;
+
+  /* Layout */
   min-height: 100vh;
-  padding: 4rem 1.5rem 5rem;
-  font-family: "Poppins", system-ui, sans-serif;
-
-  /* ✅ Lightweight gradient (NO animation, NO repaint loop) */
-  background: linear-gradient(
-    135deg,
-    #fff7ec 0%,
-    #fdeef6 50%,
-    #f6f2ff 100%
-  );
-
+  padding: 3.5rem 1.5rem 5rem;
+  font-family: var(--ds-font-body);
+  background-color: var(--ds-cream);
+  position: relative;
   overflow-x: hidden;
-
-  /* ✅ Prevents animations from affecting navbar */
   contain: layout paint;
 }
 
-/* ===== HERO ===== */
+/* ================================================================
+   BACKGROUND ORBS
+================================================================ */
 
-.daily-satsang-page .daily-hero {
+.dsatsang__bg-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+}
+
+.dsatsang__bg-orb--1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #f5d38a 0%, transparent 70%);
+  top: -180px;
+  right: -160px;
+}
+
+.dsatsang__bg-orb--2 {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, #f4a96a 0%, transparent 70%);
+  bottom: 100px;
+  left: -120px;
+}
+
+.dsatsang__bg-orb--3 {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, #fce4c4 0%, transparent 70%);
+  top: 40%;
+  left: 55%;
+}
+
+/* Ensure content sits above orbs */
+.dsatsang__hero,
+.dsatsang__channel-card,
+.dsatsang__videos,
+.dsatsang__footer-strip {
+  position: relative;
+  z-index: 1;
+}
+
+/* ================================================================
+   HERO
+================================================================ */
+
+.dsatsang__hero {
   text-align: center;
-  margin-bottom: 3rem;
-  animation: dsFadeUp 0.6s ease-out;
+  margin-bottom: 2.8rem;
+  animation: ds-fadeUp 0.65s ease-out both;
 }
 
-.daily-satsang-page .daily-hero h1 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(2.4rem, 4vw, 3.2rem);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: #4a1b00;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+.dsatsang__hero-eyebrow {
+  margin-bottom: 0.5rem;
 }
 
-.daily-satsang-page .daily-hero-decor {
-  margin-top: 1.1rem;
+.dsatsang__om {
+  font-family: var(--ds-font-display);
+  font-size: 1.7rem;
+  color: var(--ds-gold);
+  display: inline-block;
+  animation: ds-pulse 3s ease-in-out infinite;
+}
+
+.dsatsang__hero-title {
+  font-family: var(--ds-font-display);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--ds-deep);
+  letter-spacing: 0.02em;
+  text-shadow: 0 3px 12px rgba(61, 12, 0, 0.15);
+  margin: 0.2rem 0 0.5rem;
+}
+
+.dsatsang__hero-sub {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--ds-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.4rem;
+}
+
+.dsatsang__hero-divider {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
-.daily-satsang-page .daily-hero-decor .line {
-  height: 2px;
-  width: 140px;
-  background: linear-gradient(to right, #b8860b, #000);
+.dsatsang__divider-line {
+  display: block;
+  height: 1.5px;
+  width: 120px;
+  background: linear-gradient(to right, transparent, var(--ds-gold), transparent);
 }
 
-.daily-satsang-page .daily-hero-decor .star {
-  font-size: 1rem;
-  color: #b8860b;
+.dsatsang__divider-lotus {
+  font-size: 0.85rem;
+  color: var(--ds-gold);
 }
 
-/* ===== CHANNEL CARD ===== */
+/* ================================================================
+   CHANNEL CARD
+================================================================ */
 
-.daily-satsang-page .channel-card {
-  max-width: 1150px;
-  margin: 0 auto 3rem;
-
-  /* ✅ No backdrop-filter (major performance fix) */
-  background: rgba(255, 255, 255, 0.95);
-
-  border-radius: 26px;
-  padding: 2rem 2.2rem;
-
-  /* ✅ Reduced shadow blur */
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.14);
-
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+.dsatsang__channel-card {
+  max-width: 1100px;
+  margin: 0 auto 3.5rem;
+  background: var(--ds-card-bg);
+  border-radius: var(--ds-radius-lg);
+  border: 1px solid var(--ds-border);
+  box-shadow: var(--ds-shadow-card);
+  padding: 2.2rem 2.4rem;
+  display: flex;
   gap: 2rem;
-  align-items: center;
+  align-items: flex-start;
+  animation: ds-fadeInScale 0.7s ease-out both;
+  animation-delay: 0.1s;
 
-  animation: dsFadeInScale 0.6s ease-out;
+  /* Subtle top gold stripe */
+  position: relative;
+  overflow: hidden;
 }
 
-/* Avatar */
-.daily-satsang-page .channel-avatar {
-  width: 90px;
-  height: 90px;
+.dsatsang__channel-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ds-gold), var(--ds-saffron), var(--ds-gold));
+}
+
+/* ── Avatar ── */
+.dsatsang__avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.dsatsang__avatar-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: conic-gradient(var(--ds-gold) 0deg,
+      var(--ds-saffron) 120deg,
+      var(--ds-gold-lt) 200deg,
+      var(--ds-gold) 360deg);
+  animation: ds-spin 8s linear infinite;
+  opacity: 0.8;
+}
+
+.dsatsang__avatar {
+  width: 94px;
+  height: 94px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #fff;
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+  border: 3.5px solid var(--ds-cream);
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 6px 20px rgba(61, 12, 0, 0.2);
 }
 
-/* Text */
-.daily-satsang-page .channel-title {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #2a1a10;
+/* ── Channel Body ── */
+.dsatsang__channel-body {
+  flex: 1;
+  min-width: 0;
 }
 
-.daily-satsang-page .channel-meta {
-  font-size: 0.88rem;
-  color: #666;
+.dsatsang__channel-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.8rem;
 }
 
-.daily-satsang-page .channel-desc {
-  font-size: 0.94rem;
-  color: #333;
-  line-height: 1.55;
-  margin-top: 0.6rem;
+.dsatsang__channel-title {
+  font-family: var(--ds-font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--ds-deep);
+  letter-spacing: 0.01em;
+  margin: 0 0 0.4rem;
 }
 
-/* ===== TABS ===== */
-
-.daily-satsang-page .channel-tabs {
+.dsatsang__channel-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.9rem;
-  border-top: 1px solid #e7dfd6;
-  padding-top: 1rem;
+  gap: 0.5rem;
+  margin: 0;
 }
 
-.daily-satsang-page .month-tab {
+.dsatsang__meta-pill {
+  display: inline-block;
+  background: rgba(200, 145, 50, 0.12);
+  border: 1px solid rgba(200, 145, 50, 0.3);
+  color: var(--ds-maroon);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.22rem 0.75rem;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+}
+
+.dsatsang__channel-desc {
+  font-size: 0.93rem;
+  color: var(--ds-muted);
+  line-height: 1.65;
+  margin: 0.2rem 0 1.4rem;
+}
+
+/* ── YouTube Button ── */
+.dsatsang__yt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #cc0000;
+  background: linear-gradient(135deg, #ff1a1a 0%, #cc0000 100%);
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(200, 0, 0, 0.35);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.dsatsang__yt-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(200, 0, 0, 0.45);
+}
+
+.dsatsang__yt-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.dsatsang__yt-count {
+  background: rgba(255, 255, 255, 0.22);
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.76rem;
+}
+
+/* ================================================================
+   MONTH TABS
+================================================================ */
+
+.dsatsang__tabs-wrap {
+  border-top: 1px solid var(--ds-border);
+  padding-top: 1rem;
+  margin-top: 0.2rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.dsatsang__tabs-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.dsatsang__tabs {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: nowrap;
+  width: max-content;
+}
+
+.dsatsang__tab {
   background: transparent;
   border: none;
-  font-size: 0.9rem;
   cursor: pointer;
-  color: #555;
+  font-family: var(--ds-font-body);
+  font-size: 0.875rem;
   font-weight: 500;
+  color: var(--ds-muted);
+  padding: 0.45rem 1rem;
+  border-radius: var(--ds-radius-sm);
+  transition: background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
   position: relative;
 }
 
-.daily-satsang-page .month-tab:hover {
-  color: #b8860b;
+.dsatsang__tab:hover {
+  color: var(--ds-maroon);
+  background: rgba(200, 145, 50, 0.08);
 }
 
-.daily-satsang-page .month-tab::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  height: 2px;
-  width: 0;
-  background: #b8860b;
-  transition: width 0.25s ease;
-}
-
-.daily-satsang-page .month-tab:hover::after,
-.daily-satsang-page .month-tab-active::after {
-  width: 100%;
-}
-
-.daily-satsang-page .month-tab-active {
+.dsatsang__tab--active {
+  background: linear-gradient(135deg, #fef3e0, #fde8bc);
+  color: var(--ds-maroon);
   font-weight: 700;
-  color: #b8860b;
+  box-shadow: 0 2px 8px rgba(200, 145, 50, 0.2);
 }
 
-/* ===== YOUTUBE BUTTON ===== */
-
-.daily-satsang-page .channel-right {
-  justify-self: end;
+.dsatsang__tab--active::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 2px;
+  background: var(--ds-gold);
+  border-radius: 2px;
 }
 
-.daily-satsang-page .yt-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  background: #ff0000;
-  padding: 0.55rem 1rem;
-  border-radius: 999px;
-  color: #fff;
-  font-size: 0.85rem;
-  text-decoration: none;
-  box-shadow: 0 5px 12px rgba(255, 0, 0, 0.3);
-}
+/* ================================================================
+   VIDEO GRID
+================================================================ */
 
-.daily-satsang-page .yt-button:hover {
-  transform: translateY(-2px);
-}
-
-/* ===== VIDEO GRID ===== */
-
-.daily-satsang-page .daily-videos {
-  max-width: 1150px;
+.dsatsang__videos {
+  max-width: 1100px;
   margin: 0 auto;
 }
 
-.daily-satsang-page .video-grid {
+.dsatsang__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 320px));
-  gap: 1.5rem;
-  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.6rem;
 }
 
-.daily-satsang-page .video-card {
+.dsatsang__video-card {
   text-decoration: none;
-  border-radius: 16px;
+  border-radius: var(--ds-radius-md);
   overflow: hidden;
-  background: #000;
-
-  /* ✅ Reduced shadow */
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.2);
-
-  transition: transform 0.25s ease;
-  animation: dsFadeUp 0.5s ease forwards;
+  background: var(--ds-card-bg);
+  border: 1px solid var(--ds-border);
+  box-shadow: var(--ds-shadow-video);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  animation: ds-fadeUp 0.5s ease both;
+  display: flex;
+  flex-direction: column;
 }
 
-.daily-satsang-page .video-card:hover {
-  transform: translateY(-5px);
+.dsatsang__video-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 20px 50px rgba(61, 12, 0, 0.22);
 }
 
-.daily-satsang-page .video-thumb-wrapper {
+/* Thumbnail */
+.dsatsang__thumb-wrap {
   position: relative;
   padding-top: 56.25%;
+  overflow: hidden;
+  background: #1a0800;
 }
 
-.daily-satsang-page .video-thumb {
+.dsatsang__thumb {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-/* Play Icon */
-.daily-satsang-page .play-icon {
-  width: 46px;
-  height: 46px;
+.dsatsang__video-card:hover .dsatsang__thumb {
+  transform: scale(1.06);
+  filter: brightness(0.6);
+}
+
+/* Overlay */
+.dsatsang__thumb-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.dsatsang__video-card:hover .dsatsang__thumb-overlay {
+  opacity: 1;
+}
+
+.dsatsang__play-btn {
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: #fff;
-  color: #e53935;
+  background: rgba(255, 255, 255, 0.95);
+  color: #cc0000;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  padding-left: 3px;
 }
 
-/* Info */
-.daily-satsang-page .video-info {
-  background: #fff;
-  padding: 1rem 1.1rem;
+.dsatsang__watch-label {
+  font-family: var(--ds-font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-.daily-satsang-page .video-info h3 {
-  font-size: 0.96rem;
-  line-height: 1.4;
+/* Video Info */
+.dsatsang__video-info {
+  padding: 1.1rem 1.2rem 1.3rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
 }
 
-.daily-satsang-page .video-date {
+.dsatsang__video-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ds-gold);
+  background: rgba(201, 146, 10, 0.1);
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 146, 10, 0.25);
+  align-self: flex-start;
+}
+
+.dsatsang__video-title {
+  font-family: var(--ds-font-display);
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.38;
+  color: var(--ds-text);
+  margin: 0;
+}
+
+.dsatsang__video-date {
   font-size: 0.8rem;
-  color: #888;
+  color: var(--ds-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
 }
 
-/* ===== NO VIDEOS ===== */
+.dsatsang__date-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ds-gold);
+  flex-shrink: 0;
+}
 
-.daily-satsang-page .no-videos {
+/* ================================================================
+   EMPTY STATE
+================================================================ */
+
+.dsatsang__empty {
   text-align: center;
-  padding: 2rem 1rem;
-  background: #fff8f0;
-  border-radius: 16px;
-  border: 1px dashed #e6c186;
-  color: #8a6b3c;
+  padding: 3.5rem 2rem;
+  background: var(--ds-card-bg);
+  border-radius: var(--ds-radius-md);
+  border: 1.5px dashed rgba(200, 145, 50, 0.4);
+  animation: ds-fadeUp 0.5s ease both;
 }
 
-/* ===== ANIMATIONS (GPU SAFE) ===== */
+.dsatsang__empty-icon {
+  font-size: 2.8rem;
+  margin-bottom: 0.8rem;
+  animation: ds-pulse 3s ease-in-out infinite;
+  display: block;
+}
 
-@keyframes dsFadeUp {
+.dsatsang__empty-title {
+  font-family: var(--ds-font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--ds-maroon);
+  margin: 0 0 0.4rem;
+}
+
+.dsatsang__empty-sub {
+  font-size: 0.9rem;
+  color: var(--ds-muted);
+  max-width: 380px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ================================================================
+   FOOTER STRIP
+================================================================ */
+
+.dsatsang__footer-strip {
+  text-align: center;
+  margin-top: 4rem;
+  font-family: var(--ds-font-display);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--ds-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  animation: ds-fadeUp 0.6s ease both;
+  animation-delay: 0.4s;
+}
+
+.dsatsang__footer-strip .dsatsang__om {
+  font-size: 1.3rem;
+  animation: ds-pulse 3s ease-in-out infinite;
+}
+
+/* ================================================================
+   KEYFRAMES
+================================================================ */
+
+@keyframes ds-fadeUp {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(18px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@keyframes dsFadeInScale {
+@keyframes ds-fadeInScale {
   from {
     opacity: 0;
-    transform: translateY(14px) scale(0.98);
+    transform: translateY(14px) scale(0.97);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
 }
 
-/* ===== RESPONSIVE ===== */
+@keyframes ds-pulse {
 
-@media (max-width: 900px) {
-  .daily-satsang-page .channel-card {
-    grid-template-columns: auto 1fr;
+  0%,
+  100% {
+    opacity: 1;
   }
 
-  .daily-satsang-page .channel-right {
-    grid-column: 1 / -1;
-    margin-top: 0.6rem;
-    justify-self: start;
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@keyframes ds-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================================================================
+   RESPONSIVE
+================================================================ */
+
+@media (max-width: 860px) {
+  .dsatsang__channel-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.8rem 1.6rem;
+  }
+
+  .dsatsang__channel-top {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
 @media (max-width: 600px) {
-  .daily-satsang-page {
-    padding: 2.6rem 1rem 4rem;
+  .dsatsang__page {
+    padding: 2.4rem 1rem 4rem;
   }
 
-  .daily-satsang-page .channel-card {
+  .dsatsang__hero-title {
+    font-size: 2.6rem;
+  }
+
+  .dsatsang__channel-card {
+    padding: 1.5rem 1.2rem;
+  }
+
+  .dsatsang__avatar {
+    width: 76px;
+    height: 76px;
+  }
+
+  .dsatsang__grid {
     grid-template-columns: 1fr;
-    padding: 1.6rem 1.3rem;
   }
 
-  .daily-satsang-page .channel-avatar {
-    width: 72px;
-    height: 72px;
-  }
-
-  .daily-satsang-page .video-grid {
-    grid-template-columns: 1fr;
+  .dsatsang__divider-line {
+    width: 70px;
   }
 }

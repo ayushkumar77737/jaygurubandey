@@ -1,192 +1,531 @@
-/* ===============================
-   DEVOTES BHAJAN – FULLY SCOPED
-   =============================== */
+/* ================================================================
+   DEVOTES BHAJAN – dvbhajan__ prefix (zero class-name collisions)
+   Aesthetic: Sacred warm — saffron, ivory, deep maroon, gold
+   Fonts: Cormorant Garamond (display) + DM Sans (body)
+================================================================ */
 
-.devotes-bhajan {
-  font-family: 'Poppins', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* ── Root variables ── */
+.dvbhajan__page {
+  --dvb-saffron: #e07b25;
+  --dvb-deep: #3d0c00;
+  --dvb-maroon: #6b1a0e;
+  --dvb-gold: #c9920a;
+  --dvb-gold-lt: #f0c84a;
+  --dvb-cream: #fdf6ec;
+  --dvb-card-bg: rgba(255, 252, 246, 0.97);
+  --dvb-border: rgba(200, 145, 50, 0.22);
+  --dvb-text: #2d1206;
+  --dvb-muted: #7a5c46;
+  --dvb-radius-lg: 24px;
+  --dvb-radius-md: 16px;
+  --dvb-radius-sm: 10px;
+  --dvb-shadow-card: 0 12px 36px rgba(61, 12, 0, 0.12), 0 2px 8px rgba(200, 140, 30, 0.09);
+  --dvb-font-display: 'Cormorant Garamond', Georgia, serif;
+  --dvb-font-body: 'DM Sans', system-ui, sans-serif;
+
+  font-family: var(--dvb-font-body);
   min-height: 100vh;
-  padding: 30px 20px 80px;
+  padding: 3.5rem 1.5rem 5rem;
+  background-color: var(--dvb-cream);
   text-align: center;
-  background: linear-gradient(135deg, #fff5f5, #fff0fa, #f5faff);
   overflow-x: hidden;
+  contain: layout paint;
+  position: relative;
 }
 
-/* ===== Title ===== */
-.devotes-bhajan .devotes-title {
-  margin-bottom: 35px;
-  font-size: 1.9rem;
-  font-weight: 900;
-  color: #2b2b2b;
-  letter-spacing: 1px;
-  animation: devotesFadeUp 0.45s ease-out both;
+/* ================================================================
+   BACKGROUND ORBS
+================================================================ */
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-
-  white-space: nowrap;     /* force single line */
+.dvbhajan__orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.32;
 }
 
-
-/* ===== Dropdown ===== */
-.devotes-bhajan .devotes-dropdown {
-  margin-bottom: 35px;
-  animation: devotesFadeUp 0.45s ease-out both;
+.dvbhajan__orb--1 {
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle, #f5d38a 0%, transparent 70%);
+  top: -150px;
+  right: -140px;
 }
 
-/* ===== Dropdown (NO COLOR) ===== */
-.devotes-bhajan .devotes-dropdown select {
-  padding: 12px 22px;
-  font-size: 16px;
-  border-radius: 10px;
-  border: 1px solid #ccc;     /* neutral gray */
-  background: #ffffff;
-  color: #000;               /* text color */
+.dvbhajan__orb--2 {
+  width: 440px;
+  height: 440px;
+  background: radial-gradient(circle, #f4a96a 0%, transparent 70%);
+  bottom: 80px;
+  left: -110px;
+}
+
+.dvbhajan__orb--3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #fce4c4 0%, transparent 70%);
+  top: 45%;
+  left: 58%;
+}
+
+/* Stack everything above orbs */
+.dvbhajan__hero,
+.dvbhajan__singer-wrap,
+.dvbhajan__grid-wrap,
+.dvbhajan__pagination,
+.dvbhajan__footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ================================================================
+   HERO
+================================================================ */
+
+.dvbhajan__hero {
+  margin-bottom: 2.8rem;
+  animation: dvb-fadeUp 0.6s ease-out both;
+}
+
+.dvbhajan__hero-badge {
+  display: inline-block;
+  font-family: var(--dvb-font-body);
+  font-size: 0.72rem;
   font-weight: 600;
-  cursor: pointer;
-  outline: none;
-  text-align: center;
-  text-align-last: center;
-  transition: border 0.2s ease;
-}
-
-/* Focus state – still neutral */
-.devotes-bhajan .devotes-dropdown select:focus {
-  border-color: #999;        /* no orange */
-  box-shadow: none;          /* remove glow */
-}
-
-/* ===== Video Grid ===== */
-.devotes-bhajan .devotes-video-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 10px;
-  animation: devotesFadeUp 0.45s ease-out both;
-}
-
-/* ===== Video Card ===== */
-.devotes-bhajan .devotes-video-card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 18px;
-  border: 1px solid rgba(243, 156, 18, 0.15);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  padding: 18px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  animation: devotesFadeUp 0.55s ease-out both;
-}
-
-.devotes-bhajan .devotes-video-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-}
-
-.devotes-bhajan .devotes-video-card iframe {
-  width: 100%;
-  height: 180px;
-  border-radius: 14px;
-  border: none;
-  margin-bottom: 10px;
-}
-
-.devotes-bhajan .devotes-video-card p {
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: #2b2b2b;
-}
-
-/* ===== Hint ===== */
-.devotes-bhajan .devotes-hint {
-  grid-column: 1 / -1;
-  font-size: 16px;
-  color: #777;
-  margin-top: 20px;
-}
-
-/* ===== Pagination (Page-color matched) ===== */
-.devotes-bhajan .devotes-pagination {
-  margin: 30px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-}
-
-/* Prev / Next buttons */
-.devotes-bhajan .devotes-pagination button {
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  background: #ffffff;      /* ✅ matches page */
-  color: #333;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s ease, box-shadow 0.2s ease;
-}
-
-.devotes-bhajan .devotes-pagination button:hover:not(:disabled) {
-  background: #f5f5f5;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-.devotes-bhajan .devotes-pagination button:disabled {
-  background: #e0e0e0;
-  color: #888;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-/* Page indicator */
-.devotes-bhajan .devotes-page-circle {
-  padding: 10px 18px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dvb-gold);
+  background: rgba(201, 146, 10, 0.1);
+  border: 1px solid rgba(201, 146, 10, 0.28);
+  padding: 0.25rem 0.9rem;
   border-radius: 999px;
-  background: #ffffff;      /* ✅ matches page */
-  border: 1px solid #ddd;
-  color: #333;
-  font-weight: 600;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  margin-bottom: 1rem;
 }
 
-/* ===== Animation ===== */
-@keyframes devotesFadeUp {
+.dvbhajan__hero-title {
+  font-family: var(--dvb-font-display);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 700;
+  color: var(--dvb-deep);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-shadow: 0 3px 12px rgba(61, 12, 0, 0.13);
+  margin: 0 0 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.dvbhajan__pray {
+  font-size: 0.75em;
+  display: inline-block;
+  animation: dvb-pulse 3s ease-in-out infinite;
+}
+
+.dvbhajan__hero-sub {
+  font-size: 0.93rem;
+  color: var(--dvb-muted);
+  letter-spacing: 0.06em;
+  margin: 0 0 1.4rem;
+}
+
+.dvbhajan__hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.dvbhajan__div-line {
+  display: block;
+  height: 1.5px;
+  width: 100px;
+  background: linear-gradient(to right, transparent, var(--dvb-gold), transparent);
+}
+
+.dvbhajan__div-symbol {
+  font-size: 0.85rem;
+  color: var(--dvb-gold);
+}
+
+/* ================================================================
+   SINGER PILLS
+================================================================ */
+
+.dvbhajan__singer-wrap {
+  margin-bottom: 2.8rem;
+  animation: dvb-fadeUp 0.65s ease-out both;
+  animation-delay: 0.1s;
+}
+
+.dvbhajan__singer-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dvb-muted);
+  margin: 0 0 1rem;
+}
+
+.dvbhajan__select-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.dvbhajan__select {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: var(--dvb-font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dvb-maroon);
+  background: var(--dvb-card-bg);
+  border: 1.5px solid var(--dvb-border);
+  border-radius: 999px;
+  padding: 0.65rem 3rem 0.65rem 1.8rem;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(61, 12, 0, 0.1);
+  outline: none;
+  min-width: 240px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dvbhajan__select:focus,
+.dvbhajan__select:hover {
+  border-color: var(--dvb-gold);
+  box-shadow: 0 8px 24px rgba(200, 145, 50, 0.22);
+}
+
+.dvbhajan__select-arrow {
+  position: absolute;
+  right: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--dvb-gold);
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+/* ================================================================
+   GRID SECTION
+================================================================ */
+
+.dvbhajan__grid-wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  animation: dvb-fadeUp 0.65s ease-out both;
+  animation-delay: 0.15s;
+}
+
+.dvbhajan__grid-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+  padding: 0 0.2rem;
+}
+
+.dvbhajan__grid-singer {
+  font-family: var(--dvb-font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dvb-deep);
+}
+
+.dvbhajan__grid-count {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dvb-gold);
+  background: rgba(201, 146, 10, 0.1);
+  border: 1px solid rgba(201, 146, 10, 0.25);
+  padding: 0.2rem 0.8rem;
+  border-radius: 999px;
+}
+
+.dvbhajan__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.6rem;
+}
+
+/* ================================================================
+   VIDEO CARD
+================================================================ */
+
+.dvbhajan__card {
+  background: var(--dvb-card-bg);
+  border-radius: var(--dvb-radius-md);
+  border: 1px solid var(--dvb-border);
+  box-shadow: var(--dvb-shadow-card);
+  overflow: hidden;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  animation: dvb-fadeUp 0.5s ease both;
+  text-align: left;
+  position: relative;
+}
+
+/* Gold top stripe */
+.dvbhajan__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--dvb-gold), var(--dvb-saffron), var(--dvb-gold));
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.dvbhajan__card:hover::before {
+  opacity: 1;
+}
+
+.dvbhajan__card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 20px 50px rgba(61, 12, 0, 0.18);
+}
+
+.dvbhajan__card-frame-wrap {
+  position: relative;
+  padding-top: 56.25%;
+  background: #1a0800;
+  overflow: hidden;
+}
+
+.dvbhajan__iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0;
+}
+
+.dvbhajan__card-info {
+  padding: 1rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.dvbhajan__card-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dvb-gold);
+  background: rgba(201, 146, 10, 0.1);
+  border: 1px solid rgba(201, 146, 10, 0.25);
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+
+.dvbhajan__card-title {
+  font-family: var(--dvb-font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--dvb-text);
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* ================================================================
+   EMPTY STATE
+================================================================ */
+
+.dvbhajan__empty {
+  padding: 4rem 2rem;
+  background: var(--dvb-card-bg);
+  border-radius: var(--dvb-radius-md);
+  border: 1.5px dashed rgba(200, 145, 50, 0.38);
+  max-width: 480px;
+  margin: 0 auto;
+  animation: dvb-fadeUp 0.5s ease both;
+}
+
+.dvbhajan__empty-icon {
+  font-size: 3rem;
+  margin-bottom: 0.8rem;
+  display: block;
+  animation: dvb-pulse 3s ease-in-out infinite;
+}
+
+.dvbhajan__empty-title {
+  font-family: var(--dvb-font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--dvb-maroon);
+  margin: 0 0 0.4rem;
+}
+
+.dvbhajan__empty-sub {
+  font-size: 0.9rem;
+  color: var(--dvb-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ================================================================
+   PAGINATION
+================================================================ */
+
+.dvbhajan__pagination {
+  margin: 2.5rem 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: dvb-fadeUp 0.5s ease both;
+}
+
+.dvbhajan__pg-btn {
+  font-family: var(--dvb-font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.55rem 1.3rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--dvb-border);
+  background: var(--dvb-card-bg);
+  color: var(--dvb-maroon);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(61, 12, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.dvbhajan__pg-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #fef3e0, #fde8bc);
+  box-shadow: 0 8px 20px rgba(200, 145, 50, 0.2);
+}
+
+.dvbhajan__pg-btn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.dvbhajan__pg-dots {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.dvbhajan__pg-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(200, 145, 50, 0.3);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  padding: 0;
+}
+
+.dvbhajan__pg-dot--active {
+  background: var(--dvb-gold);
+  transform: scale(1.35);
+}
+
+.dvbhajan__pg-info {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--dvb-muted);
+  min-width: 40px;
+}
+
+/* ================================================================
+   FOOTER
+================================================================ */
+
+.dvbhajan__footer {
+  margin-top: 3.5rem;
+  font-family: var(--dvb-font-display);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--dvb-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  animation: dvb-fadeUp 0.6s ease both;
+  animation-delay: 0.3s;
+}
+
+/* ================================================================
+   KEYFRAMES
+================================================================ */
+
+@keyframes dvb-fadeUp {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(16px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 768px) {
-  .devotes-bhajan .devotes-title {
-    font-size: 2.2rem;
+@keyframes dvb-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
   }
 
-  .devotes-bhajan .devotes-video-card iframe {
-    height: 150px;
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ================================================================
+   RESPONSIVE
+================================================================ */
+
+@media (max-width: 768px) {
+  .dvbhajan__hero-title {
+    font-size: 1.9rem;
+  }
+
+  .dvbhajan__grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+
+  .dvbhajan__grid-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .devotes-bhajan .devotes-title {
-    font-size: 1.3rem;
+  .dvbhajan__page {
+    padding: 2.4rem 1rem 4rem;
   }
 
-  .devotes-bhajan .devotes-video-grid {
+  .dvbhajan__hero-title {
+    font-size: 1.5rem;
+  }
+
+  .dvbhajan__grid {
     grid-template-columns: 1fr;
   }
 
-  .devotes-bhajan .devotes-video-card iframe {
-    height: 130px;
-  }
-
-  .devotes-bhajan .devotes-dropdown select {
-    width: 100%;
+  .dvbhajan__pill {
+    font-size: 0.95rem;
+    padding: 0.45rem 1.2rem;
   }
 }
