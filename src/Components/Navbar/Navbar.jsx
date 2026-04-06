@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
   const [openDropdown, setOpenDropdown] = useState(null)
+  const [scrolled, setScrolled] = useState(false)
   const navRef = useRef(null)
   const location = useLocation()
   const navigate = useNavigate()
@@ -23,7 +24,8 @@ const Navbar = () => {
     setOpenDropdown(openDropdown === name ? null : name)
   }
 
-  const linkClass = ({ isActive }) => 'btn' + (isActive ? ' active' : '')
+  const isActive = (path) =>
+    location.pathname === path || location.pathname.startsWith(path + '/')
 
   const handleNavClick = (path) => {
     closeMenu()
@@ -36,432 +38,217 @@ const Navbar = () => {
   }
 
   const handleRefresh = () => window.location.reload()
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10)
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   useEffect(() => {
     if (!openDropdown) return
-
     const handleOutsideClick = (e) => {
       if (navRef.current && !navRef.current.contains(e.target)) {
         setOpenDropdown(null)
       }
     }
-
     document.addEventListener('mousedown', handleOutsideClick)
-
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick)
-    }
+    return () => document.removeEventListener('mousedown', handleOutsideClick)
   }, [openDropdown])
 
   useEffect(() => {
-  if (mobileMenu) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "";
-  }
-
-  return () => {
-    document.body.style.overflow = "";
-  };
-}, [mobileMenu]);
+    if (mobileMenu) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => { document.body.style.overflow = "" }
+  }, [mobileMenu])
 
   const handleLogout = async () => {
     try {
-      await signOut(auth);
-      closeMenu();        // close dropdown & mobile menu
-      navigate("/login", { replace: true }); // redirect after logout
-      window.history.replaceState(null, "", "/login");
+      await signOut(auth)
+      closeMenu()
+      navigate("/login", { replace: true })
+      window.history.replaceState(null, "", "/login")
     } catch (error) {
-      console.error("Logout error:", error);
+      console.error("Logout error:", error)
     }
-  };
+  }
+
+  const navItems = [
+    {
+      key: 'home',
+      label: 'Home',
+      activeCheck: location.pathname === '/' || location.pathname.startsWith('/home'),
+      links: [
+        { label: 'Main Home', path: '/' },
+        { label: 'Latest Updates', path: '/latest-updates' },
+        { label: 'Daily Schedule', path: '/dailyschedule' },
+      ],
+      extra: (
+        <li key="logout">
+          <button className="jgb-nav__dropdown-logout" onClick={handleLogout}>
+            <span className="jgb-nav__logout-icon">⏻</span> Logout
+          </button>
+        </li>
+      )
+    },
+    {
+      key: 'about', label: 'About', activeCheck: isActive('/about'),
+      links: [
+        { label: 'About Guruji', path: '/about' },
+        { label: 'Ashram Vision', path: '/ashram-vision' },
+      ]
+    },
+    {
+      key: 'amritvani', label: 'Amritvani', activeCheck: isActive('/satsang'),
+      links: [
+        { label: 'All Amritvani', path: '/satsang' },
+        { label: 'Latest Amritvani', path: '/latest-amritvani' },
+        { label: 'Daily Teachings', path: '/daily-teachings' },
+      ]
+    },
+    {
+      key: 'bhajan', label: 'Bhajan', activeCheck: isActive('/bhajan'),
+      links: [
+        { label: 'All Bhajan', path: '/bhajan' },
+        { label: 'Latest Bhajan', path: '/latest-bhajan' },
+        { label: 'Satguru Chalisa', path: '/satguru-chalisa' },
+        { label: 'Satguru Arti', path: '/satguru-arti' },
+      ]
+    },
+    {
+      key: 'program', label: 'Program', activeCheck: isActive('/program'),
+      links: [
+        { label: 'All Programs', path: '/program' },
+        { label: 'Upcoming Programs', path: '/upcoming-programs' },
+        { label: 'Special Events', path: '/special-events' },
+        { label: 'Important Dates', path: '/important-dates' },
+        { label: 'Live Now 🔴', path: '/live-now' },
+        { label: 'My Dhyan Attendance', path: '/dhyan-attendance-history' },
+      ]
+    },
+    {
+      key: 'blog', label: 'Blog', activeCheck: isActive('/blog'),
+      links: [
+        { label: 'All Blogs', path: '/blog' },
+        { label: 'Testimonies', path: '/testimonies' },
+        { label: 'Spotlight', path: '/spotlight' },
+      ]
+    },
+    {
+      key: 'gallery', label: 'Gallery', activeCheck: isActive('/gallery'),
+      links: [
+        { label: 'All Gallery', path: '/gallery' },
+        { label: 'Ashram Life', path: '/ashram-life' },
+        { label: 'Divine Moments', path: '/divine' },
+      ]
+    },
+    {
+      key: 'contact', label: 'Contact Us', activeCheck: isActive('/contact'),
+      links: [
+        { label: 'Contact Information', path: '/contact' },
+        { label: 'Chat With Us', path: '/chat' },
+        { label: 'Feedback', path: '/faq' },
+      ]
+    },
+    {
+      key: 'contribute', label: 'Contribute', activeCheck: isActive('/contribute'),
+      links: [
+        { label: 'Donate Now', path: '/contribute' },
+        { label: 'Contribution FAQ', path: '/contribute-faq' },
+        { label: 'Check Payment Status', path: '/check-status' },
+        { label: 'My Account', path: '/account' },
+        { label: 'Request Email Update', path: '/request-email-update' },
+      ]
+    },
+  ]
 
   return (
-    <nav className='container' ref={navRef}>
+    <nav className={`jgb-nav__container${scrolled ? ' jgb-nav__scrolled' : ''}`} ref={navRef}>
+
+      {/* Dark overlay */}
       {mobileMenu && (
-        <div className="nav-overlay" onClick={closeMenu}></div>
+        <div className="jgb-nav__overlay" onClick={closeMenu} />
       )}
+
+      {/* ── Floating X — fixed top-left, outside the drawer ── */}
+      {mobileMenu && (
+        <button
+          className="jgb-nav__float-close"
+          onClick={closeMenu}
+          aria-label="Close menu"
+        >
+          <span />
+          <span />
+        </button>
+      )}
+
       {/* Logo */}
-      <img
-        src={logo}
-        alt='Logo'
-        className='logo'
-        onClick={handleRefresh}
-        style={{ cursor: 'pointer' }}
-      />
+      <div className="jgb-nav__logo-wrap" onClick={handleRefresh}>
+        <img src={logo} alt="Jai Gurubande Logo" className="jgb-nav__logo" />
+        <span className="jgb-nav__logo-glow" />
+      </div>
 
       {/* Nav Links */}
-      <ul className={mobileMenu ? 'nav-links' : 'nav-links hide-mobile-menu'}>
-        {/* ✅ HOME DROPDOWN */}
-        <li className='dropdown'>
-          <button
-            className={linkClass({
-              isActive: location.pathname === '/' || location.pathname.startsWith('/home')
-            })}
-            onClick={(e) => {
-              e.stopPropagation()
-              toggleDropdown('home')
-            }}
-          >
-            Home ▾
-          </button>
+      <ul className={`jgb-nav__links${mobileMenu ? '' : ' jgb-nav__links--hidden'}`}>
+        {navItems.map((item) => (
+          <li key={item.key} className="jgb-nav__item">
+            <button
+              className={`jgb-nav__trigger${item.activeCheck ? ' jgb-nav__trigger--active' : ''}`}
+              onClick={(e) => {
+                e.stopPropagation()
+                toggleDropdown(item.key)
+              }}
+            >
+              <span className="jgb-nav__trigger-label">{item.label}</span>
+              <span className={`jgb-nav__trigger-arrow${openDropdown === item.key ? ' jgb-nav__trigger-arrow--open' : ''}`}>
+                ▾
+              </span>
+            </button>
 
-          {openDropdown === 'home' && (
-            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
-              <li>
-                <button onClick={() => handleNavClick('/')}>
-                  Main Home
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/latest-updates')}>
-                  Latest Updates
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/dailyschedule')}>
-                  Daily Schedule
-                </button>
-              </li>
-              <li>
-                <button
-                  className="logout-btn"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
-              </li>
-            </ul>
-          )}
-        </li>
-
-
-        {/* ✅ ABOUT DROPDOWN */}
-        <li className='dropdown'>
-          <button
-            className={linkClass({
-              isActive: location.pathname.startsWith('/about')
-            })}
-            onClick={(e) => {
-              e.stopPropagation()
-              toggleDropdown('about')
-            }}
-          >
-            About ▾
-          </button>
-
-          {openDropdown === 'about' && (
-            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
-              <li>
-                <button onClick={() => handleNavClick('/about')}>
-                  About Guruji
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/ashram-vision')}>
-                  Ashram Vision
-                </button>
-              </li>
-            </ul>
-          )}
-        </li>
-
-        {/* ✅ AMRITVANI DROPDOWN */}
-        <li className='dropdown'>
-          <button
-            className={linkClass({
-              isActive: location.pathname.startsWith('/satsang')
-            })}
-            onClick={(e) => {
-              e.stopPropagation()
-              toggleDropdown('amritvani')
-            }}
-          >
-            Amritvani ▾
-          </button>
-
-          {openDropdown === 'amritvani' && (
-            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
-              <li>
-                <button onClick={() => handleNavClick('/satsang')}>
-                  All Amritvani
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/latest-amritvani')}>
-                  Latest Amritvani
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/daily-teachings')}>
-                  Daily Teachings
-                </button>
-              </li>
-            </ul>
-          )}
-        </li>
-
-        {/* ✅ BHAJAN DROPDOWN */}
-        <li className='dropdown'>
-          <button
-            className={linkClass({
-              isActive: location.pathname.startsWith('/bhajan')
-            })}
-            onClick={(e) => {
-              e.stopPropagation()
-              toggleDropdown('bhajan')
-            }}
-          >
-            Bhajan ▾
-          </button>
-
-          {openDropdown === 'bhajan' && (
-            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
-              <li>
-                <button onClick={() => handleNavClick('/bhajan')}>
-                  All Bhajan
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/latest-bhajan')}>
-                  Latest Bhajan
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/satguru-chalisa')}>
-                  Satguru Chalisa
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/satguru-arti')}>
-                  Satguru Arti
-                </button>
-              </li>
-            </ul>
-          )}
-        </li>
-
-
-        {/* ✅ PROGRAM DROPDOWN */}
-        <li className='dropdown'>
-          <button
-            className={linkClass({
-              isActive: location.pathname.startsWith('/program')
-            })}
-            onClick={(e) => {
-              e.stopPropagation()
-              toggleDropdown('program')
-            }}
-          >
-            Program ▾
-          </button>
-
-          {openDropdown === 'program' && (
-            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
-              <li>
-                <button onClick={() => handleNavClick('/program')}>
-                  All Programs
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/upcoming-programs')}>
-                  Upcoming Programs
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/special-events')}>
-                  Special Events
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/important-dates')}>
-                  Important Dates
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/live-now')}>
-                  Live Now
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/dhyan-attendance-history')}>
-                  My Dhyan Attendance
-                </button>
-              </li>
-            </ul>
-          )}
-        </li>
-
-
-        {/* ✅ BLOG DROPDOWN */}
-        <li className='dropdown'>
-          <button
-            className={linkClass({
-              isActive: location.pathname.startsWith('/blog')
-            })}
-            onClick={(e) => {
-              e.stopPropagation()
-              toggleDropdown('blog')
-            }}
-          >
-            Blog ▾
-          </button>
-
-          {openDropdown === 'blog' && (
-            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
-              <li>
-                <button onClick={() => handleNavClick('/blog')}>
-                  All Blogs
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/testimonies')}>
-                  Testimonies
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/spotlight')}>
-                  Spotlight
-                </button>
-              </li>
-            </ul>
-          )}
-        </li>
-
-
-        {/* ✅ GALLERY DROPDOWN */}
-        <li className='dropdown'>
-          <button
-            className={linkClass({
-              isActive: location.pathname.startsWith('/gallery')
-            })}
-            onClick={(e) => {
-              e.stopPropagation()
-              toggleDropdown('gallery')
-            }}
-          >
-            Gallery ▾
-          </button>
-
-          {openDropdown === 'gallery' && (
-            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
-              <li>
-                <button onClick={() => handleNavClick('/gallery')}>
-                  All Gallery
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/ashram-life')}>
-                  Ashram Life
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/divine')}>
-                  Divine Moments
-                </button>
-              </li>
-            </ul>
-          )}
-        </li>
-
-
-        {/* ✅ CONTACT US DROPDOWN */}
-        <li className='dropdown'>
-          <button
-            className={linkClass({
-              isActive: location.pathname.startsWith('/contact')
-            })}
-            onClick={(e) => {
-              e.stopPropagation()
-              toggleDropdown('contact')
-            }}
-          >
-            Contact Us ▾
-          </button>
-
-          {openDropdown === 'contact' && (
-            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
-              <li>
-                <button onClick={() => handleNavClick('/contact')}>
-                  Contact Information
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/chat')}>
-                  Chat With Us
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/faq')}>
-                  Feedback
-                </button>
-              </li>
-            </ul>
-          )}
-        </li>
-
-
-        {/* ✅ CONTRIBUTE DROPDOWN */}
-        <li className='dropdown'>
-          <button
-            className={linkClass({
-              isActive: location.pathname.startsWith('/contribute')
-            })}
-            onClick={(e) => {
-              e.stopPropagation()
-              toggleDropdown('contribute')
-            }}
-          >
-            Contribute ▾
-          </button>
-
-          {openDropdown === 'contribute' && (
-            <ul className='dropdown-menu' onClick={(e) => e.stopPropagation()}>
-              <li>
-                <button onClick={() => handleNavClick('/contribute')}>
-                  Donate Now
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/contribute-faq')}>
-                  Contribution FAQ
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/check-status')}>
-                  Check Payment Status
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/account')}>
-                  My Account
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('/request-email-update')}>
-                  Request Email Update
-                </button>
-              </li>
-            </ul>
-          )}
-        </li>
-
+            {openDropdown === item.key && (
+              <ul className="jgb-nav__dropdown" onClick={(e) => e.stopPropagation()}>
+                <li className="jgb-nav__dropdown-header">
+                  <span>{item.label}</span>
+                </li>
+                {item.links.map((link) => (
+                  <li key={link.path} className="jgb-nav__dropdown-item">
+                    <button
+                      className={`jgb-nav__dropdown-btn${location.pathname === link.path ? ' jgb-nav__dropdown-btn--active' : ''}`}
+                      onClick={() => handleNavClick(link.path)}
+                    >
+                      <span className="jgb-nav__dropdown-dot" />
+                      {link.label}
+                    </button>
+                  </li>
+                ))}
+                {item.extra && item.extra}
+              </ul>
+            )}
+          </li>
+        ))}
       </ul>
 
-      {/* Circle */}
-      <img
-        src="/favicon.png"
-        alt="Circle"
-        className="circle-img"
-        onClick={handleRefresh}
-        style={{ cursor: "pointer" }}
-      />
-
-      {/* Mobile Menu */}
-      <div className={`menu ${mobileMenu ? 'open' : ''}`} onClick={toggleMenu}>
-        <span></span>
-        <span></span>
-        <span></span>
+      {/* Avatar */}
+      <div className="jgb-nav__avatar-wrap" onClick={handleRefresh}>
+        <img src="/favicon.png" alt="Guruji" className="jgb-nav__avatar" />
+        <span className="jgb-nav__avatar-ring" />
       </div>
+
+      {/* Hamburger — hidden when drawer is open */}
+      {!mobileMenu && (
+        <button
+          className="jgb-nav__hamburger"
+          onClick={toggleMenu}
+          aria-label="Open menu"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      )}
     </nav>
   )
 }

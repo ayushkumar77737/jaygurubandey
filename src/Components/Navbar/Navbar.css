@@ -1,354 +1,699 @@
-/* ========================= Global Reset ========================= */
-html,
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  background: #222; /* darker elegant background */
-  font-family: "Poppins", Arial, sans-serif;
+/* ================================================================
+   JGB NAVBAR — Jai Gurubande  |  Vibrant Divine Theme
+   All classes prefixed with  jgb-nav__  to prevent global leakage
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Nunito:wght@400;500;600;700&display=swap');
+
+/* ── CSS Variables ── */
+.jgb-nav__container {
+  --jgb-gold: #f5c542;
+  --jgb-gold-light: #ffe082;
+  --jgb-saffron: #ff8c00;
+  --jgb-rose: #ff4d6d;
+  --jgb-navy: #020b1a;
+  --jgb-navy-mid: #0a1a2f;
+  --jgb-white: #ffffff;
+  --jgb-transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  --jgb-radius: 10px;
 }
 
-/* ========================= Navbar Container ========================= */
-nav {
+.jgb-nav__container *,
+.jgb-nav__container *::before,
+.jgb-nav__container *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ================================================================
+   CONTAINER
+   ================================================================ */
+.jgb-nav__container {
   width: 100%;
-  background: linear-gradient(90deg, #0a1a2f, #020b1a);
-  color: #ffffff;
-  padding: 8px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 6px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: 'Nunito', sans-serif;
+
+  background: linear-gradient(105deg,
+      #1a0508 0%, #0d0a2e 20%, #020b1a 45%, #0d0a2e 70%, #1a0508 100%);
+  background-size: 300% 100%;
+  animation: jgb-bg-shimmer 10s ease-in-out infinite;
+
+  border-top: 2.5px solid transparent;
+  border-image: linear-gradient(90deg,
+      #6b0f1a, #ff6a00, #f5c542, #ff6a00, #6b0f1a) 1;
+  border-bottom: 1px solid rgba(245, 197, 66, 0.25);
+
+  box-shadow:
+    0 4px 8px rgba(245, 197, 66, 0.1),
+    0 14px 45px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 200, 80, 0.06);
+
+  transition: padding var(--jgb-transition), box-shadow var(--jgb-transition);
+}
+
+@keyframes jgb-bg-shimmer {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.jgb-nav__scrolled {
+  padding: 4px 24px;
+  box-shadow: 0 2px 0 rgba(245, 197, 66, 0.25), 0 18px 50px rgba(0, 0, 0, 0.95);
+}
+
+/* ================================================================
+   LOGO
+   ================================================================ */
+.jgb-nav__logo-wrap {
   position: relative;
-  z-index: 10;
-  flex-wrap: nowrap;
-
-  border-bottom: 2px solid #f5c542;
-  box-shadow: 0 4px 20px rgba(245, 197, 66, 0.35);
-}
-
-
-/* Logo - stays left */
-nav img.logo {
-  width: 100px;
-  height: auto;
-  display: block;
+  cursor: pointer;
   flex-shrink: 0;
-  transition: transform 0.3s ease;
-}
-
-nav img.logo:hover {
-  transform: scale(1.08);
-}
-
-/* ========================= Navigation Links (Desktop) ========================= */
-nav ul {
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
-  margin: 0;
-  padding: 0;
-  flex-wrap: nowrap;   /* ✅ ADD */
 }
 
-/* Menu Items */
-nav ul li {
-  list-style: none;
-  margin: 4px 14px;
-  font-size: 13px;
-}
-
-/* Buttons */
-nav ul li a {
-  text-decoration: none;
-  color: #fff;
-  background: transparent;
-  padding: 5px 10px;
-  border-radius: 25px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  display: inline-block;
-  text-align: center;
-  border: 2px solid transparent;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Buttons (for React <button> elements) */
-nav ul li button {
-  text-decoration: none;
-  color: #fff;
-  background: transparent;
-  padding: 5px 10px;
-  border-radius: 25px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-  cursor: pointer;
-}
-
-
-/* Glow Hover Effect */
-nav ul li a:hover {
-  background: linear-gradient(90deg, #f5c542, #ffb703);
-  color: #1a1a1a;
-  box-shadow: 0 0 20px rgba(245, 197, 66, 0.9);
-  transform: translateY(-2px);
-}
-
-
-/* ========================= Circle Image ========================= */
-.circle-img {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
+.jgb-nav__logo {
+  width: 54px;
+  height: 54px;
   object-fit: cover;
-  border: 3px solid #f5c542;
-  flex-shrink: 0;
-  transition: all 0.3s ease;
+  border-radius: 50%;
+  border: 2px solid var(--jgb-gold);
+  position: relative;
+  z-index: 2;
+  animation: jgb-spin 12s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(245, 197, 66, 0.6));
+  transition: filter var(--jgb-transition);
 }
 
-.circle-img:hover {
-  border-color: #f5c542;
-  transform: scale(1.1);
+.jgb-nav__logo-wrap:hover .jgb-nav__logo {
+  filter: drop-shadow(0 0 18px rgba(255, 140, 0, 1));
 }
 
-/* ========================= Right Side Container (Circle + Menu) ========================= */
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 12px; /* spacing between circle and menu */
+.jgb-nav__logo-glow {
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(245, 197, 66, 0.5);
+  animation: jgb-ring-spin 8s linear infinite;
+  pointer-events: none;
 }
 
-/* ========================= Mobile Menu Icon (Hamburger / Cross) ========================= */
-.menu {
-  display: none; /* hidden on desktop */
-  flex-direction: column;
-  justify-content: space-between;
-  width: 32px;
-  height: 24px;
-  cursor: pointer;
-  z-index: 20;
-  transition: all 0.3s ease;
-}
-
-.menu span {
-  display: block;
-  height: 4px;
-  width: 100%;
-  background: #f5c542;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-}
-
-
-
-/* ========================= Mobile / Tablet View ========================= */
-@media (max-width: 1286px) {
-  nav {
-    justify-content: space-between;
-    top: 0;
-    left: 0;
-    width: 100%;
-  }
-
-  nav ul {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(160deg, #0a1a2f, #020b1a);
-    width: 240px;
-    padding-top: 110px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    z-index: 15;
-    flex: unset;
-    transform: translateX(0);
-    transition: transform 0.45s ease;
-    will-change: transform;
-    overflow-y: auto;
-    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.7);
-  }
-
-  .hide-mobile-menu {
-    transform: translateX(100%);
-  }
-
-  nav ul li {
-    margin: 0;
-    text-align: center;
-    width: auto;
-    display: block;
-  }
-
-  nav ul li a {
-    width: 170px;
-    height: 48px;
-    line-height: 48px;
-    margin: 0 auto;
-    border-radius: 25px;
-    font-size: 16px;
-    border: 2px solid #f5c542;
-    background: transparent;
-  }
-
-  nav ul li a:hover {
-    background: linear-gradient(90deg, #ff9800, #ff5722);
-    border-color: #ff5722;
-  }
-
-  /* Show hamburger menu */
-  .menu {
-    display: flex;
-  }
-
-  .circle-img {
-    width: 55px;
-    height: 55px;
-  }
-}
-
-/* ========================= Extra Small Screens ========================= */
-@media (max-width: 600px) {
-  nav img.logo {
-    width: 85px;
-  }
-
-  .circle-img {
-    width: 48px;
-    height: 48px;
-  }
-
-  nav ul li a {
-    width: 140px;
-    font-size: 14px;
-  }
-}
-
-/* ========================= Full 3D Moderate-Speed Flip ========================= */
-@keyframes fullFlipModerate {
+@keyframes jgb-spin {
   0% {
     transform: rotateY(0deg);
   }
+
   50% {
-    transform: rotateY(180deg) scaleX(-1);
+    transform: rotateY(180deg);
   }
+
   100% {
     transform: rotateY(360deg);
   }
 }
 
-/* Logo Animation */
-nav img.logo {
-  animation: fullFlipModerate 9s ease-in-out infinite; /* 9 seconds per full flip */
-  transform-style: preserve-3d;
-  border-radius: 50%;
-  backface-visibility: visible;
-}
+@keyframes jgb-ring-spin {
+  from {
+    transform: rotate(0deg);
+  }
 
-/* Circle Animation */
-.circle-img {
-  animation: fullFlipModerate 9s ease-in-out infinite; /* matches logo perfectly */
-  transform-style: preserve-3d;
-  border-radius: 50%;
-  backface-visibility: visible;
-}
-
-/* ========================= DROPDOWN (FINAL FIX) ========================= */
-
-nav {
-  overflow: visible;
-}
-
-.dropdown {
-  position: relative;
-  z-index: 999;
-}
-
-/* Dropdown box */
-.dropdown-menu {
-  position: absolute;
-  top: 120%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg, #0a1a2f, #020b1a);
-  border: 2px solid #f5c542;
-  border-radius: 14px;
-  min-width: 210px;
-  padding: 10px 0;
-
-  /* IMPORTANT */
-  display: flex;              /* React controls visibility */
-  flex-direction: column;
-  z-index: 9999;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
-}
-
-/* Dropdown items */
-.dropdown-menu li {
-  list-style: none;
-  width: 100%;
-  text-align: center;
-}
-
-/* Dropdown buttons */
-.dropdown-menu button {
-  width: 100%;
-  padding: 12px 18px;
-  background: transparent;
-  color: #fff;
-  border: none;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-/* Hover effect */
-.dropdown-menu button:hover {
-  background: linear-gradient(90deg, #f5c542, #ffb703);
-}
-
-/* ========================= MOBILE DROPDOWN ========================= */
-@media (max-width: 1286px) {
-  .dropdown-menu {
-    position: static;
-    transform: none;
-    width: 100%;
-    margin-top: 6px;
-    border-radius: 12px;
+  to {
+    transform: rotate(360deg);
   }
 }
 
-/* ===== FIX ABOUT & AMRITVANI BUTTON SIZE ===== */
-.dropdown > button {
-  height: 43px;                 /* same height as other buttons */
-  padding: 6px 14px;            /* controls size */
-  border-radius: 8px;
-
-  display: inline-flex;         /* center content */
-  flex-direction: column;       /* text on top, arrow below */
+/* ================================================================
+   NAV LINKS LIST
+   ================================================================ */
+.jgb-nav__links {
+  display: flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap;
-  line-height: 1.1;
-  gap: 2px;                     /* space between text & arrow */
+  flex: 1;
+  list-style: none;
+  flex-wrap: nowrap;
+  gap: 10px;
+  padding: 0 6px;
 }
 
-/* Arrow size fix */
-.dropdown > button span,
-.dropdown > button::after {
-  font-size: 10px;
+.jgb-nav__item {
+  position: relative;
 }
-.nav-overlay {
+
+/* ================================================================
+   TRIGGER BUTTON
+   ================================================================ */
+.jgb-nav__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--jgb-white);
+  border: 1.5px solid rgba(245, 197, 66, 0.4);
+  border-radius: var(--jgb-radius);
+  font-family: 'Nunito', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--jgb-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.jgb-nav__trigger::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg,
+      transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.5s ease;
+  pointer-events: none;
+}
+
+.jgb-nav__trigger:hover::before {
+  transform: translateX(120%);
+}
+
+/* Per-item colors */
+.jgb-nav__item:nth-child(1) .jgb-nav__trigger {
+  border-color: rgba(255, 107, 107, 0.55);
+}
+
+.jgb-nav__item:nth-child(2) .jgb-nav__trigger {
+  border-color: rgba(255, 140, 0, 0.55);
+}
+
+.jgb-nav__item:nth-child(3) .jgb-nav__trigger {
+  border-color: rgba(245, 197, 66, 0.55);
+}
+
+.jgb-nav__item:nth-child(4) .jgb-nav__trigger {
+  border-color: rgba(0, 212, 170, 0.55);
+}
+
+.jgb-nav__item:nth-child(5) .jgb-nav__trigger {
+  border-color: rgba(99, 179, 237, 0.55);
+}
+
+.jgb-nav__item:nth-child(6) .jgb-nav__trigger {
+  border-color: rgba(183, 148, 246, 0.55);
+}
+
+.jgb-nav__item:nth-child(7) .jgb-nav__trigger {
+  border-color: rgba(252, 129, 74, 0.55);
+}
+
+.jgb-nav__item:nth-child(8) .jgb-nav__trigger {
+  border-color: rgba(72, 199, 142, 0.55);
+}
+
+.jgb-nav__item:nth-child(9) .jgb-nav__trigger {
+  border-color: rgba(255, 180, 0, 0.55);
+}
+
+.jgb-nav__item:nth-child(1) .jgb-nav__trigger:hover {
+  color: #ff6b6b;
+  border-color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  box-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
+}
+
+.jgb-nav__item:nth-child(2) .jgb-nav__trigger:hover {
+  color: #ff8c00;
+  border-color: #ff8c00;
+  background: rgba(255, 140, 0, 0.1);
+  box-shadow: 0 0 20px rgba(255, 140, 0, 0.4);
+}
+
+.jgb-nav__item:nth-child(3) .jgb-nav__trigger:hover {
+  color: #f5c542;
+  border-color: #f5c542;
+  background: rgba(245, 197, 66, 0.1);
+  box-shadow: 0 0 20px rgba(245, 197, 66, 0.4);
+}
+
+.jgb-nav__item:nth-child(4) .jgb-nav__trigger:hover {
+  color: #00d4aa;
+  border-color: #00d4aa;
+  background: rgba(0, 212, 170, 0.1);
+  box-shadow: 0 0 20px rgba(0, 212, 170, 0.4);
+}
+
+.jgb-nav__item:nth-child(5) .jgb-nav__trigger:hover {
+  color: #63b3ed;
+  border-color: #63b3ed;
+  background: rgba(99, 179, 237, 0.1);
+  box-shadow: 0 0 20px rgba(99, 179, 237, 0.4);
+}
+
+.jgb-nav__item:nth-child(6) .jgb-nav__trigger:hover {
+  color: #b794f6;
+  border-color: #b794f6;
+  background: rgba(183, 148, 246, 0.1);
+  box-shadow: 0 0 20px rgba(183, 148, 246, 0.4);
+}
+
+.jgb-nav__item:nth-child(7) .jgb-nav__trigger:hover {
+  color: #fc814a;
+  border-color: #fc814a;
+  background: rgba(252, 129, 74, 0.1);
+  box-shadow: 0 0 20px rgba(252, 129, 74, 0.4);
+}
+
+.jgb-nav__item:nth-child(8) .jgb-nav__trigger:hover {
+  color: #48c78e;
+  border-color: #48c78e;
+  background: rgba(72, 199, 142, 0.1);
+  box-shadow: 0 0 20px rgba(72, 199, 142, 0.4);
+}
+
+.jgb-nav__item:nth-child(9) .jgb-nav__trigger:hover {
+  color: #ffb400;
+  border-color: #ffb400;
+  background: rgba(255, 180, 0, 0.1);
+  box-shadow: 0 0 20px rgba(255, 180, 0, 0.4);
+}
+
+.jgb-nav__trigger-arrow {
+  font-size: 9px;
+  opacity: 0.6;
+  display: inline-block;
+  transition: transform var(--jgb-transition), opacity var(--jgb-transition);
+  line-height: 1;
+}
+
+.jgb-nav__trigger-arrow--open {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* ================================================================
+   DROPDOWN PANEL
+   ================================================================ */
+.jgb-nav__dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 215px;
+  list-style: none;
+
+  background: linear-gradient(160deg,
+      rgba(12, 6, 30, 0.97) 0%, rgba(4, 12, 30, 0.98) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(245, 197, 66, 0.2);
+  border-top: 2px solid var(--jgb-gold);
+  border-radius: 14px;
+  overflow: hidden;
+
+  box-shadow:
+    0 0 0 1px rgba(255, 140, 0, 0.07),
+    0 25px 60px rgba(0, 0, 0, 0.9),
+    inset 0 0 40px rgba(245, 197, 66, 0.03);
+
+  z-index: 9999;
+  animation: jgb-dropIn 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes jgb-dropIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+.jgb-nav__dropdown-header {
+  padding: 10px 16px 8px;
+  border-bottom: 1px solid rgba(245, 197, 66, 0.12);
+  background: linear-gradient(90deg, rgba(245, 197, 66, 0.07) 0%, transparent 100%);
+}
+
+.jgb-nav__dropdown-header span {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, var(--jgb-gold), var(--jgb-saffron));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.jgb-nav__dropdown-item {
+  width: 100%;
+}
+
+.jgb-nav__dropdown-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  border: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--jgb-transition);
+}
+
+.jgb-nav__dropdown-btn:hover {
+  color: var(--jgb-navy);
+  background: linear-gradient(90deg, var(--jgb-gold) 0%, #ff8c00 100%);
+  padding-left: 24px;
+}
+
+.jgb-nav__dropdown-btn--active {
+  color: var(--jgb-gold) !important;
+  background: rgba(245, 197, 66, 0.08) !important;
+}
+
+.jgb-nav__dropdown-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--jgb-gold), #ff8c00);
+  opacity: 0.6;
+  flex-shrink: 0;
+  transition: opacity var(--jgb-transition), transform var(--jgb-transition);
+}
+
+.jgb-nav__dropdown-btn:hover .jgb-nav__dropdown-dot {
+  opacity: 1;
+  transform: scale(1.5);
+  background: var(--jgb-navy);
+}
+
+.jgb-nav__dropdown-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  margin: 6px 12px;
+  width: calc(100% - 24px);
+  background: transparent;
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 107, 107, 0.35);
+  border-radius: 8px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--jgb-transition);
+}
+
+.jgb-nav__dropdown-logout:hover {
+  background: rgba(255, 107, 107, 0.15);
+  border-color: #ff6b6b;
+  color: #ff4444;
+  box-shadow: 0 0 16px rgba(255, 100, 100, 0.25);
+}
+
+.jgb-nav__logout-icon {
+  font-size: 14px;
+}
+
+/* ================================================================
+   AVATAR
+   ================================================================ */
+.jgb-nav__avatar-wrap {
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jgb-nav__avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--jgb-gold);
+  position: relative;
+  z-index: 2;
+  animation: jgb-spin 12s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(245, 197, 66, 0.6));
+  transition: filter var(--jgb-transition);
+}
+
+.jgb-nav__avatar-wrap:hover .jgb-nav__avatar {
+  filter: drop-shadow(0 0 18px rgba(255, 140, 0, 1));
+}
+
+.jgb-nav__avatar-ring {
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(245, 197, 66, 0.5);
+  animation: jgb-ring-spin 8s linear infinite;
+  pointer-events: none;
+}
+
+/* ================================================================
+   HAMBURGER
+   ================================================================ */
+.jgb-nav__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1100;
+  flex-shrink: 0;
+}
+
+.jgb-nav__hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  border-radius: 3px;
+  transition: transform 0.35s ease, opacity 0.25s ease;
+  transform-origin: center;
+}
+
+.jgb-nav__hamburger span:nth-child(1) {
+  background: #ff6b6b;
+}
+
+.jgb-nav__hamburger span:nth-child(2) {
+  background: var(--jgb-gold);
+}
+
+.jgb-nav__hamburger span:nth-child(3) {
+  background: #ff8c00;
+}
+
+/* ================================================================
+   FLOATING CLOSE BUTTON (X) — top-left outside drawer
+   ================================================================ */
+.jgb-nav__float-close {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1200;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(245, 197, 66, 0.6);
+  background: rgba(10, 4, 30, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow:
+    0 0 0 1px rgba(255, 107, 107, 0.2),
+    0 6px 24px rgba(0, 0, 0, 0.6),
+    0 0 16px rgba(245, 197, 66, 0.15);
+
+  transition: transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+
+  animation: jgb-close-pop 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes jgb-close-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.jgb-nav__float-close:hover {
+  transform: rotate(90deg) scale(1.1);
+  border-color: #ff6b6b;
+  background: rgba(255, 60, 60, 0.18);
+  box-shadow:
+    0 0 0 1px rgba(255, 107, 107, 0.4),
+    0 8px 28px rgba(0, 0, 0, 0.65),
+    0 0 20px rgba(255, 80, 80, 0.35);
+}
+
+/* The two lines forming the X */
+.jgb-nav__float-close span {
+  position: absolute;
+  width: 20px;
+  height: 2.5px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #ff6b6b, #f5c542);
+}
+
+.jgb-nav__float-close span:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.jgb-nav__float-close span:nth-child(2) {
+  transform: rotate(-45deg);
+}
+
+/* ================================================================
+   OVERLAY
+   ================================================================ */
+.jgb-nav__overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.65);
-  z-index: 14;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 1050;
 }
-.menu.open {
-  opacity: 0;
-  pointer-events: none;
+
+/* ================================================================
+   MOBILE ≤ 1286px
+   ================================================================ */
+@media (max-width: 1286px) {
+  .jgb-nav__hamburger {
+    display: flex;
+  }
+
+  .jgb-nav__links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 270px;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 6px;
+    padding: 28px 14px 30px;
+    background: linear-gradient(175deg, #100520, #020b1a);
+    border-left: 1px solid rgba(245, 197, 66, 0.2);
+    box-shadow: -10px 0 50px rgba(0, 0, 0, 0.95);
+    transform: translateX(0);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    z-index: 1100;
+  }
+
+  .jgb-nav__links--hidden {
+    transform: translateX(110%);
+  }
+
+  .jgb-nav__item {
+    width: 100%;
+  }
+
+  .jgb-nav__trigger {
+    width: 100%;
+    justify-content: space-between;
+    padding: 12px 16px;
+    font-size: 15px;
+    border-radius: 10px;
+    color: var(--jgb-white);
+  }
+
+  .jgb-nav__dropdown {
+    position: static;
+    transform: none;
+    animation: none;
+    border-radius: 10px;
+    margin-top: 6px;
+    border-top: 2px solid var(--jgb-gold);
+  }
+}
+
+/* ================================================================
+   SMALL MOBILE ≤ 600px
+   ================================================================ */
+@media (max-width: 600px) {
+  .jgb-nav__container {
+    padding: 6px 16px;
+  }
+
+  .jgb-nav__logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .jgb-nav__avatar {
+    width: 44px;
+    height: 44px;
+  }
+
+  .jgb-nav__links {
+    width: 245px;
+  }
+
+  .jgb-nav__float-close {
+    top: 16px;
+    left: 16px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .jgb-nav__float-close span {
+    width: 17px;
+  }
 }

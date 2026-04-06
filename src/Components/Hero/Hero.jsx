@@ -5,8 +5,8 @@ import AnnouncementBar from "../../pages/AnnouncementBar";
 import FlowerSprinkler from "../../pages/FlowerSprinkler";
 import LoadingPage from "../../pages/LoadingPage";
 import "./Hero.css";
-import missionImg from "../../assets/photo9.webp"; // your image
-import visionImg from "../../assets/photo10.webp";   // your image
+import missionImg from "../../assets/photo9.webp";
+import visionImg from "../../assets/photo10.webp";
 import bio from "../../assets/bio.jpg";
 import hero1 from "../../assets/hero1.webp";
 import hero2 from "../../assets/hero2.webp";
@@ -18,25 +18,13 @@ import photo10 from "../../assets/photo10.webp";
 import photo19 from "../../assets/photo19.webp";
 import pic from "../../assets/pic.jpeg";
 import {
-  FaYoutube,
-  FaInstagram,
-  FaFacebook,
-  FaWhatsapp
+  FaYoutube, FaInstagram, FaFacebook, FaWhatsapp,
+  FaHandsHelping, FaCalendarAlt, FaUsers, FaGlobe, FaTelegramPlane,
 } from "react-icons/fa";
-import {
-  FaHandsHelping,
-  FaCalendarAlt,
-  FaUsers,
-  FaGlobe,
-  FaTelegramPlane
-} from "react-icons/fa";
-import {
-  FaXTwitter
-} from "react-icons/fa6";
+import { FaXTwitter } from "react-icons/fa6";
 import gmailLogo from "../../assets/gmail.png";
 
 const Hero = () => {
-  // About section images only
   const aboutImages = [photo7, photo8, photo6];
   const [aboutIndex, setAboutIndex] = useState(0);
   const navigate = useNavigate();
@@ -49,11 +37,9 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setAboutIndex((prev) => (prev + 1) % aboutImages.length);
-    }, 4000); // change every 4 seconds
-
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
-
 
   useEffect(() => {
     if (!alreadyShown) {
@@ -61,30 +47,24 @@ const Hero = () => {
         setLoading(false);
         sessionStorage.setItem("hasShownLoader", "true");
       }, 3000);
-
       return () => clearTimeout(timer);
     }
   }, [alreadyShown]);
 
   useEffect(() => {
-    images.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
+    images.forEach((src) => { const img = new Image(); img.src = src; });
   }, [images]);
 
   const fullText = `Param Sant Swami Jai Gurubande Ji Maharaj
-Let’s Move Towards God And Understand Sanatan Dharma.
-It’s a spiritual and philosophical message encouraging people to seek divine connection and explore the essence of Sanatan Dharma.`;
+Let's Move Towards God And Understand Sanatan Dharma.
+It's a spiritual and philosophical message encouraging people to seek divine connection and explore the essence of Sanatan Dharma.`;
 
   const [displayedText, setDisplayedText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
 
-  // ===== Ulat-Bhaidni images =====
   const ulatImages = [photo7, photo8, photo6];
   const [ulatIndex, setUlatIndex] = useState(0);
 
-  // ===== Ulat-Bhaidni typing text =====
   const ulatText = `Ulat-Bhaidni reveals hidden spiritual truths through symbolic and paradoxical expressions, guiding the seeker beyond ordinary understanding.
 
 These mystical expressions encourage seekers to look beyond literal meanings and experience deeper spiritual realization.`;
@@ -99,35 +79,28 @@ These mystical expressions encourage seekers to look beyond literal meanings and
     return () => clearInterval(interval);
   }, [images.length]);
 
-  // ===== Ulat-Bhaidni image swap =====
   useEffect(() => {
     const interval = setInterval(() => {
       setUlatIndex(prev => (prev + 1) % ulatImages.length);
     }, 4000);
-
     return () => clearInterval(interval);
   }, []);
 
-  // ===== Ulat-Bhaidni typing effect (LOOPING) =====
   useEffect(() => {
     const typingSpeed = 30;
-    const pauseAfterComplete = 2000; // 2 seconds pause
-
+    const pauseAfterComplete = 2000;
     let timer;
-
     if (ulatCharIndex < ulatText.length) {
       timer = setTimeout(() => {
         setUlatDisplayedText(prev => prev + ulatText[ulatCharIndex]);
         setUlatCharIndex(prev => prev + 1);
       }, typingSpeed);
     } else {
-      // reset after full text typed
       timer = setTimeout(() => {
         setUlatDisplayedText("");
         setUlatCharIndex(0);
       }, pauseAfterComplete);
     }
-
     return () => clearTimeout(timer);
   }, [ulatCharIndex]);
 
@@ -138,10 +111,7 @@ These mystical expressions encourage seekers to look beyond literal meanings and
         setDisplayedText((prev) => prev + fullText[charIndex]);
         setCharIndex((prev) => prev + 1);
       } else {
-        setTimeout(() => {
-          setDisplayedText("");
-          setCharIndex(0);
-        }, 2000);
+        setTimeout(() => { setDisplayedText(""); setCharIndex(0); }, 2000);
       }
     }, typingSpeed);
     return () => clearTimeout(timeout);
@@ -149,139 +119,159 @@ These mystical expressions encourage seekers to look beyond literal meanings and
 
   const textLines = displayedText.split("\n");
 
-  if (loading) {
-    return <LoadingPage />;
-  }
+  if (loading) return <LoadingPage />;
 
   return (
-    <div>
+    <div className="hx-page">
       <AnnouncementBar />
-      <div className="hero container">
-        <FlowerSprinkler />
 
+      {/* ══ HERO ══ */}
+      <div className="hx-hero">
+        <FlowerSprinkler />
         {images.map((img, index) => (
           <div
             key={index}
-            className={`hero-bg ${index === currentIndex ? "active" : ""}`}
-            style={{
-              backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url(${img})`,
-            }}
-          ></div>
+            className={`hx-hero-bg${index === currentIndex ? " hx-hero-bg--active" : ""}`}
+            style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.52), rgba(0,0,0,0.22)), url(${img})` }}
+          />
         ))}
+        {/* overlay grain */}
+        <div className="hx-hero-grain" />
+        {/* bottom fade */}
+        <div className="hx-hero-fade" />
 
-        <div className="hero-text">
+        <div className="hx-hero-text">
           {textLines[0] && (
-            <h2>
-              {textLines[0]} <span className="cursor"></span>
-            </h2>
+            <p className="hx-hero-saint">
+              {textLines[0]}
+            </p>
           )}
           {textLines[1] && (
-            <h1>
-              {textLines[1]} <span className="cursor"></span>
+            <h1 className="hx-hero-title">
+              {textLines[1]}
             </h1>
           )}
           {textLines[2] && (
-            <p>
-              {textLines[2]} <span className="cursor"></span>
+            <p className="hx-hero-sub">
+              {textLines[2]}
             </p>
           )}
+
+          <div className="hx-hero-ornament">
+            <span className="hx-orn-line" />
+            <span className="hx-orn-gem">✦</span>
+            <span className="hx-orn-line" />
+          </div>
         </div>
       </div>
-      {/* ===== DECORATIVE DIVIDER ===== */}
-      <div className="section-divider" />
-      <section className="about-section">
-        {/* Heading */}
-        <h2 className="about-heading">About Guruji</h2>
 
-        {/* Content Container */}
-        <div className="about-container">
-          {/* Left Image */}
-          <div className="about-image">
-            <img
-              src={aboutImages[aboutIndex]}
-              alt="Guruji"
-              key={aboutIndex}
-            />
+      {/* ══ DIVIDER ══ */}
+      <div className="hx-divider"><span className="hx-div-gem">❖</span></div>
 
+      {/* ══ ABOUT ══ */}
+      <section className="hx-about">
+        <div className="hx-section-head">
+          <span className="hx-section-tag">Who We Are</span>
+          <h2 className="hx-section-title">About Guruji</h2>
+          <div className="hx-section-rule" />
+        </div>
+
+        <div className="hx-about-wrap">
+          <div className="hx-about-img-frame">
+            <div className="hx-img-border" />
+            <img src={aboutImages[aboutIndex]} alt="Guruji" key={aboutIndex} className="hx-about-img" />
+            <div className="hx-img-corner hx-img-corner--tl" />
+            <div className="hx-img-corner hx-img-corner--tr" />
+            <div className="hx-img-corner hx-img-corner--bl" />
+            <div className="hx-img-corner hx-img-corner--br" />
           </div>
 
-          {/* Right Content */}
-          <div className="about-content">
-            <p>
+          <div className="hx-about-body">
+            <p className="hx-about-p">
               Guruji is a spiritual guide devoted to spreading wisdom, positivity,
               and inner peace. Through teachings rooted in ancient traditions and
               practical life values, Guruji inspires individuals to lead a
               balanced, meaningful, and conscious life.
             </p>
-
-            <p>
+            <p className="hx-about-p">
               With compassion and clarity, Guruji emphasizes self-discipline,
               devotion, and service to humanity. Thousands of followers have found
-              direction, strength, and purpose through Guruji’s guidance.
+              direction, strength, and purpose through Guruji's guidance.
             </p>
-            <div className="about-btn-wrapper">
-              <button
-                className="about-btn"
-                onClick={() => navigate("/about")}
-              >
+            <div className="hx-btn-row">
+              <button className="hx-btn-primary" onClick={() => navigate("/about")}>
                 Read More About Guruji
+                <span className="hx-btn-arrow">→</span>
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===== DECORATIVE DIVIDER ===== */}
-      <div className="section-divider" />
+      <div className="hx-divider"><span className="hx-div-gem">❖</span></div>
 
-      <section className="ulat-section">
-        <h2 className="ulat-heading">Ulat-Bhaidni</h2>
+      {/* ══ ULAT-BHAIDNI ══ */}
+      <section className="hx-ulat">
+        <div className="hx-section-head">
+          <span className="hx-section-tag">Ancient Wisdom</span>
+          <h2 className="hx-section-title">Ulat-Bhaidni</h2>
+          <div className="hx-section-rule" />
+        </div>
 
-        <div className="ulat-container">
-          {/* Left Image */}
-          <div className="ulat-image">
-            <img
-              src={ulatImages[ulatIndex]}
-              alt="Guruji"
-              key={ulatIndex}
-            />
+        <div className="hx-ulat-wrap">
+          <div className="hx-about-img-frame">
+            <div className="hx-img-border" />
+            <img src={ulatImages[ulatIndex]} alt="Guruji" key={ulatIndex} className="hx-about-img" />
+            <div className="hx-img-corner hx-img-corner--tl" />
+            <div className="hx-img-corner hx-img-corner--tr" />
+            <div className="hx-img-corner hx-img-corner--bl" />
+            <div className="hx-img-corner hx-img-corner--br" />
           </div>
 
-          {/* Right Content (Typing) */}
-          <div className="ulat-content-text">
+          <div className="hx-ulat-body">
             {ulatDisplayedText.split("\n\n").map((para, index, arr) => (
-              <p key={index}>
+              <p key={index} className="hx-ulat-p">
                 {para}
-                {index === arr.length - 1 && <span className="cursor">|</span>}
               </p>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ===== DECORATIVE DIVIDER ===== */}
-      <div className="section-divider" />
-      <section className="mission-vision-section">
-        <h2 className="mission-vision-heading">Mission & Vision</h2>
+      <div className="hx-divider"><span className="hx-div-gem">❖</span></div>
 
-        <div className="mission-vision-container">
-          {/* Mission */}
-          <div className="mv-card">
-            <img src={missionImg} alt="Mission" className="mv-icon" />
-            <h3>Our Mission</h3>
-            <p>
+      {/* ══ MISSION & VISION ══ */}
+      <section className="hx-mv">
+        <div className="hx-section-head">
+          <span className="hx-section-tag">Our Purpose</span>
+          <h2 className="hx-section-title">Mission &amp; Vision</h2>
+          <div className="hx-section-rule" />
+        </div>
+
+        <div className="hx-mv-grid">
+          <div className="hx-mv-card">
+            <div className="hx-mv-img-wrap">
+              <img src={missionImg} alt="Mission" className="hx-mv-img" />
+            </div>
+            <div className="hx-mv-badge">Mission</div>
+            <h3 className="hx-mv-title">Our Mission</h3>
+            <p className="hx-mv-text">
               To spread the eternal wisdom of Sanatan Dharma and guide individuals
               toward spiritual awareness, righteous living, and inner peace.
             </p>
           </div>
 
-          <div className="mv-divider" />
+          <div className="hx-mv-sep">
+            <span className="hx-mv-sep-gem">✦</span>
+          </div>
 
-          {/* Vision */}
-          <div className="mv-card">
-            <img src={visionImg} alt="Vision" className="mv-icon" />
-            <h3>Our Vision</h3>
-            <p>
+          <div className="hx-mv-card">
+            <div className="hx-mv-img-wrap">
+              <img src={visionImg} alt="Vision" className="hx-mv-img" />
+            </div>
+            <div className="hx-mv-badge">Vision</div>
+            <h3 className="hx-mv-title">Our Vision</h3>
+            <p className="hx-mv-text">
               To build a spiritually awakened society where ancient Dharma values
               blend harmoniously with modern life for unity and growth.
             </p>
@@ -289,319 +279,213 @@ These mystical expressions encourage seekers to look beyond literal meanings and
         </div>
       </section>
 
-      {/* ===== DECORATIVE DIVIDER ===== */}
-      <div className="section-divider" />
+      <div className="hx-divider"><span className="hx-div-gem">❖</span></div>
 
-      <section className="latest-updates-section">
-        <h2 className="latest-updates-heading">Latest Updates</h2>
+      {/* ══ LATEST UPDATES ══ */}
+      <section className="hx-updates">
+        <div className="hx-section-head">
+          <span className="hx-section-tag">Stay Informed</span>
+          <h2 className="hx-section-title">Latest Updates</h2>
+          <div className="hx-section-rule" />
+        </div>
 
-        <div className="latest-updates-grid">
-          <div className="update-card">
-            <span className="update-badge important">IMPORTANT</span>
-
-            <div className="update-image">
+        <div className="hx-updates-grid">
+          <div className="hx-update-card">
+            <span className="hx-badge hx-badge--red">IMPORTANT</span>
+            <div className="hx-update-img">
               <img src={photo8} alt="Spiritual Yatra" />
             </div>
-
-            <h3>Upcoming Spiritual Yatra</h3>
-            <p>
-              Swami Ji will be visiting Varanasi and Hyderabad this month.
-              Devotees are requested to stay connected for darshan updates.
-            </p>
-            <span className="update-date">18 Jan 2026</span>
+            <div className="hx-update-body">
+              <h3 className="hx-update-title">Upcoming Spiritual Yatra</h3>
+              <p className="hx-update-desc">
+                Swami Ji will be visiting Varanasi and Hyderabad this month.
+                Devotees are requested to stay connected for darshan updates.
+              </p>
+              <span className="hx-update-date">📅 18 Jan 2026</span>
+            </div>
           </div>
 
-          <div className="update-card">
-            <span className="update-badge new">NEW</span>
-
-            <div className="update-image">
+          <div className="hx-update-card">
+            <span className="hx-badge hx-badge--green">NEW</span>
+            <div className="hx-update-img">
               <img src={photo10} alt="Live Satsang" />
             </div>
-
-            <h3>Weekly Live Satsang</h3>
-            <p>
-              Join our live satsang every Sunday at 7:30 PM IST and receive
-              divine guidance and blessings.
-            </p>
-            <span className="update-date">Every Sunday</span>
+            <div className="hx-update-body">
+              <h3 className="hx-update-title">Weekly Live Satsang</h3>
+              <p className="hx-update-desc">
+                Join our live satsang every Sunday at 7:30 PM IST and receive
+                divine guidance and blessings.
+              </p>
+              <span className="hx-update-date">📅 Every Sunday</span>
+            </div>
           </div>
 
-          <div className="update-card">
-            <span className="update-badge update">UPDATE</span>
-
-            <div className="update-image">
+          <div className="hx-update-card">
+            <span className="hx-badge hx-badge--purple">UPDATE</span>
+            <div className="hx-update-img">
               <img src={photo19} alt="Contributions" />
             </div>
-
-            <h3>Contribution Options Enabled</h3>
-            <p>
-              UPI & QR-based contribution options are now available for
-              devotees to support spiritual activities.
-            </p>
-            <span className="update-date">Recently Updated</span>
+            <div className="hx-update-body">
+              <h3 className="hx-update-title">Contribution Options Enabled</h3>
+              <p className="hx-update-desc">
+                UPI &amp; QR-based contribution options are now available for
+                devotees to support spiritual activities.
+              </p>
+              <span className="hx-update-date">📅 Recently Updated</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ===== DECORATIVE DIVIDER ===== */}
-      <div className="section-divider" />
-      <section className="activities-section">
-        <h2 className="activities-heading">Key Activities / What We Do</h2>
+      <div className="hx-divider"><span className="hx-div-gem">❖</span></div>
 
-        <div className="activities-grid">
-          {/* Card 1 */}
-          <div className="activity-card">
-            <div className="activity-icon">
-              <FaHandsHelping />
-            </div>
-            <h3>Seva / Activities</h3>
-            <p>
-              Daily and regular spiritual, social, and seva-based activities
-              conducted with devotion and discipline.
-            </p>
-          </div>
+      {/* ══ ACTIVITIES ══ */}
+      <section className="hx-acts">
+        <div className="hx-section-head">
+          <span className="hx-section-tag">Seva &amp; Service</span>
+          <h2 className="hx-section-title">Key Activities / What We Do</h2>
+          <div className="hx-section-rule" />
+        </div>
 
-          {/* Card 2 */}
-          <div className="activity-card">
-            <div className="activity-icon">
-              <FaCalendarAlt />
+        <div className="hx-acts-grid">
+          {[
+            { icon: <FaHandsHelping />, title: "Seva / Activities", desc: "Daily and regular spiritual, social, and seva-based activities conducted with devotion and discipline." },
+            { icon: <FaCalendarAlt />, title: "Events", desc: "Special programs, celebrations, satsangs, yatras, and spiritual gatherings throughout the year." },
+            { icon: <FaUsers />, title: "Paralysis Treatment as Seva", desc: "By Guruji's grace, free paralysis treatment is provided at our ashram as a service (Seva) for devotees and those in need." },
+            { icon: <FaGlobe />, title: "Online Services", desc: "Website services, announcements, updates, and digital access to spiritual resources." },
+          ].map((act, i) => (
+            <div key={i} className="hx-act-card" style={{ '--act-i': i }}>
+              <div className="hx-act-icon">{act.icon}</div>
+              <h3 className="hx-act-title">{act.title}</h3>
+              <p className="hx-act-desc">{act.desc}</p>
             </div>
-            <h3>Events</h3>
-            <p>
-              Special programs, celebrations, satsangs, yatras, and spiritual
-              gatherings throughout the year.
-            </p>
-          </div>
-
-          {/* Card 3 */}
-          <div className="activity-card">
-            <div className="activity-icon">
-              <FaUsers />
-            </div>
-            <h3>Paralysis Treatment as Seva</h3>
-            <p>
-              By Guruji’s grace, free paralysis treatment is provided at our ashram
-              as a service (Seva) for devotees and those in need.
-            </p>
-          </div>
-
-          {/* Card 4 */}
-          <div className="activity-card">
-            <div className="activity-icon">
-              <FaGlobe />
-            </div>
-            <h3>Online Services</h3>
-            <p>
-              Website services, announcements, updates, and digital access to
-              spiritual resources.
-            </p>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* ===== DECORATIVE DIVIDER ===== */}
-      <div className="section-divider" />
+      <div className="hx-divider"><span className="hx-div-gem">❖</span></div>
 
-      <section className="quicklinks-section">
-        <h2 className="section-heading">Quick Links & Updates</h2>
+      {/* ══ QUICK LINKS ══ */}
+      <section className="hx-links">
+        <div className="hx-section-head">
+          <span className="hx-section-tag">Navigate</span>
+          <h2 className="hx-section-title">Quick Links &amp; Updates</h2>
+          <div className="hx-section-rule" />
+        </div>
 
-        <div className="quicklinks-grid">
-          <div className="quicklinks-box">
-            <h3 className="quicklinks-title">Important Links</h3>
-            <ul>
-              <li><a href="/about">About</a></li>
-              <li><a href="/ashram-vision">Ashram Vision</a></li>
-              <li><a href="/ashram-life">Ashram Life</a></li>
-              <li><a href="/contact">Contact Us</a></li>
+        <div className="hx-links-grid">
+          <div className="hx-links-card">
+            <h3 className="hx-links-title">Important Links</h3>
+            <ul className="hx-links-list">
+              {[["About", "/about"], ["Ashram Vision", "/ashram-vision"], ["Ashram Life", "/ashram-life"], ["Contact Us", "/contact"]].map(([label, href]) => (
+                <li key={href}><a href={href} className="hx-link-item"><span className="hx-link-dot">✦</span>{label}<span className="hx-link-arr">›</span></a></li>
+              ))}
             </ul>
           </div>
 
-          <div className="quicklinks-box">
-            <h3 className="quicklinks-title">Latest Updates</h3>
-            <ul>
-              <li><a href="/latest-updates">Latest Updates</a></li>
-              <li><a href="/dailyschedule">Daily Schedule</a></li>
-              <li><a href="/live-now">Live Now</a></li>
-              <li><a href="/upcoming-programs">Upcoming Programs</a></li>
-              <li><a href="/special-events">Special Events</a></li>
+          <div className="hx-links-card">
+            <h3 className="hx-links-title">Latest Updates</h3>
+            <ul className="hx-links-list">
+              {[["Latest Updates", "/latest-updates"], ["Daily Schedule", "/dailyschedule"], ["Live Now", "/live-now"], ["Upcoming Programs", "/upcoming-programs"], ["Special Events", "/special-events"]].map(([label, href]) => (
+                <li key={href}><a href={href} className="hx-link-item"><span className="hx-link-dot">✦</span>{label}<span className="hx-link-arr">›</span></a></li>
+              ))}
             </ul>
           </div>
 
-          <div className="quicklinks-box">
-            <h3 className="quicklinks-title">Legal</h3>
-            <ul>
-              <li><a href="/privacy-policy">Privacy Policy</a></li>
-              <li><a href="/terms-conditions">Terms & Conditions</a></li>
-              <li><a href="/donation-policy">Donation Policy</a></li>
+          <div className="hx-links-card">
+            <h3 className="hx-links-title">Legal</h3>
+            <ul className="hx-links-list">
+              {[["Privacy Policy", "/privacy-policy"], ["Terms & Conditions", "/terms-conditions"], ["Donation Policy", "/donation-policy"]].map(([label, href]) => (
+                <li key={href}><a href={href} className="hx-link-item"><span className="hx-link-dot">✦</span>{label}<span className="hx-link-arr">›</span></a></li>
+              ))}
             </ul>
           </div>
         </div>
       </section>
 
+      <div className="hx-divider"><span className="hx-div-gem">❖</span></div>
 
-      {/* ===== DECORATIVE DIVIDER ===== */}
-      <div className="section-divider" />
+      {/* ══ SOCIAL ══ */}
+      <section className="hx-social">
+        <div className="hx-section-head">
+          <span className="hx-section-tag">Connect With Us</span>
+          <h2 className="hx-section-title">Official Digital Platforms</h2>
+          <div className="hx-section-rule" />
+        </div>
 
-      {/* ===== SOCIAL LINKS SECTION START ===== */}
-      <section className="social-section">
-        <h2 className="section-heading">Official Digital Platforms</h2>
-        <div className="social-grid">
-
-          {/* YouTube */}
-          <div className="social-box">
-            <div className="social-title">
-              <FaYoutube className="social-icon youtube" />
+        <div className="hx-social-grid">
+          <div className="hx-social-card">
+            <div className="hx-social-head hx-social-head--yt">
+              <FaYoutube className="hx-social-ico" />
               <span>YouTube Channels</span>
             </div>
-
-            <ul>
-              <li>
-                <a
-                  href="https://youtube.com/@jaigurubande?feature=shared"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Jai Gurubande
-                </a>
-              </li>
-              <li>
-                <a
-                  href="youtube.com/@jaygurubande1?si=7f0-bxVAZFTx7r-8"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Jai Gurubande 3377
-                </a>
-              </li>
+            <ul className="hx-social-list">
+              <li><a href="https://youtube.com/@jaigurubande?feature=shared" target="_blank" rel="noopener noreferrer">Jai Gurubande</a></li>
+              <li><a href="youtube.com/@jaygurubande1?si=7f0-bxVAZFTx7r-8" target="_blank" rel="noopener noreferrer">Jai Gurubande 3377</a></li>
             </ul>
           </div>
 
-          {/* Instagram */}
-          <div className="social-box">
-            <div className="social-title">
-              <FaInstagram className="social-icon instagram" />
+          <div className="hx-social-card">
+            <div className="hx-social-head hx-social-head--ig">
+              <FaInstagram className="hx-social-ico" />
               <span>Instagram</span>
             </div>
-
-            <ul>
-              <li>
-                <a
-                  href="https://www.instagram.com/jaigurubande__official?igsh=NnIwdnI5cGMxemYy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Jai Gurubande Official
-                </a>
-              </li>
+            <ul className="hx-social-list">
+              <li><a href="https://www.instagram.com/jaigurubande__official?igsh=NnIwdnI5cGMxemYy" target="_blank" rel="noopener noreferrer">Jai Gurubande Official</a></li>
             </ul>
           </div>
 
-          {/* Facebook */}
-          <div className="social-box">
-            <div className="social-title">
-              <FaFacebook className="social-icon facebook" />
+          <div className="hx-social-card">
+            <div className="hx-social-head hx-social-head--fb">
+              <FaFacebook className="hx-social-ico" />
               <span>Facebook</span>
             </div>
-
-            <ul>
-              <li>
-                <a
-                  href="https://www.facebook.com/share/g/1AZvFisxcs/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Jai Gurubande
-                </a>
-              </li>
+            <ul className="hx-social-list">
+              <li><a href="https://www.facebook.com/share/g/1AZvFisxcs/" target="_blank" rel="noopener noreferrer">Jai Gurubande</a></li>
             </ul>
           </div>
 
-          {/* WhatsApp */}
-          <div className="social-box">
-            <div className="social-title">
-              <FaWhatsapp className="social-icon whatsapp" />
+          <div className="hx-social-card">
+            <div className="hx-social-head hx-social-head--wa">
+              <FaWhatsapp className="hx-social-ico" />
               <span>WhatsApp</span>
             </div>
-
-            <ul>
-              <li>
-                <a
-                  href="https://chat.whatsapp.com/GwdDS530clKJsNc4zkPCyD"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Jai Gurubande
-                </a>
-              </li>
+            <ul className="hx-social-list">
+              <li><a href="https://chat.whatsapp.com/GwdDS530clKJsNc4zkPCyD" target="_blank" rel="noopener noreferrer">Jai Gurubande</a></li>
             </ul>
           </div>
-          {/* Twitter / X */}
-          <div className="social-box">
-            <div className="social-title">
-              <FaXTwitter className="social-icon twitter" />
-              <span>Twitter</span>
+
+          <div className="hx-social-card">
+            <div className="hx-social-head hx-social-head--tw">
+              <FaXTwitter className="hx-social-ico" />
+              <span>Twitter / X</span>
             </div>
-
-            <ul>
-              <li>
-                <a
-                  href="https://x.com/jaigurubande"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  JAI GURUBANDE
-                </a>
-              </li>
+            <ul className="hx-social-list">
+              <li><a href="https://x.com/jaigurubande" target="_blank" rel="noopener noreferrer">JAI GURUBANDE</a></li>
             </ul>
           </div>
 
-          {/* Email (Gmail logo) */}
-          <div className="social-box">
-            <div className="social-title">
-              <img
-                src={gmailLogo}
-                alt="Gmail"
-                className="gmail-logo"
-              />
+          <div className="hx-social-card">
+            <div className="hx-social-head hx-social-head--gm">
+              <img src={gmailLogo} alt="Gmail" className="hx-gmail-ico" />
               <span>Email</span>
             </div>
-
-            <ul>
-              <li>
-                <a
-                  href="mailto:jaigurubande15@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  jaigurubande15@gmail.com
-                </a>
-              </li>
+            <ul className="hx-social-list">
+              <li><a href="mailto:jaigurubande15@gmail.com" target="_blank" rel="noopener noreferrer">jaigurubande15@gmail.com</a></li>
             </ul>
           </div>
 
-          {/* Telegram */}
-          <div className="social-box">
-            <div className="social-title">
-              <FaTelegramPlane className="social-icon telegram" />
+          <div className="hx-social-card">
+            <div className="hx-social-head hx-social-head--tg">
+              <FaTelegramPlane className="hx-social-ico" />
               <span>Telegram</span>
             </div>
-
-            <ul>
-              <li>
-                <a
-                  href="https://t.me/+5APCSKB6YC85MjRl"   
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Jai Gurubande – Official Website Updates
-                </a>
-              </li>
+            <ul className="hx-social-list">
+              <li><a href="https://t.me/+5APCSKB6YC85MjRl" target="_blank" rel="noopener noreferrer">Jai Gurubande – Official Website Updates</a></li>
             </ul>
           </div>
-
         </div>
       </section>
-      {/* ===== SOCIAL LINKS SECTION END ===== */}
 
       <ScrollingText />
     </div>
