@@ -1,244 +1,390 @@
-/* ============================
-   QUICK START – LIGHTWEIGHT
-============================ */
+/* ================================================================
+   QUICK START – qkst__ prefix (zero class-name collisions)
+   Aesthetic: Sacred rose & ivory — Cormorant Garamond + DM Sans
+================================================================ */
 
-@keyframes quickFadeUp {
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* ── Root variables ── */
+.qkst__page {
+  --qs-rose: #b30059;
+  --qs-rose-lt: #ff5f9e;
+  --qs-rose-pale: rgba(179, 0, 89, 0.08);
+  --qs-rose-border: rgba(179, 0, 89, 0.18);
+  --qs-gold: #c9920a;
+  --qs-cream: #fffdf8;
+  --qs-card-bg: rgba(255, 253, 248, 0.98);
+  --qs-text: #2d1220;
+  --qs-muted: #7a4d5e;
+  --qs-border: rgba(179, 0, 89, 0.14);
+  --qs-radius-lg: 22px;
+  --qs-radius-md: 16px;
+  --qs-radius-sm: 10px;
+  --qs-shadow: 0 10px 32px rgba(179, 0, 89, 0.09), 0 2px 8px rgba(0, 0, 0, 0.05);
+  --qs-shadow-hover: 0 20px 52px rgba(179, 0, 89, 0.18), 0 4px 16px rgba(0, 0, 0, 0.08);
+  --qs-font-display: 'Cormorant Garamond', Georgia, serif;
+  --qs-font-body: 'DM Sans', system-ui, sans-serif;
+
+  font-family: var(--qs-font-body);
+  min-height: 100vh;
+  padding: 4rem 1.5rem 5rem;
+  background-color: var(--qs-cream);
+  box-sizing: border-box;
+  color: var(--qs-text);
+  position: relative;
+  overflow-x: hidden;
+  animation: qs-fadeUp 0.65s ease-out both;
+}
+
+/* ================================================================
+   BACKGROUND ORBS
+================================================================ */
+
+.qkst__orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.28;
+}
+
+.qkst__orb--1 {
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle, #ffc0d8 0%, transparent 70%);
+  top: -160px;
+  right: -150px;
+}
+
+.qkst__orb--2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #fde8f4 0%, transparent 70%);
+  bottom: 40px;
+  left: -100px;
+}
+
+.qkst__orb--3 {
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, #fef3e0 0%, transparent 70%);
+  top: 50%;
+  left: 55%;
+}
+
+/* ================================================================
+   INNER WRAPPER
+================================================================ */
+
+.qkst__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1060px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ================================================================
+   HERO
+================================================================ */
+
+.qkst__hero {
+  margin-bottom: 2.6rem;
+  animation: qs-fadeUp 0.65s ease-out both;
+}
+
+.qkst__badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--qs-rose);
+  background: var(--qs-rose-pale);
+  border: 1px solid var(--qs-rose-border);
+  padding: 0.25rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 0.9rem;
+}
+
+.qkst__title {
+  font-family: var(--qs-font-display);
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  font-weight: 700;
+  color: var(--qs-rose);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-shadow: 0 3px 14px rgba(179, 0, 89, 0.14);
+  margin: 0 0 0.8rem;
+}
+
+.qkst__subtitle {
+  font-size: 0.95rem;
+  color: var(--qs-muted);
+  max-width: 600px;
+  margin: 0 auto 1.4rem;
+  line-height: 1.75;
+}
+
+.qkst__divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+}
+
+.qkst__div-line {
+  display: block;
+  height: 1.5px;
+  width: 100px;
+  background: linear-gradient(to right, transparent, var(--qs-rose), transparent);
+}
+
+.qkst__div-gem {
+  font-size: 0.85rem;
+  color: var(--qs-rose);
+}
+
+/* ================================================================
+   GRID
+================================================================ */
+
+.qkst__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.4rem;
+  margin-top: 0.4rem;
+  text-align: left;
+}
+
+/* ================================================================
+   CARD
+================================================================ */
+
+.qkst__card {
+  position: relative;
+  text-align: left;
+  border-radius: var(--qs-radius-md);
+  padding: 1.5rem 1.6rem;
+  background: var(--qs-card-bg);
+  border: 1px solid var(--qs-border);
+  box-shadow: var(--qs-shadow);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  opacity: 0;
+  animation: qs-cardIn 0.6s ease-out both;
+  transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+  overflow: hidden;
+
+  /* Reset button defaults */
+  font-family: var(--qs-font-body);
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Gold left accent on hover */
+.qkst__card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--qs-rose), var(--qs-gold));
+  border-radius: 3px 0 0 3px;
+  opacity: 0;
+  transition: opacity 0.24s ease;
+}
+
+.qkst__card:hover::before {
+  opacity: 1;
+}
+
+/* Hover glow */
+.qkst__card-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(179, 0, 89, 0.06) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.qkst__card:hover .qkst__card-glow {
+  opacity: 1;
+}
+
+.qkst__card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--qs-shadow-hover);
+  border-color: rgba(179, 0, 89, 0.3);
+}
+
+/* ================================================================
+   CARD CONTENT
+================================================================ */
+
+.qkst__card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.qkst__emoji {
+  font-size: 1.7rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.qkst__card:hover .qkst__emoji {
+  transform: scale(1.15);
+}
+
+.qkst__tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fff0f6, #ffe0ed);
+  color: var(--qs-rose);
+  border: 1px solid rgba(179, 0, 89, 0.2);
+}
+
+.qkst__card-title {
+  font-family: var(--qs-font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--qs-text);
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.qkst__card-text {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--qs-muted);
+  margin: 0;
+  flex: 1;
+}
+
+/* ================================================================
+   CARD FOOTER
+================================================================ */
+
+.qkst__card-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.3rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(179, 0, 89, 0.1);
+}
+
+.qkst__cta {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--qs-rose);
+}
+
+.qkst__arrow {
+  font-size: 0.95rem;
+  color: var(--qs-rose);
+  transition: transform 0.22s ease;
+}
+
+.qkst__card:hover .qkst__arrow {
+  transform: translateX(5px);
+}
+
+/* ================================================================
+   FOOTER NOTE
+================================================================ */
+
+.qkst__note {
+  margin-top: 2.4rem;
+  font-size: 0.88rem;
+  color: var(--qs-muted);
+  line-height: 1.6;
+}
+
+/* ================================================================
+   KEYFRAMES
+================================================================ */
+
+@keyframes qs-fadeUp {
   from {
     opacity: 0;
     transform: translateY(14px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@keyframes quickCardIn {
+@keyframes qs-cardIn {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.quick-page {
-  min-height: 100vh;
-  padding: 4rem 1.5rem 5rem;
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #fff7fb, #f5f8ff);
-  box-sizing: border-box;
-  color: #2b1630;
-
-  /* ✅ opening animation (runs on refresh) */
-  animation: quickFadeUp 0.65s ease-out both;
-}
-
-/* ============================
-   INNER WRAPPER
-============================ */
-
-.quick-inner {
-  max-width: 1040px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 0 0.5rem;
-}
-
-/* ============================
-   BADGE / TITLE / SUBTITLE
-============================ */
-
-.quick-badge {
-  display: inline-block;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: #ffe6f1;
-  color: #b4004e;
-  font-size: 0.8rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.quick-title {
-  font-size: clamp(1.9rem, 3vw, 2.6rem);
-  font-weight: 800;
-  margin-bottom: 0.6rem;
-  color: #b30059;
-}
-
-.quick-subtitle {
-  font-size: 0.95rem;
-  color: #5b3c4a;
-  max-width: 640px;
-  margin: 0 auto 2.4rem;
-  line-height: 1.7;
-}
-
-/* ============================
-   GRID
-============================ */
-
-.quick-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.4rem;
-  margin-top: 1rem;
-}
-
-/* ============================
-   CARD (OPTIMIZED + ANIMATED)
-============================ */
-
-.quick-card {
-  text-align: left;
-  border-radius: 16px;
-  padding: 1.4rem 1.5rem;
-  background: #ffffff;
-  border: 1px solid #f2d6e5;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-
-  /* ✅ safe entrance animation */
-  animation: quickCardIn 0.55s ease-out both;
-
-  transition: transform 0.2s ease;
-}
-
-.quick-card:hover {
-  transform: translateY(-4px);
-}
-
-/* stagger effect (pure CSS, lightweight) */
-.quick-card:nth-child(1) { animation-delay: 0.05s; }
-.quick-card:nth-child(2) { animation-delay: 0.1s; }
-.quick-card:nth-child(3) { animation-delay: 0.15s; }
-.quick-card:nth-child(4) { animation-delay: 0.2s; }
-.quick-card:nth-child(5) { animation-delay: 0.25s; }
-
-/* ============================
-   CARD CONTENT
-============================ */
-
-.quick-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.6rem;
-}
-
-.quick-emoji {
-  font-size: 1.6rem;
-}
-
-.quick-tag {
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: #fff0f7;
-  color: #b4004e;
-  border: 1px solid #f3c4d8;
-}
-
-.quick-card-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #3a1a2e;
-}
-
-.quick-card-text {
-  font-size: 0.93rem;
-  line-height: 1.6;
-  color: #6a4a5f;
-}
-
-/* ============================
-   CARD FOOTER
-============================ */
-
-.quick-card-footer {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: #b4004e;
-}
-
-.quick-card-arrow {
-  transition: transform 0.2s ease;
-}
-
-.quick-card:hover .quick-card-arrow {
-  transform: translateX(3px);
-}
-
-/* ============================
-   NOTE
-============================ */
-
-.quick-note {
-  margin-top: 2.2rem;
-  font-size: 0.9rem;
-  color: #7b5a6d;
-}
-
-/* ============================
+/* ================================================================
    RESPONSIVE
-============================ */
+================================================================ */
 
 @media (max-width: 768px) {
-  .quick-page {
+  .qkst__page {
     padding: 3.2rem 1.25rem 4rem;
   }
 
-  .quick-card {
+  .qkst__card {
     padding: 1.3rem 1.3rem;
   }
 
-  .quick-card-title {
-    font-size: 1.05rem;
-  }
-
-  .quick-card-text {
-    font-size: 0.9rem;
+  .qkst__card-title {
+    font-size: 1.15rem;
   }
 }
 
 @media (max-width: 480px) {
-  .quick-page {
-    padding: 3rem 0.85rem 3.6rem;
+  .qkst__page {
+    padding: 3rem 0.9rem 3.6rem;
   }
 
-  .quick-inner {
-    padding: 0;
+  .qkst__title {
+    font-size: 2rem;
   }
 
-  .quick-card {
-    padding: 1.2rem 1.15rem;
+  .qkst__grid {
+    grid-template-columns: 1fr;
   }
 
-  .quick-emoji {
-    font-size: 1.45rem;
+  .qkst__emoji {
+    font-size: 1.5rem;
   }
 }
 
-/* ============================
-   ACCESSIBILITY & PERFORMANCE
-============================ */
+/* ================================================================
+   ACCESSIBILITY
+================================================================ */
 
 @media (prefers-reduced-motion: reduce) {
-  .quick-page,
-  .quick-card {
+
+  .qkst__page,
+  .qkst__card {
     animation: none !important;
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // ✅ added
+import { useNavigate } from "react-router-dom";
 import "./Beforeyouvisit.css";
 
 const SECTIONS = [
@@ -65,7 +65,7 @@ const SECTIONS = [
     points: [
       "Respect the sanctity of the place while taking photos or videos.",
       "Avoid flash photography inside the temple / during meditations.",
-      "Do not disturb others’ meditation or darshan for the sake of photos.",
+      "Do not disturb others' meditation or darshan for the sake of photos.",
       "Before posting on social media, share respectful content only.",
     ],
   },
@@ -105,85 +105,110 @@ const SECTIONS = [
 ];
 
 const AshramRules = () => {
-  const navigate = useNavigate(); // ✅ hook for navigation
+  const navigate = useNavigate();
 
   const handleScroll = (id) => {
     const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
-    <div className="rules-page">
-      {/* ===== HERO SECTION ===== */}
-      <section className="rules-hero">
-        <h1>Ashram Rules &amp; Guidelines 📜</h1>
-        <p>
+    <div className="ashrul__page">
+
+      {/* Background orbs */}
+      <div className="ashrul__orb ashrul__orb--1" />
+      <div className="ashrul__orb ashrul__orb--2" />
+      <div className="ashrul__orb ashrul__orb--3" />
+
+      {/* ===== HERO ===== */}
+      <section className="ashrul__hero">
+        <div className="ashrul__hero-badge">Sacred Guidelines</div>
+        <h1 className="ashrul__hero-title">
+          Ashram Rules <span className="ashrul__hero-scroll">📜</span> Guidelines
+        </h1>
+        <p className="ashrul__hero-sub">
           To keep the atmosphere pure, peaceful and safe for everyone, we request
           all visitors to kindly follow these simple guidelines during their
           stay in the ashram.
         </p>
+        <div className="ashrul__hero-divider">
+          <span className="ashrul__div-line" />
+          <span className="ashrul__div-gem">✦</span>
+          <span className="ashrul__div-line" />
+        </div>
       </section>
 
       {/* ===== QUICK LINKS ===== */}
-      <section className="rules-quick-links">
-        <p className="quick-links-label">Quick Sections</p>
-        <div className="quick-links-grid">
+      <section className="ashrul__quick">
+        <p className="ashrul__quick-label">Jump to Section</p>
+        <div className="ashrul__quick-grid">
           {SECTIONS.slice(0, 6).map((section) => (
             <button
               key={section.id}
-              className="quick-link-chip"
+              className="ashrul__chip"
               onClick={() => handleScroll(section.id)}
             >
-              <span className="chip-icon">{section.icon}</span>
-              <span className="chip-text">{section.title}</span>
+              <span className="ashrul__chip-icon">{section.icon}</span>
+              <span className="ashrul__chip-text">{section.title}</span>
             </button>
           ))}
         </div>
       </section>
 
-      {/* ===== MAIN CONTENT ===== */}
-      <section className="rules-layout">
-        {/* Left: Do / Don't Card */}
-        <div className="rules-summary-card">
-          <h2>Simple Do&apos;s ✅</h2>
-          <ul className="summary-list">
-            <li>Come with faith, respect and an open heart.</li>
-            <li>Maintain cleanliness, silence and discipline.</li>
-            <li>Participate in seva and satsang sincerely.</li>
-            <li>Respect all devotees, sevadars and ashram staff.</li>
-          </ul>
+      {/* ===== MAIN LAYOUT ===== */}
+      <section className="ashrul__layout">
 
-          <h2 className="summary-subheading">Simple Don&apos;ts 🚫</h2>
-          <ul className="summary-list summary-list-dont">
-            <li>Do not bring alcohol, tobacco or non-vegetarian items.</li>
-            <li>Do not click disturbing / disrespectful photos or videos.</li>
-            <li>Do not argue, shout or create disturbance in ashram.</li>
-            <li>Do not damage any ashram property or plants.</li>
-          </ul>
+        {/* Left sticky card */}
+        <aside className="ashrul__summary">
 
-          <div className="summary-note">
-            By entering the ashram, you lovingly accept these guidelines and
-            help maintain the sacred atmosphere for everyone. 🌺
+          <div className="ashrul__summary-block ashrul__summary-dos">
+            <h2 className="ashrul__summary-heading">
+              <span className="ashrul__summary-icon">✅</span> Simple Do's
+            </h2>
+            <ul className="ashrul__summary-list">
+              <li>Come with faith, respect and an open heart.</li>
+              <li>Maintain cleanliness, silence and discipline.</li>
+              <li>Participate in seva and satsang sincerely.</li>
+              <li>Respect all devotees, sevadars and ashram staff.</li>
+            </ul>
           </div>
-        </div>
 
-        {/* Right: Detailed Sections */}
-        <div className="rules-sections">
-          {SECTIONS.map((section) => (
+          <div className="ashrul__summary-divider" />
+
+          <div className="ashrul__summary-block ashrul__summary-donts">
+            <h2 className="ashrul__summary-heading">
+              <span className="ashrul__summary-icon">🚫</span> Simple Don'ts
+            </h2>
+            <ul className="ashrul__summary-list ashrul__summary-list--dont">
+              <li>Do not bring alcohol, tobacco or non-vegetarian items.</li>
+              <li>Do not click disturbing / disrespectful photos or videos.</li>
+              <li>Do not argue, shout or create disturbance in ashram.</li>
+              <li>Do not damage any ashram property or plants.</li>
+            </ul>
+          </div>
+
+          <div className="ashrul__summary-note">
+            🌺 By entering the ashram, you lovingly accept these guidelines and
+            help maintain the sacred atmosphere for everyone.
+          </div>
+        </aside>
+
+        {/* Right sections */}
+        <div className="ashrul__sections">
+          {SECTIONS.map((section, i) => (
             <article
               key={section.id}
               id={section.id}
-              className="rules-section-card"
+              className="ashrul__card"
+              style={{ animationDelay: `${0.08 + i * 0.07}s` }}
             >
-              <div className="section-header">
-                <span className="section-icon">{section.icon}</span>
-                <h3>{section.title}</h3>
+              <div className="ashrul__card-header">
+                <span className="ashrul__card-icon">{section.icon}</span>
+                <h3 className="ashrul__card-title">{section.title}</h3>
               </div>
-              <ul className="rules-list">
-                {section.points.map((point, index) => (
-                  <li key={index}>{point}</li>
+              <ul className="ashrul__rules-list">
+                {section.points.map((point, idx) => (
+                  <li key={idx}>{point}</li>
                 ))}
               </ul>
             </article>
@@ -191,21 +216,25 @@ const AshramRules = () => {
         </div>
       </section>
 
-      {/* ===== FINAL CTA ===== */}
-      <section className="rules-footer-note">
-        <h2>Thank You for Your Cooperation 🌸</h2>
-        <p>
-          Your support in following these guidelines allows every devotee to
-          experience peace, devotion and joy in the ashram. We look forward to
-          welcoming you with love and respect.
-        </p>
-        <button
-          className="rules-cta-btn"
-          onClick={() => navigate("/")} // ✅ now goes to Explore Ashram page
-        >
-          I have read &amp; understood the guidelines
-        </button>
+      {/* ===== FOOTER CTA ===== */}
+      <section className="ashrul__cta">
+        <div className="ashrul__cta-inner">
+          <div className="ashrul__cta-emoji">🌸</div>
+          <h2 className="ashrul__cta-title">Thank You for Your Cooperation</h2>
+          <p className="ashrul__cta-sub">
+            Your support in following these guidelines allows every devotee to
+            experience peace, devotion and joy in the ashram. We look forward to
+            welcoming you with love and respect.
+          </p>
+          <button
+            className="ashrul__cta-btn"
+            onClick={() => navigate("/")}
+          >
+            I have read &amp; understood the guidelines
+          </button>
+        </div>
       </section>
+
     </div>
   );
 };
