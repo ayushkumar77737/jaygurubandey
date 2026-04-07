@@ -17,6 +17,7 @@ import photo8 from "../../assets/photo8.webp";
 import photo10 from "../../assets/photo10.webp";
 import photo19 from "../../assets/photo19.webp";
 import pic from "../../assets/pic.jpeg";
+import spirtual1 from "../../assets/spirtual1.webp";
 import {
   FaYoutube, FaInstagram, FaFacebook, FaWhatsapp,
   FaHandsHelping, FaCalendarAlt, FaUsers, FaGlobe, FaTelegramPlane,
@@ -25,6 +26,115 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 import gmailLogo from "../../assets/gmail.png";
 
+/* ══════════════════════════════════════════════════
+   SPIRITUAL CAROUSEL — slides data + component
+   ══════════════════════════════════════════════════ */
+const spiritualSlides = [
+  {
+    img: spirtual1,
+    quote: "The soul is neither born, nor does it die at any time. It is unborn, eternal, ever-existing and primeval.",
+    source: "— Bhagavad Gita, Chapter 2 · Verse 20",
+  },
+  {
+    img: photo8,
+    quote: "Guru Govind dono khade, kake laagoon paay. Balihari Guru aapne, Govind diyo batay.",
+    source: "— Sant Kabir Das Ji",
+  },
+  {
+    img: photo6,
+    quote: "In the repetition of the divine name lies the secret to silencing the restless mind and opening the heart.",
+    source: "— Guruji's Teachings",
+  },
+  {
+    img: photo10,
+    quote: "Seva — selfless service — is the highest worship. Give without expectation, love without condition.",
+    source: "— Sri Guru Ashram",
+  },
+  {
+    img: photo19,
+    quote: "Satsang transforms hearts. The company of the enlightened is the fastest boat across the ocean of illusion.",
+    source: "— Ancient Wisdom",
+  },
+  {
+    img: photo1,
+    quote: "Dhyan is not emptiness — it is the fullness of pure, undistracted awareness resting in the divine.",
+    source: "— Guruji's Teachings",
+  },
+];
+
+const SpiritualCarousel = () => {
+  const [spIndex, setSpIndex] = useState(0);
+  const spRef = useRef(null);
+
+  const startSp = () => {
+    clearInterval(spRef.current);
+    spRef.current = setInterval(() => {
+      setSpIndex((p) => (p + 1) % spiritualSlides.length);
+    }, 5000);
+  };
+
+  useEffect(() => {
+    startSp();
+    return () => clearInterval(spRef.current);
+  }, []);
+
+  const spPrev = () => {
+    setSpIndex((p) => (p - 1 + spiritualSlides.length) % spiritualSlides.length);
+    startSp();
+  };
+  const spNext = () => {
+    setSpIndex((p) => (p + 1) % spiritualSlides.length);
+    startSp();
+  };
+
+  return (
+    <div className="hx-sp-carousel">
+      {/* slides */}
+      {spiritualSlides.map((slide, i) => (
+        <div
+          key={i}
+          className={`hx-sp-slide${i === spIndex ? " hx-sp-slide--active" : ""}`}
+          style={{ backgroundImage: `url(${slide.img})` }}
+        >
+          <div className="hx-sp-overlay" />
+          <div className="hx-sp-text-block">
+            <span className="hx-sp-open-quote">"</span>
+            <p className="hx-sp-quote-text">{slide.quote}</p>
+            <div className="hx-sp-quote-rule" />
+            <cite className="hx-sp-cite">{slide.source}</cite>
+          </div>
+        </div>
+      ))}
+
+      {/* arrows */}
+      <button className="hx-sp-btn hx-sp-btn--prev" onClick={spPrev} aria-label="Previous">
+        <FaChevronLeft />
+      </button>
+      <button className="hx-sp-btn hx-sp-btn--next" onClick={spNext} aria-label="Next">
+        <FaChevronRight />
+      </button>
+
+      {/* dots */}
+      <div className="hx-sp-dots">
+        {spiritualSlides.map((_, i) => (
+          <button
+            key={i}
+            className={`hx-sp-dot${i === spIndex ? " hx-sp-dot--active" : ""}`}
+            onClick={() => { setSpIndex(i); startSp(); }}
+            aria-label={`Slide ${i + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* counter */}
+      <div className="hx-sp-counter">{spIndex + 1} / {spiritualSlides.length}</div>
+    </div>
+  );
+};
+
+/* ══════════════════════════════════════════════════
+   HERO PAGE
+   ══════════════════════════════════════════════════ */
 const Hero = () => {
   const aboutImages = [photo7, photo8, photo6];
   const [aboutIndex, setAboutIndex] = useState(0);
@@ -57,7 +167,6 @@ const Hero = () => {
     images.forEach((src) => { const img = new Image(); img.src = src; });
   }, [images]);
 
-  // ── Auto-play: start / restart timer ──
   const startAutoPlay = () => {
     clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
@@ -65,13 +174,11 @@ const Hero = () => {
     }, 4000);
   };
 
-  // ── Start on mount, clear on unmount ──
   useEffect(() => {
     startAutoPlay();
     return () => clearInterval(intervalRef.current);
   }, [images.length]);
 
-  // ── Arrow handlers — reset timer on manual click ──
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
     startAutoPlay();
@@ -80,8 +187,6 @@ const Hero = () => {
     setCurrentIndex((prev) => (prev + 1) % images.length);
     startAutoPlay();
   };
-
-  // ── Dot click — reset timer on manual click ──
   const handleDotClick = (i) => {
     setCurrentIndex(i);
     startAutoPlay();
@@ -154,7 +259,6 @@ These mystical expressions encourage seekers to look beyond literal meanings and
       <div className="hx-hero">
         <FlowerSprinkler />
 
-        {/* Background slides */}
         {images.map((img, index) => (
           <div
             key={index}
@@ -166,7 +270,6 @@ These mystical expressions encourage seekers to look beyond literal meanings and
         <div className="hx-hero-grain" />
         <div className="hx-hero-fade" />
 
-        {/* ── Carousel Arrows ── */}
         <button className="hx-car-btn hx-car-btn--prev" onClick={handlePrev} aria-label="Previous">
           <FaChevronLeft />
         </button>
@@ -174,7 +277,6 @@ These mystical expressions encourage seekers to look beyond literal meanings and
           <FaChevronRight />
         </button>
 
-        {/* ── Dot Indicators ── */}
         <div className="hx-car-dots">
           {images.map((_, i) => (
             <button
@@ -186,7 +288,6 @@ These mystical expressions encourage seekers to look beyond literal meanings and
           ))}
         </div>
 
-        {/* ── Slide Counter ── */}
         <div className="hx-car-counter">
           {currentIndex + 1} / {images.length}
         </div>
@@ -268,6 +369,18 @@ These mystical expressions encourage seekers to look beyond literal meanings and
             ))}
           </div>
         </div>
+      </section>
+
+      <div className="hx-divider"><span className="hx-div-gem">❖</span></div>
+
+      {/* ══ SPIRITUAL & DEEP ══ */}
+      <section className="hx-spiritual">
+        <div className="hx-section-head">
+          <span className="hx-section-tag">Sacred Wisdom</span>
+          <h2 className="hx-section-title">🙏 Spiritual &amp; Deep</h2>
+          <div className="hx-section-rule" />
+        </div>
+        <SpiritualCarousel />
       </section>
 
       <div className="hx-divider"><span className="hx-div-gem">❖</span></div>
@@ -452,7 +565,7 @@ These mystical expressions encourage seekers to look beyond literal meanings and
           <div className="hx-social-card">
             <div className="hx-social-head hx-social-head--gm"><img src={gmailLogo} alt="Gmail" className="hx-gmail-ico" /><span>Email</span></div>
             <ul className="hx-social-list">
-              <li><a href="mailto:jaigurubande15@gmail.com" target="_blank" rel="noopener noreferrer">jaigurubande15@gmail.com</a></li>
+              <li><a href="mailto:support@jaigurubande.in" target="_blank" rel="noopener noreferrer">support@jaigurubande.in</a></li>
             </ul>
           </div>
           <div className="hx-social-card">
