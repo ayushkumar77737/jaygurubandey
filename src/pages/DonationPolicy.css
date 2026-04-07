@@ -1,262 +1,448 @@
-/* ===============================
-   DONATION POLICY PAGE (SCOPED)
-================================ */
+/* =========================================================
+   DONATION POLICY PAGE — DonationPolicy.css
+   Prefix: dnpl__  (no global conflicts)
+   Aesthetic: Devotional editorial · Gold & Warm Cream
+   ========================================================= */
 
-.donation-policy-page {
-  min-height: 100vh;
-  padding: 90px 24px;
-  background:
-    radial-gradient(circle at top left, rgba(197, 157, 95, 0.25), transparent 60%),
-    linear-gradient(180deg, #fffaf3, #ffffff);
-  font-family: "Outfit", sans-serif;
-  overflow-x: hidden;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;600;700&display=swap');
 
-  /* page fade */
-  animation: dpPageFade 0.8s ease-out both;
+/* ── Tokens ─────────────────────────────────────────────── */
+.dnpl__page {
+  --dnpl-gold: #c59d5f;
+  --dnpl-gold-lt: #e8c06a;
+  --dnpl-gold-dk: #9a7535;
+  --dnpl-cream: #fffaf3;
+  --dnpl-white: #ffffff;
+  --dnpl-text: #2b2b2b;
+  --dnpl-text-mid: #3a2c1a;
+  --dnpl-text-lt: #666666;
+  --dnpl-border: #f0e6dc;
+  --dnpl-border-gd: rgba(197, 157, 95, 0.25);
+  --dnpl-shadow: 0 12px 36px rgba(0, 0, 0, 0.05);
+  --dnpl-shadow-hov: 0 20px 50px rgba(0, 0, 0, 0.09);
+  --dnpl-display: 'Cormorant Garamond', Georgia, serif;
+  --dnpl-body: 'Outfit', sans-serif;
+  --dnpl-r: 20px;
 }
 
-@keyframes dpPageFade {
+/* ── Page Shell ─────────────────────────────────────────── */
+.dnpl__page {
+  position: relative;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(197, 157, 95, 0.20), transparent 55%),
+    linear-gradient(180deg, #fffaf3 0%, #ffffff 60%, #fffaf3 100%);
+  font-family: var(--dnpl-body);
+  color: var(--dnpl-text);
+  padding: 90px 24px 80px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  animation: dnpl-pageIn 0.8s ease both;
+}
+
+@keyframes dnpl-pageIn {
   from {
     opacity: 0;
     transform: translateY(14px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.donation-policy-container {
-  max-width: 900px;
-  margin: auto;
+/* ── Ambient Glows ──────────────────────────────────────── */
+.dnpl__bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
 }
 
-/* ===== Title ===== */
+.dnpl__bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.12;
+}
 
-.donation-policy-title {
-  font-size: 44px;
-  font-weight: 700;
-  text-align: center;
-  color: #2b2b2b;
-  margin-bottom: 34px;
+.dnpl__bg-glow--1 {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, #e8c06a, transparent);
+  top: -120px;
+  left: -80px;
+  animation: dnpl-drift 16s ease-in-out infinite alternate;
+}
+
+.dnpl__bg-glow--2 {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, #ffd6a0, transparent);
+  top: 45%;
+  right: -80px;
+  animation: dnpl-drift 20s ease-in-out infinite alternate-reverse;
+}
+
+.dnpl__bg-glow--3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #c59d5f, transparent);
+  bottom: 60px;
+  left: 30%;
+  animation: dnpl-drift 24s ease-in-out infinite alternate;
+}
+
+@keyframes dnpl-drift {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(24px, 16px);
+  }
+}
+
+/* ── Container ──────────────────────────────────────────── */
+.dnpl__container {
   position: relative;
-  letter-spacing: 0.4px;
-
-  animation: dpTitleReveal 0.9s ease-out both;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-@keyframes dpTitleReveal {
+/* ── Ornament ───────────────────────────────────────────── */
+.dnpl__orn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.dnpl__orn-line {
+  display: block;
+  width: 72px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--dnpl-gold), transparent);
+}
+
+.dnpl__orn-icon {
+  font-size: 1.4rem;
+  filter: drop-shadow(0 2px 6px rgba(197, 157, 95, 0.4));
+}
+
+.dnpl__orn-dot {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--dnpl-gold);
+  box-shadow: 0 0 8px var(--dnpl-gold-lt);
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+.dnpl__header {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.dnpl__title {
+  font-family: var(--dnpl-display);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 700;
+  color: var(--dnpl-text);
+  letter-spacing: 0.4px;
+  margin: 6px 0 0;
+  line-height: 1.15;
+  animation: dnpl-titleIn 0.9s ease both;
+}
+
+@keyframes dnpl-titleIn {
   from {
     opacity: 0;
     transform: translateY(-16px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.donation-policy-title::after {
-  content: "";
-  width: 96px;
+.dnpl__title-bar {
+  width: 0;
   height: 4px;
-  background: linear-gradient(90deg, #c59d5f, #b38745);
-  display: block;
-  margin: 18px auto 0;
-  border-radius: 6px;
-
-  animation: dpUnderlineGrow 0.8s ease-out both;
+  background: linear-gradient(90deg, var(--dnpl-gold), var(--dnpl-gold-lt));
+  border-radius: 4px;
+  margin: 16px auto 0;
+  animation: dnpl-barGrow 0.8s 0.2s ease both;
 }
 
-@keyframes dpUnderlineGrow {
+@keyframes dnpl-barGrow {
   from {
     width: 0;
     opacity: 0;
   }
+
   to {
     width: 96px;
     opacity: 1;
   }
 }
 
-/* ===== Intro ===== */
-
-.donation-policy-intro {
-  font-size: 18px;
+.dnpl__intro {
+  font-size: 17px;
   line-height: 1.85;
-  color: #555;
-  text-align: center;
-  margin-bottom: 56px;
-  max-width: 760px;
-  margin-left: auto;
-  margin-right: auto;
-
-  animation: dpFadeUp 1s ease-out both;
+  color: var(--dnpl-text-lt);
+  max-width: 720px;
+  margin: 24px auto 0;
+  font-weight: 300;
+  animation: dnpl-fadeUp 1s 0.1s ease both;
 }
 
-@keyframes dpFadeUp {
+@keyframes dnpl-fadeUp {
   from {
     opacity: 0;
     transform: translateY(18px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* ===== Policy Card ===== */
-
-.policy-card {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 28px 30px;
-  margin-bottom: 26px;
-  border: 1.5px solid #f0e6dc;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.04);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  position: relative;
-
-  animation: dpCardReveal 0.9s ease-out both;
+/* ── Cards wrapper ──────────────────────────────────────── */
+.dnpl__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.policy-card:nth-child(2) { animation-delay: 0.05s; }
-.policy-card:nth-child(3) { animation-delay: 0.1s; }
-.policy-card:nth-child(4) { animation-delay: 0.15s; }
-.policy-card:nth-child(5) { animation-delay: 0.2s; }
-.policy-card:nth-child(6) { animation-delay: 0.25s; }
+/* ── Card ───────────────────────────────────────────────── */
+.dnpl__card {
+  display: flex;
+  gap: 0;
+  background: var(--dnpl-white);
+  border-radius: var(--dnpl-r);
+  border: 1.5px solid var(--dnpl-border);
+  box-shadow: var(--dnpl-shadow);
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  opacity: 0;
+  animation: dnpl-cardIn 0.7s ease forwards;
+  position: relative;
+}
 
-@keyframes dpCardReveal {
+/* shimmer overlay on hover */
+.dnpl__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(197, 157, 95, 0.06), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.dnpl__card:hover::before {
+  opacity: 1;
+}
+
+.dnpl__card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--dnpl-shadow-hov);
+  border-color: rgba(197, 157, 95, 0.40);
+}
+
+@keyframes dnpl-cardIn {
   from {
     opacity: 0;
     transform: translateY(22px) scale(0.98);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
 }
 
-.policy-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(197, 157, 95, 0.08),
-    transparent
-  );
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  pointer-events: none;
+/* ── Card side strip ────────────────────────────────────── */
+.dnpl__card-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 20px;
+  background: linear-gradient(180deg, rgba(197, 157, 95, 0.10), rgba(197, 157, 95, 0.04));
+  border-right: 1.5px solid var(--dnpl-border);
+  min-width: 72px;
+  gap: 10px;
 }
 
-.policy-card:hover::before {
-  opacity: 1;
+.dnpl__card-num {
+  font-family: var(--dnpl-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--dnpl-gold-dk);
+  letter-spacing: 0.5px;
+  line-height: 1;
 }
 
-.policy-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.08);
+.dnpl__card-vline {
+  flex: 1;
+  width: 1.5px;
+  background: linear-gradient(180deg, var(--dnpl-gold-lt), transparent);
+  border-radius: 2px;
+  min-height: 20px;
 }
 
-.policy-card h2 {
-  font-size: 21px;
-  font-weight: 600;
-  color: #3a2c1a;
-  margin-bottom: 10px;
+/* ── Card body ──────────────────────────────────────────── */
+.dnpl__card-body {
+  flex: 1;
+  padding: 26px 28px;
 }
 
-.policy-card p {
-  font-size: 16.5px;
-  line-height: 1.75;
-  color: #555;
+.dnpl__card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
-/* ===== Footer Note ===== */
+.dnpl__card-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(197, 157, 95, 0.3));
+  flex-shrink: 0;
+}
 
-.donation-policy-footer {
-  margin-top: 56px;
+.dnpl__card-title {
+  font-family: var(--dnpl-display);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  font-weight: 700;
+  color: var(--dnpl-text-mid);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.dnpl__card-text {
   font-size: 15.5px;
-  color: #666;
+  line-height: 1.78;
+  color: #555;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* ── Footer ─────────────────────────────────────────────── */
+.dnpl__footer {
   text-align: center;
+  margin-top: 48px;
+}
+
+.dnpl__footer-text {
+  font-size: 15px;
+  color: var(--dnpl-text-lt);
   font-style: italic;
   max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-
-  animation: dpFadeUp 1s ease-out both;
+  margin: 10px auto 0;
+  line-height: 1.75;
+  font-weight: 300;
 }
 
-/* ===============================
-   RESPONSIVE BREAKPOINTS
-================================ */
-
-/* 💻 Large Laptop */
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 @media (min-width: 1200px) {
-  .donation-policy-container {
+  .dnpl__container {
     max-width: 960px;
   }
-}
 
-/* 💻 Laptop */
-@media (max-width: 1199px) {
-  .donation-policy-title {
-    font-size: 40px;
+  .dnpl__card-text {
+    font-size: 16.5px;
   }
 }
 
-/* 📱 Tablet */
 @media (max-width: 991px) {
-  .donation-policy-page {
-    padding: 70px 20px;
+  .dnpl__page {
+    padding: 70px 20px 64px;
   }
 
-  .donation-policy-title {
-    font-size: 36px;
+  .dnpl__card-body {
+    padding: 22px 22px;
   }
 
-  .donation-policy-intro {
-    font-size: 17px;
-  }
-
-  .policy-card {
-    padding: 24px 24px;
+  .dnpl__card-side {
+    min-width: 62px;
+    padding: 22px 14px;
   }
 }
 
-/* 📱 Mobile */
-@media (max-width: 576px) {
-  .donation-policy-page {
-    padding: 56px 16px;
+@media (max-width: 767px) {
+  .dnpl__page {
+    padding: 60px 16px 56px;
   }
 
-  .donation-policy-title {
-    font-size: 30px;
+  .dnpl__card {
+    flex-direction: column;
   }
 
-  .donation-policy-intro {
-    font-size: 16px;
-    line-height: 1.75;
-    margin-bottom: 42px;
+  .dnpl__card-side {
+    flex-direction: row;
+    padding: 14px 20px;
+    border-right: none;
+    border-bottom: 1.5px solid var(--dnpl-border);
+    min-width: unset;
+    gap: 12px;
   }
 
-  .policy-card {
-    padding: 20px 18px;
-    border-radius: 16px;
+  .dnpl__card-vline {
+    display: none;
   }
 
-  .policy-card h2 {
-    font-size: 18px;
+  .dnpl__card-body {
+    padding: 18px 20px;
   }
 
-  .policy-card p {
+  .dnpl__card-text {
+    font-size: 15px;
+  }
+
+  .dnpl__card:hover {
+    transform: none;
+  }
+
+  .dnpl__orn-line {
+    width: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dnpl__title {
+    font-size: 1.8rem;
+  }
+
+  .dnpl__intro {
     font-size: 15.5px;
   }
 
-  .donation-policy-footer {
+  .dnpl__card-body {
+    padding: 16px 18px;
+  }
+
+  .dnpl__card-text {
     font-size: 14.5px;
+  }
+
+  .dnpl__footer-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .dnpl__title {
+    font-size: 1.5rem;
   }
 }

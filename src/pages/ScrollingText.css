@@ -1,85 +1,170 @@
-/* ========================= Scrolling Text Bar ========================= */
-.scrolling-text-container {
+/* ========================= Container ========================= */
+.sctxt__container {
   width: 100%;
-  background: linear-gradient(90deg, #0a1a2f, #020b1a); /* navbar match */
-  color: #f5c542;              /* divine gold text */
+  background: linear-gradient(90deg, #07111f 0%, #020b1a 40%, #07111f 100%);
+  color: #f5c542;
   overflow: hidden;
   position: relative;
-  padding: 10px 0;
   font-size: 20px;
   font-weight: 600;
   white-space: nowrap;
-
-  border-top: 1.5px solid #f5c542;
-  border-bottom: 1.5px solid #f5c542;
-
-  box-shadow: inset 0 -1px 6px rgba(245, 197, 66, 0.25);
+  border-top: 1px solid rgba(245, 197, 66, 0.6);
+  border-bottom: 1px solid rgba(245, 197, 66, 0.6);
 }
 
-/* ========================= Scrolling Text ========================= */
-.scrolling-text {
-  display: inline-block;
-  padding-left: 100%;
-  animation: scroll-right 15s linear infinite,
-           goldGlow 3.5s ease-in-out infinite; /* SAME SPEED */
-  will-change: transform, text-shadow;
+/* ========================= Glow Strip ========================= */
+.sctxt__glow-strip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(245, 197, 66, 0.6) 25%,
+      rgba(255, 220, 100, 0.9) 50%,
+      rgba(245, 197, 66, 0.6) 75%,
+      transparent 100%);
+  animation: sctxt-glow-sweep 4s ease-in-out infinite;
 }
 
-/* ========================= Scroll Keyframes ========================= */
-@keyframes scroll-right {
+@keyframes sctxt-glow-sweep {
   0% {
-    transform: translateX(-100%);
+    opacity: 0.3;
   }
+
+  50% {
+    opacity: 1;
+  }
+
   100% {
+    opacity: 0.3;
+  }
+}
+
+/* ========================= Track ========================= */
+.sctxt__track {
+  position: relative;
+  padding: 12px 0;
+  overflow: hidden;
+}
+
+.sctxt__track::before,
+.sctxt__track::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.sctxt__track::before {
+  left: 0;
+  background: linear-gradient(to right, #020b1a, transparent);
+}
+
+.sctxt__track::after {
+  right: 0;
+  background: linear-gradient(to left, #020b1a, transparent);
+}
+
+/* ========================= Belt (the moving row) ========================= */
+.sctxt__belt {
+  display: inline-flex;
+  /* two segments side by side */
+  animation:
+    sctxt-scroll 18s linear infinite,
+    sctxt-shimmer 3.5s ease-in-out infinite;
+  will-change: transform, color;
+}
+
+/* ========================= Each half ========================= */
+.sctxt__segment {
+  display: inline-block;
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+}
+
+/* ========================= Scroll — moves exactly ONE segment width ========================= */
+@keyframes sctxt-scroll {
+  0% {
     transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ========================= Gold Shimmer ========================= */
+@keyframes sctxt-shimmer {
+  0% {
+    color: #f5c542;
+    text-shadow: 0 0 4px rgba(245, 197, 66, 0.2);
+  }
+
+  50% {
+    color: #ffe680;
+    text-shadow: 0 0 10px rgba(255, 220, 80, 0.55), 0 0 20px rgba(245, 197, 66, 0.2);
+  }
+
+  100% {
+    color: #f5c542;
+    text-shadow: 0 0 4px rgba(245, 197, 66, 0.2);
   }
 }
 
 /* ========================= Responsive ========================= */
-
-/* Medium screens */
 @media (max-width: 1286px) {
-  .scrolling-text-container {
+  .sctxt__container {
     font-size: 18px;
+  }
+
+  .sctxt__track {
+    padding: 10px 0;
+  }
+
+  .sctxt__belt {
+    animation-duration: 22s, 3.5s;
+  }
+}
+
+@media (max-width: 768px) {
+  .sctxt__container {
+    font-size: 16px;
+  }
+
+  .sctxt__track {
     padding: 8px 0;
   }
-  .scrolling-text {
-    animation: scroll-right 20s linear infinite;
+
+  .sctxt__track::before,
+  .sctxt__track::after {
+    width: 50px;
+  }
+
+  .sctxt__belt {
+    animation-duration: 26s, 3.5s;
   }
 }
 
-/* Small screens */
-@media (max-width: 768px) {
-  .scrolling-text-container {
-    font-size: 16px;
-    padding: 6px 0;
-  }
-  .scrolling-text {
-    animation: scroll-right 25s linear infinite;
-    text-shadow: 0 0 5px rgba(245,197,66,0.5);
-  }
-}
-
-/* Extra small screens */
 @media (max-width: 480px) {
-  .scrolling-text-container {
+  .sctxt__container {
     font-size: 14px;
-    padding: 5px 0;
   }
-  .scrolling-text {
-    animation: scroll-right 30s linear infinite;
+
+  .sctxt__track {
+    padding: 7px 0;
+  }
+
+  .sctxt__track::before,
+  .sctxt__track::after {
+    width: 30px;
+  }
+
+  .sctxt__belt {
+    animation-duration: 30s, 3.5s;
   }
 }
-
-@keyframes goldGlow {
-  0% {
-    text-shadow: 0 0 2px rgba(245,197,66,0.25);
-  }
-  50% {
-    text-shadow: 0 0 5px rgba(245,197,66,0.5);
-  }
-  100% {
-    text-shadow: 0 0 2px rgba(245,197,66,0.25);
-  }
-}
-

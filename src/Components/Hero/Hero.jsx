@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import ScrollingText from "../../pages/ScrollingText";
 import AnnouncementBar from "../../pages/AnnouncementBar";
@@ -20,6 +20,7 @@ import pic from "../../assets/pic.jpeg";
 import {
   FaYoutube, FaInstagram, FaFacebook, FaWhatsapp,
   FaHandsHelping, FaCalendarAlt, FaUsers, FaGlobe, FaTelegramPlane,
+  FaChevronLeft, FaChevronRight,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import gmailLogo from "../../assets/gmail.png";
@@ -30,6 +31,7 @@ const Hero = () => {
   const navigate = useNavigate();
   const images = [bio, pic, hero1, hero2, photo1, photo6, photo7, photo8];
   const [currentIndex, setCurrentIndex] = useState(0);
+  const intervalRef = useRef(null);
 
   const alreadyShown = sessionStorage.getItem("hasShownLoader");
   const [loading, setLoading] = useState(!alreadyShown);
@@ -55,6 +57,36 @@ const Hero = () => {
     images.forEach((src) => { const img = new Image(); img.src = src; });
   }, [images]);
 
+  // ── Auto-play: start / restart timer ──
+  const startAutoPlay = () => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 4000);
+  };
+
+  // ── Start on mount, clear on unmount ──
+  useEffect(() => {
+    startAutoPlay();
+    return () => clearInterval(intervalRef.current);
+  }, [images.length]);
+
+  // ── Arrow handlers — reset timer on manual click ──
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    startAutoPlay();
+  };
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+    startAutoPlay();
+  };
+
+  // ── Dot click — reset timer on manual click ──
+  const handleDotClick = (i) => {
+    setCurrentIndex(i);
+    startAutoPlay();
+  };
+
   const fullText = `Param Sant Swami Jai Gurubande Ji Maharaj
 Let's Move Towards God And Understand Sanatan Dharma.
 It's a spiritual and philosophical message encouraging people to seek divine connection and explore the essence of Sanatan Dharma.`;
@@ -71,13 +103,6 @@ These mystical expressions encourage seekers to look beyond literal meanings and
 
   const [ulatDisplayedText, setUlatDisplayedText] = useState("");
   const [ulatCharIndex, setUlatCharIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [images.length]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -128,6 +153,8 @@ These mystical expressions encourage seekers to look beyond literal meanings and
       {/* ══ HERO ══ */}
       <div className="hx-hero">
         <FlowerSprinkler />
+
+        {/* Background slides */}
         {images.map((img, index) => (
           <div
             key={index}
@@ -135,28 +162,39 @@ These mystical expressions encourage seekers to look beyond literal meanings and
             style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.52), rgba(0,0,0,0.22)), url(${img})` }}
           />
         ))}
-        {/* overlay grain */}
+
         <div className="hx-hero-grain" />
-        {/* bottom fade */}
         <div className="hx-hero-fade" />
 
-        <div className="hx-hero-text">
-          {textLines[0] && (
-            <p className="hx-hero-saint">
-              {textLines[0]}
-            </p>
-          )}
-          {textLines[1] && (
-            <h1 className="hx-hero-title">
-              {textLines[1]}
-            </h1>
-          )}
-          {textLines[2] && (
-            <p className="hx-hero-sub">
-              {textLines[2]}
-            </p>
-          )}
+        {/* ── Carousel Arrows ── */}
+        <button className="hx-car-btn hx-car-btn--prev" onClick={handlePrev} aria-label="Previous">
+          <FaChevronLeft />
+        </button>
+        <button className="hx-car-btn hx-car-btn--next" onClick={handleNext} aria-label="Next">
+          <FaChevronRight />
+        </button>
 
+        {/* ── Dot Indicators ── */}
+        <div className="hx-car-dots">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              className={`hx-car-dot${i === currentIndex ? " hx-car-dot--active" : ""}`}
+              onClick={() => handleDotClick(i)}
+              aria-label={`Slide ${i + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* ── Slide Counter ── */}
+        <div className="hx-car-counter">
+          {currentIndex + 1} / {images.length}
+        </div>
+
+        <div className="hx-hero-text">
+          {textLines[0] && <p className="hx-hero-saint">{textLines[0]}</p>}
+          {textLines[1] && <h1 className="hx-hero-title">{textLines[1]}</h1>}
+          {textLines[2] && <p className="hx-hero-sub">{textLines[2]}</p>}
           <div className="hx-hero-ornament">
             <span className="hx-orn-line" />
             <span className="hx-orn-gem">✦</span>
@@ -175,7 +213,6 @@ These mystical expressions encourage seekers to look beyond literal meanings and
           <h2 className="hx-section-title">About Guruji</h2>
           <div className="hx-section-rule" />
         </div>
-
         <div className="hx-about-wrap">
           <div className="hx-about-img-frame">
             <div className="hx-img-border" />
@@ -185,7 +222,6 @@ These mystical expressions encourage seekers to look beyond literal meanings and
             <div className="hx-img-corner hx-img-corner--bl" />
             <div className="hx-img-corner hx-img-corner--br" />
           </div>
-
           <div className="hx-about-body">
             <p className="hx-about-p">
               Guruji is a spiritual guide devoted to spreading wisdom, positivity,
@@ -217,7 +253,6 @@ These mystical expressions encourage seekers to look beyond literal meanings and
           <h2 className="hx-section-title">Ulat-Bhaidni</h2>
           <div className="hx-section-rule" />
         </div>
-
         <div className="hx-ulat-wrap">
           <div className="hx-about-img-frame">
             <div className="hx-img-border" />
@@ -227,12 +262,9 @@ These mystical expressions encourage seekers to look beyond literal meanings and
             <div className="hx-img-corner hx-img-corner--bl" />
             <div className="hx-img-corner hx-img-corner--br" />
           </div>
-
           <div className="hx-ulat-body">
-            {ulatDisplayedText.split("\n\n").map((para, index, arr) => (
-              <p key={index} className="hx-ulat-p">
-                {para}
-              </p>
+            {ulatDisplayedText.split("\n\n").map((para, index) => (
+              <p key={index} className="hx-ulat-p">{para}</p>
             ))}
           </div>
         </div>
@@ -247,7 +279,6 @@ These mystical expressions encourage seekers to look beyond literal meanings and
           <h2 className="hx-section-title">Mission &amp; Vision</h2>
           <div className="hx-section-rule" />
         </div>
-
         <div className="hx-mv-grid">
           <div className="hx-mv-card">
             <div className="hx-mv-img-wrap">
@@ -260,11 +291,7 @@ These mystical expressions encourage seekers to look beyond literal meanings and
               toward spiritual awareness, righteous living, and inner peace.
             </p>
           </div>
-
-          <div className="hx-mv-sep">
-            <span className="hx-mv-sep-gem">✦</span>
-          </div>
-
+          <div className="hx-mv-sep"><span className="hx-mv-sep-gem">✦</span></div>
           <div className="hx-mv-card">
             <div className="hx-mv-img-wrap">
               <img src={visionImg} alt="Vision" className="hx-mv-img" />
@@ -288,49 +315,31 @@ These mystical expressions encourage seekers to look beyond literal meanings and
           <h2 className="hx-section-title">Latest Updates</h2>
           <div className="hx-section-rule" />
         </div>
-
         <div className="hx-updates-grid">
           <div className="hx-update-card">
             <span className="hx-badge hx-badge--red">IMPORTANT</span>
-            <div className="hx-update-img">
-              <img src={photo8} alt="Spiritual Yatra" />
-            </div>
+            <div className="hx-update-img"><img src={photo8} alt="Spiritual Yatra" /></div>
             <div className="hx-update-body">
               <h3 className="hx-update-title">Upcoming Spiritual Yatra</h3>
-              <p className="hx-update-desc">
-                Swami Ji will be visiting Varanasi and Hyderabad this month.
-                Devotees are requested to stay connected for darshan updates.
-              </p>
+              <p className="hx-update-desc">Swami Ji will be visiting Varanasi and Hyderabad this month. Devotees are requested to stay connected for darshan updates.</p>
               <span className="hx-update-date">📅 18 Jan 2026</span>
             </div>
           </div>
-
           <div className="hx-update-card">
             <span className="hx-badge hx-badge--green">NEW</span>
-            <div className="hx-update-img">
-              <img src={photo10} alt="Live Satsang" />
-            </div>
+            <div className="hx-update-img"><img src={photo10} alt="Live Satsang" /></div>
             <div className="hx-update-body">
               <h3 className="hx-update-title">Weekly Live Satsang</h3>
-              <p className="hx-update-desc">
-                Join our live satsang every Sunday at 7:30 PM IST and receive
-                divine guidance and blessings.
-              </p>
+              <p className="hx-update-desc">Join our live satsang every Sunday at 7:30 PM IST and receive divine guidance and blessings.</p>
               <span className="hx-update-date">📅 Every Sunday</span>
             </div>
           </div>
-
           <div className="hx-update-card">
             <span className="hx-badge hx-badge--purple">UPDATE</span>
-            <div className="hx-update-img">
-              <img src={photo19} alt="Contributions" />
-            </div>
+            <div className="hx-update-img"><img src={photo19} alt="Contributions" /></div>
             <div className="hx-update-body">
               <h3 className="hx-update-title">Contribution Options Enabled</h3>
-              <p className="hx-update-desc">
-                UPI &amp; QR-based contribution options are now available for
-                devotees to support spiritual activities.
-              </p>
+              <p className="hx-update-desc">UPI &amp; QR-based contribution options are now available for devotees to support spiritual activities.</p>
               <span className="hx-update-date">📅 Recently Updated</span>
             </div>
           </div>
@@ -346,7 +355,6 @@ These mystical expressions encourage seekers to look beyond literal meanings and
           <h2 className="hx-section-title">Key Activities / What We Do</h2>
           <div className="hx-section-rule" />
         </div>
-
         <div className="hx-acts-grid">
           {[
             { icon: <FaHandsHelping />, title: "Seva / Activities", desc: "Daily and regular spiritual, social, and seva-based activities conducted with devotion and discipline." },
@@ -372,7 +380,6 @@ These mystical expressions encourage seekers to look beyond literal meanings and
           <h2 className="hx-section-title">Quick Links &amp; Updates</h2>
           <div className="hx-section-rule" />
         </div>
-
         <div className="hx-links-grid">
           <div className="hx-links-card">
             <h3 className="hx-links-title">Important Links</h3>
@@ -382,7 +389,6 @@ These mystical expressions encourage seekers to look beyond literal meanings and
               ))}
             </ul>
           </div>
-
           <div className="hx-links-card">
             <h3 className="hx-links-title">Latest Updates</h3>
             <ul className="hx-links-list">
@@ -391,7 +397,6 @@ These mystical expressions encourage seekers to look beyond literal meanings and
               ))}
             </ul>
           </div>
-
           <div className="hx-links-card">
             <h3 className="hx-links-title">Legal</h3>
             <ul className="hx-links-list">
@@ -412,74 +417,46 @@ These mystical expressions encourage seekers to look beyond literal meanings and
           <h2 className="hx-section-title">Official Digital Platforms</h2>
           <div className="hx-section-rule" />
         </div>
-
         <div className="hx-social-grid">
           <div className="hx-social-card">
-            <div className="hx-social-head hx-social-head--yt">
-              <FaYoutube className="hx-social-ico" />
-              <span>YouTube Channels</span>
-            </div>
+            <div className="hx-social-head hx-social-head--yt"><FaYoutube className="hx-social-ico" /><span>YouTube Channels</span></div>
             <ul className="hx-social-list">
               <li><a href="https://youtube.com/@jaigurubande?feature=shared" target="_blank" rel="noopener noreferrer">Jai Gurubande</a></li>
               <li><a href="youtube.com/@jaygurubande1?si=7f0-bxVAZFTx7r-8" target="_blank" rel="noopener noreferrer">Jai Gurubande 3377</a></li>
             </ul>
           </div>
-
           <div className="hx-social-card">
-            <div className="hx-social-head hx-social-head--ig">
-              <FaInstagram className="hx-social-ico" />
-              <span>Instagram</span>
-            </div>
+            <div className="hx-social-head hx-social-head--ig"><FaInstagram className="hx-social-ico" /><span>Instagram</span></div>
             <ul className="hx-social-list">
               <li><a href="https://www.instagram.com/jaigurubande__official?igsh=NnIwdnI5cGMxemYy" target="_blank" rel="noopener noreferrer">Jai Gurubande Official</a></li>
             </ul>
           </div>
-
           <div className="hx-social-card">
-            <div className="hx-social-head hx-social-head--fb">
-              <FaFacebook className="hx-social-ico" />
-              <span>Facebook</span>
-            </div>
+            <div className="hx-social-head hx-social-head--fb"><FaFacebook className="hx-social-ico" /><span>Facebook</span></div>
             <ul className="hx-social-list">
               <li><a href="https://www.facebook.com/share/g/1AZvFisxcs/" target="_blank" rel="noopener noreferrer">Jai Gurubande</a></li>
             </ul>
           </div>
-
           <div className="hx-social-card">
-            <div className="hx-social-head hx-social-head--wa">
-              <FaWhatsapp className="hx-social-ico" />
-              <span>WhatsApp</span>
-            </div>
+            <div className="hx-social-head hx-social-head--wa"><FaWhatsapp className="hx-social-ico" /><span>WhatsApp</span></div>
             <ul className="hx-social-list">
               <li><a href="https://chat.whatsapp.com/GwdDS530clKJsNc4zkPCyD" target="_blank" rel="noopener noreferrer">Jai Gurubande</a></li>
             </ul>
           </div>
-
           <div className="hx-social-card">
-            <div className="hx-social-head hx-social-head--tw">
-              <FaXTwitter className="hx-social-ico" />
-              <span>Twitter / X</span>
-            </div>
+            <div className="hx-social-head hx-social-head--tw"><FaXTwitter className="hx-social-ico" /><span>Twitter / X</span></div>
             <ul className="hx-social-list">
               <li><a href="https://x.com/jaigurubande" target="_blank" rel="noopener noreferrer">JAI GURUBANDE</a></li>
             </ul>
           </div>
-
           <div className="hx-social-card">
-            <div className="hx-social-head hx-social-head--gm">
-              <img src={gmailLogo} alt="Gmail" className="hx-gmail-ico" />
-              <span>Email</span>
-            </div>
+            <div className="hx-social-head hx-social-head--gm"><img src={gmailLogo} alt="Gmail" className="hx-gmail-ico" /><span>Email</span></div>
             <ul className="hx-social-list">
               <li><a href="mailto:jaigurubande15@gmail.com" target="_blank" rel="noopener noreferrer">jaigurubande15@gmail.com</a></li>
             </ul>
           </div>
-
           <div className="hx-social-card">
-            <div className="hx-social-head hx-social-head--tg">
-              <FaTelegramPlane className="hx-social-ico" />
-              <span>Telegram</span>
-            </div>
+            <div className="hx-social-head hx-social-head--tg"><FaTelegramPlane className="hx-social-ico" /><span>Telegram</span></div>
             <ul className="hx-social-list">
               <li><a href="https://t.me/+5APCSKB6YC85MjRl" target="_blank" rel="noopener noreferrer">Jai Gurubande – Official Website Updates</a></li>
             </ul>
