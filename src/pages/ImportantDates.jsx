@@ -54,7 +54,7 @@ const dates = [
   },
   {
     icon: "📅",
-    name: "Shivpur, Mijhanurad, Varanasi",
+    name: "Shivrampur, Mijhanurad, Varanasi",
     schedule: "Every month on date 27",
     contact: "📞 8738868292, 7800649332",
   },
