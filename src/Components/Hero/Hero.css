@@ -1,11 +1,8 @@
 /* ════════════════════════════════════════════════════════════
    HERO PAGE  ·  hx- scoped
    Aesthetic : Sacred Temple Luxury
-   Palette   : Ivory · Antique Gold · Deep Burgundy · Warm Cream
-   Typography: Georgia (display) · system sans (body)
    ════════════════════════════════════════════════════════════ */
 
-/* ── tokens ── */
 .hx-page {
   --hx-ivory: #fdf8f0;
   --hx-cream: #f7efe0;
@@ -26,10 +23,6 @@
   --hx-ease: cubic-bezier(.4, 0, .2, 1);
   --hx-dur: 0.28s;
   --hx-r: 18px;
-}
-
-/* ── page wrapper ── */
-.hx-page {
   font-family: 'Segoe UI', system-ui, sans-serif;
   background: var(--hx-ivory);
   color: var(--hx-text);
@@ -52,14 +45,12 @@
   text-align: center;
 }
 
-/* background slides */
 .hx-hero-bg {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
   opacity: 0;
-  transition: opacity 1.8s ease-in-out;
   z-index: 0;
   transform: scale(1.04);
   transition: opacity 1.8s ease-in-out, transform 8s ease-out;
@@ -70,7 +61,6 @@
   transform: scale(1);
 }
 
-/* subtle film-grain overlay */
 .hx-hero-grain {
   position: absolute;
   inset: 0;
@@ -80,7 +70,6 @@
   pointer-events: none;
 }
 
-/* bottom vignette fade to page bg */
 .hx-hero-fade {
   position: absolute;
   bottom: 0;
@@ -92,7 +81,6 @@
   pointer-events: none;
 }
 
-/* text block */
 .hx-hero-text {
   position: relative;
   z-index: 3;
@@ -119,7 +107,7 @@
   font-size: clamp(26px, 5.5vw, 52px);
   font-weight: 700;
   line-height: 1.2;
-  color: #ffffff;
+  color: #fff;
   text-shadow: 0 3px 24px rgba(0, 0, 0, 0.55);
   margin: 0;
 }
@@ -133,7 +121,6 @@
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* ornamental rule */
 .hx-hero-ornament {
   display: flex;
   align-items: center;
@@ -173,14 +160,13 @@
 }
 
 /* ════════════════════════════════════════════════════════════
-   SECTION DIVIDER
+   DIVIDER
    ════════════════════════════════════════════════════════════ */
 .hx-divider {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 8px 0;
-  position: relative;
 }
 
 .hx-divider::before,
@@ -204,7 +190,7 @@
 }
 
 /* ════════════════════════════════════════════════════════════
-   SHARED SECTION HEAD
+   SECTION HEAD
    ════════════════════════════════════════════════════════════ */
 .hx-section-head {
   text-align: center;
@@ -276,7 +262,6 @@
   pointer-events: none;
 }
 
-/* image frame */
 .hx-about-img-frame {
   position: relative;
   flex: 0 0 360px;
@@ -304,7 +289,6 @@
   transform: scale(1.02);
 }
 
-/* corner accents */
 .hx-img-corner {
   position: absolute;
   width: 18px;
@@ -342,7 +326,6 @@
   border-radius: 0 0 4px 0;
 }
 
-/* body text */
 .hx-about-body {
   flex: 1;
 }
@@ -372,9 +355,7 @@
   border: none;
   border-radius: 30px;
   cursor: pointer;
-  transition: transform var(--hx-dur) var(--hx-ease),
-    box-shadow var(--hx-dur) var(--hx-ease),
-    background var(--hx-dur) var(--hx-ease);
+  transition: transform var(--hx-dur) var(--hx-ease), box-shadow var(--hx-dur) var(--hx-ease);
   box-shadow: 0 4px 18px rgba(122, 28, 28, 0.30);
 }
 
@@ -429,63 +410,69 @@
 }
 
 /* ════════════════════════════════════════════════════════════
-   SPIRITUAL & DEEP  —  Image Carousel with Quote Overlay
+   SPIRITUAL & DEEP  —  img-based carousel, zero crop
    ════════════════════════════════════════════════════════════ */
 .hx-spiritual {
   padding: 80px 20px;
   background: var(--hx-ivory);
 }
 
-/* ── carousel wrapper ── */
+/* wrapper — NO fixed height, NO aspect-ratio — image drives the size */
 .hx-sp-carousel {
   position: relative;
-  max-width: 1120px;
+  max-width: 580px;
   margin: 0 auto;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
-  aspect-ratio: 16 / 7;
-  background: #111;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+  background: #1a0a0a;
   border: 1px solid var(--hx-border);
 }
 
-/* ── individual slide ── */
+/* inactive slides hidden behind; active slide is in normal flow → sets height */
 .hx-sp-slide {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center top;
   opacity: 0;
-  transition: opacity 1.4s ease-in-out, transform 8s ease-out;
-  transform: scale(1.04);
+  transition: opacity 1.4s ease-in-out;
   z-index: 0;
+  pointer-events: none;
 }
 
 .hx-sp-slide--active {
+  position: relative;
+  /* ← back in flow so the carousel is as tall as this image */
   opacity: 1;
-  transform: scale(1);
   z-index: 1;
+  pointer-events: auto;
 }
 
-/* ── dark gradient overlay — bottom-heavy like the reference ── */
+/* the image — full width, natural height, never cropped */
+.hx-sp-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* gradient over image */
 .hx-sp-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(to top,
-      rgba(0, 0, 0, 0.85) 0%,
-      rgba(0, 0, 0, 0.48) 38%,
-      rgba(0, 0, 0, 0.10) 100%);
+      rgba(0, 0, 0, 0.82) 0%,
+      rgba(0, 0, 0, 0.40) 35%,
+      rgba(0, 0, 0, 0.05) 100%);
   z-index: 2;
 }
 
-/* ── quote text block ── */
+/* quote block pinned to bottom */
 .hx-sp-text-block {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 3;
-  padding: 28px 48px 44px;
+  padding: 20px 28px 36px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -493,36 +480,35 @@
 
 .hx-sp-open-quote {
   font-family: Georgia, serif;
-  font-size: 80px;
+  font-size: 72px;
   line-height: 0.55;
   color: var(--hx-gold-lt);
   opacity: 0.55;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   display: block;
   user-select: none;
 }
 
 .hx-sp-quote-text {
   font-family: Georgia, serif;
-  font-size: clamp(16px, 2.2vw, 22px);
+  font-size: clamp(14px, 2vw, 18px);
   line-height: 1.65;
-  color: #ffffff;
+  color: #fff;
   font-style: italic;
-  margin: 0 0 14px;
-  max-width: 700px;
+  margin: 0 0 12px;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.65);
 }
 
 .hx-sp-quote-rule {
-  width: 52px;
+  width: 48px;
   height: 2px;
   background: linear-gradient(90deg, var(--hx-gold-lt), transparent);
   border-radius: 2px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .hx-sp-cite {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.1em;
   color: var(--hx-gold-lt);
@@ -530,26 +516,26 @@
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 
-/* ── arrow buttons ── */
+/* arrows */
 .hx-sp-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   border: 1.5px solid rgba(197, 157, 95, 0.50);
   background: rgba(0, 0, 0, 0.50);
   color: #e8bf6a;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: background 0.25s, transform 0.25s, box-shadow 0.25s, border-color 0.25s;
 }
 
 .hx-sp-btn:hover {
@@ -560,17 +546,17 @@
 }
 
 .hx-sp-btn--prev {
-  left: 20px;
+  left: 14px;
 }
 
 .hx-sp-btn--next {
-  right: 20px;
+  right: 14px;
 }
 
-/* ── dot indicators ── */
+/* dots */
 .hx-sp-dots {
   position: absolute;
-  bottom: 20px;
+  bottom: 14px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -587,7 +573,7 @@
   background: transparent;
   cursor: pointer;
   padding: 0;
-  transition: background 0.25s ease, width 0.25s ease, border-radius 0.25s ease;
+  transition: background 0.25s, width 0.25s, border-radius 0.25s;
 }
 
 .hx-sp-dot--active {
@@ -597,11 +583,11 @@
   border-radius: 4px;
 }
 
-/* ── slide counter ── */
+/* counter */
 .hx-sp-counter {
   position: absolute;
-  bottom: 18px;
-  right: 20px;
+  bottom: 12px;
+  right: 14px;
   z-index: 10;
   font-size: 11px;
   font-weight: 600;
@@ -627,7 +613,6 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 40px 1fr;
-  gap: 0;
   align-items: stretch;
 }
 
@@ -638,8 +623,7 @@
   text-align: center;
   border: 1px solid var(--hx-border);
   box-shadow: var(--hx-shadow);
-  transition: transform var(--hx-dur) var(--hx-ease),
-    box-shadow var(--hx-dur) var(--hx-ease);
+  transition: transform var(--hx-dur) var(--hx-ease), box-shadow var(--hx-dur) var(--hx-ease);
   position: relative;
   overflow: hidden;
 }
@@ -703,7 +687,6 @@
   color: var(--hx-text-2);
 }
 
-/* separator */
 .hx-mv-sep {
   display: flex;
   flex-direction: column;
@@ -748,8 +731,7 @@
   border: 1px solid var(--hx-border);
   overflow: hidden;
   position: relative;
-  transition: transform var(--hx-dur) var(--hx-ease),
-    box-shadow var(--hx-dur) var(--hx-ease);
+  transition: transform var(--hx-dur) var(--hx-ease), box-shadow var(--hx-dur) var(--hx-ease);
   display: flex;
   flex-direction: column;
 }
@@ -863,8 +845,7 @@
   text-align: center;
   border: 1px solid var(--hx-border);
   box-shadow: var(--hx-shadow);
-  transition: transform var(--hx-dur) var(--hx-ease),
-    box-shadow var(--hx-dur) var(--hx-ease);
+  transition: transform var(--hx-dur) var(--hx-ease), box-shadow var(--hx-dur) var(--hx-ease);
   position: relative;
   overflow: hidden;
   animation: hx-card-in 0.5s var(--hx-ease) both;
@@ -961,8 +942,7 @@
   padding: 34px 26px;
   border: 1px solid var(--hx-border);
   box-shadow: var(--hx-shadow);
-  transition: transform var(--hx-dur) var(--hx-ease),
-    box-shadow var(--hx-dur) var(--hx-ease);
+  transition: transform var(--hx-dur) var(--hx-ease), box-shadow var(--hx-dur) var(--hx-ease);
   position: relative;
   overflow: hidden;
 }
@@ -1064,8 +1044,7 @@
   padding: 28px 20px 22px;
   border: 1px solid var(--hx-border);
   box-shadow: var(--hx-shadow);
-  transition: transform var(--hx-dur) var(--hx-ease),
-    box-shadow var(--hx-dur) var(--hx-ease);
+  transition: transform var(--hx-dur) var(--hx-ease), box-shadow var(--hx-dur) var(--hx-ease);
   text-align: center;
 }
 
@@ -1167,7 +1146,7 @@
 }
 
 /* ════════════════════════════════════════════════════════════
-   CAROUSEL CONTROLS  (hero)
+   HERO CAROUSEL CONTROLS
    ════════════════════════════════════════════════════════════ */
 .hx-car-btn {
   position: absolute;
@@ -1187,8 +1166,7 @@
   justify-content: center;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  transition: background 0.25s ease, border-color 0.25s ease,
-    transform 0.25s ease, box-shadow 0.25s ease;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 
 .hx-car-btn:hover {
@@ -1225,8 +1203,7 @@
   background: transparent;
   cursor: pointer;
   padding: 0;
-  transition: background 0.25s ease, transform 0.25s ease,
-    width 0.25s ease, border-radius 0.25s ease;
+  transition: background 0.25s, transform 0.25s, width 0.25s, border-radius 0.25s;
 }
 
 .hx-car-dot--active {
@@ -1290,11 +1267,11 @@
   }
 
   .hx-sp-carousel {
-    aspect-ratio: 4 / 3;
+    max-width: 100%;
   }
 
   .hx-sp-text-block {
-    padding: 20px 28px 32px;
+    padding: 16px 20px 28px;
   }
 }
 
@@ -1353,27 +1330,22 @@
     display: none;
   }
 
-  .hx-sp-carousel {
-    aspect-ratio: 3 / 4;
-    border-radius: 14px;
-  }
-
   .hx-sp-open-quote {
-    font-size: 52px;
+    font-size: 48px;
   }
 
   .hx-sp-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 13px;
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
   }
 
   .hx-sp-btn--prev {
-    left: 10px;
+    left: 8px;
   }
 
   .hx-sp-btn--next {
-    right: 10px;
+    right: 8px;
   }
 
   .hx-sp-dots {
@@ -1385,7 +1357,7 @@
   }
 
   .hx-sp-text-block {
-    padding: 16px 18px 24px;
+    padding: 12px 14px 20px;
   }
 }
 

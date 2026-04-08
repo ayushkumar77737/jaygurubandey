@@ -18,6 +18,11 @@ import photo10 from "../../assets/photo10.webp";
 import photo19 from "../../assets/photo19.webp";
 import pic from "../../assets/pic.jpeg";
 import spirtual1 from "../../assets/spirtual1.webp";
+import spirtual2 from "../../assets/spirtual2.webp";
+import spirtual3 from "../../assets/spirtual3.webp";
+import spirtual4 from "../../assets/spirtual4.webp";
+import spirtual5 from "../../assets/spirtual5.webp";
+import spirtual6 from "../../assets/spirtual6.webp";
 import {
   FaYoutube, FaInstagram, FaFacebook, FaWhatsapp,
   FaHandsHelping, FaCalendarAlt, FaUsers, FaGlobe, FaTelegramPlane,
@@ -27,7 +32,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import gmailLogo from "../../assets/gmail.png";
 
 /* ══════════════════════════════════════════════════
-   SPIRITUAL CAROUSEL — slides data + component
+   SPIRITUAL CAROUSEL
    ══════════════════════════════════════════════════ */
 const spiritualSlides = [
   {
@@ -36,27 +41,27 @@ const spiritualSlides = [
     source: "— Bhagavad Gita, Chapter 2 · Verse 20",
   },
   {
-    img: photo8,
+    img: spirtual2,
     quote: "Guru Govind dono khade, kake laagoon paay. Balihari Guru aapne, Govind diyo batay.",
     source: "— Sant Kabir Das Ji",
   },
   {
-    img: photo6,
+    img: spirtual3,
     quote: "In the repetition of the divine name lies the secret to silencing the restless mind and opening the heart.",
     source: "— Guruji's Teachings",
   },
   {
-    img: photo10,
+    img: spirtual4,
     quote: "Seva — selfless service — is the highest worship. Give without expectation, love without condition.",
     source: "— Sri Guru Ashram",
   },
   {
-    img: photo19,
+    img: spirtual5,
     quote: "Satsang transforms hearts. The company of the enlightened is the fastest boat across the ocean of illusion.",
     source: "— Ancient Wisdom",
   },
   {
-    img: photo1,
+    img: spirtual6,
     quote: "Dhyan is not emptiness — it is the fullness of pure, undistracted awareness resting in the divine.",
     source: "— Guruji's Teachings",
   },
@@ -89,13 +94,13 @@ const SpiritualCarousel = () => {
 
   return (
     <div className="hx-sp-carousel">
-      {/* slides */}
       {spiritualSlides.map((slide, i) => (
         <div
           key={i}
           className={`hx-sp-slide${i === spIndex ? " hx-sp-slide--active" : ""}`}
-          style={{ backgroundImage: `url(${slide.img})` }}
         >
+          {/* ✅ <img> tag — container height = exact image height, zero crop ever */}
+          <img src={slide.img} alt="" className="hx-sp-img" />
           <div className="hx-sp-overlay" />
           <div className="hx-sp-text-block">
             <span className="hx-sp-open-quote">"</span>
@@ -106,7 +111,6 @@ const SpiritualCarousel = () => {
         </div>
       ))}
 
-      {/* arrows */}
       <button className="hx-sp-btn hx-sp-btn--prev" onClick={spPrev} aria-label="Previous">
         <FaChevronLeft />
       </button>
@@ -114,7 +118,6 @@ const SpiritualCarousel = () => {
         <FaChevronRight />
       </button>
 
-      {/* dots */}
       <div className="hx-sp-dots">
         {spiritualSlides.map((_, i) => (
           <button
@@ -126,7 +129,6 @@ const SpiritualCarousel = () => {
         ))}
       </div>
 
-      {/* counter */}
       <div className="hx-sp-counter">{spIndex + 1} / {spiritualSlides.length}</div>
     </div>
   );
@@ -304,7 +306,6 @@ These mystical expressions encourage seekers to look beyond literal meanings and
         </div>
       </div>
 
-      {/* ══ DIVIDER ══ */}
       <div className="hx-divider"><span className="hx-div-gem">❖</span></div>
 
       {/* ══ ABOUT ══ */}
