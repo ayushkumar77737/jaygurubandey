@@ -23,6 +23,11 @@ import spirtual3 from "../../assets/spirtual3.webp";
 import spirtual4 from "../../assets/spirtual4.webp";
 import spirtual5 from "../../assets/spirtual5.webp";
 import spirtual6 from "../../assets/spirtual6.webp";
+import spirtual7 from "../../assets/spirtual7.webp";
+import spirtual8 from "../../assets/spirtual8.webp";
+import spirtual9 from "../../assets/spirtual9.webp";
+import spirtual10 from "../../assets/spirtual10.webp";
+import dhyanImg from "../../assets/Dhyan.webp"; // ← replace with your actual dhyan image
 import {
   FaYoutube, FaInstagram, FaFacebook, FaWhatsapp,
   FaHandsHelping, FaCalendarAlt, FaUsers, FaGlobe, FaTelegramPlane,
@@ -65,6 +70,26 @@ const spiritualSlides = [
     quote: "Dhyan is not emptiness — it is the fullness of pure, undistracted awareness resting in the divine.",
     source: "— Guruji's Teachings",
   },
+  {
+    img: spirtual7,
+    quote: "When meditation is mastered, the mind is unwavering like the flame of a lamp in a windless place.",
+    source: "— Bhagavad Gita, Chapter 6 · Verse 19",
+  },
+  {
+    img: spirtual8,
+    quote: "You have the right to perform your duty, but not to the fruits of your actions.",
+    source: "— Bhagavad Gita, Chapter 2 · Verse 47",
+  },
+  {
+    img: spirtual9,
+    quote: "Set thy heart upon thy work, but never on its reward.",
+    source: "— Bhagavad Gita",
+  },
+  {
+    img: spirtual10,
+    quote: "A person is said to be elevated who is not disturbed by happiness and distress.",
+    source: "— Bhagavad Gita, Chapter 6",
+  },
 ];
 
 const SpiritualCarousel = () => {
@@ -99,7 +124,6 @@ const SpiritualCarousel = () => {
           key={i}
           className={`hx-sp-slide${i === spIndex ? " hx-sp-slide--active" : ""}`}
         >
-          {/* ✅ <img> tag — container height = exact image height, zero crop ever */}
           <img src={slide.img} alt="" className="hx-sp-img" />
           <div className="hx-sp-overlay" />
           <div className="hx-sp-text-block">
@@ -374,14 +398,63 @@ These mystical expressions encourage seekers to look beyond literal meanings and
 
       <div className="hx-divider"><span className="hx-div-gem">❖</span></div>
 
-      {/* ══ SPIRITUAL & DEEP ══ */}
+      {/* ══ GYAN & DHYAN ══ */}
       <section className="hx-spiritual">
         <div className="hx-section-head">
           <span className="hx-section-tag">Sacred Wisdom</span>
-          <h2 className="hx-section-title">🙏 Spiritual &amp; Deep</h2>
+          <h2 className="hx-section-title">🙏 Gyan &amp; Dhyan</h2>
           <div className="hx-section-rule" />
         </div>
-        <SpiritualCarousel />
+
+        {/* ── two-column layout ── */}
+        <div className="hx-gd-wrap">
+
+          {/* LEFT — spiritual quotes carousel */}
+          <div className="hx-gd-left">
+            <SpiritualCarousel />
+          </div>
+
+          {/* vertical divider */}
+          <div className="hx-gd-sep">
+            <span className="hx-gd-sep-gem">✦</span>
+          </div>
+
+          {/* RIGHT — Dhyan program feature */}
+          <div className="hx-gd-right">
+            <div className="hx-dhyan-card">
+
+              {/* Dhyan image */}
+              <div className="hx-dhyan-img-wrap">
+                <img src={dhyanImg} alt="Dhyan Program" className="hx-dhyan-img" />
+                <div className="hx-dhyan-img-badge">🧘 Dhyan Program</div>
+              </div>
+
+              {/* text */}
+              <div className="hx-dhyan-body">
+                <h3 className="hx-dhyan-title">Experience the Power of Dhyan</h3>
+                <p className="hx-dhyan-desc">
+                  Under the divine guidance of Guruji, our Dhyan program leads seekers
+                  into the stillness of pure awareness — silencing the restless mind and
+                  awakening the inner light of the soul.
+                </p>
+                <p className="hx-dhyan-desc">
+                  Join thousands of devotees who have transformed their lives through
+                  the sacred practice of meditation rooted in Sanatan Dharma.
+                </p>
+                <a
+                  href="https://dhyan.jaigurubande.in/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hx-btn-primary hx-dhyan-btn"
+                >
+                  Explore Dhyan Program
+                  <span className="hx-btn-arrow">→</span>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
       </section>
 
       <div className="hx-divider"><span className="hx-div-gem">❖</span></div>
