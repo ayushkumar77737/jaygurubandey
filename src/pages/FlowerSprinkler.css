@@ -1,64 +1,165 @@
-/* 🌸 Flowers */
-.petal {
+/* ============================================================
+   FLOWER SPRINKLER  — all classes prefixed fsp__
+   ============================================================ */
+
+/* 🌸 Petals — drift sideways while falling */
+.fsp__petal {
   position: absolute;
-  top: -2vh; /* start slightly above the screen */
+  top: -40px;
   pointer-events: none;
   z-index: 6;
-  animation: fall linear forwards;
-  font-size: 2vw; /* responsive font size */
+  will-change: transform, opacity;
+  animation: fsp-fall linear forwards;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+  --fsp-drift: 40px;
 }
 
-/* ✨ Glow particles */
-.glow {
+/* ✨ Glow orbs */
+.fsp__glow {
   position: absolute;
-  top: -2vh;
-  width: 0.8vw;
-  height: 0.8vw;
-  background: radial-gradient(circle, rgba(255,255,200,1) 40%, rgba(255,255,200,0) 70%);
+  top: -12px;
   border-radius: 50%;
   pointer-events: none;
   z-index: 5;
-  animation: fall linear forwards, twinkle 1.5s infinite alternate;
+  will-change: transform, opacity;
+  background: radial-gradient(circle,
+      hsl(var(--fsp-hue, 45), 100%, 90%) 0%,
+      hsl(var(--fsp-hue, 45), 100%, 70%) 40%,
+      transparent 70%);
+  box-shadow:
+    0 0 8px 3px hsl(var(--fsp-hue, 45), 100%, 75%),
+    0 0 18px 6px hsl(var(--fsp-hue, 45), 100%, 55%);
+  animation: fsp-fall linear forwards, fsp-twinkle 1.6s ease-in-out infinite alternate;
 }
 
-/* 🦋 Butterflies / Doves */
-.butterfly {
+/* 🦋 Butterflies & doves */
+.fsp__butterfly {
   position: absolute;
-  top: -2vh;
-  font-size: 4vw; /* responsive */
+  top: -40px;
+  pointer-events: none;
   z-index: 7;
-  animation: fly linear forwards;
+  will-change: transform, opacity;
+  animation: fsp-flutter linear forwards;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
 }
 
-/* Falling motion for all */
-@keyframes fall {
+/* 💫 Sparkles */
+.fsp__sparkle {
+  position: absolute;
+  top: -30px;
+  pointer-events: none;
+  z-index: 6;
+  will-change: transform, opacity;
+  animation: fsp-spin-fall linear forwards;
+  filter: drop-shadow(0 0 6px rgba(255, 230, 100, 0.8));
+}
+
+/* ── Keyframes ── */
+
+@keyframes fsp-fall {
   0% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+    opacity: var(--fsp-start-opacity, 1);
   }
+
+  70% {
+    opacity: var(--fsp-start-opacity, 1);
+  }
+
   100% {
-    transform: translateY(100vh) rotate(360deg); /* adapt to screen height */
+    transform: translateY(105vh) translateX(var(--fsp-drift, 40px)) rotate(420deg) scale(0.7);
+    opacity: 0;
   }
 }
 
-/* Fluttering motion for butterflies */
-@keyframes fly {
+@keyframes fsp-flutter {
   0% {
-    transform: translate(0, 0) rotate(0deg);
+    transform: translate(0, 0) rotate(-8deg) scaleX(1);
   }
+
+  25% {
+    transform: translate(30px, 25vh) rotate(8deg) scaleX(-1);
+  }
+
+  50% {
+    transform: translate(-20px, 50vh) rotate(-5deg) scaleX(1);
+  }
+
+  75% {
+    transform: translate(40px, 75vh) rotate(10deg) scaleX(-1);
+  }
+
   100% {
-    transform: translate(50vw, 100vh) rotate(30deg); /* adapt to screen width/height */
+    transform: translate(10px, 105vh) rotate(-3deg) scaleX(1);
+    opacity: 0;
   }
 }
 
-/* Glow twinkle */
-@keyframes twinkle {
-  from { opacity: 0.3; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1.2); }
+@keyframes fsp-spin-fall {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1.2);
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(105vh) rotate(720deg) scale(0.5);
+    opacity: 0;
+  }
 }
 
-/* Optional: adjust font sizes for very small screens */
+@keyframes fsp-twinkle {
+  from {
+    opacity: 0.4;
+    transform: scale(0.75);
+    filter: blur(1px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.3);
+    filter: blur(0px);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .fsp__butterfly {
+    font-size: 5vw !important;
+  }
+
+  .fsp__petal {
+    font-size: 4vw !important;
+  }
+
+  .fsp__sparkle {
+    font-size: 3.5vw !important;
+  }
+
+  .fsp__glow {
+    width: 7px !important;
+    height: 7px !important;
+  }
+}
+
 @media (max-width: 480px) {
-  .petal { font-size: 4vw; }
-  .butterfly { font-size: 6vw; }
-  .glow { width: 1vw; height: 1vw; }
+  .fsp__butterfly {
+    font-size: 7vw !important;
+  }
+
+  .fsp__petal {
+    font-size: 5vw !important;
+  }
+
+  .fsp__sparkle {
+    font-size: 4.5vw !important;
+  }
+
+  .fsp__glow {
+    width: 5px !important;
+    height: 5px !important;
+  }
 }
