@@ -4,6 +4,7 @@ import { auth } from "../../firebase/firebase"
 import './Navbar.css'
 import logo from '../../assets/logo1.png'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { FaSignOutAlt } from "react-icons/fa"
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
@@ -89,7 +90,7 @@ const Navbar = () => {
       extra: (
         <li key="logout">
           <button className="jgb-nav__dropdown-logout" onClick={handleLogout}>
-            <span className="jgb-nav__logout-icon">⏻</span> Logout
+            <FaSignOutAlt className="jgb-nav__logout-icon" /> Logout
           </button>
         </li>
       )
