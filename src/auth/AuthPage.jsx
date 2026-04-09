@@ -17,11 +17,64 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 const RECAPTCHA_SITE_KEY = "6Lfed4ksAAAAAB8zC6bmp-LdJLaUD45xf27NUGbX";
 
+// ── Your local images from the assets folder ────────────────────────────────
+import slide1 from "../assets/bg1.webp";
+import slide2 from "../assets/bg2.webp";
+import slide3 from "../assets/bg3.webp";
+
+const SLIDES = [slide1, slide2, slide3];
+// ─────────────────────────────────────────────────────────────────────────────
+
+const BgCarousel = () => {
+    const [current, setCurrent] = useState(0);
+    const timerRef = useRef(null);
+
+    const startTimer = () => {
+        clearInterval(timerRef.current);
+        timerRef.current = setInterval(
+            () => setCurrent((p) => (p + 1) % SLIDES.length),
+            4500
+        );
+    };
+
+    useEffect(() => {
+        startTimer();
+        return () => clearInterval(timerRef.current);
+    }, []);
+
+    const goTo = (idx) => { setCurrent(idx); startTimer(); };
+
+    return (
+        <div className="bg-carousel">
+            {SLIDES.map((src, i) => (
+                <div
+                    key={i}
+                    className={`bg-slide ${i === current ? "active" : ""}`}
+                    style={{ backgroundImage: `url(${src})` }}
+                />
+            ))}
+            {/* dark overlay so the card stays legible */}
+            <div className="bg-overlay" />
+
+            {/* dot indicators at bottom-center of page */}
+            <div className="bg-dots">
+                {SLIDES.map((_, i) => (
+                    <button
+                        key={i}
+                        className={`bg-dot ${i === current ? "active" : ""}`}
+                        onClick={() => goTo(i)}
+                        aria-label={`Slide ${i + 1}`}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+};
+
 const AuthPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // true = Register panel active, false = Login panel active
     const isRegister = location.pathname === "/register";
 
     // ── Login state ──
@@ -205,6 +258,10 @@ const AuthPage = () => {
 
     return (
         <div className="auth-page">
+
+            {/* ── FULL-PAGE BACKGROUND CAROUSEL ── */}
+            <BgCarousel />
+
             <div className={`container ${isRegister ? "active" : ""}`}>
 
                 {/* ── LOGIN FORM ── */}
@@ -313,16 +370,18 @@ const AuthPage = () => {
 
                 {/* ── TOGGLE PANELS ── */}
                 <div className="toggle-box">
-                    {/* RIGHT panel: visible on Login page → leads to Register */}
                     <div className="toggle-panel toggle-right">
-                        <h1>Hello, Welcome!</h1>
-                        <p>Don't have an account?</p>
+                        <p className="toggle-tag">🙏 Jai Gurubande 🙏</p>
+                        <h1>Begin Your Journey</h1>
+                        <p>Join our community and walk the path of wisdom and devotion.</p>
+                        <p className="toggle-saheb">🙏 Saheb Sabka 🙏</p>
                         <Link to="/register"><button className="btn">Register</button></Link>
                     </div>
-                    {/* LEFT panel: visible on Register page → leads to Login */}
                     <div className="toggle-panel toggle-left">
+                        <p className="toggle-tag">🙏 Jai Gurubande 🙏</p>
                         <h1>Welcome Back!</h1>
-                        <p>Already have an account?</p>
+                        <p>Your spiritual journey continues. We're glad to see you again.</p>
+                        <p className="toggle-saheb">🙏 Saheb Sabka 🙏</p>
                         <Link to="/login"><button className="btn">Login</button></Link>
                     </div>
                 </div>
