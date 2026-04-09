@@ -1,4 +1,3 @@
-// src/auth/AuthPage.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import {
@@ -12,18 +11,19 @@ import {
 } from "firebase/auth";
 import { doc, updateDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase";
+import { useTranslation } from "react-i18next";   // ✅ NEW
 import "./AuthPage.css";
 import ReCAPTCHA from "react-google-recaptcha";
 
 const RECAPTCHA_SITE_KEY = "6Lfed4ksAAAAAB8zC6bmp-LdJLaUD45xf27NUGbX";
 
-// ── Your local images from the assets folder ────────────────────────────────
 import slide1 from "../assets/bg1.webp";
 import slide2 from "../assets/bg2.webp";
 import slide3 from "../assets/bg3.webp";
 
 const SLIDES = [slide1, slide2, slide3];
-// ─────────────────────────────────────────────────────────────────────────────
+
+
 
 const BgCarousel = () => {
     const [current, setCurrent] = useState(0);
@@ -53,10 +53,7 @@ const BgCarousel = () => {
                     style={{ backgroundImage: `url(${src})` }}
                 />
             ))}
-            {/* dark overlay so the card stays legible */}
             <div className="bg-overlay" />
-
-            {/* dot indicators at bottom-center of page */}
             <div className="bg-dots">
                 {SLIDES.map((_, i) => (
                     <button
@@ -74,8 +71,8 @@ const BgCarousel = () => {
 const AuthPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
-
     const isRegister = location.pathname === "/register";
+    const { t, i18n } = useTranslation();   // ✅ NEW
 
     // ── Login state ──
     const [loginEmail, setLoginEmail] = useState("");
@@ -131,7 +128,7 @@ const AuthPage = () => {
         setLoginError("");
 
         if (!loginCaptchaToken) {
-            setLoginError("Please verify that you are not a robot.");
+            setLoginError(t("auth.err_captcha"));
             resetLoginCaptcha();
             setLoginLoading(false);
             setTimeout(() => setLoginError(""), 3000);
@@ -141,13 +138,13 @@ const AuthPage = () => {
         try {
             const data = await verifyCaptcha(loginCaptchaToken);
             if (!data.success) {
-                setLoginError("Captcha verification failed. Try again.");
+                setLoginError(t("auth.err_captcha_fail"));
                 resetLoginCaptcha();
                 setLoginLoading(false);
                 return;
             }
         } catch {
-            setLoginError("Captcha error. Please try again.");
+            setLoginError(t("auth.err_captcha_error"));
             resetLoginCaptcha();
             setLoginLoading(false);
             return;
@@ -171,8 +168,8 @@ const AuthPage = () => {
             resetLoginCaptcha();
             setLoginError(
                 err.code === "auth/invalid-email"
-                    ? "Please enter a valid email address."
-                    : "Invalid email or password."
+                    ? t("auth.err_invalid_email")
+                    : t("auth.err_invalid_credentials")
             );
             setTimeout(() => setLoginError(""), 3000);
         } finally {
@@ -182,7 +179,7 @@ const AuthPage = () => {
 
     const handleForgotPassword = async () => {
         if (!loginEmail) {
-            setLoginError("Please enter your registered email first.");
+            setLoginError(t("auth.err_enter_email"));
             setTimeout(() => setLoginError(""), 3000);
             return;
         }
@@ -190,10 +187,10 @@ const AuthPage = () => {
             await sendPasswordResetEmail(auth, loginEmail.trim());
             setLoginEmail("");
             setLoginPassword("");
-            setLoginError("Password reset link sent to your email.");
+            setLoginError(t("auth.success_reset"));
             setTimeout(() => setLoginError(""), 4000);
         } catch {
-            setLoginError("Unable to send reset email. Try again.");
+            setLoginError(t("auth.err_reset_fail"));
             setTimeout(() => setLoginError(""), 4000);
         }
     };
@@ -206,7 +203,7 @@ const AuthPage = () => {
         setRegSuccess("");
 
         if (!regCaptchaToken) {
-            setRegError("Please verify that you are not a robot.");
+            setRegError(t("auth.err_captcha"));
             resetRegCaptcha();
             setRegLoading(false);
             setTimeout(() => setRegError(""), 3000);
@@ -216,13 +213,13 @@ const AuthPage = () => {
         try {
             const data = await verifyCaptcha(regCaptchaToken);
             if (!data.success) {
-                setRegError("Captcha verification failed.");
+                setRegError(t("auth.err_captcha_fail"));
                 resetRegCaptcha();
                 setRegLoading(false);
                 return;
             }
         } catch {
-            setRegError("Captcha error. Try again.");
+            setRegError(t("auth.err_captcha_error"));
             resetRegCaptcha();
             setRegLoading(false);
             return;
@@ -239,17 +236,17 @@ const AuthPage = () => {
                 createdAt: serverTimestamp(),
             });
             await signOut(auth);
-            setRegSuccess("Verification email sent. Please verify before logging in.");
+            setRegSuccess(t("auth.success_verify"));
             setTimeout(() => setRegSuccess(""), 4000);
             setRegName(""); setRegEmail(""); setRegPassword("");
             resetRegCaptcha();
         } catch (err) {
             setRegName(""); setRegEmail(""); setRegPassword("");
             resetRegCaptcha();
-            if (err.code === "auth/email-already-in-use") setRegError("This email is already registered.");
-            else if (err.code === "auth/invalid-email") setRegError("Please enter a valid email address.");
-            else if (err.code === "auth/weak-password") setRegError("Password must be at least 6 characters.");
-            else setRegError("Something went wrong. Please try again.");
+            if (err.code === "auth/email-already-in-use") setRegError(t("auth.err_email_in_use"));
+            else if (err.code === "auth/invalid-email") setRegError(t("auth.err_invalid_email"));
+            else if (err.code === "auth/weak-password") setRegError(t("auth.err_weak_password"));
+            else setRegError(t("auth.err_generic"));
             setTimeout(() => setRegError(""), 3000);
         } finally {
             setRegLoading(false);
@@ -258,8 +255,6 @@ const AuthPage = () => {
 
     return (
         <div className="auth-page">
-
-            {/* ── FULL-PAGE BACKGROUND CAROUSEL ── */}
             <BgCarousel />
 
             <div className={`container ${isRegister ? "active" : ""}`}>
@@ -267,14 +262,14 @@ const AuthPage = () => {
                 {/* ── LOGIN FORM ── */}
                 <div className="form-box login">
                     <form onSubmit={handleLogin}>
-                        <h1>Login</h1>
-                        <p className="auth-subtitle">🙏 Jai Gurubande 🙏</p>
+                        <h1>{t("auth.login_title")}</h1>
+                        <p className="auth-subtitle">{t("auth.subtitle")}</p>
                         {loginError && <p className="auth-error">{loginError}</p>}
 
                         <div className="input-box">
                             <input
                                 type="email"
-                                placeholder="Email"
+                                placeholder={t("auth.email")}
                                 value={loginEmail}
                                 onChange={(e) => { setLoginEmail(e.target.value.replace(/[^a-zA-Z0-9@._-]/g, "")); setLoginError(""); }}
                                 required
@@ -285,7 +280,7 @@ const AuthPage = () => {
                         <div className="input-box">
                             <input
                                 type="password"
-                                placeholder="Password"
+                                placeholder={t("auth.password")}
                                 value={loginPassword}
                                 onChange={(e) => { setLoginPassword(e.target.value); setLoginError(""); }}
                                 required
@@ -294,7 +289,7 @@ const AuthPage = () => {
                         </div>
 
                         <div className="forgot-link">
-                            <span onClick={handleForgotPassword}>Forgot Password?</span>
+                            <span onClick={handleForgotPassword}>{t("auth.forgot_password")}</span>
                         </div>
 
                         <div className="captcha-wrapper">
@@ -307,7 +302,7 @@ const AuthPage = () => {
                         </div>
 
                         <button type="submit" className="btn" disabled={loginLoading}>
-                            {loginLoading ? "Please wait..." : "Login"}
+                            {loginLoading ? t("auth.loading_login") : t("auth.login_btn")}
                         </button>
                     </form>
                 </div>
@@ -315,15 +310,15 @@ const AuthPage = () => {
                 {/* ── REGISTER FORM ── */}
                 <div className="form-box register">
                     <form onSubmit={handleRegister}>
-                        <h1>Register</h1>
-                        <p className="auth-subtitle">🙏 Jai Gurubande 🙏</p>
+                        <h1>{t("auth.register_title")}</h1>
+                        <p className="auth-subtitle">{t("auth.subtitle")}</p>
                         {regSuccess && <p className="auth-success">{regSuccess}</p>}
                         {regError && <p className="auth-error">{regError}</p>}
 
                         <div className="input-box">
                             <input
                                 type="text"
-                                placeholder="Full Name"
+                                placeholder={t("auth.full_name")}
                                 value={regName}
                                 onChange={(e) => { setRegName(e.target.value.replace(/[^a-zA-Z\s]/g, "")); setRegError(""); setRegSuccess(""); }}
                                 required
@@ -334,7 +329,7 @@ const AuthPage = () => {
                         <div className="input-box">
                             <input
                                 type="email"
-                                placeholder="Email Address"
+                                placeholder={t("auth.email_address")}
                                 value={regEmail}
                                 onChange={(e) => { setRegEmail(e.target.value.replace(/[^a-zA-Z0-9@._-]/g, "")); setRegError(""); setRegSuccess(""); }}
                                 required
@@ -345,7 +340,7 @@ const AuthPage = () => {
                         <div className="input-box">
                             <input
                                 type="password"
-                                placeholder="Password"
+                                placeholder={t("auth.password")}
                                 value={regPassword}
                                 onChange={(e) => { setRegPassword(e.target.value); setRegError(""); setRegSuccess(""); }}
                                 required
@@ -363,7 +358,7 @@ const AuthPage = () => {
                         </div>
 
                         <button type="submit" className="btn" disabled={regLoading}>
-                            {regLoading ? "Creating..." : "Register"}
+                            {regLoading ? t("auth.loading_register") : t("auth.register_btn")}
                         </button>
                     </form>
                 </div>
@@ -371,18 +366,18 @@ const AuthPage = () => {
                 {/* ── TOGGLE PANELS ── */}
                 <div className="toggle-box">
                     <div className="toggle-panel toggle-right">
-                        <p className="toggle-tag">🙏 Jai Gurubande 🙏</p>
-                        <h1>Begin Your Journey</h1>
-                        <p>Join our community and walk the path of wisdom and devotion.</p>
-                        <p className="toggle-saheb">🙏 Saheb Sabka 🙏</p>
-                        <Link to="/register"><button className="btn">Register</button></Link>
+                        <p className="toggle-tag">{t("auth.toggle_right_tag")}</p>
+                        <h1>{t("auth.toggle_right_heading")}</h1>
+                        <p>{t("auth.toggle_right_text")}</p>
+                        <p className="toggle-saheb">{t("auth.toggle_right_saheb")}</p>
+                        <Link to="/register"><button className="btn">{t("auth.register_btn")}</button></Link>
                     </div>
                     <div className="toggle-panel toggle-left">
-                        <p className="toggle-tag">🙏 Jai Gurubande 🙏</p>
-                        <h1>Welcome Back!</h1>
-                        <p>Your spiritual journey continues. We're glad to see you again.</p>
-                        <p className="toggle-saheb">🙏 Saheb Sabka 🙏</p>
-                        <Link to="/login"><button className="btn">Login</button></Link>
+                        <p className="toggle-tag">{t("auth.toggle_left_tag")}</p>
+                        <h1>{t("auth.toggle_left_heading")}</h1>
+                        <p>{t("auth.toggle_left_text")}</p>
+                        <p className="toggle-saheb">{t("auth.toggle_left_saheb")}</p>
+                        <Link to="/login"><button className="btn">{t("auth.login_btn")}</button></Link>
                     </div>
                 </div>
 

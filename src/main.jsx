@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
+import './utils/i18n'
 import App from './App.jsx'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
@@ -66,11 +67,11 @@ const router = createBrowserRouter([
   { path: "/register", element: <AuthPage /> },
   {
     path: '/',
-  element: (
-    <ProtectedRoute>
-      <App />
-    </ProtectedRoute>
-  ),
+    element: (
+      <ProtectedRoute>
+        <App />
+      </ProtectedRoute>
+    ),
     children: [
       { path: 'home', element: <Home /> },
       { path: 'about', element: <About /> },
@@ -120,7 +121,7 @@ const router = createBrowserRouter([
       { path: "my-payments", element: <MyPayments /> },
       { path: "request-email-update", element: <RequestEmailUpdate /> },
       { path: "delete-account", element: <DeleteAccount /> },
-      { path: "/verify-email",element: <VerifyEmail />},
+      { path: "/verify-email", element: <VerifyEmail /> },
       { path: "dhyan-attendance-history", element: <DhyanAttendanceHistory /> },
       { path: "satsang-calendar", element: <SatsangCalendar /> },
     ],
