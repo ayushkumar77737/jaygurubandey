@@ -125,13 +125,13 @@ const Hero = () => {
   const handleNext = () => { setCurrentIndex((prev) => (prev + 1) % images.length); startAutoPlay(); };
   const handleDotClick = (i) => { setCurrentIndex(i); startAutoPlay(); };
 
-  const fullText = `Param Sant Swami Jai Gurubande Ji Maharaj\nLet's Move Towards God And Understand Sanatan Dharma.\nIt's a spiritual and philosophical message encouraging people to seek divine connection and explore the essence of Sanatan Dharma.`;
+  const fullText = `${t("hero.hero_line1")}\n${t("hero.hero_line2")}\n${t("hero.hero_line3")}`;
   const [displayedText, setDisplayedText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
 
   const ulatImages = [photo7, photo8, photo6];
   const [ulatIndex, setUlatIndex] = useState(0);
-  const ulatText = `Ulat-Bhaidni reveals hidden spiritual truths through symbolic and paradoxical expressions, guiding the seeker beyond ordinary understanding.\n\nThese mystical expressions encourage seekers to look beyond literal meanings and experience deeper spiritual realization.`;
+  const ulatText = `${t("hero.ulat_p1")}\n\n${t("hero.ulat_p2")}`;
   const [ulatDisplayedText, setUlatDisplayedText] = useState("");
   const [ulatCharIndex, setUlatCharIndex] = useState(0);
 
