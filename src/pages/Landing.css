@@ -1,149 +1,548 @@
 /* ================================
-   Landing Page Styles (ISOLATED)
-   File: src/pages/Landing.css
+   Landing Page — lp- scoped
    ================================ */
 
-.landing {
+.lp-root {
+  --lp-ivory: #fdf8f0;
+  --lp-cream: #f2e8d5;
+  --lp-gold: #c59d5f;
+  --lp-gold-lt: #e8bf6a;
+  --lp-gold-dk: #9a7535;
+  --lp-burgun: #7a1c1c;
+  --lp-burgun-lt: #a32020;
+  --lp-text: #2b2420;
+  --lp-text-2: #5a4e42;
+  --lp-border: rgba(197, 157, 95, 0.28);
+  --lp-ease: cubic-bezier(.4, 0, .2, 1);
+
   min-height: 100vh;
-  background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
+  background: radial-gradient(ellipse at 20% 20%, #f5e6cc 0%, #fdf8f0 45%, #ede0c4 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: landingFadeIn 0.8s ease-in-out;
+  padding: 40px 16px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  opacity: 0;
+  transition: opacity 0.6s ease;
 }
 
-/* Container (card-style but light) */
-.landing .landing-container {
-  max-width: 900px;
-  width: 92%;
-  padding: 60px 40px;
-  text-align: center;
-
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(123, 63, 0, 0.25);
-  border-radius: 18px;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
-
-  animation: slideUp 0.8s ease forwards;
+.lp-root--animate {
+  opacity: 1;
 }
 
-/* Image */
-.landing-image {
-  max-width: 240px;
+/* ── orbs ── */
+.lp-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(60px);
+  opacity: 0.35;
+}
+
+.lp-orb--1 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, #e8bf6a, transparent 70%);
+  top: -100px;
+  left: -100px;
+}
+
+.lp-orb--2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(122, 28, 28, 0.35), transparent 70%);
+  bottom: -80px;
+  right: -80px;
+}
+
+.lp-orb--3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #c59d5f, transparent 70%);
+  top: 50%;
+  left: 60%;
+  opacity: 0.18;
+}
+
+/* ── card ── */
+.lp-card {
+  position: relative;
+  z-index: 1;
+  max-width: 1060px;
   width: 100%;
-  margin-bottom: 24px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--lp-border);
+  border-radius: 22px;
+  padding: 52px 48px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.10), 0 2px 8px rgba(197, 157, 95, 0.15);
+  animation: lp-slide-up 0.75s var(--lp-ease) both;
 }
 
-/* Heading */
-.landing h1 {
-  font-size: 2.6rem;
-  margin-bottom: 22px;
-  color: #4a2c2a;
-  letter-spacing: 0.4px;
-}
-
-/* Paragraphs */
-.landing p {
-  font-size: 1.1rem;
-  color: #333;
-  line-height: 1.75;
-  margin-bottom: 18px;
-}
-
-/* Buttons wrapper */
-.landing .landing-actions {
-  margin-top: 36px;
-}
-
-/* Buttons */
-.landing .landing-actions a {
-  display: inline-block;
-  padding: 12px 34px;
-  margin: 0 10px;
-  border-radius: 30px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Login & Register */
-.landing .landing-actions .login,
-.landing .landing-actions .register {
-  background: transparent;
-  border: 2px solid #7b3f00;
-  color: #7b3f00;
-}
-
-/* Hover effect */
-.landing .landing-actions a:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-}
-
-/* ================================
-   Animations
-   ================================ */
-
-@keyframes landingFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
+@keyframes lp-slide-up {
   from {
     opacity: 0;
-    transform: translateY(35px);
+    transform: translateY(36px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
+.lp-card__accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  border-radius: 22px 22px 0 0;
+  background: linear-gradient(90deg, var(--lp-burgun), var(--lp-gold-lt), var(--lp-burgun));
+}
+
+/* ── two-column wrapper ── */
+.lp-two-col {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+}
+
+/* ════════════════════════
+   LEFT — image column
+   ════════════════════════ */
+.lp-left {
+  flex: 0 0 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-right: 8px;
+}
+
+/* image frame with corner accents */
+.lp-img-frame {
+  position: relative;
+  width: 200px;
+}
+
+.lp-img-glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--lp-gold-lt), var(--lp-burgun), var(--lp-gold-lt));
+  opacity: 0.40;
+  animation: lp-glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes lp-glow-pulse {
+
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.lp-img {
+  position: relative;
+  z-index: 1;
+  width: 200px;
+  height: 260px;
+  border-radius: 16px;
+  object-fit: cover;
+  object-position: center top;
+  border: 4px solid #fff;
+  box-shadow: 0 12px 36px rgba(122, 28, 28, 0.22);
+  display: block;
+}
+
+/* corner accents */
+.lp-img-corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  z-index: 2;
+  border-color: var(--lp-gold-lt);
+  border-style: solid;
+}
+
+.lp-img-corner--tl {
+  top: -2px;
+  left: -2px;
+  border-width: 2px 0 0 2px;
+  border-radius: 4px 0 0 0;
+}
+
+.lp-img-corner--tr {
+  top: -2px;
+  right: -2px;
+  border-width: 2px 2px 0 0;
+  border-radius: 0 4px 0 0;
+}
+
+.lp-img-corner--bl {
+  bottom: -2px;
+  left: -2px;
+  border-width: 0 0 2px 2px;
+  border-radius: 0 0 0 4px;
+}
+
+.lp-img-corner--br {
+  bottom: -2px;
+  right: -2px;
+  border-width: 0 2px 2px 0;
+  border-radius: 0 0 4px 0;
+}
+
+/* caption below image */
+.lp-img-caption {
+  margin-top: 16px;
+  font-family: Georgia, serif;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--lp-text-2);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.lp-img-caption__dot {
+  color: var(--lp-gold);
+  font-style: normal;
+  margin-right: 4px;
+}
+
+/* ════════════════════════
+   VERTICAL SEPARATOR
+   ════════════════════════ */
+.lp-sep {
+  flex: 0 0 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.lp-sep::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(180deg,
+      transparent,
+      var(--lp-border) 15%,
+      var(--lp-gold) 50%,
+      var(--lp-border) 85%,
+      transparent);
+}
+
+.lp-sep__gem {
+  position: relative;
+  z-index: 1;
+  font-size: 13px;
+  color: var(--lp-gold);
+  background: rgba(255, 255, 255, 0.96);
+  padding: 8px 0;
+  opacity: 0.8;
+}
+
+/* ════════════════════════
+   RIGHT — content column
+   ════════════════════════ */
+.lp-right {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 8px;
+}
+
+/* badge */
+.lp-badge {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--lp-gold-dk);
+  background: rgba(197, 157, 95, 0.12);
+  border: 1px solid var(--lp-border);
+  padding: 5px 16px;
+  border-radius: 30px;
+  margin-bottom: 14px;
+}
+
+/* title */
+.lp-title {
+  font-family: Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--lp-text);
+  margin: 0 0 12px;
+  letter-spacing: 0.02em;
+}
+
+.lp-title-rule {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.lp-title-rule__line {
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--lp-gold));
+  border-radius: 2px;
+}
+
+.lp-title-rule__line:last-child {
+  background: linear-gradient(270deg, transparent, var(--lp-gold));
+}
+
+.lp-title-rule__gem {
+  font-size: 11px;
+  color: var(--lp-gold);
+  animation: lp-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes lp-pulse {
+
+  0%,
+  100% {
+    opacity: .5;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+/* subtitle */
+.lp-subtitle {
+  font-family: Georgia, serif;
+  font-size: clamp(13px, 1.6vw, 15.5px);
+  color: var(--lp-burgun);
+  font-style: italic;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* body */
+.lp-body {
+  width: 100%;
+  background: rgba(253, 248, 240, 0.7);
+  border: 1px solid var(--lp-border);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
+}
+
+.lp-body p {
+  font-size: 14.5px;
+  line-height: 1.82;
+  color: var(--lp-text-2);
+  margin: 0 0 13px;
+  padding-left: 12px;
+  border-left: 3px solid var(--lp-gold);
+}
+
+.lp-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* divider */
+.lp-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 0 0 20px;
+}
+
+.lp-divider::before,
+.lp-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--lp-border));
+}
+
+.lp-divider::after {
+  background: linear-gradient(270deg, transparent, var(--lp-border));
+}
+
+.lp-divider__gem {
+  font-size: 11px;
+  color: var(--lp-gold);
+  opacity: 0.7;
+}
+
+/* buttons */
+.lp-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.lp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 32px;
+  border-radius: 30px;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.25s var(--lp-ease), box-shadow 0.25s var(--lp-ease);
+  min-width: 140px;
+  justify-content: center;
+}
+
+.lp-btn__icon {
+  font-size: 15px;
+}
+
+.lp-btn--login {
+  background: linear-gradient(135deg, var(--lp-burgun), var(--lp-burgun-lt));
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 18px rgba(122, 28, 28, 0.28);
+}
+
+.lp-btn--login:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(122, 28, 28, 0.38);
+}
+
+.lp-btn--register {
+  background: transparent;
+  color: var(--lp-burgun);
+  border: 2px solid var(--lp-burgun);
+}
+
+.lp-btn--register:hover {
+  background: rgba(122, 28, 28, 0.06);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(122, 28, 28, 0.14);
+}
+
+/* footer note */
+.lp-footer-note {
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  color: var(--lp-gold-dk);
+  opacity: 0.7;
+  margin: 0;
+}
+
 /* ================================
-   RESPONSIVE DESIGN
+   RESPONSIVE
    ================================ */
 
-/* Tablets */
-@media (max-width: 1024px) {
-  .landing h1 {
-    font-size: 2.3rem;
+/* tablet — stack vertically */
+@media (max-width: 760px) {
+  .lp-card {
+    padding: 44px 28px 36px;
   }
 
-  .landing p {
-    font-size: 1.05rem;
+  .lp-two-col {
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .lp-left {
+    flex: none;
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .lp-img-frame {
+    max-width: 220px;
+  }
+
+  .lp-sep {
+    flex-direction: row;
+    width: 100%;
+    height: 32px;
+    flex: 0 0 32px;
+  }
+
+  .lp-sep::before {
+    top: 50%;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--lp-border) 20%, var(--lp-gold) 50%, var(--lp-border) 80%, transparent);
+  }
+
+  .lp-sep__gem {
+    padding: 0 10px;
+    background: rgba(255, 255, 255, 0.96);
+  }
+
+  .lp-right {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .lp-title-rule {
+    justify-content: center;
+  }
+
+  .lp-body {
+    text-align: left;
+  }
+
+  .lp-divider {
+    width: 100%;
+  }
+
+  .lp-actions {
+    justify-content: center;
   }
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .landing .landing-container {
-    padding: 40px 18px;
-  }
-
-  .landing h1 {
-    font-size: 2rem;
-  }
-
-  .landing p {
-    font-size: 1rem;
-  }
-
-  .landing .landing-actions a {
-    display: block;
-    margin: 12px auto;
-    width: 80%;
-    max-width: 280px;
-  }
-}
-
-/* Small Mobile */
+/* mobile */
 @media (max-width: 480px) {
-  .landing h1 {
-    font-size: 1.8rem;
+  .lp-card {
+    padding: 36px 16px 28px;
+    border-radius: 16px;
   }
 
-  .landing p {
-    font-size: 0.95rem;
+  .lp-img-frame {
+    max-width: 180px;
+  }
+
+  .lp-body p {
+    font-size: 14px;
+  }
+
+  .lp-btn {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .lp-actions {
+    flex-direction: column;
+    align-items: center;
   }
 }

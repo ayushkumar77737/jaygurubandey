@@ -397,6 +397,7 @@
 
 .hx-ulat-body {
   flex: 1;
+  min-height: 220px;
 }
 
 .hx-ulat-p {
@@ -1613,5 +1614,18 @@
 
   .hx-dhyan-body {
     padding: 18px 16px 22px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hx-ulat-body {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hx-ulat-body {
+    min-height: 300px;
+    /* more lines wrap on small screens */
   }
 }

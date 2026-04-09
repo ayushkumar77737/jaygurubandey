@@ -58,12 +58,13 @@ import RequestEmailUpdate from './pages/RequestEmailUpdate.jsx'
 import DeleteAccount from './pages/DeleteAccount.jsx'
 import VerifyEmail from "./pages/VerifyEmail.jsx"
 import DhyanAttendanceHistory from "./pages/DhyanAttendanceHistory.jsx"
+import AuthPage from "./auth/AuthPage"
 
 const router = createBrowserRouter([
   // 🌟 PUBLIC LANDING PAGE
   { path: "/", element: <Landing /> },
-  { path: "/login", element: <Login /> },
-  { path: "/register", element: <Register /> },
+  { path: "/login", element: <AuthPage /> },
+  { path: "/register", element: <AuthPage /> },
   {
     path: '/',
   element: (
