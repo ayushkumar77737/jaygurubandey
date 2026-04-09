@@ -128,7 +128,7 @@ const Navbar = () => {
         { label: 'Important Dates', path: '/important-dates' },
         { label: 'Live Now 🔴', path: '/live-now' },
         { label: 'My Dhyan Attendance', path: '/dhyan-attendance-history' },
-        { label: 'Monthly Satsang Schedule', path: '/monthly-satsang-schedule' },
+        { label: 'Monthly Satsang Schedule', path: '/satsang-calendar' },
       ]
     },
     {
