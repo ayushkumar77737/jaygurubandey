@@ -46,13 +46,7 @@ export default function SatsangCalendar() {
         else setCurrentMonth(m => m + 1);
     };
 
-    const firstDayOfWeek = new Date(currentYear, currentMonth, 1).getDay();
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-    // Build cells: leading empty + numbered days
-    const cells = [];
-    for (let i = 0; i < firstDayOfWeek; i++) cells.push(null);
-    for (let d = 1; d <= daysInMonth; d++) cells.push(d);
 
     const isToday = (day) =>
         day === today.getDate() &&
@@ -84,11 +78,9 @@ export default function SatsangCalendar() {
                 <button className="sc-nav-btn" onClick={handleNext}>&#8594;</button>
             </div>
 
-            {/* Calendar Grid — NO weekday headers */}
+            {/* Calendar Grid — only dates, no weekday headers */}
             <div className="sc-grid">
-                {cells.map((day, idx) => {
-                    if (!day) return <div key={`empty-${idx}`} className="sc-cell sc-cell--empty" />;
-
+                {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((day) => {
                     const key = getDateKey(currentYear, currentMonth, day);
                     const event = satsangEvents[key];
 

@@ -98,30 +98,24 @@
     color: #9e6a00;
 }
 
-/* ── Calendar Grid (7 cols, no weekday row) ── */
+/* ── Calendar Grid (free-flow, no weekday alignment) ── */
 .sc-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 8px;
 }
 
 .sc-cell {
     background: #ffffff;
     border-radius: 10px;
-    min-height: 90px;
-    padding: 8px;
+    min-height: 100px;
+    padding: 10px;
     border: 1.5px solid #e8d48b;
     display: flex;
     flex-direction: column;
     gap: 4px;
     transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
     cursor: default;
-}
-
-.sc-cell--empty {
-    background: transparent;
-    border-color: transparent;
-    pointer-events: none;
 }
 
 .sc-cell--has-event {
