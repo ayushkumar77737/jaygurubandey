@@ -1,15 +1,19 @@
 import React from "react";
+import { useTranslation } from "react-i18next";   // ✅ NEW
 import "./AnnouncementBar.css";
 
 const AnnouncementBar = () => {
+  const { t } = useTranslation();   // ✅ NEW
+  const text = t("hero.announcement");
+
   return (
     <div className="annbar__container">
       <span className="annbar__icon">📢</span>
       <div className="annbar__track">
         <div className="annbar__text">
-          ✦ Important Announcement : Next Satsang Program on 10th October 2025 at 7 PM &nbsp;|&nbsp; 🙏 Join Live on YouTube &amp; Facebook &nbsp;|&nbsp; 🌸 Jai Gurubande Ji Maharaj 🌸 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          ✦ Important Announcement : Next Satsang Program on 10th October 2025 at 7 PM &nbsp;|&nbsp; 🙏 Join Live on YouTube &amp; Facebook &nbsp;|&nbsp; 🌸 Jai Gurubande Ji Maharaj 🌸 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          ✦ Important Announcement : Next Satsang Program on 10th October 2025 at 7 PM &nbsp;|&nbsp; 🙏 Join Live on YouTube &amp; Facebook &nbsp;|&nbsp; 🌸 Jai Gurubande Ji Maharaj 🌸 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {text} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {text} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {text} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
       </div>
     </div>
