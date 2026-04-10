@@ -417,5 +417,25 @@
     "a29": "Self-control brings clarity, balance, and peace.",
     "q30": "What is the ultimate teaching of Guruji?",
     "a30": "Live with love, truth, devotion, and selfless service."
+  },
+  "bhajan": {
+    "title": "Bhajan Moments",
+    "subtitle": "Sacred melodies for the soul",
+    "watch": "Watch",
+    "prev": "← Prev",
+    "next": "Next →",
+    "chalisa": "Satguru Chalisa",
+    "arti": "Satguru Arti",
+    "sangrah": "Bhajan Sangrah",
+    "v1": "Bhajan Video 1",
+    "v2": "Bhajan Video 2",
+    "v3": "Bhajan Video 3",
+    "v4": "Bhajan Video 4",
+    "v5": "Bhajan Video 5",
+    "v6": "Bhajan Video 6",
+    "v7": "Bhajan Video 7",
+    "v8": "Bhajan Video 8",
+    "v9": "Bhajan Video 9",
+    "v10": "Bhajan Video 10"
   }
 }
