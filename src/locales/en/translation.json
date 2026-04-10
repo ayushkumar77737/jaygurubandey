@@ -294,5 +294,24 @@
     "s6_p1": "The Ashram is filled with colors of joy during spiritual festivals — celebrated with prayers, music, and community feasts...",
     "s6_p2": "Festivals here are not just about rituals; they are opportunities to experience the Divine in togetherness...",
     "s6_p3": "These celebrations remind us that spirituality is not a solitary journey but a shared path..."
+  },
+  "ashramVision": {
+    "badge": "🕉️ Sacred Space",
+    "title": "Ashram Vision",
+    "subtitle": "A sacred journey towards faith, discipline, and self-realization",
+    "guruji_text": "Guided by the divine wisdom and blessings of Guruji",
+    "p1": "The vision of the Ashram is to create a peaceful spiritual space where seekers can grow in faith, discipline, and self-realization under the guidance of Guruji.",
+    "p2": "The Ashram aims to spread love, compassion, and inner harmony by encouraging a life rooted in devotion, service, and truth.",
+    "p3": "Guided by Guruji's teachings, the Ashram works to uplift individuals and society through spiritual practices, satsangs, seva activities, and moral values—helping people live a balanced and meaningful life.",
+    "pillars_tag": "Core Pillars",
+    "v1_title": "Faith",
+    "v1_text": "Strengthening devotion through spiritual discipline",
+    "v2_title": "Seva",
+    "v2_text": "Selfless service as a path to inner purification",
+    "v3_title": "Compassion",
+    "v3_text": "Living with kindness, love, and empathy",
+    "v4_title": "Truth",
+    "v4_text": "Walking the righteous path with integrity",
+    "quote": "When the soul is peaceful, life becomes divine."
   }
 }
