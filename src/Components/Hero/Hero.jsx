@@ -37,23 +37,21 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 import gmailLogo from "../../assets/gmail.png";
 
-/* ══ SPIRITUAL CAROUSEL ══ */
-const slideImages = [spirtual1, spirtual2, spirtual3, spirtual4, spirtual5, spirtual6, spirtual7, spirtual8, spirtual9, spirtual10];
+/* ══ SPIRITUAL CAROUSEL (quotes are kept in English as they are scripture) ══ */
+const spiritualSlides = [
+  { img: spirtual1, quote: "The soul is neither born, nor does it die at any time. It is unborn, eternal, ever-existing and primeval.", source: "— Bhagavad Gita, Chapter 2 · Verse 20" },
+  { img: spirtual2, quote: "Guru Govind dono khade, kake laagoon paay. Balihari Guru aapne, Govind diyo batay.", source: "— Sant Kabir Das Ji" },
+  { img: spirtual3, quote: "In the repetition of the divine name lies the secret to silencing the restless mind and opening the heart.", source: "— Guruji's Teachings" },
+  { img: spirtual4, quote: "Seva — selfless service — is the highest worship. Give without expectation, love without condition.", source: "— Sri Guru Ashram" },
+  { img: spirtual5, quote: "Satsang transforms hearts. The company of the enlightened is the fastest boat across the ocean of illusion.", source: "— Ancient Wisdom" },
+  { img: spirtual6, quote: "Dhyan is not emptiness — it is the fullness of pure, undistracted awareness resting in the divine.", source: "— Guruji's Teachings" },
+  { img: spirtual7, quote: "When meditation is mastered, the mind is unwavering like the flame of a lamp in a windless place.", source: "— Bhagavad Gita, Chapter 6 · Verse 19" },
+  { img: spirtual8, quote: "You have the right to perform your duty, but not to the fruits of your actions.", source: "— Bhagavad Gita, Chapter 2 · Verse 47" },
+  { img: spirtual9, quote: "Set thy heart upon thy work, but never on its reward.", source: "— Bhagavad Gita" },
+  { img: spirtual10, quote: "A person is said to be elevated who is not disturbed by happiness and distress.", source: "— Bhagavad Gita, Chapter 6" },
+];
 
 const SpiritualCarousel = () => {
-  const { t } = useTranslation();
-  const spiritualSlides = [
-    { img: spirtual1, quote: t("hero.sq1"), source: t("hero.ss1") },
-    { img: spirtual2, quote: t("hero.sq2"), source: t("hero.ss2") },
-    { img: spirtual3, quote: t("hero.sq3"), source: t("hero.ss3") },
-    { img: spirtual4, quote: t("hero.sq4"), source: t("hero.ss4") },
-    { img: spirtual5, quote: t("hero.sq5"), source: t("hero.ss5") },
-    { img: spirtual6, quote: t("hero.sq6"), source: t("hero.ss6") },
-    { img: spirtual7, quote: t("hero.sq7"), source: t("hero.ss7") },
-    { img: spirtual8, quote: t("hero.sq8"), source: t("hero.ss8") },
-    { img: spirtual9, quote: t("hero.sq9"), source: t("hero.ss9") },
-    { img: spirtual10, quote: t("hero.sq10"), source: t("hero.ss10") },
-  ];
   const [spIndex, setSpIndex] = useState(0);
   const spRef = useRef(null);
   const startSp = () => {
