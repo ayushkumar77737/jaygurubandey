@@ -437,5 +437,22 @@
     "v8": "Bhajan Video 8",
     "v9": "Bhajan Video 9",
     "v10": "Bhajan Video 10"
+  },
+  "latestBhajan": {
+    "title": "Latest",
+    "title_accent": "Bhajans",
+    "subtitle": "Soulful melodies filled with devotion & divine music",
+    "tag": "Bhajan",
+    "listen": "Listen Now",
+    "prev": "← Prev",
+    "next": "Next →",
+    "v1": "Shri Ram Naam",
+    "v2": "Krishna Leela",
+    "v3": "Hanuman Chalisa",
+    "v4": "Shiv Bhakti",
+    "v5": "Devi Stuti",
+    "v6": "Guru Vandana",
+    "v7": "Ram Bhajan",
+    "v8": "Krishna Bhajan"
   }
 }
