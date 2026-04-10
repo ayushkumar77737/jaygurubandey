@@ -90,7 +90,7 @@ const SpiritualCarousel = () => {
 
 /* ══ HERO PAGE ══ */
 const Hero = () => {
-  const { t } = useTranslation();   // ✅ NEW
+  const { t, i18n } = useTranslation();   // ✅ NEW
   const aboutImages = [photo7, photo8, photo6];
   const [aboutIndex, setAboutIndex] = useState(0);
   const navigate = useNavigate();
@@ -135,10 +135,17 @@ const Hero = () => {
   const [ulatDisplayedText, setUlatDisplayedText] = useState("");
   const [ulatCharIndex, setUlatCharIndex] = useState(0);
 
+  // ✅ Reset hero typing when language changes
   useEffect(() => {
-    const interval = setInterval(() => setUlatIndex(prev => (prev + 1) % ulatImages.length), 4000);
-    return () => clearInterval(interval);
-  }, []);
+    setDisplayedText("");
+    setCharIndex(0);
+  }, [i18n.language]);
+
+  // ✅ Reset ulat typing when language changes
+  useEffect(() => {
+    setUlatDisplayedText("");
+    setUlatCharIndex(0);
+  }, [i18n.language]);
 
   useEffect(() => {
     let timer;
