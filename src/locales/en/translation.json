@@ -189,5 +189,20 @@
   },
   "announce": {
     "text": "✦ Important Announcement : Next Satsang Program on 10th October 2025 at 7 PM | 🙏 Join Live on YouTube & Facebook | 🌸 Jai Gurubande Ji Maharaj 🌸"
+  },
+  "latestUpdates": {
+    "badge": "✨ What's New",
+    "title": "Latest Updates",
+    "sub": "Stay connected with the divine journey",
+    "image_label": "📸 Live Updates",
+    "u1_title": "New Book Release",
+    "u1_date": "25 Oct 2025",
+    "u1_desc": "Our latest book is out now! Grab your copy today.",
+    "u2_title": "Website Update",
+    "u2_date": "20 Oct 2025",
+    "u2_desc": "New features added to the website for a smoother experience.",
+    "u3_title": "Event Announcement",
+    "u3_date": "15 Oct 2025",
+    "u3_desc": "Join us for our upcoming event this month."
   }
 }
