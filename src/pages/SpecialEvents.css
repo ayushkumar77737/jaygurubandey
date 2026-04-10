@@ -75,17 +75,20 @@
   margin-bottom: 18px;
 }
 
+
 .sev-hero h1 {
   font-family: var(--sev-font-display);
   font-size: 3rem;
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.3;           /* ✅ increased from 1.15 — gives descenders room */
   letter-spacing: 0.01em;
+  padding: 4px 8px;           /* ✅ prevents clip cutting top/bottom of letters */
   background: linear-gradient(120deg, var(--sev-orange-deep) 0%, var(--sev-purple) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 14px;
+  display: inline-block;      /* ✅ required so padding applies correctly */
 }
 
 .sev-hero-icon {
