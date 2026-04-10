@@ -333,5 +333,22 @@
     "v8": "Satsang Video 8",
     "v9": "Satsang Video 9",
     "v10": "Satsang Video 10"
+  },
+  "latestAmritvani": {
+    "title": "Latest",
+    "title_accent": "Amritvani",
+    "subtitle": "Most recent satsang videos & divine discourses",
+    "tag": "Satsang",
+    "watch": "Watch Satsang",
+    "prev": "← Prev",
+    "next": "Next →",
+    "v1": "Latest Satsang – Vijayawada",
+    "v2": "Latest Satsang – Varanasi",
+    "v3": "Latest Satsang – Goa",
+    "v4": "Latest Satsang – Delhi",
+    "v5": "Latest Satsang – Mumbai",
+    "v6": "Latest Satsang – Jaipur",
+    "v7": "Latest Satsang – Chennai",
+    "v8": "Latest Satsang – Kolkata"
   }
 }
