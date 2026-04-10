@@ -313,5 +313,25 @@
     "v4_title": "Truth",
     "v4_text": "Walking the righteous path with integrity",
     "quote": "When the soul is peaceful, life becomes divine."
+  },
+  "satsang": {
+    "title": "Amritvani",
+    "subtitle": "Sacred Satsang Sessions",
+    "watch": "Watch",
+    "prev": "← Prev",
+    "next": "Next →",
+    "anmol_rakhi": "Anmol Rakhi",
+    "hari_pagh": "Hari Pagh",
+    "anmol_wadi": "Anmol Wadi",
+    "v1": "Satsang Video 1",
+    "v2": "Satsang Video 2",
+    "v3": "Satsang Video 3",
+    "v4": "Satsang Video 4",
+    "v5": "Satsang Video 5",
+    "v6": "Satsang Video 6",
+    "v7": "Satsang Video 7",
+    "v8": "Satsang Video 8",
+    "v9": "Satsang Video 9",
+    "v10": "Satsang Video 10"
   }
 }
