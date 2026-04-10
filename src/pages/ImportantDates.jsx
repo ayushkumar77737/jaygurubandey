@@ -1,93 +1,48 @@
 import React from "react";
+import { useTranslation } from "react-i18next";   // ✅ NEW
 import "./ImportantDates.css";
-import satsangImg from "../assets/photo24.webp"; // ✅ Replace with your image
-
-const dates = [
-  {
-    icon: "🔔",
-    name: "Chitauna Dham, Varanasi (Headquarters)",
-    schedule: "Every month on dates 1, 2, 15, 16, 25 and 26",
-    contact: "📞 7080224214, 7080224215, 7080224216",
-    isHQ: true,
-  },
-  {
-    icon: "📅",
-    name: "Nagwa Chaukia Ashram, Ghazipur",
-    schedule: "Every month on dates 4 and 19",
-    contact: "📞 7080224203, 9839858776",
-  },
-  {
-    icon: "📅",
-    name: "Silhata Saryamshati Ashram, Ballia",
-    schedule: "Every month on date 5",
-    contact: "📞 7800954121, 6388001542",
-  },
-  {
-    icon: "📅",
-    name: "Seedhagar (Ballia Road) Ashram, Gorakhpur",
-    schedule: "Every month on date 22",
-    contact: "📞 9935908011, 9161062141",
-  },
-  {
-    icon: "📅",
-    name: "Sidhagar Ghat Ashram, Ghazipur",
-    schedule: "Every month on date 23",
-    contact: "📞 9793900455, 8808305735",
-  },
-  {
-    icon: "📅",
-    name: "Manipur Ahiraura Ashram, Mirzapur",
-    schedule: "Every month on date 03",
-    contact: "📞 7651881816, 8009743258",
-  },
-  {
-    icon: "📅",
-    name: "Parsouli (Pakdi Kala) Ashram, Azamgarh",
-    schedule: "Schedule not specified",
-    contact: "📞 9396469997, 9984411125",
-  },
-  {
-    icon: "📅",
-    name: "Village Nagale, Post Kaman, Taluka Bardoli, District Palghar, Maharashtra Ashram",
-    schedule: "Every month from dates 6 to 10",
-    contact: "📞 7977739032, 9172164213",
-  },
-  {
-    icon: "📅",
-    name: "Shivrampur, Mijhanurad, Varanasi",
-    schedule: "Every month on date 27",
-    contact: "📞 8738868292, 7800649332",
-  },
-];
+import satsangImg from "../assets/photo24.webp";
 
 const ImportantDates = () => {
+  const { t } = useTranslation();   // ✅ NEW
+
+  // ✅ dates inside component to use t()
+  const dates = [
+    { icon: "🔔", name: t("importantDates.d1_name"), schedule: t("importantDates.d1_schedule"), contact: t("importantDates.d1_contact"), isHQ: true },
+    { icon: "📅", name: t("importantDates.d2_name"), schedule: t("importantDates.d2_schedule"), contact: t("importantDates.d2_contact") },
+    { icon: "📅", name: t("importantDates.d3_name"), schedule: t("importantDates.d3_schedule"), contact: t("importantDates.d3_contact") },
+    { icon: "📅", name: t("importantDates.d4_name"), schedule: t("importantDates.d4_schedule"), contact: t("importantDates.d4_contact") },
+    { icon: "📅", name: t("importantDates.d5_name"), schedule: t("importantDates.d5_schedule"), contact: t("importantDates.d5_contact") },
+    { icon: "📅", name: t("importantDates.d6_name"), schedule: t("importantDates.d6_schedule"), contact: t("importantDates.d6_contact") },
+    { icon: "📅", name: t("importantDates.d7_name"), schedule: t("importantDates.d7_schedule"), contact: t("importantDates.d7_contact") },
+    { icon: "📅", name: t("importantDates.d8_name"), schedule: t("importantDates.d8_schedule"), contact: t("importantDates.d8_contact") },
+    { icon: "📅", name: t("importantDates.d9_name"), schedule: t("importantDates.d9_schedule"), contact: t("importantDates.d9_contact") },
+  ];
+
   return (
     <div className="imd-page">
 
-      {/* ===== HEADING ===== */}
+      {/* Heading */}
       <div className="imd-heading-section">
-        <span className="imd-eyebrow">🕉️ Sacred Schedule</span>
-        <h2>Important Dates</h2>
+        <span className="imd-eyebrow">{t("importantDates.eyebrow")}</span>
+        <h2>{t("importantDates.title")}</h2>
         <div className="imd-heading-divider">
           <span className="imd-heading-divider-icon">🪷</span>
         </div>
       </div>
 
-      {/* ===== IMAGE ===== */}
+      {/* Image */}
       <div className="imd-img-section">
         <div className="imd-img-frame">
           <img src={satsangImg} alt="Important Event" />
         </div>
       </div>
 
-      {/* ===== DATES ===== */}
+      {/* Dates */}
       <div className="imd-dates-section">
         <div className="imd-dates-box">
           {dates.map((item, index) => (
-            <div
-              className={`imd-date-row${item.isHQ ? " imd-hq" : ""}`}
-              key={index}
-            >
+            <div className={`imd-date-row${item.isHQ ? " imd-hq" : ""}`} key={index}>
               <span className="imd-date-icon">{item.icon}</span>
               <div className="imd-date-text">
                 <strong>{item.name}</strong>
