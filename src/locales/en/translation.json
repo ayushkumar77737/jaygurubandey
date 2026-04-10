@@ -472,5 +472,20 @@
     "p2_v2": "Satguru vachan hriday jo raakhaa, man mandir mein amrit chaakhaa |\nRaakhe ek jo Satguru aashaa, amarlok ghar paave vaasaa ||\nSatguru vaidya hai vachan davaai, saaraa maanas rog hataai |\nSatguru mahimaa jaay na varni, jiiv ko taare mangal karni ||",
     "p2_v3": "Satsang tirath jo maarat gotaa, man mailaa chit chaadar dhotaa |\nSatguru ek hai samarth swaami, bhedi ghat kaa antaryaami ||\nSur nagar muni sansaar mein koi, bin Satguru bhav paar na hoi |\nJo Satguru pad dhyaan lagaai, ghat mein aatam gyaan samaai ||",
     "p2_v4": "Bin Satguru kaa jiiv hai nirguraa, Hari mile jo maanav saguraa |"
+  },
+  "satguruArti": {
+    "title": "Satguru Aarti",
+    "tag": "An Offering of Light & Devotion",
+    "label": "🙏 Satguru Darshan",
+    "pill": "Aarti {{page}} of 3",
+    "prev": "← Previous",
+    "next": "Next →",
+    "footer": "🙏 Jai Gurubande Saheb Sabka 🙏",
+    "a1_num": "|| Aarti 1 ||",
+    "a2_num": "|| Aarti 2 ||",
+    "a3_num": "|| Aarti 3 ||",
+    "a1": "Aarti daas sada karen Prabhu ji, Satguru dwar tumhare |\nBina thaal kapoor deep ke, gagan dekh ujiyare ||\n\nVirah se vyakul jaay wahan par, premi prem sahare |\nShabd dhvani sune soorati sudha ras, tan-man sudhi bisaare ||\n\nKar se kripa karen Swami ji, mile priyatam pyare |\nNij sukh wahan mile charanamut, man maya sab haare ||\n\nNaam desh jahan noor nirantar, aatho pahar nihaare |\nGyaan ki Ganga bhakti ka saagar, jaaye hans milore ||\n\nJai Gurubande param purush Prabhu, santan ko gahi taare |\nAlakh Anami Agam Agochar, Jai Gurubande hamaare ||",
+    "a2": "Aarti Satgurudev Prabhu ki, hoye barambar re manva Chal sache darbara |\n\nKaal akaal se mukti mile, Jai Gurubande paar re manva...\n\nBrahma Vishnu Maheshwar, kar seva Kartaar re manva...\n\nKotin suraj chandra jahan, bhoomi pahaad hajaar re manva...\n\nNoor desh jahan naam nirantar, bahta amrit dhaar re manva...\n\nParbrahm jahan Manasarovar, hanson ka sansaar re manva...\n\nBhavar gufa ki gupt gali mein, banshi ki jhankaar re manva...\n\nSatlok ke prem nagar mein, hanson ki sarkar re manva...\n\nJai Gurubande Satguru Saheb, karte sabse pyaar re manva...",
+    "a3": "Akhand mandalakar jyoti, sam rahi Satlok |\nJeev dekhi Jai Gurubande, mite jagat ka shok ॥\n\nSatguru bad Govind nahi nabh se pare kahaya |\nPeechhe-peechhe Jai Gurubande, Hari milne ko bataya ॥\n\nSant samagam sabse achha mat bhatko manlaya |\nBhajate-bhajate Jai Gurubande, Hari darshan ko paaya ॥"
   }
 }
