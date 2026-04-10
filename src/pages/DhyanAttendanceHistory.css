@@ -267,9 +267,15 @@
   box-shadow: 0 8px 24px var(--dah-gold-glow);
   transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease;
   animation: dah-fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+
+  /* ✅ Fix 1: Eliminates 300ms delay & hover-state double-tap issue */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.dah-check-btn:hover {
+/* ✅ Fix 2: :active mirrors :hover so mobile gets visual feedback on first tap */
+.dah-check-btn:hover,
+.dah-check-btn:active {
   transform: translateY(-3px);
   box-shadow: 0 16px 40px var(--dah-gold-glow);
 }
@@ -279,7 +285,9 @@
   transition: transform 0.25s ease;
 }
 
-.dah-check-btn:hover .dah-btn-arrow {
+/* ✅ Fix 3: Arrow animates on both hover and active */
+.dah-check-btn:hover .dah-btn-arrow,
+.dah-check-btn:active .dah-btn-arrow {
   transform: translateX(4px);
 }
 

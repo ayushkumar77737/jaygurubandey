@@ -58,11 +58,16 @@ const DhyanAttendanceHistory = () => {
             and a balanced lifestyle that supports both spiritual and personal development.
           </p>
 
+          {/* ✅ onTouchEnd ensures single-tap open on all mobile browsers */}
           <a
             href="https://dhyan.jaigurubande.in"
             target="_blank"
             rel="noopener noreferrer"
             className="dah-check-btn"
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              window.open("https://dhyan.jaigurubande.in", "_blank", "noopener,noreferrer");
+            }}
           >
             Explore Dhyan Portal
             <span className="dah-btn-arrow">→</span>
