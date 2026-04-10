@@ -1,7 +1,10 @@
 import React from "react";
+import { useTranslation } from "react-i18next";   // ✅ NEW
 import "./LoadingPage.css";
 
 const LoadingPage = () => {
+  const { t } = useTranslation();   // ✅ NEW
+
   return (
     <div className="ldp__page">
 
@@ -32,8 +35,8 @@ const LoadingPage = () => {
           <span className="ldp__orn-gem">❖</span>
           <span className="ldp__orn-line" />
         </div>
-        <h1 className="ldp__main">🌸 Surrender to Guruji's Grace 🌸</h1>
-        <p className="ldp__sub">In surrender, there is peace, there is the Divine.</p>
+        <h1 className="ldp__main">{t("loading.main")}</h1>
+        <p className="ldp__sub">{t("loading.sub")}</p>
         <div className="ldp__ornament ldp__ornament--flip">
           <span className="ldp__orn-line" />
           <span className="ldp__orn-gem">❖</span>
@@ -45,7 +48,7 @@ const LoadingPage = () => {
       </div>
 
       {/* Bottom sacred text */}
-      <p className="ldp__tagline">✦ Jai Gurubande ✦</p>
+      <p className="ldp__tagline">{t("loading.tagline")}</p>
 
     </div>
   );

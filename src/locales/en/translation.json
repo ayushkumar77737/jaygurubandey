@@ -11,6 +11,11 @@
     "register": "Register",
     "footer_note": "Jai Gurubande · Sanatan Dharma · Seva · Satsang"
   },
+  "loading": {
+    "main": "🌸 Surrender to Guruji's Grace 🌸",
+    "sub": "In surrender, there is peace, there is the Divine.",
+    "tagline": "✦ Jai Gurubande ✦"
+  },
   "auth": {
     "login_title": "Login",
     "register_title": "Register",
