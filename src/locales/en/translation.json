@@ -454,5 +454,23 @@
     "v6": "Guru Vandana",
     "v7": "Ram Bhajan",
     "v8": "Krishna Bhajan"
+  },
+  "satguruChalisa": {
+    "title": "Satguru Chalisa",
+    "tag": "Divine Words of the Master",
+    "caption": "🪔 Satguru Darshan",
+    "page_badge": "Page {{page}} of 2",
+    "prev": "← Previous",
+    "next": "Next →",
+    "footer": "🙏 Jai Gurubande Saheb Sabka 🙏",
+    "doha_heading": "Doha",
+    "chalisa_heading": "Chalisa",
+    "doha": "Poojaa Satguru charan kaa, kare nitya jo dhyaan |\nTere kripaa se jai Gurubande, sahaj usii kaa praan ||",
+    "p1_v1": "Jai jai jai Satguru jii devaa, karen jo maanav bhakti sevaa |\nSukh shaanti ghar satsaran aave, janam maran bhav rog nasaave ||\nMile bhaagya se Satguru daataa, raakhe jiiv se bhakti naataa |\nSatguru naam jo bhitar gaave, adbhut tirath kaa phal paave ||",
+    "p1_v2": "Satguru dras rahe sukhdaai, janam janam kaa paap nasaai |\nSatguru saran jiivan jo aave, Prabhu kaa pyaaraa so ban jaave ||\nSatguru Raam ratan dhan khaani, daataa diin dayaalu daanii |\nSaahib Satguru jiiv vidhaataa, aaye jagat bhaye vikhyaataa |",
+    "p2_v1": "Satguru bhagat bane jo koi, baal na baankaa uskaa hoi |\nRaakhe jo Satguru ko aage, bhoot bhram sab dekhat bhaage ||\nJehi ghar Satguru kare nivaasaa, dete prem atal vishwaasaa |\nSatguru naam akhand akaashaa, kare hriday mein param prakaashaa ||",
+    "p2_v2": "Satguru vachan hriday jo raakhaa, man mandir mein amrit chaakhaa |\nRaakhe ek jo Satguru aashaa, amarlok ghar paave vaasaa ||\nSatguru vaidya hai vachan davaai, saaraa maanas rog hataai |\nSatguru mahimaa jaay na varni, jiiv ko taare mangal karni ||",
+    "p2_v3": "Satsang tirath jo maarat gotaa, man mailaa chit chaadar dhotaa |\nSatguru ek hai samarth swaami, bhedi ghat kaa antaryaami ||\nSur nagar muni sansaar mein koi, bin Satguru bhav paar na hoi |\nJo Satguru pad dhyaan lagaai, ghat mein aatam gyaan samaai ||",
+    "p2_v4": "Bin Satguru kaa jiiv hai nirguraa, Hari mile jo maanav saguraa |"
   }
 }
