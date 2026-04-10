@@ -1,60 +1,44 @@
 import React from "react";
+import { useTranslation } from "react-i18next";   // ✅ NEW
 import "./DailySchedule.css";
 
 function DailySchedule() {
+  const { t } = useTranslation();   // ✅ NEW
+
   const morningSchedule = [
-    { title: "Daily Morning Satsang by Pujya Maharaj Ji", time: "4:15 AM - 5:45 AM" },
-    { title: "Mangla Aarti of Shri Ji", time: "5:45 AM - 6:30 AM" },
-    { title: "Radha Sudhanidhi Path (Mon, Fri)", time: "6:30 AM - 8:15 AM" },
-    { title: "Sewak Vaani Path (Tue)", time: "6:30 AM - 8:15 AM" },
-    { title: "Hit Chaurasi Path (Wed, Thu, Sat, Sun)", time: "6:30 AM - 8:15 AM" },
-    { title: "Daily Ekantik Vartalaap", time: "7:00 AM - 8:00 AM" },
+    { title: t("dailySchedule.m1"), time: t("dailySchedule.t_m1") },
+    { title: t("dailySchedule.m2"), time: t("dailySchedule.t_m2") },
+    { title: t("dailySchedule.m3"), time: t("dailySchedule.t_m3") },
+    { title: t("dailySchedule.m4"), time: t("dailySchedule.t_m4") },
+    { title: t("dailySchedule.m5"), time: t("dailySchedule.t_m5") },
+    { title: t("dailySchedule.m6"), time: t("dailySchedule.t_m6") },
   ];
 
   const afternoonSchedule = [
-    { title: "Dhup Aarti", time: "4:00 PM - 4:15 PM" },
-    { title: "Daily Evening Vaanipath", time: "4:15 PM - 5:15 PM" },
-    { title: "Vyahula Mahotsav (Sunday)", time: "4:15 PM - 5:45 PM" },
-    { title: "Satsang (Mon, Thu)", time: "5:15 PM - 5:45 PM" },
-    { title: "Bhakt Charitra (Tue, Wed, Fri, Sat)", time: "5:15 PM - 5:45 PM" },
-    { title: "Sandhya Aarti", time: "5:45 PM - 6:00 PM" },
+    { title: t("dailySchedule.a1"), time: t("dailySchedule.t_a1") },
+    { title: t("dailySchedule.a2"), time: t("dailySchedule.t_a2") },
+    { title: t("dailySchedule.a3"), time: t("dailySchedule.t_a3") },
+    { title: t("dailySchedule.a4"), time: t("dailySchedule.t_a4") },
+    { title: t("dailySchedule.a5"), time: t("dailySchedule.t_a5") },
+    { title: t("dailySchedule.a6"), time: t("dailySchedule.t_a6") },
   ];
 
   const eveningSchedule = [
-    { title: "Night Satsang by Pujya Maharaj Ji", time: "8:00 PM - 9:00 PM" },
-    { title: "Rasik Path", time: "9:00 PM - 9:30 PM" },
-    { title: "Bhajan Kirtan", time: "9:30 PM - 10:00 PM" },
-    { title: "Shayan Aarti", time: "10:00 PM - 10:15 PM" },
-    { title: "Ekantik Varta", time: "10:15 PM - 10:30 PM" },
+    { title: t("dailySchedule.e1"), time: t("dailySchedule.t_e1") },
+    { title: t("dailySchedule.e2"), time: t("dailySchedule.t_e2") },
+    { title: t("dailySchedule.e3"), time: t("dailySchedule.t_e3") },
+    { title: t("dailySchedule.e4"), time: t("dailySchedule.t_e4") },
+    { title: t("dailySchedule.e5"), time: t("dailySchedule.t_e5") },
   ];
 
   const sessions = [
-    {
-      key: "morning",
-      icon: "🌅",
-      label: "Morning Schedule",
-      items: morningSchedule,
-      mod: "ds__section--morning",
-    },
-    {
-      key: "afternoon",
-      icon: "🌤️",
-      label: "Afternoon Schedule",
-      items: afternoonSchedule,
-      mod: "ds__section--afternoon",
-    },
-    {
-      key: "evening",
-      icon: "🌙",
-      label: "Evening Schedule",
-      items: eveningSchedule,
-      mod: "ds__section--evening",
-    },
+    { key: "morning", icon: "🌅", label: t("dailySchedule.morning_label"), items: morningSchedule, mod: "ds__section--morning" },
+    { key: "afternoon", icon: "🌤️", label: t("dailySchedule.afternoon_label"), items: afternoonSchedule, mod: "ds__section--afternoon" },
+    { key: "evening", icon: "🌙", label: t("dailySchedule.evening_label"), items: eveningSchedule, mod: "ds__section--evening" },
   ];
 
   return (
     <div className="ds__page">
-      {/* Decorative orbs */}
       <div className="ds__orb ds__orb--1" />
       <div className="ds__orb ds__orb--2" />
       <div className="ds__orb ds__orb--3" />
@@ -62,35 +46,23 @@ function DailySchedule() {
       {/* Header */}
       <div className="ds__header">
         <div className="ds__header-icon">🕰️</div>
-        <h1 className="ds__main-title">Daily Schedule</h1>
+        <h1 className="ds__main-title">{t("dailySchedule.title")}</h1>
         <div className="ds__title-rule" />
-        <p className="ds__header-sub">A day aligned with devotion &amp; discipline</p>
+        <p className="ds__header-sub">{t("dailySchedule.sub")}</p>
       </div>
 
       {/* Schedule Sections */}
       <div className="ds__container">
         {sessions.map((session, si) => (
-          <div
-            className={`ds__section ${session.mod}`}
-            key={session.key}
-            style={{ animationDelay: `${si * 0.15}s` }}
-          >
-            {/* Section header */}
+          <div className={`ds__section ${session.mod}`} key={session.key} style={{ animationDelay: `${si * 0.15}s` }}>
             <div className="ds__section-header">
               <span className="ds__section-icon">{session.icon}</span>
               <h2 className="ds__section-title">{session.label}</h2>
             </div>
-
             <div className="ds__divider" />
-
-            {/* Items */}
             <ul className="ds__list">
               {session.items.map((item, i) => (
-                <li
-                  className="ds__item"
-                  key={i}
-                  style={{ animationDelay: `${si * 0.15 + i * 0.05 + 0.1}s` }}
-                >
+                <li className="ds__item" key={i} style={{ animationDelay: `${si * 0.15 + i * 0.05 + 0.1}s` }}>
                   <div className="ds__item-dot" />
                   <span className="ds__item-text">{item.title}</span>
                   <span className="ds__item-time">{item.time}</span>
