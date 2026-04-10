@@ -4,7 +4,7 @@ import "./AnnouncementBar.css";
 
 const AnnouncementBar = () => {
   const { t } = useTranslation();   // ✅ NEW
-  const text = t("hero.announcement");
+  const text = t("announce.text");
 
   return (
     <div className="annbar__container">
