@@ -1,18 +1,20 @@
 import React from "react";
+import { useTranslation } from "react-i18next";   // ✅ NEW
 import "./Footer.css";
 import { FaFacebook, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
+  const { t } = useTranslation();   // ✅ NEW
+  const year = new Date().getFullYear();
+
   const handlePrivacyClick = () => { window.location.href = "/privacy-policy"; };
-  const handleCommitteeClick = () => { window.location.href = "/committee-members"; };
-  const handleBooksClick = () => { window.location.href = "/published-books"; };
+  const handleBooksClick   = () => { window.location.href = "/published-books"; };
   const handleUpdatesClick = () => { window.location.href = "/latest-updates"; };
   const handleSoulTwistClick = () => { window.location.href = "/soultwist"; };
-  const handleFAQClick = () => { window.location.href = "/faq"; };
+  const handleFAQClick     = () => { window.location.href = "/faq"; };
 
   return (
     <footer className="ftr__root">
-      {/* Top gold divider with glow */}
       <div className="ftr__top-glow" />
 
       <div className="ftr__inner">
@@ -33,21 +35,20 @@ const Footer = () => {
           </a>
         </div>
 
-        {/* Divider */}
         <div className="ftr__divider" />
 
         {/* Nav Links */}
         <div className="ftr__links">
-          <span className="ftr__link" onClick={handlePrivacyClick}>Privacy Policy</span>
-          <span className="ftr__link" onClick={handleBooksClick}>Published Books</span>
-          <span className="ftr__link" onClick={handleUpdatesClick}>Latest Updates</span>
-          <span className="ftr__link" onClick={handleSoulTwistClick}>SoulTwist</span>
-          <span className="ftr__link" onClick={handleFAQClick}>FAQ</span>
+          <span className="ftr__link" onClick={handlePrivacyClick}>{t("footer.privacy")}</span>
+          <span className="ftr__link" onClick={handleBooksClick}>{t("footer.books")}</span>
+          <span className="ftr__link" onClick={handleUpdatesClick}>{t("footer.updates")}</span>
+          <span className="ftr__link" onClick={handleSoulTwistClick}>{t("footer.soultwist")}</span>
+          <span className="ftr__link" onClick={handleFAQClick}>{t("footer.faq")}</span>
         </div>
 
         {/* Copyright */}
         <p className="ftr__copy">
-          © 2025–{new Date().getFullYear()} Jai Gurubande. All rights reserved.
+          {t("footer.copy", { year })}
         </p>
 
       </div>

@@ -207,5 +207,13 @@
     "u3_title": "Event Announcement",
     "u3_date": "15 Oct 2025",
     "u3_desc": "Join us for our upcoming event this month."
+  },
+  "footer": {
+    "privacy": "Privacy Policy",
+    "books": "Published Books",
+    "updates": "Latest Updates",
+    "soultwist": "SoulTwist",
+    "faq": "FAQ",
+    "copy": "© 2025–{{year}} Jai Gurubande. All rights reserved."
   }
 }
