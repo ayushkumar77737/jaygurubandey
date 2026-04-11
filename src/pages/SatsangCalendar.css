@@ -157,16 +157,17 @@
 .sc-cell {
     background: #ffffff;
     border-radius: 10px;
-    min-height: 110px;
-    /* ✅ increased from 95px */
-    padding: 8px 6px;
+    min-height: 120px;
+    padding: 10px 6px 8px;
+    /* ✅ more top padding for matras */
     border: 1.5px solid #e8d48b;
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 4px;
     transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
     cursor: default;
-    overflow: hidden;
+    overflow: visible;
+    /* ✅ changed from hidden — lets matras show */
     box-sizing: border-box;
     opacity: 0;
     animation: sc-cellIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -247,11 +248,12 @@
     font-size: 10px;
     font-weight: 600;
     color: #7b2d8b;
-    line-height: 1.4;
-    /* ✅ added explicit line-height */
+    line-height: 1.6;
+    /* ✅ more room for top matras */
     word-break: break-word;
     overflow-wrap: break-word;
-    /* ✅ ensure long words wrap */
+    padding-top: 2px;
+    /* ✅ extra space above for matras */
 }
 
 .sc-cell--highlight .sc-event-loc {
@@ -264,9 +266,8 @@
     font-weight: 500;
     word-break: break-word;
     overflow-wrap: break-word;
-    /* ✅ ensure long words wrap */
-    line-height: 1.4;
-    /* ✅ added explicit line-height */
+    line-height: 1.6;
+    /* ✅ more room for top matras */
 }
 
 .sc-cell--highlight .sc-event-sub {
@@ -409,7 +410,7 @@
     }
 
     .sc-cell {
-        min-height: 100px;
+        min-height: 110px;
     }
 }
 
@@ -439,8 +440,8 @@
     }
 
     .sc-cell {
-        min-height: 110px;
-        padding: 8px 6px;
+        min-height: 120px;
+        padding: 10px 6px 8px;
     }
 
     .sc-day-num {
