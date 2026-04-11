@@ -627,5 +627,17 @@
     "d9_name": "Shivrampur, Mijhanurad, Varanasi",
     "d9_schedule": "Every month on date 27",
     "d9_contact": "📞 8738868292, 7800649332"
+  },
+  "liveNow": {
+    "live_indicator": "LIVE NOW",
+    "live_title": "Live Satsang with Guruji",
+    "live_sub": "Join the divine moment happening right now",
+    "meet_text": "Live Satsang is happening on",
+    "meet_platform": "Google Meet",
+    "join_btn": "Join Live Meeting",
+    "offline_title": "No Live Session Now",
+    "offline_sub": "Next satsang will begin soon. Stay blessed.",
+    "offline_timing": "🕕 Timings We Will Let You Know",
+    "offline_check": "🙏 Please check back later for the next live satsang"
   }
 }
