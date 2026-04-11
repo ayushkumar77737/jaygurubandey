@@ -937,5 +937,22 @@
     "btn_sending": "Sending...",
     "success": "Message sent successfully ✅",
     "error": "❌ Failed to send message"
+  },
+  "faq": {
+    "badge": "✦ Spiritual Guidance ✦",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to common questions about Guruji and the Ashram",
+    "btn_feedback": "🙏💬 Devotees Feedback",
+    "btn_quickstart": "🚀 Quick Start",
+    "q1": "Who is Guruji and what is Jai Gurubande?",
+    "a1": "Guruji, lovingly known as Jai Gurubande, is our divine guide and spiritual inspiration. He leads and blesses the community with his teachings, spreading positivity, devotion, and the path of seva (selfless service) and love.",
+    "q2": "How can I become part of the Jai Gurubande spiritual path?",
+    "a2": "You can become part of the Jai Gurubande spiritual path by staying connected with Guruji's teachings, joining satsangs and seva activities, following the official social channels, and participating in spiritual programs and events organized by the ashram.",
+    "q3": "What kind of activities are conducted under Ashram?",
+    "a3": "Under ashram, regular seva activities, satsangs, spiritual programs and events are conducted throughout the year. By Guruji's grace, free paralysis treatment is also offered at the ashram as a form of seva, along with online services such as spiritual resources, announcements, and updates.",
+    "q4": "Is there any fee or membership required?",
+    "a4": "No, joining with guruji is completely free. All you need is devotion and willingness to participate in ashram activities.",
+    "q5": "How can I get in touch for event-related queries?",
+    "a5": "All important contact details are shared in all programs page in the website and through our verified social media channel in Whatsapp."
   }
 }

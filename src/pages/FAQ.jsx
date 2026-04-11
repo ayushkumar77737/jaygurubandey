@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";   // ✅ NEW
 import "./FAQ.css";
 
 const FAQ = () => {
+  const { t } = useTranslation();   // ✅ NEW
   const [openIndex, setOpenIndex] = useState(null);
   const navigate = useNavigate();
 
@@ -10,42 +12,20 @@ const FAQ = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  // ✅ faqs inside component to use t()
   const faqs = [
-    {
-      question: "Who is Guruji and what is Jai Gurubande?",
-      answer:
-        "Guruji, lovingly known as Jai Gurubande, is our divine guide and spiritual inspiration. He leads and blesses the community with his teachings, spreading positivity, devotion, and the path of seva (selfless service) and love.",
-    },
-    {
-      question: "How can I become part of the Jai Gurubande spiritual path?",
-      answer:
-        "You can become part of the Jai Gurubande spiritual path by staying connected with Guruji's teachings, joining satsangs and seva activities, following the official social channels, and participating in spiritual programs and events organized by the ashram.",
-    },
-    {
-      question: "What kind of activities are conducted under Ashram?",
-      answer:
-        "Under ashram, regular seva activities, satsangs, spiritual programs and events are conducted throughout the year. By Guruji's grace, free paralysis treatment is also offered at the ashram as a form of seva, along with online services such as spiritual resources, announcements, and updates.",
-    },
-    {
-      question: "Is there any fee or membership required?",
-      answer:
-        "No, joining with guruji is completely free. All you need is devotion and willingness to participate in ashram activities.",
-    },
-    {
-      question: "How can I get in touch for event-related queries?",
-      answer:
-        "All important contact details are shared in all programs page in the website and through our verified social media channel in Whatsapp.",
-    },
+    { question: t("faq.q1"), answer: t("faq.a1") },
+    { question: t("faq.q2"), answer: t("faq.a2") },
+    { question: t("faq.q3"), answer: t("faq.a3") },
+    { question: t("faq.q4"), answer: t("faq.a4") },
+    { question: t("faq.q5"), answer: t("faq.a5") },
   ];
 
-  const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  const toggleFAQ = (index) => setOpenIndex(openIndex === index ? null : index);
 
   return (
     <div className="faqpg-page">
 
-      {/* Decorative background — z-index 0, never overlaps content */}
       <div className="faqpg-bg" aria-hidden="true">
         <div className="faqpg-orb faqpg-orb-1" />
         <div className="faqpg-orb faqpg-orb-2" />
@@ -53,15 +33,12 @@ const FAQ = () => {
         <div className="faqpg-petal faqpg-petal-br" />
       </div>
 
-      {/* Content layer — z-index 1 */}
       <div className="faqpg-content">
 
         <div className="faqpg-header">
-          <span className="faqpg-badge">✦ Spiritual Guidance ✦</span>
-          <h2 className="faqpg-title">Frequently Asked Questions</h2>
-          <p className="faqpg-subtitle">
-            Answers to common questions about Guruji and the Ashram
-          </p>
+          <span className="faqpg-badge">{t("faq.badge")}</span>
+          <h2 className="faqpg-title">{t("faq.title")}</h2>
+          <p className="faqpg-subtitle">{t("faq.subtitle")}</p>
         </div>
 
         <div className="faqpg-container">
@@ -76,31 +53,21 @@ const FAQ = () => {
                   <span className="faqpg-num">0{index + 1}</span>
                   <span>{faq.question}</span>
                 </div>
-                <span className="faqpg-icon">
-                  {openIndex === index ? "–" : "＋"}
-                </span>
+                <span className="faqpg-icon">{openIndex === index ? "–" : "＋"}</span>
               </div>
               <div className="faqpg-answer">{faq.answer}</div>
             </div>
           ))}
         </div>
 
-        {/* Buttons */}
         <div className="faqpg-btn-row">
-          <button
-            className="faqpg-feedback-btn"
-            onClick={() => navigate("/feedback")}
-          >
+          <button className="faqpg-feedback-btn" onClick={() => navigate("/feedback")}>
             <span className="faqpg-btn-shimmer" />
-            🙏💬 Devotees Feedback
+            {t("faq.btn_feedback")}
           </button>
-
-          <button
-            className="faqpg-quickstart-btn"
-            onClick={() => navigate("/quickstart")}
-          >
+          <button className="faqpg-quickstart-btn" onClick={() => navigate("/quickstart")}>
             <span className="faqpg-btn-shimmer" />
-            🚀 Quick Start
+            {t("faq.btn_quickstart")}
           </button>
         </div>
 
