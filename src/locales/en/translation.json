@@ -921,5 +921,21 @@
     "c1_location": "Hyderabad, Telangana, India",
     "c2_name": "Divine Spiritual Center",
     "c2_location": "Varanasi, Uttar Pradesh, India"
+  },
+  "chat": {
+    "title": "Chat With Us",
+    "subtitle": "We'd love to hear from you 🙏",
+    "label_name": "Your Name",
+    "ph_name": "e.g. Ramesh Kumar",
+    "label_email": "Email Address",
+    "ph_email": "e.g. you@example.com",
+    "label_phone": "Phone Number",
+    "ph_phone": "10-digit number",
+    "label_question": "Your Question",
+    "ph_question": "Write your question or message here...",
+    "btn_send": "Send Message ✦",
+    "btn_sending": "Sending...",
+    "success": "Message sent successfully ✅",
+    "error": "❌ Failed to send message"
   }
 }
