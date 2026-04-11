@@ -878,5 +878,29 @@
     "s4_desc": "Helping society through charity, guidance, and spiritual outreach.",
     "closing_p": "In Ashram life, seva is not duty — it is devotion.\nEvery act becomes a prayer, every moment a step towards self-realization.",
     "closing_tag": "🙏 Saheb Sabka 🙏"
+  },
+  "divineMoments": {
+    "title": "Divine Moments",
+    "subtitle": "Choose the year and month to relive precious memories with Guruji.",
+    "label_year": "Year",
+    "label_month": "Month",
+    "select_year": "Select Year",
+    "select_month": "Select Month",
+    "msg_select_year": "Please select a year first, then choose month.",
+    "msg_select_month": "Year selected: {{year}}. Now please select a month.",
+    "msg_no_data": "No divine moments have been added yet for {{month}} {{year}}.",
+    "no_image": "Image not uploaded",
+    "type_darshan": "Darshan",
+    "type_satsang": "Satsang",
+    "type_bhajan": "Bhajan",
+    "m1_title": "New Year Darshan with Guruji",
+    "m1_month": "January",
+    "m1_desc": "Blessed New Year morning darshan with Guruji. Devotees gathered early and received prasad.",
+    "m2_title": "Special Satsang on Guru Kripa",
+    "m2_month": "March",
+    "m2_desc": "Evening satsang on the theme of Guru's grace, with kirtans and experiences shared by devotees.",
+    "m3_title": "Purnima Bhajan Sandhya",
+    "m3_month": "July",
+    "m3_desc": "Full moon bhajan evening with deep meditation and soulful kirtans."
   }
 }
