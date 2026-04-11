@@ -902,5 +902,24 @@
     "m3_title": "Purnima Bhajan Sandhya",
     "m3_month": "July",
     "m3_desc": "Full moon bhajan evening with deep meditation and soulful kirtans."
+  },
+  "contact": {
+    "eyebrow": "Get In Touch",
+    "title": "Contact Us",
+    "label_ashram": "Ashram",
+    "label_email": "Email",
+    "label_phone": "Phone",
+    "label_location": "Location",
+    "find_us": "Find Us",
+    "page_info": "Page {{page}} of {{total}}",
+    "prev": "⬅ Prev",
+    "next": "Next ➡",
+    "btn_stay": "🙏 Stay Connected",
+    "btn_visit": "📘 Before You Visit",
+    "btn_divine": "✨ Divine Moments",
+    "c1_name": "Sri Guru Ashram",
+    "c1_location": "Hyderabad, Telangana, India",
+    "c2_name": "Divine Spiritual Center",
+    "c2_location": "Varanasi, Uttar Pradesh, India"
   }
 }
