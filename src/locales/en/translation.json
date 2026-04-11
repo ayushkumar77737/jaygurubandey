@@ -852,5 +852,31 @@
     "download": "Download",
     "prev": "← Prev",
     "next": "Next →"
+  },
+  "ashramLife": {
+    "eyebrow": "✦ A Life of Devotion ✦",
+    "title": "Ashram Life",
+    "sub": "Daily Activities, Discipline & Seva",
+    "intro": "Ashram life is a sacred blend of devotion, discipline, simplicity, and selfless service. Every activity here is a form of sadhana, nurturing inner peace, humility, and spiritual growth.",
+    "routine_title": "Daily Routine",
+    "c1_title": "Morning Satsang",
+    "c1_desc": "Early morning prayer, meditation, and chanting to purify the mind and awaken devotion.",
+    "c2_title": "Spiritual Study",
+    "c2_desc": "Listening to Guruji's teachings, scriptures, and Amritvani for self-realization.",
+    "c3_title": "Bhajan & Kirtan",
+    "c3_desc": "Collective singing of divine bhajans to deepen love and surrender.",
+    "c4_title": "Evening Aarti",
+    "c4_desc": "A serene closure of the day with gratitude, prayers, and remembrance of the Divine.",
+    "seva_title": "Seva (Selfless Service)",
+    "s1_title": "Ashram Maintenance",
+    "s1_desc": "Cleaning, gardening, and maintaining the Ashram premises with devotion.",
+    "s2_title": "Langar & Kitchen Seva",
+    "s2_desc": "Preparing and serving food as an offering to all devotees.",
+    "s3_title": "Satsang & Event Seva",
+    "s3_desc": "Arranging satsangs, managing gatherings, and assisting devotees.",
+    "s4_title": "Community Service",
+    "s4_desc": "Helping society through charity, guidance, and spiritual outreach.",
+    "closing_p": "In Ashram life, seva is not duty — it is devotion.\nEvery act becomes a prayer, every moment a step towards self-realization.",
+    "closing_tag": "🙏 Saheb Sabka 🙏"
   }
 }
