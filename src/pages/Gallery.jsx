@@ -1,7 +1,6 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";   // ✅ NEW
 import "./Gallery.css";
-
-// Import images
 import photo6 from "../assets/photo6.webp";
 import photo7 from "../assets/photo7.webp";
 import photo8 from "../assets/photo8.webp";
@@ -22,41 +21,31 @@ import photo21 from "../assets/photo21.webp";
 import photo22 from "../assets/photo22.webp";
 import photo23 from "../assets/photo23.webp";
 
+// ✅ photo alt text is generic so kept outside — only UI text uses t()
 const photos = [
-  { id: 1, src: photo23, alt: "Photo 23" },
-  { id: 2, src: photo2, alt: "Photo 2" },
-  { id: 3, src: photo9, alt: "Photo 9" },
-  { id: 4, src: photo6, alt: "Photo 6" },
-  { id: 5, src: photo7, alt: "Photo 7" },
-  { id: 6, src: photo8, alt: "Photo 8" },
-  { id: 7, src: photo10, alt: "Photo 10" },
-  { id: 8, src: photo11, alt: "Photo 11" },
-  { id: 9, src: photo12, alt: "Photo 12" },
-  { id: 10, src: photo13, alt: "Photo 13" },
-  { id: 11, src: photo14, alt: "Photo 14" },
-  { id: 12, src: photo15, alt: "Photo 15" },
-  { id: 13, src: photo16, alt: "Photo 16" },
-  { id: 14, src: photo17, alt: "Photo 17" },
-  { id: 15, src: photo18, alt: "Photo 18" },
-  { id: 16, src: photo19, alt: "Photo 19" },
-  { id: 17, src: photo20, alt: "Photo 20" },
-  { id: 18, src: photo21, alt: "Photo 21" },
-  { id: 19, src: photo22, alt: "Photo 22" },
+  { id: 1, src: photo23 }, { id: 2, src: photo2 }, { id: 3, src: photo9 },
+  { id: 4, src: photo6 }, { id: 5, src: photo7 }, { id: 6, src: photo8 },
+  { id: 7, src: photo10 }, { id: 8, src: photo11 }, { id: 9, src: photo12 },
+  { id: 10, src: photo13 }, { id: 11, src: photo14 }, { id: 12, src: photo15 },
+  { id: 13, src: photo16 }, { id: 14, src: photo17 }, { id: 15, src: photo18 },
+  { id: 16, src: photo19 }, { id: 17, src: photo20 }, { id: 18, src: photo21 },
+  { id: 19, src: photo22 },
 ];
 
 const Gallery = () => {
+  const { t } = useTranslation();   // ✅ NEW
   const [currentPage, setCurrentPage] = useState(1);
   const photosPerPage = 10;
 
-  const indexOfLastPhoto = currentPage * photosPerPage;
-  const indexOfFirstPhoto = indexOfLastPhoto - photosPerPage;
-  const currentPhotos = photos.slice(indexOfFirstPhoto, indexOfLastPhoto);
+  const indexOfLast = currentPage * photosPerPage;
+  const indexOfFirst = indexOfLast - photosPerPage;
+  const currentPhotos = photos.slice(indexOfFirst, indexOfLast);
   const totalPages = Math.ceil(photos.length / photosPerPage);
 
   return (
     <div className="phgal-container">
 
-      {/* Ambient background blobs */}
+      {/* Background blobs */}
       <div className="phgal-bg" aria-hidden="true">
         <div className="phgal-blob phgal-blob-1" />
         <div className="phgal-blob phgal-blob-2" />
@@ -66,10 +55,10 @@ const Gallery = () => {
 
       {/* Header */}
       <header className="phgal-header">
-        <p className="phgal-eyebrow">Our Collection</p>
+        <p className="phgal-eyebrow">{t("gallery.eyebrow")}</p>
         <h2 className="phgal-title">
-          <span className="phgal-title-word">Photo</span>
-          <span className="phgal-title-word phgal-title-accent">Gallery</span>
+          <span className="phgal-title-word">{t("gallery.title_1")}</span>
+          <span className="phgal-title-word phgal-title-accent">{t("gallery.title_2")}</span>
         </h2>
         <div className="phgal-title-bar" />
       </header>
@@ -77,27 +66,20 @@ const Gallery = () => {
       {/* Grid */}
       <div className="phgal-grid" key={currentPage}>
         {currentPhotos.map((photo, index) => (
-          <div
-            key={photo.id}
-            className="phgal-item"
-            style={{ animationDelay: `${index * 0.07}s` }}
-          >
-            {/* Corner accents */}
+          <div key={photo.id} className="phgal-item" style={{ animationDelay: `${index * 0.07}s` }}>
             <span className="phgal-corner phgal-corner-tl" aria-hidden="true" />
             <span className="phgal-corner phgal-corner-br" aria-hidden="true" />
-
             <div className="phgal-img-wrap">
-              <img src={photo.src} alt={photo.alt} className="phgal-photo" />
+              <img src={photo.src} alt={`Photo ${photo.id}`} className="phgal-photo" />
               <div className="phgal-overlay">
                 <a href={photo.src} download className="phgal-download-btn">
                   <span className="phgal-dl-icon">↓</span>
-                  Download
+                  {t("gallery.download")}
                 </a>
               </div>
             </div>
-
             <div className="phgal-item-footer">
-              <span className="phgal-photo-label">{photo.alt}</span>
+              <span className="phgal-photo-label">{`Photo ${photo.id}`}</span>
             </div>
           </div>
         ))}
@@ -105,26 +87,16 @@ const Gallery = () => {
 
       {/* Pagination */}
       <div className="phgal-pagination">
-        <button
-          className="phgal-page-btn"
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-        >
-          <span className="phgal-arrow">←</span> Prev
+        <button className="phgal-page-btn" onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))} disabled={currentPage === 1}>
+          {t("gallery.prev")}
         </button>
-
         <div className="phgal-page-info">
           <span className="phgal-page-current">{currentPage}</span>
           <span className="phgal-page-sep">/</span>
           <span className="phgal-page-total">{totalPages}</span>
         </div>
-
-        <button
-          className="phgal-page-btn"
-          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-          disabled={currentPage === totalPages}
-        >
-          Next <span className="phgal-arrow">→</span>
+        <button className="phgal-page-btn" onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))} disabled={currentPage === totalPages}>
+          {t("gallery.next")}
         </button>
       </div>
 
