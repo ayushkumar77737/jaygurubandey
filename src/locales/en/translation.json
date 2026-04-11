@@ -650,5 +650,41 @@
     "p3": "Our Dhyan sessions are designed to guide participants step-by-step through breathing techniques, mindfulness practices, and silent meditation. These practices help cultivate discipline, self-control, and a deeper connection with the inner self.",
     "p4": "The goal of the Dhyan program is not only meditation but also personal transformation. With consistent practice, individuals can achieve peace of mind, stronger focus, and a balanced lifestyle that supports both spiritual and personal development.",
     "btn": "Explore Dhyan Portal"
+  },
+  "satsangCalendar": {
+    "title": "Jai Gurubande Swar Yog Sadhana",
+    "subtitle": "Regular Satsang Program · As Per Calendar",
+    "highlighted": "Highlighted",
+    "regular": "Regular",
+    "today": "Today",
+    "tagline": "॥ Saheb Sabka ॥",
+    "loc_chhitauna": "Chhitauna Dham",
+    "loc_manikpur": "Manikpur Ashram",
+    "loc_nagwa": "Nagwa Ashram",
+    "loc_silhata": "Silhata Ashram",
+    "loc_nagle": "Nagle Ashram",
+    "loc_sidhegaur": "Sidhegaur Ashram",
+    "loc_sidhagar": "Sidhagar Ashram",
+    "loc_shivrampur": "Shivrampur, Mirzamurad",
+    "sub_varanasi": "Varanasi",
+    "sub_mirzapur": "Mirzapur",
+    "sub_ghazipur": "Ghazipur",
+    "sub_ballia": "Ballia",
+    "sub_maharashtra": "Maharashtra",
+    "sub_gorakhpur": "Gorakhpur",
+    "months": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
   }
 }
