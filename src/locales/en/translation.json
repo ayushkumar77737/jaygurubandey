@@ -954,5 +954,26 @@
     "a4": "No, joining with guruji is completely free. All you need is devotion and willingness to participate in ashram activities.",
     "q5": "How can I get in touch for event-related queries?",
     "a5": "All important contact details are shared in all programs page in the website and through our verified social media channel in Whatsapp."
+  },
+  "contribute": {
+    "title": "💳 Contribute",
+    "subtitle": "Support us with a secure UPI payment",
+    "scan_title": "Scan to Pay",
+    "scan_hint": "UPI · Any Bank · Instant",
+    "ph_name": "Full Name",
+    "ph_phone": "Phone Number (10 digits)",
+    "ph_amount": "Amount (Max ₹1,00,000)",
+    "ph_txn": "Transaction ID (12 digits)",
+    "btn_submit": "Submit Contribution →",
+    "btn_submitting": "Submitting...",
+    "err_login": "❌ Please login to submit contribution.",
+    "err_name": "❌ Name is required.",
+    "err_phone": "❌ Phone number must be exactly 10 digits.",
+    "err_amount_zero": "❌ Amount must be greater than 0.",
+    "err_amount_max": "❌ Amount cannot exceed ₹1,00,000.",
+    "err_txn": "❌ Transaction ID must be exactly 12 digits.",
+    "err_duplicate": "❌ This Transaction ID has already been submitted.",
+    "err_server": "❌ Server error. Please try again.",
+    "success": "✅ Contribution submitted successfully. Please verify the payment by checking the payment status"
   }
 }

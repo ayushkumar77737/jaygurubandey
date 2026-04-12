@@ -1,27 +1,13 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";   // ✅ NEW
 import "./Contribute.css";
 import qrImg from "../assets/scanner.jpg";
-
-import {
-  collection,
-  addDoc,
-  query,
-  where,
-  getDocs
-} from "firebase/firestore";
-import { db } from "../firebase/firebase";
-import { auth } from "../firebase/firebase";
-import { serverTimestamp } from "firebase/firestore";
-
+import { collection, addDoc, query, where, getDocs, serverTimestamp } from "firebase/firestore";
+import { db, auth } from "../firebase/firebase";
 
 const Contribute = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    amount: "",
-    transactionId: "",
-  });
-
+  const { t } = useTranslation();   // ✅ NEW
+  const [formData, setFormData] = useState({ name: "", phone: "", amount: "", transactionId: "" });
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -32,28 +18,15 @@ const Contribute = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    let newValue = value;
-
-    if (name === "name") {
-      newValue = value.replace(/[^a-zA-Z\s]/g, "");
-    }
-
-    if (name === "phone") {
-      newValue = value.replace(/\D/g, "").slice(0, 10);
-    }
-
+    let v = value;
+    if (name === "name") v = value.replace(/[^a-zA-Z\s]/g, "");
+    if (name === "phone") v = value.replace(/\D/g, "").slice(0, 10);
     if (name === "amount") {
-      newValue = value.replace(/\D/g, "");
-      if (parseInt(newValue || "0", 10) > 100000) {
-        newValue = "100000";
-      }
+      v = value.replace(/\D/g, "");
+      if (parseInt(v || "0", 10) > 100000) v = "100000";
     }
-
-    if (name === "transactionId") {
-      newValue = value.replace(/\D/g, "").slice(0, 12);
-    }
-
-    setFormData({ ...formData, [name]: newValue });
+    if (name === "transactionId") v = value.replace(/\D/g, "").slice(0, 12);
+    setFormData({ ...formData, [name]: v });
   };
 
   const handleSubmit = async (e) => {
@@ -61,31 +34,15 @@ const Contribute = () => {
     if (loading) return;
 
     const user = auth.currentUser;
-    if (!user) {
-      showMessage("❌ Please login to submit contribution.");
-      return;
-    }
+    if (!user) { showMessage(t("contribute.err_login")); return; }
 
-    let errors = [];
-
-    if (!formData.name.trim()) {
-      errors.push("❌ Name is required.");
-    }
-
-    if (formData.phone.length !== 10) {
-      errors.push("❌ Phone number must be exactly 10 digits.");
-    }
-
+    const errors = [];
+    if (!formData.name.trim()) errors.push(t("contribute.err_name"));
+    if (formData.phone.length !== 10) errors.push(t("contribute.err_phone"));
     const amountNum = parseInt(formData.amount, 10);
-    if (!amountNum || amountNum <= 0) {
-      errors.push("❌ Amount must be greater than 0.");
-    } else if (amountNum > 100000) {
-      errors.push("❌ Amount cannot exceed ₹1,00,000.");
-    }
-
-    if (formData.transactionId.length !== 12) {
-      errors.push("❌ Transaction ID must be exactly 12 digits.");
-    }
+    if (!amountNum || amountNum <= 0) errors.push(t("contribute.err_amount_zero"));
+    else if (amountNum > 100000) errors.push(t("contribute.err_amount_max"));
+    if (formData.transactionId.length !== 12) errors.push(t("contribute.err_txn"));
 
     if (errors.length > 0) {
       showMessage(errors.join("\n"));
@@ -95,33 +52,21 @@ const Contribute = () => {
 
     try {
       setLoading(true);
-
-      const q = query(
-        collection(db, "contributions"),
-        where("transactionId", "==", formData.transactionId)
-      );
-
+      const q = query(collection(db, "contributions"), where("transactionId", "==", formData.transactionId));
       const snapshot = await getDocs(q);
-
       if (!snapshot.empty) {
-        showMessage("❌ This Transaction ID has already been submitted.");
+        showMessage(t("contribute.err_duplicate"));
         setFormData({ name: "", phone: "", amount: "", transactionId: "" });
         return;
       }
-
       await addDoc(collection(db, "contributions"), {
-        userId: user.uid,
-        name: formData.name,
-        phone: formData.phone,
-        amount: amountNum,
-        transactionId: formData.transactionId,
-        createdAt: new Date(),
+        userId: user.uid, name: formData.name, phone: formData.phone,
+        amount: amountNum, transactionId: formData.transactionId, createdAt: new Date(),
       });
-
-      showMessage("✅ Contribution submitted successfully. Please verify the payment by checking the payment status", 3000);
+      showMessage(t("contribute.success"), 3000);
       setFormData({ name: "", phone: "", amount: "", transactionId: "" });
-    } catch (error) {
-      showMessage("❌ Server error. Please try again.");
+    } catch {
+      showMessage(t("contribute.err_server"));
     } finally {
       setLoading(false);
     }
@@ -129,27 +74,23 @@ const Contribute = () => {
 
   return (
     <div className="ctbp-container">
-      {/* Decorative background orbs */}
       <div className="ctbp-orb ctbp-orb-1" aria-hidden="true" />
       <div className="ctbp-orb ctbp-orb-2" aria-hidden="true" />
       <div className="ctbp-orb ctbp-orb-3" aria-hidden="true" />
       <div className="ctbp-grid-overlay" aria-hidden="true" />
 
-      <h1 className="ctbp-title">
-        <span className="ctbp-title-icon">💳</span> Contribute
-      </h1>
-      <p className="ctbp-subtitle">Support us with a secure UPI payment</p>
+      <h1 className="ctbp-title">{t("contribute.title")}</h1>
+      <p className="ctbp-subtitle">{t("contribute.subtitle")}</p>
 
       <div className="ctbp-card">
         <div className="ctbp-qr-box">
           <p className="ctbp-qr-title">
-            <span className="ctbp-qr-dot" />
-            Scan to Pay
+            <span className="ctbp-qr-dot" />{t("contribute.scan_title")}
           </p>
           <div className="ctbp-qr-image-wrapper">
             <img src={qrImg} alt="QR Code" className="ctbp-image" />
           </div>
-          <p className="ctbp-qr-hint">UPI · Any Bank · Instant</p>
+          <p className="ctbp-qr-hint">{t("contribute.scan_hint")}</p>
         </div>
 
         <div className="ctbp-form-divider" aria-hidden="true" />
@@ -157,69 +98,35 @@ const Contribute = () => {
         <form className="ctbp-form" onSubmit={handleSubmit}>
           <div className="ctbp-input-group">
             <span className="ctbp-input-icon">👤</span>
-            <input
-              type="text"
-              name="name"
-              placeholder="Full Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
+            <input type="text" name="name" placeholder={t("contribute.ph_name")} value={formData.name} onChange={handleChange} required />
           </div>
-
           <div className="ctbp-input-group">
             <span className="ctbp-input-icon">📱</span>
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Phone Number (10 digits)"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-            />
+            <input type="tel" name="phone" placeholder={t("contribute.ph_phone")} value={formData.phone} onChange={handleChange} required />
           </div>
-
           <div className="ctbp-input-group">
             <span className="ctbp-input-icon">₹</span>
-            <input
-              type="text"
-              name="amount"
-              placeholder="Amount (Max ₹1,00,000)"
-              value={formData.amount}
-              onChange={handleChange}
-              required
-            />
+            <input type="text" name="amount" placeholder={t("contribute.ph_amount")} value={formData.amount} onChange={handleChange} required />
           </div>
-
           <div className="ctbp-input-group">
             <span className="ctbp-input-icon">#</span>
-            <input
-              type="text"
-              name="transactionId"
-              placeholder="Transaction ID (12 digits)"
-              value={formData.transactionId}
-              onChange={handleChange}
-              required
-            />
+            <input type="text" name="transactionId" placeholder={t("contribute.ph_txn")} value={formData.transactionId} onChange={handleChange} required />
           </div>
 
           <button type="submit" className="ctbp-submit-btn" disabled={loading}>
             <span className="ctbp-btn-shimmer" />
-            {loading ? (
-              <span className="ctbp-btn-content">
-                <span className="ctbp-spinner" /> Submitting...
-              </span>
-            ) : (
-              <span className="ctbp-btn-content">Submit Contribution →</span>
-            )}
+            <span className="ctbp-btn-content">
+              {loading
+                ? <><span className="ctbp-spinner" /> {t("contribute.btn_submitting")}</>
+                : t("contribute.btn_submit")
+              }
+            </span>
           </button>
         </form>
       </div>
 
       {message && (
-        <div
-          className={`ctbp-message ${message.startsWith("✅") ? "ctbp-success" : "ctbp-error"}`}
-        >
+        <div className={`ctbp-message ${message.startsWith("✅") ? "ctbp-success" : "ctbp-error"}`}>
           {message}
         </div>
       )}
