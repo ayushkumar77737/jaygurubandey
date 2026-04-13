@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./DeleteAccount.css";
 
 import { auth, db } from "../firebase/firebase";
@@ -7,12 +8,14 @@ import { doc, deleteDoc, addDoc, collection, serverTimestamp } from "firebase/fi
 import { deleteUser } from "firebase/auth";
 
 const DeleteAccount = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const [reason, setReason] = useState("");
   const [message, setMessage] = useState("");
-  const [confirming, setConfirming] = useState(false); // 🆕 confirm state
+  const [confirming, setConfirming] = useState(false);
   const [loading, setLoading] = useState(false);
+
   const showMessage = (text, duration = 3000) => {
     setMessage(text);
     setTimeout(() => {
@@ -22,7 +25,7 @@ const DeleteAccount = () => {
 
   const handleDeleteClick = () => {
     if (!reason.trim()) {
-      showMessage("❌ Please enter a reason");
+      showMessage(t("deleteAccount.err_reason"));
       return;
     }
     setMessage("");
@@ -32,7 +35,7 @@ const DeleteAccount = () => {
   const handleConfirmDelete = async () => {
     const user = auth.currentUser;
     if (!user) {
-      showMessage("❌ Not logged in");
+      showMessage(t("deleteAccount.err_login"));
       return;
     }
 
@@ -49,15 +52,15 @@ const DeleteAccount = () => {
       await deleteDoc(doc(db, "users", user.uid));
       await deleteUser(user);
 
-      showMessage("✅ Account permanently deleted", 1200);
+      showMessage(t("deleteAccount.success"), 1200);
       setTimeout(() => navigate("/"), 1200);
 
     } catch (err) {
       console.error(err);
       if (err.code === "auth/requires-recent-login") {
-        showMessage("⚠️ Please logout and login again to confirm deletion.", 4000);
+        showMessage(t("deleteAccount.err_relogin"), 4000);
       } else {
-        showMessage("❌ Something went wrong. Please try again.");
+        showMessage(t("deleteAccount.err_server"));
       }
     } finally {
       setLoading(false);
@@ -68,14 +71,12 @@ const DeleteAccount = () => {
   return (
     <div className="delete-page">
       <div className="delete-card">
-        <h2>Delete Account</h2>
+        <h2>{t("deleteAccount.title")}</h2>
 
-        <p className="warning-text">
-          ⚠️ This action is permanent and cannot be undone.
-        </p>
+        <p className="warning-text">{t("deleteAccount.warning")}</p>
 
         <textarea
-          placeholder="Why are you deleting your account?"
+          placeholder={t("deleteAccount.ph_reason")}
           value={reason}
           onChange={(e) => {
             setReason(e.target.value);
@@ -89,19 +90,19 @@ const DeleteAccount = () => {
         {!confirming ? (
           <>
             <button className="delete-btn" onClick={handleDeleteClick} disabled={loading}>
-              {loading ? "Deleting..." : "Delete Permanently"}
+              {loading ? t("deleteAccount.btn_deleting") : t("deleteAccount.btn_delete")}
             </button>
 
             <button className="cancel-btn" onClick={() => navigate("/account")} disabled={loading}>
-              Cancel
+              {t("deleteAccount.btn_cancel")}
             </button>
           </>
         ) : (
           <>
-            <p className="confirm-text">Are you sure you want to permanently delete your account?</p>
+            <p className="confirm-text">{t("deleteAccount.confirm_text")}</p>
 
             <button className="delete-btn" onClick={handleConfirmDelete} disabled={loading}>
-              {loading ? "Deleting..." : "Yes, Delete My Account"}
+              {loading ? t("deleteAccount.btn_deleting") : t("deleteAccount.btn_confirm_yes")}
             </button>
 
             <button
@@ -109,7 +110,7 @@ const DeleteAccount = () => {
               onClick={() => setConfirming(false)}
               disabled={loading}
             >
-              No, Go Back
+              {t("deleteAccount.btn_confirm_no")}
             </button>
           </>
         )}

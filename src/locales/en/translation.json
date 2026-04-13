@@ -1063,5 +1063,21 @@
     "label_txn": "Transaction ID",
     "label_amount": "Amount",
     "label_date": "Date"
+  },
+  "deleteAccount": {
+    "title": "Delete Account",
+    "warning": "⚠️ This action is permanent and cannot be undone.",
+    "ph_reason": "Why are you deleting your account?",
+    "btn_delete": "Delete Permanently",
+    "btn_deleting": "Deleting...",
+    "btn_cancel": "Cancel",
+    "confirm_text": "Are you sure you want to permanently delete your account?",
+    "btn_confirm_yes": "Yes, Delete My Account",
+    "btn_confirm_no": "No, Go Back",
+    "err_reason": "❌ Please enter a reason",
+    "err_login": "❌ Not logged in",
+    "err_relogin": "⚠️ Please logout and login again to confirm deletion.",
+    "err_server": "❌ Something went wrong. Please try again.",
+    "success": "✅ Account permanently deleted"
   }
 }
