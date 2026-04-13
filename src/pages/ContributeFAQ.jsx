@@ -1,40 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./ContributeFAQ.css";
 
 const ContributeFAQ = () => {
+  const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState(null);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  const faqs = [
-    {
-      question: "Why should I contribute to the Ashram?",
-      answer:
-        "Your contribution supports spiritual activities, seva programs, annadanam, and the daily functioning of the Ashram.",
-    },
-    {
-      question: "How can I contribute?",
-      answer:
-        "You can contribute through QR code scan, or by making a direct contribution at the Ashram.",
-    },
-    {
-      question: "Is online payment safe?",
-      answer:
-        "Yes. All online contributions are processed through secure and trusted payment methods to ensure safety.",
-    },
-    {
-      question: "Can I contribute any amount?",
-      answer:
-        "Yes. Contributions are accepted up to a maximum amount of ₹1,00000. Any amount beyond this limit is not permitted. Every contribution within the allowed limit is accepted with gratitude and devotion.",
-    },
-    {
-      question: "Will I receive confirmation after contributing?",
-      answer:
-        "After submitting your contribution, the details are saved securely in our system. You can check the status of your contribution anytime in the Check Payment Status page to see whether it has been reviewed and accepted or not.",
-    },
-  ];
+  const faqs = t("contributeFAQ.faqs", { returnObjects: true });
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -43,7 +19,7 @@ const ContributeFAQ = () => {
   return (
     <div className="cfaq-page">
 
-      {/* Background layer — absolutely positioned, isolated, never overlaps content */}
+      {/* Background layer */}
       <div className="cfaq-bg" aria-hidden="true">
         <div className="cfaq-orb cfaq-orb-1" />
         <div className="cfaq-orb cfaq-orb-2" />
@@ -51,15 +27,13 @@ const ContributeFAQ = () => {
         <div className="cfaq-petal cfaq-petal-br" />
       </div>
 
-      {/* Content layer — sits strictly above the background */}
+      {/* Content layer */}
       <div className="cfaq-content">
 
         <div className="cfaq-header">
-          <span className="cfaq-badge">Help &amp; Support</span>
-          <h2 className="cfaq-title">Contribute – FAQ's</h2>
-          <p className="cfaq-subtitle">
-            Everything you need to know about contributing to the Ashram.
-          </p>
+          <span className="cfaq-badge">{t("contributeFAQ.badge")}</span>
+          <h2 className="cfaq-title">{t("contributeFAQ.title")}</h2>
+          <p className="cfaq-subtitle">{t("contributeFAQ.subtitle")}</p>
         </div>
 
         <div className="cfaq-container">
@@ -84,8 +58,8 @@ const ContributeFAQ = () => {
         </div>
 
         <p className="cfaq-footer-note">
-          Still have questions?{" "}
-          <span className="cfaq-contact-hint">Visit us at the Ashram 🙏</span>
+          {t("contributeFAQ.footer")}{" "}
+          <span className="cfaq-contact-hint">{t("contributeFAQ.footer_hint")}</span>
         </p>
 
       </div>
