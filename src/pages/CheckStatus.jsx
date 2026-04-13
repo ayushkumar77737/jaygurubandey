@@ -1,10 +1,12 @@
 import React, { useState, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import "./CheckStatus.css";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import guruji from "../assets/guruji.webp";
 
 const CheckStatus = () => {
+  const { t } = useTranslation();
   const [transactionId, setTransactionId] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,7 +26,7 @@ const CheckStatus = () => {
     if (loading) return;
 
     if (transactionId.length !== 12) {
-      showResult("❌ Transaction ID must be 12 digits");
+      showResult(t("checkStatus.err_length"));
       setTransactionId("");
       return;
     }
@@ -41,7 +43,7 @@ const CheckStatus = () => {
       const snapshot = await getDocs(q);
 
       if (snapshot.empty) {
-        showResult("❌ Wrong Transaction ID");
+        showResult(t("checkStatus.err_not_found"));
         setTransactionId("");
         return;
       }
@@ -49,19 +51,19 @@ const CheckStatus = () => {
       const data = snapshot.docs[0].data();
 
       if (!data.status) {
-        showResult("⏳ Payment Pending Verification");
+        showResult(t("checkStatus.status_pending"));
       } else if (data.status === "verified") {
-        showResult("✅ Payment Verified");
+        showResult(t("checkStatus.status_verified"));
       } else if (data.status === "failed") {
-        showResult("❌ Payment Failed");
+        showResult(t("checkStatus.status_failed"));
       } else {
-        showResult("⏳ Payment Pending Verification");
+        showResult(t("checkStatus.status_pending"));
       }
 
       setTransactionId("");
 
     } catch (err) {
-      showResult("❌ Server error. Try again later.");
+      showResult(t("checkStatus.err_server"));
       setTransactionId("");
     } finally {
       setLoading(false);
@@ -93,15 +95,15 @@ const CheckStatus = () => {
           </div>
         </div>
 
-        <h1 className="chkst-title">Check Payment Status</h1>
-        <p className="chkst-subtitle">Enter your 12-digit transaction ID below</p>
+        <h1 className="chkst-title">{t("checkStatus.title")}</h1>
+        <p className="chkst-subtitle">{t("checkStatus.subtitle")}</p>
 
         <form className="chkst-card" onSubmit={handleCheck}>
           <div className="chkst-input-wrap">
             <span className="chkst-input-icon">#</span>
             <input
               type="text"
-              placeholder="Transaction ID (12 digits)"
+              placeholder={t("checkStatus.ph_txn")}
               value={transactionId}
               onChange={(e) =>
                 setTransactionId(e.target.value.replace(/\D/g, "").slice(0, 12))
@@ -115,10 +117,10 @@ const CheckStatus = () => {
             <span className="chkst-btn-text">
               {loading ? (
                 <>
-                  <span className="chkst-spinner" /> Checking...
+                  <span className="chkst-spinner" /> {t("checkStatus.btn_checking")}
                 </>
               ) : (
-                "Check Status"
+                t("checkStatus.btn_check")
               )}
             </span>
           </button>
@@ -126,13 +128,12 @@ const CheckStatus = () => {
 
         {result && (
           <div
-            className={`chkst-message ${
-              result.startsWith("✅")
+            className={`chkst-message ${result.startsWith("✅")
                 ? "chkst-success"
                 : result.startsWith("⏳")
-                ? "chkst-pending"
-                : "chkst-error"
-            }`}
+                  ? "chkst-pending"
+                  : "chkst-error"
+              }`}
           >
             {result}
           </div>

@@ -1004,5 +1004,18 @@
         "answer": "After submitting your contribution, the details are saved securely in our system. You can check the status of your contribution anytime in the Check Payment Status page to see whether it has been reviewed and accepted or not."
       }
     ]
+  },
+  "checkStatus": {
+    "title": "Check Payment Status",
+    "subtitle": "Enter your 12-digit transaction ID below",
+    "ph_txn": "Transaction ID (12 digits)",
+    "btn_check": "Check Status",
+    "btn_checking": "Checking...",
+    "err_length": "❌ Transaction ID must be 12 digits",
+    "err_not_found": "❌ Wrong Transaction ID",
+    "err_server": "❌ Server error. Try again later.",
+    "status_pending": "⏳ Payment Pending Verification",
+    "status_verified": "✅ Payment Verified",
+    "status_failed": "❌ Payment Failed"
   }
 }
