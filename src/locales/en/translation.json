@@ -1054,5 +1054,14 @@
     "err_server": "❌ Failed to submit request. Try again.",
     "warn_duplicate": "⚠️ You already requested an email update. We'll reach you through email.",
     "success": "✅ Request sent successfully. We'll contact you by email."
+  },
+  "myPayments": {
+    "title": "My Payments",
+    "loading": "Loading...",
+    "error": "Error: {{message}}",
+    "empty": "No payments found",
+    "label_txn": "Transaction ID",
+    "label_amount": "Amount",
+    "label_date": "Date"
   }
 }
