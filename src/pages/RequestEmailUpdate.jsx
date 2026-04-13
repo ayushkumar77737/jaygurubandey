@@ -1,5 +1,6 @@
 // src/pages/RequestEmailUpdate.jsx
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./RequestEmailUpdate.css";
 import { auth, db } from "../firebase/firebase";
 import {
@@ -12,6 +13,7 @@ import {
 } from "firebase/firestore";
 
 const RequestEmailUpdate = () => {
+  const { t } = useTranslation();
   const user = auth.currentUser;
 
   const [oldEmail] = useState(user?.email || "");
@@ -20,31 +22,32 @@ const RequestEmailUpdate = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const showMessage = (text) => {
+    setMessage(text);
+    setTimeout(() => setMessage(""), 3000);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!newEmail || !reason) {
-      setMessage("❌ Please fill all fields");
-      setTimeout(() => setMessage(""), 3000);
+      showMessage(t("requestEmailUpdate.err_fields"));
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(newEmail)) {
-      setMessage("❌ Please enter a valid email address");
-      setTimeout(() => setMessage(""), 3000);
+      showMessage(t("requestEmailUpdate.err_invalid_email"));
       return;
     }
 
     if (newEmail === oldEmail) {
-      setMessage("❌ New email must be different from old email");
-      setTimeout(() => setMessage(""), 3000);
+      showMessage(t("requestEmailUpdate.err_same_email"));
       return;
     }
 
     if (!user) {
-      setMessage("❌ You must be logged in");
-      setTimeout(() => setMessage(""), 3000);
+      showMessage(t("requestEmailUpdate.err_login"));
       return;
     }
 
@@ -59,12 +62,9 @@ const RequestEmailUpdate = () => {
       const snapshot = await getDocs(q);
 
       if (!snapshot.empty) {
-        setMessage(
-          "⚠️ You already requested an email update. We'll reach you through email."
-        );
+        showMessage(t("requestEmailUpdate.warn_duplicate"));
         setNewEmail("");
         setReason("");
-        setTimeout(() => setMessage(""), 3000);
         setLoading(false);
         return;
       }
@@ -77,14 +77,12 @@ const RequestEmailUpdate = () => {
         createdAt: serverTimestamp(),
       });
 
-      setMessage("✅ Request sent successfully. We'll contact you by email.");
+      showMessage(t("requestEmailUpdate.success"));
       setNewEmail("");
       setReason("");
-      setTimeout(() => setMessage(""), 3000);
     } catch (error) {
       console.error("Email change request error:", error);
-      setMessage("❌ Failed to submit request. Try again.");
-      setTimeout(() => setMessage(""), 3000);
+      showMessage(t("requestEmailUpdate.err_server"));
     } finally {
       setLoading(false);
     }
@@ -109,8 +107,8 @@ const RequestEmailUpdate = () => {
             <span className="requ-icon">✉</span>
             <div className="requ-icon-ring" />
           </div>
-          <h2 className="requ-title">Request Email Update</h2>
-          <p className="requ-subtitle">Submit a request and we'll reach you shortly</p>
+          <h2 className="requ-title">{t("requestEmailUpdate.title")}</h2>
+          <p className="requ-subtitle">{t("requestEmailUpdate.subtitle")}</p>
         </div>
 
         {message && (
@@ -125,12 +123,12 @@ const RequestEmailUpdate = () => {
         <form onSubmit={handleSubmit} className="requ-form">
 
           <div className="requ-field">
-            <label className="requ-label">User ID</label>
+            <label className="requ-label">{t("requestEmailUpdate.label_uid")}</label>
             <div className="requ-input-wrap">
               <span className="requ-prefix">#</span>
               <input
                 type="text"
-                placeholder="User ID"
+                placeholder={t("requestEmailUpdate.ph_uid")}
                 value={user?.uid || ""}
                 disabled
               />
@@ -138,12 +136,12 @@ const RequestEmailUpdate = () => {
           </div>
 
           <div className="requ-field">
-            <label className="requ-label">Current Email</label>
+            <label className="requ-label">{t("requestEmailUpdate.label_old_email")}</label>
             <div className="requ-input-wrap">
               <span className="requ-prefix">@</span>
               <input
                 type="email"
-                placeholder="Old Email"
+                placeholder={t("requestEmailUpdate.ph_old_email")}
                 value={oldEmail}
                 disabled
               />
@@ -151,12 +149,12 @@ const RequestEmailUpdate = () => {
           </div>
 
           <div className="requ-field">
-            <label className="requ-label">New Email</label>
+            <label className="requ-label">{t("requestEmailUpdate.label_new_email")}</label>
             <div className="requ-input-wrap">
               <span className="requ-prefix">@</span>
               <input
                 type="email"
-                placeholder="Enter new email address"
+                placeholder={t("requestEmailUpdate.ph_new_email")}
                 value={newEmail}
                 onChange={(e) => {
                   const value = e.target.value;
@@ -169,9 +167,9 @@ const RequestEmailUpdate = () => {
           </div>
 
           <div className="requ-field">
-            <label className="requ-label">Reason for Change</label>
+            <label className="requ-label">{t("requestEmailUpdate.label_reason")}</label>
             <textarea
-              placeholder="Briefly explain why you'd like to change your email..."
+              placeholder={t("requestEmailUpdate.ph_reason")}
               value={reason}
               onChange={(e) => setReason(e.target.value)}
               rows="4"
@@ -183,9 +181,9 @@ const RequestEmailUpdate = () => {
             <span className="requ-btn-shimmer" />
             <span className="requ-btn-text">
               {loading ? (
-                <><span className="requ-spinner" /> Submitting...</>
+                <><span className="requ-spinner" /> {t("requestEmailUpdate.btn_submitting")}</>
               ) : (
-                "Request Email Update →"
+                t("requestEmailUpdate.btn_submit")
               )}
             </span>
           </button>

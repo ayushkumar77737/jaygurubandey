@@ -1033,5 +1033,26 @@
     "err_same_name": "❌ Update failed : you are using the same name",
     "err_update": "❌ Failed to update name",
     "success_update": "✅ Name updated successfully"
+  },
+  "requestEmailUpdate": {
+    "title": "Request Email Update",
+    "subtitle": "Submit a request and we'll reach you shortly",
+    "label_uid": "User ID",
+    "label_old_email": "Current Email",
+    "label_new_email": "New Email",
+    "label_reason": "Reason for Change",
+    "ph_uid": "User ID",
+    "ph_old_email": "Old Email",
+    "ph_new_email": "Enter new email address",
+    "ph_reason": "Briefly explain why you'd like to change your email...",
+    "btn_submit": "Request Email Update →",
+    "btn_submitting": "Submitting...",
+    "err_fields": "❌ Please fill all fields",
+    "err_invalid_email": "❌ Please enter a valid email address",
+    "err_same_email": "❌ New email must be different from old email",
+    "err_login": "❌ You must be logged in",
+    "err_server": "❌ Failed to submit request. Try again.",
+    "warn_duplicate": "⚠️ You already requested an email update. We'll reach you through email.",
+    "success": "✅ Request sent successfully. We'll contact you by email."
   }
 }
