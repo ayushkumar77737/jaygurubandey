@@ -1079,5 +1079,25 @@
     "err_relogin": "⚠️ Please logout and login again to confirm deletion.",
     "err_server": "❌ Something went wrong. Please try again.",
     "success": "✅ Account permanently deleted"
+  },
+  "stayConnected": {
+    "badge": "Ashram Social Media",
+    "title": "Stay Connected with Guruji Online",
+    "subtitle": "Choose which social platform you want to open and follow Guruji's divine teachings across all channels.",
+    "card_header_label": "Official Links",
+    "btn_open": "Open ↗",
+    "btn_choose": "⚡ Choose Social Platform",
+    "popup_title": "Select a Platform",
+    "popup_cancel": "Cancel",
+    "popup_go": "Open Selected ↗",
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "youtube": "YouTube",
+      "whatsapp": "WhatsApp Group",
+      "twitter": "Twitter (X)",
+      "telegram": "Telegram Channel",
+      "email": "Email Us"
+    }
   }
 }
