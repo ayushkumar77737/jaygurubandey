@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./StayConnected.css";
 import { FaFacebook, FaInstagram, FaYoutube, FaWhatsapp, FaTelegram, FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -6,7 +7,6 @@ import { FaXTwitter } from "react-icons/fa6";
 const SOCIAL_LINKS = [
   {
     id: "facebook",
-    label: "Facebook",
     url: "https://www.facebook.com/share/g/1AZvFisxcs/",
     icon: <FaFacebook />,
     color: "#1877F2",
@@ -14,7 +14,6 @@ const SOCIAL_LINKS = [
   },
   {
     id: "instagram",
-    label: "Instagram",
     url: "https://www.instagram.com/jaigurubande__official?igsh=NnIwdnI5cGMxemYy",
     icon: <FaInstagram />,
     color: "#E1306C",
@@ -22,7 +21,6 @@ const SOCIAL_LINKS = [
   },
   {
     id: "youtube",
-    label: "YouTube",
     url: "https://youtube.com/@jaigurubande?feature=shared",
     icon: <FaYoutube />,
     color: "#FF0000",
@@ -30,7 +28,6 @@ const SOCIAL_LINKS = [
   },
   {
     id: "whatsapp",
-    label: "WhatsApp Group",
     url: "https://chat.whatsapp.com/GwdDS530clKJsNc4zkPCyD",
     icon: <FaWhatsapp />,
     color: "#25D366",
@@ -38,7 +35,6 @@ const SOCIAL_LINKS = [
   },
   {
     id: "twitter",
-    label: "Twitter (X)",
     url: "https://x.com/jaigurubande",
     icon: <FaXTwitter />,
     color: "#e8e8e8",
@@ -46,7 +42,6 @@ const SOCIAL_LINKS = [
   },
   {
     id: "telegram",
-    label: "Telegram Channel",
     url: "https://t.me/+5APCSKB6YC85MjRl",
     icon: <FaTelegram />,
     color: "#29A9EB",
@@ -54,7 +49,6 @@ const SOCIAL_LINKS = [
   },
   {
     id: "email",
-    label: "Email Us",
     url: "mailto:support@jaigurubande.in",
     icon: <FaEnvelope />,
     color: "#F59E0B",
@@ -63,6 +57,7 @@ const SOCIAL_LINKS = [
 ];
 
 const StayConnected = () => {
+  const { t } = useTranslation();
   const [showPopup, setShowPopup] = useState(false);
   const [selectedLink, setSelectedLink] = useState(null);
 
@@ -100,14 +95,11 @@ const StayConnected = () => {
         <div className="stcon__hero">
           <div className="stcon__badge">
             <span className="stcon__badge-dot" />
-            Ashram Social Media
+            {t("stayConnected.badge")}
             <span className="stcon__badge-dot" />
           </div>
-          <h1 className="stcon__title">Stay Connected with Guruji Online</h1>
-          <p className="stcon__subtitle">
-            Choose which social platform you want to open and follow Guruji's
-            divine teachings across all channels.
-          </p>
+          <h1 className="stcon__title">{t("stayConnected.title")}</h1>
+          <p className="stcon__subtitle">{t("stayConnected.subtitle")}</p>
         </div>
 
         {/* ===== SOCIAL CARD ===== */}
@@ -118,7 +110,9 @@ const StayConnected = () => {
             <span className="stcon__card-header-dot stcon__card-header-dot--r" />
             <span className="stcon__card-header-dot stcon__card-header-dot--y" />
             <span className="stcon__card-header-dot stcon__card-header-dot--g" />
-            <span className="stcon__card-header-label">Official Links</span>
+            <span className="stcon__card-header-label">
+              {t("stayConnected.card_header_label")}
+            </span>
           </div>
 
           <ul className="stcon__list">
@@ -135,7 +129,9 @@ const StayConnected = () => {
                   >
                     {link.icon}
                   </span>
-                  <span className="stcon__item-label">{link.label}</span>
+                  <span className="stcon__item-label">
+                    {t(`stayConnected.social.${link.id}`)}
+                  </span>
                 </div>
                 <a
                   href={link.url}
@@ -144,7 +140,7 @@ const StayConnected = () => {
                   className="stcon__open-btn"
                   style={{ "--btn-color": link.color }}
                 >
-                  Open ↗
+                  {t("stayConnected.btn_open")}
                 </a>
               </li>
             ))}
@@ -152,7 +148,9 @@ const StayConnected = () => {
 
           <button className="stcon__choose-btn" onClick={handleOpenPopup}>
             <span className="stcon__choose-btn-glow" />
-            <span className="stcon__choose-btn-text">⚡ Choose Social Platform</span>
+            <span className="stcon__choose-btn-text">
+              {t("stayConnected.btn_choose")}
+            </span>
           </button>
         </div>
 
@@ -164,7 +162,7 @@ const StayConnected = () => {
           <div className="stcon__popup" onClick={(e) => e.stopPropagation()}>
 
             <div className="stcon__popup-header">
-              <h2 className="stcon__popup-title">Select a Platform</h2>
+              <h2 className="stcon__popup-title">{t("stayConnected.popup_title")}</h2>
               <button className="stcon__popup-close" onClick={handleClosePopup}>✕</button>
             </div>
 
@@ -185,7 +183,9 @@ const StayConnected = () => {
                   >
                     {link.icon}
                   </span>
-                  <span className="stcon__popup-opt-label">{link.label}</span>
+                  <span className="stcon__popup-opt-label">
+                    {t(`stayConnected.social.${link.id}`)}
+                  </span>
                   {selectedLink === link.id && (
                     <span className="stcon__popup-opt-check">✓</span>
                   )}
@@ -195,14 +195,14 @@ const StayConnected = () => {
 
             <div className="stcon__popup-actions">
               <button className="stcon__popup-cancel" onClick={handleClosePopup}>
-                Cancel
+                {t("stayConnected.popup_cancel")}
               </button>
               <button
                 className="stcon__popup-go"
                 onClick={openSelectedLink}
                 disabled={!selectedLink}
               >
-                Open Selected ↗
+                {t("stayConnected.popup_go")}
               </button>
             </div>
           </div>
