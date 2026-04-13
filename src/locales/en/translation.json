@@ -1017,5 +1017,21 @@
     "status_pending": "⏳ Payment Pending Verification",
     "status_verified": "✅ Payment Verified",
     "status_failed": "❌ Payment Failed"
+  },
+  "account": {
+    "title": "My Account",
+    "loading": "Loading...",
+    "label_name": "Name",
+    "label_email": "Email",
+    "note_name": "ℹ️ To update your name, please click on the edit button below the email.",
+    "note_email": "ℹ️ To update your email address, please go to request email update page.",
+    "btn_edit": "Edit",
+    "btn_update": "Update",
+    "btn_cancel": "Cancel",
+    "btn_payments": "💳 My Payments",
+    "btn_delete": "Delete Account",
+    "err_same_name": "❌ Update failed : you are using the same name",
+    "err_update": "❌ Failed to update name",
+    "success_update": "✅ Name updated successfully"
   }
 }

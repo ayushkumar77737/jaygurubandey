@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./Account.css";
 
 import { auth } from "../firebase/firebase";
@@ -7,6 +8,7 @@ import { db } from "../firebase/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 const Account = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [originalName, setOriginalName] = useState("");
@@ -53,7 +55,7 @@ const Account = () => {
     if (!user) return;
     if (name.trim() === originalName.trim()) {
       setEditing(false);
-      showMessage("❌ Update failed : you are using the same name");
+      showMessage(t("account.err_same_name"));
       return;
     }
     try {
@@ -63,10 +65,10 @@ const Account = () => {
       });
       setOriginalName(name);
       setEditing(false);
-      showMessage("✅ Name updated successfully");
+      showMessage(t("account.success_update"));
     } catch (err) {
       console.error(err);
-      showMessage("❌ Failed to update name");
+      showMessage(t("account.err_update"));
     }
   };
 
@@ -83,7 +85,7 @@ const Account = () => {
           <div className="acct-orb acct-orb-1" />
           <div className="acct-orb acct-orb-2" />
         </div>
-        <p className="acct-loading">Loading...</p>
+        <p className="acct-loading">{t("account.loading")}</p>
       </div>
     );
   }
@@ -111,29 +113,25 @@ const Account = () => {
           <div className="acct-avatar-ring" />
         </div>
 
-        <h2 className="acct-title">My Account</h2>
+        <h2 className="acct-title">{t("account.title")}</h2>
 
         <div className="acct-card">
 
           <div className="acct-field">
-            <label>Name</label>
+            <label>{t("account.label_name")}</label>
             <input
               type="text"
               value={name}
               disabled={!editing}
               onChange={(e) => setName(e.target.value)}
             />
-            <p className="acct-email-note">
-              ℹ️ To update your name, please click on the edit button below the email.
-            </p>
+            <p className="acct-email-note">{t("account.note_name")}</p>
           </div>
 
           <div className="acct-field">
-            <label>Email</label>
+            <label>{t("account.label_email")}</label>
             <input type="email" value={email} disabled />
-            <p className="acct-email-note">
-              ℹ️ To update your email address, please go to request email update page.
-            </p>
+            <p className="acct-email-note">{t("account.note_email")}</p>
           </div>
 
           {!editing ? (
@@ -143,16 +141,16 @@ const Account = () => {
               disabled={isBlocked}
             >
               <span className="acct-btn-shimmer" />
-              Edit
+              {t("account.btn_edit")}
             </button>
           ) : (
             <div className="acct-btn-group">
               <button className="acct-primary-btn" onClick={handleUpdate}>
                 <span className="acct-btn-shimmer" />
-                Update
+                {t("account.btn_update")}
               </button>
               <button className="acct-cancel-btn" onClick={handleCancel}>
-                Cancel
+                {t("account.btn_cancel")}
               </button>
             </div>
           )}
@@ -162,14 +160,14 @@ const Account = () => {
             onClick={() => navigate("/my-payments")}
           >
             <span className="acct-btn-shimmer" />
-            💳 My Payments
+            {t("account.btn_payments")}
           </button>
 
           <button
             className="acct-delete-btn"
             onClick={() => navigate("/delete-account")}
           >
-            Delete Account
+            {t("account.btn_delete")}
           </button>
 
           {message && (
