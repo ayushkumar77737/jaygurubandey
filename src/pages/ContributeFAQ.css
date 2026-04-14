@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 /* ===== CSS VARIABLES ===== */
 :root {
@@ -160,14 +160,13 @@
 }
 
 .cfaq-title {
-  font-family: 'Noto Sans Devanagari', 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2.1rem, 3.5vw, 3.1rem);
   font-weight: 700;
-  color: var(--cfaq-rose);                      /* ← solid color instead of gradient */
-  background: none;                              /* ← remove gradient */
-  -webkit-background-clip: unset;               /* ← remove clip */
-  -webkit-text-fill-color: var(--cfaq-rose);    /* ← solid fill */
-  background-clip: unset;                        /* ← remove clip */
+  background: linear-gradient(120deg, #8b0038 0%, #c2185b 45%, #ff5f9e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin: 0 0 10px;
   letter-spacing: -0.3px;
   line-height: 1.15;
