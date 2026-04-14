@@ -1301,5 +1301,21 @@
         "tag": "Support"
       }
     ]
+  },
+  "devotesBhajan": {
+    "hero_badge": "Devotee Offerings",
+    "hero_title": "Guruji Devotees Bhajan Seva",
+    "hero_sub": "Soulful bhajans sung with love and devotion by Guruji's disciples",
+    "singer_label": "Select a Devotee Singer",
+    "singer_placeholder": "— Choose a Singer —",
+    "empty_icon": "🎵",
+    "empty_title": "Choose a Singer Above",
+    "empty_sub": "Select a devotee singer to listen to their heartfelt bhajans 🙏",
+    "card_badge": "Bhajan",
+    "bhajan_count_one": "{{count}} Bhajan",
+    "bhajan_count_other": "{{count}} Bhajans",
+    "pg_prev": "← Prev",
+    "pg_next": "Next →",
+    "footer": "Jai Gurubande"
   }
 }

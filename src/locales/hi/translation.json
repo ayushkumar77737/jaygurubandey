@@ -1301,5 +1301,21 @@
         "tag": "सहायता"
       }
     ]
+  },
+  "devotesBhajan": {
+    "hero_badge": "भक्त अर्पण",
+    "hero_title": "गुरुजी भक्त भजन सेवा",
+    "hero_sub": "गुरुजी के शिष्यों द्वारा प्रेम और भक्ति से गाए गए हृदयस्पर्शी भजन",
+    "singer_label": "एक भक्त गायक चुनें",
+    "singer_placeholder": "— गायक चुनें —",
+    "empty_icon": "🎵",
+    "empty_title": "ऊपर से एक गायक चुनें",
+    "empty_sub": "हृदयस्पर्शी भजन सुनने के लिए एक भक्त गायक चुनें 🙏",
+    "card_badge": "भजन",
+    "bhajan_count_one": "{{count}} भजन",
+    "bhajan_count_other": "{{count}} भजन",
+    "pg_prev": "← पिछला",
+    "pg_next": "अगला →",
+    "footer": "जय गुरुबंदे"
   }
 }

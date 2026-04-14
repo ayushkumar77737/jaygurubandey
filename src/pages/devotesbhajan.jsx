@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./devotesbhajan.css";
 
 const bhajanData = {
@@ -32,6 +33,7 @@ const bhajanData = {
 const singers = Object.keys(bhajanData);
 
 const DevotesBhajan = () => {
+  const { t } = useTranslation();
   const [selectedSinger, setSelectedSinger] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -57,15 +59,13 @@ const DevotesBhajan = () => {
 
       {/* ===== Hero ===== */}
       <header className="dvbhajan__hero">
-        <div className="dvbhajan__hero-badge">Devotee Offerings</div>
+        <div className="dvbhajan__hero-badge">{t("devotesBhajan.hero_badge")}</div>
         <h1 className="dvbhajan__hero-title">
           <span className="dvbhajan__pray">🙏</span>
-          Guruji Devotees Bhajan Seva
+          {t("devotesBhajan.hero_title")}
           <span className="dvbhajan__pray">🙏</span>
         </h1>
-        <p className="dvbhajan__hero-sub">
-          Soulful bhajans sung with love and devotion by Guruji's disciples
-        </p>
+        <p className="dvbhajan__hero-sub">{t("devotesBhajan.hero_sub")}</p>
         <div className="dvbhajan__hero-divider">
           <span className="dvbhajan__div-line" />
           <span className="dvbhajan__div-symbol">✦</span>
@@ -75,14 +75,16 @@ const DevotesBhajan = () => {
 
       {/* ===== Singer Dropdown ===== */}
       <div className="dvbhajan__singer-wrap">
-        <p className="dvbhajan__singer-label">Select a Devotee Singer</p>
+        <p className="dvbhajan__singer-label">{t("devotesBhajan.singer_label")}</p>
         <div className="dvbhajan__select-wrap">
           <select
             className="dvbhajan__select"
             value={selectedSinger}
             onChange={(e) => handleSingerSelect(e.target.value)}
           >
-            <option value="" disabled hidden>— Choose a Singer —</option>
+            <option value="" disabled hidden>
+              {t("devotesBhajan.singer_placeholder")}
+            </option>
             {singers.map((singer) => (
               <option key={singer} value={singer}>{singer}</option>
             ))}
@@ -95,18 +97,21 @@ const DevotesBhajan = () => {
       <div className="dvbhajan__grid-wrap">
         {!selectedSinger ? (
           <div className="dvbhajan__empty">
-            <div className="dvbhajan__empty-icon">🎵</div>
-            <p className="dvbhajan__empty-title">Choose a Singer Above</p>
-            <p className="dvbhajan__empty-sub">
-              Select a devotee singer to listen to their heartfelt bhajans 🙏
-            </p>
+            <div className="dvbhajan__empty-icon">{t("devotesBhajan.empty_icon")}</div>
+            <p className="dvbhajan__empty-title">{t("devotesBhajan.empty_title")}</p>
+            <p className="dvbhajan__empty-sub">{t("devotesBhajan.empty_sub")}</p>
           </div>
         ) : (
           <>
             <div className="dvbhajan__grid-header">
               <span className="dvbhajan__grid-singer">{selectedSinger}</span>
               <span className="dvbhajan__grid-count">
-                {videos.length} Bhajan{videos.length !== 1 ? "s" : ""}
+                {t(
+                  videos.length === 1
+                    ? "devotesBhajan.bhajan_count_one"
+                    : "devotesBhajan.bhajan_count_other",
+                  { count: videos.length }
+                )}
               </span>
             </div>
 
@@ -126,7 +131,9 @@ const DevotesBhajan = () => {
                     />
                   </div>
                   <div className="dvbhajan__card-info">
-                    <span className="dvbhajan__card-badge">Bhajan</span>
+                    <span className="dvbhajan__card-badge">
+                      {t("devotesBhajan.card_badge")}
+                    </span>
                     <p className="dvbhajan__card-title">{video.title}</p>
                   </div>
                 </div>
@@ -144,14 +151,15 @@ const DevotesBhajan = () => {
             onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
             disabled={currentPage === 1}
           >
-            ← Prev
+            {t("devotesBhajan.pg_prev")}
           </button>
 
           <div className="dvbhajan__pg-dots">
             {Array.from({ length: totalPages }, (_, i) => (
               <button
                 key={i}
-                className={`dvbhajan__pg-dot ${currentPage === i + 1 ? "dvbhajan__pg-dot--active" : ""}`}
+                className={`dvbhajan__pg-dot ${currentPage === i + 1 ? "dvbhajan__pg-dot--active" : ""
+                  }`}
                 onClick={() => setCurrentPage(i + 1)}
               />
             ))}
@@ -166,7 +174,7 @@ const DevotesBhajan = () => {
             onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
             disabled={currentPage === totalPages}
           >
-            Next →
+            {t("devotesBhajan.pg_next")}
           </button>
         </div>
       )}
@@ -174,9 +182,10 @@ const DevotesBhajan = () => {
       {/* ===== Footer ===== */}
       <div className="dvbhajan__footer">
         <span className="dvbhajan__pray">🙏</span>
-        <span>Jai Gurubande</span>
+        <span>{t("devotesBhajan.footer")}</span>
         <span className="dvbhajan__pray">🙏</span>
       </div>
+
     </div>
   );
 };
