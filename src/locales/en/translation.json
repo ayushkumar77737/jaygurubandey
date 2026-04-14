@@ -1317,5 +1317,78 @@
     "pg_prev": "← Prev",
     "pg_next": "Next →",
     "footer": "Jai Gurubande"
+  },
+  "dailySatsang": {
+    "hero_title": "Daily Satsang",
+    "hero_sub": "Guruji's Timeless Teachings · Every Day",
+    "channel_title": "Jai Gurubande",
+    "channel_desc": "A devotional YouTube channel sharing Daily Satsang, divine pravachans, soulful bhajans, and Guruji's wisdom-filled teachings. These Daily Satsangs guide every spiritual seeker toward peace, clarity, inner strength, devotion, and positivity.",
+    "btn_subscribe": "Subscribe",
+    "watch_label": "Watch Satsang",
+    "video_badge": "Satsang",
+    "empty_icon": "🪔",
+    "empty_title": "Coming Soon",
+    "empty_sub": "No satsang videos have been added for this month yet. Please check again soon.",
+    "footer": "Jai Gurubande",
+    "months": [
+      {
+        "id": "sep-2024",
+        "label": "Daily Satsang – September 2024",
+        "videos": [
+          {
+            "id": "gxKxXbX4NiY",
+            "title": "We Belong to the Divine, Whether Good or Bad",
+            "date": "29 September 2024"
+          },
+          {
+            "id": "LYGQQH54SVQ",
+            "title": "How to Overcome the Fear of Death",
+            "date": "28 September 2024"
+          },
+          {
+            "id": "krYZEkcYrvY",
+            "title": "Adopt These Teachings and Transform Your Life",
+            "date": "27 September 2024"
+          }
+        ]
+      },
+      {
+        "id": "aug-2024",
+        "label": "Daily Satsang – August 2024",
+        "videos": [
+          {
+            "id": "gxKxXbX4NiY",
+            "title": "The Glory of Chanting the Divine Name",
+            "date": "30 August 2024"
+          },
+          {
+            "id": "krYZEkcYrvY",
+            "title": "What Is True Love in Spirituality?",
+            "date": "28 August 2024"
+          }
+        ]
+      },
+      {
+        "id": "jul-2024",
+        "label": "Daily Satsang – July 2024",
+        "videos": [
+          {
+            "id": "krYZEkcYrvY",
+            "title": "How Devotion Can Transform Your Life",
+            "date": "25 July 2024"
+          }
+        ]
+      },
+      {
+        "id": "jun-2024",
+        "label": "Daily Satsang – June 2024",
+        "videos": []
+      },
+      {
+        "id": "may-2024",
+        "label": "Daily Satsang – May 2024",
+        "videos": []
+      }
+    ]
   }
 }
