@@ -1,10 +1,24 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import "./PublishedBooks.css";
 import book1 from "../assets/guruji.webp";
 import book2 from "../assets/guruji.webp";
 import book3 from "../assets/guruji.webp";
 
+/* Image map — keyed by book id, language-agnostic */
+const BOOK_IMAGES = { 1: book1, 2: book2, 3: book3, 4: book1, 5: book2, 6: book3, 7: book1 };
+
 const PublishedBooks = () => {
+  const { t } = useTranslation();
+
+  const rawBooks = t("publishedBooks.books", { returnObjects: true });
+
+  /* Attach the correct image to each book at render time */
+  const books = rawBooks.map((book) => ({
+    ...book,
+    image: BOOK_IMAGES[book.id] ?? book1,
+  }));
+
   const [selectedBook, setSelectedBook] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -12,8 +26,8 @@ const PublishedBooks = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    // Match body + html background to page so footer gap never shows a different colour
-    const gradient = "radial-gradient(ellipse 65% 45% at 8% 0%, rgba(179,0,89,0.07) 0%, transparent 60%), radial-gradient(ellipse 55% 45% at 92% 100%, rgba(255,64,129,0.07) 0%, transparent 60%)";
+    const gradient =
+      "radial-gradient(ellipse 65% 45% at 8% 0%, rgba(179,0,89,0.07) 0%, transparent 60%), radial-gradient(ellipse 55% 45% at 92% 100%, rgba(255,64,129,0.07) 0%, transparent 60%)";
     document.documentElement.style.minHeight = "100%";
     document.documentElement.style.background = "#fdf8f9";
     document.body.style.minHeight = "100vh";
@@ -28,91 +42,11 @@ const PublishedBooks = () => {
     };
   }, []);
 
-
-  const books = [
-    {
-      id: 1,
-      title: "Guru Kripa – The Divine Grace",
-      author: "Param Pujya Satguru Ji",
-      publisher: "Divine Publications",
-      pages: 120,
-      year: 2021,
-      image: book1,
-      link: "https://drive.google.com/file/d/1EXAMPLE_ID/view?usp=sharing",
-      category: "Spirituality",
-    },
-    {
-      id: 2,
-      title: "Path of Devotion",
-      author: "Param Pujya Satguru Ji",
-      publisher: "Eklavya Foundation",
-      pages: 95,
-      year: 2020,
-      image: book2,
-      link: "https://drive.google.com/file/d/2EXAMPLE_ID/view?usp=sharing",
-      category: "Devotion",
-    },
-    {
-      id: 3,
-      title: "Inner Light of the Soul",
-      author: "Param Pujya Satguru Ji",
-      publisher: "Spiritual Path Trust",
-      pages: 140,
-      year: 2019,
-      image: book3,
-      link: "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing",
-      category: "Meditation",
-    },
-    {
-      id: 4,
-      title: "Divine Pathway",
-      author: "Param Pujya Satguru Ji",
-      publisher: "Spiritual Wisdom Press",
-      pages: 150,
-      year: 2022,
-      image: book1,
-      link: "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing",
-      category: "Wisdom",
-    },
-    {
-      id: 5,
-      title: "Journey Within",
-      author: "Param Pujya Satguru Ji",
-      publisher: "Eternal Light Publications",
-      pages: 110,
-      year: 2023,
-      image: book2,
-      link: "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing",
-      category: "Self-Realization",
-    },
-    {
-      id: 6,
-      title: "The Sacred Teachings",
-      author: "Param Pujya Satguru Ji",
-      publisher: "Truth Path Foundation",
-      pages: 130,
-      year: 2021,
-      image: book3,
-      link: "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing",
-      category: "Philosophy",
-    },
-    {
-      id: 7,
-      title: "Wisdom Beyond Time",
-      author: "Param Pujya Satguru Ji",
-      publisher: "Divine Publications",
-      pages: 115,
-      year: 2024,
-      image: book1,
-      link: "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing",
-      category: "Wisdom",
-    },
-  ];
-
-  const categories = ["All", ...new Set(books.map((b) => b.category))];
+  /* Build categories from translated book data */
+  const categories = [t("publishedBooks.cat_all"), ...new Set(books.map((b) => b.category))];
 
   const filteredBooks =
-    selectedCategory === "All"
+    selectedCategory === t("publishedBooks.cat_all")
       ? books
       : books.filter((book) => book.category === selectedCategory);
 
@@ -121,19 +55,10 @@ const PublishedBooks = () => {
   const currentBooks = filteredBooks.slice(indexOfFirstBook, indexOfLastBook);
   const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
   const booksVisible = selectedCategory !== "" && currentBooks.length > 0;
-  /**
-   * Scroll control — same pattern as SoulTwist:
-   * Browser rule: overflow-x:hidden + overflow-y:visible on the SAME element
-   * silently becomes overflow-y:auto → double scrollbar.
-   * Fix: .pb2-page has NO overflow CSS. Only html/body are the scroll container.
-   *
-   *  No books  → html/body overflow:hidden   (zero scrollbars)
-   *  Books show → html/body overflow-x:hidden + overflow-y:auto (ONE scrollbar)
-   */
+
   useEffect(() => {
     const html = document.documentElement;
     const body = document.body;
-
     if (booksVisible) {
       html.style.overflowX = "hidden";
       html.style.overflowY = "auto";
@@ -143,7 +68,6 @@ const PublishedBooks = () => {
       html.style.overflow = "hidden";
       body.style.overflow = "hidden";
     }
-
     return () => {
       html.style.overflow = "";
       body.style.overflow = "";
@@ -164,8 +88,8 @@ const PublishedBooks = () => {
 
       {/* Header */}
       <div className="pb2-header">
-        <span className="pb2-eyebrow">✦ Sacred Writings</span>
-        <h1 className="pb2-title">Published Books</h1>
+        <span className="pb2-eyebrow">{t("publishedBooks.eyebrow")}</span>
+        <h1 className="pb2-title">{t("publishedBooks.title")}</h1>
         <div className="pb2-divider">
           <span className="pb2-divider__line" />
           <span className="pb2-divider__gem">✦</span>
@@ -176,7 +100,7 @@ const PublishedBooks = () => {
       {/* Category Filter */}
       <div className="pb2-filter">
         <div className="pb2-filter__wrap">
-          <span className="pb2-filter__label">Category</span>
+          <span className="pb2-filter__label">{t("publishedBooks.filter_label")}</span>
           <select
             id="pb2CategorySelect"
             value={selectedCategory}
@@ -188,7 +112,7 @@ const PublishedBooks = () => {
           >
             {selectedCategory === "" && (
               <option value="" disabled hidden>
-                Select a Category
+                {t("publishedBooks.filter_placeholder")}
               </option>
             )}
             {categories.map((cat, index) => (
@@ -219,7 +143,7 @@ const PublishedBooks = () => {
               <p className="pb2-card__author">{book.author}</p>
             </div>
             <button className="pb2-card__btn" onClick={() => setSelectedBook(book)}>
-              Open
+              {t("publishedBooks.btn_open")}
             </button>
           </div>
         ))}
@@ -233,17 +157,19 @@ const PublishedBooks = () => {
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
           >
-            ← Prev
+            {t("publishedBooks.pg_prev")}
           </button>
           <span className="pb2-pagination__info">
-            {currentPage} <span className="pb2-pagination__sep">/</span> {totalPages}
+            {currentPage}{" "}
+            <span className="pb2-pagination__sep">/</span>{" "}
+            {totalPages}
           </span>
           <button
             className="pb2-pagination__btn"
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
           >
-            Next →
+            {t("publishedBooks.pg_next")}
           </button>
         </div>
       )}
@@ -252,7 +178,9 @@ const PublishedBooks = () => {
       {selectedBook && (
         <div className="pb2-modal-overlay" onClick={() => setSelectedBook(null)}>
           <div className="pb2-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="pb2-modal__close" onClick={() => setSelectedBook(null)}>✕</button>
+            <button className="pb2-modal__close" onClick={() => setSelectedBook(null)}>
+              ✕
+            </button>
             <div className="pb2-modal__left">
               <img
                 src={selectedBook.image}
@@ -266,19 +194,19 @@ const PublishedBooks = () => {
               <h2 className="pb2-modal__title">{selectedBook.title}</h2>
               <div className="pb2-modal__meta">
                 <div className="pb2-modal__row">
-                  <span className="pb2-modal__key">Author</span>
+                  <span className="pb2-modal__key">{t("publishedBooks.modal_key_author")}</span>
                   <span className="pb2-modal__val">{selectedBook.author}</span>
                 </div>
                 <div className="pb2-modal__row">
-                  <span className="pb2-modal__key">Publisher</span>
+                  <span className="pb2-modal__key">{t("publishedBooks.modal_key_publisher")}</span>
                   <span className="pb2-modal__val">{selectedBook.publisher}</span>
                 </div>
                 <div className="pb2-modal__row">
-                  <span className="pb2-modal__key">Pages</span>
+                  <span className="pb2-modal__key">{t("publishedBooks.modal_key_pages")}</span>
                   <span className="pb2-modal__val">{selectedBook.pages}</span>
                 </div>
                 <div className="pb2-modal__row">
-                  <span className="pb2-modal__key">Year</span>
+                  <span className="pb2-modal__key">{t("publishedBooks.modal_key_year")}</span>
                   <span className="pb2-modal__val">{selectedBook.year}</span>
                 </div>
               </div>
@@ -288,7 +216,7 @@ const PublishedBooks = () => {
                 rel="noopener noreferrer"
                 className="pb2-modal__read-btn"
               >
-                📖 Read Book
+                {t("publishedBooks.modal_read_btn")}
               </a>
             </div>
           </div>

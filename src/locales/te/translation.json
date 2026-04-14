@@ -1485,5 +1485,92 @@
     "contact_title": "సంప్రదించండి",
     "contact_text": "ఈ గోప్యతా విధానం గురించి మీకు ఏమైనా ప్రశ్నలు ఉంటే, దయచేసి సంప్రదించండి — మేము సహాయపడటానికి ఇక్కడ ఉన్నాము.",
     "contact_email": "support@jaigurubande.in"
+  },
+  "publishedBooks": {
+    "eyebrow": "✦ పవిత్ర రచనలు",
+    "title": "ప్రచురించిన పుస్తకాలు",
+    "filter_label": "వర్గం",
+    "filter_placeholder": "వర్గాన్ని ఎంచుకోండి",
+    "btn_open": "తెరవండి",
+    "pg_prev": "← వెనుక",
+    "pg_next": "తదుపరి →",
+    "modal_key_author": "రచయిత",
+    "modal_key_publisher": "ప్రచురణకర్త",
+    "modal_key_pages": "పేజీలు",
+    "modal_key_year": "సంవత్సరం",
+    "modal_read_btn": "📖 పుస్తకం చదవండి",
+    "cat_all": "అన్నీ",
+    "books": [
+      {
+        "id": 1,
+        "category": "ఆధ్యాత్మికత",
+        "title": "గురు కృప – దివ్య అనుగ్రహం",
+        "author": "పరమ పూజ్య సద్గురు జీ",
+        "publisher": "దివ్య పబ్లికేషన్స్",
+        "pages": 120,
+        "year": 2021,
+        "link": "https://drive.google.com/file/d/1EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 2,
+        "category": "భక్తి",
+        "title": "భక్తి మార్గం",
+        "author": "పరమ పూజ్య సద్గురు జీ",
+        "publisher": "ఏకలవ్య ఫౌండేషన్",
+        "pages": 95,
+        "year": 2020,
+        "link": "https://drive.google.com/file/d/2EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 3,
+        "category": "ధ్యానం",
+        "title": "ఆత్మ యొక్క అంతరాళ జ్యోతి",
+        "author": "పరమ పూజ్య సద్గురు జీ",
+        "publisher": "స్పిరిచ్యువల్ పాత్ ట్రస్ట్",
+        "pages": 140,
+        "year": 2019,
+        "link": "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 4,
+        "category": "జ్ఞానం",
+        "title": "దివ్య మార్గం",
+        "author": "పరమ పూజ్య సద్గురు జీ",
+        "publisher": "స్పిరిచ్యువల్ విజ్డమ్ ప్రెస్",
+        "pages": 150,
+        "year": 2022,
+        "link": "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 5,
+        "category": "ఆత్మసాక్షాత్కారం",
+        "title": "అంతర్యాత్ర",
+        "author": "పరమ పూజ్య సద్గురు జీ",
+        "publisher": "ఎటర్నల్ లైట్ పబ్లికేషన్స్",
+        "pages": 110,
+        "year": 2023,
+        "link": "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 6,
+        "category": "తత్వశాస్త్రం",
+        "title": "పవిత్ర బోధనలు",
+        "author": "పరమ పూజ్య సద్గురు జీ",
+        "publisher": "ట్రూత్ పాత్ ఫౌండేషన్",
+        "pages": 130,
+        "year": 2021,
+        "link": "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 7,
+        "category": "జ్ఞానం",
+        "title": "కాలాతీత జ్ఞానం",
+        "author": "పరమ పూజ్య సద్గురు జీ",
+        "publisher": "దివ్య పబ్లికేషన్స్",
+        "pages": 115,
+        "year": 2024,
+        "link": "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing"
+      }
+    ]
   }
 }

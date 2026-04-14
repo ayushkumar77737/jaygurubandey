@@ -1485,5 +1485,92 @@
     "contact_title": "Contact Us",
     "contact_text": "If you have any questions about this Privacy Policy, please reach out — we're here to help.",
     "contact_email": "support@jaigurubande.in"
+  },
+  "publishedBooks": {
+    "eyebrow": "✦ Sacred Writings",
+    "title": "Published Books",
+    "filter_label": "Category",
+    "filter_placeholder": "Select a Category",
+    "btn_open": "Open",
+    "pg_prev": "← Prev",
+    "pg_next": "Next →",
+    "modal_key_author": "Author",
+    "modal_key_publisher": "Publisher",
+    "modal_key_pages": "Pages",
+    "modal_key_year": "Year",
+    "modal_read_btn": "📖 Read Book",
+    "cat_all": "All",
+    "books": [
+      {
+        "id": 1,
+        "category": "Spirituality",
+        "title": "Guru Kripa – The Divine Grace",
+        "author": "Param Pujya Satguru Ji",
+        "publisher": "Divine Publications",
+        "pages": 120,
+        "year": 2021,
+        "link": "https://drive.google.com/file/d/1EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 2,
+        "category": "Devotion",
+        "title": "Path of Devotion",
+        "author": "Param Pujya Satguru Ji",
+        "publisher": "Eklavya Foundation",
+        "pages": 95,
+        "year": 2020,
+        "link": "https://drive.google.com/file/d/2EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 3,
+        "category": "Meditation",
+        "title": "Inner Light of the Soul",
+        "author": "Param Pujya Satguru Ji",
+        "publisher": "Spiritual Path Trust",
+        "pages": 140,
+        "year": 2019,
+        "link": "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 4,
+        "category": "Wisdom",
+        "title": "Divine Pathway",
+        "author": "Param Pujya Satguru Ji",
+        "publisher": "Spiritual Wisdom Press",
+        "pages": 150,
+        "year": 2022,
+        "link": "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 5,
+        "category": "Self-Realization",
+        "title": "Journey Within",
+        "author": "Param Pujya Satguru Ji",
+        "publisher": "Eternal Light Publications",
+        "pages": 110,
+        "year": 2023,
+        "link": "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 6,
+        "category": "Philosophy",
+        "title": "The Sacred Teachings",
+        "author": "Param Pujya Satguru Ji",
+        "publisher": "Truth Path Foundation",
+        "pages": 130,
+        "year": 2021,
+        "link": "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 7,
+        "category": "Wisdom",
+        "title": "Wisdom Beyond Time",
+        "author": "Param Pujya Satguru Ji",
+        "publisher": "Divine Publications",
+        "pages": 115,
+        "year": 2024,
+        "link": "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing"
+      }
+    ]
   }
 }

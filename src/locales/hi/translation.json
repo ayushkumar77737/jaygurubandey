@@ -1485,5 +1485,92 @@
     "contact_title": "संपर्क करें",
     "contact_text": "यदि इस गोपनीयता नीति के बारे में आपके कोई प्रश्न हैं, तो कृपया हमसे संपर्क करें — हम आपकी सहायता के लिए यहाँ हैं।",
     "contact_email": "support@jaigurubande.in"
+  },
+  "publishedBooks": {
+    "eyebrow": "✦ पवित्र लेखन",
+    "title": "प्रकाशित पुस्तकें",
+    "filter_label": "श्रेणी",
+    "filter_placeholder": "एक श्रेणी चुनें",
+    "btn_open": "खोलें",
+    "pg_prev": "← पिछला",
+    "pg_next": "अगला →",
+    "modal_key_author": "लेखक",
+    "modal_key_publisher": "प्रकाशक",
+    "modal_key_pages": "पृष्ठ",
+    "modal_key_year": "वर्ष",
+    "modal_read_btn": "📖 पुस्तक पढ़ें",
+    "cat_all": "सभी",
+    "books": [
+      {
+        "id": 1,
+        "category": "आध्यात्मिकता",
+        "title": "गुरु कृपा – दिव्य अनुग्रह",
+        "author": "परम पूज्य सतगुरु जी",
+        "publisher": "दिव्य प्रकाशन",
+        "pages": 120,
+        "year": 2021,
+        "link": "https://drive.google.com/file/d/1EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 2,
+        "category": "भक्ति",
+        "title": "भक्ति का मार्ग",
+        "author": "परम पूज्य सतगुरु जी",
+        "publisher": "एकलव्य फाउंडेशन",
+        "pages": 95,
+        "year": 2020,
+        "link": "https://drive.google.com/file/d/2EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 3,
+        "category": "ध्यान",
+        "title": "आत्मा का आंतरिक प्रकाश",
+        "author": "परम पूज्य सतगुरु जी",
+        "publisher": "आध्यात्मिक पथ ट्रस्ट",
+        "pages": 140,
+        "year": 2019,
+        "link": "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 4,
+        "category": "ज्ञान",
+        "title": "दिव्य मार्ग",
+        "author": "परम पूज्य सतगुरु जी",
+        "publisher": "आध्यात्मिक ज्ञान प्रेस",
+        "pages": 150,
+        "year": 2022,
+        "link": "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 5,
+        "category": "आत्म-साक्षात्कार",
+        "title": "अंतर्यात्रा",
+        "author": "परम पूज्य सतगुरु जी",
+        "publisher": "शाश्वत प्रकाश प्रकाशन",
+        "pages": 110,
+        "year": 2023,
+        "link": "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 6,
+        "category": "दर्शन",
+        "title": "पवित्र शिक्षाएं",
+        "author": "परम पूज्य सतगुरु जी",
+        "publisher": "सत्य पथ फाउंडेशन",
+        "pages": 130,
+        "year": 2021,
+        "link": "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing"
+      },
+      {
+        "id": 7,
+        "category": "ज्ञान",
+        "title": "कालातीत ज्ञान",
+        "author": "परम पूज्य सतगुरु जी",
+        "publisher": "दिव्य प्रकाशन",
+        "pages": 115,
+        "year": 2024,
+        "link": "https://drive.google.com/file/d/3EXAMPLE_ID/view?usp=sharing"
+      }
+    ]
   }
 }
