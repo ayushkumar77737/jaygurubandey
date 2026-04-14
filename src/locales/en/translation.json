@@ -1390,5 +1390,18 @@
         "videos": []
       }
     ]
+  },
+  "submitTestimony": {
+    "title": "🌸 Share Your Testimony 🌸",
+    "subtitle": "Your story may inspire someone who needs hope.",
+    "label_name": "Name",
+    "label_location": "Location",
+    "label_date": "Date",
+    "label_testimony": "Testimony",
+    "ph_name": "Enter your full name",
+    "ph_location": "City / Place",
+    "ph_testimony": "Write your testimony...",
+    "btn_submit": "Submit",
+    "success": "🌸 Thank you! Your testimony has been submitted."
   }
 }

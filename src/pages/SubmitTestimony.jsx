@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./SubmitTestimony.css";
 
-// 🔥 Firebase imports
 import { collection, addDoc, Timestamp } from "firebase/firestore";
-import { db } from "../firebase/firebase"; // adjust path if needed
+import { db } from "../firebase/firebase";
 
 const SubmitTestimony = () => {
+  const { t } = useTranslation();
+
   const [form, setForm] = useState({
     name: "",
     location: "",
@@ -15,7 +17,6 @@ const SubmitTestimony = () => {
 
   const [submitted, setSubmitted] = useState(false);
 
-  // ✅ Allow only letters & spaces
   const handleNameChange = (e) => {
     const value = e.target.value.replace(/[^A-Za-z\s]/g, "");
     setForm({ ...form, name: value });
@@ -30,15 +31,14 @@ const SubmitTestimony = () => {
     setForm({ ...form, testimony: e.target.value });
   };
 
-  // 🔥 Submit to Firebase Firestore
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       await addDoc(collection(db, "testimonies"), {
-        name: form.name,
-        location: form.location,
-        date: form.date,
+        name:      form.name,
+        location:  form.location,
+        date:      form.date,
         testimony: form.testimony,
         createdAt: Timestamp.now(),
       });
@@ -46,7 +46,6 @@ const SubmitTestimony = () => {
       setSubmitted(true);
       setForm({ name: "", location: "", date: "", testimony: "" });
 
-      // ⏳ hide success message after 4 seconds
       setTimeout(() => {
         setSubmitted(false);
       }, 4000);
@@ -58,29 +57,30 @@ const SubmitTestimony = () => {
 
   return (
     <div className="submit-testimony-page">
-      <h1>🌸 Share Your Testimony 🌸</h1>
-      <p>Your story may inspire someone who needs hope.</p>
+      <h1>{t("submitTestimony.title")}</h1>
+      <p>{t("submitTestimony.subtitle")}</p>
 
       <form onSubmit={handleSubmit} className="submit-form">
-        <label>Name</label>
+
+        <label>{t("submitTestimony.label_name")}</label>
         <input
           type="text"
           value={form.name}
           required
           onChange={handleNameChange}
-          placeholder="Enter your full name"
+          placeholder={t("submitTestimony.ph_name")}
         />
 
-        <label>Location</label>
+        <label>{t("submitTestimony.label_location")}</label>
         <input
           type="text"
           value={form.location}
           required
           onChange={handleLocationChange}
-          placeholder="City / Place"
+          placeholder={t("submitTestimony.ph_location")}
         />
 
-        <label>Date</label>
+        <label>{t("submitTestimony.label_date")}</label>
         <input
           type="date"
           value={form.date}
@@ -88,24 +88,25 @@ const SubmitTestimony = () => {
           onChange={(e) => setForm({ ...form, date: e.target.value })}
         />
 
-        <label>Testimony</label>
+        <label>{t("submitTestimony.label_testimony")}</label>
         <textarea
           rows="6"
           value={form.testimony}
           required
           onChange={handleTestimonyChange}
-          placeholder="Write your testimony..."
+          placeholder={t("submitTestimony.ph_testimony")}
         />
 
         <button type="submit" className="submit-testimony-btn">
-          Submit
+          {t("submitTestimony.btn_submit")}
         </button>
 
         {submitted && (
           <p className="success-message">
-            🌸 Thank you! Your testimony has been submitted.
+            {t("submitTestimony.success")}
           </p>
         )}
+
       </form>
     </div>
   );
