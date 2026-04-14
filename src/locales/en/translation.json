@@ -1403,5 +1403,64 @@
     "ph_testimony": "Write your testimony...",
     "btn_submit": "Submit",
     "success": "🌸 Thank you! Your testimony has been submitted."
+  },
+  "intlCenters": {
+    "badge": "Spiritual Outreach",
+    "intro_title": "Spreading Love & Light",
+    "intro_title_sub": "Across India",
+    "intro_text": "Guruji's divine teachings have touched hearts across every corner of India. Explore our centers and the growing community of devotees spreading the message of devotion, peace, and spiritual awakening.",
+    "map_title": "Our Presence Across India",
+    "map_subtitle": "Hover any pin to explore a center",
+    "stats_title": "Our Growing Community",
+    "pins": [
+      {
+        "label": "New Delhi",
+        "top": "33%",
+        "left": "32%"
+      },
+      {
+        "label": "Lucknow",
+        "top": "40%",
+        "left": "43%"
+      },
+      {
+        "label": "Kolkata",
+        "top": "52%",
+        "left": "63%"
+      },
+      {
+        "label": "Mumbai",
+        "top": "63%",
+        "left": "17%"
+      },
+      {
+        "label": "Hyderabad",
+        "top": "68%",
+        "left": "35%"
+      },
+      {
+        "label": "Chennai",
+        "top": "80%",
+        "left": "43%"
+      }
+    ],
+    "stats": [
+      {
+        "value": "20+",
+        "label": "States Reached"
+      },
+      {
+        "value": "50+",
+        "label": "Active Centers"
+      },
+      {
+        "value": "1 Lakh+",
+        "label": "Devotees Connected"
+      },
+      {
+        "value": "100+",
+        "label": "Weekly Satsangs"
+      }
+    ]
   }
 }

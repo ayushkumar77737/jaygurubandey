@@ -1,40 +1,14 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import "./IntlCenters.css";
 import indiaMap from "../assets/indiamap.jpg";
 
-/*
-  Pin coordinates calibrated against the "India States and Union Territories" map.
-  Reference: top-left of image = (0%,0%), bottom-right = (100%,100%).
-
-  City dot positions read directly from the map:
-  ┌────────────────┬────────┬────────┐
-  │ City           │  top   │  left  │
-  ├────────────────┼────────┼────────┤
-  │ New Delhi      │  33%   │  32%   │
-  │ Lucknow        │  40%   │  43%   │
-  │ Kolkata        │  52%   │  63%   │
-  │ Mumbai         │  63%   │  17%   │
-  │ Hyderabad      │  68%   │  35%   │
-  │ Chennai        │  80%   │  43%   │
-  └────────────────┴────────┴────────┘
-*/
-const pins = [
-  { label: "New Delhi", top: "33%", left: "32%" },
-  { label: "Lucknow", top: "40%", left: "43%" },
-  { label: "Kolkata", top: "52%", left: "63%" },
-  { label: "Mumbai", top: "63%", left: "17%" },
-  { label: "Hyderabad", top: "68%", left: "35%" },
-  { label: "Chennai", top: "80%", left: "43%" },
-];
-
-const stats = [
-  { value: "20+", label: "States Reached" },
-  { value: "50+", label: "Active Centers" },
-  { value: "1 Lakh+", label: "Devotees Connected" },
-  { value: "100+", label: "Weekly Satsangs" },
-];
-
 const InternationalCenters = () => {
+  const { t } = useTranslation();
+
+  const pins = t("intlCenters.pins", { returnObjects: true });
+  const stats = t("intlCenters.stats", { returnObjects: true });
+
   return (
     <div className="ic__root">
       {/* Decorative orbs */}
@@ -46,35 +20,27 @@ const InternationalCenters = () => {
       <section className="ic__intro">
         <div className="ic__intro-badge">
           <span className="ic__badge-dot" />
-          Spiritual Outreach
+          {t("intlCenters.badge")}
         </div>
         <h1 className="ic__intro-title">
-          Spreading Love &amp; Light
-          <span className="ic__intro-title-sub">Across India</span>
+          {t("intlCenters.intro_title")}
+          <span className="ic__intro-title-sub">
+            {t("intlCenters.intro_title_sub")}
+          </span>
         </h1>
-        <p className="ic__intro-text">
-          Guruji's divine teachings have touched hearts across every corner of
-          India. Explore our centers and the growing community of devotees
-          spreading the message of devotion, peace, and spiritual awakening.
-        </p>
+        <p className="ic__intro-text">{t("intlCenters.intro_text")}</p>
         <div className="ic__intro-divider" />
       </section>
 
       {/* ===== 2. MAP SECTION ===== */}
       <section className="ic__map-section">
         <div className="ic__map-header">
-          <h2 className="ic__map-title">Our Presence Across India</h2>
-          <p className="ic__map-subtitle">Hover any pin to explore a center</p>
+          <h2 className="ic__map-title">{t("intlCenters.map_title")}</h2>
+          <p className="ic__map-subtitle">{t("intlCenters.map_subtitle")}</p>
         </div>
 
         <div className="ic__map-wrapper">
           <div className="ic__map-glow" />
-
-          {/*
-            ic__map-frame is position:relative + display:inline-block
-            so it hugs the image exactly — all pin % coords are relative
-            to the rendered image dimensions.
-          */}
           <div className="ic__map-frame">
             <img src={indiaMap} alt="India Map" className="ic__map-img" />
 
@@ -98,7 +64,7 @@ const InternationalCenters = () => {
 
       {/* ===== 3. STATS SECTION ===== */}
       <section className="ic__stats">
-        <h2 className="ic__stats-title">Our Growing Community</h2>
+        <h2 className="ic__stats-title">{t("intlCenters.stats_title")}</h2>
         <div className="ic__stats-grid">
           {stats.map((s, i) => (
             <div
