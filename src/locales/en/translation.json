@@ -1227,5 +1227,35 @@
         ]
       }
     ]
+  },
+  "feedback": {
+    "hero_badge": "Share Your Experience",
+    "hero_title": "Devotee Feedback Form",
+    "hero_sub": "Your thoughts help us serve the ashram community better. We read every message with gratitude.",
+    "card_dots_label": "Feedback Form",
+    "label_name": "Full Name",
+    "label_email": "Email Address",
+    "label_rating": "Overall Rating",
+    "label_feedback": "Your Feedback",
+    "label_issues": "Did you face any issues?",
+    "label_contact": "Would you like us to contact you?",
+    "ph_name": "Enter your full name",
+    "ph_email": "example@gmail.com",
+    "ph_feedback": "Write your feedback here...",
+    "opt_yes": "Yes",
+    "opt_no": "No",
+    "rating_labels": [
+      "",
+      "Poor",
+      "Fair",
+      "Good",
+      "Great",
+      "Excellent!"
+    ],
+    "btn_submit": "Submit Feedback 🙏",
+    "btn_submitting": "Submitting...",
+    "err_fields": "Please fill all required fields",
+    "success": "✅ Thank you for your feedback!",
+    "err_server": "❌ Submission failed. Please try again."
   }
 }

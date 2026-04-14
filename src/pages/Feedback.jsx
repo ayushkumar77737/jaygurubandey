@@ -1,11 +1,17 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./Feedback.css";
 
-// 🔥 Firebase imports
 import { db } from "../firebase//firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 const Feedback = () => {
+  const { t } = useTranslation();
+
+  const ratingLabels = t("feedback.rating_labels", { returnObjects: true });
+  const optYes = t("feedback.opt_yes");
+  const optNo = t("feedback.opt_no");
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -30,6 +36,8 @@ const Feedback = () => {
     if (name === "feedback") {
       if (!/^[A-Za-z0-9\s.,!?'"()-]*$/.test(value)) return;
     }
+
+    // issues "Yes" logic — compare against raw English value stored in DB
     if (name === "issues" && value === "Yes") {
       setFormData({ ...formData, [name]: value, contact: "Yes" });
       return;
@@ -49,7 +57,7 @@ const Feedback = () => {
       !formData.issues ||
       !formData.contact
     ) {
-      alert("Please fill all required fields");
+      alert(t("feedback.err_fields"));
       return;
     }
 
@@ -65,12 +73,12 @@ const Feedback = () => {
         createdAt: serverTimestamp(),
       });
 
-      setSuccessMsg("✅ Thank you for your feedback!");
+      setSuccessMsg(t("feedback.success"));
       setFormData({ fullName: "", email: "", rating: "", feedback: "", issues: "", contact: "" });
       setTimeout(() => setSuccessMsg(""), 4000);
     } catch (err) {
       console.error("Firestore Error:", err);
-      setSuccessMsg("❌ Submission failed. Please try again.");
+      setSuccessMsg(t("feedback.err_server"));
     } finally {
       setLoading(false);
     }
@@ -88,15 +96,12 @@ const Feedback = () => {
 
         {/* ===== Header ===== */}
         <div className="fbfrm__hero">
-          <div className="fbfrm__hero-badge">Share Your Experience</div>
+          <div className="fbfrm__hero-badge">{t("feedback.hero_badge")}</div>
           <h1 className="fbfrm__hero-title">
             <span className="fbfrm__pray">🙏</span>
-            Devotee Feedback Form
+            {t("feedback.hero_title")}
           </h1>
-          <p className="fbfrm__hero-sub">
-            Your thoughts help us serve the ashram community better.
-            We read every message with gratitude.
-          </p>
+          <p className="fbfrm__hero-sub">{t("feedback.hero_sub")}</p>
           <div className="fbfrm__hero-divider">
             <span className="fbfrm__div-line" />
             <span className="fbfrm__div-gem">✦</span>
@@ -112,7 +117,9 @@ const Feedback = () => {
             <span className="fbfrm__dot fbfrm__dot--pink" />
             <span className="fbfrm__dot fbfrm__dot--peach" />
             <span className="fbfrm__dot fbfrm__dot--lilac" />
-            <span className="fbfrm__card-dots-label">Feedback Form</span>
+            <span className="fbfrm__card-dots-label">
+              {t("feedback.card_dots_label")}
+            </span>
           </div>
 
           <form className="fbfrm__form" onSubmit={handleSubmit}>
@@ -120,7 +127,7 @@ const Feedback = () => {
             {/* Full Name */}
             <div className="fbfrm__field">
               <label className="fbfrm__label">
-                Full Name <span className="fbfrm__req">*</span>
+                {t("feedback.label_name")} <span className="fbfrm__req">*</span>
               </label>
               <input
                 className="fbfrm__input"
@@ -129,14 +136,14 @@ const Feedback = () => {
                 value={formData.fullName}
                 onChange={handleChange}
                 required
-                placeholder="Enter your full name"
+                placeholder={t("feedback.ph_name")}
               />
             </div>
 
             {/* Email */}
             <div className="fbfrm__field">
               <label className="fbfrm__label">
-                Email Address <span className="fbfrm__req">*</span>
+                {t("feedback.label_email")} <span className="fbfrm__req">*</span>
               </label>
               <input
                 className="fbfrm__input"
@@ -145,14 +152,14 @@ const Feedback = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                placeholder="example@gmail.com"
+                placeholder={t("feedback.ph_email")}
               />
             </div>
 
             {/* Rating */}
             <div className="fbfrm__field">
               <label className="fbfrm__label">
-                Overall Rating <span className="fbfrm__req">*</span>
+                {t("feedback.label_rating")} <span className="fbfrm__req">*</span>
               </label>
               <div className="fbfrm__stars">
                 {[1, 2, 3, 4, 5].map((star) => (
@@ -177,7 +184,7 @@ const Feedback = () => {
                 ))}
                 {formData.rating && (
                   <span className="fbfrm__rating-label">
-                    {["", "Poor", "Fair", "Good", "Great", "Excellent!"][formData.rating]}
+                    {ratingLabels[formData.rating]}
                   </span>
                 )}
               </div>
@@ -186,7 +193,7 @@ const Feedback = () => {
             {/* Feedback */}
             <div className="fbfrm__field">
               <label className="fbfrm__label">
-                Your Feedback <span className="fbfrm__req">*</span>
+                {t("feedback.label_feedback")} <span className="fbfrm__req">*</span>
               </label>
               <textarea
                 className="fbfrm__textarea"
@@ -194,28 +201,37 @@ const Feedback = () => {
                 value={formData.feedback}
                 onChange={handleChange}
                 required
-                placeholder="Write your feedback here..."
+                placeholder={t("feedback.ph_feedback")}
               />
             </div>
 
             {/* Issues */}
             <div className="fbfrm__field">
               <label className="fbfrm__label">
-                Did you face any issues? <span className="fbfrm__req">*</span>
+                {t("feedback.label_issues")} <span className="fbfrm__req">*</span>
               </label>
               <div className="fbfrm__radio-group">
-                {["Yes", "No"].map((opt) => (
-                  <label key={opt} className={`fbfrm__radio-card ${formData.issues === opt ? "fbfrm__radio-card--active" : ""}`}>
+                {/* Always store raw "Yes"/"No" as radio values so
+                    Firestore data stays language-agnostic */}
+                {[
+                  { value: "Yes", label: optYes },
+                  { value: "No", label: optNo },
+                ].map((opt) => (
+                  <label
+                    key={opt.value}
+                    className={`fbfrm__radio-card ${formData.issues === opt.value ? "fbfrm__radio-card--active" : ""
+                      }`}
+                  >
                     <input
                       type="radio"
                       name="issues"
-                      value={opt}
-                      checked={formData.issues === opt}
+                      value={opt.value}
+                      checked={formData.issues === opt.value}
                       onChange={handleChange}
                       className="fbfrm__radio-input"
                     />
                     <span className="fbfrm__radio-indicator" />
-                    {opt}
+                    {opt.label}
                   </label>
                 ))}
               </div>
@@ -224,10 +240,13 @@ const Feedback = () => {
             {/* Contact */}
             <div className="fbfrm__field">
               <label className="fbfrm__label">
-                Would you like us to contact you? <span className="fbfrm__req">*</span>
+                {t("feedback.label_contact")} <span className="fbfrm__req">*</span>
               </label>
               <div className="fbfrm__radio-group">
-                <label className={`fbfrm__radio-card ${formData.contact === "Yes" ? "fbfrm__radio-card--active" : ""}`}>
+                <label
+                  className={`fbfrm__radio-card ${formData.contact === "Yes" ? "fbfrm__radio-card--active" : ""
+                    }`}
+                >
                   <input
                     type="radio"
                     name="contact"
@@ -237,11 +256,14 @@ const Feedback = () => {
                     className="fbfrm__radio-input"
                   />
                   <span className="fbfrm__radio-indicator" />
-                  Yes
+                  {optYes}
                 </label>
 
                 {formData.issues !== "Yes" && (
-                  <label className={`fbfrm__radio-card ${formData.contact === "No" ? "fbfrm__radio-card--active" : ""}`}>
+                  <label
+                    className={`fbfrm__radio-card ${formData.contact === "No" ? "fbfrm__radio-card--active" : ""
+                      }`}
+                  >
                     <input
                       type="radio"
                       name="contact"
@@ -251,7 +273,7 @@ const Feedback = () => {
                       className="fbfrm__radio-input"
                     />
                     <span className="fbfrm__radio-indicator" />
-                    No
+                    {optNo}
                   </label>
                 )}
               </div>
@@ -266,13 +288,16 @@ const Feedback = () => {
               {loading ? (
                 <span className="fbfrm__spinner" />
               ) : (
-                <>Submit Feedback 🙏</>
+                t("feedback.btn_submit")
               )}
             </button>
 
-            {/* Success */}
+            {/* Success / Error */}
             {successMsg && (
-              <div className={`fbfrm__success ${successMsg.startsWith("❌") ? "fbfrm__success--error" : ""}`}>
+              <div
+                className={`fbfrm__success ${successMsg.startsWith("❌") ? "fbfrm__success--error" : ""
+                  }`}
+              >
                 {successMsg}
               </div>
             )}
