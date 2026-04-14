@@ -5,7 +5,7 @@
               Violet, electric blue, gold & rose neon
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
 
 /* ── Variables ───────────────────────────────────────────── */
 .pg-page {
@@ -236,12 +236,22 @@
   font-weight: 700;
   cursor: pointer;
   letter-spacing: 0.3px;
+  unicode-bidi: plaintext;  
+  direction: ltr;  
   box-shadow:
     0 0 18px rgba(106, 17, 203, 0.30),
     0 0 36px rgba(37, 117, 252, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
   transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
   backdrop-filter: blur(8px);
+}
+
+.pg-dropdown option {
+  background: #1a1040;
+  color: #fff;
+  font-family: 'Noto Sans Devanagari', 'Mangal', var(--pg-font-body);  /* ← add this */
+  unicode-bidi: plaintext;   /* ← add this */
+  direction: ltr;             /* ← add this */
 }
 
 .pg-dropdown:hover {

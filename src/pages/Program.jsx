@@ -63,10 +63,12 @@ const Program = () => {
             className="pg-dropdown"
             value={selectedProgram}
             onChange={(e) => setSelectedProgram(e.target.value)}
+            dir="ltr"
+            lang="hi"
           >
             <option value="" hidden>{t("program.select_placeholder")}</option>
             {programOptions.map((option, index) => (
-              <option key={index} value={option}>{option}</option>
+              <option key={index} value={option} dir="ltr">{option}</option>
             ))}
           </select>
           <span className="pg-dropdown-arrow">▾</span>
