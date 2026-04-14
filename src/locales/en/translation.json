@@ -1257,5 +1257,49 @@
     "err_fields": "Please fill all required fields",
     "success": "✅ Thank you for your feedback!",
     "err_server": "❌ Submission failed. Please try again."
+  },
+  "quickStart": {
+    "badge": "Quick Navigation",
+    "title": "Top 5 Important Pages",
+    "subtitle": "New to this website or visiting the Ashram soon? Start with these five essential sections to get all important information in just a few clicks.",
+    "note": "🌸 Looking for something else? Use the main menu at the top to explore all other pages of the ashram.",
+    "cta": "Open page",
+    "links": [
+      {
+        "id": 1,
+        "label": "Home",
+        "emoji": "🏠",
+        "description": "Enter the divine space of Guruji's blessings and ashram updates.",
+        "tag": "Most Visited"
+      },
+      {
+        "id": 2,
+        "label": "About Guruji",
+        "emoji": "ℹ️",
+        "description": "Guruji's teachings illuminate the path of peace, devotion, and purposeful living.",
+        "tag": "Divine Guidance"
+      },
+      {
+        "id": 3,
+        "label": "Daily Satsang",
+        "emoji": "🔅",
+        "description": "Daily satsang offering guidance, peace, and spiritual connection with Guruji.",
+        "tag": "Most Visited"
+      },
+      {
+        "id": 4,
+        "label": "Important Dates",
+        "emoji": "📅",
+        "description": "Stay updated with all upcoming and important Ashram schedules.",
+        "tag": "Key Dates"
+      },
+      {
+        "id": 5,
+        "label": "Contact Us",
+        "emoji": "📞",
+        "description": "We're here to help you with all inquiries and support needs.",
+        "tag": "Support"
+      }
+    ]
   }
 }

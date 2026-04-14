@@ -1,57 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./QuickStart.css";
 
-const quickLinks = [
-  {
-    id: 1,
-    label: "Home",
-    emoji: "🏠",
-    description:
-      "Enter the divine space of Guruji's blessings and ashram updates.",
-    path: "/",
-    tag: "Most Visited",
-  },
-  {
-    id: 2,
-    label: "About Guruji",
-    emoji: "ℹ️",
-    description:
-      "Guruji's teachings illuminate the path of peace, devotion, and purposeful living.",
-    path: "/about",
-    tag: "Divine Guidance",
-  },
-  {
-    id: 3,
-    label: "Daily Satsang",
-    emoji: "🔅",
-    description:
-      "Daily satsang offering guidance, peace, and spiritual connection with Guruji.",
-    path: "/dailysatsang",
-    tag: "Most Visited",
-  },
-  {
-    id: 4,
-    label: "Important Dates",
-    emoji: "📅",
-    description:
-      "Stay updated with all upcoming and important Ashram schedules.",
-    path: "/important-dates",
-    tag: "Key Dates",
-  },
-  {
-    id: 5,
-    label: "Contact Us",
-    emoji: "📞",
-    description:
-      "We're here to help you with all inquiries and support needs.",
-    path: "/contact",
-    tag: "Support",
-  },
-];
+// Paths are navigation concerns, not translatable — kept here separately
+const QUICK_PATHS = ["/", "/about", "/dailysatsang", "/important-dates", "/contact"];
 
 const QuickStart = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const links = t("quickStart.links", { returnObjects: true });
 
   const handleNavigate = (path) => {
     navigate(path);
@@ -70,13 +29,9 @@ const QuickStart = () => {
 
         {/* ===== Hero ===== */}
         <div className="qkst__hero">
-          <div className="qkst__badge">Quick Navigation</div>
-          <h1 className="qkst__title">Top 5 Important Pages</h1>
-          <p className="qkst__subtitle">
-            New to this website or visiting the Ashram soon? Start with these
-            five essential sections to get all important information in just a
-            few clicks.
-          </p>
+          <div className="qkst__badge">{t("quickStart.badge")}</div>
+          <h1 className="qkst__title">{t("quickStart.title")}</h1>
+          <p className="qkst__subtitle">{t("quickStart.subtitle")}</p>
           <div className="qkst__divider">
             <span className="qkst__div-line" />
             <span className="qkst__div-gem">✦</span>
@@ -86,11 +41,11 @@ const QuickStart = () => {
 
         {/* ===== Grid ===== */}
         <div className="qkst__grid">
-          {quickLinks.map((item, i) => (
+          {links.map((item, i) => (
             <button
               key={item.id}
               className="qkst__card"
-              onClick={() => handleNavigate(item.path)}
+              onClick={() => handleNavigate(QUICK_PATHS[i])}
               style={{ animationDelay: `${0.05 + i * 0.09}s` }}
             >
               {/* Hover glow layer */}
@@ -105,7 +60,7 @@ const QuickStart = () => {
               <p className="qkst__card-text">{item.description}</p>
 
               <div className="qkst__card-footer">
-                <span className="qkst__cta">Open page</span>
+                <span className="qkst__cta">{t("quickStart.cta")}</span>
                 <span className="qkst__arrow">→</span>
               </div>
             </button>
@@ -113,10 +68,7 @@ const QuickStart = () => {
         </div>
 
         {/* ===== Footer note ===== */}
-        <p className="qkst__note">
-          🌸 Looking for something else? Use the main menu at the top to
-          explore all other pages of the ashram.
-        </p>
+        <p className="qkst__note">{t("quickStart.note")}</p>
 
       </div>
     </div>
