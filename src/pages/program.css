@@ -219,16 +219,14 @@
 .pg-dropdown-box {
   position: relative;
   display: inline-block;
-  overflow: visible;
 }
 
 .pg-dropdown {
   appearance: none;
   -webkit-appearance: none;
-  width: 320px;
-  max-width: 92vw;
-  padding: 13px 52px 13px 36px; /* ← left padding: 24px → 36px */
-  text-indent: 4px;              /* ← ADD this line */
+  width: 280px;
+  max-width: 90vw;
+  padding: 13px 48px 13px 24px;
   border-radius: 30px;
   border: 1.5px solid rgba(106, 17, 203, 0.6);
   background: rgba(20, 16, 50, 0.85);
@@ -238,9 +236,6 @@
   font-weight: 700;
   cursor: pointer;
   letter-spacing: 0.3px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   box-shadow:
     0 0 18px rgba(106, 17, 203, 0.30),
     0 0 36px rgba(37, 117, 252, 0.15),
@@ -650,7 +645,7 @@
   }
 
   .pg-dropdown {
-    width: 95vw;
+    width: 90vw;
     font-size: 0.9rem;
   }
 
