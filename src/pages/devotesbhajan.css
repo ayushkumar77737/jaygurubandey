@@ -183,8 +183,8 @@
   -webkit-appearance: none;
   font-family: var(--dvb-font-display);
   font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--dvb-deep);
+  font-weight: 600;
+  color: var(--dvb-maroon);
   background: var(--dvb-card-bg);
   border: 1.5px solid var(--dvb-border);
   border-radius: 999px;
@@ -200,12 +200,6 @@
 .dvbhajan__select:hover {
   border-color: var(--dvb-gold);
   box-shadow: 0 8px 24px rgba(200, 145, 50, 0.22);
-}
-
-.dvbhajan__select option {
-  color: var(--dvb-deep);
-  font-weight: 600;
-  background: #fdf6ec;
 }
 
 .dvbhajan__select-arrow {
