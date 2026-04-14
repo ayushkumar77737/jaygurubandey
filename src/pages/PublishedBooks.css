@@ -140,7 +140,7 @@ body {
 .pb2-filter__wrap {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 6px;
   position: relative;
 }
