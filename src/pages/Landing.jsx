@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import { useTranslation } from "react-i18next";   // ✅ NEW
 import "./Landing.css";
-import landingimage from "../assets/guruji.webp";
+//import landingimage from "../assets/guruji.webp";
 
 const languages = [
   { code: "en", label: "English" },
@@ -75,7 +75,7 @@ const Landing = () => {
         {/* image */}
         <div className="lp-img-wrap">
           <div className="lp-img-ring" />
-          <img src={landingimage} alt="Guruji spiritual website landing page" className="lp-img" />
+          <img src="/guruji1.webp" alt="Param Sant Swami Jai Gurubande Ji Maharaj" className="lp-img" />
         </div>
 
         {/* badge */}
